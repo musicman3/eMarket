@@ -97,11 +97,11 @@ class AddressBook {
                 $default = 0;
             }
 
-            $address_array = ['countries_id' => htmlspecialchars(Valid::inPOST('countries')),
-                'regions_id' => htmlspecialchars(Valid::inPOST('regions')),
-                'city' => htmlspecialchars(Valid::inPOST('city')),
-                'zip' => htmlspecialchars(Valid::inPOST('zip')),
-                'address' => htmlspecialchars(Valid::inPOST('address')),
+            $address_array = ['countries_id' => Valid::inPOST('countries'),
+                'regions_id' => Valid::inPOST('regions'),
+                'city' => Valid::inPOST('city'),
+                'zip' => Valid::inPOST('zip'),
+                'address' => Valid::inPOST('address'),
                 'default' => $default];
 
             $x = 0;
@@ -131,11 +131,11 @@ class AddressBook {
                 $default = 0;
             }
 
-            $address_array = ['countries_id' => htmlspecialchars(Valid::inPOST('countries')),
-                'regions_id' => htmlspecialchars(Valid::inPOST('regions')),
-                'city' => htmlspecialchars(Valid::inPOST('city')),
-                'zip' => htmlspecialchars(Valid::inPOST('zip')),
-                'address' => htmlspecialchars(Valid::inPOST('address')),
+            $address_array = ['countries_id' => Valid::inPOST('countries'),
+                'regions_id' => Valid::inPOST('regions'),
+                'city' => Valid::inPOST('city'),
+                'zip' => Valid::inPOST('zip'),
+                'address' => Valid::inPOST('address'),
                 'default' => $default];
 
             $x = 0;

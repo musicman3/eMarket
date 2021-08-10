@@ -25,7 +25,7 @@ class Valid {
      * @return array|string
      */
     public static function inPOST($input) {
-        if (filter_input(INPUT_POST, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
+        if (filter_input(INPUT_POST, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
             if (isset($_POST[$input])) {
                 return $_POST[$input];
             } else {
@@ -41,7 +41,7 @@ class Valid {
      * @return array|string
      */
     public static function inGET($input) {
-        if (filter_input(INPUT_GET, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+        if (filter_input(INPUT_GET, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             if (isset($_GET[$input])) {
                 return $_GET[$input];
             } else {
@@ -57,7 +57,7 @@ class Valid {
      * @return string
      */
     public static function inSERVER($input) {
-        if (filter_input(INPUT_SERVER, $input, FILTER_DEFAULT, FILTER_FORCE_ARRAY) == TRUE) {
+        if (filter_input(INPUT_SERVER, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_SERVER[$input])) ? $_SERVER[$input] : null;
         }
     }
@@ -69,7 +69,7 @@ class Valid {
      * @return string
      */
     public static function inCOOKIE($input) {
-        if (filter_input(INPUT_COOKIE, $input) == TRUE) {
+        if (filter_input(INPUT_COOKIE, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             return (isset($_COOKIE[$input])) ? $_COOKIE[$input] : null;
         }
     }
@@ -85,7 +85,7 @@ class Valid {
         if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
             $data = json_decode($postData, true);
             if (isset($data[$input])) {
-                return $data[$input];
+                return htmlspecialchars($data[$input]);
             }
         }
         return FALSE;

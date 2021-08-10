@@ -52,14 +52,14 @@ class MyAccount {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
                 $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
-                    htmlspecialchars(Valid::inPOST('firstname')), htmlspecialchars(Valid::inPOST('lastname')),
-                    htmlspecialchars(Valid::inPOST('middle_name')), htmlspecialchars(Valid::inPOST('telephone')), $password_hash,
+                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
+                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,
                     Autorize::$customer['email']
                 ]);
             } else {
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [
-                    htmlspecialchars(Valid::inPOST('firstname')), htmlspecialchars(Valid::inPOST('lastname')),
-                    htmlspecialchars(Valid::inPOST('middle_name')), htmlspecialchars(Valid::inPOST('telephone')),
+                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
+                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'),
                     Autorize::$customer['email']
                 ]);
             }

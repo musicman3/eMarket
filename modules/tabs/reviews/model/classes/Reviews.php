@@ -190,7 +190,7 @@ class Reviews {
     public function addReview() {
         if (Autorize::$customer != FALSE && Valid::inPostJson('review')) {
             Pdo::action("INSERT INTO " . DB_PREFIX . "modules_tabs_reviews SET product_id=?, author=?, stars=?, status=?, likes=?, date_add=?, date_edit=?, reviews=?", [
-                Valid::inGET('id'), Autorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([htmlspecialchars(Valid::inPostJson('review'))])
+                Valid::inGET('id'), Autorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([Valid::inPostJson('review')])
             ]);
         }
     }
@@ -258,7 +258,7 @@ class Reviews {
             $MODULE_DB = Modules::moduleDatabase();
 
             Pdo::action("UPDATE " . $MODULE_DB . " SET reviews=?, date_edit=? WHERE id=?", [
-                json_encode([htmlspecialchars(Valid::inPOST('review'))]), date('Y-m-d H:i:s'), Valid::inPOST('edit')]);
+                json_encode([Valid::inPOST('review')]), date('Y-m-d H:i:s'), Valid::inPOST('edit')]);
 
             Messages::alert('edit_tabs_reviews', 'success', lang('action_completed_successfully'));
             exit;
