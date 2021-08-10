@@ -22,7 +22,7 @@ class Valid {
      * POST validation
      *
      * @param array|string $input Input data
-     * @return array|string
+     * @return array|string|bool
      */
     public static function inPOST($input) {
         if (filter_input(INPUT_POST, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
@@ -38,7 +38,7 @@ class Valid {
      * GET validation
      *
      * @param array|string $input Input data
-     * @return array|string
+     * @return array|string|bool
      */
     public static function inGET($input) {
         if (filter_input(INPUT_GET, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
@@ -54,11 +54,15 @@ class Valid {
      * $_SERVER validation
      *
      * @param string $input Input data
-     * @return string
+     * @return array|string|bool
      */
     public static function inSERVER($input) {
         if (filter_input(INPUT_SERVER, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
-            return (isset($_SERVER[$input])) ? $_SERVER[$input] : null;
+            if (isset($_SERVER[$input])) {
+                return $_SERVER[$input];
+            } else {
+                return FALSE;
+            }
         }
     }
 
@@ -66,11 +70,15 @@ class Valid {
      * $_COOKIE validation
      *
      * @param string $input Input data
-     * @return string
+     * @return string|bool
      */
     public static function inCOOKIE($input) {
         if (filter_input(INPUT_COOKIE, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
-            return (isset($_COOKIE[$input])) ? $_COOKIE[$input] : null;
+            if (isset($_COOKIE[$input])) {
+                return $_COOKIE[$input];
+            } else {
+                return FALSE;
+            }
         }
     }
 
@@ -81,11 +89,11 @@ class Valid {
      * @return array
      */
     public static function inPostJson($input) {
-        $postData = file_get_contents('php://input');
-        if (is_string($postData) && is_array(json_decode($postData, true)) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
-            $data = json_decode($postData, true);
+        $postData = htmlspecialchars(file_get_contents('php://input'), ENT_NOQUOTES);
+        $data = json_decode($postData, true);
+        if (is_string($postData) && is_array($data) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
             if (isset($data[$input])) {
-                return htmlspecialchars($data[$input]);
+                return $data[$input];
             }
         }
         return FALSE;
