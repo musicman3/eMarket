@@ -74,10 +74,8 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-shield-lock"></span>
                             <select name="crypt_method" class="form-select">
-                                <option value='aes-128-cbc'>-- <?php echo lang('crypt_method') ?> --</option>
-                                <option value='aes-128-cbc'>aes-128-cbc</option>
+                                <option value='chacha20-poly1305'>-- <?php echo lang('crypt_method') ?> --</option>
                                 <option value='aes-256-cbc'>aes-256-cbc</option>
-                                <option value='chacha20'>chacha20</option>
                                 <option value='chacha20-poly1305'>chacha20-poly1305</option>
                             </select>
                         </div>
