@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Messages,
     View
 };
@@ -24,6 +25,7 @@ require_once('modal/recovery_password.php')
             <div class="card">
                 <div class="card-body">
                     <form class="was-validated" enctype="multipart/form-data" method="post" action="">
+                        <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
                         <legend><?php echo lang('regular_customer') ?></legend>
                         <div class="mb-3 email">
                             <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email" name="email" required>

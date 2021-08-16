@@ -10,6 +10,7 @@
         document.querySelector('#alert_flag').value = 'off';
         var msg = document.forms.form_edit_active;
         let data = new FormData(msg);
+        data.append('csrf_token', document.querySelector('#csrf_token').dataset.csrf);
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '?route=settings/modules', false);
         xhr.send(data);

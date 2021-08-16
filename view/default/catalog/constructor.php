@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Debug,
     Settings,
     View
@@ -49,6 +50,7 @@ use eMarket\Core\{
         </script>
     </head>
     <body>
+        <div id="csrf_token" class='hidden' data-csrf='<?php echo Autorize::csrfToken() ?>'></div>
 
         <?php
         require_once('confirm.php');

@@ -35,6 +35,20 @@ class Valid {
     }
 
     /**
+     * POST validation
+     *
+     * @param array|string $input Input data
+     * @return array|string|bool
+     */
+    public static function isPOST() {
+        if (isset($_POST) && count($_POST) > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
      * GET validation
      *
      * @param array|string $input Input data

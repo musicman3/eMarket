@@ -24,6 +24,7 @@ use eMarket\Core\{
 class Autorize {
 
     public static $customer;
+    public static $csrf_token = FALSE;
 
     /**
      * Sessions init
@@ -32,13 +33,46 @@ class Autorize {
     public static function init() {
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
+            session_start();
+            self::csrfToken();
+            self::csrfVerification();
             self::sessionAdmin();
         }
 
         if (Settings::path() == 'catalog') {
+            session_start();
+            self::csrfToken();
+            self::csrfVerification();
             self::sessionCatalog();
             Cart::init();
         }
+    }
+
+    /**
+     * CSRF Token
+     *
+     */
+    public static function csrfToken() {
+
+        if (self::$csrf_token == FALSE) {
+            self::$csrf_token = Func::getToken(32);
+        }
+
+        return self::$csrf_token;
+    }
+
+    /**
+     * CSRF Verification
+     *
+     */
+    public static function csrfVerification() {
+
+        if (Valid::isPOST() == TRUE) {
+            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token']) {
+                 exit;
+            }
+        }
+
     }
 
     /**
@@ -91,7 +125,6 @@ class Autorize {
 
         if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
 
-            session_start();
             self::demoModeInit();
             self::dashboardCheck();
 
@@ -130,8 +163,6 @@ class Autorize {
     public static function sessionCatalog() {
 
         if (Settings::path() == 'catalog') {
-
-            session_start();
 
             if (isset($_SESSION['email_customer'])) {
                 $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];

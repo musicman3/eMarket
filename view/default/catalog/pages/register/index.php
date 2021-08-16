@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Messages,
     Valid,
     View
@@ -25,6 +26,7 @@ if (!Valid::inPOST('email')) {
 
     <div id="register" class="contentText">
         <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
+            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <div class="row">
                 <div class="col-md-6">
                     <fieldset id="account">
@@ -87,6 +89,7 @@ if (Valid::inPOST('email') && Register::$user_email != NULL) {
             <p class="card-text"><?php echo lang('register_problem_message') ?></p>
         </div>
         <form>
+            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <input hidden name="route" value="register">
             <div class="text-end">
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
@@ -104,6 +107,7 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
             <p class="card-text"><?php echo lang('register_complete_message') ?></p>
         </div>
         <form>
+            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <input hidden name="route" value="catalog">
             <div class="text-end">
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">

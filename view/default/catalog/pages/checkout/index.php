@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Messages,
     View,
     Valid
@@ -16,6 +17,7 @@ foreach (View::tlpc('content') as $path) {
 ?>
 
 <form id="form_cart" name="form_cart" action="javascript:void(null);">
+    <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
     <input type="hidden" name="add" value="ok" />
     <input type="hidden" id="products_order" name="products_order" value='<?php echo Valid::inPOST('products_order') ?>' />
     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="<?php echo Valid::inPOST('order_total_with_shipping') ?>" />

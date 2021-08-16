@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Settings
 };
 use eMarket\Catalog\Cart;
@@ -19,6 +20,7 @@ use eMarket\Catalog\Cart;
             </div>
             <form id="form_cart" name="form_cart" action="?route=checkout" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
+                    <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
                     <input type="hidden" name="add" value="ok" />
                     <input type="hidden" id="products_order" name="products_order" value='<?php echo Cart::$products_order ?>' />
                     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="" />

@@ -38,6 +38,7 @@ class Checkout {
         var callback_data = document.querySelector('#callback_data').value;
 
         let data = new FormData(document.forms.form_cart);
+        data.append('csrf_token', document.querySelector('#csrf_token').dataset.csrf);
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '?route=success', false);
         xhr.send(data);

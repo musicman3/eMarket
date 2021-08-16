@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Autorize,
     Messages,
     View
 };
@@ -20,6 +21,7 @@ foreach (View::tlpc('content') as $path) {
     <h1><?php echo lang('register_password_recovery') ?></h1>
     <div id="forgotpass" class="contentText">
         <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
+            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <fieldset>
                 <legend><?php echo lang('enter_a_new_password') ?></legend>
                 <div class="input-group password">

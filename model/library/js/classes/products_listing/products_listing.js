@@ -25,6 +25,7 @@ class ProductsListing {
      */
     static init() {
         document.addEventListener("DOMContentLoaded", function () {
+            sessionStorage.setItem('listing_url', '');
             if (document.querySelector('#nav_data').dataset.sortflag === 'on') {
                 sessionStorage.removeItem('sort_id');
             }
@@ -120,12 +121,15 @@ class ProductsListing {
             backstart: backstart,
             backfinish: backfinish
         });
+        sessionStorage.setItem('listing_url', url);
         xhr.open('GET', url, false);
         xhr.send();
         if (xhr.status === 200) {
             var data = xhr.response;
             var dataXHR = document.createElement('div');
             dataXHR.innerHTML = data;
+            document.querySelector('#csrf_token').replaceWith(dataXHR.querySelector('#csrf_token'));
+            document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
             document.querySelector('.button-sort').replaceWith(dataXHR.querySelector('.button-sort'));
             document.querySelector('#listing').replaceWith(dataXHR.querySelector('#listing'));
             ProductsListing.initGrid();
@@ -197,7 +201,7 @@ class ProductsListing {
      */
     static addToCart(id, pcs) {
         if (pcs > 0) {
-            Ajax.postData(window.location.href, {
+            Ajax.postData(sessionStorage.getItem('listing_url'), {
                 add_to_cart: id,
                 add_quantity: pcs
             }, true, null, AjaxSuccess).then((data) => {
@@ -205,16 +209,16 @@ class ProductsListing {
             function AjaxSuccess(data) {
                 document.querySelector('#product_image').innerHTML = '';
                 var product_edit = JSON.parse(document.querySelector('#ajax_data').dataset.product)[id];
+                var ajax_data = document.createElement('div');
+                ajax_data.innerHTML = data;
 
+                document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
                 document.querySelector('#product_name').innerHTML = product_edit.name;
                 document.querySelector('#product_price_formated').innerHTML = product_edit.price_formated;
                 document.querySelector('#product_quantity').innerHTML = pcs;
                 document.querySelector('#product_image').insertAdjacentHTML('afterbegin', '<img class="img-thumbnail mx-auto d-block" src="/uploads/images/products/resize_0/' + product_edit.logo_general + '" alt="' + product_edit.name + '" />');
 
-                var ajax_data = document.createElement('div');
-                ajax_data.innerHTML = data;
-                document.querySelector('#cart_bar').replaceWith(ajax_data.querySelector('#cart_bar'));
-                document.querySelector('#product-data').replaceWith(ajax_data.querySelector('#product-data'));
+                document.querySelector('#listing').replaceWith(ajax_data.querySelector('#listing'));
                 new bootstrap.Modal(document.querySelector('#cart_message')).show();
                 new ProductsListing();
                 ProductsListing.initGrid();

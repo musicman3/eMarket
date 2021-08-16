@@ -55,6 +55,7 @@ $lang_js = json_encode([
                 var data = xhr.response;
                 var dataXHR = document.createElement('div');
                 dataXHR.innerHTML = data;
+                document.querySelector('#csrf_token').replaceWith(dataXHR.querySelector('#csrf_token'));
                 document.querySelector('.ajax-tab').replaceWith(dataXHR.querySelector('.ajax-tab'));
                 document.querySelector('#ajax_data').replaceWith(dataXHR.querySelector('#ajax_data'));
             }

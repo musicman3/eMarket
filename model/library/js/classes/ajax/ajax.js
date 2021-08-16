@@ -23,9 +23,10 @@ class Ajax {
      * @param func {Object} (function)
      */
     static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
+
         var pref = {
             method: 'POST',
-            mode: 'cors',
+            mode: 'no-cors',
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
@@ -35,6 +36,7 @@ class Ajax {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data)
         };
+
         if (relay === null) {
             const response = await fetch(url, pref).then(
                     data => {
@@ -78,6 +80,7 @@ class Ajax {
         }
 
         let data = new FormData(msg);
+        data.append('csrf_token', document.querySelector('#csrf_token').dataset.csrf);
         let xhr = new XMLHttpRequest();
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
@@ -100,6 +103,7 @@ class Ajax {
         var msg = document.forms['form_delete' + id];
 
         let data = new FormData(msg);
+        data.append('csrf_token', document.querySelector('#csrf_token').dataset.csrf);
         let xhr = new XMLHttpRequest();
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
