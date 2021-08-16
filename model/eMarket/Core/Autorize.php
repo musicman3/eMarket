@@ -51,6 +51,7 @@ class Autorize {
     /**
      * CSRF Token
      *
+     * @return string CSRF token
      */
     public static function csrfToken() {
 
