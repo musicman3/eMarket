@@ -25,7 +25,7 @@ class ProductsListing {
      */
     static init() {
         document.addEventListener("DOMContentLoaded", function () {
-            sessionStorage.setItem('listing_url', '');
+            sessionStorage.setItem('listing_url', window.location.href);
             if (document.querySelector('#nav_data').dataset.sortflag === 'on') {
                 sessionStorage.removeItem('sort_id');
             }
