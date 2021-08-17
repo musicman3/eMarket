@@ -176,6 +176,7 @@ class Files {
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            exit;
         }
     }
 
@@ -328,6 +329,7 @@ class Files {
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            exit;
         }
     }
 
