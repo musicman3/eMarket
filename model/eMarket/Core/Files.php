@@ -42,7 +42,6 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
-            exit;
         }
 
         if (Valid::inPOST('add')) {
@@ -176,7 +175,6 @@ class Files {
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
-            exit;
         }
     }
 
@@ -200,7 +198,6 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
-            exit;
         }
 
         if (Valid::inPOST('add_product')) {
@@ -329,7 +326,6 @@ class Files {
 
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
-            exit;
         }
     }
 

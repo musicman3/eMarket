@@ -46,6 +46,7 @@ class Ajax {
                     }
             ).then(
                     text => {
+                        Ajax.csrfUpdate(text);
                         if (reload !== false && typeof AjaxSuccess === 'function' && func === null) {
                             AjaxSuccess(text);
                         }
@@ -59,6 +60,19 @@ class Ajax {
             return await response.json();
     }
 
+    }
+
+    /**
+     * CSRF Update
+     *
+     *@param data {Object} (ajax data)
+     */
+    static csrfUpdate(data) {
+        var ajax_data = document.createElement('div');
+        ajax_data.innerHTML = data;
+        if (ajax_data.querySelector('#csrf_token') !== null) {
+            document.querySelector('#csrf_token').replaceWith(ajax_data.querySelector('#csrf_token'));
+        }
     }
 
     /**
