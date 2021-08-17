@@ -31,8 +31,8 @@ class Checkout {
      */
     function __construct() {
         $this->autorize();
-        self::customerData();
-        self::customerAddress();
+        $this->customerData();
+        $this->customerAddress();
     }
 
     /**
@@ -50,7 +50,7 @@ class Checkout {
      * Customer Data
      *
      */
-    static function customerData() {
+    public function customerData() {
         self::$customer = Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     }
 
@@ -58,7 +58,7 @@ class Checkout {
      * Customer Address
      *
      */
-    static function customerAddress() {
+    public function customerAddress() {
         if (Valid::inPOST('address')){
         $address_all = json_decode(self::$customer['address_book'], 1);
         self::$address_data = $address_all[Valid::inPOST('address') - 1];
