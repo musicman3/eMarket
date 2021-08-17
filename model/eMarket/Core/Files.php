@@ -42,6 +42,7 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
+            exit;
         }
 
         if (Valid::inPOST('add')) {
@@ -198,6 +199,7 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/');
             Tree::filesDirAction(ROOT . '/uploads/temp/thumbnail/');
             Tree::filesDirAction(ROOT . '/uploads/temp/files/');
+            exit;
         }
 
         if (Valid::inPOST('add_product')) {

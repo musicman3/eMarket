@@ -24,7 +24,6 @@ use eMarket\Core\{
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <meta name="csrf-token" content="<?php echo Autorize::csrfToken() ?>" />
 
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
