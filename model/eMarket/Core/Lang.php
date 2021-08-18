@@ -26,10 +26,18 @@ final class Lang {
     public static $count;
 
     /**
+     * Constructor
+     *
+     */
+    public function __construct() {
+        $this->init();
+    }
+
+    /**
      * Init
      *
      */
-    public static function init() {
+    public function init() {
 
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [

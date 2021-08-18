@@ -45,6 +45,6 @@ if (Settings::path() != 'install') {
 //Autorize
 new Autorize();
 //Languages
-Lang::init();
+new Lang();
 //JS Handler
 Settings::jsHandler();
