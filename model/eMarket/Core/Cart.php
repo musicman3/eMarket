@@ -25,6 +25,19 @@ use eMarket\Core\{
 class Cart {
 
     /**
+     * Init cart
+     *
+     */
+    public static function init() {
+
+        if (Settings::path() == 'catalog') {
+            self::addProduct();
+            self::deleteProduct();
+            self::editProductQuantity();
+        }
+    }
+
+    /**
      * Add product to cart
      */
     public static function addProduct() {
@@ -100,19 +113,6 @@ class Cart {
             }
         }
         return $total_price;
-    }
-
-    /**
-     * Init cart
-     *
-     */
-    public static function init() {
-
-        if (Settings::path() == 'catalog') {
-            self::addProduct();
-            self::deleteProduct();
-            self::editProductQuantity();
-        }
     }
 
     /**

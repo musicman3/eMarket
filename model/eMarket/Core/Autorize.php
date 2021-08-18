@@ -27,23 +27,23 @@ class Autorize {
     public static $csrf_token = FALSE;
 
     /**
-     * Sessions init
+     * Constructor
      *
      */
-    public static function init() {
+    public function __construct() {
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
             session_start();
             self::csrfToken();
-            self::csrfVerification();
-            self::sessionAdmin();
+            $this->csrfVerification();
+            $this->sessionAdmin();
         }
 
         if (Settings::path() == 'catalog') {
             session_start();
             self::csrfToken();
-            self::csrfVerification();
-            self::sessionCatalog();
+            $this->csrfVerification();
+            $this->sessionCatalog();
             Cart::init();
         }
     }
@@ -66,21 +66,20 @@ class Autorize {
      * CSRF Verification
      *
      */
-    public static function csrfVerification() {
+    public function csrfVerification() {
 
         if (Valid::isPOST() == TRUE) {
             if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token']) {
-                 exit;
+                exit;
             }
         }
-
     }
 
     /**
      * Demo mode init
      *
      */
-    public static function demoModeInit() {
+    public function demoModeInit() {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -96,7 +95,7 @@ class Autorize {
      * Dashboard check
      *
      */
-    public static function dashboardCheck() {
+    public function dashboardCheck() {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getCellFalse("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -122,12 +121,12 @@ class Autorize {
      *
      * @return string TRUE
      */
-    public static function sessionAdmin() {
+    public function sessionAdmin() {
 
         if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
 
-            self::demoModeInit();
-            self::dashboardCheck();
+            $this->demoModeInit();
+            $this->dashboardCheck();
 
             if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
                 unset($_SESSION['login']);
@@ -161,7 +160,7 @@ class Autorize {
      * Session authorization for Catalog
      *
      */
-    public static function sessionCatalog() {
+    public function sessionCatalog() {
 
         if (Settings::path() == 'catalog') {
 

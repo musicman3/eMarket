@@ -26,6 +26,23 @@ final class Lang {
     public static $count;
 
     /**
+     * Init
+     *
+     */
+    public static function init() {
+
+        if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [
+                Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']
+            ]);
+        }
+
+        setlocale(LC_ALL, lang('language_locale'));
+
+        self::$count = count(lang('#lang_all'));
+    }
+
+    /**
      * Including and parsing language files
      *
      * @param string $default_language Default language
@@ -33,8 +50,8 @@ final class Lang {
      * @return array $lang|$lang_all|$lang_trans
      */
     public static function lang($default_language, $marker = null) {
-        
-        if ($default_language == null OR $default_language == ''){
+
+        if ($default_language == null OR $default_language == '') {
             $default_language = Settings::basicSettings('primary_language');
         }
 
@@ -107,23 +124,6 @@ final class Lang {
         if (Valid::inGET('language')) {
             $_SESSION['DEFAULT_LANGUAGE'] = Valid::inGET('language');
         }
-    }
-
-    /**
-     * Init
-     *
-     */
-    public static function init() {
-
-        if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [
-                Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']
-            ]);
-        }
-
-        setlocale(LC_ALL, lang('language_locale'));
-
-        self::$count = count(lang('#lang_all'));
     }
 
 }

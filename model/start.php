@@ -43,7 +43,7 @@ if (Settings::path() != 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
 }
 //Autorize
-Autorize::init();
+new Autorize();
 //Languages
 Lang::init();
 //JS Handler
