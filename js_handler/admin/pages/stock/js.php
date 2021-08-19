@@ -9,55 +9,51 @@ use eMarket\Admin\Stock;
 
 $resize_max = json_encode(Files::imgResizeMax(Stock::$resize_param));
 $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product));
-$lang_js = json_encode([
-    'image_resize_error' => lang('image_resize_error'),
-    'download_complete' => lang('download_complete')
-        ]);
-
-$lang_attributes = json_encode([
-    lang('confirm-yes'),
-    lang('confirm-no'),
-    lang('button_delete'),
-    lang('button_edit'),
-    lang('#lang_all')[0]
-        ]);
 ?>
-<!-- File Upload -->
+
+<!-- FileUpload -->
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload_product.js"></script>
 
-<script type="text/javascript">
-    var resize_max = JSON.parse('<?php echo $resize_max ?>');
-    var resize_max_prod = JSON.parse('<?php echo $resize_max_prod ?>');
-    var lang = JSON.parse('<?php echo $lang_js ?>');
-    new Fileupload(resize_max, lang);
-    new FileuploadProduct(resize_max_prod, lang);
-</script>
+<!-- Sortable -->
+<script type="text/javascript" src="/ext/sortablejs/sortable.min.js"></script>
 
-<script src="/ext/sortablejs/sortable.min.js"></script>
-<script src="/ext/table-select/table-select.js"></script>
+<!-- Table select -->
+<script type="text/javascript" src="/ext/table-select/table-select.js"></script>
+
+<!-- Attributes -->
+<script type="text/javascript" src="/model/library/js/classes/attributes/group_attributes.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/attributes.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/values_attribute.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
+
+<!-- TinyMCE -->
+<script type="text/javascript" src="/ext/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+
+<!-- Mouse -->
+<script type="text/javascript" src="/model/library/js/classes/mouse/mouse.js"></script>
+
+<!-- Datepicker -->
+<script src="/ext/moment/moment.min.js"></script>
+<script src="/ext/pikaday/pikaday.js"></script>
+<link rel="stylesheet" type="text/css" href="/ext/pikaday/pikaday.css">
+
+<?php if (lang('meta-language') != 'en') { ?>
+    <script type="text/javascript" src="/ext/moment/locale/<?php echo lang('meta-language') ?>.js"></script>
+<?php } ?>
+
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript" src="/js_handler/admin/pages/stock/main.js"></script>
+
 <script type="text/javascript">
-    new Ajax();
+    var resize_max = <?php echo $resize_max ?>;
+    var resize_max_prod = <?php echo $resize_max_prod ?>;
+    var lang = <?php echo json_encode(lang()) ?>;
 
-    new TableSelect(document.querySelector('#table-id'), {
-        selectedClassName: 'table-primary',
-        shouldSelectRow(row) {
-            return !row.classList.contains('unselectable');
-        }
-    });
-
-    document.querySelector('#table-id').addEventListener('mousedown', function (event) {
-        if (event.ctrlKey) {
-            event.preventDefault();
-        }
-    });
+    new Stock(resize_max, lang, resize_max_prod);
 </script>
 
 <?php
-require_once ('attributes.php');
-require_once ('tinymce.php');
 require_once ('context.php');
-require_once ('mouse.php');
-require_once ('datepicker.php');

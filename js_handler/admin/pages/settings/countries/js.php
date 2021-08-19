@@ -5,32 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script type="text/javascript">
-    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var modal_id = Number(button.dataset.edit);
-
-        if (Number.isInteger(modal_id)) {
-            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
-            document.querySelector('#edit').value = modal_id;
-            document.querySelector('#add').value = '';
-
-            for (var x = 0; x < json_data.name.length; x++) {
-                document.querySelector('#name_countries_' + x).value = json_data.name[x][modal_id];
-            }
-
-            document.querySelector('#alpha_2_countries').value = json_data.alpha_2[modal_id];
-            document.querySelector('#alpha_3_countries').value = json_data.alpha_3[modal_id];
-            document.querySelector('#address_format_countries').value = json_data.address_format[modal_id];
-        } else {
-            document.querySelector('#edit').value = '';
-            document.querySelector('#add').value = 'ok';
-            document.querySelectorAll('form').forEach(e => e.reset());
-        }
-    });
-</script>
-
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
+<script type="text/javascript" src="/js_handler/admin/pages/settings/countries/main.js"></script>
 <script type="text/javascript">
     new Ajax();
+    new Countries();
 </script>

@@ -33,7 +33,7 @@ use eMarket\Admin\Templates;
                         <span class="input-group-text bi-grid-fill"></span>
                         <form method="get" class="was-validated" name="select_template" action="index.php">
                             <input hidden name="route" value="settings/templates">
-                            <select name="name_templates" id="name_templates" class="form-select"  onchange="selectTemplate()">
+                            <select name="name_templates" id="name_templates" class="form-select">
                                 <option><?php echo Settings::template() ?></option>
                                 <?php
                                 foreach (Templates::$name_template as $path) {
@@ -59,7 +59,7 @@ use eMarket\Admin\Templates;
                         <form method="get" class="was-validated" name="select_page">
                             <input hidden name="route" value="settings/templates">
                             <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
-                            <select name="layout_pages_templates" id="layout_pages_templates" class="form-select" onchange="selectPage()">
+                            <select name="layout_pages_templates" id="layout_pages_templates" class="form-select">
                                 <option value="all"><?php echo lang('all_pages_template') ?></option>
                                 <?php
                                 foreach (Templates::$layout_pages as $path) {

@@ -17,8 +17,10 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use eMarket\Admin\HeaderMenu;
-use eMarket\Admin\Stikers;
+use eMarket\Admin\{
+    HeaderMenu,
+    Stikers
+};
 
 /**
  * Stock

@@ -5,19 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script type="text/javascript">
-    document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
-            document.querySelector('#edit').value = '';
-            document.querySelector('#add').value = 'ok';
-            document.querySelectorAll('form').forEach(e => e.reset());
-            document.querySelector('#generate_password').addEventListener('click', (e) => {
-            var randomizer = new Randomizer();
-            document.querySelector("#password").value = randomizer.uid(20);
-        });
-    });
-</script>
-
+<script type="text/javascript" src="/js_handler/admin/pages/staff_manager/staff/main.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
     new Ajax();
+    new Staff();
 </script>

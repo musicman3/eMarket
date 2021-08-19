@@ -29,7 +29,7 @@ use eMarket\Admin\ZonesListing;
                         <select id="multiselect" name="multiselect[]" multiple="multiple">
                             <?php
                             foreach (ZonesListing::$countries_multiselect as $k => $v) {
-                                if (in_array(array($k), ZonesListing::$lines) == TRUE && count(ZonesListing::$regions) != 0) {
+                                if (in_array([$k], ZonesListing::$lines) == TRUE && count(ZonesListing::$regions) != 0) {
                                     ?>
 
                                     <optgroup class="multiselect-add" label="<?php echo $v ?>">
@@ -41,7 +41,7 @@ use eMarket\Admin\ZonesListing;
                                     }
                                     foreach (Func::filterArrayToKeyAssoc(ZonesListing::$regions_multiselect, 'country_id', $k, 'name', 'id') as $k2 => $v2) {
 
-                                        if (in_array(array($k), ZonesListing::$lines) == TRUE && isset(ZonesListing::$regions[ZonesListing::$count]['regions_id']) == TRUE && $k2 == ZonesListing::$regions[ZonesListing::$count]['regions_id']) {
+                                        if (in_array([$k], ZonesListing::$lines) == TRUE && isset(ZonesListing::$regions[ZonesListing::$count]['regions_id']) == TRUE && $k2 == ZonesListing::$regions[ZonesListing::$count]['regions_id']) {
                                             ZonesListing::$count++;
                                             ?>
 

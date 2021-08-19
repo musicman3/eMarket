@@ -18,6 +18,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
     });
 
     ctxmenu.attach('#sort-list', []);
+    var picker = Stock.pikaday();
 
     function contextMenuInit() {
         var buttons = document.querySelectorAll('.context-one');
@@ -26,7 +27,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                 var elem = e.currentTarget;
                 var session = '<?php echo \eMarket\Admin\Stock::$ses_verify ?>';
-                var lang = <?php echo json_encode(lang()) ?>;
                 let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
                 var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
                 var discounts = {<?php echo \eMarket\Core\Modules::$discounts ?>};
@@ -35,6 +35,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 var stikers = {<?php echo \eMarket\Admin\Stikers::$stikers ?>};
                 var stikers_default = '<?php echo \eMarket\Admin\Stikers::$stikers_default ?>';
                 var attributes_category = <?php echo json_encode(\eMarket\Admin\Stock::$attributes_category) ?>;
+                var lang_name = '<?php echo lang('#lang_all')[0] ?>';
 
                 var discounts_interface = [
                     lang,
@@ -58,7 +59,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         text: '<span class="bi-cart-plus"> ' + lang['add_product'] + '</span>',
                         action: function () {
                             document.querySelector('#selected_attributes').value = JSON.stringify([]);
-                            AttributesProcessing.add('admin', attributes_category, '<?php echo lang('#lang_all')[0] ?>');
+                            AttributesProcessing.add('admin', attributes_category, lang_name);
 
                             document.querySelector('#edit_product').value = '';
                             document.querySelector('#add_product').value = 'ok';
@@ -131,7 +132,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 document.querySelector('#value_height_product_stock').value = json_data_product.height[modal_id];
                                 document.querySelector('#selected_attributes').value = JSON.stringify(json_data_product.attributes[modal_id]);
 
-                                AttributesProcessing.add('admin', json_data_product.attributes_data[modal_id], '<?php echo lang('#lang_all')[0] ?>');
+                                AttributesProcessing.add('admin', json_data_product.attributes_data[modal_id], lang_name);
 
                                 document.querySelector('#edit_product').value = modal_id;
                                 document.querySelector('#add_product').value = '';
@@ -379,10 +380,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     event.preventDefault();
                 }
             });
-
-            setTimeout(function () {
-                new bootstrap.Alert(document.querySelector('#alert')).close();
-            }, 3000);
         }, 100);
     }
 </script>
