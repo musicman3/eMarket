@@ -192,11 +192,13 @@ class Cart {
      *@param lang {Array} (lang)
      */
     static shippingData(lang) {
-        Ajax.postData(window.location.href, {
-            shipping_region_json: document.querySelector('#address').selectedOptions[0].dataset.regions,
-            products_order_json: document.querySelector('#products_order').value
-        }, true, null, AjaxSuccess).then((data) => {
-        });
+        if (document.querySelector('#address').selectedOptions.length > 0) {
+            Ajax.postData(window.location.href, {
+                shipping_region_json: document.querySelector('#address').selectedOptions[0].dataset.regions,
+                products_order_json: document.querySelector('#products_order').value
+            }, true, null, AjaxSuccess).then((data) => {
+            });
+        }
 
         function AjaxSuccess(data) {
             var shipping_method = JSON.parse(data);
