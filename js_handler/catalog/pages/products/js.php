@@ -9,7 +9,7 @@ use eMarket\Catalog\Products;
 
 <script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/products/products.js"></script>
+<script type="text/javascript" src="/js_handler/catalog/pages/products/main.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/ext/baguettebox/baguetteBox.min.css" />
