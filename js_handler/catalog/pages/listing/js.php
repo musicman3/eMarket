@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
-<script type="text/javascript" src="/model/library/js/classes/products_listing/products_listing.js"></script>
+<script type="text/javascript" src="/js_handler/catalog/pages/listing/main.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 
 <script type="text/javascript" language="javascript">

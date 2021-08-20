@@ -29,13 +29,13 @@ foreach (View::tlpc('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo Autorize::$customer['firstname'] ?>" />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo Autorize::$customer['firstname'] ?>" required />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo Autorize::$customer['lastname'] ?>" />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo Autorize::$customer['lastname'] ?>" required />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
