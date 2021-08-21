@@ -9,10 +9,7 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Ecb,
-    Func,
-    Pdo,
-    Settings,
-    Valid
+    Pdo
 };
 
 /**
@@ -24,61 +21,7 @@ use eMarket\Core\{
  */
 class Cart {
 
-    /**
-     * Init cart
-     *
-     */
-    public static function init() {
-
-        if (Settings::path() == 'catalog') {
-            self::addProduct();
-            self::deleteProduct();
-            self::editProductQuantity();
-        }
-    }
-
-    /**
-     * Add product to cart
-     */
-    public static function addProduct() {
-
-        if (Valid::inGET('add_to_cart') || Valid::inPostJson('add_to_cart')) {
-            if (Valid::inGET('add_to_cart')) {
-                $id = Valid::inGET('add_to_cart');
-            }
-            if (Valid::inPostJson('add_to_cart')) {
-                $id = Valid::inPostJson('add_to_cart');
-            }
-
-            if (!Valid::inGET('add_quantity') && !Valid::inPostJson('add_quantity')) {
-                $quantity = 1;
-            }
-            if (Valid::inGET('add_quantity')) {
-                $quantity = Valid::inGET('add_quantity');
-            }
-            if (Valid::inPostJson('add_quantity')) {
-                $quantity = Valid::inPostJson('add_quantity');
-            }
-
-            $count = 0;
-            if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
-                $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
-            } else {
-
-                $id_count = Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
-                foreach ($_SESSION['cart'] as $value) {
-                    if ($value['id'] == $id) {
-                        $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
-                    }
-
-                    $count++;
-                }
-                if ($value['id'] != $id && count($id_count) == 0) {
-                    array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
-                }
-            }
-        }
-    }
+    public static $total_quantity = FALSE;
 
     /**
      * Counting total quantity product in cart
@@ -87,13 +30,17 @@ class Cart {
      */
     public static function totalQuantity() {
 
-        $total_quantity = 0;
-        if (isset($_SESSION['cart'])) {
-            foreach ($_SESSION['cart'] as $value) {
-                $total_quantity = $total_quantity + $value['quantity'];
+        if (self::$total_quantity == FALSE) {
+            self::$total_quantity = 0;
+            if (isset($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $value) {
+                    self::$total_quantity = self::$total_quantity + $value['quantity'];
+                }
             }
+            return self::$total_quantity;
+        } else {
+            return self::$total_quantity;
         }
-        return $total_quantity;
     }
 
     /**
@@ -116,29 +63,6 @@ class Cart {
     }
 
     /**
-     * Products info in cart
-     *
-     * @return array Output data
-     */
-    public static function info() {
-
-        $output = [];
-        if (isset($_SESSION['cart'])) {
-            $x = 0;
-            foreach ($_SESSION['cart'] as $value) {
-                $product = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
-                if ($product != FALSE) {
-                    array_push($output, $product[0]);
-                } else {
-                    unset($_SESSION['cart'][$x]);
-                }
-                $x++;
-            }
-        }
-        return $output;
-    }
-
-    /**
      * Counting quantity product in cart
      * @param string $id Product id
      * @return string Quantity
@@ -154,23 +78,6 @@ class Cart {
             }
         }
         return $output;
-    }
-
-    /**
-     * Product removing from cart
-     * 
-     */
-    public static function deleteProduct() {
-
-        if (Valid::inPostJson('delete_product') && isset($_SESSION['cart'])) {
-            $array = [];
-            foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] != Valid::inPostJson('delete_product')) {
-                    array_push($array, $value);
-                }
-            }
-            $_SESSION['cart'] = $array;
-        }
     }
 
     /**
@@ -203,23 +110,6 @@ class Cart {
             return 1;
         } else {
             return false;
-        }
-    }
-
-    /**
-     * Edit products quantity in cart
-     * 
-     */
-    public static function editProductQuantity() {
-
-        if (Valid::inPostJson('quantity_product_id') && isset($_SESSION['cart'])) {
-            $count = 0;
-            foreach ($_SESSION['cart'] as $value) {
-                if ($value['id'] == Valid::inPostJson('quantity_product_id') && Valid::inPostJson('pcs_product') != 'true') {
-                    $_SESSION['cart'][$count]['quantity'] = Valid::inPostJson('pcs_product');
-                }
-                $count++;
-            }
         }
     }
 

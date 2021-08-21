@@ -5,4 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarket = new eMarket\Catalog\Cart();
+// The object is created in eMarket\Core\Autorize()

@@ -10,6 +10,7 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Autorize,
     Ecb,
+    Func,
     Interfaces,
     Payment,
     Pdo,
@@ -36,10 +37,90 @@ class Cart {
      *
      */
     function __construct() {
+        $this->addProduct();
+        $this->editProduct();
+        $this->deleteProduct();
         $this->jsonEchoShipping();
         $this->jsonEchoPayment();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Add product to cart
+     */
+    public function addProduct() {
+
+        if (Valid::inGET('add_to_cart') || Valid::inPostJson('add_to_cart')) {
+            if (Valid::inGET('add_to_cart')) {
+                $id = Valid::inGET('add_to_cart');
+            }
+            if (Valid::inPostJson('add_to_cart')) {
+                $id = Valid::inPostJson('add_to_cart');
+            }
+
+            if (!Valid::inGET('add_quantity') && !Valid::inPostJson('add_quantity')) {
+                $quantity = 1;
+            }
+            if (Valid::inGET('add_quantity')) {
+                $quantity = Valid::inGET('add_quantity');
+            }
+            if (Valid::inPostJson('add_quantity')) {
+                $quantity = Valid::inPostJson('add_quantity');
+            }
+
+            $count = 0;
+            if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
+                $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
+            } else {
+
+                $id_count = Func::filterArrayToKey($_SESSION['cart'], 'id', $id, 'id');
+                foreach ($_SESSION['cart'] as $value) {
+                    if ($value['id'] == $id) {
+                        $_SESSION['cart'][$count]['quantity'] = $_SESSION['cart'][$count]['quantity'] + $quantity;
+                    }
+
+                    $count++;
+                }
+                if ($value['id'] != $id && count($id_count) == 0) {
+                    array_push($_SESSION['cart'], ['id' => $id, 'quantity' => $quantity]);
+                }
+            }
+        }
+    }
+
+    /**
+     * Edit products quantity in cart
+     * 
+     */
+    public function editProduct() {
+
+        if (Valid::inPostJson('quantity_product_id') && isset($_SESSION['cart'])) {
+            $count = 0;
+            foreach ($_SESSION['cart'] as $value) {
+                if ($value['id'] == Valid::inPostJson('quantity_product_id') && Valid::inPostJson('pcs_product') != 'true') {
+                    $_SESSION['cart'][$count]['quantity'] = Valid::inPostJson('pcs_product');
+                }
+                $count++;
+            }
+        }
+    }
+
+    /**
+     * Product removing from cart
+     * 
+     */
+    public function deleteProduct() {
+
+        if (Valid::inPostJson('delete_product') && isset($_SESSION['cart'])) {
+            $array = [];
+            foreach ($_SESSION['cart'] as $value) {
+                if ($value['id'] != Valid::inPostJson('delete_product')) {
+                    array_push($array, $value);
+                }
+            }
+            $_SESSION['cart'] = $array;
+        }
     }
 
     /**
@@ -129,7 +210,20 @@ class Cart {
      *
      */
     public function data() {
-        self::$cart_info = \eMarket\Core\Cart::info();
+        $output = [];
+        if (isset($_SESSION['cart'])) {
+            $x = 0;
+            foreach ($_SESSION['cart'] as $value) {
+                $product = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+                if ($product != FALSE) {
+                    array_push($output, $product[0]);
+                } else {
+                    unset($_SESSION['cart'][$x]);
+                }
+                $x++;
+            }
+        }
+        self::$cart_info = $output;
     }
 
     /**

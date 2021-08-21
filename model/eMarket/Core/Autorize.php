@@ -8,10 +8,12 @@
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Cart,
     Pdo,
     Settings,
     Valid
+};
+use \eMarket\Catalog\{
+    Cart
 };
 
 /**
@@ -44,7 +46,7 @@ class Autorize {
             self::csrfToken();
             $this->csrfVerification();
             $this->sessionCatalog();
-            Cart::init();
+            new Cart();
         }
     }
 
