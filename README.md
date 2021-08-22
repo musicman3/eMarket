@@ -1,6 +1,8 @@
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/logo2.png)](https://github.com/musicman3/eMarket)
 ## eMarket Online Store
 
+[![N|Solid](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/emarket)
+
 ---
 ### System requirements: 
   - OS Unix, Linux or Windows
