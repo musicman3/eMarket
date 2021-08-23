@@ -18,6 +18,3 @@
 
 /* any interactive item (anchor, action item, submenu)*/
 .ctxmenu li.interactive:hover {background: rgba(0,0,0,0.1);}
-
-/* any menu item that has a submenu */
-.ctxmenu li.submenu::after {content: 'bi-caret-right';position: absolute;top: 5px;right: 0.5em;font-family: bootstrap-icons;}
