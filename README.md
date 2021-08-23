@@ -26,7 +26,7 @@
 ---
 ### Installation  
 #### Method 1 (recommended). Download the wizard file here:  
-[![N|Solid](https://img.shields.io/badge/Wizard%20installation-download-blue)](https://github.com/musicman3/eMarketHandler/raw/main/install.zip)  
+[![N|Solid](https://img.shields.io/badge/Installation%20wizard-download-blue)](https://github.com/musicman3/eMarketHandler/raw/main/install.zip)  
 Copy install.php file to the empty root directory of the site and open the link in your browser: http://localhost/install.php  
 This wizard will automatically copy the latest eMarket release to your server and open the installation page.
 
