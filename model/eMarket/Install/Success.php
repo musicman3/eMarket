@@ -10,7 +10,6 @@ namespace eMarket\Install;
 use eMarket\Core\{
     Autorize,
     Pdo,
-    Tree,
     Valid
 };
 
