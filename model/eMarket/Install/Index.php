@@ -9,6 +9,7 @@ namespace eMarket\Install;
 
 use eMarket\Core\{
     Settings,
+    Pdo,
     Valid
 };
 
@@ -42,6 +43,33 @@ class Index {
 
         if (Valid::inPOST('language')) {
             self::$DEFAULT_LANGUAGE = Valid::inPOST('language');
+        }
+    }
+
+    /**
+     * PHP extension
+     *
+     * @param string $ext Extension
+     * @return string bootstrap class
+     */
+    public function phpExtension($ext) {
+        if (!extension_loaded($ext)) {
+            return 'text-danger bi-x-lg';
+        } else {
+            return 'text-success bi-check-lg';
+        }
+    }
+
+    /**
+     * PHP version compare
+     *
+     * @return string bootstrap class
+     */
+    public function phpVersionCompare() {
+        if (version_compare(PHP_VERSION, '7.3.0') >= 0) {
+            return 'text-success bi-check-lg';
+        } else {
+            return 'text-danger bi-x-lg';
         }
     }
 

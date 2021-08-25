@@ -127,6 +127,12 @@ class Success {
             $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
 
+        $mysql_version = Pdo::getCellFalse("SELECT version()", []);
+
+        if (version_compare($mysql_version, '5.7.8') < 0) {
+            header('Location: /controller/install/error.php?mysql_version_false=true');
+        }
+
         Pdo::getExec($buffer);
 
         $password_admin_hash = Autorize::passwordHash(self::$password_admin);

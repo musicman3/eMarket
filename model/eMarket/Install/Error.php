@@ -45,6 +45,9 @@ class Error {
         if (Valid::inGET('file_not_found')) {
             self::$message = 'file_not_found';
         }
+        if (Valid::inGET('mysql_version_false')) {
+            self::$message = 'mysql_version_false';
+        }
         if (Valid::inGET('error_message')) {
             self::$error_message = Valid::inGET('error_message');
             if (strrpos(self::$error_message, 'php_network_getaddresses') == TRUE) {
