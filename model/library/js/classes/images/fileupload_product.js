@@ -45,16 +45,19 @@ class FileuploadProduct {
                 document.querySelector('#alert_messages_product').innerHTML = '';
             },
             onProgress: function (pct) {
-                document.querySelectorAll('.progress-bar').forEach(e => e.style.width = pct + '%');
-                document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = '');
-                document.querySelectorAll('.progress-bar').forEach(e => e.classList.remove('bg-success'));
-                document.querySelectorAll('.progress-bar').forEach(e => e.classList.add('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
+                document.querySelectorAll('.progress-bar').forEach(
+                        e => e.style.width = pct + '%',
+                        e => e.innerHTML = '',
+                        e => e.classList.remove('bg-success'),
+                        e => e.classList.add('bg-danger', 'progress-bar-striped', 'progress-bar-animated')
+                );
 
                 if (pct === 100) {
                     setTimeout(function () {
-                        document.querySelectorAll('.progress-bar').forEach(e => e.innerHTML = lang['download_complete']);
-                        document.querySelectorAll('.progress-bar').forEach(e => e.classList.remove('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
-                        document.querySelectorAll('.progress-bar').forEach(e => e.classList.add('bg-success'));
+                        document.querySelectorAll('.progress-bar').forEach(
+                                e => e.innerHTML = lang['download_complete']),
+                                e => e.classList.remove('bg-danger', 'progress-bar-striped', 'progress-bar-animated'),
+                                e => e.classList.add('bg-success')
                     }, 1000);
                 }
             },
@@ -129,7 +132,7 @@ class FileuploadProduct {
     static getImageToEditProduct(logo_general_edit, logo_edit, modal_id, dir) {
         for (var x = 0; x < logo_edit[modal_id].length; x++) {
             var image = logo_edit[modal_id][x];
-            
+
             document.querySelector('#logo-product').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_product_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_product_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_product_' + x + '" onclick="FileuploadProduct.deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit_product' + x + '" onclick="FileuploadProduct.imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit[modal_id] === image) {
                 document.querySelector('#general_product_' + x).classList.add('border-danger');
