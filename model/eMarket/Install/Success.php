@@ -92,8 +92,7 @@ class Success {
                 '  define(\'TABLE_VENDOR_CODES\', \'' . $db_pref . 'vendor_codes' . '\');' . "\n" .
                 '  define(\'TABLE_WEIGHT\', \'' . $db_pref . 'weight' . '\');' . "\n" .
                 '  define(\'TABLE_ZONES\', \'' . $db_pref . 'zones' . '\');' . "\n" .
-                '  define(\'TABLE_ZONES_VALUE\', \'' . $db_pref . 'zones_value' . '\');' . "\n" .
-                '?>';
+                '  define(\'TABLE_ZONES_VALUE\', \'' . $db_pref . 'zones_value' . '\');' . "\n";
     }
 
     /**
