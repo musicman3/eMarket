@@ -133,10 +133,14 @@ class Update {
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSLVERSION, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']);
         $request_string = json_encode($data);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
         $response_string = curl_exec($curl);
+        if(curl_errno($curl)){
+            return false;
+        }
         if (!empty($response_string)) {
             $response = json_decode($response_string);
             if (isset($response)) {
