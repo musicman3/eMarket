@@ -49,5 +49,5 @@ database_server_error = Database server name error
 database_login_error = Username or password of the DB user is not correct
 database_table_error = The table name in the DB is not correct
 mysql_version_false = MySQL version less than required for installation 
-emarket_text = We started work on the project on March 10, 2018. During this time, a lot of work has been done. We are grateful for the support of our families and friends, without whose support this project would not have been possible. We are also grateful to eMarket users who have chosen us and help us with their advice, participation in the project or a mug of coffee.
+emarket_text = We started work on the project on March 10, 2018. During this time, a lot of work has been done. We are grateful for the support of our families and friends, without whose support this project would not have been possible. We are also grateful to eMarket users who have chosen us and help us with their advice, participation in the project or a cup of coffee.
 emarket_best_regards = Best regards, eMarket team.
