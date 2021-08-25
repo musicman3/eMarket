@@ -195,7 +195,7 @@
 
                     <div class="col">
                         <div class="card">
-                            <div class="card-header text-white bg-success"><?php echo lang('installation') ?></div>
+                            <div class="card-header text-white bg-success"><?php echo lang('from_developers') ?></div>
                             <div class="card-body">
                                 <div class="mb-2">
                                     <div class="row mb-2"><p><em><?php echo lang('emarket_text') ?></em></p></div>
