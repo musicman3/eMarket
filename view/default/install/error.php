@@ -12,7 +12,7 @@ use eMarket\Install\Error;
 
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white bg-danger">
             <h5 class="card-title"><?php echo lang('install_panel') ?></h5>
         </div>
         <div class="card-body">
