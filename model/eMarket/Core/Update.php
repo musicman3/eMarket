@@ -79,7 +79,11 @@ class Update {
         curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: eMarket']);
         curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/musicman3/eMarket/releases/latest');
+        curl_setopt($connect, CURLOPT_CONNECTTIMEOUT, 5);
         $response_string = curl_exec($connect);
+        if(curl_errno($connect)){
+            return FALSE;
+        }
         curl_close($connect);
         if (!empty($response_string)) {
             $response = json_decode($response_string, 1);
@@ -139,7 +143,7 @@ class Update {
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
         $response_string = curl_exec($curl);
         if(curl_errno($curl)){
-            return false;
+            return FALSE;
         }
         if (!empty($response_string)) {
             $response = json_decode($response_string);
@@ -147,7 +151,7 @@ class Update {
                 return $response;
             }
         } else {
-            return false;
+            return FALSE;
         }
     }
 
