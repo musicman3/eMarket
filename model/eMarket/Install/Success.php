@@ -10,6 +10,7 @@ namespace eMarket\Install;
 use eMarket\Core\{
     Autorize,
     Pdo,
+    Tree,
     Valid
 };
 
@@ -166,6 +167,8 @@ RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
         }
 
         Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
+        
+        Tree::filesDirAction(ROOT . '/controller/install/');
     }
 
 }
