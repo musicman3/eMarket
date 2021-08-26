@@ -60,12 +60,12 @@ class StaffManager {
             }
         }(function (select) {
             select.strings.register('en', {
-                all: lang['select_all'],
-                none: lang['cancel'],
-                actionAll: lang['select_all'],
-                empty: lang['no_listing'],
-                placeholder: lang['staff_manager_select'],
-                search: lang['search']
+                all: lang.select_all,
+                none: lang.cancel,
+                actionAll: lang.select_all,
+                empty: lang.no_listing,
+                placeholder: lang.staff_manager_select,
+                search: lang.search
             });
             return select;
         }));

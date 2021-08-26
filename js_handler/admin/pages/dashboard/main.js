@@ -22,6 +22,7 @@ class Dashboard {
         this.cardOrdersQuantity();
         this.cardNewOldOrders();
         this.cardProceeds();
+        Dashboard.json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
     }
 
     /**
@@ -77,7 +78,7 @@ class Dashboard {
      */
     cardWeekDays() {
         var colors = this.colors();
-        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        var json_data = Dashboard.json_data;
 
         var myChart = echarts.init(document.querySelector('#week_days'), null,
                 {
@@ -134,7 +135,7 @@ class Dashboard {
      */
     cardOrdersQuantity() {
         var colors = this.colors();
-        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        var json_data = Dashboard.json_data;
 
         var myChart = echarts.init(document.querySelector('#orders_quantity'), null,
                 {
@@ -187,7 +188,7 @@ class Dashboard {
      */
     cardProceeds() {
         var colors = this.colors();
-        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        var json_data = Dashboard.json_data;
 
         var myChart = echarts.init(document.querySelector('#proceeds'), null,
                 {
@@ -240,7 +241,7 @@ class Dashboard {
      */
     cardNewOldOrders() {
         var colors = this.colors();
-        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        var json_data = Dashboard.json_data;
 
         var myChart = echarts.init(document.getElementById('new_old_orders'), null,
                 {

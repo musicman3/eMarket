@@ -59,12 +59,12 @@ class ZonesListing {
             }
         }(function (select) {
             select.strings.register('en', {
-                all: lang['select_all'],
-                none: lang['cancel'],
-                actionAll: lang['select_all'],
-                empty: lang['no_listing'],
-                placeholder: lang['select_country_and_region'],
-                search: lang['search']
+                all: lang.select_all,
+                none: lang.cancel,
+                actionAll: lang.select_all,
+                empty: lang.no_listing,
+                placeholder: lang.select_country_and_region,
+                search: lang.search
             });
             return select;
         }));
