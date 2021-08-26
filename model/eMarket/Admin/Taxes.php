@@ -172,7 +172,8 @@ class Taxes {
                     'tax_type' => $tax_type_modal,
                     'zones_id' => $zones_id,
                     'fixed' => $fixed_modal,
-                    'zones' => self::$zones
+                    'zones' => self::$zones,
+                    'currency' => Settings::currencyDefault()[3]
                 ]);
             }
         }

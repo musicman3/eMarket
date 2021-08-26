@@ -57,7 +57,7 @@ use eMarket\Core\{
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('taxes_modal_rate') ?></small>
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text"><?php echo Settings::currencyDefault()[3] ?></span>
+                                <span id="currency" class="input-group-text"></span>
                                 <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" pattern="\d+(\.\d{0,2})?" name="rate_taxes" id="rate_taxes" required />
                             </div>
                         </div>

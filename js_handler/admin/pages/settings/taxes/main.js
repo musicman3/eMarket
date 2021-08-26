@@ -17,6 +17,23 @@ class Taxes {
      */
     constructor() {
         this.modalShow();
+        this.fixedChange();
+    }
+
+    /**
+     * Fixed/Percent view
+     * 
+     */
+    fixedChange() {
+        var currency = document.querySelector('#currency');
+        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        document.querySelector('#fixed').addEventListener('change', (e) => {
+            if (currency.innerHTML === '%') {
+                currency.innerHTML = json_data.currency;
+            } else {
+                currency.innerHTML = '%';
+            }
+        });
     }
 
     /**
@@ -27,9 +44,8 @@ class Taxes {
         document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
             var modal_id = Number(button.dataset.edit);
+            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
             if (Number.isInteger(modal_id)) {
-                var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
-
                 document.querySelector('#edit').value = modal_id;
                 document.querySelector('#add').value = '';
 
@@ -50,10 +66,17 @@ class Taxes {
                     document.querySelector('#zones_id option[value="' + json_data.zones_id[modal_id] + '"]').selected = true;
                 }
 
+                if (json_data.fixed[modal_id] === 0) {
+                    document.querySelector('#currency').innerHTML = json_data.currency;
+                } else {
+                    document.querySelector('#currency').innerHTML = '%';
+                }
+
             } else {
 
                 document.querySelector('#edit').value = '';
                 document.querySelector('#add').value = 'ok';
+                document.querySelector('#currency').innerHTML = '%';
                 document.querySelectorAll('form').forEach(e => e.reset());
 
                 var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
@@ -62,8 +85,8 @@ class Taxes {
                 json_data.zones.forEach((value) => {
                     document.querySelector('#zones_id').insertAdjacentHTML('beforeend', '<option value="' + value.id + '">' + value.name + '</option>');
                 });
-
             }
+
         });
     }
 }
