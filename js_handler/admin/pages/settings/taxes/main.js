@@ -45,6 +45,7 @@ class Taxes {
             var button = event.relatedTarget;
             var modal_id = Number(button.dataset.edit);
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+            
             if (Number.isInteger(modal_id)) {
                 document.querySelector('#edit').value = modal_id;
                 document.querySelector('#add').value = '';
@@ -55,7 +56,6 @@ class Taxes {
                 document.querySelector('#rate_taxes').value = json_data.rate[modal_id];
                 document.querySelector('#tax_type').checked = json_data.tax_type[modal_id];
                 document.querySelector('#fixed').checked = json_data.fixed[modal_id];
-
                 document.querySelector('#zones_id').innerHTML = '';
 
                 json_data.zones.forEach((value) => {
