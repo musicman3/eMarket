@@ -33,7 +33,7 @@
                 <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
 
                 <div class="row">
-                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('database_text') ?></div>
                             <div class="card-body">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('database_security_text') ?></div>
                             <div class="card-body">
@@ -157,7 +157,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('server_current_settings') ?></div>
                             <div class="card-body">
@@ -191,7 +191,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('from_developers') ?></div>
                             <div class="card-body">
