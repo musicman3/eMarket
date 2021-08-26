@@ -16,6 +16,7 @@ class Taxes {
      *
      */
     constructor() {
+        Taxes.json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
         this.modalShow();
         this.fixedChange();
     }
@@ -26,7 +27,7 @@ class Taxes {
      */
     fixedChange() {
         var currency = document.querySelector('#currency');
-        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
+        var json_data = Taxes.json_data;
         document.querySelector('#fixed').addEventListener('change', (e) => {
             if (currency.innerHTML === '%') {
                 currency.innerHTML = json_data.currency;
@@ -44,8 +45,8 @@ class Taxes {
         document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
             var modal_id = Number(button.dataset.edit);
-            var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
-            
+            var json_data = Taxes.json_data;
+
             if (Number.isInteger(modal_id)) {
                 document.querySelector('#edit').value = modal_id;
                 document.querySelector('#add').value = '';
