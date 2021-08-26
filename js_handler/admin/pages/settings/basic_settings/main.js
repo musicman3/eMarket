@@ -17,7 +17,6 @@ class BasicSettings {
      */
     constructor() {
         this.change();
-        BasicSettings.disableInput();
     }
 
     /**
@@ -25,12 +24,13 @@ class BasicSettings {
      * 
      */
     change() {
-        if (document.querySelector('#smtp_status').options.selectedIndex === 1) {
+        var smtp_status = document.querySelector('#smtp_status');
+        if (smtp_status.options.selectedIndex === 1) {
             BasicSettings.disableInput();
         }
 
-        document.querySelector('#smtp_status').addEventListener('change', function (event) {
-            if (document.querySelector('#smtp_status').options.selectedIndex === 1) {
+        smtp_status.addEventListener('change', function (event) {
+            if (smtp_status.options.selectedIndex === 1) {
                 BasicSettings.disableInput();
             } else {
                 document.querySelector('#smtp_auth').removeAttribute('disabled');
