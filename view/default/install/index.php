@@ -9,11 +9,9 @@
     <div class="card">
         <div class="card-header text-white bg-success">
             
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-                <div class="col"><h5><?php echo lang('install_panel') ?></h5></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col">
+            <div class="row">
+                <h5 class="col"><?php echo lang('install_panel') ?></h5>
+                <div class="col-xl-3 col-md-4 col-5 float-end">
                     <form action="index.php" method="post" accept-charset="utf-8">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-globe"></span>
@@ -34,8 +32,8 @@
             <form class="was-validated" action="success.php" method="post" accept-charset="utf-8" oninput="validate()">
                 <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
 
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <div class="col">
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('database_text') ?></div>
                             <div class="card-body">
@@ -104,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('database_security_text') ?></div>
                             <div class="card-body">
@@ -150,8 +148,8 @@
                                         <input class="form-control" id="password_admin_confirm" minlength="7" maxlength="40" placeholder="<?php echo lang('password_admin_confirm') ?>" type="password" name="password_admin_confirm" required />
                                     </div>
                                 </div>
-                                <div class="row g-5">
-                                    <div class="p-4 d-grid gap-2">
+                                <div class="mt-3">
+                                    <div class="d-grid">
                                         <button class="btn btn-danger btn-sm" type="submit" name="install_button" /><?php echo lang('install_button') ?></button>
                                     </div>
                                 </div>
@@ -159,49 +157,47 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('server_current_settings') ?></div>
                             <div class="card-body">
                                 <div class="mb-2">
                                     <div class="row">
                                         <div class="col">PHP:</div>
-                                        <div class="col text-md-end"><?php echo PHP_VERSION ?> <span class="<?php echo $eMarket->phpVersionCompare() ?>"></span></div>
+                                        <div class="col text-end"><?php echo PHP_VERSION ?> <span class="<?php echo $eMarket->phpVersionCompare() ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">curl:</div>
-                                        <div class="col text-md-end"><span class="<?php echo $eMarket->phpExtension('curl') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('curl') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">gd:</div>
-                                        <div class="col text-md-end"><span class="<?php echo $eMarket->phpExtension('gd') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('gd') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">json:</div>
-                                        <div class="col text-md-end"><span class="<?php echo $eMarket->phpExtension('json') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('json') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">pdo_mysql:</div>
-                                        <div class="col text-md-end"><span class="<?php echo $eMarket->phpExtension('pdo_mysql') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_mysql') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">SPL:</div>
-                                        <div class="col text-md-end"><span class="<?php echo $eMarket->phpExtension('SPL') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('SPL') ?>"></span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
                         <div class="card">
                             <div class="card-header text-white bg-success"><?php echo lang('from_developers') ?></div>
                             <div class="card-body">
-                                <div class="mb-2">
-                                    <div class="row mb-2"><p><em><?php echo lang('emarket_text') ?></em></p></div>
-                                    <div class="row mb-2 text-center"><p><a href="https://www.buymeacoffee.com/emarket" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a></p></div>
-                                    <div class="row mb-2 text-center"><p><em><?php echo lang('emarket_best_regards') ?></em></p></div>
-                                </div>
+                                <div class="mb-2"><p><em><?php echo lang('emarket_text') ?></em></p></div>
+                                <div class="mb-2 text-center"><p><a href="https://www.buymeacoffee.com/emarket" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a></p></div>
+                                <div class="mb-2 text-center"><p><em><?php echo lang('emarket_best_regards') ?></em></p></div>
                             </div>
                         </div>
                     </div>
@@ -211,5 +207,3 @@
         </div>
     </div>
 </div>
-
-
