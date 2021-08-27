@@ -7,7 +7,7 @@
 // 
 
 /**
- * Lang function (example: lang('name'), lang('name', 'english') или lang('#lang_all'))
+ * Lang function (example: lang('name'), lang('name', 'english') or lang('#lang_all'))
  *
  * @param string $a
  * @param string $b
@@ -44,6 +44,7 @@ function lang($a = null, $b = null, $c = null) {
     }
 
     if ($a == null) {
+        $lang_var['translate_name'] = $_SESSION['DEFAULT_LANGUAGE'];
         return $lang_var;
     }
 

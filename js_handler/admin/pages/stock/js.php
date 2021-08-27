@@ -9,8 +9,6 @@ use eMarket\Admin\Stock;
 
 $resize_max = json_encode(Files::imgResizeMax(Stock::$resize_param));
 $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product));
-$lang = lang();
-$lang['translate_name'] = lang('#lang_all')[0];
 ?>
 
 <!-- FileUpload -->
@@ -52,7 +50,7 @@ $lang['translate_name'] = lang('#lang_all')[0];
 <script type="text/javascript">
     var resize_max = <?php echo $resize_max ?>;
     var resize_max_prod = <?php echo $resize_max_prod ?>;
-    var lang = <?php echo json_encode($lang) ?>;
+    var lang = <?php echo json_encode(lang()) ?>;
 
     new Stock(resize_max, lang, resize_max_prod);
 </script>
