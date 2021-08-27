@@ -180,7 +180,7 @@ class ValuesAttribute {
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
-                if (item.name === 'add_values_attribute_' + lang.language_name.toLowerCase()) {
+                if (item.name === 'add_values_attribute_' + lang.translate_name) {
                     ValuesAttribute.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });

@@ -64,7 +64,7 @@ class Attributes {
             var level_length = parse_attributes[0].length;
 
             for (var x = 0; x < level_length; x++) {
-                if (parse_attributes[0][x]['name'] === 'attribute_' + lang.language_name.toLowerCase()) {
+                if (parse_attributes[0][x]['name'] === 'attribute_' + lang.translate_name) {
                     var language = x;
                 }
             }
@@ -199,7 +199,7 @@ class Attributes {
         parse.forEach((string, index) => {
             var sort_id = string.length - 1;
             string.forEach((item, i) => {
-                if (item.name === 'attribute_' + lang.language_name.toLowerCase()) {
+                if (item.name === 'attribute_' + lang.translate_name) {
                     Attributes.addValue(parse_attributes_sort[index][sort_id].uid, parse_attributes_sort[index][i].value);
                 }
             });
