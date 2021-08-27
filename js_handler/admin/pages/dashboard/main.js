@@ -17,12 +17,12 @@ class Dashboard {
      *
      */
     constructor() {
+        Dashboard.json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
         this.init();
         this.cardWeekDays();
         this.cardOrdersQuantity();
         this.cardNewOldOrders();
         this.cardProceeds();
-        Dashboard.json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
     }
 
     /**
