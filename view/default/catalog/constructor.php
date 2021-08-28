@@ -93,7 +93,7 @@ use eMarket\Core\{
                 <?php
                 if (View::tlpc('boxes-right', 'count') > 0) {
                     ?>
-                    <div id="bodyContent" class="col-xl-10 col-lg-9">
+                    <div id="bodyContent" class="col-xl-10 col-lg-9 order-2 order-lg-1">
                         <?php
                         require_once(View::routingCatalog());
                         ?>
@@ -109,7 +109,7 @@ use eMarket\Core\{
                 <?php
 		    if (View::tlpc('boxes-right', 'count') > 0) {
 		?>
-                <div id="columnRight" class="col-xl-2 col-lg-3">
+                <div id="columnRight" class="col-xl-2 col-lg-3 order-1 order-lg-2">
                     <?php
                         foreach (View::tlpc('boxes-right') as $path) {
                             require_once (ROOT . $path);
