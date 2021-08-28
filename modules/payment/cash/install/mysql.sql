@@ -9,4 +9,4 @@ CREATE TABLE emkt_modules_payment_cash (
         order_status int DEFAULT '1' NOT NULL,
         shipping_module varchar(256),
 	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

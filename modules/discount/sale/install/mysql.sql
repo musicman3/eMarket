@@ -13,4 +13,4 @@ CREATE TABLE emkt_modules_discount_sale (
         date_end datetime,
         default_set int(1),
 	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

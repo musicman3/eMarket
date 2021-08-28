@@ -10,4 +10,4 @@ CREATE TABLE emkt_modules_providers_bulksms (
         password varchar(256) NOT NULL,
         sender varchar(256) NOT NULL,
 	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -10,4 +10,4 @@ CREATE TABLE emkt_modules_shipping_free (
         shipping_zone int(1),
         currency int,
 	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
