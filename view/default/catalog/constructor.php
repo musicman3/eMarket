@@ -82,12 +82,40 @@ use eMarket\Core\{
                         require_once(View::routingCatalog());
                         ?>
                     </div>
-                <?php } else { ?>
+                <?php } elseif (View::tlpc('boxes-left', 'count') == 0 && View::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
                         require_once(View::routingCatalog());
                         ?>
                     </div>
+                <?php } ?>
+
+                <?php
+                if (View::tlpc('boxes-right', 'count') > 0) {
+                    ?>
+                    <div id="bodyContent" class="col-xl-10 col-lg-9">
+                        <?php
+                        require_once(View::routingCatalog());
+                        ?>
+                    </div>
+                <?php } elseif (View::tlpc('boxes-left', 'count') == 0 && View::tlpc('boxes-right', 'count') == 0) { ?>
+                    <div id="bodyContent" class="col-12">
+                        <?php
+                        require_once(View::routingCatalog());
+                        ?>
+                    </div>
+                <?php } ?>
+
+                <?php
+		    if (View::tlpc('boxes-right', 'count') > 0) {
+		?>
+                <div id="columnRight" class="col-xl-2 col-lg-3">
+                    <?php
+                        foreach (View::tlpc('boxes-right') as $path) {
+                            require_once (ROOT . $path);
+                        }
+                    ?>
+                </div>
                 <?php } ?>
 
             </div>
