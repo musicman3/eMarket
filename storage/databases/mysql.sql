@@ -14,7 +14,7 @@ CREATE TABLE emkt_administrators (
 	note varchar(256),
 	status int DEFAULT '0' NOT NULL,
 PRIMARY KEY (login))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_basic_settings;
 CREATE TABLE emkt_basic_settings (
@@ -33,7 +33,7 @@ CREATE TABLE emkt_basic_settings (
         email_name varchar(128) DEFAULT 'eMarket' NOT NULL,
         primary_language varchar(128) DEFAULT '' NOT NULL,
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
@@ -49,7 +49,7 @@ CREATE TABLE emkt_categories (
         logo_general varchar(128),
         attributes json,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
@@ -60,7 +60,7 @@ CREATE TABLE emkt_countries (
         alpha_3 varchar(3),
         address_format varchar(256) NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_currencies;
 CREATE TABLE emkt_currencies (
@@ -76,7 +76,7 @@ CREATE TABLE emkt_currencies (
         decimal_places char(1),
         last_updated datetime NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_customers;
 CREATE TABLE emkt_customers (
@@ -101,14 +101,14 @@ CREATE TABLE emkt_customers (
         status int DEFAULT '0',
         telephone varchar(32),
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_customers_activation;
 CREATE TABLE emkt_customers_activation (
         id int NOT NULL,
         activation_code varchar(64),
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_length;
 CREATE TABLE emkt_length (
@@ -119,7 +119,7 @@ CREATE TABLE emkt_length (
         value_length decimal(14,7),
         default_length int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_manufacturers;
 CREATE TABLE emkt_manufacturers (
@@ -130,7 +130,7 @@ CREATE TABLE emkt_manufacturers (
         logo_general varchar(128),
         site varchar(256),
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_modules;
 CREATE TABLE emkt_modules (
@@ -139,7 +139,7 @@ CREATE TABLE emkt_modules (
 	type varchar(256),
         active int(64),
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_order_status;
 CREATE TABLE emkt_order_status (
@@ -149,7 +149,7 @@ CREATE TABLE emkt_order_status (
         default_order_status int NOT NULL,
         sort int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_orders;
 CREATE TABLE emkt_orders (
@@ -167,7 +167,7 @@ CREATE TABLE emkt_orders (
         last_modified datetime,
         date_purchased datetime,
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_password_recovery;
 CREATE TABLE emkt_password_recovery (
@@ -176,7 +176,7 @@ CREATE TABLE emkt_password_recovery (
         recovery_code varchar(64),
         recovery_code_created datetime,
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
@@ -220,7 +220,7 @@ CREATE TABLE emkt_products (
         attributes json,
         stiker varchar(64),
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_regions;
 CREATE TABLE emkt_regions (
@@ -230,7 +230,7 @@ CREATE TABLE emkt_regions (
 	name varchar(256),
 	language varchar(64),
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_stikers;
 CREATE TABLE emkt_stikers (
@@ -239,7 +239,7 @@ CREATE TABLE emkt_stikers (
 	language varchar(64),
         default_stikers int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_slideshow;
 CREATE TABLE emkt_slideshow (
@@ -256,7 +256,7 @@ CREATE TABLE emkt_slideshow (
         date_finish datetime,
         status int DEFAULT '1' NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_slideshow_pref;
 CREATE TABLE emkt_slideshow_pref (
@@ -268,7 +268,7 @@ CREATE TABLE emkt_slideshow_pref (
 	indicators varchar(64),
 	navigation varchar(64),
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_staff_manager;
 CREATE TABLE emkt_staff_manager (
@@ -279,7 +279,7 @@ CREATE TABLE emkt_staff_manager (
         permissions json,
         mode varchar(256),
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
@@ -292,7 +292,7 @@ CREATE TABLE emkt_taxes (
         fixed int NOT NULL,
         currency int,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_template_constructor;
 CREATE TABLE emkt_template_constructor (
@@ -304,7 +304,7 @@ CREATE TABLE emkt_template_constructor (
         template_name varchar(256),
         sort int NOT NULL,
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_units;
 CREATE TABLE emkt_units (
@@ -314,7 +314,7 @@ CREATE TABLE emkt_units (
         unit varchar(256),
         default_unit int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_vendor_codes;
 CREATE TABLE emkt_vendor_codes (
@@ -324,7 +324,7 @@ CREATE TABLE emkt_vendor_codes (
         vendor_code varchar(256),
         default_vendor_code int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_weight;
 CREATE TABLE emkt_weight (
@@ -335,7 +335,7 @@ CREATE TABLE emkt_weight (
         value_weight decimal(14,7),
         default_weight int NOT NULL,
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_zones;
 CREATE TABLE emkt_zones (
@@ -344,7 +344,7 @@ CREATE TABLE emkt_zones (
         note varchar(256),
 	language varchar(64),
 PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_zones_value;
 CREATE TABLE emkt_zones_value (
@@ -353,7 +353,7 @@ CREATE TABLE emkt_zones_value (
         regions_id int NOT NULL,
         zones_id int NOT NULL,
 PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 /* Load data */

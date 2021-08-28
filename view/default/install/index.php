@@ -74,7 +74,7 @@
                                     <small class="form-text text-muted"><?php echo lang('database_name') ?></small>
                                     <div class="database_name input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
-                                        <input class="form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" required />
+                                        <input class="form-control" id="database_name" minlength="1" placeholder="<?php echo lang('database_name') ?>" type="text" name="database_name" value="emarket_db" required />
                                     </div>
                                 </div>
                                 <div class="mb-0">
