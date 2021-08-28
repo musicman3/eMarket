@@ -127,7 +127,6 @@ class Success {
         }
         
         $pdo = new \PDO(DB_TYPE . ':host=' . DB_SERVER, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"]);
-        
         $mysql_version = $pdo->query('select version()')->fetchColumn();
 
         if (version_compare($mysql_version, '5.7.8') < 0) {
@@ -135,7 +134,6 @@ class Success {
         }
         
         $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-        
         Pdo::getExec($buffer);
 
         $password_admin_hash = Autorize::passwordHash(self::$password_admin);
