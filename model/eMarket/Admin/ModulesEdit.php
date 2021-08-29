@@ -36,7 +36,7 @@ class ModulesEdit {
      *
      */
     public function switch_active() {
-        $active = Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
+        $active = Pdo::getCell("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
                     Valid::inGET('type'), Valid::inGET('name')])[0];
 
         if ($active == 1) {

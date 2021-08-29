@@ -92,7 +92,7 @@ class Cash {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getCell("SELECT * FROM " . $MODULE_DB, []);
             if ($data == FALSE) {
                 if (Valid::inPOST('multiselect')) {
                     $multiselect = json_encode(Valid::inPOST('multiselect'));
@@ -119,8 +119,8 @@ class Cash {
 
         self::$shipping_method = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
         self::$order_status = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
-        self::$order_status_selected = Pdo::getCellFalse("SELECT order_status FROM " . $MODULE_DB, []);
-        self::$shipping_val = json_decode(Pdo::getCellFalse("SELECT shipping_module FROM " . $MODULE_DB, []), 1);
+        self::$order_status_selected = Pdo::getCell("SELECT order_status FROM " . $MODULE_DB, []);
+        self::$shipping_val = json_decode(Pdo::getCell("SELECT shipping_module FROM " . $MODULE_DB, []), 1);
     }
 
 }

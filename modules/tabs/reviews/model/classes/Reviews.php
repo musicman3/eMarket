@@ -106,7 +106,7 @@ class Reviews {
      * @return string|FALSE
      */
     public static function status() {
-        $module_active = Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
+        $module_active = Pdo::getCell("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
         return $module_active;
     }
 
@@ -127,7 +127,7 @@ class Reviews {
      */
     public function authorCheck() {
         if (Autorize::$customer != FALSE) {
-            self::$author_check = Pdo::getCellFalse("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
+            self::$author_check = Pdo::getCell("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
         }
     }
 
@@ -215,7 +215,7 @@ class Reviews {
      *
      */
     public static function reviewStatus() {
-        $data_review = Pdo::getCellFalse("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Autorize::$customer['email']]);
+        $data_review = Pdo::getCell("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Autorize::$customer['email']]);
 
         return $data_review;
     }
@@ -238,7 +238,7 @@ class Reviews {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getCell("SELECT * FROM " . $MODULE_DB, []);
             if ($data != FALSE) {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET status=? WHERE id=?", [1, Valid::inPOST('publish')]);
 

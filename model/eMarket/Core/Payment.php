@@ -30,7 +30,7 @@ final class Payment {
 
         $output = [];
         foreach ($data as $payment_module) {
-            $shipping_val = json_decode(Pdo::getCellFalse("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), 1);
+            $shipping_val = json_decode(Pdo::getCell("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), 1);
             if (is_array($shipping_val) && in_array($name, $shipping_val) && !in_array($payment_module['name'], $output)) {
                 array_push($output, $payment_module['name']);
             }

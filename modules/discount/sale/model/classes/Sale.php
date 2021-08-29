@@ -85,7 +85,7 @@ class Sale {
      * @return string|FALSE
      */
     public static function status() {
-        $module_active = Pdo::getCellFalse("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
+        $module_active = Pdo::getCell("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
         return $module_active;
     }
 
@@ -337,7 +337,7 @@ class Sale {
                 $default_value = 0;
             }
 
-            $id_max = Pdo::selectPrepare("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getCell("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_value != 0) {

@@ -133,7 +133,7 @@ class Smsc {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getCellFalse("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getCell("SELECT * FROM " . $MODULE_DB, []);
             if ($data == FALSE) {
                 Pdo::action("INSERT INTO " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
             } else {

@@ -75,7 +75,7 @@ class AddressBook {
         $countries_array = Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = Pdo::getCellFalse("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+        self::$address_data_json = Pdo::getCell("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];

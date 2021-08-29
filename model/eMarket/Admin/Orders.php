@@ -63,11 +63,11 @@ class Orders {
 
             $customer_language = json_decode($order_data['customer_data'], 1)['language'];
 
-            $customer_status_history_select = Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
+            $customer_status_history_select = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
                         $customer_language, Valid::inPOST('status_history_select')
             ]);
 
-            $admin_status_history_select = Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
+            $admin_status_history_select = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
                         $primary_language, Valid::inPOST('status_history_select')
             ]);
 

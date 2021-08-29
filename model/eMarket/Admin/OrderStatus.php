@@ -54,14 +54,14 @@ class OrderStatus {
                 $default_order_status = 0;
             }
 
-            $id_max = Pdo::selectPrepare("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_order_status != 0) {
                 Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
             }
 
-            $id_max_sort = Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+            $id_max_sort = Pdo::getCell("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
             $id_sort = intval($id_max_sort) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -125,7 +125,7 @@ class OrderStatus {
             $sort_array_order_status = [];
 
             foreach ($sort_array_id as $val) {
-                $sort_order_status = Pdo::selectPrepare("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [
+                $sort_order_status = Pdo::getCell("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [
                             $val, lang('#lang_all')[0]
                 ]);
                 array_push($sort_array_order_status, $sort_order_status);

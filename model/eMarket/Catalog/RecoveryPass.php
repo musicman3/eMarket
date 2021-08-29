@@ -39,11 +39,11 @@ class RecoveryPass {
      */
     public function recovery() {
         if (Valid::inGET('recovery_code')) {
-            self::$customer_id = Pdo::getCellFalse("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
+            self::$customer_id = Pdo::getCell("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
                         Valid::inGET('recovery_code')]
             );
             if (self::$customer_id != FALSE && Valid::inPOST('password')) {
-                $recovery_code_created = Pdo::selectPrepare("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [
+                $recovery_code_created = Pdo::getCell("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [
                             self::$customer_id
                 ]);
                 if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {

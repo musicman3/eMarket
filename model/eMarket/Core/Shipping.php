@@ -35,7 +35,7 @@ final class Shipping {
         }
 
         $output = [];
-        $zones_id = Pdo::getCellFalse("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
+        $zones_id = Pdo::getCell("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
 
         if ($zones_id != FALSE) {
             foreach ($modules_data as $mod_data_ext) {

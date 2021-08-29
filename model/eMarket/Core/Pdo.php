@@ -73,18 +73,6 @@ final class Pdo {
     }
 
     /**
-     * getQuery instead self::connect()->query()
-     *
-     * @param string $sql SQL query
-     * @return data
-     */
-    public static function getQuery($sql) {
-
-        $result = self::connect()->query($sql);
-        return $result;
-    }
-
-    /**
      * getExec instead self::connect()->exec()
      *
      * @param string $sql SQL query
@@ -108,8 +96,7 @@ final class Pdo {
         $result = FALSE;
         if ($exec = self::connect()->prepare($sql)
                 AND $exec->execute($a)
-                AND $value = $exec->fetch(\PDO :: FETCH_NUM)
-                AND $result = $value[0]) {
+                AND $result = $exec->fetchColumn()) {
             
         }
         return Func::outputDataFiltering($result);
@@ -170,24 +157,6 @@ final class Pdo {
     }
 
     /**
-     * getCellFalse
-     * 
-     * @param string $sql SQL query
-     * @param array $a (parameter for execute($a))
-     * @return bool|array
-     */
-    public static function getCellFalse($sql, $a) {
-
-        $result = FALSE;
-        if ($exec = self::connect()->prepare($sql)
-                AND $exec->execute($a)
-                AND $result = $exec->fetchColumn()) {
-            
-        }
-        return Func::outputDataFiltering($result);
-    }
-
-    /**
      * getColCount
      * 
      * @param string $sql SQL query
@@ -221,25 +190,6 @@ final class Pdo {
             
         }
         return $result;
-    }
-
-    /**
-     * selectPrepare
-     * 
-     * @param string $sql SQL query
-     * @param array $a (parameter for execute($a))
-     * @return bool|string|array
-     */
-    public static function selectPrepare($sql, $a) {
-
-        $result = FALSE;
-        if ($exec = self::connect()->prepare($sql)
-                AND $exec->execute($a)
-                AND $value = $exec->fetchAll()
-                AND $result = $value[0][0]) {
-            
-        }
-        return Func::outputDataFiltering($result);
     }
 
     /**

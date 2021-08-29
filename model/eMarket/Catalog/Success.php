@@ -56,8 +56,8 @@ class Success {
 
             $address_all = json_decode(self::$customer['address_book'], 1);
             $address_data = $address_all[Valid::inPOST('address') - 1];
-            $address_data['region'] = Pdo::getCellFalse("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
-            $address_data['country'] = Pdo::getCellFalse("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
+            $address_data['region'] = Pdo::getCell("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
+            $address_data['country'] = Pdo::getCell("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
 
             unset($address_data['default']);
             unset($address_data['regions_id']);
@@ -68,8 +68,8 @@ class Success {
 
             self::$primary_language = Settings::primaryLanguage();
 
-            self::$customer_orders_status_history = Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
-            $admin_orders_status_history = Pdo::getCellFalse("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
+            self::$customer_orders_status_history = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
+            $admin_orders_status_history = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
             $date = date("Y-m-d H:i:s");
             $orders_status_history_data = [[
             'admin' => [
@@ -193,7 +193,7 @@ class Success {
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
             'order_total_tax' => Valid::inPOST('order_total_tax'),
-            'currency' => Pdo::getCellFalse("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
+            'currency' => Pdo::getCell("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
         ];
     }
 
