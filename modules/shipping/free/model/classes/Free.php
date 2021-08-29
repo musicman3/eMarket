@@ -175,9 +175,9 @@ class Free {
 
                 $modal_id = Pages::$table['lines'][$i]['id'];
 
-                $query = Pdo::getRow("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id]);
-                $minimum_price[$modal_id] = round(Ecb::currencyPrice($query[0], $query[2]), 2);
-                $shipping_zone[$modal_id] = $query[1];
+                $query = Pdo::getColAssoc("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id])[0];
+                $minimum_price[$modal_id] = round(Ecb::currencyPrice($query['minimum_price'], $query['currency']), 2);
+                $shipping_zone[$modal_id] = $query['shipping_zone'];
 
                 self::$json_data = json_encode([
                     'price' => $minimum_price,
