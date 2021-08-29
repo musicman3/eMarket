@@ -45,19 +45,17 @@ class Fileupload {
                 document.querySelector('#alert_messages').innerHTML = '';
             },
             onProgress: function (pct) {
-                document.querySelectorAll('.progress-bar').forEach(
-                        e => e.style.width = pct + '%',
-                        e => e.innerHTML = '',
-                        e => e.classList.remove('bg-success'),
-                        e => e.classList.add('bg-danger', 'progress-bar-striped', 'progress-bar-animated')
-                );
+                var progress_bar = document.querySelectorAll('.progress-bar');
+                progress_bar.forEach(e => e.style.width = pct + '%');
+                progress_bar.forEach(e => e.innerHTML = '');
+                progress_bar.forEach(e => e.classList.remove('bg-success'));
+                progress_bar.forEach(e => e.classList.add('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
 
                 if (pct === 100) {
                     setTimeout(function () {
-                        document.querySelectorAll('.progress-bar').forEach(
-                                e => e.innerHTML = lang['download_complete']),
-                                e => e.classList.remove('bg-danger', 'progress-bar-striped', 'progress-bar-animated'),
-                                e => e.classList.add('bg-success')
+                        progress_bar.forEach(e => e.innerHTML = lang['download_complete']);
+                        progress_bar.forEach(e => e.classList.remove('bg-danger', 'progress-bar-striped', 'progress-bar-animated'));
+                        progress_bar.forEach(e => e.classList.add('bg-success'));
                     }, 1000);
                 }
             },
