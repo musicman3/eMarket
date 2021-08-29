@@ -7,6 +7,10 @@
 
 namespace eMarket\Core;
 
+use eMarket\Core\{
+    Func
+};
+
 /**
  * Tree
  *
@@ -118,7 +122,7 @@ class Tree {
         }
 
         foreach ($array_cat[$parent_id] as $value) {
-            echo '<li id="cat_' . $value->id . '"><a id="namecat_' . $value->id . '" href="?route=listing&category_id=' . $value->id . '">' . $value->name . '</a><span></span>';
+            echo '<li id="cat_' . $value->id . '"><a id="namecat_' . $value->id . '" href="?route=listing&category_id=' . $value->id . '">' . Func::outputDataFiltering($value->name) . '</a><span></span>';
             self::categories($sql, null, $array_cat2, $value->id, TRUE);
             echo '</li>';
         }
