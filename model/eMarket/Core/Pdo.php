@@ -232,7 +232,7 @@ final class Pdo {
         if ($exec && $exec->execute($param)) {
             $result = $exec->fetchAll(\PDO :: FETCH_OBJ);
         }
-        return Func::outputDataFiltering($result);
+        return $result;
     }
 
     /**
