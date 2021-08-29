@@ -31,7 +31,7 @@ Copy install.php file to the empty root directory of the site and open the link 
 This wizard will automatically copy the latest eMarket release to your server and open the installation page.
 
 #### Method 2. Download the latest release.  
-[![N|Solid](https://img.shields.io/badge/Lastest%20release-download-blue)](https://github.com/musicman3/eMarket/releases)  
+[![N|Solid](https://img.shields.io/badge/Latest%20release-download-blue)](https://github.com/musicman3/eMarket/releases)  
 Copy eMarket files to server and open page: http://localhost/controller/install  
 
 ---
