@@ -399,7 +399,7 @@ class Sale {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $discount_id_array = Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discount_id_array = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
             foreach ($discount_id_array as $discount_id_arr) {
                 $discount_str_temp = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);

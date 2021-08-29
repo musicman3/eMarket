@@ -119,23 +119,6 @@ final class Pdo {
     }
 
     /**
-     * getCol
-     * 
-     * @param string $sql SQL query
-     * @param array $param (parameter for execute)
-     * @return bool|array
-     */
-    public static function getCol($sql, $param) {
-        
-        $result = FALSE;
-        $exec = self::connect()->prepare($sql);
-        if ($exec && $exec->execute($param)) {
-            $result = $exec->fetchAll(\PDO :: FETCH_COLUMN);
-        }
-        return Func::outputDataFiltering($result);
-    }
-
-    /**
      * getColCount
      * 
      * @param string $sql SQL query

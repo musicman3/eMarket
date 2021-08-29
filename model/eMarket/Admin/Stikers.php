@@ -192,7 +192,7 @@ class Stikers {
 
                         if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
 
-                            $stiker_id_array = Pdo::getCol("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
+                            $stiker_id_array = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
                                         lang('#lang_all')[0], $keys[$x]
                             ]);
 
