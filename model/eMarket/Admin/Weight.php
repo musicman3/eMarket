@@ -53,13 +53,13 @@ class Weight {
                 $default_weight = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_weight != 0) {
                 Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
-                $value_weight_all = Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
+                $value_weight_all = Pdo::getAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
                 $count_value_weight_all = count($value_weight_all);
                 for ($x = 0; $x < $count_value_weight_all; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
@@ -104,7 +104,7 @@ class Weight {
             if ($default_weight != 0) {
                 Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
-                $value_weight_all = Pdo::getColAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
+                $value_weight_all = Pdo::getAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
                 $count_value_weight_all = count($value_weight_all);
                 for ($x = 0; $x < $count_value_weight_all; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
@@ -149,7 +149,7 @@ class Weight {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

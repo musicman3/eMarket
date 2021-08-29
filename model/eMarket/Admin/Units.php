@@ -53,7 +53,7 @@ class Units {
                 $default_unit = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_unit != 0) {
@@ -114,7 +114,7 @@ class Units {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

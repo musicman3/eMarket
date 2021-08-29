@@ -214,7 +214,7 @@ class Cart {
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $product = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+                $product = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
                 if ($product != FALSE) {
                     array_push($output, $product[0]);
                 } else {
@@ -233,7 +233,7 @@ class Cart {
     public function modal() {
         self::$address_data = [];
         if (isset($_SESSION['email_customer'])) {
-            self::$address_data_json = Pdo::getCell("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+            self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
             if (self::$address_data_json != FALSE) {
                 self::$address_data = json_decode(self::$address_data_json, 1);
@@ -241,8 +241,8 @@ class Cart {
 
             $x = 0;
             foreach (self::$address_data as $address_val) {
-                $countries_array = Pdo::getColAssoc("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-                $regions_array = Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+                $countries_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
+                $regions_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
                 if ($address_val['countries_id'] == $countries_array['id']) {
                     self::$address_data[$x]['countries_name'] = $countries_array['name'];
                     self::$address_data[$x]['regions_name'] = $regions_array['name'];

@@ -59,7 +59,7 @@ class AddressBook {
      */
     public function jsonEcho() {
         if (Valid::inPostJson('countries_select')) {
-            self::$regions_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
+            self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
                         lang('#lang_all')[0], Valid::inPostJson('countries_select')
             ]);
             echo json_encode(self::$regions_data);
@@ -72,10 +72,10 @@ class AddressBook {
      *
      */
     public function initData() {
-        $countries_array = Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+        $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = Pdo::getCell("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+        self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];
@@ -190,8 +190,8 @@ class AddressBook {
     public function data() {
         $x = 0;
         foreach (self::$address_data as $address_val) {
-            $countries_array = Pdo::getColAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-            $regions_array = Pdo::getColAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+            $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
+            $regions_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
             if ($address_val['countries_id'] == $countries_array['id']) {
                 self::$address_data[$x]['countries_name'] = $countries_array['name'];
                 self::$address_data[$x]['alpha_2'] = $countries_array['alpha_2'];

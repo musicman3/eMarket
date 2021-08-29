@@ -89,15 +89,15 @@ class ZonesListing {
     public function data() {
         self::$count = 0;
 
-        self::$countries_multiselect_temp = Pdo::getColRow("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+        self::$countries_multiselect_temp = Pdo::getIndex("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
         self::$countries_multiselect = array_column(self::$countries_multiselect_temp, 1, 0);
 
         asort(self::$countries_multiselect);
 
-        self::$regions_multiselect = Pdo::getColAssoc("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$regions = Pdo::getColAssoc("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
+        self::$regions_multiselect = Pdo::getAssoc("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$regions = Pdo::getAssoc("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
 
-        self::$sql_data = Pdo::getColRow("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
+        self::$sql_data = Pdo::getIndex("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
         self::$lines = array_values(array_unique(self::$sql_data, SORT_REGULAR));
         Pages::data(self::$lines);
     }

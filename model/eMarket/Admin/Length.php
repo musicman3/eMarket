@@ -53,13 +53,13 @@ class Length {
                 $default_length = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_length != 0) {
                 Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
-                $value_length_all = Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
+                $value_length_all = Pdo::getAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
                 $count_value_length_all = count($value_length_all);
                 for ($x = 0; $x < $count_value_length_all; $x++) {
                     Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
@@ -104,7 +104,7 @@ class Length {
             if ($default_length != 0) {
                 Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
-                $value_length_all = Pdo::getColAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
+                $value_length_all = Pdo::getAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
                 $count_value_length_all = count($value_length_all);
                 for ($x = 0; $x < $count_value_length_all; $x++) {
                     \Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
@@ -150,7 +150,7 @@ class Length {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

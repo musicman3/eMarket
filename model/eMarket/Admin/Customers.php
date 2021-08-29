@@ -53,7 +53,7 @@ class Customers {
     public function status() {
         if (Valid::inPOST('status')) {
 
-            $status_data = Pdo::getCell("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
+            $status_data = Pdo::getValue("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
 
             if ($status_data == 0) {
                 self::$status = 1;
@@ -87,9 +87,9 @@ class Customers {
     public function data() {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
-            $lines = Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
+            $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
         } else {
-            $lines = Pdo::getColRow("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+            $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
         }
 
         Pages::data($lines);

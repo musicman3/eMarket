@@ -135,7 +135,7 @@ class Bulksms {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getCell("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
             if ($data == FALSE) {
                 Pdo::action("INSERT INTO " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
             } else {
@@ -152,7 +152,7 @@ class Bulksms {
      *
      */
     public static function data() {
-        $data = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_bulksms', []);
+        $data = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_bulksms', []);
         if (count($data) > 0) {
             self::$data = $data[0];
         } else {

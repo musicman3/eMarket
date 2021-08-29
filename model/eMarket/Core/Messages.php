@@ -132,7 +132,7 @@ class Messages {
      */
     public static function sendProviders($to, $body) {
 
-        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
+        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
         foreach ($active_modules as $module) {
             $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
             $namespace::data();
@@ -152,7 +152,7 @@ class Messages {
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
+        $basic_settings = Pdo::getAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();

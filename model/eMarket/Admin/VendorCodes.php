@@ -53,7 +53,7 @@ class VendorCodes {
                 $default_vendor_code = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_vendor_code != 0) {
@@ -115,7 +115,7 @@ class VendorCodes {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

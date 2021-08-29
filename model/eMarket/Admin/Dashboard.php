@@ -58,7 +58,7 @@ class Dashboard {
      */
     public static function orders() {
         if (self::$dashboard_orders == FALSE) {
-            self::$dashboard_orders = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC LIMIT 0,5", []);
+            self::$dashboard_orders = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC LIMIT 0,5", []);
         }
         return self::$dashboard_orders;
     }
@@ -70,10 +70,10 @@ class Dashboard {
      */
     public static function minYear() {
         if (self::$min_year == FALSE) {
-            $min_clients_id = Pdo::getCell("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
+            $min_clients_id = Pdo::getValue("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
             
             if ($min_clients_id != FALSE) {
-                $min_clients = Pdo::getCell("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
+                $min_clients = Pdo::getValue("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
             } else {
                 $min_clients = date('Y');
             }
@@ -119,7 +119,7 @@ class Dashboard {
     public static function cardOrdersData() {
 
         $year = self::selectYear();
-        $orders = Pdo::getColAssoc("SELECT email, order_total, DAYOFWEEK(date_purchased), MONTH(date_purchased), YEAR(date_purchased) FROM " . TABLE_ORDERS . " WHERE YEAR(date_purchased) = " . $year, []);
+        $orders = Pdo::getAssoc("SELECT email, order_total, DAYOFWEEK(date_purchased), MONTH(date_purchased), YEAR(date_purchased) FROM " . TABLE_ORDERS . " WHERE YEAR(date_purchased) = " . $year, []);
 
         $month_count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $month_amount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -224,7 +224,7 @@ class Dashboard {
      */
     public static function customersData() {
         if (self::$customers == FALSE) {
-            self::$customers = Pdo::getColAssoc("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE YEAR(date_account_created) = " . self::selectYear(), []);
+            self::$customers = Pdo::getAssoc("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE YEAR(date_account_created) = " . self::selectYear(), []);
         }
         return self::$customers;
     }

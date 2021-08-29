@@ -64,7 +64,7 @@ class Taxes {
                 $fixed = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -126,7 +126,7 @@ class Taxes {
      *
      */
     public function data() {
-        self::$zones = Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         self::$zones_names = [];
         foreach (self::$zones as $zones_val) {
@@ -136,7 +136,7 @@ class Taxes {
         self::$value_6 = [0 => sprintf(lang('taxes_value'), Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
         self::$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

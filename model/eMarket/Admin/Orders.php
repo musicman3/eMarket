@@ -58,16 +58,16 @@ class Orders {
 
             $primary_language = Settings::primaryLanguage();
 
-            $order_data = Pdo::getColAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
+            $order_data = Pdo::getAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
                         Valid::inPOST('edit')])[0];
 
             $customer_language = json_decode($order_data['customer_data'], 1)['language'];
 
-            $customer_status_history_select = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
+            $customer_status_history_select = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
                         $customer_language, Valid::inPOST('status_history_select')
             ]);
 
-            $admin_status_history_select = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
+            $admin_status_history_select = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
                         $primary_language, Valid::inPOST('status_history_select')
             ]);
 
@@ -120,17 +120,17 @@ class Orders {
      *
      */
     public function data() {
-        self::$order_status = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+        self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? OR customer_data RLIKE? OR customer_data RLIKE? ORDER BY id DESC", [
+            self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? OR customer_data RLIKE? OR customer_data RLIKE? ORDER BY id DESC", [
                         $search, $search, '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*', '"firstname": "(?i)([^"])*' .
                         Valid::inGET('search') . '([^"])*'
             ]);
         } else {
-            self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
+            self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
         }
 
         Pages::data(self::$sql_data);

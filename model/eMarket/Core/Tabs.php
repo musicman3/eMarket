@@ -26,7 +26,7 @@ final class Tabs {
      * @return array
      */
     public static function tabsModulesAvailable() {
-        $data = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'tabs']);
+        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'tabs']);
         $output = [];
         foreach ($data as $tabs_module) {
             array_push($output, $tabs_module['name']);

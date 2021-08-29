@@ -88,7 +88,7 @@ class Staff {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [self::$staff_manager_id]);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [self::$staff_manager_id]);
         Pages::data(self::$sql_data);
     }
 

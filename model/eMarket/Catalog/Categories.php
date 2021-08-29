@@ -42,7 +42,7 @@ class Categories {
      * @return string url
      */
     public static function indexData() {
-        self::$index_data = Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
+        self::$index_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
     }
 
     /**
@@ -51,7 +51,7 @@ class Categories {
      * @return string url
      */
     public static function listingData() {
-        self::$listing_data = Pdo::getColRow("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], Valid::inGET('category_id'), 1]);
+        self::$listing_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], Valid::inGET('category_id'), 1]);
     }
 
 }

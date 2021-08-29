@@ -59,7 +59,7 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = Pdo::getCell("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = Pdo::getValue("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
@@ -91,7 +91,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -121,7 +121,7 @@ class Files {
             if (Valid::inPOST('delete_image')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image'), -1);
 
-                $image_list_arr = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -131,7 +131,7 @@ class Files {
                             Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == Pdo::getCell("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                        if ($file == Pdo::getValue("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
@@ -156,7 +156,7 @@ class Files {
                     if (strstr($idx[$i], '_', true) != 'product') {
                         $id = $idx[$i];
 
-                        $logo_delete = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                         if (is_countable($logo_delete)) {
                             foreach ($logo_delete as $file) {
                                 foreach ($resize_param as $key => $value) {
@@ -215,7 +215,7 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = Pdo::getCell("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = Pdo::getValue("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
                 $id = intval($id_max);
 
                 $image_list = [];
@@ -247,7 +247,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -277,7 +277,7 @@ class Files {
             if (Valid::inPOST('delete_image_product')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image_product'), -1);
 
-                $image_list_arr = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -287,7 +287,7 @@ class Files {
                             Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == Pdo::getCell("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
+                        if ($file == Pdo::getValue("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
                             Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
                             $logo_general_update = 'ok';
                         }
@@ -308,7 +308,7 @@ class Files {
                 if (strstr($idx[$i], '_', true) == 'product') {
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
+                    $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
                     if (is_countable($logo_delete)) {
                         foreach ($logo_delete as $file) {
                             foreach ($resize_param as $key => $value) {

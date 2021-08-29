@@ -52,7 +52,7 @@ class Settings {
     public static function basicSettings($param = null) {
 
         if (self::$basic_settings == FALSE) {
-            self::$basic_settings = Pdo::getColAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
+            self::$basic_settings = Pdo::getAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
         }
 
         if ($param != null) {
@@ -70,7 +70,7 @@ class Settings {
     public static function currenciesData() {
 
         if (self::$currencies_data == FALSE) {
-            self::$currencies_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$currencies_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         return self::$currencies_data;
@@ -173,18 +173,18 @@ class Settings {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
-                    $currency = Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && !Valid::inGET('currency_default')) {
-                    $currency = Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
+                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
-                    $currency = Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, Valid::inGET('currency_default')])[0];
+                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, Valid::inGET('currency_default')])[0];
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 }
             }
 
             if (self::path() == 'admin') {
-                $currency = Pdo::getColRow("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+                $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
             }
 
             self::$default_currency = $currency;
@@ -339,7 +339,7 @@ class Settings {
         }
 
         if (basename(Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
-            $title = $sign . Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
+            $title = $sign . Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
         }
 
         if (basename(Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
@@ -425,7 +425,7 @@ class Settings {
 
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
-            $name = Pdo::getCell("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+            $name = Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
             array_push($breadcrumb, $name);
         }
 

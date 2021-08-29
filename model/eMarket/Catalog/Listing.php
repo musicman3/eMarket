@@ -85,11 +85,11 @@ class Listing {
     public function data() {
         if (Valid::inGET('search')) {
             $search = '%' . Valid::inGET('search') . '%';
-            self::$lines = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . self::$sort_parameter, [
+            self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . self::$sort_parameter, [
                         $search, $search, lang('#lang_all')[0], 1
             ]);
         } else {
-            self::$lines = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . self::$sort_parameter, [
+            self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . self::$sort_parameter, [
                         lang('#lang_all')[0], Valid::inGET('category_id'), 1
             ]);
         }
@@ -110,7 +110,7 @@ class Listing {
 
                 $modal_id = self::$lines[$i]['id'];
 
-                $query = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[0]])[0];
+                $query = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[0]])[0];
                 $product_temp[$modal_id] = $query;
                 $product_temp[$modal_id]['price_formated'] = Ecb::priceInterface($query, 2);
 

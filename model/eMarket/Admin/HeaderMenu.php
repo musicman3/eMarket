@@ -156,9 +156,9 @@ class HeaderMenu {
      */
     public function staffInit() {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getCell("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
-                self::$staff_data = json_decode(Pdo::getColAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], 1);
+                self::$staff_data = json_decode(Pdo::getAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], 1);
 
                 $menu_array = [];
                 foreach (self::$menu as $menu_key => $menu_val) {

@@ -42,7 +42,7 @@ class Register {
     public function init() {
         if (Valid::inPOST('email')) {
 
-            self::$user_email = Pdo::getCell("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
+            self::$user_email = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
             if (self::$user_email == NULL) {
                 $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
                 Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [

@@ -52,12 +52,12 @@ class Success {
         if (Valid::inPOST('add') && password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') . Valid::inPOST('shipping_method') .
                         (float) Valid::inPOST('order_shipping_price') . (float) Valid::inPOST('order_total'), Valid::inPOST('hash'))) {
-            self::$customer = Pdo::getColAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
 
             $address_all = json_decode(self::$customer['address_book'], 1);
             $address_data = $address_all[Valid::inPOST('address') - 1];
-            $address_data['region'] = Pdo::getCell("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
-            $address_data['country'] = Pdo::getCell("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
+            $address_data['region'] = Pdo::getValue("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
+            $address_data['country'] = Pdo::getValue("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
 
             unset($address_data['default']);
             unset($address_data['regions_id']);
@@ -68,8 +68,8 @@ class Success {
 
             self::$primary_language = Settings::primaryLanguage();
 
-            self::$customer_orders_status_history = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
-            $admin_orders_status_history = Pdo::getCell("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
+            self::$customer_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
+            $admin_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
             $date = date("Y-m-d H:i:s");
             $orders_status_history_data = [[
             'admin' => [
@@ -99,13 +99,13 @@ class Success {
     public function invoice() {
         $cart = json_decode(Valid::inPOST('products_order'), 1);
 
-        $stiker_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [self::$primary_language]);
+        $stiker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [self::$primary_language]);
         $stiker_name = [];
         foreach ($stiker_data as $val) {
             $stiker_name[$val['id']] = $val['name'];
         }
 
-        $stiker_data_customer = Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $stiker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         $stiker_name_customer = [];
         foreach ($stiker_data_customer as $val) {
             $stiker_name_customer[$val['id']] = $val['name'];
@@ -117,8 +117,8 @@ class Success {
         foreach ($cart as $value) {
             $product_data = Products::productData($value['id']);
             $admin_product_data = Products::productData($value['id'], self::$primary_language);
-            $unit = Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
-            $admin_unit = Pdo::getColAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], self::$primary_language])[0];
+            $unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
+            $admin_unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], self::$primary_language])[0];
 
             if (isset($stiker_name[$product_data['stiker']])) {
                 $stiker_name_data = $stiker_name[$product_data['stiker']];
@@ -193,7 +193,7 @@ class Success {
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
             'order_total_tax' => Valid::inPOST('order_total_tax'),
-            'currency' => Pdo::getCell("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
+            'currency' => Pdo::getValue("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
         ];
     }
 
@@ -241,7 +241,7 @@ class Success {
      *
      */
     public function end() {
-        $customer_order_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
+        $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');

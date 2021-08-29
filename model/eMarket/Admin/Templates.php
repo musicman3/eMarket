@@ -91,7 +91,7 @@ class Templates {
      *
      */
     public function loadData() {
-        $layouts_data = Pdo::getColAssoc("SELECT url, value, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND template_name=? ORDER BY sort ASC", ['catalog', self::$select_template]);
+        $layouts_data = Pdo::getAssoc("SELECT url, value, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND template_name=? ORDER BY sort ASC", ['catalog', self::$select_template]);
         $layouts = Func::filterData($layouts_data, 'page', self::$select_page);
 
         $layout_header_temp = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');

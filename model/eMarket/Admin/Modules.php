@@ -98,8 +98,8 @@ class Modules {
      *
      */
     public function data() {
-        self::$installed = Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
-        self::$installed_active = Pdo::getColAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
+        self::$installed = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
+        self::$installed_active = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
     }
 
     /**

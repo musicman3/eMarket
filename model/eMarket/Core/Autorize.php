@@ -83,9 +83,9 @@ class Autorize {
      */
     public function demoModeInit() {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getCell("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
-                $mode = Pdo::getCell("SELECT mode FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]);
+                $mode = Pdo::getValue("SELECT mode FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]);
                 if ($mode == 1) {
                     Valid::$demo_mode = TRUE;
                 }
@@ -99,9 +99,9 @@ class Autorize {
      */
     public function dashboardCheck() {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getCell("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
-                $staff_data = json_decode(Pdo::getCell("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
+                $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
 
                 $count = 0;
                 foreach ($staff_data as $value) {
@@ -147,7 +147,7 @@ class Autorize {
                 header('Location: ?route=login');
                 exit;
             } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-                $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getCell("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
+                $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getValue("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
                             $_SESSION['login'], $_SESSION['pass']
                 ]);
                 return TRUE;
@@ -167,7 +167,7 @@ class Autorize {
         if (Settings::path() == 'catalog') {
 
             if (isset($_SESSION['email_customer'])) {
-                $customer_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+                $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
             } else {
                 $customer_data['status'] = 0;
             }

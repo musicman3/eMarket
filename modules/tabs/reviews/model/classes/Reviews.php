@@ -106,7 +106,7 @@ class Reviews {
      * @return string|FALSE
      */
     public static function status() {
-        $module_active = Pdo::getCell("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
+        $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
         return $module_active;
     }
 
@@ -117,7 +117,7 @@ class Reviews {
     public function data() {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$sql_data = Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_add) FROM " . $MODULE_DB . " WHERE status=? ORDER BY id DESC", [0]);
+        self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_add) FROM " . $MODULE_DB . " WHERE status=? ORDER BY id DESC", [0]);
         Pages::data(self::$sql_data);
     }
 
@@ -127,7 +127,7 @@ class Reviews {
      */
     public function authorCheck() {
         if (Autorize::$customer != FALSE) {
-            self::$author_check = Pdo::getCell("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
+            self::$author_check = Pdo::getValue("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
         }
     }
 
@@ -138,7 +138,7 @@ class Reviews {
      * @return array Author data
      */
     public static function reviewAuthor($email) {
-        self::$author = Pdo::getColAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
+        self::$author = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
 
         return self::$author;
     }
@@ -150,7 +150,7 @@ class Reviews {
      * @return array Author data
      */
     public static function purchaseCheck($email) {
-        $purchase = Pdo::getColAssoc("SELECT products_order FROM " . TABLE_ORDERS . " WHERE email=?", [$email]);
+        $purchase = Pdo::getAssoc("SELECT products_order FROM " . TABLE_ORDERS . " WHERE email=?", [$email]);
         $purchase_flag = 'FALSE';
 
         foreach ($purchase as $data) {
@@ -201,9 +201,9 @@ class Reviews {
      */
     public static function reviewsData() {
         if (!Valid::inPostJson('start_review')) {
-            self::$reviews = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT 0," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
+            self::$reviews = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT 0," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
         } else {
-            self::$reviews = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT " . Valid::inPostJson('start_review') . "," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
+            self::$reviews = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT " . Valid::inPostJson('start_review') . "," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
         }
         self::$count_to_page = count(self::$reviews);
     }
@@ -215,7 +215,7 @@ class Reviews {
      *
      */
     public static function reviewStatus() {
-        $data_review = Pdo::getCell("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Autorize::$customer['email']]);
+        $data_review = Pdo::getValue("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Autorize::$customer['email']]);
 
         return $data_review;
     }
@@ -238,7 +238,7 @@ class Reviews {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getCell("SELECT * FROM " . $MODULE_DB, []);
+            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
             if ($data != FALSE) {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET status=? WHERE id=?", [1, Valid::inPOST('publish')]);
 

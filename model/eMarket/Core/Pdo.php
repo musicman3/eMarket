@@ -85,13 +85,13 @@ final class Pdo {
     }
 
     /**
-     * getCell
+     * Get value
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
      * @return bool|string|array
      */
-    public static function getCell($sql, $param) {
+    public static function getValue($sql, $param) {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -102,13 +102,13 @@ final class Pdo {
     }
 
     /**
-     * getColRow
+     * Get an indexed array 
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
      * @return bool|array
      */
-    public static function getColRow($sql, $param) {
+    public static function getIndex($sql, $param) {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -119,14 +119,48 @@ final class Pdo {
     }
 
     /**
-     * getColCount
+     * Get associated array 
+     * 
+     * @param string $sql SQL query
+     * @param array $param (parameter for execute)
+     * @return bool|array
+     */
+    public static function getAssoc($sql, $param) {
+
+        $result = FALSE;
+        $exec = self::connect()->prepare($sql);
+        if ($exec && $exec->execute($param)) {
+            $result = $exec->fetchAll(\PDO :: FETCH_ASSOC);
+        }
+        return Func::outputDataFiltering($result);
+    }
+
+    /**
+     * Get object
+     * 
+     * @param string $sql SQL query
+     * @param array $param (parameter for execute)
+     * @return bool|array
+     */
+    public static function getObj($sql, $param) {
+
+        $result = FALSE;
+        $exec = self::connect()->prepare($sql);
+        if ($exec && $exec->execute($param)) {
+            $result = $exec->fetchAll(\PDO :: FETCH_OBJ);
+        }
+        return $result;
+    }
+
+    /**
+     * Count the number of columns 
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
      * @return bool|int|array
      */
     public static function getColCount($sql, $param) {
-        
+
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
         if ($exec && $exec->execute($param)) {
@@ -136,14 +170,14 @@ final class Pdo {
     }
 
     /**
-     * getRowCount
+     * Count the number of rows 
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
      * @return bool|int|array
      */
     public static function getRowCount($sql, $param) {
-        
+
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
         if ($exec && $exec->execute($param)) {
@@ -165,40 +199,6 @@ final class Pdo {
         $exec->execute($param);
 
         return $exec;
-    }
-
-    /**
-     * getColAssoc
-     * 
-     * @param string $sql SQL query
-     * @param array $param (parameter for execute)
-     * @return bool|array
-     */
-    public static function getColAssoc($sql, $param) {
-        
-        $result = FALSE;
-        $exec = self::connect()->prepare($sql);
-        if ($exec && $exec->execute($param)) {
-            $result = $exec->fetchAll(\PDO :: FETCH_ASSOC);
-        }
-        return Func::outputDataFiltering($result);
-    }
-
-    /**
-     * getObj
-     * 
-     * @param string $sql SQL query
-     * @param array $param (parameter for execute)
-     * @return bool|array
-     */
-    public static function getObj($sql, $param) {
-        
-        $result = FALSE;
-        $exec = self::connect()->prepare($sql);
-        if ($exec && $exec->execute($param)) {
-            $result = $exec->fetchAll(\PDO :: FETCH_OBJ);
-        }
-        return $result;
     }
 
     /**

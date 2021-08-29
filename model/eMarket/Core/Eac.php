@@ -81,7 +81,7 @@ final class Eac {
      */
     private static function initDiscount() {
 
-        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         foreach ($active_modules as $module) {
             $namespace = '\eMarket\Core\Modules\Discount\\' . ucfirst($module['name']);
@@ -100,7 +100,7 @@ final class Eac {
         }
 
         if (Valid::inGET('parent_up')) {
-            self::$parent_id = Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [Valid::inGET('parent_up')]);
+            self::$parent_id = Pdo::getValue("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [Valid::inGET('parent_up')]);
         }
 
         if (Valid::inGET('parent_down')) {
@@ -129,7 +129,7 @@ final class Eac {
             $sort_array_category = [];
 
             foreach ($sort_array_id as $val) {
-                $sort_category = Pdo::getCell("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [
+                $sort_category = Pdo::getValue("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=? ORDER BY id ASC", [
                             $val, lang('#lang_all')[0]
                 ]);
                 array_push($sort_array_category, $sort_category);
@@ -152,12 +152,12 @@ final class Eac {
 
         if (Valid::inPOST('add')) {
 
-            $sort_max = Pdo::getCell("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [
+            $sort_max = Pdo::getValue("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [
                         lang('#lang_all')[0], self::$parent_id
             ]);
             $sort_category = intval($sort_max) + 1;
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_CATEGORIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if (Valid::inPOST('attributes')) {
@@ -335,7 +335,7 @@ final class Eac {
             for ($buf = 0; $buf < $count_session_buffer; $buf++) {
                 // This is category
                 if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
-                    $sort_max = Pdo::getCell("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [
+                    $sort_max = Pdo::getValue("SELECT sort_category FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? ORDER BY sort_category DESC", [
                                 lang('#lang_all')[0], $parent_id_real
                     ]);
                     $sort_category = intval($sort_max) + 1;
@@ -442,9 +442,9 @@ final class Eac {
      */
     public static function dataParentId($idx) {
 
-        self::$parent_id = Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
-        $parent_id_up = Pdo::getCell("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [self::$parent_id]);
-        $parent_id_num = Pdo::getColRow("SELECT id FROM " . TABLE_CATEGORIES . " WHERE parent_id=?", [self::$parent_id]);
+        self::$parent_id = Pdo::getValue("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx]);
+        $parent_id_up = Pdo::getValue("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE id=?", [self::$parent_id]);
+        $parent_id_num = Pdo::getIndex("SELECT id FROM " . TABLE_CATEGORIES . " WHERE parent_id=?", [self::$parent_id]);
         if (count($parent_id_num) < 2) {
             self::$parent_id = $parent_id_up;
         }
@@ -488,7 +488,7 @@ final class Eac {
             $resize = self::$resize_param_product;
         }
 
-        $logo_delete = json_decode(Pdo::getCell("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
+        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), 1);
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
                 // Delete
@@ -599,7 +599,7 @@ final class Eac {
                 $selected_attributes_product_stock = json_encode([]);
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {

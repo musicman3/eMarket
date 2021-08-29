@@ -121,13 +121,13 @@ class Stock {
      *
      */
     public function selectData() {
-        self::$currencies_all = Pdo::getColAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$taxes_all = Pdo::getColAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$units_all = Pdo::getColAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$length_all = Pdo::getColAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$weight_all = Pdo::getColAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$vendor_codes_all = Pdo::getColAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$manufacturers_all = Pdo::getColAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$currencies_all = Pdo::getAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$taxes_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$units_all = Pdo::getAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$length_all = Pdo::getAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$weight_all = Pdo::getAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$vendor_codes_all = Pdo::getAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$manufacturers_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
     }
 
     /**
@@ -152,7 +152,7 @@ class Stock {
         if (self::$parent_id == 0) {
             self::$attributes_category = json_encode(json_encode([]));
         } else {
-            self::$attributes_category = json_encode(Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
+            self::$attributes_category = json_encode(Pdo::getAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
                         self::$parent_id, lang('#lang_all')[0]])[0]['attributes']);
         }
 
@@ -167,31 +167,31 @@ class Stock {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            $sql_data_cat_search = Pdo::getColAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [
+            $sql_data_cat_search = Pdo::getAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [
                         $search, lang('#lang_all')[0]]);
 
             self::$sql_data_cat = [];
             foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
-                foreach (Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [
+                foreach (Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [
                     $sql_data_cat_search_val['id']]) as $cat_array) {
                     self::$sql_data_cat[] = $cat_array;
                 }
             }
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
 
-            $sql_data_prod_search = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
+            $sql_data_prod_search = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
             self::$sql_data_prod = [];
             foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
-                foreach (Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [
+                foreach (Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [
                     $sql_data_prod_search_val['id']]) as $prod_array) {
                     self::$sql_data_prod[] = $prod_array;
                 }
             }
             self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         } else {
-            self::$sql_data_cat = Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [self::$parent_id]);
+            self::$sql_data_cat = Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [self::$parent_id]);
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
-            self::$sql_data_prod = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [self::$parent_id]);
+            self::$sql_data_prod = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [self::$parent_id]);
             self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         }
 
@@ -290,7 +290,7 @@ class Stock {
                             $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
                         } else {
                             $attributes_data[$modal_id_prod] = json_encode(
-                                    Pdo::getColAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
+                                    Pdo::getAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
                                         self::$parent_id, lang('#lang_all')[0]])[0]['attributes']
                             );
                         }
@@ -449,7 +449,7 @@ class Stock {
         $text = '';
         foreach ($discount_json as $key => $id) {
             foreach ($id as $val_id) {
-                $text .= lang('modules_discount_' . $key . '_name') . ': ' . Pdo::getCell("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
+                $text .= lang('modules_discount_' . $key . '_name') . ': ' . Pdo::getValue("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
             }
         }
 

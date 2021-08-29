@@ -97,7 +97,7 @@ class StaffManager {
                 $demo_mode = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -155,7 +155,7 @@ class StaffManager {
      */
     public function data() {
         $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

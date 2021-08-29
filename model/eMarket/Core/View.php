@@ -106,7 +106,7 @@ class View {
      */
     public static function tlpc($position, $count = null) {
 
-        $array_pos_value = Pdo::getColRow("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
+        $array_pos_value = Pdo::getIndex("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
                     Settings::path(), Settings::titleDir(), Settings::template()
         ]);
         if (count($array_pos_value) > 0) {
@@ -122,7 +122,7 @@ class View {
             }
             return $array_out;
         } else {
-            $array_pos = Pdo::getColRow("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [
+            $array_pos = Pdo::getIndex("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [
                         Settings::path(), $position, Settings::template()
             ]);
             $array_out = [];

@@ -71,7 +71,7 @@ class Sale {
      */
     public static function uninstall($module) {
         Modules::uninstall($module);
-        $products_data = Pdo::getColAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $products_data = Pdo::getAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
         foreach ($products_data as $data) {
             $discounts = json_decode($data['discount'], 1);
             unset($discounts['sale']);
@@ -85,7 +85,7 @@ class Sale {
      * @return string|FALSE
      */
     public static function status() {
-        $module_active = Pdo::getCell("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
+        $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
         return $module_active;
     }
 
@@ -114,7 +114,7 @@ class Sale {
             $discount_names = [];
 
             foreach ($discount_val['sale'] as $val) {
-                $data = Pdo::getColAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
+                $data = Pdo::getAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
                 if (count($data) > 0) {
                     $this_time = time();
                     $date_start = $data['UNIX_TIMESTAMP (date_start)'];
@@ -192,10 +192,10 @@ class Sale {
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
-                            $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (!array_key_exists('sale', $discount_array)) {
@@ -215,10 +215,10 @@ class Sale {
                             }
                         }
                         if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
-                            $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (array_key_exists('sale', $discount_array)) {
@@ -238,10 +238,10 @@ class Sale {
                             Messages::alert('sale_off', 'success', lang('action_completed_successfully'), 0, true);
                         }
                         if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
-                            $products_id = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
                                 $discount_array = json_decode($discount_json, 1);
 
                                 if (array_key_exists('sale', $discount_array)) {
@@ -260,7 +260,7 @@ class Sale {
                 } else {
                     if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (!array_key_exists('sale', $discount_array)) {
@@ -276,7 +276,7 @@ class Sale {
                     }
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (array_key_exists('sale', $discount_array)) {
@@ -292,7 +292,7 @@ class Sale {
                     }
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
                         $discount_array = json_decode($discount_json, 1);
 
                         if (array_key_exists('sale', $discount_array)) {
@@ -337,7 +337,7 @@ class Sale {
                 $default_value = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_value != 0) {
@@ -399,10 +399,10 @@ class Sale {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $discount_id_array = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discount_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
             foreach ($discount_id_array as $discount_id_arr) {
-                $discount_str_temp = Pdo::getCell("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);
+                $discount_str_temp = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);
                 $discount_str_explode_temp = explode(',', $discount_str_temp);
                 $discount_str_explode = Func::deleteValInArray(Func::deleteEmptyInArray($discount_str_explode_temp), [Valid::inPOST('delete')]);
                 $discount_str_implode = implode(',', $discount_str_explode);
@@ -421,7 +421,7 @@ class Sale {
     public function data() {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$sql_data = Pdo::getColAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
 

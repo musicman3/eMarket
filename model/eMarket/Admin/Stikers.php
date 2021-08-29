@@ -68,7 +68,7 @@ class Stikers {
                 $default_stikers = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_STIKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STIKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_stikers != 0) {
@@ -129,7 +129,7 @@ class Stikers {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
@@ -142,7 +142,7 @@ class Stikers {
         self::$stikers = '';
         self::$stikers_default = 0;
         self::$stikers_flag = 0;
-        $stikers_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $stikers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
         foreach ($stikers_data as $val) {
             self::$stikers_flag = 1;
@@ -192,7 +192,7 @@ class Stikers {
 
                         if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
 
-                            $stiker_id_array = Pdo::getColAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
+                            $stiker_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
                                         lang('#lang_all')[0], $keys[$x]
                             ]);
 

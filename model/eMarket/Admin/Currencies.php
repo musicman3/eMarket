@@ -53,13 +53,13 @@ class Currencies {
                 $default_value = 0;
             }
 
-            $id_max = Pdo::getCell("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_value != 0) {
                 Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET default_value=?", [0]);
 
-                $value_all = Pdo::getColAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
+                $value_all = Pdo::getAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
                 $count_value_all = count($value_all);
                 for ($x = 0; $x < $count_value_all; $x++) {
                     Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [
@@ -104,7 +104,7 @@ class Currencies {
             if ($default_value != 0) {
                 Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET default_value=?", [0]);
 
-                $value_all = Pdo::getColAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
+                $value_all = Pdo::getAssoc("SELECT id, value, language FROM " . TABLE_CURRENCIES, []);
                 $count_value_all = count($value_all);
                 for ($x = 0; $x < $count_value_all; $x++) {
                     Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [
@@ -153,7 +153,7 @@ class Currencies {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CURRENCIES . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

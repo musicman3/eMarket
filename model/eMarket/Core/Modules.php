@@ -51,17 +51,17 @@ final class Modules {
      *
      */
     public static function initDiscount() {
-        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         foreach ($active_modules as $module) {
             $discount_default_flag = 0;
             $select_array = [];
-            $discounts_all = Pdo::getColAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discounts_all = Pdo::getAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
 
             $this_time = time();
 
             foreach ($discounts_all as $val) {
-                $date_end = Pdo::getCell("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
+                $date_end = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
                 if ($this_time < $date_end) {
                     self::$discounts .= $module['name'] . '_' . $val['id'] . ': ' . "'" . $val['name'] . "', ";
                     array_push($select_array, $val['id']);
@@ -90,7 +90,7 @@ final class Modules {
             return self::$discount_router['functions'];
         }
 
-        $active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         $text = '{isDivider: true},';
         $discount_router = [];

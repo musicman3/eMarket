@@ -42,7 +42,7 @@ class Debug {
      */
     public static function info() {
 
-        $val = Pdo::getCell("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $val = Pdo::getValue("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         if ($val == 1) {
             $tend = microtime(1);
 

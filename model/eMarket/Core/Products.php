@@ -39,7 +39,7 @@ class Products {
      */
     public static function newProducts($count) {
         if (self::$new_products == FALSE) {
-            self::$new_products = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+            self::$new_products = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
         }
     }
 
@@ -55,7 +55,7 @@ class Products {
         if ($language == null) {
             $language = lang('#lang_all')[0];
         }
-        self::$product_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+        self::$product_data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
         return self::$product_data;
     }
 
@@ -72,7 +72,7 @@ class Products {
             if ($language == null) {
                 $language = lang('#lang_all')[0];
             }
-            self::$category_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [$language, $id])[0];
+            self::$category_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [$language, $id])[0];
             return self::$category_data;
         }
 
@@ -90,7 +90,7 @@ class Products {
     public static function manufacturer($id) {
 
         if (self::$manufacturer == FALSE) {
-            self::$manufacturer = Pdo::getColAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$manufacturer = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         foreach (self::$manufacturer as $value) {
@@ -110,7 +110,7 @@ class Products {
     public static function vendorCode($id) {
 
         if (self::$vendor_codes == FALSE) {
-            self::$vendor_codes = Pdo::getColAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$vendor_codes = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         foreach (self::$vendor_codes as $value) {
@@ -130,7 +130,7 @@ class Products {
     public static function weight($id) {
 
         if (self::$weight == FALSE) {
-            self::$weight = Pdo::getColAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$weight = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         foreach (self::$weight as $value) {
@@ -150,7 +150,7 @@ class Products {
     public static function length($id) {
 
         if (self::$length == FALSE) {
-            self::$length = Pdo::getColAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$length = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
         }
 
         foreach (self::$length as $value) {
@@ -212,7 +212,7 @@ class Products {
             $class2 = 'success';
         }
         if (self::$stiker_data == false) {
-            self::$stiker_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$stiker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
         $stiker_name = [];
         foreach (self::$stiker_data as $val) {

@@ -79,7 +79,7 @@ class Slideshow {
      *
      */
     public function settings() {
-        self::$settings = json_encode(Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
+        self::$settings = json_encode(Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
     }
 
     /**
@@ -245,7 +245,7 @@ class Slideshow {
 
         self::$this_time = time();
 
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
         Pages::data($lines);
     }
@@ -255,8 +255,8 @@ class Slideshow {
      *
      */
     public static function view() {
-        self::$slideshow = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
-        $slideshow_pref = Pdo::getColAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
+        self::$slideshow = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+        $slideshow_pref = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
 
         self::$slide_interval = $slideshow_pref['show_interval'];
 

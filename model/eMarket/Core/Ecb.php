@@ -121,11 +121,11 @@ final class Ecb {
 
         $INTERFACE = new Interfaces();
 
-        $taxes_data = Pdo::getColAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
+        $taxes_data = Pdo::getAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
 
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $data = Pdo::getColAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
+                $data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
                 if ($data != FALSE) {
 
                     self::discountHandler($data, $language);
@@ -193,7 +193,7 @@ final class Ecb {
     public static function discountHandler($input, $language = null) {
 
         if (self::$active_modules == FALSE) {
-            self::$active_modules = Pdo::getColAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+            self::$active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
         }
 
         $input_price = self::currencyPrice($input['price'], $input['currency']);

@@ -76,7 +76,7 @@ class Free {
         Ecb::priceTerminal();
 
         foreach ($zones_id as $zone) {
-            $data_arr = Pdo::getColAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone]);
+            $data_arr = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone]);
             foreach ($data_arr as $data) {
 
                 $interface_data = [
@@ -152,14 +152,14 @@ class Free {
     public function data() {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$zones = Pdo::getColAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         self::$zones_name = [];
         foreach (self::$zones as $val) {
             self::$zones_name[$val['id']] = $val['name'];
         }
 
-        self::$sql_data = Pdo::getColAssoc("SELECT * FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         Pages::data(self::$sql_data);
     }
 
@@ -175,7 +175,7 @@ class Free {
 
                 $modal_id = Pages::$table['lines'][$i]['id'];
 
-                $query = Pdo::getColAssoc("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id])[0];
+                $query = Pdo::getAssoc("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id])[0];
                 $minimum_price[$modal_id] = round(Ecb::currencyPrice($query['minimum_price'], $query['currency']), 2);
                 $shipping_zone[$modal_id] = $query['shipping_zone'];
 
