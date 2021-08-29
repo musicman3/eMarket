@@ -399,16 +399,30 @@ class Func {
      */
     public static function outputDataFiltering($string) {
         // symbol and replacement
-        $symbols = ["'", "script", "/script", "javascript:", "/.", "./"];
-        $escape = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
+        $find = ["'", "script", "/script", "javascript:", "/.", "./"];
+        $replace = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
+        
+        $output = self::recursiveArrayReplace($find, $replace, $string);
+        
+        return $output;
+    }
 
-        if (is_array($string)) {
-            $output = [];
-            foreach ($string as $key => $value) {
-                $output[$key] = str_ireplace($symbols, $escape, $value);
-            }
-        } else {
-            $output = str_ireplace($symbols, $escape, $string);
+    /**
+     * Recursive array replace
+     *
+     * @param string|array $find Find value
+     * @param string|array $replace Replace value
+     * @param string|array $string Input value
+     * @return string|array
+     */
+    public static function recursiveArrayReplace($find, $replace, $string) {
+        if (!is_array($string)) {
+            return str_ireplace($find, $replace, $string);
+        }
+
+        $output = [];
+        foreach ($string as $key => $value) {
+            $output[$key] = self::recursiveArrayReplace($find, $replace, $value);
         }
         return $output;
     }
