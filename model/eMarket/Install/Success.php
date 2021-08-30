@@ -17,7 +17,9 @@ use eMarket\Core\{
  * Success
  *
  * @package Install
- * @author eMarket
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Success {

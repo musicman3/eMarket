@@ -24,8 +24,10 @@ use eMarket\Admin\HeaderMenu;
 /**
  * Module Sale
  *
- * @package Sale
- * @author eMarket
+ * @package Discount modules
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Sale {

@@ -30,7 +30,7 @@
         <div class="card-body">
 
             <form class="was-validated" action="success.php" method="post" accept-charset="utf-8" oninput="validate()">
-                <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$DEFAULT_LANGUAGE ?>' />
+                <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$default_language ?>' />
 
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">

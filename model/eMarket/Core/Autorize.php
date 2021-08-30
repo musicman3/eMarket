@@ -19,8 +19,10 @@ use \eMarket\Catalog\{
 /**
  * Class for user authorization
  *
- * @package Autorize
- * @author eMarket
+ * @package Core
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Autorize {

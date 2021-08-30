@@ -12,10 +12,12 @@ use eMarket\Core\{
 };
 
 /**
- * Func
+ * Functions
  *
- * @package Func
- * @author eMarket
+ * @package Core
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Func {
@@ -394,15 +396,15 @@ class Func {
      * Function for escaping special characters.
      * Output data filtering 
      *
-     * @param string|array $string String to escape characters
+     * @param string|array $data Data to escape characters
      * @return string|array
      */
-    public static function outputDataFiltering($string) {
+    public static function outputDataFiltering($data) {
         // symbol and replacement
         $find = ["'", "script", "/script", "javascript:", "/.", "./"];
         $replace = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
         
-        $output = self::recursiveArrayReplace($find, $replace, $string);
+        $output = self::recursiveArrayReplace($find, $replace, $data);
         
         return $output;
     }
@@ -412,16 +414,16 @@ class Func {
      *
      * @param string|array $find Find value
      * @param string|array $replace Replace value
-     * @param string|array $string Input value
+     * @param string|array $data Input data
      * @return string|array
      */
-    public static function recursiveArrayReplace($find, $replace, $string) {
-        if (!is_array($string)) {
-            return str_ireplace($find, $replace, $string);
+    public static function recursiveArrayReplace($find, $replace, $data) {
+        if (!is_array($data)) {
+            return str_ireplace($find, $replace, $data);
         }
 
         $output = [];
-        foreach ($string as $key => $value) {
+        foreach ($data as $key => $value) {
             $output[$key] = self::recursiveArrayReplace($find, $replace, $value);
         }
         return $output;

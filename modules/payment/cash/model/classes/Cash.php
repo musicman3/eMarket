@@ -19,8 +19,10 @@ use eMarket\Core\{
 /**
  * Module Cash
  *
- * @package Cash
- * @author eMarket
+ * @package Payment modules
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Cash {

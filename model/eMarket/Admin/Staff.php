@@ -9,8 +9,6 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Autorize,
-    Func,
-    Lang,
     Messages,
     Pages,
     Pdo,
@@ -22,7 +20,9 @@ use eMarket\Core\{
  * Staff
  *
  * @package Admin
- * @author eMarket
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Staff {

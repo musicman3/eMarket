@@ -22,8 +22,10 @@ use eMarket\Core\{
 /**
  * Module Shipping Free
  *
- * @package Shipping
- * @author eMarket
+ * @package Shipping modules
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Free {

@@ -17,8 +17,10 @@ use eMarket\Core\{
 /**
  * eMarket Calculated Block
  *
- * @package Ecb
- * @author eMarket
+ * @package Core
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 final class Ecb {

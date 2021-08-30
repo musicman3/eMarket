@@ -15,8 +15,10 @@ use eMarket\Core\{
 /**
  * Class for working with a cart
  *
- * @package Cart
- * @author eMarket
+ * @package Core
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Cart {

@@ -20,8 +20,10 @@ use eMarket\Admin\Stikers;
 /**
  * eMarket Ajax Catalog
  *
- * @package Eac
- * @author eMarket
+ * @package Core
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 final class Eac {

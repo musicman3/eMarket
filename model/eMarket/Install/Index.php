@@ -9,7 +9,6 @@ namespace eMarket\Install;
 
 use eMarket\Core\{
     Settings,
-    Pdo,
     Valid
 };
 
@@ -17,12 +16,14 @@ use eMarket\Core\{
  * Index
  *
  * @package Install
- * @author eMarket
+ * @author eMarket Team
+ * @copyright © 2018 eMarket
+ * @license GNU GPL v.3.0
  * 
  */
 class Index {
 
-    public static $DEFAULT_LANGUAGE;
+    public static $default_language;
 
     /**
      * Constructor
@@ -38,11 +39,11 @@ class Index {
      */
     public function lang() {
         if (!Valid::inPOST('language') && Settings::path() == 'install') {
-            self::$DEFAULT_LANGUAGE = 'english';
+            self::$default_language = 'english';
         }
 
         if (Valid::inPOST('language')) {
-            self::$DEFAULT_LANGUAGE = Valid::inPOST('language');
+            self::$default_language = Valid::inPOST('language');
         }
     }
 
