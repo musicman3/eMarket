@@ -169,10 +169,10 @@ class HeaderMenu {
                             $menu_array[$menu_key][] = $menu_item;
                         }
 
-                        if (strpos($menu_item[0], '&language=') != FALSE) {
+                        if (strpos($menu_item[0], '&language=')) {
                             $lang_string = strstr($menu_item[0], '&language=');
                             foreach (self::$staff_data as $staff_string) {
-                                if (strpos($staff_string, $lang_string) != FALSE) {
+                                if (strpos($staff_string, $lang_string)) {
                                     $menu_array[$menu_key][] = $menu_item;
                                 }
                             }
@@ -206,8 +206,7 @@ class HeaderMenu {
                 $count++;
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
-                $check = strpos('/?route=' . Valid::inGET('route') . '&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name'), $page);
-                if ($check != FALSE) {
+                if (strpos('/?route=' . Valid::inGET('route') . '&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name'), $page)) {
                     $count++;
                 }
             }
