@@ -201,8 +201,7 @@ class HeaderMenu {
     public function permissions() {
         $count = 0;
         foreach (self::$staff_data as $page) {
-            $check = strpos('/?route=' . Valid::inGET('route'), $page);
-            if ($check != FALSE) {
+            if (strpos('/?route=' . Valid::inGET('route'), $page)) {
                 $count++;
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
