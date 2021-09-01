@@ -13,16 +13,14 @@ use eMarket\Admin\Templates;
 <div id="settings_templates">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">
-                <div class="row justify-content-between">
-                    <div class="col-4 text-start">
-                        <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <span><?php echo lang('button_back') ?></span></button>
-                    </div>
-                    <div class="col-4 text-center">
-                        <span><?php echo Settings::titlePageGenerator() ?></span>
-                    </div>
-                    <div class="col-4 text-end"></div>
+            <h5 class="card-title row justify-content-between">
+                <div class="col-4 text-start">
+                    <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <?php echo lang('button_back') ?></button>
                 </div>
+                <div class="col-4 text-center">
+                    <?php echo Settings::titlePageGenerator() ?>
+                </div>
+                <div class="col-4 text-end"></div>
             </h5>
         </div>
         <div class="card-body">
