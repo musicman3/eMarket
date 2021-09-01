@@ -21,11 +21,7 @@ require_once('modal/index.php')
     <div class="card">
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h5 class="card-title">
-                <div class="col text-center">
-                    <span><?php echo Settings::titlePageGenerator() ?></span>
-                </div>
-            </h5>
+            <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
         <div class="card-body">
             <div id="ajax_data" class='hidden' 
