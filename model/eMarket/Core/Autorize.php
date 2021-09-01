@@ -75,7 +75,7 @@ class Autorize {
     public function csrfVerification() {
 
         if (Valid::isPOST() == TRUE) {
-            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token']) {
+            if (!Valid::inPOST('csrf_token') || !isset($_SESSION['csrf_token']) || Valid::inPOST('csrf_token') != $_SESSION['csrf_token']) {
                 exit;
             }
         }
