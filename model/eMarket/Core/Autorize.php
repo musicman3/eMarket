@@ -38,7 +38,6 @@ class Autorize {
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
             session_start();
-            self::csrfToken();
             $this->csrfVerification();
             $_SESSION['csrf_token'] = self::csrfToken();
             $this->sessionAdmin();
@@ -46,7 +45,6 @@ class Autorize {
 
         if (Settings::path() == 'catalog') {
             session_start();
-            self::csrfToken();
             $this->csrfVerification();
             $_SESSION['csrf_token'] = self::csrfToken();
             $this->sessionCatalog();
