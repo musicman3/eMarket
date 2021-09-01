@@ -11,18 +11,15 @@
 use eMarket\Core\{
     Pdo,
     Settings,
-    Valid,
-    Autorize
+    Valid
 };
 
 if (Settings::path() == 'admin') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/admin/constructor.php');
-    $_SESSION['csrf_token'] = Autorize::csrfToken();
 }
 
 if (Settings::path() == 'catalog' && Valid::inGET('route') !== 'callback') {
     require_once(getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/constructor.php');
-    $_SESSION['csrf_token'] = Autorize::csrfToken();
 }
 
 if (Settings::path() == 'install') {
