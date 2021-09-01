@@ -38,16 +38,16 @@ class Autorize {
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
             session_start();
-            $this->csrfVerification();
             self::csrfToken();
+            $this->csrfVerification();
             $_SESSION['csrf_token'] = self::csrfToken();
             $this->sessionAdmin();
         }
 
         if (Settings::path() == 'catalog') {
             session_start();
-            $this->csrfVerification();
             self::csrfToken();
+            $this->csrfVerification();
             $_SESSION['csrf_token'] = self::csrfToken();
             $this->sessionCatalog();
             new Cart();
