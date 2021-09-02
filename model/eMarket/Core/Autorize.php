@@ -77,6 +77,11 @@ class Autorize {
                 exit;
             }
         }
+        if (Valid::isPostJson() == TRUE) {
+            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token']) {
+                exit;
+            }
+        }
     }
 
     /**

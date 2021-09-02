@@ -114,4 +114,18 @@ class Valid {
         return FALSE;
     }
 
+    /**
+     * Check for jsonPOST request 
+     *
+     * @return bool
+     */
+    public static function isPostJson() {
+        $postData = htmlspecialchars(file_get_contents('php://input'), ENT_NOQUOTES);
+        $data = json_decode($postData, true);
+        if (is_string($postData) && is_array($data) && (json_last_error() == JSON_ERROR_NONE) && self::$demo_mode == FALSE) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
 }
