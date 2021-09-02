@@ -3,6 +3,8 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+/* global Ajax */
+
 /**
  * Address Book
  *
