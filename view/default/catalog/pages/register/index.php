@@ -89,7 +89,6 @@ if (Valid::inPOST('email') && Register::$user_email != NULL) {
             <p class="card-text"><?php echo lang('register_problem_message') ?></p>
         </div>
         <form>
-            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <input hidden name="route" value="register">
             <div class="text-end">
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
@@ -107,7 +106,6 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
             <p class="card-text"><?php echo lang('register_complete_message') ?></p>
         </div>
         <form>
-            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
             <input hidden name="route" value="catalog">
             <div class="text-end">
                 <input class="btn btn-primary" type="submit" value="<?php echo lang('continue') ?>">
