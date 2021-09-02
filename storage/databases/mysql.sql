@@ -10380,9 +10380,9 @@ INSERT INTO emkt_length VALUES (5, 'Foot', 'ft.', 'english', '0.3048000', '0');
 INSERT INTO emkt_length VALUES (5, 'Фут', 'ф.', 'russian', '0.3048000', '0');
 
 /* Weight */
-INSERT INTO emkt_weight VALUES (1, 'Kilogramm', 'kg.', 'english', '1.0000000', '1');
+INSERT INTO emkt_weight VALUES (1, 'Kilogram', 'kg.', 'english', '1.0000000', '1');
 INSERT INTO emkt_weight VALUES (1, 'Килограмм', 'кг', 'russian', '1.0000000', '1');
-INSERT INTO emkt_weight VALUES (2, 'Gramm', 'g.', 'english', '0.0010000', '0');
+INSERT INTO emkt_weight VALUES (2, 'Gram', 'g.', 'english', '0.0010000', '0');
 INSERT INTO emkt_weight VALUES (2, 'Грамм', 'г.', 'russian', '0.0010000', '0');
 INSERT INTO emkt_weight VALUES (3, 'Ounce', 'oz.', 'english', '0.0283500', '0');
 INSERT INTO emkt_weight VALUES (3, 'Унция', 'ун.', 'russian', '0.0283500', '0');

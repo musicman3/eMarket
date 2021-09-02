@@ -5,9 +5,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// 
-//Load HTML
-//
 use eMarket\Core\{
     Pdo,
     Settings,
