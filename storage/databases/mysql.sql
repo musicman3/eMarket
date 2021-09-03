@@ -10408,16 +10408,16 @@ INSERT INTO emkt_units VALUES (2, 'Packing', 'english', 'pkg.', '0');
 INSERT INTO emkt_units VALUES (2, 'Упаковка', 'russian', 'уп.', '0');
 
 /* Statuses */
-INSERT INTO emkt_order_status VALUES (1, 'Refund', 'english', '0', '5');
-INSERT INTO emkt_order_status VALUES (1, 'Возврат', 'russian', '0', '5');
-INSERT INTO emkt_order_status VALUES (2, 'Delivered', 'english', '0', '1');
-INSERT INTO emkt_order_status VALUES (2, 'Доставлен', 'russian', '0', '1');
-INSERT INTO emkt_order_status VALUES (3, 'Processing', 'english', '0', '2');
-INSERT INTO emkt_order_status VALUES (3, 'Обрабатывается', 'russian', '0', '2');
-INSERT INTO emkt_order_status VALUES (4, 'Paid', 'english', '0', '3');
-INSERT INTO emkt_order_status VALUES (4, 'Оплачен', 'russian', '0', '3');
-INSERT INTO emkt_order_status VALUES (5, 'Pending payment', 'english', '1', '4');
-INSERT INTO emkt_order_status VALUES (5, 'Ожидает оплаты', 'russian', '1', '4');
+INSERT INTO emkt_order_status VALUES (1, 'Refund', 'english', '0', '1');
+INSERT INTO emkt_order_status VALUES (1, 'Возврат', 'russian', '0', '1');
+INSERT INTO emkt_order_status VALUES (2, 'Delivered', 'english', '0', '2');
+INSERT INTO emkt_order_status VALUES (2, 'Доставлен', 'russian', '0', '2');
+INSERT INTO emkt_order_status VALUES (3, 'Processing', 'english', '0', '3');
+INSERT INTO emkt_order_status VALUES (3, 'Обрабатывается', 'russian', '0', '3');
+INSERT INTO emkt_order_status VALUES (4, 'Paid', 'english', '0', '4');
+INSERT INTO emkt_order_status VALUES (4, 'Оплачен', 'russian', '0', '4');
+INSERT INTO emkt_order_status VALUES (5, 'Pending payment', 'english', '1', '5');
+INSERT INTO emkt_order_status VALUES (5, 'Ожидает оплаты', 'russian', '1', '5');
 
 /* Currencies */
 INSERT INTO emkt_currencies VALUES (1, 'Russian Rouble', 'rub.', 'RUB', 'english', '1.0000000000', '1', ' ₽', 'right', '2', NULL);
