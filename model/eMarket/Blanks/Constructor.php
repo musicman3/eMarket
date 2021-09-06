@@ -44,7 +44,7 @@ class Constructor {
      *
      */
     public function header() {
-        $template = file_get_contents(ROOT . '\view\\' . Settings::template() . '\admin\pages\orders\templates\order\order.php');
+        $template = file_get_contents(ROOT . '\view\\' . Settings::template() . '\admin\blanks\orders\type_1.php');
         $search = ['$COMPANY_NAME'];
         $replace = ['Моя шарага'];
         $html = str_replace($search, $replace, $template);
