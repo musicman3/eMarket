@@ -218,7 +218,7 @@ CREATE TABLE emkt_products (
         downloads_stat int default '0',
         discount json,
         attributes json,
-        stiker varchar(64),
+        sticker varchar(64),
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -232,12 +232,12 @@ CREATE TABLE emkt_regions (
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-DROP TABLE IF EXISTS emkt_stikers;
-CREATE TABLE emkt_stikers (
+DROP TABLE IF EXISTS emkt_stickers;
+CREATE TABLE emkt_stickers (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
-        default_stikers int NOT NULL,
+        default_stickers int NOT NULL,
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

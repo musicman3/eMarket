@@ -21,8 +21,8 @@ if (Products::$new_products == true) {
                 <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
                         <div class="labelsblock">
-                            <?php foreach (Products::stikers($value, 'bg-danger', 'bg-success') as $stiker) { ?>
-                                <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
+                            <?php foreach (Products::stickers($value, 'bg-danger', 'bg-success') as $sticker) { ?>
+                                <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
                             <?php } ?>
                         </div>
                         <div id="image" class="h-100">

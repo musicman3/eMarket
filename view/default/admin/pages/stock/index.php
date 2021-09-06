@@ -154,7 +154,7 @@ require_once('modal/add_values_attribute.php');
                                             <div class="float-end"><?php echo Ecb::priceInterface(Stock::$arr_merge['prod'][Stock::$start . 'a'], 1) ?></div>
                                         </td>
                                         <td class="sortleft-m"><?php echo Stock::discountLabel('<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . Stock::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) . '" class="' . Stock::statusProdClass('bi-tag-fill', 'bi-tag-fills') . ' text-primary"> </span>', '<span class="bi-tag-fill"></span>') ?></td>
-                                        <td class="sortleft"><?php echo Stock::stikerData('<span class="badge bg-success">', '</span>') ?></td>
+                                        <td class="sortleft"><?php echo Stock::stickerData('<span class="badge bg-success">', '</span>') ?></td>
                                     </tr>
 
                                     <?php

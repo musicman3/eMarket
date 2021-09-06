@@ -4,4 +4,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$eMarket = new eMarket\Admin\Stikers();
+$eMarket = new eMarket\Admin\Stickers();

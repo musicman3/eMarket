@@ -29,7 +29,7 @@ title_settings_weight_index = Вес
 title_settings_zones_index = Зоны
 title_settings_zones_listing_index = Страны и регионы
 title_slideshow_index = Слайдшоу
-title_stikers_index = Стикеры
+title_stickers_index = Стикеры
 title_stock_index = Склад
 title_customers_index = Клиенты
 title_staff_manager_index = Менеджер персонала
@@ -39,7 +39,7 @@ title_staff_manager_staff_index = Персонал
 menu_dashboard = Мониторинг
 menu_catalog = Каталог товаров
 menu_market = Магазин
-menu_sellings = Продажи
+menu_sales = Продажи
 menu_customers = Клиенты
 menu_marketing = Маркетинг
 menu_error_log = Лог ошибок
@@ -73,9 +73,9 @@ button_show = Отобразить
 button_hide = Скрыть
 button_on = ВКЛ.
 button_off = ВЫКЛ.
-button_stiker = Стикер
-button_stiker_add = Добавить стикер
-button_stiker_delete = Удалить стикер
+button_sticker = Стикер
+button_sticker_add = Добавить стикер
+button_sticker_delete = Удалить стикер
 button_back = Назад
 cut = Вырезать
 paste = Вставить
@@ -127,7 +127,7 @@ download_complete = Загрузка завершена!
 image_resize_error = ВНИМАНИЕ: Некоторые изображения не добавлены. Как минимум одна из сторон изображения должна быть не менее чем: 
 attention = ВНИМАНИЕ!
 confirm_delete_product_or_category = Вы уверены что хотите удалить категорию или товар?
-confirm_delete_stiker = Вы уверены что хотите удалить стикер?
+confirm_delete_sticker = Вы уверены что хотите удалить стикер?
 alert_wait = Пожалуйста подождите. Идет обработка...
 enter_value = Введите значение
 
@@ -244,7 +244,7 @@ orders_quantity = Количество
 orders_price = Цена
 orders_product = Товар
 orders_products = Товары
-orders_stiker = Стикер
+orders_sticker = Стикер
 orders_transaction_history = История транзакций
 orders_status_history = История статусов
 orders_description = Описание
@@ -308,7 +308,7 @@ customers_email = Email
 customers_date_created = Дата создания
 
 ;STIKERS
-stikers_name = Название стикера
+stickers_name = Название стикера
 
 ;SLIDES
 slides_image = Изображение

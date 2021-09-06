@@ -4,13 +4,13 @@
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /**
- * Stikers
+ * Stickers
  *
- * @package Stikers
+ * @package Stickers
  * @author eMarket
  * 
  */
-class Stikers {
+class Stickers {
     /**
      * Constructor
      *
@@ -34,10 +34,10 @@ class Stikers {
                 document.querySelector('#add').value = '';
 
                 for (var x = 0; x < json_data.name.length; x++) {
-                    document.querySelector('#name_stikers_' + x).value = json_data.name[x][modal_id];
+                    document.querySelector('#name_stickers_' + x).value = json_data.name[x][modal_id];
                 }
 
-                document.querySelector('#default_stikers').checked = json_data.default_stikers[modal_id];
+                document.querySelector('#default_stickers').checked = json_data.default_stickers[modal_id];
             } else {
                 document.querySelector('#edit').value = '';
                 document.querySelector('#add').value = 'ok';

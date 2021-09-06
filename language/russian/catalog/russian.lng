@@ -246,7 +246,7 @@ orders_date_added = Дата добавления
 orders_date_of_change = Дата изменения
 orders_number = № заказа
 orders_subtotal = Стоимость товаров
-orders_stiker = Стикер
+orders_sticker = Стикер
 orders_estimated_taxes = Расчетные налоги:
 orders_price_including_all_taxes = Стоимость товаров указана с учетом всех налогов
 

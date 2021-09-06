@@ -27,10 +27,10 @@ use eMarket\Core\{
                     <div class="tab-content pt-2">
                         <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
                             <div class="mb-3">
-                                <small class="form-text text-muted"><?php echo lang('stikers_name') ?></small>
+                                <small class="form-text text-muted"><?php echo lang('stickers_name') ?></small>
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_0" id="name_stikers_0" required />
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stickers_0" id="name_stickers_0" required />
                                 </div>
                             </div>
                         </div>
@@ -42,10 +42,10 @@ use eMarket\Core\{
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
                                     <div class="mb-3">
-                                        <small class="form-text text-muted"><?php echo lang('stikers_name') ?></small>
+                                        <small class="form-text text-muted"><?php echo lang('stickers_name') ?></small>
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stikers_<?php echo $x ?>" id="name_stikers_<?php echo $x ?>" required />
+                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_stickers_<?php echo $x ?>" id="name_stickers_<?php echo $x ?>" required />
                                         </div>
                                     </div>
                                 </div>
@@ -56,8 +56,8 @@ use eMarket\Core\{
                         ?>
 
                         <div class="mb-2 form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="default_stikers" id="default_stikers" checked>
-                            <label class="form-check-label" for="default_stikers"><?php echo lang('default_set') ?></label>
+                            <input class="form-check-input" type="checkbox" name="default_stickers" id="default_stickers" checked>
+                            <label class="form-check-label" for="default_stickers"><?php echo lang('default_set') ?></label>
                         </div>
                     </div>
                 </div>

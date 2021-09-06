@@ -29,8 +29,8 @@ if (Products::$products != FALSE) {
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                 <div class="labelsblock">
-                    <?php foreach (ProductsCore::stikers(Products::$products, 'bg-danger', 'bg-success') as $stiker) { ?>
-                        <div class="<?php echo $stiker[0] ?>"><?php echo $stiker[1] ?></div>
+                    <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
+                        <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
                     <?php } ?>
                 </div>
 
