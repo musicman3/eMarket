@@ -6,7 +6,15 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
 {
+    public static $files = array (
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'setasign\\Fpdi\\' => 14,
+        ),
         'e' => 
         array (
             'eMarket\\' => 8,
@@ -18,11 +26,20 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         ),
         'M' => 
         array (
+            'Mpdf\\' => 5,
             'Monolog\\' => 8,
+        ),
+        'D' => 
+        array (
+            'DeepCopy\\' => 9,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'setasign\\Fpdi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
         'eMarket\\' => 
         array (
             0 => __DIR__ . '/../..' . '/model/eMarket',
@@ -35,9 +52,17 @@ class ComposerStaticInit6d2863d5173dcc67b5162a89b66e5743
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
+        'Mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'DeepCopy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
     );
 

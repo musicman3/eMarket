@@ -13,6 +13,7 @@
     "require": {
         "claviska/simpleimage": "^3.3",
         "phpmailer/phpmailer": "^6.0",
-        "monolog/monolog": "^2.2"
+        "monolog/monolog": "^2.2",
+        "mpdf/mpdf": "^8.0"
     }
 }

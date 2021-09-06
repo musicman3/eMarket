@@ -214,7 +214,7 @@ class Products {
             $class2 = 'success';
         }
         if (self::$sticker_data == false) {
-            self::$sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+            self::$sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
         $sticker_name = [];
         foreach (self::$sticker_data as $val) {

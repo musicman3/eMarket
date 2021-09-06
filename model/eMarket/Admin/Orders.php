@@ -14,6 +14,9 @@ use eMarket\Core\{
     Settings,
     Valid
 };
+use eMarket\Blanks\{
+    Constructor
+};
 use eMarket\Admin\HeaderMenu;
 
 /**
@@ -25,7 +28,7 @@ use eMarket\Admin\HeaderMenu;
  * @license GNU GPL v.3.0
  * 
  */
-class Orders {
+class Orders extends Constructor {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
@@ -36,6 +39,8 @@ class Orders {
      *
      */
     function __construct() {
+        //$constructor = new Constructor();
+        //$constructor->template();
         $this->edit();
         $this->delete();
         $this->data();

@@ -70,15 +70,15 @@ class Stickers {
                 $default_stickers = 0;
             }
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STIKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STICKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $default_stickers != 0) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stickers=?", [0]);
+                Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_STIKERS . " SET id=?, name=?, language=?, default_stickers=?", [
+                Pdo::action("INSERT INTO " . TABLE_STICKERS . " SET id=?, name=?, language=?, default_stickers=?", [
                     $id, Valid::inPOST('name_stickers_' . $x), lang('#lang_all')[$x], $default_stickers
                 ]);
             }
@@ -101,11 +101,11 @@ class Stickers {
             }
 
             if ($default_stickers != 0) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stickers=?", [0]);
+                Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET name=?, default_stickers=? WHERE id=? AND language=?", [
+                Pdo::action("UPDATE " . TABLE_STICKERS . " SET name=?, default_stickers=? WHERE id=? AND language=?", [
                     Valid::inPOST('name_stickers_' . $x), $default_stickers, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }
@@ -120,7 +120,7 @@ class Stickers {
      */
     public function delete() {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_STIKERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -131,7 +131,7 @@ class Stickers {
      *
      */
     public function data() {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " ORDER BY id DESC", []);
+        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
@@ -144,7 +144,7 @@ class Stickers {
         self::$stickers = '';
         self::$stickers_default = 0;
         self::$stickers_flag = 0;
-        $stickers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $stickers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
         foreach ($stickers_data as $val) {
             self::$stickers_flag = 1;

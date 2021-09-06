@@ -101,13 +101,13 @@ class Success {
     public function invoice() {
         $cart = json_decode(Valid::inPOST('products_order'), 1);
 
-        $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [self::$primary_language]);
+        $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [self::$primary_language]);
         $sticker_name = [];
         foreach ($sticker_data as $val) {
             $sticker_name[$val['id']] = $val['name'];
         }
 
-        $sticker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $sticker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         $sticker_name_customer = [];
         foreach ($sticker_data_customer as $val) {
             $sticker_name_customer[$val['id']] = $val['name'];
