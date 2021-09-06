@@ -64,13 +64,13 @@ class Orders {
             document.querySelector('#description_order_total').innerHTML = order_total.admin.total_to_pay_format;
 
             for (var x = 0; x < invoice.length; x++) {
-                if (invoice[x].admin.stiker !== null && invoice[x].admin.stiker !== undefined) {
-                    var stiker = invoice[x].admin.stiker;
+                if (invoice[x].admin.sticker !== null && invoice[x].admin.sticker !== undefined) {
+                    var sticker = invoice[x].admin.sticker;
                 } else {
-                    var stiker = '';
+                    var sticker = '';
                 }
                 document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="align-middle">\n\
-                                        <td class="text-start"><span class="badge bg-success">' + stiker + '</span></td>\n\
+                                        <td class="text-start"><span class="badge bg-success">' + sticker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.name + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.price + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].data.quantity + ' ' + invoice[x].admin.unit + '</small></td>\n\

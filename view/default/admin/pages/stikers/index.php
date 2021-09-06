@@ -10,19 +10,19 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use eMarket\Admin\Stikers;
+use eMarket\Admin\Stickers;
 
 require_once('modal/index.php')
 ?>
 
-<div id="stikers">
+<div id="stickers">
     <div class="card">
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
         <div class="card-body">
-            <div id="ajax_data" class='hidden' data-jsondata='<?php echo Stikers::$json_data ?>'></div>
+            <div id="ajax_data" class='hidden' data-jsondata='<?php echo Stickers::$json_data ?>'></div>
 
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
@@ -62,7 +62,7 @@ require_once('modal/index.php')
                         </tr>
                         <?php if (Pages::$count > 0) { ?>
                             <tr class="align-middle">
-                                <th><?php echo lang('stikers_name') ?></th>
+                                <th><?php echo lang('stickers_name') ?></th>
                                 <th class="text-center"><?php echo lang('default') ?></th>
                                 <th></th>
                             </tr>
@@ -72,7 +72,7 @@ require_once('modal/index.php')
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
-                                <?php if (Pages::$table['line']['default_stikers'] == 1) { ?>
+                                <?php if (Pages::$table['line']['default_stickers'] == 1) { ?>
                                     <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                                 <?php } else { ?>
                                     <td class="text-center"><?php echo lang('confirm-no') ?></td>

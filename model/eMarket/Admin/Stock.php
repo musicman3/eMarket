@@ -19,7 +19,7 @@ use eMarket\Core\{
 };
 use eMarket\Admin\{
     HeaderMenu,
-    Stikers
+    Stickers
 };
 
 /**
@@ -69,7 +69,7 @@ class Stock {
         $this->imgUploadProducts();
         $this->initEac();
         Modules::initDiscount();
-        Stikers::initStikers();
+        Stickers::initStickers();
         $this->selectData();
         $this->preparedData();
         $this->data();
@@ -411,16 +411,16 @@ class Stock {
     }
 
     /**
-     * Data for stiker
+     * Data for sticker
      *
      * @param string $span1 span start
      * @param string $span2 span end
      * @return string
      */
-    public static function stikerData($span1, $span2) {
+    public static function stickerData($span1, $span2) {
 
-        if (Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker'] != NULL) {
-            return $span1 . Stikers::$stiker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['stiker']] . $span2;
+        if (Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker'] != NULL) {
+            return $span1 . Stickers::$sticker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker']] . $span2;
         } else {
             return '';
         }
@@ -459,7 +459,7 @@ class Stock {
     }
 
     /**
-     * Data for stiker
+     * Data for sticker
      *
      * @param string $span1 span
      * @param string $span2 span

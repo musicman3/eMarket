@@ -31,9 +31,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                 var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
                 var discounts = {<?php echo \eMarket\Core\Modules::$discounts ?>};
                 var discount_dafault = {<?php echo \eMarket\Core\Modules::$discount_default ?>};
-                var stiker = '<?php echo \eMarket\Admin\Stikers::$stikers_flag ?>';
-                var stikers = {<?php echo \eMarket\Admin\Stikers::$stikers ?>};
-                var stikers_default = '<?php echo \eMarket\Admin\Stikers::$stikers_default ?>';
+                var sticker = '<?php echo \eMarket\Admin\Stickers::$stickers_flag ?>';
+                var stickers = {<?php echo \eMarket\Admin\Stickers::$stickers ?>};
+                var stickers_default = '<?php echo \eMarket\Admin\Stickers::$stickers_default ?>';
                 var attributes_category = <?php echo json_encode(\eMarket\Admin\Stock::$attributes_category) ?>;
                 var lang_name = '<?php echo lang('#lang_all')[0] ?>';
 
@@ -45,9 +45,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                     discount_dafault
                 ];
 
-                var stikers_options = '';
-                for (key in stikers) {
-                    stikers_options = stikers_options + '<option value="' + key + '">' + stikers[key] + '</option>';
+                var stickers_options = '';
+                for (key in stickers) {
+                    stickers_options = stickers_options + '<option value="' + key + '">' + stickers[key] + '</option>';
                 }
 
                 var json_data_product = JSON.parse(document.querySelector('#ajax_data').dataset.jsondataproduct);
@@ -274,28 +274,28 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         ]
                     },<?php echo \eMarket\Core\Modules::discountRouter('functions') ?>, // ---------- Discounts ----------
                     {
-                        // ---------- Stiker ----------
-                        text: '<span class="bi-bookmark"> ' + lang['button_stiker'] + '</span>',
-                        disabled: stiker === '0' || json_data_product.name === undefined,
+                        // ---------- Sticker ----------
+                        text: '<span class="bi-bookmark"> ' + lang['button_sticker'] + '</span>',
+                        disabled: sticker === '0' || json_data_product.name === undefined,
                         subMenu: [
                             {
-                                // ---------- Stiker select ----------
-                                html: '<span><select class="form-select" name="context-menu-input-stiker">' + stikers_options + '</select></span>'
+                                // ---------- Sticker select ----------
+                                html: '<span><select class="form-select" name="context-menu-input-sticker">' + stickers_options + '</select></span>'
                             },
                             {
-                                // ---------- Add stiker ----------
-                                text: '<span class="bi-bookmark-plus"> ' + lang['button_stiker_add'] + '</span>',
+                                // ---------- Add sticker ----------
+                                text: '<span class="bi-bookmark-plus"> ' + lang['button_sticker_add'] + '</span>',
                                 action: function () {
-                                    var selected_id = document.querySelector('[name="context-menu-input-stiker"]').value;
+                                    var selected_id = document.querySelector('[name="context-menu-input-sticker"]').value;
                                     var idArray = [];
                                     document.querySelectorAll('.table-primary').forEach(function (string, index) {
                                         idArray[index] = string.id;
                                     });
                                     Ajax.postData(window.location.href, {
-                                        idsx_stiker_on_id: idArray,
+                                        idsx_sticker_on_id: idArray,
                                         idsx_real_parent_id: idsx_real_parent_id,
-                                        stiker: selected_id,
-                                        idsx_stikerOn_key: 'On'
+                                        sticker: selected_id,
+                                        idsx_stickerOn_key: 'On'
                                     }, false).then((data) => {
                                         Ajax.postData(window.location.href, {
                                             parent_down: parent_id
@@ -305,13 +305,13 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 disabled: false
                             },
                             {
-                                // ---------- Delete stiker ----------
-                                text: '<span class="bi-bookmark-dash"> ' + lang['button_stiker_delete'] + '</span>',
+                                // ---------- Delete sticker ----------
+                                text: '<span class="bi-bookmark-dash"> ' + lang['button_sticker_delete'] + '</span>',
                                 action: function () {
                                     new bootstrap.Modal(document.querySelector('#confirm')).show();
                                     document.querySelector('#confirm_title').innerHTML = lang['attention'];
-                                    document.querySelector('#confirm_body').innerHTML = lang['confirm_delete_stiker'];
-                                    var selected_id = document.querySelector('[name="context-menu-input-stiker"]').value;
+                                    document.querySelector('#confirm_body').innerHTML = lang['confirm_delete_sticker'];
+                                    var selected_id = document.querySelector('[name="context-menu-input-sticker"]').value;
 
                                     confirmation.onclick = function () {
                                         bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
@@ -320,10 +320,10 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                             idArray[index] = string.id;
                                         });
                                         Ajax.postData(window.location.href, {
-                                            idsx_stiker_off_id: idArray,
+                                            idsx_sticker_off_id: idArray,
                                             idsx_real_parent_id: idsx_real_parent_id,
-                                            stiker: selected_id,
-                                            idsx_stikerOff_key: 'Off'
+                                            sticker: selected_id,
+                                            idsx_stickerOff_key: 'Off'
                                         }, false).then((data) => {
                                             Ajax.postData(window.location.href, {
                                                 parent_down: parent_id

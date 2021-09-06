@@ -97,7 +97,7 @@
                             <table class="table overflow-hidden rounded-top">
                                 <thead>
                                     <tr class="bg-primary text-light align-middle">
-                                        <td class="text-start"><small><?php echo lang('orders_stiker') ?></small></td>
+                                        <td class="text-start"><small><?php echo lang('orders_sticker') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_product') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_price') ?></small></td>
                                         <td class="text-center"><small><?php echo lang('orders_quantity') ?></small></td>

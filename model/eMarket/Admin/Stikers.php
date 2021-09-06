@@ -19,7 +19,7 @@ use eMarket\Core\{
 use eMarket\Admin\HeaderMenu;
 
 /**
- * Stikers
+ * Stickers
  *
  * @package Admin
  * @author eMarket Team
@@ -27,14 +27,14 @@ use eMarket\Admin\HeaderMenu;
  * @license GNU GPL v.3.0
  * 
  */
-class Stikers {
+class Stickers {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
-    public static $stikers = FALSE;
-    public static $stikers_default = FALSE;
-    public static $stikers_flag = FALSE;
-    public static $stiker_name = FALSE;
+    public static $stickers = FALSE;
+    public static $stickers_default = FALSE;
+    public static $stickers_flag = FALSE;
+    public static $sticker_name = FALSE;
 
     /**
      * Constructor
@@ -54,7 +54,7 @@ class Stikers {
      * 
      */
     public static function menu() {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stikers', 'bi-bookmark-star-fill', lang('title_stikers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stickers', 'bi-bookmark-star-fill', lang('title_stickers_index'), '', 'false'];
     }
 
     /**
@@ -64,22 +64,22 @@ class Stikers {
     public function add() {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_stikers')) {
-                $default_stikers = 1;
+            if (Valid::inPOST('default_stickers')) {
+                $default_stickers = 1;
             } else {
-                $default_stikers = 0;
+                $default_stickers = 0;
             }
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STIKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_stikers != 0) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stikers=?", [0]);
+            if ($id > 1 && $default_stickers != 0) {
+                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_STIKERS . " SET id=?, name=?, language=?, default_stikers=?", [
-                    $id, Valid::inPOST('name_stikers_' . $x), lang('#lang_all')[$x], $default_stikers
+                Pdo::action("INSERT INTO " . TABLE_STIKERS . " SET id=?, name=?, language=?, default_stickers=?", [
+                    $id, Valid::inPOST('name_stickers_' . $x), lang('#lang_all')[$x], $default_stickers
                 ]);
             }
 
@@ -94,19 +94,19 @@ class Stikers {
     public function edit() {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_stikers')) {
-                $default_stikers = 1;
+            if (Valid::inPOST('default_stickers')) {
+                $default_stickers = 1;
             } else {
-                $default_stikers = 0;
+                $default_stickers = 0;
             }
 
-            if ($default_stikers != 0) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stikers=?", [0]);
+            if ($default_stickers != 0) {
+                Pdo::action("UPDATE " . TABLE_STIKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_STIKERS . " SET name=?, default_stikers=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_stikers_' . $x), $default_stikers, Valid::inPOST('edit'), lang('#lang_all')[$x]
+                Pdo::action("UPDATE " . TABLE_STIKERS . " SET name=?, default_stickers=? WHERE id=? AND language=?", [
+                    Valid::inPOST('name_stickers_' . $x), $default_stickers, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }
 
@@ -137,26 +137,26 @@ class Stikers {
     }
 
     /**
-     * Init Stikers
+     * Init Stickers
      *
      */
-    public static function initStikers() {
-        self::$stikers = '';
-        self::$stikers_default = 0;
-        self::$stikers_flag = 0;
-        $stikers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+    public static function initStickers() {
+        self::$stickers = '';
+        self::$stickers_default = 0;
+        self::$stickers_flag = 0;
+        $stickers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
-        foreach ($stikers_data as $val) {
-            self::$stikers_flag = 1;
-            self::$stikers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
-            if ($val['default_stikers'] == 1) {
-                self::$stikers_default = $val['id'];
+        foreach ($stickers_data as $val) {
+            self::$stickers_flag = 1;
+            self::$stickers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+            if ($val['default_stickers'] == 1) {
+                self::$stickers_default = $val['id'];
             }
         }
 
-        self::$stiker_name = [];
-        foreach ($stikers_data as $val) {
-            self::$stiker_name[$val['id']] = $val['name'];
+        self::$sticker_name = [];
+        foreach ($stickers_data as $val) {
+            self::$sticker_name[$val['id']] = $val['name'];
         }
     }
 
@@ -165,19 +165,19 @@ class Stikers {
      */
     public static function initEac() {
 
-        if ((Valid::inPostJson('idsx_stikerOn_key') == 'On')
-                or (Valid::inPostJson('idsx_stikerOff_key') == 'Off')) {
+        if ((Valid::inPostJson('idsx_stickerOn_key') == 'On')
+                or (Valid::inPostJson('idsx_stickerOff_key') == 'Off')) {
 
             $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
-            if (Valid::inPostJson('idsx_stikerOn_key') == 'On') {
-                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_stiker_on_id'));
-                $stiker = Valid::inPostJson('stiker');
+            if (Valid::inPostJson('idsx_stickerOn_key') == 'On') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_sticker_on_id'));
+                $sticker = Valid::inPostJson('sticker');
             }
 
-            if (Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
-                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_stiker_off_id'));
-                $stiker = '';
+            if (Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
+                $idx = Func::deleteEmptyInArray(Valid::inPostJson('idsx_sticker_off_id'));
+                $sticker = '';
             }
 
             if (is_array($idx) == FALSE) {
@@ -192,27 +192,27 @@ class Stikers {
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
-                        if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
+                        if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
 
-                            $stiker_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
+                            $sticker_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
                                         lang('#lang_all')[0], $keys[$x]
                             ]);
 
-                            foreach ($stiker_id_array as $stiker_id_arr) {
-                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $stiker_id_arr]);
+                            foreach ($sticker_id_array as $sticker_id_arr) {
+                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", [$sticker, $sticker_id_arr]);
                             }
 
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
-                            Messages::alert('stiker_actions', 'success', lang('action_completed_successfully'), 0, true);
+                            Messages::alert('sticker_actions', 'success', lang('action_completed_successfully'), 0, true);
                         }
                     }
                 } else {
-                    if (Valid::inPostJson('idsx_stikerOn_key') == 'On' OR Valid::inPostJson('idsx_stikerOff_key') == 'Off') {
+                    if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET stiker=? WHERE id=?", [$stiker, $id_prod[1]]);
-                        Messages::alert('stiker_actions', 'success', lang('action_completed_successfully'), 0, true);
+                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", [$sticker, $id_prod[1]]);
+                        Messages::alert('sticker_actions', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 }
             }
@@ -240,7 +240,7 @@ class Stikers {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                     }
                     if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                        $default_stikers[$modal_id] = (int) $sql_modal['default_stikers'];
+                        $default_stickers[$modal_id] = (int) $sql_modal['default_stickers'];
                     }
                 }
 
@@ -248,7 +248,7 @@ class Stikers {
 
                 self::$json_data = json_encode([
                     'name' => $name,
-                    'default_stikers' => $default_stikers
+                    'default_stickers' => $default_stickers
                 ]);
             }
         }

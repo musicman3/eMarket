@@ -7,7 +7,7 @@
 
 ;TITLE
 title_catalog_index =  eMarket Online Store
-title_login_index = Autorization
+title_login_index = Authorization
 title_register_index = Registration
 title_cart_index = Cart
 title_recoverypass_index = Password Recovery
@@ -79,7 +79,7 @@ button_proceed_to_checkout = Proceed to checkout
 ;PAGES
 shopping_cart = Cart
 сheckout_click = Buy in one click
-login_to_account = Autorization
+login_to_account = Authorization
 regular_customer = Regular customer
 new_customer = New Customer
 sign_in = Sign in
@@ -246,7 +246,7 @@ orders_date_added = Date added
 orders_date_of_change = Date of change
 orders_number = Order No.
 orders_subtotal = Products subtotal
-orders_stiker = Stiker
+orders_sticker = Sticker
 orders_estimated_taxes = Estimated Taxes:
 orders_price_including_all_taxes = Products subtotal is including all taxes
 

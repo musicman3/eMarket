@@ -25,7 +25,7 @@ use eMarket\Core\{
  */
 class Products {
 
-    public static $stiker_data = FALSE;
+    public static $sticker_data = FALSE;
     public static $new_products = FALSE;
     public static $product_data = FALSE;
     public static $category_data = FALSE;
@@ -198,14 +198,14 @@ class Products {
     }
 
     /**
-     * Stikers
+     * Stickers
      * 
      * @param array $input Input data
      * @param string $class Bootstrap class
      * @param string $class2 Bootstrap class
      * @return string
      */
-    public static function stikers($input, $class = null, $class2 = null) {
+    public static function stickers($input, $class = null, $class2 = null) {
 
         if ($class == null) {
             $class = 'danger';
@@ -213,12 +213,12 @@ class Products {
         if ($class2 == null) {
             $class2 = 'success';
         }
-        if (self::$stiker_data == false) {
-            self::$stiker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        if (self::$sticker_data == false) {
+            self::$sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
         }
-        $stiker_name = [];
-        foreach (self::$stiker_data as $val) {
-            $stiker_name[$val['id']] = $val['name'];
+        $sticker_name = [];
+        foreach (self::$sticker_data as $val) {
+            $sticker_name[$val['id']] = $val['name'];
         }
 
         $INTERFACE = new Interfaces();
@@ -234,28 +234,28 @@ class Products {
             }
         }
 
-        $stikers = [];
+        $stickers = [];
 
-        if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['stiker'] != '' && $input['stiker'] != NULL) {
+        if (isset($discount_total_sale) && $discount_total_sale > 0 && $input['sticker'] != '' && $input['sticker'] != NULL) {
 
-            array_push($stikers, [$class, '- ' . $discount_total_sale . '%']);
-            array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
+            array_push($stickers, [$class, '- ' . $discount_total_sale . '%']);
+            array_push($stickers, [$class2, $sticker_name[$input['sticker']]]);
 
-            return $stikers;
+            return $stickers;
         }
 
-        if ($input['stiker'] != '' && $input['stiker'] != NULL) {
+        if ($input['sticker'] != '' && $input['sticker'] != NULL) {
 
-            array_push($stikers, [$class2, $stiker_name[$input['stiker']]]);
+            array_push($stickers, [$class2, $sticker_name[$input['sticker']]]);
 
-            return $stikers;
+            return $stickers;
         }
 
         if (isset($discount_total_sale) && $discount_total_sale > 0) {
 
-            array_push($stikers, [$class, '- ' . $discount_total_sale . '%']);
+            array_push($stickers, [$class, '- ' . $discount_total_sale . '%']);
 
-            return $stikers;
+            return $stickers;
         }
         return [];
     }

@@ -101,16 +101,16 @@ class Success {
     public function invoice() {
         $cart = json_decode(Valid::inPOST('products_order'), 1);
 
-        $stiker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [self::$primary_language]);
-        $stiker_name = [];
-        foreach ($stiker_data as $val) {
-            $stiker_name[$val['id']] = $val['name'];
+        $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [self::$primary_language]);
+        $sticker_name = [];
+        foreach ($sticker_data as $val) {
+            $sticker_name[$val['id']] = $val['name'];
         }
 
-        $stiker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
-        $stiker_name_customer = [];
-        foreach ($stiker_data_customer as $val) {
-            $stiker_name_customer[$val['id']] = $val['name'];
+        $sticker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STIKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $sticker_name_customer = [];
+        foreach ($sticker_data_customer as $val) {
+            $sticker_name_customer[$val['id']] = $val['name'];
         }
 
         $INTERFACE = new Interfaces();
@@ -122,15 +122,15 @@ class Success {
             $unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
             $admin_unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], self::$primary_language])[0];
 
-            if (isset($stiker_name[$product_data['stiker']])) {
-                $stiker_name_data = $stiker_name[$product_data['stiker']];
+            if (isset($sticker_name[$product_data['sticker']])) {
+                $sticker_name_data = $sticker_name[$product_data['sticker']];
             } else {
-                $stiker_name_data = '';
+                $sticker_name_data = '';
             }
-            if (isset($stiker_name_customer[$product_data['stiker']])) {
-                $stiker_name_customer_data = $stiker_name_customer[$product_data['stiker']];
+            if (isset($sticker_name_customer[$product_data['sticker']])) {
+                $sticker_name_customer_data = $sticker_name_customer[$product_data['sticker']];
             } else {
-                $stiker_name_customer_data = '';
+                $sticker_name_customer_data = '';
             }
 
             Ecb::discountHandler($admin_product_data);
@@ -140,7 +140,7 @@ class Success {
                 'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1, self::$primary_language),
                 'unit' => $admin_unit['unit'],
                 'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1, self::$primary_language),
-                'stiker' => $stiker_name_data
+                'sticker' => $sticker_name_data
             ];
 
             Ecb::discountHandler($product_data);
@@ -150,7 +150,7 @@ class Success {
                 'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1),
                 'unit' => $unit['unit'],
                 'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1),
-                'stiker' => $stiker_name_customer_data
+                'sticker' => $sticker_name_customer_data
             ];
 
             $data['data'] = [

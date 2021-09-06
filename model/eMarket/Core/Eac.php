@@ -15,7 +15,7 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
-use eMarket\Admin\Stikers;
+use eMarket\Admin\Stickers;
 
 /**
  * eMarket Ajax Catalog
@@ -71,7 +71,7 @@ final class Eac {
 
         self::initDiscount();
 
-        Stikers::initEac();
+        Stickers::initEac();
 
         self::sortList();
 

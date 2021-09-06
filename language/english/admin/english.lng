@@ -29,7 +29,7 @@ title_settings_weight_index = Weight
 title_settings_zones_index = Zones
 title_settings_zones_listing_index = Countries and regions
 title_slideshow_index = Slideshow
-title_stikers_index = Stikers
+title_stickers_index = Stickers
 title_stock_index = Stock
 title_customers_index = Customers
 title_staff_manager_index = Staff manager
@@ -39,7 +39,7 @@ title_staff_manager_staff_index = Staff
 menu_dashboard = Dashboard
 menu_catalog = Catalog
 menu_market = Market
-menu_sellings = Sellings
+menu_sales = Sales
 menu_customers = Customers
 menu_marketing = Marketing
 menu_error_log = Error log
@@ -73,9 +73,9 @@ button_show = Show
 button_hide = Hide
 button_on = ON
 button_off = OFF
-button_stiker = Stiker
-button_stiker_add = Add stiker
-button_stiker_delete = Delete stiker
+button_sticker = Sticker
+button_sticker_add = Add sticker
+button_sticker_delete = Delete sticker
 button_back = Back
 cut = Cut
 paste = Paste
@@ -129,7 +129,7 @@ download_complete = Download complete!
 image_resize_error = ATTENTION: Some images not added. One of the sides of the image must be at least:
 attention = ATTENTION!
 confirm_delete_product_or_category = Are you sure you want to delete a category or product?
-confirm_delete_stiker = Are you sure you want to remove stiker?
+confirm_delete_sticker = Are you sure you want to remove sticker?
 alert_wait = Please wait. Processing is in progress...
 enter_value = Enter value
 
@@ -246,7 +246,7 @@ orders_quantity = Quantity
 orders_price = Price
 orders_product = Product
 orders_products = Products
-orders_stiker = Stiker
+orders_sticker = Sticker
 orders_transaction_history = Transaction history
 orders_status_history = Status history
 orders_description = Description
@@ -310,7 +310,7 @@ customers_email = Email
 customers_date_created = Date created
 
 ;STIKERS
-stikers_name = Stiker name
+stickers_name = Sticker name
 
 ;SLIDES
 slides_image = Image
