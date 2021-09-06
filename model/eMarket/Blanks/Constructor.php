@@ -8,7 +8,6 @@
 namespace eMarket\Blanks;
 
 use eMarket\Core\{
-    Messages,
     Settings
 };
 use \Mpdf\Mpdf;
@@ -40,12 +39,21 @@ class Constructor {
     }
 
     /**
+     * CSS
+     *
+     */
+    public function css() {
+        $css = '<style>' . file_get_contents(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.css') . '</style>';
+        return $this->mpdf()->WriteHTML($css);
+    }
+
+    /**
      * Header
      *
      */
     public function header() {
-        $template = file_get_contents(ROOT . '\view\\' . Settings::template() . '\admin\blanks\orders\type_1.php');
-        $search = ['$COMPANY_NAME'];
+        $template = file_get_contents(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
+        $search = ['{COMPANY_NAME}'];
         $replace = ['Моя шарага'];
         $html = str_replace($search, $replace, $template);
 
@@ -57,6 +65,7 @@ class Constructor {
      *
      */
     public function template() {
+        $this->css();
         $this->header();
         $this->mpdf()->Output();
     }
