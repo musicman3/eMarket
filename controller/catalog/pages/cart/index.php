@@ -5,4 +5,4 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-// The object is created in eMarket\Core\Autorize()
+// The object is created in eMarket\Core\Authorize()

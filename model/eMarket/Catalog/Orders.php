@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Pages,
     Pdo
 };
@@ -32,17 +32,17 @@ class Orders {
      *
      */
     function __construct() {
-        $this->autorize();
+        $this->authorize();
         $this->data();
         $this->modal();
     }
 
     /**
-     * Autorize
+     * Authorize
      *
      */
-    public function autorize() {
-        if (Autorize::$customer == FALSE) {
+    public function authorize() {
+        if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }

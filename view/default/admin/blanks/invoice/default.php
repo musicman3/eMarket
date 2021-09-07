@@ -3,6 +3,9 @@
 |  https://github.com/musicman3/eMarket  |
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
 
+<!-- Connect css only like this: -->
+<style><?php require_once ('default.css'); ?></style>
+
 <body>
     <header class="clearfix">
         <div id="logo">

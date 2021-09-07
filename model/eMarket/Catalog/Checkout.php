@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Pdo,
     Valid
 };
@@ -32,17 +32,17 @@ class Checkout {
      *
      */
     function __construct() {
-        $this->autorize();
+        $this->authorize();
         $this->customerData();
         $this->customerAddress();
     }
 
     /**
-     * Autorize
+     * Authorize
      *
      */
-    public function autorize() {
-        if (Autorize::$customer == FALSE) {
+    public function authorize() {
+        if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }

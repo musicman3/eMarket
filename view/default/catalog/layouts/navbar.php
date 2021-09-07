@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Cart,
     Ecb,
     Settings
@@ -40,7 +40,7 @@ use eMarket\Core\{
                         <?php } ?>
                     </ul>
                 </li>
-                <?php if (Autorize::$customer == FALSE) { ?>
+                <?php if (Authorize::$customer == FALSE) { ?>
                     <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>

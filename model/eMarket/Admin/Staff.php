@@ -8,7 +8,7 @@
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Messages,
     Pages,
     Pdo,
@@ -64,7 +64,7 @@ class Staff {
     public function add() {
         if (Valid::inPOST('add')) {
             Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?", [Valid::inPOST('email'),
-                Autorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note')]);
+                Authorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note')]);
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
         }

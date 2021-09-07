@@ -25,7 +25,7 @@ use \eMarket\Catalog\{
  * @license GNU GPL v.3.0
  * 
  */
-class Autorize {
+class Authorize {
 
     public static $customer;
     public static $csrf_token = FALSE;

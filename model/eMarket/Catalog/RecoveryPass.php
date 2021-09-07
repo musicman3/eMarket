@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Messages,
     Pdo,
     Valid
@@ -51,7 +51,7 @@ class RecoveryPass {
                 if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {
                     Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
 
-                    $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
+                    $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
                     Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET password=? WHERE id=?", [$password_hash, self::$customer_id]);
                     Messages::alert('messages_recovery_password_complete', 'success', lang('messages_recovery_password_complete'), 7000, true);
                 } else {

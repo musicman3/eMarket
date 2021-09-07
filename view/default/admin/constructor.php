@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Debug,
     Settings,
     View
@@ -54,7 +54,7 @@ use eMarket\Core\{
 
     </head>
     <body>
-        <div id="csrf_token" class='hidden' data-csrf='<?php echo Autorize::csrfToken() ?>'></div>
+        <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
 
         <?php
         foreach (View::tlpc('header') as $path) {

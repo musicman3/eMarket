@@ -8,14 +8,15 @@
 namespace eMarket\Blanks;
 
 use eMarket\Core\{
+    Authorize,
     Settings
 };
 use \Mpdf\Mpdf;
 
 /**
- * Blanks
+ * Constructor
  *
- * @package Core
+ * @package Blanks
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
@@ -24,6 +25,30 @@ use \Mpdf\Mpdf;
 class Constructor {
 
     private $mpdf = FALSE;
+
+    /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        $this->authorize();
+        $this->header();
+        $this->mpdf()->Output();
+    }
+
+    /**
+     * Authorize
+     *
+     */
+    public function authorize() {
+        $authorize = FALSE;
+        if (Authorize::$customer || isset($_SESSION['login'])) {
+            $authorize = TRUE;
+        }
+        if (!$authorize) {
+            exit;
+        }
+    }
 
     /**
      * Header
@@ -39,20 +64,11 @@ class Constructor {
     }
 
     /**
-     * CSS
-     *
-     */
-    public function css() {
-        $css = '<style>' . file_get_contents(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.css') . '</style>';
-        return $this->mpdf()->WriteHTML($css);
-    }
-
-    /**
      * Header
      *
      */
     public function header() {
-        $template = file_get_contents(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
+        $template = file_get_contents(HTTP_SERVER . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
         $search = ['{COMPANY_NAME}'];
         $replace = ['Моя шарага'];
         $html = str_replace($search, $replace, $template);
@@ -65,7 +81,6 @@ class Constructor {
      *
      */
     public function template() {
-        $this->css();
         $this->header();
         $this->mpdf()->Output();
     }

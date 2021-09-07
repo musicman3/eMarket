@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Messages,
     Pdo,
     Valid
@@ -35,7 +35,7 @@ class AddressBook {
      *
      */
     function __construct() {
-        $this->autorize();
+        $this->authorize();
         $this->jsonEcho();
         $this->initData();
         $this->add();
@@ -45,11 +45,11 @@ class AddressBook {
     }
 
     /**
-     * Autorize
+     * Authorize
      *
      */
-    public function autorize() {
-        if (Autorize::$customer == FALSE) {
+    public function authorize() {
+        if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }

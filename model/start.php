@@ -13,7 +13,7 @@ error_reporting(-1);
 require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Debug,
     Lang,
     Messages,
@@ -42,8 +42,8 @@ foreach (Tree::modulesClasses() as $path) {
 if (Settings::path() != 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
 }
-//Autorize
-new Autorize();
+//Authorize
+new Authorize();
 //Languages
 new Lang();
 //JS Handler

@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Ecb,
     Func,
     Interfaces,
@@ -161,7 +161,7 @@ class Cart {
                         'chanel_image' => $data['chanel_image'],
                         'chanel_order_to_pay' => $order_to_pay,
                         'chanel_order_to_pay_format' => Ecb::formatPrice($order_to_pay, 1),
-                        'chanel_hash' => Autorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . Valid::inPostJson('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
+                        'chanel_hash' => Authorize::passwordHash((float) $data['chanel_total_tax'] . $order_to_pay . (float) $data['chanel_total_price_with_shipping'] . Valid::inPostJson('products_order_json') . $data['chanel_module_name'] . (float) $data['chanel_shipping_price'] . (float) $data['chanel_total_price'])
                     ];
 
                     array_push($interface_data, $interface);

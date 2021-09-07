@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Settings
 };
 use eMarket\Core\Modules\Tabs\Reviews;
@@ -14,9 +14,9 @@ use eMarket\Core\Modules\Tabs\Reviews;
     <div id="reviews_block" class="item-text border border-top-0 rounded-bottom p-2">
 
         <?php
-        if (Autorize::$customer != FALSE) {
+        if (Authorize::$customer != FALSE) {
 
-            if (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Autorize::$customer['email']) == 'TRUE') {
+            if (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'TRUE') {
                 ?>
 
                 <form class="was-validated">
@@ -50,7 +50,7 @@ use eMarket\Core\Modules\Tabs\Reviews;
                 </form>
 
                 <?php
-            } elseif (Reviews::$author_check == TRUE && Reviews::purchaseCheck(Autorize::$customer['email']) == 'TRUE' && Reviews::reviewStatus() == 0) {
+            } elseif (Reviews::$author_check == TRUE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'TRUE' && Reviews::reviewStatus() == 0) {
                 ?>
                 <div class="card mt-2">
                     <div class="card-header container text-white bg-success">
@@ -59,7 +59,7 @@ use eMarket\Core\Modules\Tabs\Reviews;
                         </div>
                     </div>
                 </div>
-            <?php } elseif (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Autorize::$customer['email']) == 'FALSE') {
+            <?php } elseif (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'FALSE') {
                 ?>
                 <div class="card mt-2">
                     <div class="card-header container text-white bg-success">

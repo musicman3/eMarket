@@ -36,7 +36,7 @@ class Login {
         $this->login();
         $this->loginError();
         $this->afterInstall();
-        $this->autorize();
+        $this->authorize();
     }
 
     /**
@@ -92,11 +92,11 @@ class Login {
     }
 
     /**
-     * Autorize
+     * Authorize
      *
      */
-    public function autorize() {
-        if (Valid::inPOST('autorize') == 'ok') {
+    public function authorize() {
+        if (Valid::inPOST('authorize') == 'ok') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
             $HASH = Pdo::getValue("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);
             if (!password_verify(Valid::inPOST('pass'), $HASH)) {
@@ -114,10 +114,10 @@ class Login {
                     if ($session_page == '/controller/admin/') {
                         $session_page = '?route=dashboard';
                     }
-                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, true);
+                    Messages::alert('authorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ' . $session_page);
                 } else {
-                    Messages::alert('autorize', 'success', lang('action_completed_successfully'), 0, true);
+                    Messages::alert('authorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ?route=dashboard');
                 }
             }

@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 use eMarket\Core\{
-    Autorize
+    Authorize
 };
 ?>
 
@@ -16,7 +16,7 @@ use eMarket\Core\{
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"></button>
             </div>
             <form class="was-validated" enctype="multipart/form-data" method="post" action="">
-                <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
+                <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
                 <div class="modal-body">
                     <div class="email">
                         <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email_for_recovery" name="email_for_recovery" required>

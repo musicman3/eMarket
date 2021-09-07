@@ -8,7 +8,7 @@
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Messages,
     Pdo,
     Valid
@@ -30,16 +30,16 @@ class MyAccount {
      *
      */
     function __construct() {
-        $this->autorize();
+        $this->authorize();
         $this->edit();
     }
 
     /**
-     * Autorize
+     * Authorize
      *
      */
-    public function autorize() {
-        if (Autorize::$customer == FALSE) {
+    public function authorize() {
+        if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -52,17 +52,17 @@ class MyAccount {
     public function edit() {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
-                $password_hash = Autorize::passwordHash(Valid::inPOST('password'));
+                $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'),
                     Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,
-                    Autorize::$customer['email']
+                    Authorize::$customer['email']
                 ]);
             } else {
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'),
                     Valid::inPOST('middle_name'), Valid::inPOST('telephone'),
-                    Autorize::$customer['email']
+                    Authorize::$customer['email']
                 ]);
             }
 

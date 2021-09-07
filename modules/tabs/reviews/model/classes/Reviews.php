@@ -8,7 +8,7 @@
 namespace eMarket\Core\Modules\Tabs;
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Interfaces,
     Modules,
     Messages,
@@ -128,8 +128,8 @@ class Reviews {
      *
      */
     public function authorCheck() {
-        if (Autorize::$customer != FALSE) {
-            self::$author_check = Pdo::getValue("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Autorize::$customer['email'], Valid::inGET('id')]);
+        if (Authorize::$customer != FALSE) {
+            self::$author_check = Pdo::getValue("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Authorize::$customer['email'], Valid::inGET('id')]);
         }
     }
 
@@ -190,9 +190,9 @@ class Reviews {
      *
      */
     public function addReview() {
-        if (Autorize::$customer != FALSE && Valid::inPostJson('review')) {
+        if (Authorize::$customer != FALSE && Valid::inPostJson('review')) {
             Pdo::action("INSERT INTO " . DB_PREFIX . "modules_tabs_reviews SET product_id=?, author=?, stars=?, status=?, likes=?, date_add=?, date_edit=?, reviews=?", [
-                Valid::inGET('id'), Autorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([Valid::inPostJson('review')])
+                Valid::inGET('id'), Authorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([Valid::inPostJson('review')])
             ]);
         }
     }
@@ -217,7 +217,7 @@ class Reviews {
      *
      */
     public static function reviewStatus() {
-        $data_review = Pdo::getValue("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Autorize::$customer['email']]);
+        $data_review = Pdo::getValue("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Authorize::$customer['email']]);
 
         return $data_review;
     }

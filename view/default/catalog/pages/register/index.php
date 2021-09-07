@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Autorize,
+    Authorize,
     Messages,
     Valid,
     View
@@ -26,7 +26,7 @@ if (!Valid::inPOST('email')) {
 
     <div id="register" class="contentText">
         <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
-            <input type="hidden" name="csrf_token" value="<?php echo Autorize::csrfToken() ?>" />
+            <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
             <div class="row">
                 <div class="col-md-6">
                     <fieldset id="account">

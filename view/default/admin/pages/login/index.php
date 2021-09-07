@@ -17,7 +17,7 @@ use eMarket\Core\Messages;
     <div class="login-box side-form">
         <form action='?route=login' method='post' class="was-validated">
 
-            <input hidden name="autorize" value="ok">
+            <input hidden name="authorize" value="ok">
 
             <div class="mb-3">
                 <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>" required />
