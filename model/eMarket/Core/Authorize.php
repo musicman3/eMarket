@@ -35,14 +35,19 @@ class Authorize {
      *
      */
     public function __construct() {
+        $exceptions = FALSE;
 
-        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/blanks/') == true) {
+            $exceptions = 'blanks';
+        }
+
+        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login' && !$exceptions) {
             session_start();
             $this->csrfVerification();
             $this->sessionAdmin();
         }
 
-        if (Settings::path() == 'catalog') {
+        if (Settings::path() == 'catalog' && !$exceptions) {
             session_start();
             $this->csrfVerification();
             $this->sessionCatalog();

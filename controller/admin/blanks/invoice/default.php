@@ -1,6 +1,7 @@
 <?php
+
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |    
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -8,8 +9,11 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$eMarket = new eMarket\Blanks\Constructor();
-$eMarket->createBlank();
+use eMarket\Core\{
+    Settings
+};
+
+require_once(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');

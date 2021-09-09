@@ -1,7 +1,14 @@
-<!--=-=-=-= Copyright © 2018 eMarket =-=-=
-|    GNU GENERAL PUBLIC LICENSE v.3.0    |
-|  https://github.com/musicman3/eMarket  |
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
+<?php
+
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+  |  https://github.com/musicman3/eMarket  |
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use eMarket\Core\{
+    Valid
+};
+?>
 
 <!-- Connect css only like this: -->
 <style><?php require_once ('default.css'); ?></style>
@@ -24,10 +31,10 @@
                 <div class="to">INVOICE TO:</div>
                 <h2 class="name">John Doe</h2>
                 <div class="address">796 Silver Harbour, TX 79273, US</div>
-                <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                <div class="email"><a href="mailto:john@example.com"><?php echo Valid::inPostJson('invoice_email') ?></a></div>
             </div>
             <div id="invoice">
-                <h1>INVOICE 3-2-1</h1>
+                <h1>INVOICE <?php echo Valid::inPostJson('invoice_id') ?></h1>
                 <div class="date">Date of Invoice: 01/06/2014</div>
                 <div class="date">Due Date: 30/06/2014</div>
             </div>

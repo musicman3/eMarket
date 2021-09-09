@@ -9,7 +9,9 @@ namespace eMarket\Blanks;
 
 use eMarket\Core\{
     Authorize,
-    Settings
+    Pdo,
+    Settings,
+    Valid
 };
 use \Mpdf\Mpdf;
 
@@ -25,6 +27,7 @@ use \Mpdf\Mpdf;
 class Constructor {
 
     private $mpdf = FALSE;
+    private $order_data = FALSE;
 
     /**
      * Constructor
@@ -32,8 +35,6 @@ class Constructor {
      */
     function __construct() {
         $this->authorize();
-        $this->header();
-        $this->mpdf()->Output();
     }
 
     /**
@@ -55,34 +56,75 @@ class Constructor {
      *
      */
     public function mpdf() {
-
-        if ($this->mpdf == FALSE) {
+        if (!$this->mpdf) {
             $this->mpdf = new Mpdf();
         }
-
         return $this->mpdf;
     }
 
     /**
-     * Header
-     *
+     * Order data
+     * @param string $name Orders column name
+     * @return string Output data
      */
-    public function header() {
-        $template = file_get_contents(HTTP_SERVER . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
-        $search = ['{COMPANY_NAME}'];
-        $replace = ['Моя шарага'];
-        $html = str_replace($search, $replace, $template);
-
-        return $this->mpdf()->WriteHTML($html);
+    public function orderData($name) {
+        if (!$this->order_data) {
+            $this->order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inGET('invoice_id')])[0];
+        }
+        return $this->order_data[$name];
     }
 
     /**
-     * Output
+     * HTML
+     *
+     * @return string HTML data
+     */
+    public function html() {
+        $data = [
+            'invoice_id' => $this->orderData('id'),
+            'invoice_email' => $this->orderData('email')
+        ];
+        $html = $this->curl($data, HTTP_SERVER . '/controller/admin/blanks/invoice/default.php');
+        return $html;
+    }
+
+    /**
+     * Create blank
      *
      */
-    public function template() {
-        $this->header();
-        $this->mpdf()->Output();
+    public function createBlank() {
+        $this->authorize();
+        $this->mpdf()->WriteHTML($this->html());
+        $this->mpdf()->Output('invoice.pdf', 'D');
+    }
+
+    /**
+     * Curl
+     *
+     * @param array $data (request data)
+     * @param string $host (request host)
+     */
+    public function curl($data, $host) {
+        $curl = curl_init($host);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSLVERSION, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']);
+        $request_string = json_encode($data);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
+        $response_string = curl_exec($curl);
+        if (curl_errno($curl)) {
+            return FALSE;
+        }
+        if (!empty($response_string)) {
+            return $response_string;
+        } else {
+            return FALSE;
+        }
     }
 
 }
