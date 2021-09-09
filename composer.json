@@ -8,7 +8,7 @@
         "psr-4": {
             "eMarket\\": "model/eMarket/"
         },
-        "classmap": ["vendor/lpology/"]
+        "classmap": ["model/library/php/packages/lpology/"]
     },
     "require": {
         "claviska/simpleimage": "^3.3",
