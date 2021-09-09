@@ -1,4 +1,5 @@
 /.htaccess
+/composer.lock
 
 /storage/logs/
 /storage/configure/configure.php
