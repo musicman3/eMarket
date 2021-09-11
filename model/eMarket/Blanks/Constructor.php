@@ -10,7 +10,6 @@ namespace eMarket\Blanks;
 use eMarket\Core\{
     Authorize,
     Pdo,
-    Settings,
     Valid
 };
 use \Mpdf\Mpdf;
