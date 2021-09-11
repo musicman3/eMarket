@@ -10,9 +10,13 @@ use eMarket\Core\{
 };
 ?>
 
+<!doctype html>
+<html dir="ltr">
+<head>
 <!-- Connect css only like this: -->
 <style><?php require_once ('default.css'); ?></style>
-<style><?php require_once ('../../../../../ext/bootstrap/css/bootstrap.min.css'); ?></style>
+</head>
+<body>
 
 <div id="app" class="container invoice">
     <div class="row">
@@ -56,7 +60,7 @@ use eMarket\Core\{
         <!-- end data -->
 
         <!-- content -->
-        <div class="col-8 content py-4">
+        <div class="col-4 content py-4">
             <div class="line mt-4 mb-4"></div>
             <!-- header -->
             <div class="header">
@@ -271,3 +275,5 @@ use eMarket\Core\{
         <!-- end content -->
     </div>
 </div>
+</body>
+</html>
