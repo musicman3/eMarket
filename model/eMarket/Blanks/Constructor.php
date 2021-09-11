@@ -84,7 +84,7 @@ class Constructor {
             'invoice_id' => $this->orderData('id'),
             'invoice_email' => $this->orderData('email')
         ];
-        $html = $this->curl($data, HTTP_SERVER . '/controller/admin/blanks/invoice/default.php');
+        $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice/default.php');
         return $html;
     }
 
