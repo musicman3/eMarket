@@ -53,6 +53,24 @@ class Authorize {
             $this->sessionCatalog();
             new Cart();
         }
+
+        if (Settings::path() == 'install' && !$this->configFileVerify()) {
+            exit;
+        }
+    }
+
+    /**
+     * Checking for the presence of a configuration file
+     * Thanks to alexanderpas (https://github.com/alexanderpas)
+     *
+     * @return bool TRUE/FALSE
+     */
+    public static function configFileVerify() {
+        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
     /**
