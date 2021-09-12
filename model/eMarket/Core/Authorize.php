@@ -65,7 +65,7 @@ class Authorize {
      *
      * @return bool TRUE/FALSE
      */
-    public static function configFileVerify() {
+    public function configFileVerify() {
         if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
             return FALSE;
         } else {
