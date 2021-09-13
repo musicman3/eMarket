@@ -54,19 +54,19 @@ class Authorize {
             new Cart();
         }
 
-        if (Settings::path() == 'install' && !$this->configFileVerify()) {
+        if (Settings::path() == 'install' && !$this->installVerify()) {
             exit;
         }
     }
 
     /**
-     * Checking for the presence of a configuration file
+     * Checking for install
      * Thanks to alexanderpas (https://github.com/alexanderpas)
      *
      * @return bool TRUE/FALSE
      */
-    public function configFileVerify() {
-        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
+    public function installVerify() {
+        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') && file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
             return FALSE;
         } else {
             return TRUE;
