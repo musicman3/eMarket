@@ -96,8 +96,8 @@ use eMarket\Core\{
                                 <td class="no"></td>
                                 <td class="desc"></td>
                                 <td class="qty"></td>
-                                <td class="unit units">AX 25%:</td>
-                                <td class="total totals">$1,300.00</td>
+                                <td class="unit">AX 25%:</td>
+                                <td class="total">$1,300.00</td>
                             </tr>
                             <tr>
                                 <td class="no"></td>
