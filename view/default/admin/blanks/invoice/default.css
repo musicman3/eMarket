@@ -11,7 +11,7 @@ figure, footer, header, section {display: block;}
 body {font-weight: 300;font-size: 12px;margin: 0;padding: 0;color: #777777;}
 body a {text-decoration: none;color: inherit;}
 body a:hover {color: inherit;opacity: 0.7;}
-body .container {min-width: 500px;margin: 0 auto;padding: 0 30px;}
+body .container {min-width: 500px;margin: 0 auto;}
 body .clearfix:after {content: "";display: table;clear: both;}
 body .left {float: left;}
 body .right {float: right;}
