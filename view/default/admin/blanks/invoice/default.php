@@ -50,7 +50,7 @@ use eMarket\Core\{
                     <table>
                         <tbody class="head">
                             <tr class="head">
-                                <th class="no"></th>
+                                <th class="no">№</th>
                                 <th class="desc">Description</th>
                                 <th class="qty">Quantity</th>
                                 <th class="unit">Unit price</th>
