@@ -17,9 +17,9 @@ body .left {float: left;}
 body .right {float: right;}
 body .helper {height: 100%;}
 header {height: 40px;margin-top: 20px;margin-bottom: 40px;padding: 0px 5px 0;}
-header figure {float: left;width: 40px;margin-right: 25px;}
+header figure {float: left;width: 40px;}
 header figure img {height: 40px;}
-header .company-info {color: #BDB9B9;}
+header .company-info {color: #BDB9B9;margin-left: 60px;}
 header .company-info .title {margin-bottom: 5px;color: #2A8EAC;font-weight: 600;font-size: 2em;}
 header .company-info .line {display: inline-block;height: 9px;margin: 0 4px;border-left: 1px solid #2A8EAC;}
 section .details {min-width: 500px;margin-bottom: 40px;padding: 10px 35px;background-color: #2A8EAC;color: #ffffff;}
