@@ -8,7 +8,7 @@ table {border-collapse: collapse;border-spacing: 0;}
 th, td {text-align: left;font-weight: normal;}
 a img {border: none;}
 figure, footer, header, section {display: block;}
-body {font-weight: 300;font-size: 12px;margin: 0;padding: 0;color: #777777;}
+body {font-weight: 400;font-size: 12px;margin: 0;padding: 0;color: #777777;}
 body a {text-decoration: none;color: inherit;}
 body a:hover {color: inherit;opacity: 0.7;}
 body .container {min-width: 500px;margin: 0 auto;}
@@ -20,7 +20,7 @@ header {height: 40px;margin-top: 20px;margin-bottom: 40px;padding: 0px 5px 0;}
 header figure {float: left;width: 40px;}
 header figure img {height: 40px;}
 header .company-info {color: #BDB9B9;margin-left: 65px;}
-header .company-info .title {margin-bottom: 5px;color: #2A8EAC;font-weight: 600;font-size: 2em;}
+header .company-info .title {margin-bottom: 5px;color: #2A8EAC;font-weight: bold;font-size: 2em;}
 header .company-info .line {display: inline-block;height: 9px;margin: 0 4px;border-left: 1px solid #2A8EAC;}
 section .details {min-width: 500px;margin-bottom: 40px;padding: 10px 35px;background-color: #2A8EAC;color: #ffffff;}
 section .details .client {width: 50%;line-height: 16px;}
@@ -47,11 +47,11 @@ section table tbody.body tr.total td {padding: 5px 10px;background-color: transp
 section table tbody.body tr.total .empty {background: white;}
 section table tbody.body tr.total .total {font-size: 1.18181818181818em;font-weight: 600;color: #2A8EAC;}
 section table.grand-total {margin-top: 40px;margin-bottom: 0;border-collapse: collapse;border-spacing: 0px 0px;margin-bottom: 40px;}
-section table.grand-total tbody td {padding: 10px;background-color: #2A8EAC;color: #ffffff;font-weight: 600;text-align: right;}
+section table.grand-total tbody td {padding: 10px;background-color: #2A8EAC;color: #ffffff;font-weight: bold;text-align: right;}
 section table.grand-total tbody td.units {padding: 0 10px 10px 10px;}
 section table.grand-total tbody td.totals {padding: 0 10px 10px 10px;}
 section table.grand-total tbody td.no, section table.grand-total tbody td.desc, section table.grand-total tbody td.qty {background-color: transparent;}
-section table.grand-total tbody td.grand-total {font-size: 1.16666666666667em;font-weight: 600;background-color: #21BCEA;padding: 10px 5px;}
+section table.grand-total tbody td.grand-total {font-size: 1.16666666666667em;font-weight: bold;background-color: #21BCEA;padding: 10px 5px;}
 footer {margin-bottom: 20px;padding: 0 5px;}
 footer .thanks {margin-bottom: 40px;color: #2A8EAC;font-size: 1.16666666666667em;font-weight: 600;}
 footer .notice {margin-bottom: 25px;}
