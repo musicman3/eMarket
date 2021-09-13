@@ -36,7 +36,7 @@ use eMarket\Core\{
             <div class="details clearfix">
                 <div class="client left">
                     <p>INVOICE TO:</p>
-                    <p class="name">John Doe</p>
+                    <p>John Doe</p>
                     <p>796 Silver Harbour,<br>TX 79273, US</p>
                     <a href="mailto:john@example.com">john@example.com</a>
                 </div>

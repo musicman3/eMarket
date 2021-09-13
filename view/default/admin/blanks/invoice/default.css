@@ -24,7 +24,7 @@ header .company-info .title {margin-bottom: 5px;color: #2A8EAC;font-weight: 600;
 header .company-info .line {display: inline-block;height: 9px;margin: 0 4px;border-left: 1px solid #2A8EAC;}
 section .details {min-width: 500px;margin-bottom: 40px;padding: 10px 35px;background-color: #2A8EAC;color: #ffffff;}
 section .details .client {width: 50%;line-height: 16px;}
-section .details .client .name {font-weight: 600;}
+section .details .client, section .details .date {font-weight: 600;}
 section .details .data {width: 50%;text-align: right;}
 section .details .title {margin-bottom: 15px;font-size: 3em;font-weight: 400;text-transform: uppercase;}
 section .table-wrapper {position: relative;overflow: hidden;}
@@ -48,7 +48,7 @@ section table tbody.body tr.total td {padding: 5px 10px;background-color: transp
 section table tbody.body tr.total .empty {background: white;}
 section table tbody.body tr.total .total {font-size: 1.18181818181818em;font-weight: 600;color: #2A8EAC;}
 section table.grand-total {margin-top: 40px;margin-bottom: 0;border-collapse: collapse;border-spacing: 0px 0px;margin-bottom: 40px;}
-section table.grand-total tbody td {padding: 10px;background-color: #2A8EAC;color: #ffffff;font-weight: 400;text-align: right;}
+section table.grand-total tbody td {padding: 10px;background-color: #2A8EAC;color: #ffffff;font-weight: 600;text-align: right;}
 section table.grand-total tbody td.units {padding: 0 10px 10px 10px;}
 section table.grand-total tbody td.totals {padding: 0 10px 10px 10px;}
 section table.grand-total tbody td.no, section table.grand-total tbody td.desc, section table.grand-total tbody td.qty {background-color: transparent;}
