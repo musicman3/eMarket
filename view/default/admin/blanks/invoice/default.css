@@ -29,13 +29,13 @@ section .details .data {width: 50%;text-align: right;}
 section .details .title {margin-bottom: 15px;font-size: 3em;font-weight: 400;text-transform: uppercase;}
 section .table-wrapper {position: relative;overflow: hidden;}
 section .no-break {page-break-inside: avoid;}
-section table {width: 100%;margin-bottom: -20px;table-layout: fixed;border-collapse: separate;border-spacing: 5px 20px;}
+section table {width: 100%;margin-bottom: -20px;table-layout: fixed;border-collapse: separate;border-spacing: 1px 20px;}
 section table .no {width: 10px;}
 section table .desc {width: 55%;}
 section table .qty, section table .unit, section table .total {width: 15%;}
 section table tbody.head {border-color: inherit;}
 section table tbody.head th {text-align: center;color: white;font-weight: bold;text-transform: uppercase;}
-section table tbody.head th {padding: 15px 0 0 0;background: #BDB9B9;}
+section table tbody.head th {padding: 15px 0 0 0;background: #2A8EAC;}
 section table tbody.head th.desc {width: 115px;margin-left: -110px;}
 section table tbody.body td {padding: 15px 10px 0 10px;background: #F3F3F3;text-align: center;}
 section table tbody.body .no {background-color: #2A8EAC;color: #ffffff;font-size: 1.66666666666667em;font-weight: 600;}
@@ -44,7 +44,7 @@ section table tbody.body .total {color: #2A8EAC;font-weight: 600;}
 section table tbody.body tr.total td {padding: 5px 10px;background-color: transparent;border: none;color: #777777;text-align: right;}
 section table tbody.body tr.total .empty {background: white;}
 section table tbody.body tr.total .total {font-size: 1.18181818181818em;font-weight: 600;color: #2A8EAC;}
-section table.grand-total {margin-top: 40px;margin-bottom: 0;border-collapse: collapse;border-spacing: 0px 0px;margin-bottom: 40px;}
+section table.grand-total {margin-top: 40px;margin-bottom: 0;border-collapse: separate;border-spacing: 1px 1px;margin-bottom: 40px;}
 section table.grand-total tbody td {padding: 10px;background-color: #2A8EAC;color: #ffffff;font-weight: bold;text-align: right;}
 section table.grand-total tbody td.no, section table.grand-total tbody td.desc, section table.grand-total tbody td.qty {background-color: transparent;}
 section table.grand-total tbody td.grand-total {font-size: 1.16666666666667em;font-weight: bold;background-color: #21BCEA;padding: 10px 5px;}
