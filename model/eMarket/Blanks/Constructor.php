@@ -56,7 +56,9 @@ class Constructor {
      */
     public function mpdf() {
         if (!$this->mpdf) {
-            $this->mpdf = new Mpdf();
+            $this->mpdf = new Mpdf([
+                'default_font' => 'freesans'
+            ]);
         }
         return $this->mpdf;
     }
