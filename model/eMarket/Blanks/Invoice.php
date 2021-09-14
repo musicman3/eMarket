@@ -23,7 +23,7 @@ use \Mpdf\Mpdf;
  * @license GNU GPL v.3.0
  * 
  */
-class Constructor {
+class Invoice {
 
     private $mpdf = FALSE;
     private $order_data = FALSE;
@@ -33,7 +33,7 @@ class Constructor {
      *
      */
     function __construct() {
-        $this->authorize();
+        $this->createBlank();
     }
 
     /**
@@ -85,7 +85,7 @@ class Constructor {
             'invoice_id' => $this->orderData('id'),
             'invoice_email' => $this->orderData('email')
         ];
-        $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice/default.php');
+        $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
         return $html;
     }
 

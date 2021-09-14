@@ -12,7 +12,7 @@ use eMarket\Core\{
 <!DOCTYPE html>
 <html>
     <head>
-        <style type="text/css"><?php require_once('default.css') ?></style>
+        <style type="text/css"><?php require_once('invoice.css') ?></style>
         <title>eMarket invoice</title>
     </head>
     <body>
@@ -38,7 +38,7 @@ use eMarket\Core\{
                     <p>INVOICE TO:</p>
                     <p>John Doe</p>
                     <p>796 Silver Harbour,<br>TX 79273, US</p>
-                    <a href="mailto:john@example.com">john@example.com</a>
+                    <a href="mailto:<?php echo Valid::inPostJson('invoice_email') ?>"><?php echo Valid::inPostJson('invoice_email') ?></a>
                 </div>
                 <div class="data right">
                     <div class="title">Invoice 3-2-1</div>

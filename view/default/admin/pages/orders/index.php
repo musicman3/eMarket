@@ -94,6 +94,7 @@ require_once('modal/index.php')
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
                                         <form id="form_invoice" name="form_invoice" action="/services/blanks/" method="GET">
+                                            <input hidden name="type" value="invoice">
                                             <input hidden name="invoice_id" value="<?php echo Pages::$table['line']['id'] ?>">
                                             <button type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"></button>
                                         </form>

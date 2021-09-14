@@ -13,7 +13,7 @@ use eMarket\Core\{
     Settings
 };
 
-require_once(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice/default.php');
+require_once(ROOT . '/view/' . Settings::template() . '/admin/blanks/invoice.php');
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(ROOT . '/model/end.php');
