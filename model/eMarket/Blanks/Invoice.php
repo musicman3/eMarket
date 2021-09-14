@@ -15,7 +15,7 @@ use eMarket\Core\{
 use \Mpdf\Mpdf;
 
 /**
- * Constructor
+ * Invoice
  *
  * @package Blanks
  * @author eMarket Team
