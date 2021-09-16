@@ -16,13 +16,10 @@ body .clearfix:after {content: "";display: table;clear: both;}
 body .left {float: left;}
 body .right {float: right;}
 body .helper {height: 100%;}
-header {height: 40px;margin-top: 20px;margin-bottom: 40px;padding: 0px 5px 0;}
-header figure {float: left;width: 40px;}
-header figure img {height: 40px;}
-header .company-info {color: #495057;margin-left: 65px;}
+header {height: 40px;margin-top: 20px;margin-bottom: 20px;padding: 0px 5px 0;text-align: right;}
+header .company-info {color: #495057;}
 header .company-info .title {margin-bottom: 5px;color: #087990;font-weight: bold;font-size: 2em;}
-header .company-info .line {display: inline-block;height: 9px;margin: 0 4px;border-left: 1px solid #087990;}
-section .details {min-width: 500px;margin-bottom: 40px;padding: 10px 35px;background-color: #087990;color: #ffffff;}
+section .details {min-width: 500px;margin-bottom: 25px;padding: 10px 35px;background-color: #087990;color: #ffffff;}
 section .details .client {width: 50%;line-height: 16px;}
 section .details .client, section .details .date {font-weight: bold;}
 section .details .data {width: 50%;text-align: right;}

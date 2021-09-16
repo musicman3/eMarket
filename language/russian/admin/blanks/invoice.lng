@@ -7,3 +7,5 @@
 
 ;INVOICE
 blanks_invoice_to = Счет для:
+blanks_invoice_company_name = ООО "Рога и копыта"
+blanks_invoice_company_data = 455 Foggy Heights, AZ 85004, US

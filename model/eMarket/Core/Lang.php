@@ -59,8 +59,8 @@ final class Lang {
      */
     public static function path() {
         
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/blanks/') && Valid::inGET('lang_dir')) {
-            return Valid::inGET('lang_dir');
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/blanks/')) {
+            return 'admin';
         }
         return Settings::path();
         
