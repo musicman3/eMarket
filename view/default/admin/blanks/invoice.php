@@ -35,7 +35,7 @@ use eMarket\Core\{
         <section>
             <div class="details clearfix">
                 <div class="client left">
-                    <p>INVOICE TO:</p>
+                    <p><?php echo Valid::inPostJson('invoice_to') ?></p>
                     <p>John Doe</p>
                     <p>796 Silver Harbour,<br>TX 79273, US</p>
                     <a href="mailto:<?php echo Valid::inPostJson('invoice_email') ?>"><?php echo Valid::inPostJson('invoice_email') ?></a>

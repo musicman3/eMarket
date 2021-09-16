@@ -53,6 +53,20 @@ final class Lang {
     }
 
     /**
+     * Current branch (admin/catalog/install)
+     *
+     * @return string
+     */
+    public static function path() {
+        
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/blanks/') && Valid::inGET('lang_dir')) {
+            return Valid::inGET('lang_dir');
+        }
+        return Settings::path();
+        
+    }
+
+    /**
      * Including and parsing language files
      *
      * @param string $default_language Default language
@@ -66,7 +80,7 @@ final class Lang {
         }
 
         if ($marker == null) {
-            $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . Settings::path());
+            $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . self::path());
 
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
             $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');

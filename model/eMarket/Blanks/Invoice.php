@@ -83,7 +83,8 @@ class Invoice {
     public function html() {
         $data = [
             'invoice_id' => $this->orderData('id'),
-            'invoice_email' => $this->orderData('email')
+            'invoice_email' => $this->orderData('email'),
+            'invoice_to' => lang('blanks_invoice_to'),
         ];
         $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
         return $html;

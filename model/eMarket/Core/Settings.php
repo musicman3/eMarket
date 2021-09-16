@@ -34,6 +34,7 @@ class Settings {
     public static $js_handler = FALSE;
     public static $js_modules_handler = FALSE;
     public static $session_expr_time = FALSE;
+    public static $path = FALSE;
 
     /**
      * Name of current template
@@ -114,14 +115,14 @@ class Settings {
                 self::$js_handler = $path;
             }
         }
-        
+
         if (Settings::path() == 'catalog') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
                 self::$js_handler = $path;
             }
         }
-        
+
         if (self::path() == 'install') {
             $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
@@ -214,7 +215,7 @@ class Settings {
         }
         $path = HTTP_SERVER . $path_temp;
 
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), '?route') == true) {
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), '?route')) {
             $path_temp = HTTP_SERVER . str_replace('/?route', '?route', Valid::inSERVER('REQUEST_URI'));
             $path = str_replace('index.php', '', $path_temp);
         }
@@ -229,15 +230,17 @@ class Settings {
      */
     public static function path() {
 
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/') == true) {
-            $path = 'admin';
-        } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/install/') == true) {
-            $path = 'install';
-        } else {
-            $path = 'catalog';
+        if (self::$path == FALSE) {
+            if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
+                self::$path = 'admin';
+            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/install/')) {
+                self::$path = 'install';
+            } else {
+                self::$path = 'catalog';
+            }
         }
 
-        return $path;
+        return self::$path;
     }
 
     /**
