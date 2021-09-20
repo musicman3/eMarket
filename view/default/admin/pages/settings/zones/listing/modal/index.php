@@ -18,7 +18,7 @@ use eMarket\Admin\ZonesListing;
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="form_add" name="form_add" action="javascript:void(null);">
+            <form id="form_add" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
 
                 <div class="modal-footer">
                     <input hidden name="route" value="settings/zones/listing">
@@ -61,7 +61,7 @@ use eMarket\Admin\ZonesListing;
                     </span>
 
                     <button class="btn btn-primary btn-sm bi-x-circle" type="button" data-bs-dismiss="modal"> <?php echo lang('cancel') ?></button>
-                    <button onclick="Ajax.callAdd()" class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                 </div>
 
             </form>

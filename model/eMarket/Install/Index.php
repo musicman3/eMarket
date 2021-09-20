@@ -62,6 +62,21 @@ class Index {
     }
 
     /**
+     * PHP ini_get compare
+     *
+     * @param string $ext Extension
+     * @param string $val Value
+     * @return string bootstrap class
+     */
+    public function phpIniGet($ext, $val) {
+        if (ini_get($ext) < $val) {
+            return 'text-danger bi-x-lg';
+        } else {
+            return 'text-success bi-check-lg';
+        }
+    }
+
+    /**
      * PHP version compare
      *
      * @return string bootstrap class

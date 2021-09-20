@@ -6,6 +6,19 @@
 [admin-blanks]
 
 ;INVOICE
+blanks_invoice_title = Счет
 blanks_invoice_to = Счет для:
 blanks_invoice_company_name = ООО "Рога и копыта"
 blanks_invoice_company_data = 455 Foggy Heights, AZ 85004, US
+blanks_invoice_company_contacts = (602) 519-0450 | company@example.com
+blanks_invoice_description = Наименование
+blanks_invoice_quantity = Количество
+blanks_invoice_price = Цена
+blanks_invoice_amount = Сумма
+blanks_invoice_no = №
+blanks_invoice_subtotal = СТОИМОСТЬ:
+blanks_invoice_estimated_taxes  = НАЛОГИ:
+blanks_invoice_shipping  = ДОСТАВКА:
+blanks_invoice_total = ИТОГО:
+blanks_invoice_thank = Спасибо за заказ!
+blanks_invoice_end = Счет создан на компьютере и действителен без подписи и печати.

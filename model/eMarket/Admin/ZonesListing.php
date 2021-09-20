@@ -71,11 +71,11 @@ class ZonesListing {
 
             Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
 
-            if (empty(Valid::inPOST('multiselect')) == FALSE) {
+            if (Valid::inPOST('multiselect')) {
                 $multiselect = Func::arrayExplode(Valid::inPOST('multiselect'), '-');
-                for ($x = 0; $x < count($multiselect); $x++) {
+                foreach ($multiselect as $value) {
                     Pdo::action("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [
-                        $multiselect[$x][0], $multiselect[$x][1], self::$zones_id
+                        $value[0], $value[1], self::$zones_id
                     ]);
                 }
             }

@@ -13,7 +13,7 @@ use eMarket\Core\{
 <html>
     <head>
         <style type="text/css"><?php require_once('invoice.css') ?></style>
-        <title>eMarket invoice</title>
+        <title><?php echo Valid::inPostJson('invoice_title') ?></title>
     </head>
     <body>
         <header class="clearfix">
@@ -21,7 +21,7 @@ use eMarket\Core\{
                 <div class="company-info">
                     <h2 class="title"><?php echo Valid::inPostJson('invoice_company_name') ?></h2>
                     <div><?php echo Valid::inPostJson('invoice_company_data') ?></div>
-                    <div>(602) 519-0450 | company@example.com</div>
+                    <div><?php echo Valid::inPostJson('invoice_company_contacts') ?></div>
                 </div>
             </div>
         </header>
@@ -44,11 +44,11 @@ use eMarket\Core\{
                     <table>
                         <tbody class="head">
                             <tr class="head">
-                                <th class="no">№</th>
-                                <th class="desc">Description</th>
-                                <th class="qty">Quantity</th>
-                                <th class="unit">Unit price</th>
-                                <th class="total">Total</th>
+                                <th class="no"><?php echo Valid::inPostJson('invoice_no') ?></th>
+                                <th class="desc"><?php echo Valid::inPostJson('invoice_description') ?></th>
+                                <th class="qty"><?php echo Valid::inPostJson('invoice_quantity') ?></th>
+                                <th class="unit"><?php echo Valid::inPostJson('invoice_price') ?></th>
+                                <th class="total"><?php echo Valid::inPostJson('invoice_amount') ?></th>
                             </tr>
                         </tbody>
                         <tbody class="body">
@@ -80,24 +80,23 @@ use eMarket\Core\{
                     <table class="grand-total">
                         <tbody>
                             <tr>
-                                <td class="no"></td>
                                 <td class="desc"></td>
-                                <td class="qty"></td>
-                                <td class="unit">SUBTOTAL:</td>
+                                <td class="unit"><?php echo Valid::inPostJson('invoice_subtotal') ?></td>
                                 <td class="total">$5,200.00</td>
                             </tr>
                             <tr>
-                                <td class="no"></td>
                                 <td class="desc"></td>
-                                <td class="qty"></td>
-                                <td class="unit">AX 25%:</td>
-                                <td class="total">$1,300.00</td>
+                                <td class="unit"><?php echo Valid::inPostJson('invoice_estimated_taxes') ?></td>
+                                <td class="total">Стоимость товаров указана с учетом всех налогов</td>
                             </tr>
                             <tr>
-                                <td class="no"></td>
                                 <td class="desc"></td>
-                                <td class="qty"></td>
-                                <td class="grand-total">TOTAL:</td>
+                                <td class="unit"><?php echo Valid::inPostJson('invoice_shipping') ?></td>
+                                <td class="total">$20.00</td>
+                            </tr>
+                            <tr>
+                                <td class="desc"></td>
+                                <td class="grand-total"><?php echo Valid::inPostJson('invoice_total') ?></td>
                                 <td class="grand-total">$6,500.00</td>
                             </tr>
                         </tbody>
@@ -108,12 +107,12 @@ use eMarket\Core\{
 
         <footer>
             <div class="container">
-                <div class="thanks">Thank you!</div>
+                <div class="thanks"><?php echo Valid::inPostJson('invoice_thank') ?></div>
                 <div class="notice">
                     <div>NOTICE:</div>
                     <div>A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
                 </div>
-                <div class="end">Invoice was created on a computer and is valid without the signature and seal.</div>
+                <div class="end"><?php echo Valid::inPostJson('invoice_end') ?></div>
             </div>
         </footer>
 

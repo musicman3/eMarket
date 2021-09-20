@@ -186,6 +186,10 @@
                                         <div class="col">SPL:</div>
                                         <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('SPL') ?>"></span></div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col">max_input_vars:</div>
+                                        <div class="col text-end"><?php echo ini_get('max_input_vars') ?> <span class="<?php echo $eMarket->phpIniGet('max_input_vars', 5000) ?>"></span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

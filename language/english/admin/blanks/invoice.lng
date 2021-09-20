@@ -6,6 +6,19 @@
 [admin-blanks]
 
 ;INVOICE
+blanks_invoice_title = Invoice
 blanks_invoice_to = Invoice to:
 blanks_invoice_company_name = Company name
 blanks_invoice_company_data = 455 Foggy Heights, AZ 85004, US
+blanks_invoice_company_contacts = (602) 519-0450 | company@example.com
+blanks_invoice_description = Description
+blanks_invoice_quantity = Quantity
+blanks_invoice_price = Price
+blanks_invoice_amount = Amount
+blanks_invoice_no = No.
+blanks_invoice_subtotal = SUBTOTAL:
+blanks_invoice_estimated_taxes  = TAXES:
+blanks_invoice_shipping  = SHIPPING:
+blanks_invoice_total = TOTAL:
+blanks_invoice_thank = Thank you!
+blanks_invoice_end = Invoice was created on a computer and is valid without the signature and seal.
