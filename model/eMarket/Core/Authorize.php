@@ -29,6 +29,7 @@ class Authorize {
 
     public static $customer;
     public static $csrf_token = FALSE;
+    public static $csrf_token_catalog = FALSE;
 
     /**
      * Constructor
@@ -80,12 +81,17 @@ class Authorize {
      */
     public static function csrfToken() {
 
-        if (self::$csrf_token == FALSE) {
+        if (Settings::path() == 'admin' && self::$csrf_token == FALSE) {
             self::$csrf_token = Func::getToken(32);
-            $_SESSION['csrf_token'] = self::$csrf_token;
+            $_SESSION['csrf_token_admin'] = self::$csrf_token;
+            return self::$csrf_token;
         }
 
-        return self::$csrf_token;
+        if (Settings::path() == 'catalog' && self::$csrf_token_catalog == FALSE) {
+            self::$csrf_token_catalog = Func::getToken(32);
+            $_SESSION['csrf_token_catalog'] = self::$csrf_token_catalog;
+            return self::$csrf_token_catalog;
+        }
     }
 
     /**
@@ -94,14 +100,31 @@ class Authorize {
      */
     public function csrfVerification() {
 
-        if (Valid::isPOST() == TRUE) {
-            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token']) {
-                exit;
+        if (Settings::path() == 'admin') {
+
+            if (Valid::isPOST() == TRUE) {
+                if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_admin']) {
+                    exit;
+                }
+            }
+            if (Valid::isPostJson() == TRUE) {
+                if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_admin']) {
+                    exit;
+                }
             }
         }
-        if (Valid::isPostJson() == TRUE) {
-            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token']) {
-                exit;
+
+        if (Settings::path() == 'catalog') {
+
+            if (Valid::isPOST() == TRUE) {
+                if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_catalog']) {
+                    exit;
+                }
+            }
+            if (Valid::isPostJson() == TRUE) {
+                if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_catalog']) {
+                    exit;
+                }
             }
         }
     }
