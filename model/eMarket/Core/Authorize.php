@@ -81,15 +81,19 @@ class Authorize {
      */
     public static function csrfToken() {
 
-        if (Settings::path() == 'admin' && self::$csrf_token_admin == FALSE) {
-            self::$csrf_token_admin = Func::getToken(32);
-            $_SESSION['csrf_token_admin'] = self::$csrf_token_admin;
+        if (Settings::path() == 'admin') {
+            if (self::$csrf_token_admin == FALSE) {
+                self::$csrf_token_admin = Func::getToken(32);
+                $_SESSION['csrf_token_admin'] = self::$csrf_token_admin;
+            }
             return self::$csrf_token_admin;
         }
 
-        if (Settings::path() == 'catalog' && self::$csrf_token_catalog == FALSE) {
-            self::$csrf_token_catalog = Func::getToken(32);
-            $_SESSION['csrf_token_catalog'] = self::$csrf_token_catalog;
+        if (Settings::path() == 'catalog') {
+            if (self::$csrf_token_catalog == FALSE) {
+                self::$csrf_token_catalog = Func::getToken(32);
+                $_SESSION['csrf_token_catalog'] = self::$csrf_token_catalog;
+            }
             return self::$csrf_token_catalog;
         }
     }
