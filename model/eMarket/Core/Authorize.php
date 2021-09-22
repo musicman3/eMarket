@@ -28,7 +28,7 @@ use \eMarket\Catalog\{
 class Authorize {
 
     public static $customer;
-    public static $csrf_token = FALSE;
+    public static $csrf_token_admin = FALSE;
     public static $csrf_token_catalog = FALSE;
 
     /**
@@ -81,10 +81,10 @@ class Authorize {
      */
     public static function csrfToken() {
 
-        if (Settings::path() == 'admin' && self::$csrf_token == FALSE) {
-            self::$csrf_token = Func::getToken(32);
-            $_SESSION['csrf_token_admin'] = self::$csrf_token;
-            return self::$csrf_token;
+        if (Settings::path() == 'admin' && self::$csrf_token_admin == FALSE) {
+            self::$csrf_token_admin = Func::getToken(32);
+            $_SESSION['csrf_token_admin'] = self::$csrf_token_admin;
+            return self::$csrf_token_admin;
         }
 
         if (Settings::path() == 'catalog' && self::$csrf_token_catalog == FALSE) {
