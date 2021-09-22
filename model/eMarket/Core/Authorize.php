@@ -100,31 +100,14 @@ class Authorize {
      */
     public function csrfVerification() {
 
-        if (Settings::path() == 'admin') {
-
-            if (Valid::isPOST() == TRUE) {
-                if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_admin']) {
-                    exit;
-                }
-            }
-            if (Valid::isPostJson() == TRUE) {
-                if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_admin']) {
-                    exit;
-                }
+        if (Valid::isPOST() == TRUE) {
+            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+                exit;
             }
         }
-
-        if (Settings::path() == 'catalog') {
-
-            if (Valid::isPOST() == TRUE) {
-                if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_catalog']) {
-                    exit;
-                }
-            }
-            if (Valid::isPostJson() == TRUE) {
-                if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_catalog']) {
-                    exit;
-                }
+        if (Valid::isPostJson() == TRUE) {
+            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+                exit;
             }
         }
     }
