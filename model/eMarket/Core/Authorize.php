@@ -149,7 +149,7 @@ class Authorize {
     /**
      * Session authorization for Admin Panel
      *
-     * @return string TRUE
+     * @return bool TRUE
      */
     public function sessionAdmin() {
 
@@ -186,6 +186,7 @@ class Authorize {
     /**
      * Session authorization for Catalog
      *
+     * @return bool FALSE
      */
     public function sessionCatalog() {
 
