@@ -153,36 +153,33 @@ class Authorize {
      */
     public function sessionAdmin() {
 
-        if (Settings::path() == 'admin' && Settings::titleDir() != 'login') {
+        $this->demoModeInit();
+        $this->dashboardCheck();
 
-            $this->demoModeInit();
-            $this->dashboardCheck();
+        if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
+            unset($_SESSION['login']);
+            unset($_SESSION['pass']);
+            unset($_SESSION['session_start']);
+            $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
+            header('Location: ?route=login');
+            exit;
+        }
+        $_SESSION['session_start'] = time();
 
-            if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
-                unset($_SESSION['login']);
-                unset($_SESSION['pass']);
-                unset($_SESSION['session_start']);
-                $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
-                header('Location: ?route=login');
-                exit;
-            }
-            $_SESSION['session_start'] = time();
-
-            if (!isset($_SESSION['login'])) {
-                unset($_SESSION['login']);
-                unset($_SESSION['pass']);
-                $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
-                header('Location: ?route=login');
-                exit;
-            } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-                $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getValue("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
-                            $_SESSION['login'], $_SESSION['pass']
-                ]);
-                return TRUE;
-            } else {
-                $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
-                return TRUE;
-            }
+        if (!isset($_SESSION['login'])) {
+            unset($_SESSION['login']);
+            unset($_SESSION['pass']);
+            $_SESSION['session_page'] = Valid::inSERVER('REQUEST_URI');
+            header('Location: ?route=login');
+            exit;
+        } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
+            $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getValue("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
+                        $_SESSION['login'], $_SESSION['pass']
+            ]);
+            return TRUE;
+        } else {
+            $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
+            return TRUE;
         }
     }
 
@@ -192,27 +189,24 @@ class Authorize {
      */
     public function sessionCatalog() {
 
-        if (Settings::path() == 'catalog') {
+        if (isset($_SESSION['email_customer'])) {
+            $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+        } else {
+            $customer_data['status'] = 0;
+        }
 
-            if (isset($_SESSION['email_customer'])) {
-                $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
-            } else {
-                $customer_data['status'] = 0;
-            }
+        if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() OR $customer_data['status'] == 0) {
+            unset($_SESSION['password_customer']);
+            unset($_SESSION['email_customer']);
+            unset($_SESSION['customer_session_start']);
+            return FALSE;
+        }
+        $_SESSION['customer_session_start'] = time();
 
-            if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() OR $customer_data['status'] == 0) {
-                unset($_SESSION['password_customer']);
-                unset($_SESSION['email_customer']);
-                unset($_SESSION['customer_session_start']);
-                return FALSE;
-            }
-            $_SESSION['customer_session_start'] = time();
-
-            if (!isset($_SESSION['email_customer'])) {
-                self::$customer = FALSE;
-            } else {
-                self::$customer = $customer_data;
-            }
+        if (!isset($_SESSION['email_customer'])) {
+            self::$customer = FALSE;
+        } else {
+            self::$customer = $customer_data;
         }
     }
 
