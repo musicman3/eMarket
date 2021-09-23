@@ -8,7 +8,6 @@
 namespace eMarket\Blanks;
 
 use eMarket\Core\{
-    Authorize,
     Pdo,
     Valid
 };

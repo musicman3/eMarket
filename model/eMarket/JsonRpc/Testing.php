@@ -33,7 +33,7 @@ class Testing {
     /**
      * Testing
      *
-     * Note: successful jsonRPC request
+     * Note: successful jsonRPC request to /services/jsonrpc/
 
       'jsonrpc' => '2.0',
       'method' => 'Testing',
