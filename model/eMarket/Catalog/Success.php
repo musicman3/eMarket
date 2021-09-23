@@ -10,6 +10,7 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Ecb,
     Interfaces,
+    Func,
     Messages,
     Pdo,
     Products,
@@ -231,9 +232,9 @@ class Success {
      */
     public function save() {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
-                . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?",
+                . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [$_SESSION['email_customer'], json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
-                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, date("Y-m-d H:i:s")]);
+                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, date("Y-m-d H:i:s"), Func::getToken(64)]);
 
         unset($_SESSION['cart']);
     }

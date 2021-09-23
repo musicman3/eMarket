@@ -37,20 +37,6 @@ class Invoice {
     }
 
     /**
-     * Authorize
-     *
-     */
-    private function authorize() {
-        $authorize = FALSE;
-        if (Authorize::$customer || isset($_SESSION['login'])) {
-            $authorize = TRUE;
-        }
-        if (!$authorize) {
-            exit;
-        }
-    }
-
-    /**
      * Header
      *
      */
@@ -70,9 +56,16 @@ class Invoice {
      */
     private function orderData($name) {
         if (!$this->order_data) {
-            $this->order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inGET('invoice_id')])[0];
+            $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [Valid::inGET('uid')]);
+            if (count($order_data) > 0) {
+                $this->order_data = $order_data[0];
+            }
         }
-        return $this->order_data[$name];
+        if ($this->order_data) {
+            return $this->order_data[$name];
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -81,28 +74,32 @@ class Invoice {
      * @return string HTML data
      */
     private function html() {
-        $data = [
-            'invoice_id' => $this->orderData('id'),
-            'invoice_email' => $this->orderData('email'),
-            'invoice_title' => lang('blanks_invoice_title'),
-            'invoice_to' => lang('blanks_invoice_to'),
-            'invoice_company_name' => lang('blanks_invoice_company_name'),
-            'invoice_company_data' => lang('blanks_invoice_company_data'),
-            'invoice_company_contacts' => lang('blanks_invoice_company_contacts'),
-            'invoice_description' => lang('blanks_invoice_description'),
-            'invoice_quantity' => lang('blanks_invoice_quantity'),
-            'invoice_price' => lang('blanks_invoice_price'),
-            'invoice_amount' => lang('blanks_invoice_amount'),
-            'invoice_no' => lang('blanks_invoice_no'),
-            'invoice_subtotal' => lang('blanks_invoice_subtotal'),
-            'invoice_estimated_taxes' => lang('blanks_invoice_estimated_taxes'),
-            'invoice_shipping' => lang('blanks_invoice_shipping'),
-            'invoice_total' => lang('blanks_invoice_total'),
-            'invoice_thank' => lang('blanks_invoice_thank'),
-            'invoice_end' => lang('blanks_invoice_end'),
-        ];
-        $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
-        return $html;
+        if ($this->orderData('id')) {
+            $data = [
+                'invoice_id' => $this->orderData('id'),
+                'invoice_email' => $this->orderData('email'),
+                'invoice_title' => lang('blanks_invoice_title'),
+                'invoice_to' => lang('blanks_invoice_to'),
+                'invoice_company_name' => lang('blanks_invoice_company_name'),
+                'invoice_company_data' => lang('blanks_invoice_company_data'),
+                'invoice_company_contacts' => lang('blanks_invoice_company_contacts'),
+                'invoice_description' => lang('blanks_invoice_description'),
+                'invoice_quantity' => lang('blanks_invoice_quantity'),
+                'invoice_price' => lang('blanks_invoice_price'),
+                'invoice_amount' => lang('blanks_invoice_amount'),
+                'invoice_no' => lang('blanks_invoice_no'),
+                'invoice_subtotal' => lang('blanks_invoice_subtotal'),
+                'invoice_estimated_taxes' => lang('blanks_invoice_estimated_taxes'),
+                'invoice_shipping' => lang('blanks_invoice_shipping'),
+                'invoice_total' => lang('blanks_invoice_total'),
+                'invoice_thank' => lang('blanks_invoice_thank'),
+                'invoice_end' => lang('blanks_invoice_end'),
+            ];
+            $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
+            return $html;
+        } else {
+            return 'Error';
+        }
     }
 
     /**
@@ -110,7 +107,6 @@ class Invoice {
      *
      */
     private function createBlank() {
-        $this->authorize();
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');
     }

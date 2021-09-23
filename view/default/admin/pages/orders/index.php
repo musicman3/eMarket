@@ -95,7 +95,7 @@ require_once('modal/index.php')
                                     <div class="gap-2 d-flex justify-content-end">
                                         <form id="form_invoice" name="form_invoice" action="/services/blanks/" method="GET">
                                             <input hidden name="type" value="invoice">
-                                            <input hidden name="invoice_id" value="<?php echo Pages::$table['line']['id'] ?>">
+                                            <input hidden name="uid" value="<?php echo Pages::$table['line']['uid'] ?>">
                                             <button type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"></button>
                                         </form>
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
