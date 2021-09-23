@@ -107,6 +107,9 @@ class Invoice {
      *
      */
     private function createBlank() {
+        if (!$this->html()) {
+            exit;
+        }
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');
     }
