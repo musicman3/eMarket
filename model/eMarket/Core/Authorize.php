@@ -65,7 +65,7 @@ class Authorize {
      *
      * @return bool TRUE/FALSE
      */
-    public function installVerify() {
+    private function installVerify() {
         if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') && file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
             return FALSE;
         } else {
@@ -91,7 +91,7 @@ class Authorize {
      * CSRF Verification
      *
      */
-    public function csrfVerification() {
+    private function csrfVerification() {
 
         if (Valid::isPOST() == TRUE) {
             if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
@@ -109,7 +109,7 @@ class Authorize {
      * Demo mode init
      *
      */
-    public function demoModeInit() {
+    private function demoModeInit() {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -125,7 +125,7 @@ class Authorize {
      * Dashboard check
      *
      */
-    public function dashboardCheck() {
+    private function dashboardCheck() {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -151,7 +151,7 @@ class Authorize {
      *
      * @return bool TRUE
      */
-    public function admin() {
+    private function admin() {
 
         $this->demoModeInit();
         $this->dashboardCheck();
@@ -188,7 +188,7 @@ class Authorize {
      *
      * @return bool FALSE
      */
-    public function catalog() {
+    private function catalog() {
 
         if (isset($_SESSION['email_customer'])) {
             $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];

@@ -26,7 +26,7 @@ class JsonRpc {
      * Constructor
      *
      */
-    function __construct() {
+    public function __construct() {
         $this->loadData();
     }
 
@@ -35,7 +35,7 @@ class JsonRpc {
      * 
      * @return array
      */
-    public function loadData() {
+    private function loadData() {
         if (Valid::inPostJson('jsonrpc') == '2.0' && Valid::inPostJson('method')) {
             $namespace = '\eMarket\JsonRpc\\' . Valid::inPostJson('method');
             new $namespace;

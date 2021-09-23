@@ -32,7 +32,7 @@ class Invoice {
      * Constructor
      *
      */
-    function __construct() {
+    public function __construct() {
         $this->createBlank();
     }
 
@@ -40,7 +40,7 @@ class Invoice {
      * Authorize
      *
      */
-    public function authorize() {
+    private function authorize() {
         $authorize = FALSE;
         if (Authorize::$customer || isset($_SESSION['login'])) {
             $authorize = TRUE;
@@ -54,7 +54,7 @@ class Invoice {
      * Header
      *
      */
-    public function mpdf() {
+    private function mpdf() {
         if (!$this->mpdf) {
             $this->mpdf = new Mpdf([
                 'default_font' => 'freesans'
@@ -68,7 +68,7 @@ class Invoice {
      * @param string $name Orders column name
      * @return string Output data
      */
-    public function orderData($name) {
+    private function orderData($name) {
         if (!$this->order_data) {
             $this->order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inGET('invoice_id')])[0];
         }
@@ -80,7 +80,7 @@ class Invoice {
      *
      * @return string HTML data
      */
-    public function html() {
+    private function html() {
         $data = [
             'invoice_id' => $this->orderData('id'),
             'invoice_email' => $this->orderData('email'),
@@ -109,7 +109,7 @@ class Invoice {
      * Create blank
      *
      */
-    public function createBlank() {
+    private function createBlank() {
         $this->authorize();
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');
@@ -121,7 +121,7 @@ class Invoice {
      * @param array $data (request data)
      * @param string $host (request host)
      */
-    public function curl($data, $host) {
+    private function curl($data, $host) {
         $curl = curl_init($host);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
