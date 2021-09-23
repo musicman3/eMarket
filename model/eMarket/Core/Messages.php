@@ -46,7 +46,7 @@ class Messages {
      * @param string $page message page
      * @param string $action (add/edit/delete/cut and etc)
      */
-    public static function ActionLogging($type, $page = null, $action = null) {
+    public static function logging($type, $page = null, $action = null) {
         if (Settings::path() == 'admin') {
             $log = new Logger('eMarket');
             $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
@@ -85,10 +85,10 @@ class Messages {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {
                 $_SESSION['message'] = [$class, $message, $time, $start, date('H:i')];
-                self::ActionLogging($class, '?route=' . Valid::inGET('route'), $action);
+                self::logging($class, '?route=' . Valid::inGET('route'), $action);
             } else {
                 $_SESSION['message'] = [$class, $message, 3000, $start, date('H:i')];
-                self::ActionLogging($class, '?route=' . Valid::inGET('route'), $action);
+                self::logging($class, '?route=' . Valid::inGET('route'), $action);
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
                 self::alert();
