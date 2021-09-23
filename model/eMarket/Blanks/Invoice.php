@@ -98,7 +98,7 @@ class Invoice {
             $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
             return $html;
         } else {
-            return 'Error';
+            return '';
         }
     }
 
