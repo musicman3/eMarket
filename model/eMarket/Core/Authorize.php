@@ -44,13 +44,13 @@ class Authorize {
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login' && !$exceptions) {
             session_start();
             $this->csrfVerification();
-            $this->sessionAdmin();
+            $this->admin();
         }
 
         if (Settings::path() == 'catalog' && !$exceptions) {
             session_start();
             $this->csrfVerification();
-            $this->sessionCatalog();
+            $this->catalog();
             new Cart();
         }
 
@@ -151,7 +151,7 @@ class Authorize {
      *
      * @return bool TRUE
      */
-    public function sessionAdmin() {
+    public function admin() {
 
         $this->demoModeInit();
         $this->dashboardCheck();
@@ -188,7 +188,7 @@ class Authorize {
      *
      * @return bool FALSE
      */
-    public function sessionCatalog() {
+    public function catalog() {
 
         if (isset($_SESSION['email_customer'])) {
             $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
