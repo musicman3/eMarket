@@ -52,13 +52,14 @@ class JsonRpc {
      * jsonRPC data for GET request
      *
      * @param string $id ID
+     * @param string $method Method
      * @param array $param param data
      * @return string jsonRPC data
      */
-    public static function encodeGetData($id, $param = []) {
+    public static function encodeGetData($id, $method, $param = []) {
         $data = urlencode(json_encode([
             'jsonrpc' => '2.0',
-            'method' => 'Invoice',
+            'method' => $method,
             'param' => $param,
             'id' => $id,
         ]));
