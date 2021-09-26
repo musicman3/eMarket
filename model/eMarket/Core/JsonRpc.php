@@ -54,7 +54,7 @@ class JsonRpc {
      * @param string $id ID
      * @param string $method Method
      * @param array $param param data
-     * @return string jsonRPC data
+     * @return string jsonRPC URL
      */
     public static function encodeGetData($id, $method, $param = []) {
         $data = urlencode(json_encode([
