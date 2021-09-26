@@ -63,7 +63,7 @@ class JsonRpc {
             'param' => $param,
             'id' => $id,
         ]));
-        return $data;
+        return '/services/jsonrpc/?request=' . $data;
     }
 
     /**
