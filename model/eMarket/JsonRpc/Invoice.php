@@ -5,11 +5,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-namespace eMarket\Blanks;
+namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
-    Pdo,
-    Valid
+    Pdo
 };
 use \Mpdf\Mpdf;
 
@@ -22,10 +21,11 @@ use \Mpdf\Mpdf;
  * @license GNU GPL v.3.0
  * 
  */
-class Invoice {
+class Invoice extends \eMarket\Core\JsonRpc {
 
     private $mpdf = FALSE;
     private $order_data = FALSE;
+    private $uid = FALSE;
 
     /**
      * Constructor
@@ -55,7 +55,7 @@ class Invoice {
      */
     private function orderData($name) {
         if (!$this->order_data) {
-            $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [Valid::inGET('uid')]);
+            $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [$this->uid]);
             if (count($order_data) > 0) {
                 $this->order_data = $order_data[0];
             }
@@ -106,40 +106,12 @@ class Invoice {
      *
      */
     private function createBlank() {
+        $this->uid = $this->decodeGetData('id');
         if (!$this->html()) {
-            exit;
+            $this->error(-32000, 'Incorrect ID', $this->uid);
         }
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');
-    }
-
-    /**
-     * Curl
-     *
-     * @param array $data (request data)
-     * @param string $host (request host)
-     */
-    private function curl($data, $host) {
-        $curl = curl_init($host);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_VERBOSE, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSLVERSION, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']);
-        $request_string = json_encode($data);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
-        $response_string = curl_exec($curl);
-        if (curl_errno($curl)) {
-            return FALSE;
-        }
-        if (!empty($response_string)) {
-            return $response_string;
-        } else {
-            return FALSE;
-        }
     }
 
 }

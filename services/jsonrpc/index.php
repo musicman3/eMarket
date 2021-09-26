@@ -4,18 +4,13 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-error_reporting(-1);
-
-//AUTOLOAD FOR CLASSES
-require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
-
-use eMarket\Core\{
-    Tree
-};
-
-//AUTOLOAD FOR FUNCTION
-foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/library/php/functions/') as $path) {
-    require_once($path);
-}
+/* >-->-->-->  CONNECT PAGE START  <--<--<--< */
+require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
+/* ------------------------------------------ */
 
 $eMarket = new eMarket\Core\JsonRpc();
+$eMarket->loadData();
+
+/* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
+require_once(ROOT . '/model/end.php');
+/* ------------------------------------------ */

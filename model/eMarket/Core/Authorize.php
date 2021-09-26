@@ -37,7 +37,7 @@ class Authorize {
     public function __construct() {
         $exceptions = FALSE;
 
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/blanks/') == true) {
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/blanks/')) {
             $exceptions = 'blanks';
         }
 

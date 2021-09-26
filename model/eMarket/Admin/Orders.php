@@ -14,7 +14,6 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-
 use eMarket\Admin\HeaderMenu;
 
 /**
