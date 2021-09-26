@@ -8,6 +8,7 @@
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
+    JsonRpc,
     Pdo
 };
 use \Mpdf\Mpdf;
@@ -21,7 +22,7 @@ use \Mpdf\Mpdf;
  * @license GNU GPL v.3.0
  * 
  */
-class Invoice extends \eMarket\Core\JsonRpc {
+class Invoice extends JsonRpc {
 
     private $mpdf = FALSE;
     private $order_data = FALSE;
