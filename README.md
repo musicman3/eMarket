@@ -3,6 +3,9 @@
 
 [![N|Solid](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/emarket)
 
+![Twitter URL](https://img.shields.io/twitter/url?label=%40eMarketProject&style=social&url=https%3A%2F%2Ftwitter.com%2FeMarketProject)
+![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/eMarketStore?style=social)
+
 ---
 ### System requirements: 
   - OS Unix, Linux or Windows
