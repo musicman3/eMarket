@@ -93,12 +93,12 @@ class Authorize {
      */
     private function csrfVerification() {
 
-        if (Valid::isPOST() == TRUE) {
+        if (Valid::isPOST()) {
             if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
                 exit;
             }
         }
-        if (Valid::isPostJson() == TRUE) {
+        if (Valid::isPostJson()) {
             if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
                 exit;
             }
