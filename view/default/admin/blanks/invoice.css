@@ -23,7 +23,7 @@ section .details {min-width: 500px;margin-bottom: 25px;padding: 10px 35px;backgr
 section .details .client {width: 50%;line-height: 16px;}
 section .details .client, section .details .date {font-weight: bold;}
 section .details .data {width: 50%;text-align: right;}
-section .details .title {margin-bottom: 15px;font-size: 3em;font-weight: 400;text-transform: uppercase;}
+section .details .title {margin-bottom: 15px;font-size: 2.3em;font-weight: 400;text-transform: uppercase;}
 section .table-wrapper {position: relative;overflow: hidden;}
 section .no-break {page-break-inside: avoid;}
 section table {width: 100%;margin-bottom: -20px;table-layout: fixed;border-collapse: separate;border-spacing: 2px 2px;}

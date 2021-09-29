@@ -9,7 +9,8 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     JsonRpc,
-    Pdo
+    Pdo,
+    Settings
 };
 use \Mpdf\Mpdf;
 
@@ -78,8 +79,15 @@ class Invoice extends JsonRpc {
             $data = [
                 'invoice_id' => $this->orderData('id'),
                 'invoice_email' => $this->orderData('email'),
+                'invoice_date_purchased' => Settings::dateLocale($this->orderData('date_purchased')),
+                'invoice_customer_data' => json_decode($this->orderData('customer_data'), 1),
+                'invoice_customer_address_book' => json_decode(json_decode($this->orderData('customer_data'), 1)['address_book'], 1),
+                'invoice_data' => json_decode($this->orderData('invoice'), 1),
+                'invoice_order_total' => json_decode($this->orderData('order_total'), 1),
                 'invoice_title' => lang('blanks_invoice_title'),
                 'invoice_to' => lang('blanks_invoice_to'),
+                'invoice_name' => lang('blanks_invoice_name'),
+                'invoice_date_of' => lang('blanks_invoice_date_of'),
                 'invoice_company_name' => lang('blanks_invoice_company_name'),
                 'invoice_company_data' => lang('blanks_invoice_company_data'),
                 'invoice_company_contacts' => lang('blanks_invoice_company_contacts'),
@@ -94,6 +102,8 @@ class Invoice extends JsonRpc {
                 'invoice_total' => lang('blanks_invoice_total'),
                 'invoice_thank' => lang('blanks_invoice_thank'),
                 'invoice_end' => lang('blanks_invoice_end'),
+                'invoice_notice' => lang('blanks_invoice_notice'),
+                'invoice_notice_text' => lang('blanks_invoice_notice_text'),
             ];
             $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
             return $html;
