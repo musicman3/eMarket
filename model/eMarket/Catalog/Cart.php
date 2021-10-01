@@ -132,8 +132,7 @@ class Cart {
     public function jsonEchoShipping() {
 
         if (Valid::inPostJson('shipping_region_json')) {
-            $zones_id = Shipping::shippingZonesAvailable(Valid::inPostJson('shipping_region_json'));
-            Shipping::loadData($zones_id);
+            Shipping::loadData(Valid::inPostJson('shipping_region_json'));
 
             $INTERFACE = new Interfaces();
             $modules_data = $INTERFACE->load('shipping');

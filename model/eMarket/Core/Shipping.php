@@ -87,10 +87,11 @@ final class Shipping {
     /**
      * Loading data from shipping modules
      * 
-     * @param array $zones_id Data on available shipping zones for region
+     * @param array $region Data on available shipping zones for region
      */
-    public static function loadData($zones_id) {
-
+    public static function loadData($region) {
+        
+        $zones_id = self::shippingZonesAvailable($region);
         $modules_names = self::shippingModulesAvailable($zones_id);
 
         foreach ($modules_names as $name) {
