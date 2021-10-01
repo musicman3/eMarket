@@ -88,21 +88,15 @@ final class Shipping {
      * Loading data from shipping modules
      * 
      * @param array $zones_id Data on available shipping zones for region
-     * @return array
      */
     public static function loadData($zones_id) {
 
         $modules_names = self::shippingModulesAvailable($zones_id);
 
-        $modules_data = [];
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Core\Modules\Shipping\\' . ucfirst($name);
-            $load = $namespace::load($zones_id);
-            if ($load != FALSE) {
-                array_push($modules_data, $load);
-            }
+            $namespace::load($zones_id);
         }
-        return $modules_data;
     }
 
     /**

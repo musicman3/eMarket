@@ -76,7 +76,7 @@ class Update {
      *
      * @return array GitHub latest release data
      */
-    static function gitHubData() {
+    public static function gitHubData() {
         $connect = curl_init();
         curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: eMarket']);
@@ -102,7 +102,7 @@ class Update {
      *
      * @return array eMarket update data
      */
-    static function eMarketData() {
+    public static function eMarketData() {
         $data = [
             'jsonrpc' => '2.0',
             'method' => 'CheckVersion',
@@ -131,7 +131,7 @@ class Update {
      * @param array $data (request data)
      * @param string $host (request host)
      */
-    static function curl($data, $host) {
+    public static function curl($data, $host) {
         $curl = curl_init($host);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);

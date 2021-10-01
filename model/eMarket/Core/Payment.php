@@ -44,19 +44,15 @@ final class Payment {
      * Loading data from payment modules
      * 
      * @param array $input Data on available names of delivery modules
-     * @return array
      */
     public static function loadData($input) {
 
         $modules_names = self::paymentModulesAvailable($input);
 
-        $modules_data = [];
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Core\Modules\Payment\\' . ucfirst($name);
-            $load = $namespace::load();
-            array_push($modules_data, $load);
+            $namespace::load();
         }
-        return $modules_data;
     }
 
 }
