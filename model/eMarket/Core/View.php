@@ -41,7 +41,7 @@ class View {
     /**
      * View routing for admin
      *
-     * @return string $str (view routing)
+     * @return string|bool $str (view routing)
      */
     public static function routingAdmin() {
 
@@ -68,7 +68,7 @@ class View {
     /**
      * View routing for admin
      *
-     * @return string $str (view routing)
+     * @return string|bool $str (view routing)
      */
     public static function routingCatalog() {
 
