@@ -138,6 +138,7 @@ class Success {
 
             $data['admin'] = [
                 'name' => $admin_product_data['name'],
+                'id' => $admin_product_data['id'],
                 'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1, self::$primary_language),
                 'unit' => $admin_unit['unit'],
                 'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1, self::$primary_language),
@@ -148,6 +149,7 @@ class Success {
 
             $data['customer'] = [
                 'name' => $product_data['name'],
+                'id' => $admin_product_data['id'],
                 'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1),
                 'unit' => $unit['unit'],
                 'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1),

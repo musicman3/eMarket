@@ -238,6 +238,7 @@ all_pages_template = All pages
 
 ;ORDERS
 orders_total = Total
+orders_id = Product ID
 orders_status = Status
 orders_shipping = Shipping
 orders_client = Client

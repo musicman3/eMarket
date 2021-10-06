@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -27,9 +29,8 @@ class JsonRpc {
     /**
      * Loading data from Services
      * 
-     * @return array
      */
-    public function loadData() {
+    public function loadData(): void {
         if (Valid::inPostJson('jsonrpc') == '2.0' && Valid::inPostJson('method') && Valid::inPostJson('id')) {
             $namespace = '\eMarket\JsonRpc\\' . Valid::inPostJson('method');
             if (class_exists($namespace)) {
@@ -56,7 +57,7 @@ class JsonRpc {
      * @param array $param param data
      * @return string jsonRPC URL
      */
-    public static function encodeGetData($id, $method, $param = []) {
+    public static function encodeGetData(?string $id, string $method, array $param = []): string {
         $data = urlencode(json_encode([
             'jsonrpc' => '2.0',
             'method' => $method,
@@ -70,11 +71,11 @@ class JsonRpc {
      * jsonRPC data from GET request
      * 
      * @param string $name Name
-     * @return array jsonRPC data
+     * @return array|string jsonRPC data
      */
-    public function decodeGetData($name) {
+    public function decodeGetData(?string $name): array|string {
         if (!$this->decode_data) {
-            $this->decode_data = json_decode(urldecode(Valid::inGET('request')), 1);
+            $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
         if ($name == null) {
             return $this->decode_data;
@@ -90,7 +91,7 @@ class JsonRpc {
      * @param string $message Error message
      * @param string $id ID
      */
-    public function error($code, $message, $id) {
+    public function error(?string $code, ?string $message, ?string $id): void {
         $data = json_encode([
             'jsonrpc' => '2.0',
             'error' => ['code' => $code, 'message' => $message],
@@ -106,8 +107,9 @@ class JsonRpc {
      *
      * @param array $data (request data)
      * @param string $host (request host)
+     * @return mixed $response_string|FALSE (request string)
      */
-    public function curl($data, $host) {
+    public function curl(array $data, string $host): mixed {
         $curl = curl_init($host);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);

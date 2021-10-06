@@ -4,7 +4,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-// 
 
 /**
  * Lang function (example: lang('name'), lang('name', 'english') or lang('#lang_all'))

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -31,16 +33,12 @@ final class Ecb {
      * View price
      * 
      * @param array $input Array with products data
-     * @param string $marker Format currency marker
-     * @param string $quantity Quantity
+     * @param int $marker Format currency marker
+     * @param int|string $quantity Quantity
      * @param string $class Bootstrap class for sale
      * @return string Output data
      */
-    public static function priceInterface($input, $marker, $quantity = 1, $class = null) {
-
-        if ($class == null) {
-            $class = 'danger';
-        }
+    public static function priceInterface(array $input, ?int $marker = null, int|string $quantity = 1, string $class = 'danger'): string {
 
         $INTERFACE = new Interfaces();
 
@@ -83,21 +81,17 @@ final class Ecb {
     /**
      * Total in cart
      * 
-     * @param string $marker Format currency marker
+     * @param int $marker Format currency marker
      * @param string $class Bootstrap class for sale
      * @return string Output data
      */
-    public static function totalPriceCartInterface($marker, $class = null) {
+    public static function totalPriceCartInterface(?int $marker = null, string $class = 'danger'): string {
 
         $INTERFACE = new Interfaces();
         self::priceTerminal();
         $discounted_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
 
         $total_price = Cart::totalPrice();
-
-        if ($class == null) {
-            $class = 'danger';
-        }
 
         if ($total_price != $discounted_price) {
             return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span>';
@@ -109,9 +103,8 @@ final class Ecb {
      * Price terminal
      * 
      * @param string $language Language
-     * @return array Output data
      */
-    public static function priceTerminal($language = null) {
+    public static function priceTerminal(?string $language = null): void {
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
@@ -167,10 +160,10 @@ final class Ecb {
      * Total tax
      * 
      * @param array $tax_data Array with tax data
-     * @param string $discounted_price Price with sales
-     * @return string Total tax
+     * @param float $discounted_price Price with sales
+     * @return float Total tax
      */
-    public static function totalTax($tax_data, $discounted_price) {
+    public static function totalTax(array $tax_data, float $discounted_price): float {
 
         if ($tax_data['fixed'] == '1') {
             $tax_out = $discounted_price / 100 * $tax_data['rate'];
@@ -190,9 +183,8 @@ final class Ecb {
      * 
      * @param array $input (Array with product data
      * @param string $language Language
-     * @return array Output data
      */
-    public static function discountHandler($input, $language = null) {
+    public static function discountHandler(array $input, ?string $language = null): void {
 
         if (self::$active_modules == FALSE) {
             self::$active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
@@ -244,11 +236,11 @@ final class Ecb {
     /**
      * Price with currency
      *
-     * @param string $price Price value
-     * @param string $currency Currency
-     * @return string|FALSE Price with currency
+     * @param float|string $price Price value
+     * @param int|string $currency Currency
+     * @return float|bool Price with currency
      */
-    public static function currencyPrice($price, $currency) {
+    public static function currencyPrice(float|string $price, int|string $currency): float|bool {
 
         $currencies = Settings::currenciesData();
 
@@ -263,12 +255,12 @@ final class Ecb {
     /**
      * Price with region format
      *
-     * @param int $price Price
+     * @param float|string $price Price
      * @param int $format Format flag (Example: 0 - Dollar USA, 1 - doll., 2 - $, 3 - USD)
      * @param string $language Language
      * @return string Format price data
      */
-    public static function formatPrice($price, $format = null, $language = null) {
+    public static function formatPrice(float|string $price, ?int $format = null, ?string $language = null): string {
 
         if ($language == null) {
             $CURRENCIES = Settings::currencyDefault();
@@ -278,41 +270,41 @@ final class Ecb {
 
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
+                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
             }
         }
 
         if ($format == 1) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
+                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
             }
         }
 
         if ($format == 2) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $price_return = $CURRENCIES[7] . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . $CURRENCIES[7];
+                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . $CURRENCIES[7];
             }
         }
 
         if ($format == 3) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
+                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
             }
         }
 
-        return number_format($price * $CURRENCIES[5], $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+        return number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
     }
 
 }

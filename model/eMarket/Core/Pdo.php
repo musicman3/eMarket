@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -29,9 +31,9 @@ final class Pdo {
     /**
      * Conecting to DB
      * @param string $marker Marker
-     * @return object
+     * @return object PDO object
      */
-    public static function connect($marker = null) {
+    public static function connect(?string $marker = null): ?object {
 
         self::$query_count++;
 
@@ -59,7 +61,7 @@ final class Pdo {
      *
      * @param string $path Path to DB
      */
-    public static function dbInstall($path) {
+    public static function dbInstall(string $path): void {
 
         $file_name = $path . DB_TYPE . '.sql';
 
@@ -76,9 +78,9 @@ final class Pdo {
      * getExec instead self::connect()->exec()
      *
      * @param string $sql SQL query
-     * @return data
+     * @return mixed data
      */
-    public static function getExec($sql) {
+    public static function getExec(string $sql): mixed {
 
         $result = self::connect()->exec($sql);
         return $result;
@@ -89,9 +91,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|string|array
+     * @return mixed
      */
-    public static function getValue($sql, $param) {
+    public static function getValue(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -106,9 +108,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|array
+     * @return mixed
      */
-    public static function getIndex($sql, $param) {
+    public static function getIndex(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -123,9 +125,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|array
+     * @return mixed
      */
-    public static function getAssoc($sql, $param) {
+    public static function getAssoc(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -140,9 +142,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|array
+     * @return mixed
      */
-    public static function getObj($sql, $param) {
+    public static function getObj(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -157,9 +159,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|int|array
+     * @return mixed
      */
-    public static function getColCount($sql, $param) {
+    public static function getColCount(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -174,9 +176,9 @@ final class Pdo {
      * 
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|int|array
+     * @return mixed
      */
-    public static function getRowCount($sql, $param) {
+    public static function getRowCount(string $sql, array $param): mixed {
 
         $result = FALSE;
         $exec = self::connect()->prepare($sql);
@@ -191,9 +193,9 @@ final class Pdo {
      *
      * @param string $sql SQL query
      * @param array $param (parameter for execute)
-     * @return bool|array
+     * @return mixed
      */
-    public static function action($sql, $param = null) {
+    public static function action(string $sql, ?array $param = null): mixed {
 
         $exec = self::connect()->prepare($sql);
         $exec->execute($param);
@@ -204,9 +206,9 @@ final class Pdo {
     /**
      * lastInsertId
      * 
-     * @return string
+     * @return int|string
      */
-    public static function lastInsertId() {
+    public static function lastInsertId(): int|string {
 
         $result = self::connect()->lastInsertId();
         return $result;

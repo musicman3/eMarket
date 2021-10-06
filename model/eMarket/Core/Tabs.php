@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -24,10 +26,9 @@ final class Tabs {
 
     /**
      * List of Tabs modules
-     * @param string $name Tabs module name
      * @return array
      */
-    public static function tabsModulesAvailable() {
+    public static function tabsModulesAvailable(): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'tabs']);
         $output = [];
         foreach ($data as $tabs_module) {
@@ -39,10 +40,9 @@ final class Tabs {
     /**
      * Loading data from tabs modules
      * 
-     * @param array $input Available modules
      * @return array
      */
-    public static function loadData() {
+    public static function loadData():array {
 
         $modules_names = self::tabsModulesAvailable();
 

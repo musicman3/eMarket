@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -28,7 +30,7 @@ use \eMarket\Catalog\{
 class Authorize {
 
     public static $customer;
-    public static $csrf_token = [];
+    public static array $csrf_token = [];
 
     /**
      * Constructor
@@ -65,12 +67,11 @@ class Authorize {
      *
      * @return bool TRUE/FALSE
      */
-    private function installVerify() {
+    private function installVerify(): bool {
         if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') && file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
             return FALSE;
-        } else {
-            return TRUE;
         }
+        return TRUE;
     }
 
     /**
@@ -78,7 +79,7 @@ class Authorize {
      *
      * @return string CSRF token
      */
-    public static function csrfToken() {
+    public static function csrfToken(): string {
 
         if (!isset(self::$csrf_token[Settings::path()])) {
             self::$csrf_token[Settings::path()] = Func::getToken(32);
@@ -91,7 +92,7 @@ class Authorize {
      * CSRF Verification
      *
      */
-    private function csrfVerification() {
+    private function csrfVerification(): void {
 
         if (Valid::isPOST()) {
             if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
@@ -109,7 +110,7 @@ class Authorize {
      * Demo mode init
      *
      */
-    private function demoModeInit() {
+    private function demoModeInit(): void {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -125,12 +126,11 @@ class Authorize {
      * Dashboard check
      *
      */
-    private function dashboardCheck() {
+    private function dashboardCheck(): void {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
                 $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
-
                 $count = 0;
                 foreach ($staff_data as $value) {
                     if ($value == '?route=dashboard') {
@@ -151,7 +151,7 @@ class Authorize {
      *
      * @return bool TRUE
      */
-    private function admin() {
+    private function admin(): bool {
 
         $this->demoModeInit();
         $this->dashboardCheck();
@@ -176,19 +176,19 @@ class Authorize {
             $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getValue("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
                         $_SESSION['login'], $_SESSION['pass']
             ]);
-            return TRUE;
         } else {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
-            return TRUE;
         }
+        
+        return TRUE;
     }
 
     /**
      * Session authorization for Catalog
      *
-     * @return bool FALSE
+     * @return bool TRUE|FALSE
      */
-    private function catalog() {
+    private function catalog(): bool {
 
         if (isset($_SESSION['email_customer'])) {
             $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
@@ -196,7 +196,7 @@ class Authorize {
             $customer_data['status'] = 0;
         }
 
-        if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() OR $customer_data['status'] == 0) {
+        if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() || $customer_data['status'] == 0) {
             unset($_SESSION['password_customer']);
             unset($_SESSION['email_customer']);
             unset($_SESSION['customer_session_start']);
@@ -209,6 +209,8 @@ class Authorize {
         } else {
             self::$customer = $customer_data;
         }
+
+        return TRUE;
     }
 
     /**
@@ -217,7 +219,7 @@ class Authorize {
      * @param string Password
      * @return string $password Hash
      */
-    public static function passwordHash($password) {
+    public static function passwordHash(string $password): string {
 
         if (HASH_METHOD == 'PASSWORD_DEFAULT') {
             $options = ['cost' => 10];
@@ -232,6 +234,7 @@ class Authorize {
             $METHOD = PASSWORD_ARGON2I;
         }
         $password_hash = password_hash($password, $METHOD, $options);
+        
         return $password_hash;
     }
 

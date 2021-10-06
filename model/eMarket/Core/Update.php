@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 /**
@@ -23,7 +25,7 @@ class Update {
      *
      * @return string Version
      */
-    public static function thisVersion() {
+    public static function thisVersion(): string {
         return 'v 1.0 Beta 2';
     }
 
@@ -32,7 +34,7 @@ class Update {
      *
      * @return array Version Data
      */
-    public static function checkVersion() {
+    public static function checkVersion(): string|array {
 
         if (isset($_SESSION['version']['time']) && (time() - $_SESSION['version']['time']) / 60 > 60) {
             unset($_SESSION['version']);
@@ -74,35 +76,34 @@ class Update {
     /**
      * GitHub Data
      *
-     * @return array GitHub latest release data
+     * @return mixed GitHub latest release data
      */
-    public static function gitHubData() {
+    public static function gitHubData(): mixed {
         $connect = curl_init();
         curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: eMarket']);
         curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/musicman3/eMarket/releases/latest');
         curl_setopt($connect, CURLOPT_CONNECTTIMEOUT, 3);
         $response_string = curl_exec($connect);
-        if(curl_errno($connect)){
+        if (curl_errno($connect)) {
             return FALSE;
         }
         curl_close($connect);
         if (!empty($response_string)) {
-            $response = json_decode($response_string, 1);
+            $response = json_decode($response_string, true);
             if (isset($response['name'])) {
                 return $response['name'];
             }
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
      * eMarket Data
      *
-     * @return array eMarket update data
+     * @return mixed eMarket update data
      */
-    public static function eMarketData() {
+    public static function eMarketData(): mixed {
         $data = [
             'jsonrpc' => '2.0',
             'method' => 'CheckVersion',
@@ -120,9 +121,8 @@ class Update {
             if (isset($response_string->error)) {
                 return $response_string->error;
             }
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
@@ -130,8 +130,9 @@ class Update {
      *
      * @param array $data (request data)
      * @param string $host (request host)
+     * @return mixed $response_string|FALSE (request string)
      */
-    public static function curl($data, $host) {
+    public static function curl(array $data, string $host): mixed {
         $curl = curl_init($host);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -144,7 +145,7 @@ class Update {
         $request_string = json_encode($data);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
         $response_string = curl_exec($curl);
-        if(curl_errno($curl)){
+        if (curl_errno($curl)) {
             return FALSE;
         }
         if (!empty($response_string)) {
@@ -152,9 +153,8 @@ class Update {
             if (isset($response)) {
                 return $response;
             }
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
 }

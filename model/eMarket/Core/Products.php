@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -37,9 +39,9 @@ class Products {
     /**
      * New products data
      *
-     * @param string $count Number of new products
+     * @param string|int $count Number of new products
      */
-    public static function newProducts($count) {
+    public static function newProducts(string|int $count): void {
         if (self::$new_products == FALSE) {
             self::$new_products = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
         }
@@ -48,11 +50,11 @@ class Products {
     /**
      * Product data
      *
-     * @param string $id Product id
+     * @param string|int $id Product id
      * @param string $language Language
      * @return array
      */
-    public static function productData($id, $language = null) {
+    public static function productData(string|int $id, ?string $language = null): array {
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
@@ -64,11 +66,11 @@ class Products {
     /**
      * Categury data
      *
-     * @param string $id Category id
+     * @param string|int $id Category id
      * @param string $language Language
      * @return array
      */
-    public static function categoryData($id, $language = null) {
+    public static function categoryData(string|int $id, ?string $language = null): array {
 
         if (self::$category_data == FALSE) {
             if ($language == null) {
@@ -78,18 +80,16 @@ class Products {
             return self::$category_data;
         }
 
-        if (self::$category_data != FALSE) {
-            return self::$category_data;
-        }
+        return self::$category_data;
     }
 
     /**
      * Manufacturer data
      *
-     * @param string $id Id
-     * @return array|FALSE 
+     * @param string|int $id Id
+     * @return array|bool 
      */
-    public static function manufacturer($id) {
+    public static function manufacturer(string|int $id): array|bool {
 
         if (self::$manufacturer == FALSE) {
             self::$manufacturer = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -106,10 +106,10 @@ class Products {
     /**
      * Vendor code data
      *
-     * @param string $id Id
-     * @return array|FALSE
+     * @param string|int $id Id
+     * @return array|bool
      */
-    public static function vendorCode($id) {
+    public static function vendorCode(string|int $id): array|bool {
 
         if (self::$vendor_codes == FALSE) {
             self::$vendor_codes = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -126,10 +126,10 @@ class Products {
     /**
      * Weight data
      *
-     * @param string $id Id
-     * @return array|FALSE
+     * @param string|int $id Id
+     * @return array|bool
      */
-    public static function weight($id) {
+    public static function weight(string|int $id): array|bool {
 
         if (self::$weight == FALSE) {
             self::$weight = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -146,10 +146,10 @@ class Products {
     /**
      * Length data
      *
-     * @param string $id Id
-     * @return array|FALSE
+     * @param string|int $id Id
+     * @return array|bool
      */
-    public static function length($id) {
+    public static function length(string|int $id): array|bool {
 
         if (self::$length == FALSE) {
             self::$length = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -170,7 +170,7 @@ class Products {
      * @param string $quantity Quantity
      * @return array
      */
-    public static function inStock($date_available, $quantity) {
+    public static function inStock(?string $date_available, int|string $quantity): array {
         if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
             $date_available_marker = 'false';
             $date_available_text = lang('product_in_stock_from') . ' ' . Settings::dateLocale($date_available);
@@ -194,7 +194,7 @@ class Products {
             array_push($output, ['badge bg-success', $date_available_text]);
             return $output;
         }
-        return [];
+        return $output;
     }
 
     /**
@@ -205,7 +205,7 @@ class Products {
      * @param string $class2 Bootstrap class
      * @return string
      */
-    public static function stickers($input, $class = null, $class2 = null) {
+    public static function stickers(array $input, ?string $class = null, ?string $class2 = null): array {
 
         if ($class == null) {
             $class = 'danger';

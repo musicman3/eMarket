@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -32,7 +34,7 @@ class Files {
      * @param string $dir Directory for uploaded images
      * @param array $resize_param Resize param
      */
-    public static function imgUpload($TABLE, $dir, $resize_param) {
+    public static function imgUpload(string $TABLE, string $dir, array $resize_param): void {
 
         self::imgThumbAndSize($resize_param);
 
@@ -93,7 +95,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -123,7 +125,7 @@ class Files {
             if (Valid::inPOST('delete_image')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image'), -1);
 
-                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -158,7 +160,7 @@ class Files {
                     if (strstr($idx[$i], '_', true) != 'product') {
                         $id = $idx[$i];
 
-                        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
                         if (is_countable($logo_delete)) {
                             foreach ($logo_delete as $file) {
                                 foreach ($resize_param as $key => $value) {
@@ -187,7 +189,7 @@ class Files {
      * @param string $dir Directory for uploaded images
      * @param array $resize_param Resize param
      */
-    public static function imgUploadProduct($TABLE, $dir, $resize_param) {
+    public static function imgUploadProduct(string $TABLE, string $dir, array $resize_param): void {
 
         self::imgThumbAndSize($resize_param);
 
@@ -249,7 +251,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -279,7 +281,7 @@ class Files {
             if (Valid::inPOST('delete_image_product')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image_product'), -1);
 
-                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), 1);
+                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -310,7 +312,7 @@ class Files {
                 if (strstr($idx[$i], '_', true) == 'product') {
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), 1);
+                    $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), true);
                     if (is_countable($logo_delete)) {
                         foreach ($logo_delete as $file) {
                             foreach ($resize_param as $key => $value) {
@@ -339,7 +341,7 @@ class Files {
      * @param string $prefix Prefix fo files
      * @param array $resize_param Resize param
      */
-    public static function imgResize($dir, $files, $prefix, $resize_param) {
+    public static function imgResize(string $dir, array $files, string $prefix, array $resize_param): void {
 
         $IMAGE = new \claviska\SimpleImage;
 
@@ -390,7 +392,7 @@ class Files {
      * @param array $resize_param Resize param
      * @return array Resize parameters for maximum quality
      */
-    public static function imgResizeMax($resize_param) {
+    public static function imgResizeMax(array $resize_param): array {
 
         $count_image_max = count($resize_param);
         $resize_max = [];
@@ -403,7 +405,7 @@ class Files {
      *
      * @param array $resize_param Resize param
      */
-    public static function imgThumbAndSize($resize_param) {
+    public static function imgThumbAndSize(array $resize_param): void {
 
         $IMAGE = new \claviska\SimpleImage;
         $resize_max = self::imgResizeMax($resize_param);

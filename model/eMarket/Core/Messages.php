@@ -31,7 +31,7 @@ class Messages {
      * Monolog ErrorHandler logging
      *
      */
-    public static function monologErrorHandler() {
+    public static function monologErrorHandler(): void {
 
         $log = new Logger('eMarket');
         $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/errors.log', Logger::NOTICE));
@@ -46,7 +46,7 @@ class Messages {
      * @param string $page message page
      * @param string $action (add/edit/delete/cut and etc)
      */
-    public static function logging($type, $page = null, $action = null) {
+    public static function logging(string $type, ?string $page = null, ?string $action = null): void {
         if (Settings::path() == 'admin') {
             $log = new Logger('eMarket');
             $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
@@ -76,11 +76,12 @@ class Messages {
      * param string $action (add/edit/delete/cut and etc)
      * @param string $class Bootstrap class
      * @param string $message Message
-     * @param string $time Show time
-     * @param string $start Manual call
+     * @param int $time Show time (ms)
+     * @param bool $start Manual call
+     * @return bool
      *
      */
-    public static function alert($action = null, $class = null, $message = null, $time = null, $start = false) {
+    public static function alert(?string $action = null, ?string $class = null, ?string $message = null, ?int $time = null, bool $start = false): bool {
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {
@@ -124,6 +125,8 @@ class Messages {
             require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
+        
+        return false;
     }
 
     /**
@@ -132,7 +135,7 @@ class Messages {
      * @param string $to ('To' contact)
      * @param string $body (message)
      */
-    public static function sendProviders($to, $body) {
+    public static function sendProviders(string $to, ?string $body): void {
 
         $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
         foreach ($active_modules as $module) {
@@ -149,7 +152,7 @@ class Messages {
      * @param string $subject E-mail subject text
      * @param string $message Html message
      */
-    public static function sendMail($email_to, $subject, $message) {
+    public static function sendMail(string $email_to, ?string $subject, ?string $message): void {
 
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';

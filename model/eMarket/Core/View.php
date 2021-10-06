@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -31,7 +33,7 @@ class View {
      *
      * @return string $str (routing)
      */
-    public static function routing() {
+    public static function routing(): string {
 
         $str = str_replace('controller', 'view/' . Settings::template(), getenv('SCRIPT_FILENAME'));
 
@@ -43,7 +45,7 @@ class View {
      *
      * @return string|bool $str (view routing)
      */
-    public static function routingAdmin() {
+    public static function routingAdmin(): string|bool {
 
         if (Valid::inGET('route_file') != '') {
             $page = Valid::inGET('route_file') . '.php';
@@ -60,9 +62,8 @@ class View {
         }
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -70,7 +71,7 @@ class View {
      *
      * @return string|bool $str (view routing)
      */
-    public static function routingCatalog() {
+    public static function routingCatalog(): string|bool {
 
         if (Valid::inGET('route') != '') {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/index.php');
@@ -79,9 +80,8 @@ class View {
         }
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -90,7 +90,7 @@ class View {
      * @param string $path (path marker controller/view)
      * @return string $str (modules routing)
      */
-    public static function routingModules($path) {
+    public static function routingModules(string $path): string {
 
         if (Valid::inGET('module_path')) {
             return Modules::modulesPath() . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
@@ -104,9 +104,9 @@ class View {
      * 
      * @param string $position (position)
      * @param string $count (counter marker)
-     * @return array|string (positions for paths)
+     * @return int|array|string (positions for paths)
      */
-    public static function tlpc($position, $count = null) {
+    public static function tlpc(string $position, ?string $count = null): int|string|array {
 
         $array_pos_value = Pdo::getIndex("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
                     Settings::path(), Settings::titleDir(), Settings::template()

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -32,7 +34,7 @@ final class Modules {
      *
      * @param array $module Input data
      */
-    public static function install($module) {
+    public static function install(array $module): void {
 
         Pdo::action("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, active=?", [$module[1], $module[0], 1]);
         Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
@@ -43,7 +45,7 @@ final class Modules {
      *
      * @param array $module Input data
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
         Pdo::action("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
     }
@@ -52,7 +54,7 @@ final class Modules {
      * Init Discount
      *
      */
-    public static function initDiscount() {
+    public static function initDiscount(): void {
         $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
         foreach ($active_modules as $module) {
@@ -81,9 +83,9 @@ final class Modules {
 
     /**
      * Connecting discounts
-     * @return array
+     * @return array|string
      */
-    public static function discountRouter($marker) {
+    public static function discountRouter(string $marker): array|string {
 
         if (self::$discount_router != FALSE && $marker == 'data') {
             return self::$discount_router['data'];
@@ -137,7 +139,7 @@ final class Modules {
      *
      * @return string 
      */
-    public static function moduleDatabase() {
+    public static function moduleDatabase(): string {
 
         return DB_PREFIX . 'modules_' . Valid::inGET('type') . '_' . Valid::inGET('name');
     }
@@ -147,7 +149,7 @@ final class Modules {
      *
      * @return string
      */
-    public static function modulesPath() {
+    public static function modulesPath(): string {
 
         return ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
     }

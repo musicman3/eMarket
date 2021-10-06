@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -29,7 +31,7 @@ class Debug {
      *
      * @param array Input array
      */
-    public static function trace($var) {
+    public static function trace(mixed $var): void {
         static $int = 0;
         echo '<pre><b>' . $int . '</b> ';
         print_r($var);
@@ -42,11 +44,11 @@ class Debug {
      *
      * @param string Start time
      */
-    public static function info() {
+    public static function info(): void {
 
         $val = Pdo::getValue("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
         if ($val == 1) {
-            $tend = microtime(1);
+            $tend = microtime(true);
 
             $totaltime = round(($tend - self::$time_start), 2);
 

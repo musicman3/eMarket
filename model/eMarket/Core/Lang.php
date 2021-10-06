@@ -39,7 +39,7 @@ final class Lang {
      * Init
      *
      */
-    public function init() {
+    public function init(): void {
 
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [
@@ -57,7 +57,7 @@ final class Lang {
      *
      * @return string
      */
-    public static function path() {
+    public static function path(): string {
         
         if (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/jsonrpc/')) {
             return 'admin';
@@ -71,9 +71,9 @@ final class Lang {
      *
      * @param string $default_language Default language
      * @param string $marker Marker
-     * @return array $lang|$lang_all|$lang_trans
+     * @return array Languages array
      */
-    public static function lang($default_language, $marker = null) {
+    public static function lang(?string $default_language, ?string $marker = null): array {
 
         if ($default_language == null OR $default_language == '') {
             $default_language = Settings::basicSettings('primary_language');
@@ -132,7 +132,7 @@ final class Lang {
      * Default language setting
      *
      */
-    public static function defaultLang() {
+    public static function defaultLang(): void {
 
         if (!isset($_SESSION['DEFAULT_LANGUAGE']) && Settings::path() != 'install') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');

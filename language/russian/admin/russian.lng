@@ -236,6 +236,7 @@ all_pages_template = Все страницы
 
 ;ORDERS
 orders_total = Итого
+orders_id = ID товара
 orders_status = Статус
 orders_shipping = Доставка
 orders_client = Клиент

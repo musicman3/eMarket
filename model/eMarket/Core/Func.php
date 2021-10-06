@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -71,14 +73,14 @@ class Func {
      * [1] => New York
      * 
      * @param array $basic_array Input array
-     * @param string $search_key Key 
-     * @param string $search_value Value for $search_key
-     * @param string $data_key Data key
-     * @param string $sort Sorting (null/true)
+     * @param string|int $search_key Key 
+     * @param mixed $search_value Value for $search_key
+     * @param string|int $data_key Data key
+     * @param mixed $sort Sorting (null/true)
      * @return array
      * 
      */
-    public static function filterArrayToKey($basic_array, $search_key, $search_value, $data_key, $sort = null) {
+    public static function filterArrayToKey(array $basic_array, string|int $search_key, mixed $search_value, string|int $data_key, mixed $sort = null): array {
 
         $arr = [];
         foreach ($basic_array as $value) {
@@ -143,14 +145,14 @@ class Func {
      * 
      * 
      * @param array $basic_array Input array
-     * @param string $search_key Search key
-     * @param string $search_value Search value
-     * @param string $key_1 Key 1
-     * @param string $key_2 Key 2
+     * @param string|int $search_key Search key
+     * @param mixed $search_value Search value
+     * @param string|int $key_1 Key 1
+     * @param string|int $key_2 Key 2
      * @return array 
      * 
      */
-    public static function filterArrayToKeyAssoc($basic_array, $search_key, $search_value, $key_1, $key_2) {
+    public static function filterArrayToKeyAssoc(array $basic_array, string|int $search_key, mixed $search_value, string|int $key_1, string|int $key_2): array {
 
         foreach ($basic_array as $value) {
             if ($value[$search_key] == $search_value) {
@@ -195,7 +197,7 @@ class Func {
      * @param string $delimiter Delimiter
      * @return array
      */
-    public static function arrayExplode($array, $delimiter) {
+    public static function arrayExplode(array $array, string $delimiter): array {
         $array_return = [];
         foreach ($array as $v) {
             $array_return = array_merge($array_return, array(explode($delimiter, $v)));
@@ -208,7 +210,7 @@ class Func {
 
      * @param string $file Path
      */
-    public static function deleteFile($file) {
+    public static function deleteFile(string $file): void {
 
         if (file_exists($file)) {
             chmod($file, 0777);
@@ -259,13 +261,13 @@ class Func {
 
       )
 
-     * @param string $name_1 Value in main array
-     * @param string $name_2 Value in optional array
+     * @param string|int $name_1 Value in main array
+     * @param string|int $name_2 Value in optional array
      * @param array $arr_1 Main array
      * @param array $arr_2 Optional array
      * @return array
      */
-    public static function arrayMergeOriginKey($name_1, $name_2, $arr_1, $arr_2) {
+    public static function arrayMergeOriginKey(string|int $name_1, string|int $name_2, array $arr_1, array $arr_2): array {
 
         $a = array($name_1 => $arr_1);
 
@@ -284,19 +286,18 @@ class Func {
     /**
      * Function for removing a value from an array
      *
-     * @param array $array Input array
+     * @param mixed $array Input array
      * @param array $val Values to be removed - ['val', 'val2']
-     * @return array|false
+     * @return mixed
      */
-    public static function deleteValInArray($array, $val) {
+    public static function deleteValInArray(mixed $array, array $val): mixed {
 
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
             $array_return = array_values($result);
             return $array_return;
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
@@ -325,7 +326,7 @@ class Func {
      * @param array $input Input array
      * @return array
      */
-    public static function resetKeyAssocArray($input) {
+    public static function resetKeyAssocArray(array $input): array {
 
         $output = [];
         foreach ($input as $val) {
@@ -339,32 +340,31 @@ class Func {
      * Function to remove empty value from array
      *
      * @param array $array Input array
-     * @return array|false
+     * @return mixed
      */
-    public static function deleteEmptyInArray($array) {
+    public static function deleteEmptyInArray(mixed $array): mixed {
         if (isset($array) && is_array($array)) {
             $result = array_filter($array);
             $array_return = array_values($result);
             return $array_return;
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
      * Token
      *
-     * @param string $length Length
+     * @param int|string $length Length
      * @return string
      */
-    public static function getToken($length) {
+    public static function getToken(int|string $length): string {
         $token = "";
         $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
         $codeAlphabet .= "0123456789";
         $max = strlen($codeAlphabet);
 
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < (int) $length; $i++) {
             $token .= $codeAlphabet[random_int(0, $max - 1)];
         }
 
@@ -374,10 +374,13 @@ class Func {
     /**
      * Delete GET-parameter
      *
-     * @param string|array $key GET-parameter
-     * @return string
+     * @param mixed $key GET-parameter
+     * @return mixed
      */
-    public static function deleteGet($key) {
+    public static function deleteGet(mixed $key): mixed {
+        if (is_bool($key) || is_null($key)) {
+            return $key;
+        }
         if (!is_array($key)) {
             $array = [$key => ''];
         } else {
@@ -397,15 +400,15 @@ class Func {
      * Output data filtering 
      *
      * @param string|array $data Data to escape characters
-     * @return string|array
+     * @return mixed
      */
-    public static function outputDataFiltering($data) {
+    public static function outputDataFiltering(mixed $data): mixed {
         // symbol and replacement
         $find = ["'", "script", "/script", "javascript:", "/.", "./"];
         $replace = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
-        
+
         $output = self::recursiveArrayReplace($find, $replace, $data);
-        
+
         return $output;
     }
 
@@ -415,9 +418,14 @@ class Func {
      * @param string|array $find Find value
      * @param string|array $replace Replace value
      * @param string|array $data Input data
-     * @return string|array
+     * @return mixed
      */
-    public static function recursiveArrayReplace($find, $replace, $data) {
+    public static function recursiveArrayReplace(array|string $find, array|string $replace, mixed $data): mixed {
+
+        if (is_bool($data) || is_null($data)) {
+            return $data;
+        }
+
         if (!is_array($data)) {
             return str_ireplace($find, $replace, $data);
         }
@@ -433,11 +441,11 @@ class Func {
      * Array filtering
      *
      * @param array $data Input array
-     * @param string $key Key
-     * @param string $val Value
+     * @param string|int $key Key
+     * @param string|int $val Value
      * @return array
      */
-    public static function filterData($data, $key, $val) {
+    public static function filterData(array $data, string|int $key, string|int $val): array {
         $output = [];
         foreach ($data as $value) {
             if ($value[$key] == $val) {

@@ -28,7 +28,7 @@ class Tree {
      * @param string $dir Path to directory with files
      * @return array
      */
-    public static function filesTree($dir) {
+    public static function filesTree(string $dir): array {
 
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = [];
@@ -53,10 +53,10 @@ class Tree {
      * Function of moving or deleting files
      *
      * @param string $dir Path to directory with files
-     * @param string|null $new_dir Directory to move
-     * @param string|null $rename Prefix
+     * @param string $new_dir Directory to move
+     * @param string $rename Prefix
      */
-    public static function filesDirAction($dir, $new_dir = null, $rename = null) {
+    public static function filesDirAction(string $dir, ?string $new_dir = null, ?string $rename = null): void {
 
         $files = glob($dir . '*');
         foreach ($files as $file) {
@@ -77,7 +77,7 @@ class Tree {
      * @param string $marker Marker
      * @return array
      */
-    public static function allDirForPath($path, $marker = null) {
+    public static function allDirForPath(string $path, ?string $marker = null): array {
 
         $level_1 = array_values(array_diff(scandir($path), ['..', '.']));
         if ($marker == 'true') {
@@ -94,27 +94,27 @@ class Tree {
     /**
      * Show Categories
      *
-     * @param array $sql Array of categories
+     * @param array $categories Array of categories
      * @param string $id Id
-     * @param array $array_cat2 Auxiliary array
-     * @param string $parent_id Parrent id
-     * @param string $marker Marker
+     * @param array $output Auxiliary array
+     * @param int|string $parent_id Parrent id
+     * @param bool $marker Marker
      * @return array
      */
-    public static function categories($sql, $id = null, $array_cat2 = [], $parent_id = 0, $marker = null) {
+    public static function categories(array $categories, ?string $id = null, array $output = [], int|string $parent_id = 0, ?bool $marker = null): mixed {
 
         $array_cat = [];
-        foreach ($sql as $value) {
+        foreach ($categories as $value) {
             $array_cat[$value->parent_id][] = $value;
 
             if ($value->id == $id && $value->parent_id > 0) {
-                $array_cat2[] = $value->parent_id;
-                return self::categories($sql, $value->parent_id, $array_cat2);
+                $output[] = $value->parent_id;
+                return self::categories($categories, $value->parent_id, $output);
             }
         }
 
         if (empty($array_cat[$parent_id])) {
-            return;
+            return null;
         }
 
         if ($marker != TRUE) {
@@ -125,37 +125,37 @@ class Tree {
 
         foreach ($array_cat[$parent_id] as $value) {
             echo '<li id="cat_' . $value->id . '"><a id="namecat_' . $value->id . '" href="?route=listing&category_id=' . $value->id . '">' . Func::outputDataFiltering($value->name) . '</a><span></span>';
-            self::categories($sql, null, $array_cat2, $value->id, TRUE);
+            self::categories($categories, null, $output, $value->id, TRUE);
             echo '</li>';
         }
 
         echo '</ul>';
 
-        return $array_cat2;
+        return $output;
     }
 
     /**
      * Autoloading class files for modules
      *
-     * @return array $return_array
+     * @return array $output
      */
-    public static function modulesClasses() {
+    public static function modulesClasses(): array {
 
         $list_cat = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/', 'true');
-        $return_array = [];
+        $output = [];
 
         foreach ($list_cat as $key => $val) {
             foreach ($val as $val_2) {
                 if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/')) {
                     $list_val = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/');
                     foreach ($list_val as $val_files) {
-                        array_push($return_array, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/' . $val_files);
+                        array_push($output, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/classes/' . $val_files);
                     }
                 }
             }
         }
 
-        return $return_array;
+        return $output;
     }
 
 }

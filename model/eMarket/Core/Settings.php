@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -41,7 +43,7 @@ class Settings {
      *
      * @return string $template
      */
-    public static function template() {
+    public static function template(): string {
         $template = 'default';
         return $template;
     }
@@ -49,10 +51,10 @@ class Settings {
     /**
      * Loading static data
      *
-     * @param string $param DB col
-     * @return array|string
+     * @param mixed $param DB col
+     * @return mixed
      */
-    public static function basicSettings($param = null) {
+    public static function basicSettings(mixed $param = null): mixed {
 
         if (self::$basic_settings == FALSE) {
             self::$basic_settings = Pdo::getAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
@@ -68,9 +70,9 @@ class Settings {
     /**
      * Currencies Data
      *
-     * @return array
+     * @return mixed
      */
-    public static function currenciesData() {
+    public static function currenciesData(): mixed {
 
         if (self::$currencies_data == FALSE) {
             self::$currencies_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -82,29 +84,28 @@ class Settings {
     /**
      * Number of lines on page
      *
-     * @return string
+     * @return int
      */
-    public static function linesOnPage() {
+    public static function linesOnPage(): int {
 
-        return self::basicSettings('lines_on_page');
+        return (int) self::basicSettings('lines_on_page');
     }
 
     /**
      * Administrator session time value
      *
-     * @return string
+     * @return int
      */
-    public static function sessionExprTime() {
+    public static function sessionExprTime(): int {
 
-        return self::basicSettings('session_expr_time');
+        return (int) self::basicSettings('session_expr_time');
     }
 
     /**
      * JS Handler
      *
-     * @return string
      */
-    public static function jsHandler() {
+    public static function jsHandler(): void {
         if (self::path() == 'admin') {
             if (Valid::inGET('route')) {
                 $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
@@ -135,9 +136,8 @@ class Settings {
      * JS Modules Handler
      *
      * @param string $js_path Path to js.php
-     * @return string
      */
-    public static function jsModulesHandler($js_path = null) {
+    public static function jsModulesHandler(?string $js_path = null): void {
         if (self::path() == 'admin') {
             $path = View::routingModules('js_handler');
             if (file_exists($path . '/js.php')) {
@@ -164,7 +164,7 @@ class Settings {
      * @param string $language Language
      * @return array
      */
-    public static function currencyDefault($language = null) {
+    public static function currencyDefault(?string $language = null): mixed {
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
@@ -207,7 +207,7 @@ class Settings {
      *
      * @return string
      */
-    public static function canonicalPathCatalog() {
+    public static function canonicalPathCatalog(): string {
 
         $path_temp = Valid::inSERVER('REQUEST_URI');
         if (Valid::inSERVER('REQUEST_URI') == '/') {
@@ -228,7 +228,7 @@ class Settings {
      *
      * @return string
      */
-    public static function path() {
+    public static function path(): string {
 
         if (self::$path == FALSE) {
             if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
@@ -246,11 +246,17 @@ class Settings {
     /**
      * Current directory
      *
-     * @return string
+     * @return mixed
      */
-    public static function titleDir() {
+    public static function titleDir(): mixed {
 
-        $title_dir = str_replace('/', '_', Valid::inGET('route'));
+        $route = Valid::inGET('route');
+
+        if (is_bool($route) || is_null($route)) {
+            $route = '';
+        }
+
+        $title_dir = str_replace('/', '_', $route);
         if (Valid::inGET('route_file') != '') {
             $title_dir = $title_dir . '_page_' . Valid::inGET('route_file');
         }
@@ -272,7 +278,7 @@ class Settings {
      *
      * @return string
      */
-    public static function titlePageGenerator() {
+    public static function titlePageGenerator(): string {
 
         if (self::path() == 'install') {
             $title = lang('title_' . self::titleDir() . '_' . basename(Valid::inSERVER('PHP_SELF'), '.php'));
@@ -293,9 +299,15 @@ class Settings {
      *
      * @return string
      */
-    public static function parentPartitionGenerator() {
+    public static function parentPartitionGenerator(): string {
 
-        if (Valid::inGET('route') == 'settings/modules/edit' && Valid::inGET('module_path')) {
+        $route = Valid::inGET('route');
+
+        if (is_bool($route) || is_null($route)) {
+            $route = '';
+        }
+
+        if ($route == 'settings/modules/edit' && Valid::inGET('module_path')) {
             $input = explode('/', Valid::inGET('module_path'));
             array_pop($input);
             $module_path = implode('/', $input);
@@ -309,13 +321,13 @@ class Settings {
             }
         }
 
-        if (Valid::inGET('route') == 'settings/modules/edit' && !Valid::inGET('module_path')) {
+        if ($route == 'settings/modules/edit' && !Valid::inGET('module_path')) {
             $output = '?route=settings/modules&active=' . Valid::inGET('type');
             return $output;
         }
 
-        if (Valid::inGET('route')) {
-            $input = explode('/', Valid::inGET('route'));
+        if ($route != '') {
+            $input = explode('/', $route);
             array_pop($input);
             $output = '?route=' . implode('/', $input);
 
@@ -327,9 +339,9 @@ class Settings {
      * Section name in catalog
      *
      * @param string $marker Marker
-     * @return string
+     * @return mixed
      */
-    public static function titleCatalog($marker = null) {
+    public static function titleCatalog(?string $marker = null): mixed {
 
         if ($marker == 'false') {
             $sign = '';
@@ -337,17 +349,24 @@ class Settings {
         if ($marker == null) {
             $sign = ': ';
         }
-        $title = $sign . lang('title_' . basename(Valid::inGET('route')) . '_index');
 
-        if (basename(Valid::inGET('route')) == '' && self::path() == 'catalog' OR basename(Valid::inGET('route')) == 'catalog' && self::path() == 'catalog') {
+        $route = Valid::inGET('route');
+
+        if (is_bool($route) || is_null($route)) {
+            $route = '';
+        }
+
+        $title = $sign . lang('title_' . basename($route) . '_index');
+
+        if (basename($route) == '' && self::path() == 'catalog' OR basename($route) == 'catalog' && self::path() == 'catalog') {
             $title = '';
         }
 
-        if (basename(Valid::inGET('route')) == 'listing' && self::path() == 'catalog') {
+        if (basename($route) == 'listing' && self::path() == 'catalog') {
             $title = $sign . Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
         }
 
-        if (basename(Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+        if (basename($route) == 'products' && self::path() == 'catalog') {
             $product_data = Products::productData(Valid::inGET('id'));
             if ($product_data ['tags'] != NULL && $product_data ['tags'] != '') {
                 $title = $sign . $product_data ['tags'];
@@ -362,13 +381,18 @@ class Settings {
     /**
      * Keywords
      *
-     * @return string
+     * @return mixed
      */
-    public static function keywordsCatalog() {
+    public static function keywordsCatalog(): mixed {
 
         $keywords = '';
+        $route = Valid::inGET('route');
 
-        if (basename(Valid::inGET('route')) == 'products' && self::path() == 'catalog') {
+        if (is_bool($route) || is_null($route)) {
+            $route = '';
+        }
+
+        if (basename($route) == 'products' && self::path() == 'catalog') {
             $product_data = Products::productData(Valid::inGET('id'));
             if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {
                 $keywords = $product_data ['keyword'];
@@ -384,14 +408,15 @@ class Settings {
      * Select view
      *
      * @param array $value Select array
-     * @param string $default Default sell name
-     * @param string
+     * @param string|int $default Default sell name
+     * @param string|bool
      */
-    public static function viewSelect($value, $default) {
+    public static function viewSelect(array $value, string|int $default): string|bool {
 
         if ($value[$default] == 1) {
             return 'selected';
         }
+        return false;
     }
 
     /**
@@ -399,7 +424,7 @@ class Settings {
      *
      * @return string $ipaddress
      */
-    public static function ipAddress() {
+    public static function ipAddress(): string {
 
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP')) {
@@ -424,9 +449,9 @@ class Settings {
      * Breadcrumb data
      *
      * @param array $breadcrumb_array Input array
-     * @return string
+     * @return array
      */
-    public static function breadcrumbName($breadcrumb_array) {
+    public static function breadcrumbName(array $breadcrumb_array): array {
 
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
@@ -442,7 +467,7 @@ class Settings {
      *
      * @return string
      */
-    public static function langCurrencyPath() {
+    public static function langCurrencyPath(): string {
 
         if (self::$lang_currency_path != FALSE) {
             return self::$lang_currency_path;
@@ -474,7 +499,7 @@ class Settings {
      *
      * @return string
      */
-    public static function primaryLanguage() {
+    public static function primaryLanguage(): string {
 
         return self::basicSettings('primary_language');
     }
@@ -485,7 +510,7 @@ class Settings {
      * @param string $class Bootstrap class
      * @return string
      */
-    public static function sortiesClass($class) {
+    public static function sortiesClass(string $class): string {
 
         if (Valid::inGET('search')) {
             return $class;
@@ -495,14 +520,14 @@ class Settings {
     /**
      * Switching class when changing status
      *
-     * @param string $status Status from DB
-     * @param array $argument_1 Argument to compare
-     * @param array $argument_2 Argument to compare
+     * @param int|string $status Status from DB
+     * @param mixed $argument_1 Argument to compare
+     * @param mixed $argument_2 Argument to compare
      * @param string $class Bootstrap class
      * @param string $class_2 Bootstrap class
      * @return string
      */
-    public static function statusSwitchClass($status, $argument_1 = null, $argument_2 = null, $class = '', $class_2 = 'table-danger') {
+    public static function statusSwitchClass(int|string $status, mixed $argument_1 = null, mixed $argument_2 = null, string $class = '', string $class_2 = 'table-danger'): ?string {
 
         if ($argument_1 == null) {
             $arg_1 = null;
@@ -530,12 +555,12 @@ class Settings {
     /**
      * Formatted date
      * 
-     * @param string $date Date
-     * @param string $format Manual format
+     * @param mixed $date Date
+     * @param mixed $format Manual format
      * @param string $language Language
-     * @return string|FALSE
+     * @return string|bool
      */
-    public static function dateLocale($date, $format = null, $language = null) {
+    public static function dateLocale(mixed $date, mixed $format = null, ?string $language = null): string|bool {
         if ($date == NULL) {
             return '';
         }
@@ -547,7 +572,7 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $output = strftime($format, date('U', strtotime($date)));
+            $output = strftime($format, (int) date('U', strtotime($date)));
             return $output;
         } else {
             if ($language != null) {
@@ -556,7 +581,7 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $output = strftime('%x', date('U', strtotime($date)));
+            $output = strftime('%x', (int) date('U', strtotime($date)));
             return $output;
         }
 
@@ -571,7 +596,7 @@ class Settings {
      * @param string $class Bootstrap class
      * @return string
      */
-    public static function activeTab($active_tab, $active, $class = 'active') {
+    public static function activeTab(string $active_tab, string $active, string $class = 'active'): ?string {
 
         if ($active_tab == $active && self::$active_tabs_count == 0) {
             self::$active_tabs_count = 1;

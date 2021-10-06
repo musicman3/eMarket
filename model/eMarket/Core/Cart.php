@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -28,9 +30,9 @@ class Cart {
     /**
      * Counting total quantity product in cart
      *
-     * @return string Quantity product
+     * @return int Quantity product
      */
-    public static function totalQuantity() {
+    public static function totalQuantity(): int {
 
         if (self::$total_quantity == FALSE) {
             self::$total_quantity = 0;
@@ -39,18 +41,16 @@ class Cart {
                     self::$total_quantity = self::$total_quantity + $value['quantity'];
                 }
             }
-            return self::$total_quantity;
-        } else {
-            return self::$total_quantity;
         }
+        return self::$total_quantity;
     }
 
     /**
      * Counting product price in cart
      *
-     * @return string Quantity product
+     * @return float Quantity product
      */
-    public static function totalPrice() {
+    public static function totalPrice(): float {
 
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
@@ -66,10 +66,10 @@ class Cart {
 
     /**
      * Counting quantity product in cart
-     * @param string $id Product id
-     * @return string Quantity
+     * @param int $id Product id
+     * @return int Quantity
      */
-    public static function productQuantity($id) {
+    public static function productQuantity(int|string $id): int {
 
         $output = 0;
         if (isset($_SESSION['cart'])) {
@@ -79,17 +79,17 @@ class Cart {
                 }
             }
         }
-        return $output;
+        return (int) $output;
     }
 
     /**
      * Max. quantity for order
      * 
      * @param array $product_data Product data
-     * @param string $flag Flag
-     * @return int|false
+     * @param string|null $flag Flag
+     * @return mixed Max. quantity
      */
-    public static function maxQuantityToOrder($product_data, $flag = null) {
+    public static function maxQuantityToOrder(array $product_data, ?string $flag = null): mixed {
         $quantity = $product_data['quantity'];
         $cart_quantity = self::productQuantity($product_data['id']);
         $total = $quantity - $cart_quantity;

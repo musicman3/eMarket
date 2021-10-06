@@ -5,9 +5,10 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-$TIME_START = microtime(1);
-
+declare(strict_types=1);
 error_reporting(-1);
+
+$TIME_START = microtime(true);
 
 //AUTOLOAD FOR CLASSES
 require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');

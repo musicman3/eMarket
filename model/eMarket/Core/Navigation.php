@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -25,12 +27,12 @@ class Navigation {
     /**
      * Get navigation
      *
-     * @param string $count_lines Number of lines per page
-     * @param string $lines_on_page Max of lines per page
-     * @param string $transfer Transfer
-     * @return array
+     * @param int $count_lines Number of lines per page
+     * @param int $lines_on_page Max of lines per page
+     * @param int $transfer Transfer
+     * @return array Start & finish pages
      */
-    public static function data($count_lines, $lines_on_page, int $transfer = null) {
+    public static function data(int $count_lines, int $lines_on_page, int $transfer = null): array {
 
         $start = 0;
         $finish = $lines_on_page;

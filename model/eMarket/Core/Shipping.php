@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core;
 
 use eMarket\Core\{
@@ -24,10 +26,10 @@ final class Shipping {
 
     /**
      * List of zones for which delivery to the buyer is available
-     * @param array $region Regions numbers
+     * @param string $region Regions numbers
      * @return array
      */
-    public static function shippingZonesAvailable($region) {
+    public static function shippingZonesAvailable(string $region): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
@@ -57,7 +59,7 @@ final class Shipping {
      * @param array $shipping_zones_id_available Id of zones in which the region is located
      * @return array
      */
-    public static function shippingModulesAvailable($shipping_zones_id_available) {
+    public static function shippingModulesAvailable(array $shipping_zones_id_available): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
@@ -87,9 +89,9 @@ final class Shipping {
     /**
      * Loading data from shipping modules
      * 
-     * @param array $region Data on available shipping zones for region
+     * @param string $region Data on available shipping zones for region
      */
-    public static function loadData($region) {
+    public static function loadData(string $region): void {
         
         $zones_id = self::shippingZonesAvailable($region);
         $modules_names = self::shippingModulesAvailable($zones_id);
@@ -106,7 +108,7 @@ final class Shipping {
      * @param array $interface_data_all Input data
      * @return array|FALSE
      */
-    public static function filterData($interface_data_all) {
+    public static function filterData(array $interface_data_all): array|bool {
 
         if (count($interface_data_all) > 0) {
             $chanel_minimum_price = array_column($interface_data_all, 'chanel_minimum_price');

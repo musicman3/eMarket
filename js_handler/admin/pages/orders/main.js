@@ -70,12 +70,13 @@ class Orders {
                     var sticker = '';
                 }
                 document.querySelector('#invoice').insertAdjacentHTML('beforeend', '<tr class="align-middle">\n\
-                                        <td class="text-start"><span class="badge bg-success">' + sticker + '</span></td>\n\
+                                        <td class="text-center"><small>' + invoice[x].admin.id + '</small></td>\n\
+                                        <td class="text-center"><span class="badge bg-success">' + sticker + '</span></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.name + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].admin.price + '</small></td>\n\
                                         <td class="text-center"><small>' + invoice[x].data.quantity + ' ' + invoice[x].admin.unit + '</small></td>\n\
                                         <td class="text-end"><small>' + invoice[x].admin.amount + '</small></td>\n\
-                                  </tr>');
+                                        </tr>');
             }
 
             document.querySelector('#invoice_shipping_method').innerHTML = '<b>' + shipping_method + '</b>';
