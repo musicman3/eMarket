@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -53,7 +55,7 @@ class HeaderMenu {
      * Init
      *
      */
-    public function init() {
+    public function init(): void {
         $files = glob(ROOT . '/model/eMarket/Admin/*');
         foreach ($files as $filename) {
             $namespace = '\eMarket\Admin\\' . pathinfo($filename, PATHINFO_FILENAME);
@@ -67,7 +69,7 @@ class HeaderMenu {
      * Init Modules
      *
      */
-    public function initModules() {
+    public function initModules(): void {
         $group = glob(ROOT . '/modules/*');
         $files = [];
         foreach ($group as $group_name) {
@@ -88,7 +90,7 @@ class HeaderMenu {
      * Level One
      *
      */
-    public function levelOne() {
+    public function levelOne(): void {
         self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
         self::$level[self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
         self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
@@ -99,8 +101,10 @@ class HeaderMenu {
     /**
      * Set parameters
      *
+     * @param string $param_1 Parameter 1
+     * @param string $param_2 Parameter 2
      */
-    public static function setParameters($param_1, $param_2) {
+    public static function setParameters(string $param_1, string $param_2): void {
         self::$param_1 = $param_1;
         self::$param_2 = $param_2;
     }
@@ -110,15 +114,16 @@ class HeaderMenu {
      *
      * @return array Parameters
      */
-    public static function getParameters() {
+    public static function getParameters(): array {
         return [self::$param_1, self::$param_2];
     }
 
     /**
      * Get parameters
      *
+     * @param string $flag Flag
      */
-    public static function clearParameters($flag) {
+    public static function clearParameters(string $flag): void {
         if ($flag == 'false') {
             self::$param_1 = '';
             self::$param_2 = '';
@@ -129,7 +134,7 @@ class HeaderMenu {
      * Static levels
      *
      */
-    public function staticLevels() {
+    public function staticLevels(): void {
 
         //LANGUAGES
         self::$level['languages'] = ['#', lang('menu_languages'), 'true', 'bi-translate'];
@@ -147,7 +152,7 @@ class HeaderMenu {
      * Exit
      *
      */
-    public function exit() {
+    public function exit(): void {
         //EXIT
         self::$level['exit'] = ['?route=login&logout=ok', lang('menu_exit'), 'false', 'bi-box-arrow-right'];
     }
@@ -156,11 +161,11 @@ class HeaderMenu {
      * Staff init
      *
      */
-    public function staffInit() {
+    public function staffInit(): void {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
-                self::$staff_data = json_decode(Pdo::getAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], 1);
+                self::$staff_data = json_decode(Pdo::getAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], true);
 
                 $menu_array = [];
                 foreach (self::$menu as $menu_key => $menu_val) {
@@ -198,7 +203,7 @@ class HeaderMenu {
      * Permissions
      *
      */
-    public function permissions() {
+    public function permissions(): void {
         $count = 0;
         foreach (self::$staff_data as $page) {
             if (strpos('/?route=' . Valid::inGET('route'), $page)) {

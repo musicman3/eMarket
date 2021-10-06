@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -51,7 +53,7 @@ class Manufacturers {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][1] = ['?route=manufacturers', 'bi-building', lang('title_manufacturers_index'), '', 'false'];
     }
 
@@ -59,7 +61,7 @@ class Manufacturers {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -77,7 +79,7 @@ class Manufacturers {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -92,7 +94,7 @@ class Manufacturers {
      * Image Upload
      *
      */
-    public function imgUpload() {
+    public function imgUpload(): void {
         // add before delete
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '94']); // width, height
@@ -107,7 +109,7 @@ class Manufacturers {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -120,7 +122,7 @@ class Manufacturers {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -130,7 +132,7 @@ class Manufacturers {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
@@ -144,7 +146,7 @@ class Manufacturers {
                     }
                     if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
                         $site[$modal_id] = $sql_modal['site'];
-                        $logo[$modal_id] = json_decode($sql_modal['logo'], 1);
+                        $logo[$modal_id] = json_decode($sql_modal['logo'], true);
                         $logo_general[$modal_id] = $sql_modal['logo_general'];
                     }
                 }

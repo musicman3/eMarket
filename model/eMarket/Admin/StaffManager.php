@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -48,16 +50,16 @@ class StaffManager {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=staff_manager', 'bi-person-plus', lang('title_staff_manager_index'), '', 'false'];
     }
 
     /**
      * Permissions
      *
-     * @return array permissions
+     * @return mixed permissions
      */
-    public function permissions() {
+    public function permissions(): mixed {
         $permission = Valid::inPOST('permissions');
         if (!Valid::inPOST('permissions')) {
             $permission = [];
@@ -78,19 +80,21 @@ class StaffManager {
     /**
      * Permission class
      *
+     * @param string $input Route path
      * @return string Bootstrap class
      */
-    public static function permissionClass($input) {
+    public static function permissionClass(?string $input): string {
         if ($input == '?route=dashboard') {
             return ' selected disabled';
         }
+        return '';
     }
 
     /**
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             if (Valid::inPOST('demo_mode')) {
@@ -117,7 +121,7 @@ class StaffManager {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if (Valid::inPOST('demo_mode')) {
@@ -141,7 +145,7 @@ class StaffManager {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -155,7 +159,7 @@ class StaffManager {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
@@ -166,7 +170,7 @@ class StaffManager {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $note = [];

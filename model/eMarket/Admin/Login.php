@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -43,7 +45,7 @@ class Login {
      * Logout
      *
      */
-    public function logout() {
+    public function logout(): void {
         session_start();
         if (Valid::inGET('logout') == 'ok') {
             unset($_SESSION['login']);
@@ -56,7 +58,7 @@ class Login {
      * Login
      *
      */
-    public function login() {
+    public function login(): void {
         if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             if (isset($_SESSION['session_page'])) {
                 $session_page = $_SESSION['session_page'];
@@ -72,7 +74,7 @@ class Login {
      * Login Error
      *
      */
-    public function loginError() {
+    public function loginError(): void {
         if (isset($_SESSION['login_error']) == TRUE && Valid::inPOST('login') && Valid::inPOST('pass')) {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
@@ -84,7 +86,7 @@ class Login {
      * After Install
      *
      */
-    public function afterInstall() {
+    public function afterInstall(): void {
         if (Valid::inPOST('install') == 'ok') {
             session_destroy();
             session_start();
@@ -95,7 +97,7 @@ class Login {
      * Authorize
      *
      */
-    public function authorize() {
+    public function authorize(): void {
         if (Valid::inPOST('authorize') == 'ok') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
             $HASH = Pdo::getValue("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);

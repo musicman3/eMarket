@@ -515,6 +515,7 @@ class Settings {
         if (Valid::inGET('search')) {
             return $class;
         }
+        return '';
     }
 
     /**
@@ -601,9 +602,8 @@ class Settings {
         if ($active_tab == $active && self::$active_tabs_count == 0) {
             self::$active_tabs_count = 1;
             return $class;
-        } else {
-            return '';
         }
+        return '';
     }
 
 }

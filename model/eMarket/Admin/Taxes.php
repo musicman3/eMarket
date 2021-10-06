@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -51,7 +53,7 @@ class Taxes {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             if (Valid::inPOST('tax_type')) {
@@ -84,7 +86,7 @@ class Taxes {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if (Valid::inPOST('tax_type')) {
@@ -115,7 +117,7 @@ class Taxes {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -127,7 +129,7 @@ class Taxes {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         self::$zones_names = [];
@@ -147,7 +149,7 @@ class Taxes {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
@@ -160,7 +162,7 @@ class Taxes {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                     }
                     if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                        $rate[$modal_id] = round($sql_modal['rate'], 2);
+                        $rate[$modal_id] = round((float) $sql_modal['rate'], 2);
                         $tax_type_modal[$modal_id] = (int) $sql_modal['tax_type'];
                         $zones_id[$modal_id] = (int) $sql_modal['zones_id'];
                         $fixed_modal[$modal_id] = (int) $sql_modal['fixed'];

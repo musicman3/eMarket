@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -82,7 +84,7 @@ class Stock {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][0] = ['?route=stock', 'bi-shop-window', lang('title_stock_index'), '', 'false'];
     }
 
@@ -90,7 +92,7 @@ class Stock {
      * Image Upload for Categories
      *
      */
-    public function imgUploadCategories() {
+    public function imgUploadCategories(): void {
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '94']); // width, height
     }
@@ -99,7 +101,7 @@ class Stock {
      * Image Upload for Products
      *
      */
-    public function imgUploadProducts() {
+    public function imgUploadProducts(): void {
         self::$resize_param_product = [];
         array_push(self::$resize_param_product, ['125', '94']); // width, height
         array_push(self::$resize_param_product, ['200', '150']);
@@ -112,7 +114,7 @@ class Stock {
      * Init Eac
      *
      */
-    public function initEac() {
+    public function initEac(): void {
         $EAC_ENGINE = Eac::init(self::$resize_param, self::$resize_param_product);
         self::$idsx_real_parent_id = $EAC_ENGINE[0];
         self::$parent_id = $EAC_ENGINE[1];
@@ -122,7 +124,7 @@ class Stock {
      * Select Data
      *
      */
-    public function selectData() {
+    public function selectData(): void {
         self::$currencies_all = Pdo::getAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         self::$taxes_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
         self::$units_all = Pdo::getAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -136,7 +138,7 @@ class Stock {
      * Prepared Data
      *
      */
-    public function preparedData() {
+    public function preparedData(): void {
         if (Valid::inGET('nav_parent_id')) {
             self::$parent_id = Valid::inGET('nav_parent_id');
         }
@@ -165,7 +167,7 @@ class Stock {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
@@ -201,7 +203,6 @@ class Stock {
         self::$count_lines_prod = count(self::$lines_prod);
         self::$count_lines_merge = self::$count_lines_cat + self::$count_lines_prod;
 
-
         self::$arr_merge = Func::arrayMergeOriginKey('cat', 'prod', self::$lines_cat, self::$lines_prod);
 
         $navigate = Navigation::data(self::$count_lines_merge, Settings::linesOnPage(), 1);
@@ -213,7 +214,7 @@ class Stock {
      * Categories Modal
      *
      */
-    public function modalCategories() {
+    public function modalCategories(): void {
         self::$json_data_category = json_encode(json_encode([]));
         $name = [];
         for ($i = self::$start; $i < self::$finish; $i++) {
@@ -226,7 +227,7 @@ class Stock {
                         $name[array_search($sql_modal_cat['language'], lang('#lang_all'))][$modal_id] = $sql_modal_cat['name'];
                     }
                     if ($sql_modal_cat['language'] == lang('#lang_all')[0] && $sql_modal_cat['id'] == $modal_id) {
-                        $logo[$modal_id] = json_decode($sql_modal_cat['logo'], 1);
+                        $logo[$modal_id] = json_decode($sql_modal_cat['logo'], true);
                         $logo_general[$modal_id] = $sql_modal_cat['logo_general'];
                         $attributes[$modal_id] = json_decode($sql_modal_cat['attributes']);
                     }
@@ -248,7 +249,7 @@ class Stock {
      * Products Modal
      *
      */
-    public function modalProducts() {
+    public function modalProducts(): void {
         self::$json_data_product = json_encode([]);
         $name_product = [];
         $description_product = [];
@@ -284,9 +285,9 @@ class Stock {
                         $length_product[$modal_id_prod] = $sql_modal_prod['length'];
                         $width_product[$modal_id_prod] = $sql_modal_prod['width'];
                         $height_product[$modal_id_prod] = $sql_modal_prod['height'];
-                        $logo_product[$modal_id_prod] = json_decode($sql_modal_prod['logo'], 1);
+                        $logo_product[$modal_id_prod] = json_decode($sql_modal_prod['logo'], true);
                         $logo_general_product[$modal_id_prod] = $sql_modal_prod['logo_general'];
-                        $attributes_product[$modal_id_prod] = json_decode($sql_modal_prod['attributes'], 1);
+                        $attributes_product[$modal_id_prod] = json_decode($sql_modal_prod['attributes'], true);
 
                         if (self::$parent_id == 0) {
                             $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
@@ -342,7 +343,7 @@ class Stock {
      * @param string $class2 class
      * @return string
      */
-    public static function statusCatClass($class1, $class2) {
+    public static function statusCatClass(?string $class1, ?string $class2): string {
 
         if (self::$arr_merge['cat'][self::$start]['status'] == 1) {
             return $class1;
@@ -358,15 +359,14 @@ class Stock {
      * @param string $class2 class
      * @return string
      */
-    public static function statusCatButton($class1, $class2) {
+    public static function statusCatButton(?string $class1, ?string $class2): string {
 
         if (isset($_SESSION['buffer']['cat']) == true && in_array(self::$arr_merge['cat'][self::$start]['id'], $_SESSION['buffer']['cat']) == true) {
             return $class1;
         } elseif (self::$transfer == Settings::linesOnPage()) {
             return $class2;
-        } else {
-            return false;
         }
+        return '';
     }
 
     /**
@@ -377,7 +377,7 @@ class Stock {
      * @param string $class3 class
      * @return string
      */
-    public static function statusProdClass($class1, $class2, $class3 = null) {
+    public static function statusProdClass(?string $class1, ?string $class2, ?string $class3 = null): string {
         if ($class3 == null) {
             $disabled = '';
         }
@@ -388,9 +388,8 @@ class Stock {
         }
         if (self::$arr_merge['prod'][self::$start . 'a']['status'] == 1) {
             return $class1 . ' ' . $disabled;
-        } else {
-            return $class2 . ' ' . $disabled;
         }
+        return $class2 . ' ' . $disabled;
     }
 
     /**
@@ -400,14 +399,15 @@ class Stock {
      * @param string $class2 class
      * @return string
      */
-    public static function discountClass($class1, $class2) {
+    public static function discountClass(?string $class1, ?string $class2): string {
 
-        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1)) {
+        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], true)) {
             return $class1;
         }
-        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], 1) == 0) {
+        if (json_decode(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount'], true) == 0) {
             return $class2;
         }
+        return '';
     }
 
     /**
@@ -417,13 +417,12 @@ class Stock {
      * @param string $span2 span end
      * @return string
      */
-    public static function stickerData($span1, $span2) {
+    public static function stickerData(string $span1, string $span2): string {
 
         if (Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker'] != '' && Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker'] != NULL) {
             return $span1 . Stickers::$sticker_name[Stock::$arr_merge['prod'][Stock::$start . 'a']['sticker']] . $span2;
-        } else {
-            return '';
         }
+        return '';
     }
 
     /**
@@ -432,22 +431,23 @@ class Stock {
      * @param string $class class
      * @return string
      */
-    public static function transferClass($class) {
+    public static function transferClass(string $class): string {
 
         if (self::$transfer == Settings::linesOnPage()) {
             return $class;
         }
+        return '';
     }
 
     /**
      * Tooltip data for product discounts
      *
-     * @param string $discount Data on discounts in a line separated by commas
+     * @param mixed $discount Data on discounts in a line separated by commas
      * @return string
      */
-    public static function productSaleTooltip($discount) {
+    public static function productSaleTooltip(mixed $discount): string {
 
-        $discount_json = json_decode($discount, 1);
+        $discount_json = json_decode($discount, true);
         $text = '';
         foreach ($discount_json as $key => $id) {
             foreach ($id as $val_id) {
@@ -465,13 +465,12 @@ class Stock {
      * @param string $span2 span
      * @return string
      */
-    public static function discountLabel($span1, $span2) {
+    public static function discountLabel(string $span1, string $span2): string {
 
         if (self::productSaleTooltip(Stock::$arr_merge['prod'][Stock::$start . 'a']['discount']) != '') {
             return $span1;
-        } else {
-            return $span2;
         }
+        return $span2;
     }
 
     /**
@@ -481,7 +480,7 @@ class Stock {
      * @param string $class2 class
      * @return array
      */
-    public static function categoriesText($class1, $class2) {
+    public static function categoriesText(string $class1, string $class2): array {
         if (self::$transfer == Settings::linesOnPage()) {
             $class = $class1;
             $id = self::$arr_merge['cat'][self::$start]['id'];

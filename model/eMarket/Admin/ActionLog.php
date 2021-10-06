@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -39,7 +41,7 @@ class ActionLog {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=action_log', 'bi-exclamation-circle', lang('menu_action_log'), '', 'false'];
     }
 
@@ -47,7 +49,7 @@ class ActionLog {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/storage/logs/actions.log')) {
             
             unlink(ROOT . '/storage/logs/actions.log');
@@ -59,7 +61,7 @@ class ActionLog {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         if (file_exists(ROOT . '/storage/logs/actions.log')) {
             $lines = array_reverse(file(ROOT . '/storage/logs/actions.log'));
         } else {
@@ -75,7 +77,7 @@ class ActionLog {
      * @param string $input input data
      * @return string bootstrap class
      */
-    public static function errorClass($input) {
+    public static function errorClass(string $input): string {
 
         if (strrpos($input, 'eMarket.INFO:') == TRUE) {
             return 'table-success';

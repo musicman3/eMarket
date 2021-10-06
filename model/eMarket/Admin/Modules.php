@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -47,7 +49,7 @@ class Modules {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
             $module = explode('_', Valid::inPOST('add'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
@@ -61,7 +63,7 @@ class Modules {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit_active')) {
 
             if (Valid::inPOST('switch_active') == 'on') {
@@ -85,7 +87,7 @@ class Modules {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             $module = explode('_', Valid::inPOST('delete'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
@@ -99,7 +101,7 @@ class Modules {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$installed = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
         self::$installed_active = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
     }
@@ -110,7 +112,7 @@ class Modules {
      * @param string $type type
      * @return string Bootstrap class
      */
-    public function class($type) {
+    public function class(?string $type): string {
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             $class = 'active';
         } else {
@@ -124,7 +126,7 @@ class Modules {
      *
      * @param string $type type
      */
-    public function filter($type) {
+    public function filter(?string $type): void {
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             self::$class_tab = 'tab-pane fade show in active';
         } else {
@@ -140,7 +142,7 @@ class Modules {
      * @param string $key key
      * @return string Bootstrap class
      */
-    public function active($key) {
+    public function active(int|string $key): string {
         if (in_array($key, Modules::$installed_filter_active)) {
             $active = 'table-success';
         } else {

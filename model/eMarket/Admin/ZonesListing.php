@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -52,7 +54,7 @@ class ZonesListing {
      * Zones id
      *
      */
-    public function zones_id() {
+    public function zones_id(): void {
         if (Valid::inPOST('zone_id')) {
             self::$zones_id = (int) Valid::inPOST('zone_id');
         }
@@ -66,7 +68,7 @@ class ZonesListing {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
@@ -88,7 +90,7 @@ class ZonesListing {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$count = 0;
 
         self::$countries_multiselect_temp = Pdo::getIndex("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -108,7 +110,7 @@ class ZonesListing {
      * Tooltip data
      *
      */
-    public function tooltip() {
+    public function tooltip(): void {
         self::$text_arr = [];
 
         for ($y = Pages::$start; $y < Pages::$finish; $y++) {

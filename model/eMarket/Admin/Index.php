@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -28,7 +30,7 @@ class Index {
      *
      * @return string url
      */
-    public function route() {
+    public function route(): ?string {
         if (Valid::inGET('route') != '') {
             $path = ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
         } else {

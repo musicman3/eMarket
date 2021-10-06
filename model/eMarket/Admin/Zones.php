@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -46,7 +48,7 @@ class Zones {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -64,7 +66,7 @@ class Zones {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -81,7 +83,7 @@ class Zones {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -95,7 +97,7 @@ class Zones {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -105,7 +107,7 @@ class Zones {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

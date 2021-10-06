@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -47,7 +49,7 @@ class Orders {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_sales][] = ['?route=orders', 'bi-basket2', lang('title_orders_index'), '', 'false'];
     }
 
@@ -55,7 +57,7 @@ class Orders {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $primary_language = Settings::primaryLanguage();
@@ -63,7 +65,7 @@ class Orders {
             $order_data = Pdo::getAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
                         Valid::inPOST('edit')])[0];
 
-            $customer_language = json_decode($order_data['customer_data'], 1)['language'];
+            $customer_language = json_decode($order_data['customer_data'], true)['language'];
 
             $customer_status_history_select = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
                         $customer_language, Valid::inPOST('status_history_select')
@@ -73,7 +75,7 @@ class Orders {
                         $primary_language, Valid::inPOST('status_history_select')
             ]);
 
-            $orders_status_history = json_decode($order_data['orders_status_history'], 1);
+            $orders_status_history = json_decode($order_data['orders_status_history'], true);
 
             if ($orders_status_history[0]['admin']['status'] != $admin_status_history_select) {
                 $date = date("Y-m-d H:i:s");
@@ -95,7 +97,7 @@ class Orders {
                 $email_message = sprintf(lang('orders_change_status_message'), Valid::inPOST('edit'), mb_strtolower($customer_status_history_select), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
                 $providers_message = sprintf(lang('orders_change_status_message_providers'), Valid::inPOST('edit'), $customer_status_history_select);
                 Messages::sendMail($order_data['email'], $email_subject, $email_message);
-                Messages::sendProviders(json_decode($order_data['customer_data'], 1)['telephone'], $providers_message);
+                Messages::sendProviders(json_decode($order_data['customer_data'], true)['telephone'], $providers_message);
             } else {
                 exit;
             }
@@ -108,7 +110,7 @@ class Orders {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -121,7 +123,7 @@ class Orders {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 
         $search = '%' . Valid::inGET('search') . '%';
@@ -142,7 +144,7 @@ class Orders {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -62,7 +64,7 @@ class Slideshow {
      * Helper
      * 
      */
-    public static function helper() {
+    public static function helper(): void {
         Pages::$start = Pages::$table['navigate'][0];
         Pages::$finish = Pages::$table['navigate'][1];
     }
@@ -72,7 +74,7 @@ class Slideshow {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=slideshow', 'bi-film', lang('title_slideshow_index'), '', 'false'];
     }
 
@@ -80,7 +82,7 @@ class Slideshow {
      * Settings
      *
      */
-    public function settings() {
+    public function settings(): void {
         self::$settings = json_encode(Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
     }
 
@@ -88,7 +90,7 @@ class Slideshow {
      * Slideshow Pref
      *
      */
-    public function slideshowPref() {
+    public function slideshowPref(): void {
         if (Valid::inPOST('slideshow_pref')) {
 
             if (Valid::inPOST('mouse_stop')) {
@@ -129,7 +131,7 @@ class Slideshow {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             if (Valid::inPOST('view_slideshow')) {
@@ -170,7 +172,7 @@ class Slideshow {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if (Valid::inPOST('view_slideshow')) {
@@ -210,7 +212,7 @@ class Slideshow {
      * Upload Images
      *
      */
-    public function imgUpload() {
+    public function imgUpload(): void {
         // add before delete
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '63']); // width, height
@@ -226,7 +228,7 @@ class Slideshow {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -238,7 +240,7 @@ class Slideshow {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         if (Valid::inGET('slide_lang')) {
             self::$set_language = Valid::inGET('slide_lang');
         } else {
@@ -256,7 +258,7 @@ class Slideshow {
      * View
      *
      */
-    public static function view() {
+    public static function view(): void {
         self::$slideshow = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
         $slideshow_pref = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
 
@@ -295,7 +297,7 @@ class Slideshow {
         self::$this_time = time();
 
         foreach (self::$slideshow as $images_data) {
-            foreach (json_decode($images_data['logo'], 1) as $logo) {
+            foreach (json_decode($images_data['logo'], true) as $logo) {
                 if ($images_data['status'] == '1' && strtotime($images_data['date_start']) <= self::$this_time && strtotime($images_data['date_finish']) >= self::$this_time) {
                     array_push(self::$slideshow_array, $logo);
                 }
@@ -307,7 +309,7 @@ class Slideshow {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
@@ -319,7 +321,7 @@ class Slideshow {
                         $name[$modal_id] = $sql_modal['name'];
                         $url[$modal_id] = $sql_modal['url'];
                         $heading[$modal_id] = $sql_modal['heading'];
-                        $logo[$modal_id] = json_decode($sql_modal['logo'], 1);
+                        $logo[$modal_id] = json_decode($sql_modal['logo'], true);
                         $logo_general[$modal_id] = $sql_modal['logo_general'];
                         $animation[$modal_id] = (int) $sql_modal['animation'];
                         $color[$modal_id] = $sql_modal['color'];

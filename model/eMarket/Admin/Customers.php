@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -44,7 +46,7 @@ class Customers {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=customers', 'bi-people-fill', lang('menu_customers'), '', 'false'];
     }
 
@@ -52,7 +54,7 @@ class Customers {
      * Status
      *
      */
-    public function status() {
+    public function status(): void {
         if (Valid::inPOST('status')) {
 
             $status_data = Pdo::getValue("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
@@ -73,7 +75,7 @@ class Customers {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -86,7 +88,7 @@ class Customers {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
             $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);

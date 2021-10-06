@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -47,7 +49,7 @@ class OrderStatus {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             if (Valid::inPOST('default_order_status')) {
@@ -80,7 +82,7 @@ class OrderStatus {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if (Valid::inPOST('default_order_status')) {
@@ -108,7 +110,7 @@ class OrderStatus {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -120,7 +122,7 @@ class OrderStatus {
      * Sorting
      *
      */
-    public function sorting() {
+    public function sorting(): void {
         if (Valid::inPostJson('ids')) {
             $sort_array_id_ajax = explode(',', Valid::inPostJson('ids'));
             $sort_array_id = Func::deleteEmptyInArray($sort_array_id_ajax);
@@ -147,7 +149,7 @@ class OrderStatus {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -157,7 +159,7 @@ class OrderStatus {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

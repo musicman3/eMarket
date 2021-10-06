@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -53,7 +55,7 @@ class Stickers {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stickers', 'bi-bookmark-star-fill', lang('title_stickers_index'), '', 'false'];
     }
 
@@ -61,7 +63,7 @@ class Stickers {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             if (Valid::inPOST('default_stickers')) {
@@ -91,7 +93,7 @@ class Stickers {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if (Valid::inPOST('default_stickers')) {
@@ -118,7 +120,7 @@ class Stickers {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -130,7 +132,7 @@ class Stickers {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -140,7 +142,7 @@ class Stickers {
      * Init Stickers
      *
      */
-    public static function initStickers() {
+    public static function initStickers(): void {
         self::$stickers = '';
         self::$stickers_default = 0;
         self::$stickers_flag = 0;
@@ -163,7 +165,7 @@ class Stickers {
     /**
      * Init Eac
      */
-    public static function initEac() {
+    public static function initEac(): void {
 
         if ((Valid::inPostJson('idsx_stickerOn_key') == 'On')
                 or (Valid::inPostJson('idsx_stickerOff_key') == 'Off')) {
@@ -227,7 +229,7 @@ class Stickers {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

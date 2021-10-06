@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -55,7 +57,7 @@ class Templates {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$layout_pages = scandir(ROOT . '/controller/catalog/pages/');
         self::$name_template = scandir(ROOT . '/view/');
     }
@@ -64,7 +66,7 @@ class Templates {
      * Select Page
      *
      */
-    public function selectPage() {
+    public function selectPage(): void {
         if (Valid::inGET('layout_pages_templates')) {
             if (Valid::inGET('layout_pages_templates') == 'all') {
                 self::$select_page = 'all';
@@ -80,7 +82,7 @@ class Templates {
      * Select Template
      *
      */
-    public function selectTemplate() {
+    public function selectTemplate(): void {
         if (Valid::inGET('name_templates')) {
             self::$select_template = Valid::inGET('name_templates');
         } else {
@@ -92,7 +94,7 @@ class Templates {
      * Load Data
      *
      */
-    public function loadData() {
+    public function loadData(): void {
         $layouts_data = Pdo::getAssoc("SELECT url, value, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND template_name=? ORDER BY sort ASC", ['catalog', self::$select_template]);
         $layouts = Func::filterData($layouts_data, 'page', self::$select_page);
 
@@ -130,7 +132,7 @@ class Templates {
      * Handler
      *
      */
-    public function handler() {
+    public function handler(): void {
 
         if (!Valid::inGET('layout_pages_templates')) {
             self::$select_page = 'catalog';
@@ -156,7 +158,7 @@ class Templates {
      * Header
      *
      */
-    public function header() {
+    public function header(): void {
         Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
             'catalog', 'header', Valid::inPostJson('template'), self::$select_page
         ]);
@@ -201,7 +203,7 @@ class Templates {
      * Content
      *
      */
-    public function content() {
+    public function content(): void {
         Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
             'catalog', 'content', Valid::inPostJson('template'), self::$select_page
         ]);
@@ -232,7 +234,7 @@ class Templates {
      * Boxes
      *
      */
-    public function boxes() {
+    public function boxes(): void {
         Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
             'catalog', 'boxes-left', Valid::inPostJson('template'), self::$select_page
         ]);
@@ -275,7 +277,7 @@ class Templates {
      * Footer
      *
      */
-    public function footer() {
+    public function footer(): void {
         Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
             'catalog', 'footer', Valid::inPostJson('template'), self::$select_page
         ]);

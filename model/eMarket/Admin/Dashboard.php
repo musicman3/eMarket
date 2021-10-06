@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -50,15 +52,16 @@ class Dashboard {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][] = ['?route=dashboard', 'bi-pie-chart-fill', lang('menu_dashboard'), '', 'false'];
     }
 
     /**
      * Dashboard Orders
      *
+     * @return mixed Data
      */
-    public static function orders() {
+    public static function orders(): mixed {
         if (self::$dashboard_orders == FALSE) {
             self::$dashboard_orders = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC LIMIT 0,5", []);
         }
@@ -68,18 +71,18 @@ class Dashboard {
     /**
      * Min Year
      *
-     * @return string Min Year
+     * @return mixed Min Year
      */
-    public static function minYear() {
+    public static function minYear(): mixed {
         if (self::$min_year == FALSE) {
             $min_clients_id = Pdo::getValue("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
-            
+
             if ($min_clients_id != FALSE) {
                 $min_clients = Pdo::getValue("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
             } else {
                 $min_clients = date('Y');
             }
-            
+
             self::$min_year = $min_clients;
         }
         return self::$min_year;
@@ -88,9 +91,9 @@ class Dashboard {
     /**
      * Select Year
      *
-     * @return string Select Year
+     * @return mixed Select Year
      */
-    public static function selectYear() {
+    public static function selectYear(): mixed {
         if (!Valid::inPostJson('year')) {
             self::$select_year = date('Y');
         } else {
@@ -102,10 +105,10 @@ class Dashboard {
     /**
      * Selected Year
      *
-     * @param string $year Year
+     * @param string|int $year Year
      * @return string Selected Year
      */
-    public static function selectedYear($year) {
+    public static function selectedYear(string|int $year): ?string {
         if (Valid::inPostJson('year') == $year) {
             return ' selected';
         } else {
@@ -118,7 +121,7 @@ class Dashboard {
      * 
      * @return array Orders data
      */
-    public static function cardOrdersData() {
+    public static function cardOrdersData(): void {
 
         $year = self::selectYear();
         $orders = Pdo::getAssoc("SELECT email, order_total, DAYOFWEEK(date_purchased), MONTH(date_purchased), YEAR(date_purchased) FROM " . TABLE_ORDERS . " WHERE YEAR(date_purchased) = " . $year, []);
@@ -129,7 +132,7 @@ class Dashboard {
         $emails = [];
         $emails_doubles = [];
         foreach ($orders as $orders_value) {
-            $json_decode_month_amount = json_decode($orders_value['order_total'], 1);
+            $json_decode_month_amount = json_decode($orders_value['order_total'], true);
             $total_to_pay = $json_decode_month_amount['data']['total_to_pay'];
             $order_currency = $json_decode_month_amount['data']['currency'];
 
@@ -222,9 +225,9 @@ class Dashboard {
     /**
      * Customers data
      *
-     * @return array Customers data
+     * @return mixed Customers data
      */
-    public static function customersData() {
+    public static function customersData(): mixed {
         if (self::$customers == FALSE) {
             self::$customers = Pdo::getAssoc("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE YEAR(date_account_created) = " . self::selectYear(), []);
         }
@@ -235,7 +238,7 @@ class Dashboard {
      * JSON data
      *
      */
-    public static function jsonData() {
+    public static function jsonData(): void {
         self::$json_data = json_encode([
             'cardWeekDays' => self::$day_of_week,
             'cardOrdersQuantity' => self::$orders_quantity,

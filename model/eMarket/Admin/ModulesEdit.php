@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Admin;
 
 use eMarket\Core\{
@@ -30,14 +32,14 @@ class ModulesEdit {
      *
      */
     function __construct() {
-        $this->switch_active();
+        $this->switchActive();
     }
 
     /**
      * Bootstrap class helper
      *
      */
-    public function switch_active() {
+    public function switchActive(): void {
         $active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
                     Valid::inGET('type'), Valid::inGET('name')])[0];
 
