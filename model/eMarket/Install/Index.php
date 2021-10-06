@@ -82,7 +82,7 @@ class Index {
      * @return string bootstrap class
      */
     public function phpVersionCompare() {
-        if (version_compare(PHP_VERSION, '7.3.0') >= 0) {
+        if (version_compare(PHP_VERSION, '8.0') >= 0) {
             return 'text-success bi-check-lg';
         } else {
             return 'text-danger bi-x-lg';
