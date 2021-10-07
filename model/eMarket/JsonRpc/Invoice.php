@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
@@ -40,8 +42,9 @@ class Invoice extends JsonRpc {
     /**
      * Header
      *
+     * @return object mpdf object
      */
-    private function mpdf() {
+    private function mpdf(): object {
         if (!$this->mpdf) {
             $this->mpdf = new Mpdf([
                 'default_font' => 'freesans'
@@ -52,10 +55,10 @@ class Invoice extends JsonRpc {
 
     /**
      * Order data
-     * @param string $name Orders column name
-     * @return string Output data
+     * @param string|int $name Orders column name
+     * @return mixed Output data
      */
-    private function orderData($name) {
+    private function orderData(string|int $name): mixed {
         if (!$this->order_data) {
             $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [$this->uid]);
             if (count($order_data) > 0) {
@@ -72,18 +75,18 @@ class Invoice extends JsonRpc {
     /**
      * HTML
      *
-     * @return string HTML data
+     * @return mixed HTML data
      */
-    private function html() {
+    private function html(): mixed {
         if ($this->orderData('id')) {
             $data = [
                 'invoice_id' => $this->orderData('id'),
                 'invoice_email' => $this->orderData('email'),
                 'invoice_date_purchased' => Settings::dateLocale($this->orderData('date_purchased')),
-                'invoice_customer_data' => json_decode($this->orderData('customer_data'), 1),
-                'invoice_customer_address_book' => json_decode(json_decode($this->orderData('customer_data'), 1)['address_book'], 1),
-                'invoice_data' => json_decode($this->orderData('invoice'), 1),
-                'invoice_order_total' => json_decode($this->orderData('order_total'), 1),
+                'invoice_customer_data' => json_decode($this->orderData('customer_data'), true),
+                'invoice_customer_address_book' => json_decode(json_decode($this->orderData('customer_data'), true)['address_book'], true),
+                'invoice_data' => json_decode($this->orderData('invoice'), true),
+                'invoice_order_total' => json_decode($this->orderData('order_total'), true),
                 'invoice_title' => lang('blanks_invoice_title'),
                 'invoice_to' => lang('blanks_invoice_to'),
                 'invoice_name' => lang('blanks_invoice_name'),
@@ -116,7 +119,7 @@ class Invoice extends JsonRpc {
      * Create blank
      *
      */
-    private function createBlank() {
+    private function createBlank(): void {
         $this->uid = $this->decodeGetData('id');
         if (!$this->html()) {
             $this->error(-32000, 'Incorrect ID', $this->uid);
