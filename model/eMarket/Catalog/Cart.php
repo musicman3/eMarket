@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -51,7 +53,7 @@ class Cart {
     /**
      * Add product to cart
      */
-    public function addProduct() {
+    public function addProduct(): void {
 
         if (Valid::inGET('add_to_cart') || Valid::inPostJson('add_to_cart')) {
             if (Valid::inGET('add_to_cart')) {
@@ -95,7 +97,7 @@ class Cart {
      * Edit products quantity in cart
      * 
      */
-    public function editProduct() {
+    public function editProduct(): void {
 
         if (Valid::inPostJson('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
@@ -112,7 +114,7 @@ class Cart {
      * Product removing from cart
      * 
      */
-    public function deleteProduct() {
+    public function deleteProduct(): void {
 
         if (Valid::inPostJson('delete_product') && isset($_SESSION['cart'])) {
             $array = [];
@@ -129,7 +131,7 @@ class Cart {
      * Json Echo Shipping
      *
      */
-    public function jsonEchoShipping() {
+    public function jsonEchoShipping(): void {
 
         if (Valid::inPostJson('shipping_region_json')) {
             Shipping::loadData(Valid::inPostJson('shipping_region_json'));
@@ -175,7 +177,7 @@ class Cart {
      * Json Echo Payment
      *
      */
-    public function jsonEchoPayment() {
+    public function jsonEchoPayment(): void {
         if (Valid::inPostJson('payment_shipping_json')) {
             Payment::loadData(Valid::inPostJson('payment_shipping_json'));
 
@@ -210,7 +212,7 @@ class Cart {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $output = [];
         if (isset($_SESSION['cart'])) {
             $x = 0;
@@ -231,13 +233,13 @@ class Cart {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$address_data = [];
         if (isset($_SESSION['email_customer'])) {
             self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
 
             if (self::$address_data_json != FALSE) {
-                self::$address_data = json_decode(self::$address_data_json, 1);
+                self::$address_data = json_decode(self::$address_data_json, true);
             }
 
             $x = 0;

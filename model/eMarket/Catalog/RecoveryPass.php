@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -39,7 +41,7 @@ class RecoveryPass {
      * Recovery
      *
      */
-    public function recovery() {
+    public function recovery(): void {
         if (Valid::inGET('recovery_code')) {
             self::$customer_id = Pdo::getValue("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
                         Valid::inGET('recovery_code')]

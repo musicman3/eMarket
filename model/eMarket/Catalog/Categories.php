@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -33,7 +35,7 @@ class Categories {
      *
      * @return obj
      */
-    public static function data() {
+    public static function data(): void {
         $sql = Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
         self::$categories_and_breadcrumb = Tree::categories($sql, Valid::inGET('category_id'));
     }
@@ -43,7 +45,7 @@ class Categories {
      *
      * @return string url
      */
-    public static function indexData() {
+    public static function indexData(): void {
         self::$index_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
     }
 
@@ -52,7 +54,7 @@ class Categories {
      *
      * @return string url
      */
-    public static function listingData() {
+    public static function listingData(): void {
         self::$listing_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], Valid::inGET('category_id'), 1]);
     }
 

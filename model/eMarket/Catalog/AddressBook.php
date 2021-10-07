@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -48,7 +50,7 @@ class AddressBook {
      * Authorize
      *
      */
-    public function authorize() {
+    public function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -59,7 +61,7 @@ class AddressBook {
      * Json Echo
      *
      */
-    public function jsonEcho() {
+    public function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
             self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
                         lang('#lang_all')[0], Valid::inPostJson('countries_select')
@@ -73,7 +75,7 @@ class AddressBook {
      * Init Data
      *
      */
-    public function initData() {
+    public function initData(): void {
         $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
@@ -83,7 +85,7 @@ class AddressBook {
             self::$address_data = [];
             self::$address_data_json = json_encode([]);
         } else {
-            self::$address_data = json_decode(self::$address_data_json, 1);
+            self::$address_data = json_decode(self::$address_data_json, true);
         }
     }
 
@@ -91,7 +93,7 @@ class AddressBook {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
             if (Valid::inPOST('default')) {
                 $default = 1;
@@ -125,7 +127,7 @@ class AddressBook {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('default')) {
                 $default = 1;
@@ -160,7 +162,7 @@ class AddressBook {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             $number = (int) Valid::inPOST('delete') - 1;
@@ -189,7 +191,7 @@ class AddressBook {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $x = 0;
         foreach (self::$address_data as $address_val) {
             $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];

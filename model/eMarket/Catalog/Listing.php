@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -48,7 +50,7 @@ class Listing {
      * Init Data
      *
      */
-    public function initData() {
+    public function initData(): void {
         if (Valid::inGET('change') == 'on' OR!Valid::inGET('change')) {
             self::$checked_stock = ' checked';
             $qnt_flag = '';
@@ -84,7 +86,7 @@ class Listing {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         if (Valid::inGET('search')) {
             $search = '%' . Valid::inGET('search') . '%';
             self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . self::$sort_parameter, [
@@ -105,7 +107,7 @@ class Listing {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$product_edit = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(self::$lines[$i]['id']) == TRUE) {

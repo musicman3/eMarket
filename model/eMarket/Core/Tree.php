@@ -95,13 +95,13 @@ class Tree {
      * Show Categories
      *
      * @param array $categories Array of categories
-     * @param string $id Id
+     * @param mixed $id Id
      * @param array $output Auxiliary array
      * @param int|string $parent_id Parrent id
      * @param bool $marker Marker
      * @return array
      */
-    public static function categories(array $categories, ?string $id = null, array $output = [], int|string $parent_id = 0, ?bool $marker = null): mixed {
+    public static function categories(array $categories, mixed $id = null, array $output = [], int|string $parent_id = 0, ?bool $marker = null): mixed {
 
         $array_cat = [];
         foreach ($categories as $value) {

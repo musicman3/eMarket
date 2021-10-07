@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -51,13 +53,13 @@ class Success {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         if (Valid::inPOST('add') && password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') . Valid::inPOST('shipping_method') .
                         (float) Valid::inPOST('order_shipping_price') . (float) Valid::inPOST('order_total'), Valid::inPOST('hash'))) {
             self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
 
-            $address_all = json_decode(self::$customer['address_book'], 1);
+            $address_all = json_decode(self::$customer['address_book'], true);
             $address_data = $address_all[Valid::inPOST('address') - 1];
             $address_data['region'] = Pdo::getValue("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
             $address_data['country'] = Pdo::getValue("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
@@ -99,8 +101,8 @@ class Success {
      * Invoice
      *
      */
-    public function invoice() {
-        $cart = json_decode(Valid::inPOST('products_order'), 1);
+    public function invoice(): void {
+        $cart = json_decode(Valid::inPOST('products_order'), true);
 
         $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [self::$primary_language]);
         $sticker_name = [];
@@ -170,7 +172,7 @@ class Success {
      * Order Total Data
      *
      */
-    public function orderTotalData() {
+    public function orderTotalData(): void {
         $INTERFACE = new Interfaces();
         Ecb::priceTerminal(self::$primary_language);
         self::$order_total['admin'] = [
@@ -206,7 +208,7 @@ class Success {
      * Payment Data
      *
      */
-    public function paymentData() {
+    public function paymentData(): void {
         $admin_payment_method = lang('modules_payment_' . Valid::inPOST('payment_method') . '_name', self::$primary_language, 'all');
         $customer_payment_method = lang('modules_payment_' . Valid::inPOST('payment_method') . '_name');
         self::$payment_method = json_encode([
@@ -219,7 +221,7 @@ class Success {
      * Shipping Data
      *
      */
-    public function shippingData() {
+    public function shippingData(): void {
         $admin_shipping_method = lang('modules_shipping_' . Valid::inPOST('shipping_method') . '_name', self::$primary_language, 'all');
         $customer_shipping_method = lang('modules_shipping_' . Valid::inPOST('shipping_method') . '_name');
         self::$shipping_method = json_encode([
@@ -232,7 +234,7 @@ class Success {
      * Save
      *
      */
-    public function save() {
+    public function save(): void {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [$_SESSION['email_customer'], json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
@@ -245,21 +247,21 @@ class Success {
      * End
      *
      */
-    public function end() {
+    public function end(): void {
         $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
         $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);
         Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
-        Messages::sendProviders(json_decode($customer_order_data['customer_data'], 1)['telephone'], $providers_message);
+        Messages::sendProviders(json_decode($customer_order_data['customer_data'], true)['telephone'], $providers_message);
     }
 
     /**
      * Verify
      *
      */
-    public function verify() {
+    public function verify(): void {
         if (Valid::inPOST('add') && !password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') .
                         Valid::inPOST('shipping_method') . (float) Valid::inPOST('order_shipping_price') .

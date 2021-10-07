@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -38,7 +40,7 @@ class MyAccount {
      * Authorize
      *
      */
-    public function authorize() {
+    public function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -49,7 +51,7 @@ class MyAccount {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
                 $password_hash = Authorize::passwordHash(Valid::inPOST('password'));

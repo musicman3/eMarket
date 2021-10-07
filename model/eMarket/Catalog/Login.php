@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -40,7 +42,7 @@ class Login {
      * Activation Code
      *
      */
-    public function activationCode() {
+    public function activationCode(): void {
         if (Valid::inGET('activation_code')) {
             $id_actvation = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE activation_code=?", [Valid::inGET('activation_code')]);
             if ($id_actvation != NULL) {
@@ -61,7 +63,7 @@ class Login {
      * Password Recovery
      *
      */
-    public function passwordRecovery() {
+    public function passwordRecovery(): void {
         if (Valid::inPOST('email_for_recovery')) {
             $customer_id = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email_for_recovery')]);
             $recovery_check = Pdo::getValue("SELECT recovery_code FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
@@ -91,7 +93,7 @@ class Login {
      * Logout
      *
      */
-    public function logout() {
+    public function logout(): void {
         if (Valid::inGET('logout')) {
             unset($_SESSION['password_customer']);
             unset($_SESSION['email_customer']);
@@ -103,7 +105,7 @@ class Login {
      * Entry
      *
      */
-    public function entry() {
+    public function entry(): void {
         if (Valid::inPOST('email')) {
             $HASH = Pdo::getValue("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
             if (!password_verify(Valid::inPOST('password'), $HASH)) {

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -41,7 +43,7 @@ class Orders {
      * Authorize
      *
      */
-    public function authorize() {
+    public function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -52,7 +54,7 @@ class Orders {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']]);
         Pages::data(self::$lines);
     }
@@ -61,7 +63,7 @@ class Orders {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$orders_edit = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(self::$lines[$i]['id']) == TRUE) {

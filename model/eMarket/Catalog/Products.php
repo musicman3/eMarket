@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -57,7 +59,7 @@ class Products {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         self::$products = ProductsCore::productData(Valid::inGET('id'));
     }
 
@@ -65,7 +67,7 @@ class Products {
      * Dimensions
      *
      */
-    public function dimensions() {
+    public function dimensions(): void {
 
         self::$dimension_name = ProductsCore::length(self::$products['dimension'])['code'];
         self::$dimensions = '';
@@ -101,7 +103,7 @@ class Products {
      * Manufacturer
      *
      */
-    public function manufacturer() {
+    public function manufacturer(): void {
         self::$manufacturer = ProductsCore::manufacturer(self::$products['manufacturer'])['name'];
     }
 
@@ -109,7 +111,7 @@ class Products {
      * Vendor Code
      *
      */
-    public function vendorCode() {
+    public function vendorCode(): void {
         self::$vendor_code = ProductsCore::vendorCode(self::$products['vendor_code'])['name'];
 
         if (self::$vendor_code != NULL && self::$vendor_code != FALSE) {
@@ -121,7 +123,7 @@ class Products {
      * Weight
      *
      */
-    public function weight() {
+    public function weight(): void {
         self::$weight = ProductsCore::weight(self::$products['weight'])['code'];
 
         if (self::$weight != NULL && self::$weight != FALSE) {
@@ -133,15 +135,15 @@ class Products {
      * Images
      *
      */
-    public function images() {
-        self::$images = Func::deleteValInArray(json_decode(self::$products['logo'], 1), [self::$products['logo_general']]);
+    public function images(): void {
+        self::$images = Func::deleteValInArray(json_decode(self::$products['logo'], true), [self::$products['logo_general']]);
     }
 
     /**
      * Attributes
      *
      */
-    public function attributes() {
+    public function attributes(): void {
         $categories_data = ProductsCore::categoryData(Valid::inGET('category_id'));
         if (Valid::inGET('category_id') == 0) {
             self::$attributes_data = json_encode([]);
@@ -154,7 +156,7 @@ class Products {
      * Tabs
      *
      */
-    public function tabs() {
+    public function tabs(): void {
         Tabs::loadData();
 
         $INTERFACE = new Interfaces();

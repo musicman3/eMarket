@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
@@ -41,7 +43,7 @@ class Checkout {
      * Authorize
      *
      */
-    public function authorize() {
+    public function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -52,7 +54,7 @@ class Checkout {
      * Customer Data
      *
      */
-    public function customerData() {
+    public function customerData(): void {
         self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
     }
 
@@ -60,9 +62,9 @@ class Checkout {
      * Customer Address
      *
      */
-    public function customerAddress() {
+    public function customerAddress(): void {
         if (Valid::inPOST('address')){
-        $address_all = json_decode(self::$customer['address_book'], 1);
+        $address_all = json_decode(self::$customer['address_book'], true);
         self::$address_data = $address_all[Valid::inPOST('address') - 1];
         }
     }
