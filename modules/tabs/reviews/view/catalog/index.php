@@ -131,7 +131,7 @@ use eMarket\Core\Modules\Tabs\Reviews;
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                <cite><?php echo json_decode($review['reviews'], 1)[0] ?></cite>
+                                <cite><?php echo json_decode($review['reviews'], true)[0] ?></cite>
                             </div>
                         </div>
                     </div>

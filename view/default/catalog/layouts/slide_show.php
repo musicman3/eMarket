@@ -30,7 +30,7 @@ if (Slideshow::$slideshow == true) {
             <div class="carousel-inner rounded">
                 <?php
                 foreach (Slideshow::$slideshow as $images_data) {
-                    foreach (json_decode($images_data['logo'], 1) as $logo) {
+                    foreach (json_decode($images_data['logo'], true) as $logo) {
                         if ($images_data['status'] == 1 && strtotime($images_data['date_start']) <= Slideshow::$this_time && strtotime($images_data['date_finish']) >= Slideshow::$this_time) {
                             ?>
                             <div class="carousel-item <?php echo Settings::activeTab(0, 0) ?>">
