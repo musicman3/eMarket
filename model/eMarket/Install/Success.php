@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Install;
 
 use eMarket\Core\{
@@ -45,7 +47,7 @@ class Success {
      * Config
      *
      */
-    public function config() {
+    public function config(): void {
         self::$root = getenv('DOCUMENT_ROOT');
         self::$db_family = Valid::inPOST('database_family');
         $db_pref = Valid::inPOST('database_prefix');
@@ -101,7 +103,7 @@ class Success {
      * Save
      *
      */
-    public function save() {
+    public function save(): void {
         $fpd = fopen(self::$root . '/storage/configure/configure.php', 'w+');
         fputs($fpd, self::$config);
         fclose($fpd);

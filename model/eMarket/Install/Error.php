@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Install;
 
 use eMarket\Core\{
@@ -37,7 +39,7 @@ class Error {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         if (Valid::inGET('file_configure_not_found')) {
             self::$message = 'file_configure_not_found';
         }
