@@ -37,7 +37,7 @@ class Index {
      * Default language
      *
      */
-    public function lang() {
+    public function lang(): void {
         if (!Valid::inPOST('language') && Settings::path() == 'install') {
             self::$default_language = 'english';
         }
@@ -53,12 +53,11 @@ class Index {
      * @param string $ext Extension
      * @return string bootstrap class
      */
-    public function phpExtension($ext) {
+    public function phpExtension(string $ext): string {
         if (!extension_loaded($ext)) {
             return 'text-danger bi-x-lg';
-        } else {
-            return 'text-success bi-check-lg';
         }
+        return 'text-success bi-check-lg';
     }
 
     /**
@@ -68,12 +67,11 @@ class Index {
      * @param string $val Value
      * @return string bootstrap class
      */
-    public function phpIniGet($ext, $val) {
+    public function phpIniGet(string $ext, string $val): string {
         if (ini_get($ext) < $val) {
             return 'text-danger bi-x-lg';
-        } else {
-            return 'text-success bi-check-lg';
         }
+        return 'text-success bi-check-lg';
     }
 
     /**
@@ -81,12 +79,11 @@ class Index {
      *
      * @return string bootstrap class
      */
-    public function phpVersionCompare() {
+    public function phpVersionCompare(): string {
         if (version_compare(PHP_VERSION, '8.0') >= 0) {
             return 'text-success bi-check-lg';
-        } else {
-            return 'text-danger bi-x-lg';
         }
+        return 'text-danger bi-x-lg';
     }
 
 }
