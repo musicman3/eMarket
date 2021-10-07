@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core\Modules\Payment;
 
 use eMarket\Core\{
@@ -49,7 +51,7 @@ class Cash {
      *
      * @param array $module (input data)
      */
-    public static function install($module) {
+    public static function install(array $module): void {
         Modules::install($module);
     }
 
@@ -58,7 +60,7 @@ class Cash {
      *
      * @param array $module (input data)
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
 
@@ -67,7 +69,7 @@ class Cash {
      *
      * @return array $interface (data)
      */
-    public static function load() {
+    public static function load(): void {
 
         $INTERFACE = new Interfaces();
 
@@ -89,7 +91,7 @@ class Cash {
      * Save
      *
      */
-    public function save() {
+    public function save(): void {
         if (Valid::inPOST('save')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -116,13 +118,13 @@ class Cash {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
         self::$shipping_method = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
         self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
         self::$order_status_selected = Pdo::getValue("SELECT order_status FROM " . $MODULE_DB, []);
-        self::$shipping_val = json_decode(Pdo::getValue("SELECT shipping_module FROM " . $MODULE_DB, []), 1);
+        self::$shipping_val = json_decode(Pdo::getValue("SELECT shipping_module FROM " . $MODULE_DB, []), true);
     }
 
 }

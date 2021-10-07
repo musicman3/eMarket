@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core\Modules\Discount;
 
 use eMarket\Core\{
@@ -53,7 +55,7 @@ class Sale {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
     }
 
@@ -62,7 +64,7 @@ class Sale {
      *
      * @param array $module (input data)
      */
-    public static function install($module) {
+    public static function install(array $module): void {
         Modules::install($module);
     }
 
@@ -71,11 +73,11 @@ class Sale {
      *
      * @param array $module (input data)
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Modules::uninstall($module);
         $products_data = Pdo::getAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
         foreach ($products_data as $data) {
-            $discounts = json_decode($data['discount'], 1);
+            $discounts = json_decode($data['discount'], true);
             unset($discounts['sale']);
             Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
         }
@@ -84,9 +86,9 @@ class Sale {
     /**
      * Status
      *
-     * @return string|FALSE
+     * @return mixed
      */
-    public static function status() {
+    public static function status(): mixed {
         $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
         return $module_active;
     }
@@ -98,13 +100,13 @@ class Sale {
      * @param string $language (language)
      * @return array (output data)
      */
-    public static function dataInterface($input, $language = null) {
+    public static function dataInterface(array $input, ?string $language = null): void {
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
         }
 
-        $discount_val = json_decode($input['discount'], 1);
+        $discount_val = json_decode($input['discount'], true);
         $currency = $input['currency'];
         $input_price = Ecb::currencyPrice($input['price'], $currency);
 
@@ -158,7 +160,7 @@ class Sale {
     /**
      * EAC init
      */
-    public static function initEac() {
+    public static function initEac(): void {
 
         if ((Valid::inPostJson('idsx_sale_on_key') == 'On')
                 or (Valid::inPostJson('idsx_sale_off_key') == 'Off')
@@ -198,7 +200,7 @@ class Sale {
 
                             foreach ($products_id as $val) {
                                 $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
-                                $discount_array = json_decode($discount_json, 1);
+                                $discount_array = json_decode($discount_json, true);
 
                                 if (!array_key_exists('sale', $discount_array)) {
                                     $discount_array['sale'] = [$discount];
@@ -221,7 +223,7 @@ class Sale {
 
                             foreach ($products_id as $val) {
                                 $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
-                                $discount_array = json_decode($discount_json, 1);
+                                $discount_array = json_decode($discount_json, true);
 
                                 if (array_key_exists('sale', $discount_array)) {
                                     foreach ($discount_array['sale'] as $key_del => $name_del) {
@@ -244,7 +246,7 @@ class Sale {
 
                             foreach ($products_id as $val) {
                                 $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
-                                $discount_array = json_decode($discount_json, 1);
+                                $discount_array = json_decode($discount_json, true);
 
                                 if (array_key_exists('sale', $discount_array)) {
                                     unset($discount_array['sale']);
@@ -263,7 +265,7 @@ class Sale {
                     if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
-                        $discount_array = json_decode($discount_json, 1);
+                        $discount_array = json_decode($discount_json, true);
 
                         if (!array_key_exists('sale', $discount_array)) {
                             $discount_array['sale'] = [$discount];
@@ -279,7 +281,7 @@ class Sale {
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
-                        $discount_array = json_decode($discount_json, 1);
+                        $discount_array = json_decode($discount_json, true);
 
                         if (array_key_exists('sale', $discount_array)) {
                             foreach ($discount_array['sale'] as $key_del => $name_del) {
@@ -295,7 +297,7 @@ class Sale {
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('products_', $idx[$i]);
                         $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
-                        $discount_array = json_decode($discount_json, 1);
+                        $discount_array = json_decode($discount_json, true);
 
                         if (array_key_exists('sale', $discount_array)) {
                             unset($discount_array['sale']);
@@ -316,7 +318,7 @@ class Sale {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -358,7 +360,7 @@ class Sale {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -396,7 +398,7 @@ class Sale {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -420,7 +422,7 @@ class Sale {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
         self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
@@ -434,7 +436,7 @@ class Sale {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

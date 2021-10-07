@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core\Modules\Shipping;
 
 use eMarket\Core\{
@@ -52,7 +54,7 @@ class Free {
      *
      * @param array $module (input data)
      */
-    public static function install($module) {
+    public static function install(array $module): void {
         Modules::install($module);
     }
 
@@ -61,7 +63,7 @@ class Free {
      *
      * @param array $module (input data)
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
 
@@ -71,7 +73,7 @@ class Free {
      * @param array $zones_id (Zones id)
      * @return array|FALSE (Data)
      */
-    public static function load($zones_id) {
+    public static function load(array $zones_id): void {
 
         $interface_data_all = [];
         $INTERFACE = new Interfaces();
@@ -109,7 +111,7 @@ class Free {
      * Add
      *
      */
-    public function add() {
+    public function add(): void {
         if (Valid::inPOST('add')) {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0]]);
@@ -123,7 +125,7 @@ class Free {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0], Valid::inPOST('edit')]);
@@ -137,7 +139,7 @@ class Free {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
             $MODULE_DB = Modules::moduleDatabase();
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -151,7 +153,7 @@ class Free {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
         self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -169,7 +171,7 @@ class Free {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $MODULE_DB = Modules::moduleDatabase();
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core\Modules\Tabs;
 
 use eMarket\Core\{
@@ -61,7 +63,7 @@ class Reviews {
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
      * 
      */
-    public static function menu() {
+    public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=settings/modules/edit&type=tabs&name=reviews&alias=true', 'bi-chat-left-text', lang('modules_tabs_reviews_name'), '', 'false'];
     }
 
@@ -70,7 +72,7 @@ class Reviews {
      *
      * @param array $module (input data)
      */
-    public static function install($module) {
+    public static function install(array $module): void {
         Modules::install($module);
     }
 
@@ -79,7 +81,7 @@ class Reviews {
      *
      * @param array $module (input data)
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
 
@@ -88,7 +90,7 @@ class Reviews {
      *
      * @return array $interface (data)
      */
-    public static function load() {
+    public static function load(): void {
 
         $INTERFACE = new Interfaces();
         self::reviewsData();
@@ -105,9 +107,9 @@ class Reviews {
     /**
      * Status
      *
-     * @return string|FALSE
+     * @return mixed
      */
-    public static function status() {
+    public static function status(): mixed {
         $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
         return $module_active;
     }
@@ -116,7 +118,7 @@ class Reviews {
      * Data
      *
      */
-    public function data() {
+    public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
         self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_add) FROM " . $MODULE_DB . " WHERE status=? ORDER BY id DESC", [0]);
@@ -127,7 +129,7 @@ class Reviews {
      * Author check
      *
      */
-    public function authorCheck() {
+    public function authorCheck(): void {
         if (Authorize::$customer != FALSE) {
             self::$author_check = Pdo::getValue("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Authorize::$customer['email'], Valid::inGET('id')]);
         }
@@ -137,9 +139,9 @@ class Reviews {
      * Review author
      *
      * @param string $email Email
-     * @return array Author data
+     * @return mixed Author data
      */
-    public static function reviewAuthor($email) {
+    public static function reviewAuthor(string $email): mixed {
         self::$author = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
 
         return self::$author;
@@ -151,13 +153,13 @@ class Reviews {
      * @param string $email Email
      * @return array Author data
      */
-    public static function purchaseCheck($email) {
+    public static function purchaseCheck(string $email): string {
         $purchase = Pdo::getAssoc("SELECT products_order FROM " . TABLE_ORDERS . " WHERE email=?", [$email]);
         $purchase_flag = 'FALSE';
 
         foreach ($purchase as $data) {
             foreach ($data as $product) {
-                $json_product = json_decode($product, 1);
+                $json_product = json_decode($product, true);
                 foreach ($json_product as $json) {
                     if ($json['id'] == Valid::inGET('id')) {
                         $purchase_flag = 'TRUE';
@@ -172,13 +174,13 @@ class Reviews {
     /**
      * Review author
      *
-     * @return array Author data
+     * @return float Author data
      */
-    public static function averageRating() {
+    public static function averageRating(): float {
         $rating = 0;
         $count = 0;
         foreach (self::$reviews as $review) {
-            $rating = $rating + $review['stars'];
+            $rating = (int) $rating + (int) $review['stars'];
             $count++;
         }
         $average_rating = round($rating / $count * 2) / 2;
@@ -189,7 +191,7 @@ class Reviews {
      * Add review
      *
      */
-    public function addReview() {
+    public function addReview(): void {
         if (Authorize::$customer != FALSE && Valid::inPostJson('review')) {
             Pdo::action("INSERT INTO " . DB_PREFIX . "modules_tabs_reviews SET product_id=?, author=?, stars=?, status=?, likes=?, date_add=?, date_edit=?, reviews=?", [
                 Valid::inGET('id'), Authorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([Valid::inPostJson('review')])
@@ -201,7 +203,7 @@ class Reviews {
      * Review data
      *
      */
-    public static function reviewsData() {
+    public static function reviewsData(): void {
         if (!Valid::inPostJson('start_review')) {
             self::$reviews = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT 0," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
         } else {
@@ -213,10 +215,10 @@ class Reviews {
     /**
      * Review status
      * 
-     * @return array Author review status
+     * @return mixed Author review status
      *
      */
-    public static function reviewStatus() {
+    public static function reviewStatus(): mixed {
         $data_review = Pdo::getValue("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Authorize::$customer['email']]);
 
         return $data_review;
@@ -226,7 +228,7 @@ class Reviews {
      * Reviews count
      *
      */
-    public static function reviewsCount() {
+    public static function reviewsCount(): void {
         $count = Pdo::getRowCount("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=?", [Valid::inGET('id'), 1]);
         self::$reviews_count = $count;
     }
@@ -235,7 +237,7 @@ class Reviews {
      * Publish
      *
      */
-    public function publish() {
+    public function publish(): void {
         if (Valid::inPOST('publish')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -254,7 +256,7 @@ class Reviews {
      * Edit
      *
      */
-    public function edit() {
+    public function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -271,7 +273,7 @@ class Reviews {
      * Delete
      *
      */
-    public function delete() {
+    public function delete(): void {
         if (Valid::inPOST('delete')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -285,7 +287,7 @@ class Reviews {
      * Modal
      *
      */
-    public function modal() {
+    public function modal(): void {
         self::$json_data = json_encode([]);
         $reviews = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+declare(strict_types=1);
+
 namespace eMarket\Core\Modules\Providers;
 
 use eMarket\Core\{
@@ -46,7 +48,7 @@ class Smsc {
      *
      * @param array $module (input data)
      */
-    public static function install($module) {
+    public static function install(array $module): void {
         Modules::install($module);
     }
 
@@ -55,7 +57,7 @@ class Smsc {
      *
      * @param array $module (input data)
      */
-    public static function uninstall($module) {
+    public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
 
@@ -65,7 +67,7 @@ class Smsc {
      * @param string $to_phone_number ('To' phone_number)
      * @param string $body (message)
      */
-    public static function send($to_phone_number, $body) {
+    public static function send(string $to_phone_number, string $body): void {
         $username = self::$data['login'];
         $password = self::$data['password'];
         $sender = self::$data['sender'];
@@ -90,7 +92,7 @@ class Smsc {
      * @param array $post_body (json post body)
      * @param string $url (url)
      */
-    public static function curl($post_body, $url) {
+    public static function curl(array $post_body, string $url): void {
         $ch = curl_init();
         $headers = [
             'Content-Type:application/x-www-form-urlencoded'
@@ -115,7 +117,7 @@ class Smsc {
      *
      * @return array $interface (data)
      */
-    public static function load() {
+    public static function load(): void {
 
         $INTERFACE = new Interfaces();
 
@@ -130,7 +132,7 @@ class Smsc {
      * Save
      *
      */
-    public function save() {
+    public function save(): void {
         if (Valid::inPOST('save')) {
 
             $MODULE_DB = Modules::moduleDatabase();
@@ -151,7 +153,7 @@ class Smsc {
      * Data
      *
      */
-    public static function data() {
+    public static function data(): void {
         $data = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_smsc', []);
         if (count($data) > 0) {
             self::$data = $data[0];
