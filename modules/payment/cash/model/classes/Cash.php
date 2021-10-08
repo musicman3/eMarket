@@ -124,7 +124,7 @@ class Cash {
         self::$shipping_method = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
         self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
         self::$order_status_selected = Pdo::getValue("SELECT order_status FROM " . $MODULE_DB, []);
-        self::$shipping_val = json_decode(Pdo::getValue("SELECT shipping_module FROM " . $MODULE_DB, []), true);
+        self::$shipping_val = json_decode((string) Pdo::getValue("SELECT shipping_module FROM " . $MODULE_DB, []), true);
     }
 
 }
