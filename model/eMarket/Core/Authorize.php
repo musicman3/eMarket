@@ -130,7 +130,7 @@ class Authorize {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
-                $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), 1);
+                $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), true);
                 $count = 0;
                 foreach ($staff_data as $value) {
                     if ($value == '?route=dashboard') {
