@@ -107,7 +107,7 @@ class Login {
      */
     public function entry(): void {
         if (Valid::inPOST('email')) {
-            $HASH = Pdo::getValue("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
+            $HASH = (string) Pdo::getValue("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
             if (!password_verify(Valid::inPOST('password'), $HASH)) {
                 Messages::alert('messages_email_or_password_is_not_correct', 'danger', lang('messages_email_or_password_is_not_correct'), 7000, true);
             } else {

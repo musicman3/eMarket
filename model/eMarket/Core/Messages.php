@@ -77,13 +77,13 @@ class Messages {
      * 
      * param string $action (add/edit/delete/cut and etc)
      * @param string $class Bootstrap class
-     * @param string $message Message
+     * @param mixed $message Message
      * @param int $time Show time (ms)
      * @param bool $start Manual call
      * @return bool
      *
      */
-    public static function alert(?string $action = null, ?string $class = null, ?string $message = null, ?int $time = null, bool $start = false): bool {
+    public static function alert(?string $action = null, ?string $class = null, mixed $message = null, ?int $time = null, bool $start = false): bool {
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {

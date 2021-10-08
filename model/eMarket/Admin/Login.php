@@ -100,7 +100,7 @@ class Login {
     public function authorize(): void {
         if (Valid::inPOST('authorize') == 'ok') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
-            $HASH = Pdo::getValue("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);
+            $HASH = (string) Pdo::getValue("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);
             if (!password_verify(Valid::inPOST('pass'), $HASH)) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
