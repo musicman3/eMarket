@@ -141,6 +141,7 @@ class Authorize {
                     unset($_SESSION['login']);
                     unset($_SESSION['pass']);
                     header('Location: ?route=login');
+                    exit;
                 }
             }
         }

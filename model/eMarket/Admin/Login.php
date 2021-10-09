@@ -51,6 +51,7 @@ class Login {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
             header('Location: ?route=login');
+            exit;
         }
     }
 
@@ -64,8 +65,10 @@ class Login {
                 $session_page = $_SESSION['session_page'];
                 unset($_SESSION['session_page']);
                 header('Location: ' . $session_page);
+                exit;
             } else {
                 header('Location: ?route=dashboard');
+                exit;
             }
         }
     }
@@ -116,11 +119,11 @@ class Login {
                     if ($session_page == '/controller/admin/') {
                         $session_page = '?route=dashboard';
                     }
-                    Messages::alert('authorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ' . $session_page);
+                    exit;
                 } else {
-                    Messages::alert('authorize', 'success', lang('action_completed_successfully'), 0, true);
                     header('Location: ?route=dashboard');
+                    exit;
                 }
             }
         }

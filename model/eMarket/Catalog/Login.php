@@ -98,6 +98,7 @@ class Login {
             unset($_SESSION['password_customer']);
             unset($_SESSION['email_customer']);
             header('Location: ?route=' . Valid::inGET('route'));
+            exit;
         }
     }
 
@@ -115,8 +116,10 @@ class Login {
                 $_SESSION['email_customer'] = Valid::inPOST('email');
                 if (Valid::inGET('redirect') == 'cart') {
                     header('Location: ?route=cart');
+                    exit;
                 } else {
                     header('Location: ' . HTTP_SERVER);
+                    exit;
                 }
             }
         }

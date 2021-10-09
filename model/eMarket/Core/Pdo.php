@@ -49,6 +49,7 @@ final class Pdo {
             } catch (\PDOException $error) {
                 if (Settings::path() == 'install') {
                     header('Location: /controller/install/error.php?server_db_error=true&error_message=' . $error->getMessage());
+                    exit;
                 }
             }
         }

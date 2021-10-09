@@ -112,6 +112,7 @@ class Success {
             chmod(self::$root . '/storage/configure/configure.php', 0644);
         } else {
             header('Location: /controller/install/error.php?file_configure_not_found=true');
+            exit;
         }
 
         require_once(self::$root . '/storage/configure/configure.php');
@@ -122,6 +123,7 @@ class Success {
 
         if (!file_exists($file_name)) {
             header('Location: /controller/install/error.php?file_not_found=true');
+            exit;
         }
 
         $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
@@ -135,6 +137,7 @@ class Success {
 
         if (version_compare($mysql_version, '5.7.8') < 0) {
             header('Location: /controller/install/error.php?mysql_version_false=true');
+            exit;
         }
         
         $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
