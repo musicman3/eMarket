@@ -11,7 +11,7 @@ use eMarket\Core\{
     JsonRpc
 };
 
-class AuthorizeTest extends TestCase {
+class JsonRpcTest extends TestCase {
 
     public function testEncodeGetData() {
         $result = JsonRpc::encodeGetData('1', 'get', []);
