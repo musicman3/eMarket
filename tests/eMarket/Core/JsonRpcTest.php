@@ -5,6 +5,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+namespace eMarket\Core;
+
 use PHPUnit\Framework\TestCase;
 
 use eMarket\Core\{
