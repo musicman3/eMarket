@@ -21,11 +21,11 @@ namespace eMarket\Core;
 class Valid {
 
     public static $demo_mode = FALSE;
-    public static $test_post_json = FALSE;
-    public static $test_post = FALSE;
-    public static $test_get = FALSE;
-    public static $test_server = FALSE;
-    public static $test_cookie = FALSE;
+    public static $post_json_simulator = FALSE;
+    public static $post_simulator = FALSE;
+    public static $get_simulator = FALSE;
+    public static $server_simulator = FALSE;
+    public static $cookie_simulator = FALSE;
 
     /**
      * POST validation
@@ -34,8 +34,8 @@ class Valid {
      * @return mixed
      */
     public static function inPOST(?string $input): mixed {
-        if (self::$test_post != FALSE && isset(self::$test_post[$input])) {
-            return self::$test_post[$input];
+        if (self::$post_simulator != FALSE && isset(self::$post_simulator[$input])) {
+            return self::$post_simulator[$input];
         }
         if (filter_input(INPUT_POST, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE && self::$demo_mode == FALSE) {
             if (isset($_POST[$input])) {
@@ -64,8 +64,8 @@ class Valid {
      * @return mixed
      */
     public static function inGET(?string $input): mixed {
-        if (self::$test_get != FALSE && isset(self::$test_get[$input])) {
-            return self::$test_get[$input];
+        if (self::$get_simulator != FALSE && isset(self::$get_simulator[$input])) {
+            return self::$get_simulator[$input];
         }
         if (filter_input(INPUT_GET, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             if (isset($_GET[$input])) {
@@ -82,8 +82,8 @@ class Valid {
      * @return mixed
      */
     public static function inSERVER(?string $input): mixed {
-        if (self::$test_server != FALSE && isset(self::$test_server[$input])) {
-            return self::$test_server[$input];
+        if (self::$server_simulator != FALSE && isset(self::$server_simulator[$input])) {
+            return self::$server_simulator[$input];
         }
         if (filter_input(INPUT_SERVER, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             if (isset($_SERVER[$input])) {
@@ -100,8 +100,8 @@ class Valid {
      * @return mixed
      */
     public static function inCOOKIE(?string $input): mixed {
-        if (self::$test_cookie != FALSE && isset(self::$test_cookie[$input])) {
-            return self::$test_cookie[$input];
+        if (self::$cookie_simulator != FALSE && isset(self::$cookie_simulator[$input])) {
+            return self::$cookie_simulator[$input];
         }
         if (filter_input(INPUT_COOKIE, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
             if (isset($_COOKIE[$input])) {
@@ -118,8 +118,8 @@ class Valid {
      * @return mixed
      */
     public static function inPostJson(?string $input): mixed {
-        if (self::$test_post_json != FALSE && isset(self::$test_post_json[$input])) {
-            return self::$test_post_json[$input];
+        if (self::$post_json_simulator != FALSE && isset(self::$post_json_simulator[$input])) {
+            return self::$post_json_simulator[$input];
         }
         $postData = htmlspecialchars(file_get_contents('php://input'), ENT_NOQUOTES);
         $data = json_decode($postData, true);

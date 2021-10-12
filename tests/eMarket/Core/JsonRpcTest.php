@@ -24,7 +24,7 @@ class JsonRpcTest extends TestCase {
 
     public function testDecodeGetData() {
         
-        Valid::$test_get = [
+        Valid::$get_simulator = [
             'request' => urlencode(json_encode([
                 'jsonrpc' => '2.0',
                 'method' => 'POST',
