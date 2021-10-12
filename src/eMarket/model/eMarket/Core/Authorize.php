@@ -30,7 +30,7 @@ use \eMarket\Catalog\{
 class Authorize {
 
     public static $customer;
-    public static array $csrf_token = [];
+    public static $csrf_token = FALSE;
 
     /**
      * Constructor
@@ -81,11 +81,11 @@ class Authorize {
      */
     public static function csrfToken(): string {
 
-        if (!isset(self::$csrf_token[Settings::path()])) {
-            self::$csrf_token[Settings::path()] = Func::getToken(32);
-            $_SESSION['csrf_token_' . Settings::path()] = self::$csrf_token[Settings::path()];
+        if (!self::$csrf_token) {
+            self::$csrf_token = Func::getToken(32);
+            $_SESSION['csrf_token_' . Settings::path()] = self::$csrf_token;
         }
-        return self::$csrf_token[Settings::path()];
+        return self::$csrf_token;
     }
 
     /**
@@ -180,7 +180,7 @@ class Authorize {
         } else {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
         }
-        
+
         return TRUE;
     }
 
@@ -235,7 +235,7 @@ class Authorize {
             $METHOD = PASSWORD_ARGON2I;
         }
         $password_hash = password_hash($password, $METHOD, $options);
-        
+
         return $password_hash;
     }
 
