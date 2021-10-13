@@ -28,6 +28,42 @@ class Valid {
     public static $cookie_simulator = FALSE;
 
     /**
+     * Request simulator
+     *
+     * @param string $type Data type (json|post|get|server|cookie)
+     * @param mixed $data Data
+     */
+    public static function simulator(string $type, mixed $data): void {
+        if ($type == 'json' && !self::$post_json_simulator) {
+            self::$post_json_simulator = $data;
+        }
+        if ($type == 'post' && !self::$post_simulator) {
+            self::$post_simulator = $data;
+        }
+        if ($type == 'get' && !self::$get_simulator) {
+            self::$get_simulator = $data;
+        }
+        if ($type == 'server' && !self::$server_simulator) {
+            self::$server_simulator = $data;
+        }
+        if ($type == 'cookie' && !self::$cookie_simulator) {
+            self::$cookie_simulator = $data;
+        }
+    }
+
+    /**
+     * Close Request simulator
+     *
+     */
+    public static function closeSimulator(): void {
+        self::$post_json_simulator = FALSE;
+        self::$post_simulator = FALSE;
+        self::$get_simulator = FALSE;
+        self::$server_simulator = FALSE;
+        self::$cookie_simulator = FALSE;
+    }
+
+    /**
      * POST validation
      *
      * @param string $input Input data

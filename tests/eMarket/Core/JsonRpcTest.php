@@ -24,13 +24,15 @@ class JsonRpcTest extends TestCase {
 
     public function testDecodeGetData() {
 
-        Valid::$get_simulator = [
+        $request = [
             'request' => urlencode(json_encode([
                 'jsonrpc' => '2.0',
-                'method' => 'POST',
+                'method' => 'GET',
                 'param' => [],
                 'id' => '1',
         ]))];
+
+        Valid::simulator('get', $request);
 
         $eMarket = new JsonRpc();
         $this->assertIsString($eMarket->decodeGetData('jsonrpc'));
@@ -40,6 +42,8 @@ class JsonRpcTest extends TestCase {
         $this->assertIsString($eMarket->decodeGetData('id'));
         $this->assertIsArray($eMarket->decodeGetData(null));
         $this->assertCount(4, $eMarket->decodeGetData(null));
+
+        Valid::closeSimulator();
     }
 
 }
