@@ -33,7 +33,7 @@ class Valid {
      * @param string $type Data type (json|post|get|server|cookie)
      * @param mixed $data Data
      */
-    public static function simulator(string $type, mixed $data): void {
+    public static function requestSimulator(string $type, mixed $data): void {
         if ($type == 'json' && !self::$post_json_simulator) {
             self::$post_json_simulator = $data;
         }
@@ -55,7 +55,7 @@ class Valid {
      * Close Request simulator
      *
      */
-    public static function closeSimulator(): void {
+    public static function closeRequestSimulator(): void {
         self::$post_json_simulator = FALSE;
         self::$post_simulator = FALSE;
         self::$get_simulator = FALSE;

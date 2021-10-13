@@ -32,7 +32,7 @@ class JsonRpcTest extends TestCase {
                 'id' => '1',
         ]))];
 
-        Valid::simulator('get', $request);
+        Valid::requestSimulator('get', $request);
 
         $eMarket = new JsonRpc();
         $this->assertIsString($eMarket->decodeGetData('jsonrpc'));
@@ -43,7 +43,7 @@ class JsonRpcTest extends TestCase {
         $this->assertIsArray($eMarket->decodeGetData(null));
         $this->assertCount(4, $eMarket->decodeGetData(null));
 
-        Valid::closeSimulator();
+        Valid::closeRequestSimulator();
     }
 
 }
