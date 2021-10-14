@@ -22,6 +22,7 @@ final class JsonRpcTest extends TestCase {
      * 
      */
     public function testEncodeGetData() {
+
         $result = JsonRpc::encodeGetData('1', 'get', []);
         $this->assertIsString($result);
     }

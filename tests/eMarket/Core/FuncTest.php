@@ -25,6 +25,7 @@ final class FuncTest extends TestCase {
         ['id' => 6, 'country' => 'USA', 'city' => 'Chicago']
     ];
     private array $sample_2 = ['12-0', '12-1'];
+    private array $sample_3 = ['apple', 'banana', 'green', 'mango'];
 
     /**
      * filterArrayToKey()
@@ -71,11 +72,25 @@ final class FuncTest extends TestCase {
      * 
      */
     public function testArrayExplode() {
+
         $result = Func::arrayExplode($this->sample_2, '-');
         $this->assertSame($result[0][0], '12');
         $this->assertSame($result[0][1], '0');
         $this->assertSame($result[1][0], '12');
         $this->assertSame($result[1][1], '1');
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * deleteValInArray()
+     * 
+     */
+    public function testDeleteValInArray() {
+
+        $result = Func::deleteValInArray($this->sample_3, ['banana', 'mango']);
+        $this->assertSame($result[0], 'apple');
+        $this->assertSame($result[1], 'green');
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
     }
