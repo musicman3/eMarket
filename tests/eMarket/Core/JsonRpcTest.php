@@ -15,13 +15,21 @@ use eMarket\Core\{
     Valid
 };
 
-class JsonRpcTest extends TestCase {
+final class JsonRpcTest extends TestCase {
 
+    /**
+     * encodeGetData()
+     * 
+     */
     public function testEncodeGetData() {
         $result = JsonRpc::encodeGetData('1', 'get', []);
         $this->assertIsString($result);
     }
 
+    /**
+     * decodeGetData()
+     * 
+     */
     public function testDecodeGetData() {
 
         $request = [

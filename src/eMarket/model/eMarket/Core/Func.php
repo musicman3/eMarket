@@ -27,53 +27,30 @@ class Func {
     /**
      * Array filtering to key
      * 
-     * 
      * Example:
-      Array
-      (
-      [0] => Array
-      (
-      [0] => 1
-      [1] => Germany
-      [2] => Berlin
-      )
-
-      [1] => Array
-      (
-      [0] => 2
-      [1] => Russia
-      [2] => Moscow
-      )
-      [2] => Array
-      (
-      [0] => 3
-      [1] => USA
-      [2] => New York
-      )
-      [3] => Array
-      (
-      [0] => 4
-      [1] => USA
-      [2] => Boston
-      )
-      )
      * 
-     * 
-     * $search_key = [1];
-     * 
-     * $search_value = 'USA'; Country
-     * 
-     * $data_key = 2; City
+     * $basic_array = [
+     * ['id' => 1, 'country' => 'Germany', 'city' => 'Berlin'],
+     * ['id' => 2, 'country' => 'Russia', 'city' => 'Moskow'],
+     * ['id' => 3, 'country' => 'USA', 'city' => 'New York'],
+     * ['id' => 4, 'country' => 'USA', 'city' => 'Boston'],
+     * ['id' => 5, 'country' => 'Russia', 'city' => 'Saint-Petersburg'],
+     * ['id' => 6, 'country' => 'USA', 'city' => 'Chicago']
+     * ];
      *
-     * $sort = true; Sorting
-     * 
+     * $search_key = 'country';
+     * $search_value = 'USA';
+     * $data_key = 'city';
+     * $sort = null;
+     *
      * Output:
-     * 
+     *
      * [0] => Boston
-     * [1] => New York
-     * 
+     * [1] => Chicago
+     * [2] => New York
+     *
      * @param array $basic_array Input array
-     * @param string|int $search_key Key 
+     * @param string|int $search_key Search key 
      * @param mixed $search_value Value for $search_key
      * @param string|int $data_key Data key
      * @param mixed $sort Sorting (null/true)
@@ -98,51 +75,26 @@ class Func {
     /**
      * Filtering an array while keeping keys
      * 
-     * 
      * Example:
-      Array
-      (
-      [0] => Array
-      (
-      [0] => 1
-      [1] => Germany
-      [2] => Berlin
-      )
-
-      [1] => Array
-      (
-      [0] => 2
-      [1] => Russia
-      [2] => Moscow
-      )
-      [2] => Array
-      (
-      [0] => 3
-      [1] => USA
-      [2] => New York
-      )
-      [3] => Array
-      (
-      [0] => 4
-      [1] => USA
-      [2] => Boston
-      )
-      )
      * 
-     * $search_key = [1];
+     * $basic_array = [
+     * ['id' => 1, 'country' => 'Germany', 'city' => 'Berlin'],
+     * ['id' => 2, 'country' => 'Russia', 'city' => 'Moskow'],
+     * ['id' => 3, 'country' => 'USA', 'city' => 'New York'],
+     * ['id' => 4, 'country' => 'USA', 'city' => 'Boston'],
+     * ['id' => 5, 'country' => 'Russia', 'city' => 'Saint-Petersburg'],
+     * ['id' => 6, 'country' => 'USA', 'city' => 'Chicago']
+     * ];
      * 
-     * $search_value = 'USA'; Country
-     * 
-     * $key_1 = [2]; City
-     * 
-     * $key_2] = [0]; Key
-     *
+     * $search_key = 'country';
+     * $search_value = 'USA';
+     * $key_1 = 'city';
+     * $key_2 = 'id';
      * 
      * Output:
      * 
      * [4] => Boston
      * [3] => New York
-     * 
      * 
      * @param array $basic_array Input array
      * @param string|int $search_key Search key
@@ -169,29 +121,16 @@ class Func {
      * Function for creating a multidimensional array from a one-dimensional one in which the values are separated by a marker
      *
      * EXAMPLE:
-      /*
-      Array
-      (
-      [0] => 13-0
-      [1] => 13-1
      * 
+     * $array = ['12-0', '12-1'];
+     * $delimiter = '-';
      * 
-     * Ouptut array
+     * Ouptut:
      * 
-      Array (
-      [0] => Array
-      (
-      [0] => 13
-      [1] => 0
-      )
-
-      [1] => Array
-      (
-      [0] => 13
-      [1] => 1
-      )
-     * 
-     * Use example: $multiselect = \eMarket\Core\Func::arrayExplode($array, '-');
+     * [
+     * [12, 0],
+     * [12, 1]
+     * ]
      * 
      * @param array $array Input array
      * @param string $delimiter Delimiter
@@ -200,7 +139,7 @@ class Func {
     public static function arrayExplode(array $array, string $delimiter): array {
         $array_return = [];
         foreach ($array as $v) {
-            $array_return = array_merge($array_return, array(explode($delimiter, $v)));
+            $array_return = array_merge($array_return, [explode($delimiter, $v)]);
         }
         return $array_return;
     }

@@ -14,7 +14,7 @@ use eMarket\Core\{
     Valid
 };
 
-class ValidTest extends TestCase {
+final class ValidTest extends TestCase {
 
     /**
      * Request simulator helper for test
@@ -38,6 +38,10 @@ class ValidTest extends TestCase {
         Valid::closeRequestSimulator();
     }
 
+    /**
+     * requestSimulator()
+     * 
+     */
     public function testRequestSimulator() {
 
         $this->requestSimulatorHelper('string');
@@ -46,7 +50,11 @@ class ValidTest extends TestCase {
         $this->requestSimulatorHelper(true);
     }
 
-    public function testCloseSimulator() {
+    /**
+     * closeRequestSimulator()
+     * 
+     */
+    public function testCloseRequestSimulator() {
 
         Valid::closeRequestSimulator();
 
