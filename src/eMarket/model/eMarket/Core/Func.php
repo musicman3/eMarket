@@ -224,6 +224,15 @@ class Func {
 
     /**
      * Function for removing a value from an array
+     * 
+     * EXAMPLE:
+     * 
+     * $array = ['apple', 'banana', 'green', 'mango'];
+     * $val = ['banana', 'mango'];
+     * 
+     * Output:
+     * 
+     * ['apple', 'green']
      *
      * @param mixed $array Input array
      * @param array $val Values to be removed - ['val', 'val2']
@@ -242,25 +251,19 @@ class Func {
     /**
      * Reset function for named keys of an associated array
      * 
-     * Input:
+     * EXAMPLE:
      * 
-     * 0 Array
-      (
-      [0] => Array
-      (
-      [id] => 3
-      [price] => 2
-      )
+     * $input = [
+     *  ['id' => '1', 'price' => '1250'],
+     *  ['id' => '2', 'price' => '1320']
+     * ];
      * 
      * Output:
      * 
-     * 0 Array
-      (
-      [0] => Array
-      (
-      [0] => 3
-      [1] => 2
-      )
+     * {
+     * [0 => '1', 1 => '1250'],
+     * [0 => '2', 1 => '1320']
+     * ]
      *
      * @param array $input Input array
      * @return array
@@ -277,6 +280,14 @@ class Func {
 
     /**
      * Function to remove empty value from array
+     * 
+     * EXAMPLE:
+     * 
+     * $array = ['banana', '', 'apple'];
+     * 
+     * Output:
+     * 
+     * ['banana', 'apple']
      *
      * @param array $array Input array
      * @return mixed

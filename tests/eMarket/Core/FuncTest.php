@@ -16,16 +16,26 @@ use eMarket\Core\{
 
 final class FuncTest extends TestCase {
 
+    // Sample 1
     private array $sample_1 = [
-        ['id' => 1, 'country' => 'Germany', 'city' => 'Berlin'],
-        ['id' => 2, 'country' => 'Russia', 'city' => 'Moskow'],
-        ['id' => 3, 'country' => 'USA', 'city' => 'New York'],
-        ['id' => 4, 'country' => 'USA', 'city' => 'Boston'],
-        ['id' => 5, 'country' => 'Russia', 'city' => 'Saint-Petersburg'],
-        ['id' => 6, 'country' => 'USA', 'city' => 'Chicago']
+        ['id' => '1', 'country' => 'Germany', 'city' => 'Berlin'],
+        ['id' => '2', 'country' => 'Russia', 'city' => 'Moskow'],
+        ['id' => '3', 'country' => 'USA', 'city' => 'New York'],
+        ['id' => '4', 'country' => 'USA', 'city' => 'Boston'],
+        ['id' => '5', 'country' => 'Russia', 'city' => 'Saint-Petersburg'],
+        ['id' => '6', 'country' => 'USA', 'city' => 'Chicago']
     ];
+    // Sample 2
     private array $sample_2 = ['12-0', '12-1'];
+    // Sample 3
     private array $sample_3 = ['apple', 'banana', 'green', 'mango'];
+    // Sample 4
+    private array $sample_4 = [
+        ['id' => '1', 'price' => '1250'],
+        ['id' => '2', 'price' => '1320']
+    ];
+    // Sample 5
+    private array $sample_5 = ['banana', '', 'apple'];
 
     /**
      * filterArrayToKey()
@@ -91,6 +101,33 @@ final class FuncTest extends TestCase {
         $result = Func::deleteValInArray($this->sample_3, ['banana', 'mango']);
         $this->assertSame($result[0], 'apple');
         $this->assertSame($result[1], 'green');
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * resetKeyAssocArray()
+     * 
+     */
+    public function testResetKeyAssocArray() {
+
+        $result = Func::resetKeyAssocArray($this->sample_4);
+        $this->assertSame($result[0][0], '1');
+        $this->assertSame($result[0][1], '1250');
+        $this->assertSame($result[1][0], '2');
+        $this->assertSame($result[1][1], '1320');
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * deleteEmptyInArray()
+     * 
+     */
+    public function testDeleteEmptyInArray() {
+        $result = Func::deleteEmptyInArray($this->sample_5);
+        $this->assertSame($result[0], 'banana');
+        $this->assertSame($result[1], 'apple');
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
     }
