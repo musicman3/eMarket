@@ -308,14 +308,14 @@ class Func {
      * @return string
      */
     public static function getToken(int|string $length): string {
-        $token = "";
-        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
-        $codeAlphabet .= "0123456789";
-        $max = strlen($codeAlphabet);
+        $token = '';
+        $symbols = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $symbols .= 'abcdefghijklmnopqrstuvwxyz';
+        $symbols .= '0123456789';
+        $max = strlen($symbols);
 
         for ($i = 0; $i < (int) $length; $i++) {
-            $token .= $codeAlphabet[random_int(0, $max - 1)];
+            $token .= $symbols[random_int(0, $max - 1)];
         }
 
         return $token;

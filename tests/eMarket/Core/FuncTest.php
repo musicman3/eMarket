@@ -132,4 +132,15 @@ final class FuncTest extends TestCase {
         $this->assertCount(2, $result);
     }
 
+    /**
+     * getToken()
+     * 
+     */
+    public function testGetToken() {
+        $result = Func::getToken(20);
+        $this->assertIsString($result);
+        $this->assertSame(iconv_strlen($result), 20);
+        $this->assertRegExp('/^[a-zA-Z0-9]+$/', $result);
+    }
+
 }
