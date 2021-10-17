@@ -22,7 +22,6 @@ final class ValidTest extends TestCase {
      * @param mixed $data Input data
      */
     public function requestSimulatorHelper(mixed $data): void {
-
         Valid::requestSimulator('json', $data);
         Valid::requestSimulator('post', $data);
         Valid::requestSimulator('get', $data);
@@ -43,7 +42,6 @@ final class ValidTest extends TestCase {
      * 
      */
     public function testRequestSimulator() {
-
         $this->requestSimulatorHelper('string');
         $this->requestSimulatorHelper(1);
         $this->requestSimulatorHelper([]);

@@ -58,7 +58,6 @@ class Func {
      * 
      */
     public static function filterArrayToKey(array $basic_array, string|int $search_key, mixed $search_value, string|int $data_key, mixed $sort = null): array {
-
         $arr = [];
         foreach ($basic_array as $value) {
             if ($value[$search_key] == $search_value) {
@@ -105,7 +104,6 @@ class Func {
      * 
      */
     public static function filterArrayToKeyAssoc(array $basic_array, string|int $search_key, mixed $search_value, string|int $key_1, string|int $key_2): array {
-
         foreach ($basic_array as $value) {
             if ($value[$search_key] == $search_value) {
                 $arr[$value[$key_2]] = $value[$key_1];
@@ -150,7 +148,6 @@ class Func {
      * @param string $file Path
      */
     public static function deleteFile(string $file): void {
-
         if (file_exists($file)) {
             chmod($file, 0777);
             unlink($file);
@@ -162,44 +159,23 @@ class Func {
      * 
      * Example:
      * 
-     * Array 1 + parameter $name_1 = 'cat'
+     * $arr_1 = ['3', '2', '1'];
+     * $name_1 = 'cat'
+     * $arr_2 = ['4', '6', '7'];
+     * $name_2 = 'prod'
      * 
-     * 0 Array
-      (
-      [0] => 3
-      [1] => 2
-      [2] => 1
-      )
+     * Output:
      * 
-     * Array 2 + parameter $name_2 = 'prod'
-     * 
-     * 1 Array
-      (
-      [0] => 4
-      [1] => 6
-      [2] => 7
-      )
-     * 
-     * Output array
-     * 
-     * 0 Array
-      (
-      [cat] => Array
-      (
-      [0] => 3
-      [1] => 2
-      [2] => 1
-      )
-
-      [prod] => Array
-      (
-      [3a] => 4
-      [4a] => 6
-      [5a] => 7
-      )
-
-      )
-
+     * ['cat' => [
+     * '0' => '3',
+     * '1' => '2',
+     * '2' => '1'],
+     * 'prod' => [
+     * '3a' => '4',
+     * '4a' => '6',
+     * '5a' => '7']
+     * ]
+     *
      * @param string|int $name_1 Value in main array
      * @param string|int $name_2 Value in optional array
      * @param array $arr_1 Main array
@@ -207,8 +183,7 @@ class Func {
      * @return array
      */
     public static function arrayMergeOriginKey(string|int $name_1, string|int $name_2, array $arr_1, array $arr_2): array {
-
-        $a = array($name_1 => $arr_1);
+        $a = [$name_1 => $arr_1];
 
         $count_a = count($arr_1);
         for ($x = 0; $x < count($arr_2); $x++) {
@@ -217,7 +192,7 @@ class Func {
             $arr_2[$x + $count_a . 'a'] = $value;
         }
 
-        $b = array($name_2 => $arr_2);
+        $b = [$name_2 => $arr_2];
 
         return array_merge($a, $b);
     }
@@ -239,7 +214,6 @@ class Func {
      * @return mixed
      */
     public static function deleteValInArray(mixed $array, array $val): mixed {
-
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
             $array_return = array_values($result);
@@ -269,7 +243,6 @@ class Func {
      * @return array
      */
     public static function resetKeyAssocArray(array $input): array {
-
         $output = [];
         foreach ($input as $val) {
             array_push($output, array_values($val));
@@ -355,8 +328,8 @@ class Func {
      */
     public static function outputDataFiltering(mixed $data): mixed {
         // symbol and replacement
-        $find = ["'", "script", "/script", "javascript:", "/.", "./"];
-        $replace = ["&#8216;", "!s-c-r-i-p-t!", "/!s-c-r-i-p-t!", "!j-a-v-a-s-c-r-i-p-t!:", "!/.!", "!./!"];
+        $find = ["'", "script", "/.", "./"];
+        $replace = ["&#8216;", "!s-c-r-i-p-t!", "!/.!", "!./!"];
 
         $output = self::recursiveArrayReplace($find, $replace, $data);
 
@@ -372,7 +345,6 @@ class Func {
      * @return mixed
      */
     public static function recursiveArrayReplace(array|string $find, array|string $replace, mixed $data): mixed {
-
         if (is_bool($data) || is_null($data)) {
             return $data;
         }
