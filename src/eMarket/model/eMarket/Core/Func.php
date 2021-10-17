@@ -324,10 +324,11 @@ class Func {
     /**
      * Delete GET-parameter
      *
+     * @param string $get GET-request
      * @param mixed $key GET-parameter
-     * @return mixed
+     * @return string
      */
-    public static function deleteGet(mixed $key): mixed {
+    public static function deleteGet(string $get, mixed $key): string {
         if (is_bool($key) || is_null($key)) {
             return $key;
         }
@@ -340,9 +341,9 @@ class Func {
             }
         }
 
-        parse_str(Valid::inSERVER('QUERY_STRING'), $vars);
+        parse_str($get, $vars);
         $url = http_build_query(array_diff_key($vars, $array));
-        return '?' . $url;
+        return $url;
     }
 
     /**

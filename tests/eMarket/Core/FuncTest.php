@@ -143,4 +143,14 @@ final class FuncTest extends TestCase {
         $this->assertRegExp('/^[a-zA-Z0-9]+$/', $result);
     }
 
+    /**
+     * deleteGet()
+     * 
+     */
+    public function testDeleteGet() {
+        $result = Func::deleteGet('value_1=banana&value_2=apple&value_3=orange', 'value_2');
+        $this->assertIsString($result);
+        $this->assertSame('value_1=banana&value_3=orange', $result);
+    }
+
 }

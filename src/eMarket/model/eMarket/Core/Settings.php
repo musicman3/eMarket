@@ -484,11 +484,11 @@ class Settings {
         }
 
         if (Valid::inGET('language')) {
-            self::$lang_currency_path = Func::deleteGet('language');
+            self::$lang_currency_path = '?' . Func::deleteGet(Valid::inSERVER('QUERY_STRING'), 'language');
         }
 
         if (Valid::inGET('currency_default')) {
-            self::$lang_currency_path = Func::deleteGet('currency_default');
+            self::$lang_currency_path = '?' . Func::deleteGet(Valid::inSERVER('QUERY_STRING'), 'currency_default');
         }
 
         return self::$lang_currency_path;
