@@ -22,8 +22,15 @@ final class JsonRpcTest extends TestCase {
      * 
      */
     public function testEncodeGetData() {
-        $result = JsonRpc::encodeGetData('1', 'get', []);
+        $data = urlencode(json_encode([
+            'jsonrpc' => '2.0',
+            'method' => 'Invoice',
+            'param' => [],
+            'id' => '1',
+        ]));
+        $result = JsonRpc::encodeGetData('1', 'Invoice', []);
         $this->assertIsString($result);
+        $this->assertSame($result, '/services/jsonrpc/?request=' . $data);
     }
 
     /**
