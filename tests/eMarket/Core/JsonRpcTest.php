@@ -34,19 +34,20 @@ final class JsonRpcTest extends TestCase {
         $request = [
             'request' => urlencode(json_encode([
                 'jsonrpc' => '2.0',
-                'method' => 'GET',
-                'param' => [],
-                'id' => '1',
+                'method' => 'Invoice',
+                'param' => ['1', '2'],
+                'id' => 'JamBfqnLPAUHZMMxGlcSlPLPLBEPJZRq7av2L9kS2oTruYx2WwqJMfVHGcmEq5vj',
         ]))];
 
         Valid::requestSimulator('get', $request);
 
         $eMarket = new JsonRpc();
-        $this->assertIsString($eMarket->decodeGetData('jsonrpc'));
-        $this->assertEquals($eMarket->decodeGetData('jsonrpc'), '2.0');
-        $this->assertIsString($eMarket->decodeGetData('method'));
         $this->assertIsArray($eMarket->decodeGetData('param'));
-        $this->assertIsString($eMarket->decodeGetData('id'));
+        $this->assertSame($eMarket->decodeGetData('param')[0], '1');
+        $this->assertSame($eMarket->decodeGetData('param')[1], '2');
+        $this->assertSame($eMarket->decodeGetData('jsonrpc'), '2.0');
+        $this->assertSame($eMarket->decodeGetData('method'), 'Invoice');
+        $this->assertSame($eMarket->decodeGetData('id'), 'JamBfqnLPAUHZMMxGlcSlPLPLBEPJZRq7av2L9kS2oTruYx2WwqJMfVHGcmEq5vj');
         $this->assertIsArray($eMarket->decodeGetData(null));
         $this->assertCount(4, $eMarket->decodeGetData(null));
 

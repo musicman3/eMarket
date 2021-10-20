@@ -122,7 +122,7 @@ class Invoice extends JsonRpc {
     private function createBlank(): void {
         $this->uid = $this->decodeGetData('id');
         if (!$this->html()) {
-            $this->error(-32000, 'Incorrect ID', $this->uid);
+            $this->error('-32000', 'Incorrect ID', $this->uid);
         }
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');

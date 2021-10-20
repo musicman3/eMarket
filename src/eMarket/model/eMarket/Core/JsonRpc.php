@@ -36,7 +36,7 @@ class JsonRpc {
             if (class_exists($namespace)) {
                 new $namespace;
             } else {
-                $this->error(-32601, 'Method not found', Valid::inPostJson('id'));
+                $this->error('-32601', 'Method not found', Valid::inPostJson('id'));
             }
         }
         if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') == '2.0' && $this->decodeGetData('method') && $this->decodeGetData('id')) {
@@ -44,7 +44,7 @@ class JsonRpc {
             if (class_exists($namespace)) {
                 new $namespace;
             } else {
-                $this->error(-32601, 'Method not found', $this->decodeGetData('id'));
+                $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
             }
         }
     }
@@ -123,7 +123,7 @@ class JsonRpc {
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
         $response_string = curl_exec($curl);
         if (curl_errno($curl)) {
-            return FALSE;
+            return curl_error($curl);
         }
         if (!empty($response_string)) {
             return $response_string;
