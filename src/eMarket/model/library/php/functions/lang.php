@@ -11,10 +11,9 @@
  * @param string $a
  * @param string $b
  * @param string $c
- * @return string
- * @return array $lang_all
+ * @return string|array
  */
-function lang($a = null, $b = null, $c = null) {
+function lang(?string $a = null, ?string $b = null, ?string $c = null): string|array {
     static $lang_var = null, $lang_trans = null, $lang_all = null, $lang_default = null, $lang_all_trans = null;
 
     if ($lang_default == null) {
