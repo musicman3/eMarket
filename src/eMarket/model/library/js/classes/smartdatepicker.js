@@ -15,8 +15,8 @@ class SmartDatepicker {
     /**
      * Constructor
      *
-     * @param start string (start date)
-     * @param end string (end date)
+     * @param start {string} (start date)
+     * @param end {string} (end date)
      */
     constructor(start = '', end = '') {
         this.init(start, end);
@@ -24,14 +24,14 @@ class SmartDatepicker {
     /**
      * Init
      *
-     * @param start string (start date)
-     * @param end string (end date)
+     * @param start {string} (start date)
+     * @param end {string} (end date)
      */
     init(start, end) {
         var months = moment.months();
         var weekdays = moment.weekdays();
         var weekdays_min = moment.weekdaysMin();
-        
+
         var startDate,
                 endDate,
                 updateStartDate = function () {
