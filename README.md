@@ -11,7 +11,7 @@
   - Apache Web Server >= 2.4 or Nginx >= 1.17
   - PHP >= 8.0
   - MySQL >= 5.7.8 or MariaDB >= 10.2.3
-  - Javascript >= ES6
+  - Javascript >= ES7
   - HTML 5
 
 ### Features: 
