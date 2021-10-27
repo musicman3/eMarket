@@ -131,7 +131,7 @@ final class FuncTest extends TestCase {
         $result = Func::getToken(20);
         $this->assertIsString($result);
         $this->assertSame(iconv_strlen($result), 20);
-        $this->assertRegExp('/^[a-zA-Z0-9]+$/', $result);
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $result);
     }
 
     /**
