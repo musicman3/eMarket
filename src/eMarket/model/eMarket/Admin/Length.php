@@ -31,17 +31,29 @@ class Length {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_length')) {
+            $this->default = 1;
+        }
     }
 
     /**
@@ -51,31 +63,16 @@ class Length {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_length')) {
-                $default_length = 1;
-            } else {
-                $default_length = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_length != 0) {
-                Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
-
-                $value_length_all = Pdo::getAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
-                $count_value_length_all = count($value_length_all);
-                for ($x = 0; $x < $count_value_length_all; $x++) {
-                    Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
-                        ($value_length_all[$x]['value_length'] / Valid::inPOST('value_length')), $value_length_all[$x]['id'],
-                        $value_length_all[$x]['language']
-                    ]);
-                }
+            if ($id > 1 && $this->default != 0) {
+                $this->recount();
 
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
                         $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x), 1,
-                        $default_length
+                        $this->default
                     ]);
                 }
             } else {
@@ -83,7 +80,7 @@ class Length {
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
                         $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x),
-                        Valid::inPOST('value_length'), $default_length]
+                        Valid::inPOST('value_length'), $this->default]
                     );
                 }
             }
@@ -99,27 +96,12 @@ class Length {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_length')) {
-                $default_length = 1;
-            } else {
-                $default_length = 0;
-            }
-
-            if ($default_length != 0) {
-                Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
-
-                $value_length_all = Pdo::getAssoc("SELECT id, value_length, language FROM " . TABLE_LENGTH, []);
-                $count_value_length_all = count($value_length_all);
-                for ($x = 0; $x < $count_value_length_all; $x++) {
-                    \Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
-                        ($value_length_all[$x]['value_length'] / Valid::inPOST('value_length')), $value_length_all[$x]['id'],
-                        $value_length_all[$x]['language']
-                    ]);
-                }
+            if ($this->default != 0) {
+                $this->recount();
 
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), 1, $default_length,
+                        Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), 1, $this->default,
                         Valid::inPOST('edit'), lang('#lang_all')[$x]
                     ]);
                 }
@@ -128,7 +110,7 @@ class Length {
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
                         Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x),
-                        Valid::inPOST('value_length'), $default_length, Valid::inPOST('edit'), lang('#lang_all')[$x]
+                        Valid::inPOST('value_length'), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
                     ]);
                 }
             }
@@ -146,6 +128,22 @@ class Length {
             Pdo::action("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [Valid::inPOST('delete')]);
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Recount
+     *
+     */
+    public function recount(): void {
+        Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
+
+        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH, []);
+        foreach ($data as $value) {
+            Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
+                ($value['value_length'] / Valid::inPOST('value_length')), $value['id'],
+                $value['language']
+            ]);
         }
     }
 

@@ -31,12 +31,14 @@ class OrderStatus {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
@@ -46,23 +48,27 @@ class OrderStatus {
     }
 
     /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_order_status')) {
+            $this->default = 1;
+        }
+    }
+
+    /**
      * Add
      *
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_order_status')) {
-                $default_order_status = 1;
-            } else {
-                $default_order_status = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_order_status != 0) {
-                Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+            if ($id > 1 && $this->default != 0) {
+                $this->recount();
             }
 
             $id_max_sort = Pdo::getValue("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
@@ -70,7 +76,7 @@ class OrderStatus {
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [
-                    $id, Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $default_order_status, $id_sort
+                    $id, Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $this->default, $id_sort
                 ]);
             }
 
@@ -85,19 +91,13 @@ class OrderStatus {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_order_status')) {
-                $default_order_status = 1;
-            } else {
-                $default_order_status = 0;
-            }
-
-            if ($default_order_status != 0) {
-                Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+            if ($this->default != 0) {
+                $this->recount();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_order_status_' . $x), $default_order_status, Valid::inPOST('edit'),
+                    Valid::inPOST('name_order_status_' . $x), $this->default, Valid::inPOST('edit'),
                     lang('#lang_all')[$x]
                 ]);
             }
@@ -116,6 +116,14 @@ class OrderStatus {
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
+    }
+
+    /**
+     * Recount
+     *
+     */
+    public function recount(): void {
+        Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
 
     /**

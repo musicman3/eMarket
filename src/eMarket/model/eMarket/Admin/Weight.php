@@ -31,17 +31,29 @@ class Weight {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_weight')) {
+            $this->default = 1;
+        }
     }
 
     /**
@@ -51,31 +63,16 @@ class Weight {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_weight')) {
-                $default_weight = 1;
-            } else {
-                $default_weight = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_weight != 0) {
-                Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
-
-                $value_weight_all = Pdo::getAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
-                $count_value_weight_all = count($value_weight_all);
-                for ($x = 0; $x < $count_value_weight_all; $x++) {
-                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
-                        ($value_weight_all[$x]['value_weight'] / Valid::inPOST('value_weight')), $value_weight_all[$x]['id'],
-                        $value_weight_all[$x]['language']
-                    ]);
-                }
+            if ($id > 1 && $this->default != 0) {
+                $this->recount();
 
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
                         $id, Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
-                        Valid::inPOST('code_weight_' . $x), 1, $default_weight
+                        Valid::inPOST('code_weight_' . $x), 1, $this->default
                     ]);
                 }
             } else {
@@ -83,7 +80,7 @@ class Weight {
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
                         $id, \eMarket\Core\Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
-                        Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight
+                        Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $this->default
                     ]);
                 }
             }
@@ -99,26 +96,12 @@ class Weight {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_weight')) {
-                $default_weight = 1;
-            } else {
-                $default_weight = 0;
-            }
-
-            if ($default_weight != 0) {
-                Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
-
-                $value_weight_all = Pdo::getAssoc("SELECT id, value_weight, language FROM " . TABLE_WEIGHT, []);
-                $count_value_weight_all = count($value_weight_all);
-                for ($x = 0; $x < $count_value_weight_all; $x++) {
-                    Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
-                        ($value_weight_all[$x]['value_weight'] / Valid::inPOST('value_weight')), $value_weight_all[$x]['id'],
-                        $value_weight_all[$x]['language']]);
-                }
+            if ($this->default != 0) {
+                $this->recount();
 
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), 1, $default_weight, Valid::inPOST('edit'),
+                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), 1, $this->default, Valid::inPOST('edit'),
                         lang('#lang_all')[$x]
                     ]);
                 }
@@ -126,7 +109,7 @@ class Weight {
 
                 for ($x = 0; $x < Lang::$count; $x++) {
                     Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $default_weight,
+                        Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), Valid::inPOST('value_weight'), $this->default,
                         Valid::inPOST('edit'), lang('#lang_all')[$x]
                     ]);
                 }
@@ -145,6 +128,21 @@ class Weight {
             Pdo::action("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [Valid::inPOST('delete')]);
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Recount
+     *
+     */
+    public function recount(): void {
+        Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
+
+        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT, []);
+        foreach ($data as $value) {
+            Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
+                ($value['value_weight'] / Valid::inPOST('value_weight')), $value['id'],
+                $value['language']]);
         }
     }
 

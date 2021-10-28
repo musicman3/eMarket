@@ -31,17 +31,29 @@ class Units {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_unit')) {
+            $this->default = 1;
+        }
     }
 
     /**
@@ -51,22 +63,16 @@ class Units {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_unit')) {
-                $default_unit = 1;
-            } else {
-                $default_unit = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_unit != 0) {
-                Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
+            if ($id > 1 && $this->default != 0) {
+                $this->recount();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [
-                    $id, Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], Valid::inPOST('unit_units_' . $x), $default_unit
+                    $id, Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], Valid::inPOST('unit_units_' . $x), $this->default
                 ]);
             }
 
@@ -81,19 +87,13 @@ class Units {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_unit')) {
-                $default_unit = 1;
-            } else {
-                $default_unit = 0;
-            }
-
-            if ($default_unit != 0) {
-                Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
+            if ($this->default != 0) {
+                $this->recount();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_units_' . $x), Valid::inPOST('unit_units_' . $x), $default_unit, Valid::inPOST('edit'), lang('#lang_all')[$x]
+                    Valid::inPOST('name_units_' . $x), Valid::inPOST('unit_units_' . $x), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }
 
@@ -111,6 +111,14 @@ class Units {
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
+    }
+
+    /**
+     * Recount
+     *
+     */
+    public function recount(): void {
+        Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
     }
 
     /**

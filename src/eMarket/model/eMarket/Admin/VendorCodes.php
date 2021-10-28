@@ -31,17 +31,29 @@ class VendorCodes {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_vendor_code')) {
+            $this->default = 1;
+        }
     }
 
     /**
@@ -51,22 +63,16 @@ class VendorCodes {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            if (Valid::inPOST('default_vendor_code')) {
-                $default_vendor_code = 1;
-            } else {
-                $default_vendor_code = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_vendor_code != 0) {
-                Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
+            if ($id > 1 && $this->default != 0) {
+                $this->recount();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [
-                    $id, Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], Valid::inPOST('vendor_code_' . $x), $default_vendor_code
+                    $id, Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], Valid::inPOST('vendor_code_' . $x), $this->default
                 ]);
             }
 
@@ -81,19 +87,13 @@ class VendorCodes {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            if (Valid::inPOST('default_vendor_code')) {
-                $default_vendor_code = 1;
-            } else {
-                $default_vendor_code = 0;
-            }
-
-            if ($default_vendor_code != 0) {
-                Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
+            if ($this->default != 0) {
+                $this->recount();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_vendor_codes_' . $x), Valid::inPOST('vendor_code_' . $x), $default_vendor_code, Valid::inPOST('edit'),
+                    Valid::inPOST('name_vendor_codes_' . $x), Valid::inPOST('vendor_code_' . $x), $this->default, Valid::inPOST('edit'),
                     lang('#lang_all')[$x]
                 ]);
             }
@@ -112,6 +112,14 @@ class VendorCodes {
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
+    }
+
+    /**
+     * Recount
+     *
+     */
+    public function recount(): void {
+        Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
     }
 
     /**
