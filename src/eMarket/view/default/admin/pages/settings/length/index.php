@@ -51,7 +51,7 @@ require_once('modal/index.php')
                                             <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
                                         <?php } else { ?>
                                             <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
-<?php } ?>
+                                        <?php } ?>
                                     </form>
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
@@ -61,12 +61,12 @@ require_once('modal/index.php')
                                             <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
                                         <?php } else { ?>
                                             <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-<?php } ?>
+                                        <?php } ?>
                                     </form>
                                 </div>
                             </th>
                         </tr>
-<?php if (Pages::$count > 0) { ?>
+                        <?php if (Pages::$count > 0) { ?>
                             <tr class="align-middle">
                                 <th><?php echo lang('length_name_full') ?></th>
                                 <th class="text-center"><?php echo lang('length_name_little') ?></th>
@@ -77,7 +77,7 @@ require_once('modal/index.php')
                         <?php } ?>
                     </thead>
                     <tbody>
-<?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
+                        <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['code'] ?></td>
@@ -86,7 +86,7 @@ require_once('modal/index.php')
                                     <td class="text-center"><?php echo lang('confirm-yes') ?></td>
                                 <?php } else { ?>
                                     <td class="text-center"><?php echo lang('confirm-no') ?></td>
-    <?php } ?>
+                                <?php } ?>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
@@ -97,7 +97,7 @@ require_once('modal/index.php')
                                     </div>
                                 </td>
                             </tr>
-<?php } ?>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
