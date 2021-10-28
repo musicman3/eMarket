@@ -92,31 +92,26 @@ class Slideshow {
      */
     public function slideshowPref(): void {
         if (Valid::inPOST('slideshow_pref')) {
+            $mouse_stop = 0;
+            $autostart = 0;
+            $cicles = 0;
+            $indicators = 0;
+            $navigation = 0;
 
             if (Valid::inPOST('mouse_stop')) {
                 $mouse_stop = 1;
-            } else {
-                $mouse_stop = 0;
             }
             if (Valid::inPOST('autostart')) {
                 $autostart = 1;
-            } else {
-                $autostart = 0;
             }
             if (Valid::inPOST('cicles')) {
                 $cicles = 1;
-            } else {
-                $cicles = 0;
             }
             if (Valid::inPOST('indicators')) {
                 $indicators = 1;
-            } else {
-                $indicators = 0;
             }
             if (Valid::inPOST('navigation')) {
                 $navigation = 1;
-            } else {
-                $navigation = 0;
             }
 
             Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [
@@ -133,29 +128,25 @@ class Slideshow {
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
+            $view_slideshow = '0';
+            $animation = '0';
+            $start_date = NULL;
+            $end_date = NULL;
 
             if (Valid::inPOST('view_slideshow')) {
                 $view_slideshow = '1';
-            } else {
-                $view_slideshow = '0';
             }
 
             if (Valid::inPOST('animation')) {
                 $animation = '1';
-            } else {
-                $animation = '0';
             }
 
             if (Valid::inPOST('start_date')) {
                 $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
-            } else {
-                $start_date = NULL;
             }
 
             if (Valid::inPOST('end_date')) {
                 $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
-            } else {
-                $end_date = NULL;
             }
 
             Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [
@@ -174,29 +165,25 @@ class Slideshow {
      */
     public function edit(): void {
         if (Valid::inPOST('edit')) {
+            $view_slideshow = '0';
+            $animation = '0';
+            $start_date = NULL;
+            $end_date = NULL;
 
             if (Valid::inPOST('view_slideshow')) {
                 $view_slideshow = '1';
-            } else {
-                $view_slideshow = '0';
             }
 
             if (Valid::inPOST('animation')) {
                 $animation = '1';
-            } else {
-                $animation = '0';
             }
 
             if (Valid::inPOST('start_date')) {
                 $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
-            } else {
-                $start_date = NULL;
             }
 
             if (Valid::inPOST('end_date')) {
                 $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
-            } else {
-                $end_date = NULL;
             }
 
             Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [
@@ -241,10 +228,9 @@ class Slideshow {
      *
      */
     public function data(): void {
+        self::$set_language = lang('#lang_all')[0];
         if (Valid::inGET('slide_lang')) {
             self::$set_language = Valid::inGET('slide_lang');
-        } else {
-            self::$set_language = lang('#lang_all')[0];
         }
 
         self::$this_time = time();
@@ -263,35 +249,30 @@ class Slideshow {
         $slideshow_pref = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
 
         self::$slide_interval = $slideshow_pref['show_interval'];
+        self::$slide_pause = 'false';
+        self::$autostart = 'false';
+        self::$cicles = 'false';
+        self::$indicators = 'false';
+        self::$navigation_key = 'false';
 
         if ($slideshow_pref['mouse_stop'] == 1) {
             self::$slide_pause = 'hover';
-        } else {
-            self::$slide_pause = 'false';
         }
 
         if ($slideshow_pref['autostart'] == 1) {
             self::$autostart = 'carousel';
-        } else {
-            self::$autostart = 'false';
         }
 
         if ($slideshow_pref['cicles'] == 1) {
             self::$cicles = 'true';
-        } else {
-            self::$cicles = 'false';
         }
 
         if ($slideshow_pref['indicators'] == 1) {
             self::$indicators = 'true';
-        } else {
-            self::$indicators = 'false';
         }
 
         if ($slideshow_pref['navigation'] == 1) {
             self::$navigation_key = 'true';
-        } else {
-            self::$navigation_key = 'false';
         }
 
         self::$this_time = time();

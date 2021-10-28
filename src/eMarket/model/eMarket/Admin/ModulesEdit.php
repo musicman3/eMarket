@@ -25,7 +25,7 @@ use eMarket\Core\{
  */
 class ModulesEdit {
 
-    public static $switch_active = FALSE;
+    public static string $switch_active = '';
 
     /**
      * Constructor
@@ -45,8 +45,6 @@ class ModulesEdit {
 
         if ($active == 1) {
             self::$switch_active = 'checked';
-        } else {
-            self::$switch_active = '';
         }
     }
 

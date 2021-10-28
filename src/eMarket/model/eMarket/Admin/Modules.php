@@ -66,12 +66,11 @@ class Modules {
     public function edit(): void {
         if (Valid::inPOST('edit_active')) {
 
+            $active = 0;
             if (Valid::inPOST('switch_active') == 'on') {
                 $active = 1;
             }
-            if (!Valid::inPOST('switch_active')) {
-                $active = 0;
-            }
+
             $module = explode('_', Valid::inPOST('edit_active'));
             Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
 
@@ -113,10 +112,9 @@ class Modules {
      * @return string Bootstrap class
      */
     public function class(?string $type): string {
+        $class = '';
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             $class = 'active';
-        } else {
-            $class = '';
         }
         return $class;
     }
@@ -127,10 +125,9 @@ class Modules {
      * @param string $type type
      */
     public function filter(?string $type): void {
+        self::$class_tab = 'tab-pane fade';
         if (Valid::inGET('active') == $type OR (!Valid::inGET('active') && $type == array_key_first($_SESSION['MODULES_INFO']))) {
             self::$class_tab = 'tab-pane fade show in active';
-        } else {
-            self::$class_tab = 'tab-pane fade';
         }
         self::$installed_filter = Func::filterArrayToKey(self::$installed, 'type', $type, 'name');
         self::$installed_filter_active = Func::filterArrayToKey(self::$installed_active, 'type', $type, 'name');
@@ -143,10 +140,9 @@ class Modules {
      * @return string Bootstrap class
      */
     public function active(int|string $key): string {
+        $active = 'table-danger';
         if (in_array($key, Modules::$installed_filter_active)) {
             $active = 'table-success';
-        } else {
-            $active = 'table-danger';
         }
         return $active;
     }
