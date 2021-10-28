@@ -68,26 +68,28 @@ class Currencies {
 
             if ($id > 1 && $this->default != 0) {
                 $this->recount();
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
-                        $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
-                        Valid::inPOST('iso_4217_currencies'), 1, $this->default, Valid::inPOST('symbol_currencies'),
-                        Valid::inPOST('symbol_position_currencies'), Valid::inPOST('decimal_places_currencies')
-                    ]);
-                }
+                $this->addAction($id, 1);
             } else {
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
-                        $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
-                        Valid::inPOST('iso_4217_currencies'), Valid::inPOST('value_currencies'), $this->default,
-                        Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'), Valid::inPOST('decimal_places_currencies')
-                    ]);
-                }
+                $this->addAction($id, Valid::inPOST('value_currencies'));
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Add action
+     *
+     * @param int|string $id ID
+     * @param int|string $value Value
+     */
+    public function addAction(int|string $id, int|string $value): void {
+        for ($x = 0; $x < Lang::$count; $x++) {
+            Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
+                $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
+                Valid::inPOST('iso_4217_currencies'), $value, $this->default, Valid::inPOST('symbol_currencies'),
+                Valid::inPOST('symbol_position_currencies'), Valid::inPOST('decimal_places_currencies')
+            ]);
         }
     }
 
@@ -101,27 +103,27 @@ class Currencies {
             if ($this->default != 0) {
                 Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET default_value=?", [0]);
                 $this->recount();
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'), 1,
-                        $this->default, Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'),
-                        Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), Valid::inPOST('edit'), lang('#lang_all')[$x]
-                    ]);
-                }
+                $this->editAction(1);
             } else {
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'),
-                        Valid::inPOST('value_currencies'), $this->default, Valid::inPOST('symbol_currencies'),
-                        Valid::inPOST('symbol_position_currencies'), Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"),
-                        Valid::inPOST('edit'), lang('#lang_all')[$x]
-                    ]);
-                }
+                $this->editAction(Valid::inPOST('value_currencies'));
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Edit action
+     *
+     * @param int|string $value Value
+     */
+    public function editAction(int|string $value): void {
+        for ($x = 0; $x < Lang::$count; $x++) {
+            Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
+                Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'), $value,
+                $this->default, Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'),
+                Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), Valid::inPOST('edit'), lang('#lang_all')[$x]
+            ]);
         }
     }
 

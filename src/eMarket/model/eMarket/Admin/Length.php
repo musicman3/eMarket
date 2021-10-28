@@ -68,24 +68,27 @@ class Length {
 
             if ($id > 1 && $this->default != 0) {
                 $this->recount();
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
-                        $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x), 1,
-                        $this->default
-                    ]);
-                }
+                $this->addAction($id, 1);
             } else {
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
-                        $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x),
-                        Valid::inPOST('value_length'), $this->default]
-                    );
-                }
+                $this->addAction($id, Valid::inPOST('value_length'));
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Add action
+     *
+     * @param int|string $id ID
+     * @param int|string $value Value
+     */
+    public function addAction(int|string $id, int|string $value): void {
+        for ($x = 0; $x < Lang::$count; $x++) {
+            Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
+                $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x), $value,
+                $this->default
+            ]);
         }
     }
 
@@ -98,24 +101,26 @@ class Length {
 
             if ($this->default != 0) {
                 $this->recount();
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), 1, $this->default,
-                        Valid::inPOST('edit'), lang('#lang_all')[$x]
-                    ]);
-                }
+                $this->editAction(1);
             } else {
-
-                for ($x = 0; $x < Lang::$count; $x++) {
-                    Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
-                        Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x),
-                        Valid::inPOST('value_length'), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
-                    ]);
-                }
+                $this->editAction(Valid::inPOST('value_length'));
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Edit action
+     *
+     * @param int|string $value Value
+     */
+    public function editAction(int|string $value): void {
+        for ($x = 0; $x < Lang::$count; $x++) {
+            Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
+                Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), $value, $this->default,
+                Valid::inPOST('edit'), lang('#lang_all')[$x]
+            ]);
         }
     }
 
