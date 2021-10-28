@@ -73,11 +73,11 @@ use eMarket\Admin\BasicSettings;
                             <div class="col-md-9">
                                 <select name="debug" id="debug" class="input-sm form-select">
                                     <?php if (BasicSettings::$debug == 1) { ?>
-                                        <option selected><?php echo lang('debug_on') ?></option>
-                                        <option><?php echo lang('debug_off') ?></option>
+                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
+                                        <option value="off"><?php echo lang('debug_off') ?></option>
                                     <?php } else { ?>
-                                        <option><?php echo lang('debug_on') ?></option>
-                                        <option selected><?php echo lang('debug_off') ?></option>
+                                        <option value="on"><?php echo lang('debug_on') ?></option>
+                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
