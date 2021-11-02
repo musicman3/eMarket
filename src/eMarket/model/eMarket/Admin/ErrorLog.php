@@ -62,10 +62,9 @@ class ErrorLog {
      *
      */
     public function data(): void {
+        $lines = [];
         if (file_exists(ROOT . '/storage/logs/errors.log')) {
             $lines = array_reverse(file(ROOT . '/storage/logs/errors.log'));
-        } else {
-            $lines = [];
         }
 
         Pages::data($lines);
@@ -78,22 +77,25 @@ class ErrorLog {
      * @return string bootstrap class
      */
     public static function errorClass(?string $input): string {
+        $output = '';
 
         if (strrpos($input, 'eMarket.NOTICE:') == TRUE) {
-            return 'table-secondary';
+            $output = 'table-secondary';
         }
         if (strrpos($input, 'eMarket.WARNING:') == TRUE) {
-            return 'table-primary';
+            $output = 'table-primary';
         }
         if (strrpos($input, 'eMarket.ERROR:') == TRUE) {
-            return 'table-warning';
+            $output = 'table-warning';
         }
         if (strrpos($input, 'eMarket.CRITICAL:') == TRUE) {
-            return 'table-danger';
+            $output = 'table-danger';
         }
         if (strrpos($input, 'eMarket.ALERT:') == TRUE) {
-            return 'table-dark';
+            $output = 'table-dark';
         }
+
+        return $output;
     }
 
 }

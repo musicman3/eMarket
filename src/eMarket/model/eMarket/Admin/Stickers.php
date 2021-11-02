@@ -66,10 +66,9 @@ class Stickers {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
+            $default_stickers = 0;
             if (Valid::inPOST('default_stickers')) {
                 $default_stickers = 1;
-            } else {
-                $default_stickers = 0;
             }
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STICKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -96,10 +95,9 @@ class Stickers {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
+            $default_stickers = 0;
             if (Valid::inPOST('default_stickers')) {
                 $default_stickers = 1;
-            } else {
-                $default_stickers = 0;
             }
 
             if ($default_stickers != 0) {

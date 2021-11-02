@@ -51,17 +51,17 @@ class Listing {
      *
      */
     public function initData(): void {
+        self::$checked_stock = '';
+        $qnt_flag = 'AND quantity>0 ';
+        self::$sort_flag = 'off';
+
         if (Valid::inGET('change') == 'on' OR!Valid::inGET('change')) {
             self::$checked_stock = ' checked';
             $qnt_flag = '';
-        } else {
-            self::$checked_stock = '';
-            $qnt_flag = 'AND quantity>0 ';
         }
+
         if (!Valid::inGET('sort')) {
             self::$sort_flag = 'on';
-        } else {
-            self::$sort_flag = 'off';
         }
 
         if (!Valid::inGET('sort') OR Valid::inGET('sort') == 'default') {

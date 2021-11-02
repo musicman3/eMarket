@@ -31,10 +31,9 @@ class Index {
      * @return string url
      */
     public function route(): string {
+        $path = ROOT . '/controller/catalog/pages/catalog/index.php';
         if (Valid::inGET('route') != '') {
             $path = ROOT . '/controller/catalog/pages/' . Valid::inGET('route') . '/index.php';
-        } else {
-            $path = ROOT . '/controller/catalog/pages/catalog/index.php';
         }
         return Func::outputDataFiltering($path);
     }

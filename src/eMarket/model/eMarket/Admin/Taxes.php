@@ -56,16 +56,15 @@ class Taxes {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
+            $tax_type = 0;
+            $fixed = 0;
+
             if (Valid::inPOST('tax_type')) {
                 $tax_type = 1;
-            } else {
-                $tax_type = 0;
             }
 
             if (Valid::inPOST('fixed')) {
                 $fixed = 1;
-            } else {
-                $fixed = 0;
             }
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -89,16 +88,15 @@ class Taxes {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
+            $tax_type = 0;
+            $fixed = 0;
+
             if (Valid::inPOST('tax_type')) {
                 $tax_type = 1;
-            } else {
-                $tax_type = 0;
             }
 
             if (Valid::inPOST('fixed')) {
                 $fixed = 1;
-            } else {
-                $fixed = 0;
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {

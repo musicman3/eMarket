@@ -97,10 +97,9 @@ class StaffManager {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
+            $demo_mode = 0;
             if (Valid::inPOST('demo_mode')) {
                 $demo_mode = 1;
-            } else {
-                $demo_mode = 0;
             }
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -124,10 +123,9 @@ class StaffManager {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
+            $demo_mode = 0;
             if (Valid::inPOST('demo_mode')) {
                 $demo_mode = 1;
-            } else {
-                $demo_mode = 0;
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {

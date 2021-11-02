@@ -31,10 +31,9 @@ class Index {
      * @return string url
      */
     public function route(): ?string {
+        $path = ROOT . '/controller/admin/pages/dashboard/index.php';
         if (Valid::inGET('route') != '') {
             $path = ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
-        } else {
-            $path = ROOT . '/controller/admin/pages/dashboard/index.php';
         }
         return Func::outputDataFiltering($path);
     }

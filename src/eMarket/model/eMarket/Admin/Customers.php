@@ -28,7 +28,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class Customers {
 
-    public static $status = FALSE;
+    public static int $status = 0;
     public static $json_data = FALSE;
 
     /**
@@ -61,8 +61,6 @@ class Customers {
 
             if ($status_data == 0) {
                 self::$status = 1;
-            } else {
-                self::$status = 0;
             }
 
             Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, Valid::inPOST('status')]);

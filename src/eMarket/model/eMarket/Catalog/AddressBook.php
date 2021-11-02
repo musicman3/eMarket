@@ -95,10 +95,10 @@ class AddressBook {
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
+
+            $default = 0;
             if (Valid::inPOST('default')) {
                 $default = 1;
-            } else {
-                $default = 0;
             }
 
             $address_array = ['countries_id' => Valid::inPOST('countries'),
@@ -129,10 +129,9 @@ class AddressBook {
      */
     public function edit(): void {
         if (Valid::inPOST('edit')) {
+            $default = 0;
             if (Valid::inPOST('default')) {
                 $default = 1;
-            } else {
-                $default = 0;
             }
 
             $address_array = ['countries_id' => Valid::inPOST('countries'),

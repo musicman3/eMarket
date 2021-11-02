@@ -77,10 +77,9 @@ class Dashboard {
         if (self::$min_year == FALSE) {
             $min_clients_id = Pdo::getValue("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
 
+            $min_clients = date('Y');
             if ($min_clients_id != FALSE) {
                 $min_clients = Pdo::getValue("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
-            } else {
-                $min_clients = date('Y');
             }
 
             self::$min_year = $min_clients;
@@ -94,9 +93,8 @@ class Dashboard {
      * @return mixed Select Year
      */
     public static function selectYear(): mixed {
-        if (!Valid::inPostJson('year')) {
-            self::$select_year = date('Y');
-        } else {
+        self::$select_year = date('Y');
+        if (Valid::inPostJson('year')) {
             self::$select_year = Valid::inPostJson('year');
         }
         return self::$select_year;
@@ -109,11 +107,11 @@ class Dashboard {
      * @return string Selected Year
      */
     public static function selectedYear(string|int $year): ?string {
+        $output = '';
         if (Valid::inPostJson('year') == $year) {
-            return ' selected';
-        } else {
-            return '';
+            $output = ' selected';
         }
+        return $output;
     }
 
     /**
