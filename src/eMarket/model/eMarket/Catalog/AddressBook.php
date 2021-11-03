@@ -191,9 +191,8 @@ class AddressBook {
                 $address_data_out = array_values(self::$address_data);
             }
 
-            if (count($address_data_out) == 0) {
-                $address_data_out_table = NULL;
-            } else {
+            $address_data_out_table = NULL;
+            if (count($address_data_out) > 0) {
                 $address_data_out_table = json_encode($address_data_out);
             }
 
