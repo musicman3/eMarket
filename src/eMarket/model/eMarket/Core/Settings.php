@@ -591,8 +591,8 @@ class Settings {
     /**
      * Active tab
      *
-     * @param string $active_tab Active tab
-     * @param string $active Active marker
+     * @param string|int $active_tab Active tab
+     * @param string|int $active Active marker
      * @param string $class Bootstrap class
      * @return string
      */
