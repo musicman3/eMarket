@@ -49,11 +49,7 @@ require_once('modal/index.php')
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="staff_manager_id" value="<?php echo Valid::inGET('staff_manager_id') ?>">
-                                        <?php if (Pages::$start > 0) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
-                                        <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
-                                        <?php } ?>
+                                        <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short <?php echo Pages::leftButton() ?>"></button>
                                     </form>
 
                                     <form>
@@ -61,11 +57,7 @@ require_once('modal/index.php')
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                                         <input hidden name="staff_manager_id" value="<?php echo Valid::inGET('staff_manager_id') ?>">
-                                        <?php if (Pages::$finish != Pages::$count) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
-                                        <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-                                        <?php } ?>
+                                        <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short <?php echo Pages::rightButton() ?>"></button>
                                     </form>
 
                                 </div>

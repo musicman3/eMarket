@@ -112,4 +112,30 @@ class Pages {
         return lang('no_listing');
     }
 
+    /**
+     * Left button
+     *
+     * @return string (disabled style)
+     */
+    public static function leftButton(): string {
+        $output = 'disabled';
+        if (self::$start > 0) {
+            $output = '';
+        }
+        return $output;
+    }
+
+    /**
+     * Right button
+     *
+     * @return string (disabled style)
+     */
+    public static function rightButton(): string {
+        $output = 'disabled';
+        if (self::$finish != self::$count) {
+            $output = '';
+        }
+        return $output;
+    }
+
 }

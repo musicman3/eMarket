@@ -60,11 +60,7 @@ require_once('modal/add_values_attribute.php');
                                             <input hidden name="backstart" value="<?php echo Stock::$start ?>">
                                             <input hidden name="backfinish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
-                                            <?php if (Stock::$start > 0) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" action="index.php" formmethod="get"></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
-                                            <?php } ?>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short <?php echo Stock::leftButton() ?>"></button>
                                         </form>
 
                                         <form>
@@ -72,11 +68,7 @@ require_once('modal/add_values_attribute.php');
                                             <input hidden name="start" value="<?php echo Stock::$start ?>">
                                             <input hidden name="finish" value="<?php echo Stock::$finish ?>">
                                             <input hidden name="nav_parent_id" value="<?php echo Stock::$parent_id ?>">
-                                            <?php if (Pages::counterStock() < Stock::$count_lines_merge) { ?>
-                                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" action="index.php" formmethod="get"></button>
-                                            <?php } else { ?>
-                                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-                                            <?php } ?>
+                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short <?php echo Stock::rightButton() ?>"></button>
                                         </form>
 
                                     </div>

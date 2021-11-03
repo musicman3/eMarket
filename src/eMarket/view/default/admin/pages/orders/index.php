@@ -48,22 +48,14 @@ require_once('modal/index.php')
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                                         <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
-                                        <?php if (Pages::$start > 0) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
-                                        <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
-                                        <?php } ?>
+                                        <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short <?php echo Pages::leftButton() ?>"></button>
                                     </form>
 
                                     <form>
                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
                                         <input hidden name="start" value="<?php echo Pages::$start ?>">
                                         <input hidden name="finish" value="<?php echo Pages::$finish ?>">
-                                        <?php if (Pages::$finish != Pages::$count) { ?>
-                                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
-                                        <?php } else { ?>
-                                            <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-                                        <?php } ?>
+                                        <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short <?php echo Pages::rightButton() ?>"></button>
                                     </form>
 
                                 </div>
@@ -94,7 +86,7 @@ require_once('modal/index.php')
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], true)[0]['admin']['status'] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
-                                        <button onclick="location.href='<?php echo JsonRpc::encodeGetData(Pages::$table['line']['uid'], 'Invoice') ?>'" type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"> <?php echo lang('blanks_invoice_title') ?></button>
+                                        <button onclick="location.href = '<?php echo JsonRpc::encodeGetData(Pages::$table['line']['uid'], 'Invoice') ?>'" type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"> <?php echo lang('blanks_invoice_title') ?></button>
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">

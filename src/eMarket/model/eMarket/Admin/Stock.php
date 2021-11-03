@@ -16,6 +16,7 @@ use eMarket\Core\{
     Modules,
     Navigation,
     Pdo,
+    Pages,
     Settings,
     Valid
 };
@@ -491,6 +492,32 @@ class Stock {
             $text = self::$arr_merge['cat'][Stock::$start]['name'];
         }
         return [$class, $id, $text];
+    }
+
+    /**
+     * Left button
+     *
+     * @return string (disabled style)
+     */
+    public static function leftButton(): string {
+        $output = 'disabled';
+        if (self::$start > 0) {
+            $output = '';
+        }
+        return $output;
+    }
+
+    /**
+     * Right button
+     *
+     * @return string (disabled style)
+     */
+    public static function rightButton(): string {
+        $output = 'disabled';
+        if (Pages::counterStock() < self::$count_lines_merge) {
+            $output = '';
+        }
+        return $output;
     }
 
 }
