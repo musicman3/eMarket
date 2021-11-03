@@ -39,7 +39,6 @@ require_once('modal/index.php')
                             <th colspan="5"><?php echo Pages::counterPage() ?></th>
 
                             <th>
-
                                 <div class="gap-2 d-flex justify-content-end">
 
                                     <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>

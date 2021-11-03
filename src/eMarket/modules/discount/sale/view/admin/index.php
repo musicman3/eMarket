@@ -74,11 +74,7 @@ require_once('modal/index.php')
                     <td class="text-center"><?php echo Pages::$table['line']['sale_value'] ?></td>
                     <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_start']); ?></td>
                     <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_end']); ?></td>
-                    <?php if (Pages::$table['line']['default_set'] == 1) { ?>
-                        <td class="text-center"><?php echo lang('confirm-yes') ?></td>
-                    <?php } else { ?>
-                        <td class="text-center"><?php echo lang('confirm-no') ?></td>
-                    <?php } ?>
+                    <td class="text-center"><?php echo Sale::defaultText() ?></td>
                     <td>
                         <div class="gap-2 d-flex justify-content-end">
                             <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>

@@ -31,6 +31,7 @@ class AddressBook {
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
     public static $address_data;
+    public int $default = 0;
 
     /**
      * Constructor
@@ -40,6 +41,7 @@ class AddressBook {
         $this->authorize();
         $this->jsonEcho();
         $this->initData();
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
@@ -90,27 +92,46 @@ class AddressBook {
     }
 
     /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default')) {
+            $this->default = 1;
+        }
+    }
+
+    /**
+     * Default text
+     *
+     * @param int|string $value Default value
+     * @return string Output text
+     */
+    public static function defaultText(int|string $value): string {
+        $output = lang('confirm-no');
+        if ($value == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
+    }
+
+    /**
      * Add
      *
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            $default = 0;
-            if (Valid::inPOST('default')) {
-                $default = 1;
-            }
-
             $address_array = ['countries_id' => Valid::inPOST('countries'),
                 'regions_id' => Valid::inPOST('regions'),
                 'city' => Valid::inPOST('city'),
                 'zip' => Valid::inPOST('zip'),
                 'address' => Valid::inPOST('address'),
-                'default' => $default];
+                'default' => $this->default];
 
             $x = 0;
             foreach (self::$address_data as $data) {
-                if ($data['default'] == 1 && $default == 1) {
+                if ($data['default'] == 1 && $this->default == 1) {
                     $address_data[$x]['default'] = 0;
                 }
                 $x++;
@@ -129,21 +150,17 @@ class AddressBook {
      */
     public function edit(): void {
         if (Valid::inPOST('edit')) {
-            $default = 0;
-            if (Valid::inPOST('default')) {
-                $default = 1;
-            }
 
             $address_array = ['countries_id' => Valid::inPOST('countries'),
                 'regions_id' => Valid::inPOST('regions'),
                 'city' => Valid::inPOST('city'),
                 'zip' => Valid::inPOST('zip'),
                 'address' => Valid::inPOST('address'),
-                'default' => $default];
+                'default' => $this->default];
 
             $x = 0;
             foreach (self::$address_data as $data) {
-                if ($data['default'] == 1 && $default == 1) {
+                if ($data['default'] == 1 && $this->default == 1) {
                     self::$address_data[$x]['default'] = 0;
                 }
                 $x++;

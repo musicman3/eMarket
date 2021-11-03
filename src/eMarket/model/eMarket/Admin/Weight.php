@@ -57,6 +57,19 @@ class Weight {
     }
 
     /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_weight'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
+    }
+
+    /**
      * Add
      *
      */

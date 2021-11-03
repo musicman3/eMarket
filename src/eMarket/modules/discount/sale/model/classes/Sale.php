@@ -37,12 +37,18 @@ class Sale {
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $this_time = FALSE;
+    public int $default = 0;
+    public $start_date = NULL;
+    public $end_date = NULL;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
+        $this->startDate();
+        $this->endDate();
         $this->add();
         $this->edit();
         $this->delete();
@@ -57,6 +63,49 @@ class Sale {
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
+    }
+
+    /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_module')) {
+            $this->default = 1;
+        }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_set'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
+    }
+
+    /**
+     * End date
+     *
+     */
+    public function startDate(): void {
+        if (Valid::inPOST('start_date')) {
+            $this->start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
+        }
+    }
+
+    /**
+     * Start date
+     *
+     */
+    public function endDate(): void {
+        if (Valid::inPOST('end_date')) {
+            $this->end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
+        }
     }
 
     /**
@@ -323,33 +372,15 @@ class Sale {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            if (Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
-            } else {
-                $start_date = NULL;
-            }
-
-            if (Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
-            } else {
-                $end_date = NULL;
-            }
-
-            if (Valid::inPOST('default_module')) {
-                $default_value = 1;
-            } else {
-                $default_value = 0;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_value != 0) {
+            if ($id > 1 && $this->default != 0) {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], Valid::inPOST('sale_value'), $start_date, $end_date, $default_value]);
+                Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], Valid::inPOST('sale_value'), $this->start_date, $this->end_date, $this->default]);
             }
 
             Messages::alert('add_discount_sale', 'success', lang('action_completed_successfully'));
@@ -365,29 +396,12 @@ class Sale {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            if (Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
-            } else {
-                $start_date = NULL;
-            }
-            if (Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
-            } else {
-                $end_date = NULL;
-            }
-
-            if (Valid::inPOST('default_module')) {
-                $default_value = 1;
-            } else {
-                $default_value = 0;
-            }
-
-            if ($default_value != 0) {
+            if ($this->default != 0) {
                 Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [Valid::inPOST('name_module_' . $x), Valid::inPOST('sale_value'), $start_date, $end_date, $default_value, Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+                Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [Valid::inPOST('name_module_' . $x), Valid::inPOST('sale_value'), $this->start_date, $this->end_date, $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]]);
             }
 
             Messages::alert('edit_discount_sale', 'success', lang('action_completed_successfully'));

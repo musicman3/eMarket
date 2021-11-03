@@ -64,11 +64,7 @@ require_once('modal/index.php')
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
-                                <?php if (Pages::$table['line']['default_stickers'] == 1) { ?>
-                                    <td class="text-center"><?php echo lang('confirm-yes') ?></td>
-                                <?php } else { ?>
-                                    <td class="text-center"><?php echo lang('confirm-no') ?></td>
-                                <?php } ?>
+                                <td class="text-center"><?php echo Stickers::defaultText() ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>

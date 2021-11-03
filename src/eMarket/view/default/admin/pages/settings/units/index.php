@@ -72,11 +72,7 @@ require_once('modal/index.php')
                             <tr class="align-middle">
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['unit'] ?></td>
-                                <?php if (Pages::$table['line']['default_unit'] == 1) { ?>
-                                    <td class="text-center"><?php echo lang('confirm-yes') ?></td>
-                                <?php } else { ?>
-                                    <td class="text-center"><?php echo lang('confirm-no') ?></td>
-                                <?php } ?>
+                                <td class="text-center"><?php echo Units::defaultText() ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>

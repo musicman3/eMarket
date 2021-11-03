@@ -37,12 +37,14 @@ class Stickers {
     public static $stickers_default = FALSE;
     public static $stickers_flag = FALSE;
     public static $sticker_name = FALSE;
+    public int $default = 0;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->default();
         $this->add();
         $this->edit();
         $this->delete();
@@ -60,27 +62,45 @@ class Stickers {
     }
 
     /**
+     * Default
+     *
+     */
+    public function default(): void {
+        if (Valid::inPOST('default_stickers')) {
+            $this->default = 1;
+        }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_stickers'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
+    }
+
+    /**
      * Add
      *
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            $default_stickers = 0;
-            if (Valid::inPOST('default_stickers')) {
-                $default_stickers = 1;
-            }
-
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STICKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
             $id = intval($id_max) + 1;
 
-            if ($id > 1 && $default_stickers != 0) {
+            if ($id > 1 && $this->default != 0) {
                 Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_STICKERS . " SET id=?, name=?, language=?, default_stickers=?", [
-                    $id, Valid::inPOST('name_stickers_' . $x), lang('#lang_all')[$x], $default_stickers
+                    $id, Valid::inPOST('name_stickers_' . $x), lang('#lang_all')[$x], $this->default
                 ]);
             }
 
@@ -95,18 +115,13 @@ class Stickers {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            $default_stickers = 0;
-            if (Valid::inPOST('default_stickers')) {
-                $default_stickers = 1;
-            }
-
-            if ($default_stickers != 0) {
+            if ($this->default != 0) {
                 Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_STICKERS . " SET name=?, default_stickers=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_stickers_' . $x), $default_stickers, Valid::inPOST('edit'), lang('#lang_all')[$x]
+                    Valid::inPOST('name_stickers_' . $x), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
                 ]);
             }
 
@@ -230,6 +245,7 @@ class Stickers {
     public function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
+        $status = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
@@ -240,7 +256,7 @@ class Stickers {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                     }
                     if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                        $default_stickers[$modal_id] = (int) $sql_modal['default_stickers'];
+                        $status[$modal_id] = (int) $sql_modal['default_stickers'];
                     }
                 }
 
@@ -248,7 +264,7 @@ class Stickers {
 
                 self::$json_data = json_encode([
                     'name' => $name,
-                    'default_stickers' => $default_stickers
+                    'default_stickers' => $status
                 ]);
             }
         }

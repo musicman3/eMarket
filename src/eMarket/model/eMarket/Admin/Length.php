@@ -57,6 +57,19 @@ class Length {
     }
 
     /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_length'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
+    }
+
+    /**
      * Add
      *
      */
