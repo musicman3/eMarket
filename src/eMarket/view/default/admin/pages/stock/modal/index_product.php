@@ -47,7 +47,7 @@ use eMarket\Admin\Stock;
 
                                 <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                    <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab(0, $x) ?>">
+                                    <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
                                         <div class="mb-3">
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_name') ?></small></div>
                                             <div class="input-group input-group-sm">
