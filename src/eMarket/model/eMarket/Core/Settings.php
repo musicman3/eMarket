@@ -29,7 +29,6 @@ use eMarket\Core\{
 class Settings {
 
     private static $default_currency = FALSE;
-    private static $active_tabs_count = 0;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
@@ -597,10 +596,9 @@ class Settings {
      * @param string $class Bootstrap class
      * @return string
      */
-    public static function activeTab(string $active_tab, string $active, string $class = 'active'): ?string {
+    public static function activeTab(string|int $active_tab, string|int $active = 0, string $class = 'show in active'): ?string {
 
-        if ($active_tab == $active && self::$active_tabs_count == 0) {
-            self::$active_tabs_count = 1;
+        if ($active_tab == $active) {
             return $class;
         }
         return '';

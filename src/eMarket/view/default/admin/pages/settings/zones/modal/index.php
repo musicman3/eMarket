@@ -24,31 +24,18 @@ use eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <small class="form-text text-muted" for="name_zones_0"><?php echo lang('name_zone') ?></small>
-                            <div class="input-group input-group-sm mb-2">
-                                <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_zones_0" id="name_zones_0" required />
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <small class="form-text text-muted" for="name_zones_<?php echo $x ?>"><?php echo lang('name_zone') ?></small>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text bi-file-text"></span>
-                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
-                                    </div>
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <small class="form-text text-muted" for="name_zones_<?php echo $x ?>"><?php echo lang('name_zone') ?></small>
+                                <div class="input-group input-group-sm mb-2">
+                                    <span class="input-group-text bi-file-text"></span>
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_zones_<?php echo $x ?>" id="name_zones_<?php echo $x ?>" required />
                                 </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
                         <div class="mb-2">
                             <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
                             <textarea class="input-sm form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones" id="note_zones"></textarea>

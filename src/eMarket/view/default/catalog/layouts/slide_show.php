@@ -29,11 +29,12 @@ if (Slideshow::$slideshow == true) {
             <?php } ?>
             <div class="carousel-inner rounded">
                 <?php
+                $count = 0;
                 foreach (Slideshow::$slideshow as $images_data) {
                     foreach (json_decode($images_data['logo'], true) as $logo) {
                         if ($images_data['status'] == 1 && strtotime($images_data['date_start']) <= Slideshow::$this_time && strtotime($images_data['date_finish']) >= Slideshow::$this_time) {
                             ?>
-                            <div class="carousel-item <?php echo Settings::activeTab(0, 0) ?>">
+                            <div class="carousel-item <?php echo Settings::activeTab($count) ?>">
                                 <a href="<?php echo $images_data['url'] ?>">
                                     <img src="/uploads/images/slideshow/resize_4/<?php echo $logo ?>" class="d-block w-100" >
                                     <?php if ($images_data['animation'] == 1) { ?>
@@ -47,11 +48,12 @@ if (Slideshow::$slideshow == true) {
                                             <p><?php echo $images_data['heading'] ?></p>
                                         </div>
                                     <?php } ?>
-				</a>
+                                </a>
                             </div>
 
                             <?php
                         }
+                        $count++;
                     }
                 }
                 ?>

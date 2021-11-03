@@ -43,32 +43,19 @@ use eMarket\Admin\Stock;
                             <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                             <div class="tab-content pt-2">
-                                <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                                    <div class="mb-3">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_0" id="name_categories_stock_0" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                                if (Lang::$count > 1) {
-                                    for ($x = 1; $x < Lang::$count; $x++) {
-                                        ?>
 
-                                        <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                            <div class="mb-3">
-                                                <div class="input-group input-group-sm">
-                                                    <span class="input-group-text bi-file-text"></span>
-                                                    <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
-                                                </div>
+                                <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
+
+                                    <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab(0, $x) ?>">
+                                        <div class="mb-3">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text bi-file-text"></span>
+                                                <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <?php
-                                    }
-                                }
-                                ?>
+                                <?php } ?>
 
                             </div>
 
@@ -77,10 +64,10 @@ use eMarket\Admin\Stock;
                             <!-- File-Upload -->
                             <div class="mb-3">
                                 <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
-				<span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-				    <span><?php echo lang('button_add_image') ?></span>
-				    <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
-				</span>
+                                <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+                                    <span><?php echo lang('button_add_image') ?></span>
+                                    <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                </span>
                                 <br>
                                 <div id="progress" class="progress mb-3" style="height: 1.5rem;">
                                     <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>

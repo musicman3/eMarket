@@ -28,41 +28,24 @@ use eMarket\Admin\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <small class="form-text text-muted" for="staff_manager_group_0"><?php echo lang('staff_manager_group') ?></small>
-                            <div class="input-group input-group-sm mb-2">
-                                <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_group_0" id="staff_manager_group_0" required />
-                            </div>
-                            <small class="form-text text-muted" for="staff_manager_note_0"><?php echo lang('staff_manager_note') ?></small>
-                            <div class="input-group input-group-sm mb-2">
-                                <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_note_0" id="staff_manager_note_0" />
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <small class="form-text text-muted" for="staff_manager_group_<?php echo $x ?>"><?php echo lang('staff_manager_group') ?></small>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text bi-file-text"></span>
-                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_group_<?php echo $x ?>" id="staff_manager_group_<?php echo $x ?>" required />
-                                    </div>
-                                    <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_note') ?></small>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <span class="input-group-text bi-file-text"></span>
-                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_note_<?php echo $x ?>" id="staff_manager_note_<?php echo $x ?>" />
-                                    </div>
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <small class="form-text text-muted" for="staff_manager_group_<?php echo $x ?>"><?php echo lang('staff_manager_group') ?></small>
+                                <div class="input-group input-group-sm mb-2">
+                                    <span class="input-group-text bi-file-text"></span>
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_group_<?php echo $x ?>" id="staff_manager_group_<?php echo $x ?>" required />
                                 </div>
+                                <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_note') ?></small>
+                                <div class="input-group input-group-sm mb-2">
+                                    <span class="input-group-text bi-file-text"></span>
+                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="staff_manager_note_<?php echo $x ?>" id="staff_manager_note_<?php echo $x ?>" />
+                                </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
+
                         <div class="input-group input-group-sm mb-2">
                             <small class="form-text text-muted" for="staff_manager_note_<?php echo $x ?>"><?php echo lang('staff_manager_permissions') ?></small>
                             <span class="multiselect-native-select me-auto">

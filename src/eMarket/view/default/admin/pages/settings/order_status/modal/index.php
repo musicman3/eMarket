@@ -24,35 +24,20 @@ use eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('order_status_name') ?></small>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_order_status_0" id="name_order_status_0" required />
-                                </div>
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-2">
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <div class="mb-2">
                                     <small class="form-text text-muted"><?php echo lang('order_status_name') ?></small>
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_order_status_<?php echo $x ?>" id="name_order_status_<?php echo $x ?>" required />
-                                        </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_order_status_<?php echo $x ?>" id="name_order_status_<?php echo $x ?>" required />
                                     </div>
                                 </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
 
                         <div class="mb-2 form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="default_order_status" id="default_order_status" checked>

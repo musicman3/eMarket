@@ -28,33 +28,19 @@ use eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-3">
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_0" id="name_manufacturers_0" required />
-                                </div>
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-3">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
-                                        </div>
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <div class="mb-3">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_manufacturers_<?php echo $x ?>" id="name_manufacturers_<?php echo $x ?>" required />
                                     </div>
                                 </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
 
                         <div class="mb-3">
                             <div class="input-group input-group-sm">

@@ -24,49 +24,28 @@ use eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('currencies_name_full') ?></small>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_currencies_0" id="name_currencies_0" required />
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_0" id="code_currencies_0" required />
-                                </div>
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('currencies_name_full') ?></small>
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_currencies_<?php echo $x ?>" id="name_currencies_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_<?php echo $x ?>" id="code_currencies_<?php echo $x ?>" required />
-                                        </div>
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <div class="mb-2">
+                                    <small class="form-text text-muted"><?php echo lang('currencies_name_full') ?></small>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_currencies_<?php echo $x ?>" id="name_currencies_<?php echo $x ?>" required />
                                     </div>
                                 </div>
+                                <div class="mb-2">
+                                    <small class="form-text text-muted"><?php echo lang('currencies_name_little') ?></small>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="code_currencies_<?php echo $x ?>" id="code_currencies_<?php echo $x ?>" required />
+                                    </div>
+                                </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
+
                         <div class="mb-2">
                             <small class="form-text text-muted"><?php echo lang('currencies_iso_4217') ?></small>
                             <div class="input-group input-group-sm">

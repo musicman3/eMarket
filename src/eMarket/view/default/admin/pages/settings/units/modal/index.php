@@ -24,49 +24,27 @@ use eMarket\Core\{
                     <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
                     <div class="tab-content pt-2">
-                        <div id="<?php echo lang('#lang_all')[0] ?>" class="tab-pane fade show in active">
-                            <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_0" id="name_units_0" required />
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-text bi-file-text"></span>
-                                    <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_0" id="unit_units_0" required />
-                                </div>
-                            </div>
-                        </div>
 
-                        <?php
-                        if (Lang::$count > 1) {
-                            for ($x = 1; $x < Lang::$count; $x++) {
-                                ?>
+                        <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade">
-                                    <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_<?php echo $x ?>" id="name_units_<?php echo $x ?>" required />
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-text bi-file-text"></span>
-                                            <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_<?php echo $x ?>" id="unit_units_<?php echo $x ?>" required />
-                                        </div>
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                <div class="mb-2">
+                                    <small class="form-text text-muted"><?php echo lang('units_name_full') ?></small>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="name_units_<?php echo $x ?>" id="name_units_<?php echo $x ?>" required />
                                     </div>
                                 </div>
+                                <div class="mb-2">
+                                    <small class="form-text text-muted"><?php echo lang('units_name_little') ?></small>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bi-file-text"></span>
+                                        <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="unit_units_<?php echo $x ?>" id="unit_units_<?php echo $x ?>" required />
+                                    </div>
+                                </div>
+                            </div>
 
-                                <?php
-                            }
-                        }
-                        ?>
+                        <?php } ?>
 
                         <div class="mb-2 form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="default_unit" id="default_unit" checked>
