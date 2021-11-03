@@ -25,7 +25,7 @@ require_once('modal/index.php')
                 <th>
                     <div class="gap-2 d-flex justify-content-end">
 
-                       <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
+                        <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                         <form>
                             <input hidden name="route" value="settings/modules/edit">
@@ -33,11 +33,7 @@ require_once('modal/index.php')
                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
-                            <?php if (Pages::$finish != Pages::$count) { ?>
-                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short" formmethod="get"></button>
-                            <?php } else { ?>
-                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-left-short"></a>
-                            <?php } ?>
+                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-left-short <?php echo Pages::leftButton() ?>"></button>
                         </form>
 
                         <form>
@@ -46,11 +42,7 @@ require_once('modal/index.php')
                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
                             <input hidden name="name" value="<?php echo Valid::inGET('name') ?>">
-                            <?php if (Pages::$finish != Pages::$count) { ?>
-                                <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short" formmethod="get"></button>
-                            <?php } else { ?>
-                                <a type="submit" class="btn btn-primary btn-sm disabled bi-arrow-right-short"></a>
-                            <?php } ?>
+                            <button type="submit" class="btn btn-primary btn-sm bi-arrow-right-short <?php echo Pages::rightButton() ?>"></button>
                         </form>
 
                     </div>
