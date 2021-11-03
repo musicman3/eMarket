@@ -37,6 +37,7 @@ use eMarket\Core\{
                             </div>
 
                         <?php } ?>
+
                         <div class="mb-2">
                             <small class="form-text text-muted" for="start_date"><?php echo lang('modules_discount_sale_admin_sale_start_date') ?></small>
                             <div class="input-group input-group-sm">
