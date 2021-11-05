@@ -110,7 +110,7 @@ final class Eac {
         if (Valid::inGET('parent_down')) {
             self::$parent_id = Valid::inGET('parent_down');
         }
-        
+
         if (Valid::inPostJson('parent_down')) {
             self::$parent_id = Valid::inPostJson('parent_down');
         }
@@ -214,13 +214,13 @@ final class Eac {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'products') {
+                    $id_cat = explode('category_', $idx[$i])[1];
                     // This is category
-                    self::$parent_id = self::dataParentId($idx[$i]);
-                    $keys = self::dataKeys($idx[$i]);
+                    self::$parent_id = self::dataParentId($id_cat);
+                    $keys = self::dataKeys($id_cat);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
-
                         // Removing product and images
                         self::deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
                         Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
@@ -231,31 +231,30 @@ final class Eac {
                     }
 
                     // Removing general category
-                    Pdo::action("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$idx[$i]]);
+                    Pdo::action("DELETE FROM " . TABLE_CATEGORIES . " WHERE id=?", [$id_cat]);
 
                     // Buffer empty
                     if (isset($_SESSION['buffer']['cat']) && $_SESSION['buffer']['cat'] != FALSE) {
-                        $_SESSION['buffer']['cat'] = Func::deleteValInArray($_SESSION['buffer']['cat'], [$idx[$i]]);
+                        $_SESSION['buffer']['cat'] = Func::deleteValInArray($_SESSION['buffer']['cat'], [$id_cat]);
                         if (count($_SESSION['buffer']['cat']) == 0) {
                             unset($_SESSION['buffer']['cat']);
                         }
                     }
                 } else {
                     // This is product
-                    $id_prod = explode('products_', $idx[$i]);
+                    $id_prod = explode('products_', $idx[$i])[1];
                     //Удаляем основной товар / Removing general product
-                    Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+                    Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod]);
 
                     // Buffer empty
                     if (isset($_SESSION['buffer']['prod']) && $_SESSION['buffer']['prod'] != FALSE) {
-                        $_SESSION['buffer']['prod'] = Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod[1]]);
+                        $_SESSION['buffer']['prod'] = Func::deleteValInArray($_SESSION['buffer']['prod'], [$id_prod]);
                         if (count($_SESSION['buffer']['prod']) == 0) {
                             unset($_SESSION['buffer']['prod']);
                         }
                     }
                 }
-
-                Messages::alert('delete', 'success', lang('action_completed_successfully'));
+                Messages::alert('delete', 'success', lang('action_completed_successfully'), 0, true);
             }
         }
 
@@ -288,10 +287,11 @@ final class Eac {
                 if (Valid::inPostJson('idsx_cut_key') == 'cut') {
                     // This is category
                     if (strstr($idx[$i], '_', true) != 'products') {
+                        $id_cat = explode('category_', $idx[$i])[1];
                         if (!isset($_SESSION['buffer']['cat'])) {
                             $_SESSION['buffer']['cat'] = [];
                         }
-                        array_push($_SESSION['buffer']['cat'], $idx[$i]);
+                        array_push($_SESSION['buffer']['cat'], $id_cat);
                         if ($parent_id_real > 0) {
                             self::$parent_id = $parent_id_real;
                         }
@@ -300,8 +300,8 @@ final class Eac {
                         if (!isset($_SESSION['buffer']['prod'])) {
                             $_SESSION['buffer']['prod'] = [];
                         }
-                        $id_prod = explode('products_', $idx[$i]);
-                        array_push($_SESSION['buffer']['prod'], $id_prod[1]);
+                        $id_prod = explode('products_', $idx[$i])[1];
+                        array_push($_SESSION['buffer']['prod'], $id_prod);
                         if ($parent_id_real > 0) {
                             self::$parent_id = $parent_id_real;
                         }
@@ -359,9 +359,8 @@ final class Eac {
             if ($parent_id_real > 0) {
                 self::$parent_id = $parent_id_real; //
             }
-            
-            Messages::alert('paste', 'success', lang('action_completed_successfully'), 0, true);
 
+            Messages::alert('paste', 'success', lang('action_completed_successfully'), 0, true);
         }
 
         if (is_array(self::$parent_id) == TRUE) {
@@ -396,8 +395,9 @@ final class Eac {
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'products') {
                     // This is category
-                    self::$parent_id = self::dataParentId($idx[$i]);
-                    $keys = self::dataKeys($idx[$i]);
+                    $id_cat = explode('category_', $idx[$i])[1];
+                    self::$parent_id = self::dataParentId($id_cat);
+                    $keys = self::dataKeys($id_cat);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
@@ -420,15 +420,15 @@ final class Eac {
 
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
-                        Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $idx[$i]]);
+                        Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $id_cat]);
                         Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 } else {
                     // This is product
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
-                        $id_prod = explode('products_', $idx[$i]);
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod[1]]);
+                        $id_prod = explode('products_', $idx[$i])[1];
+                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod]);
                         Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                     }
                 }
@@ -492,7 +492,11 @@ final class Eac {
             $resize = self::$resize_param_product;
         }
 
-        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]), true);
+        $data = Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE parent_id=?", [$keys]);
+        $logo_delete = true;
+        if ($data) {
+            $logo_delete = json_decode($data, true);
+        }
         if (is_countable($logo_delete)) {
             foreach ($logo_delete as $file) {
                 // Delete

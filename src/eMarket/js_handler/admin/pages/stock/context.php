@@ -91,14 +91,14 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                         text: '<span class="bi-pencil-square"> ' + lang['button_edit'] + '</span>',
                         action: function () {
                             var modal_edit = elem.id;
-                            if (modal_edit.search('product_') > -1) {
+                            if (modal_edit.search('products_') > -1) {
 
                                 document.querySelectorAll('.progress-bar').forEach(e => e.setAttribute("style", "width: 0%;"));
                                 document.querySelectorAll('.file-upload').forEach(e => e.innerHTML = '');
 
                                 document.querySelector('#delete_image_product').value = '';
                                 document.querySelector('#general_image_edit_product').value = '';
-                                var modal_id = modal_edit.split('product_')[1];
+                                var modal_id = modal_edit.split('products_')[1];
 
                                 for (var x = 0; x < json_data_product.name.length; x++) {
                                     document.querySelector('#name_product_stock_' + x).value = json_data_product.name[x][modal_id];
@@ -148,7 +148,6 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 
                                 document.querySelector('#edit').value = modal_id;
                                 document.querySelector('#add').value = '';
-
                                 Fileupload.getImageToEdit(json_data_category.logo_general, json_data_category.logo, modal_id, 'categories');
                                 sessionStorage.setItem('attributes', JSON.stringify(json_data_category.attributes[modal_id]));
                                 new bootstrap.Modal(document.querySelector('#index')).show();
@@ -209,20 +208,22 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 // ---------- Cut ----------
                                 text: '<span class="bi-scissors"> ' + lang['cut'] + '</span>',
                                 action: function () {
-                                    Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false);
-                                    var idArray = [];
-                                    document.querySelectorAll('.table-primary').forEach(function (string, index) {
-                                        idArray[index] = string.id;
-                                    });
-                                    Ajax.postData(window.location.href, {
-                                        idsx_real_parent_id: idsx_real_parent_id,
-                                        idsx_cut_id: idArray,
-                                        idsx_cut_key: 'cut'
-                                    }, false).then((data) => {
+                                    Ajax.postData(window.location.href, {idsx_cut_marker: 'cut'}, false).then((data) => {
+                                        var idArray = [];
+                                        document.querySelectorAll('.table-primary').forEach(function (string, index) {
+                                            idArray[index] = string.id;
+                                        });
                                         Ajax.postData(window.location.href, {
-                                            parent_down: parent_id
+                                            idsx_real_parent_id: idsx_real_parent_id,
+                                            idsx_cut_id: idArray,
+                                            idsx_cut_key: 'cut'
+                                        }, false).then((data) => {
+                                            Ajax.postData(window.location.href, {
+                                                parent_down: parent_id
+                                            });
                                         });
                                     });
+
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
                             },
