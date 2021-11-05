@@ -35,11 +35,6 @@ h6 {font-size: .875rem;}
 #layouts-categories .category_block ul ul {padding: 0 0 0 .625rem;}
 #layouts-categories .category_block ul li {list-style: none;}
 #layouts-categories .category_block ul li:last-child {border-bottom: none;}
-#layouts-categories .category_block .hitarea {float: right;}
-#layouts-categories .category_block .hitarea.expandable-hitarea {cursor: pointer;}
-#layouts-categories .category_block .hitarea.collapsable-hitarea {cursor: pointer;}
-#layouts-categories .category_block .hitarea.expandable-hitarea:before {font-family: bootstrap-icons;content: 'bi-plus';color: #0d6efd;}
-#layouts-categories .category_block .hitarea.collapsable-hitarea:before {font-family: bootstrap-icons;content: 'bi-dash';color: #0d6efd;}
 
 /* Hide collapsed */
 [aria-expand="false"] {display: none;}
