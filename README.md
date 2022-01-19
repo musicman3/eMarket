@@ -22,6 +22,7 @@
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
+  - PSR-6 (Caching Interface)
   - PSR-12 partly (Extended Coding Style Guide)
   - PHPDoc documenting (see PSR-5 and PSR-19)
 
