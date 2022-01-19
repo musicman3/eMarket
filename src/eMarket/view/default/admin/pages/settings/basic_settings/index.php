@@ -32,6 +32,7 @@ use eMarket\Admin\BasicSettings;
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cache"><?php echo lang('basic_settings_caching') ?></a></li>
             </ul>
 
             <div class="tab-content pt-2">
@@ -170,9 +171,38 @@ use eMarket\Admin\BasicSettings;
 
                         <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                     </form>
-
                 </div>
-            </div>        
+                <div id="cache" class="tab-pane fade">
+                    <form id="form_cache" class="was-validated" name="form_cache" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_cache')">
+                        <input hidden name="add" value="ok">
+
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_use_caching') ?></label>
+                            <div class="col-md-9">
+                                <select name="cache_status" id="cache_status" class="input-sm form-select">
+                                    <?php if (BasicSettings::$cache_status == 1) { ?>
+                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
+                                        <option value="off"><?php echo lang('debug_off') ?></option>
+                                    <?php } else { ?>
+                                        <option value="on"><?php echo lang('debug_on') ?></option>
+                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_caching_time') ?></label>
+                            <div class="col-md-9">
+                                <input type="text" name="caching_time" class="input-sm form-control" value="<?php echo BasicSettings::$caching_time ?>" required />
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
+                    </form>
+                </div>
+            </div>    
+
         </div>
     </div>
 </div>

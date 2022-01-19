@@ -170,6 +170,9 @@ basic_settings_smtp_use = Использовать SMTP
 basic_settings_email = E-mail отправителя
 basic_settings_email_name = Имя отправителя
 basic_settings_primary_language = Основной язык
+basic_settings_caching = Кэширование
+basic_settings_use_caching = Использовать кэширование
+basic_settings_caching_time = Время кэширования (сек.)
 
 ;MANUFACTURERS
 manufacturer = Производитель

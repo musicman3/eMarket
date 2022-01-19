@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Cache,
     Ecb,
     Interfaces,
     Pdo,
@@ -28,7 +29,6 @@ use eMarket\Core\{
 class Products {
 
     public static $sticker_data = FALSE;
-    public static $new_products = FALSE;
     public static $product_data = FALSE;
     public static $category_data = FALSE;
     private static $manufacturer = FALSE;
@@ -39,12 +39,20 @@ class Products {
     /**
      * New products data
      *
-     * @param string|int $count Number of new products
+     * @param string|int|null $count Number of new products
+     * @return mixed New products data
      */
-    public static function newProducts(string|int $count): void {
-        if (self::$new_products == FALSE) {
-            self::$new_products = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+    public static function newProducts(string|int|null $count = null): mixed {
+
+        $Cache = new Cache();
+        $Cache->cache_name = 'core.new_products';
+
+        if (!$Cache->isHit()) {
+            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+            return $Cache->save($Cache->data);
         }
+
+        return $Cache->cache_item->get();
     }
 
     /**
@@ -60,6 +68,7 @@ class Products {
             $language = lang('#lang_all')[0];
         }
         self::$product_data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+
         return self::$product_data;
     }
 

@@ -9,14 +9,12 @@ use eMarket\Core\{
     Products,
 };
 
-Products::newProducts(8);
-
-if (Products::$new_products == true) {
+if (count(Products::newProducts(8)) > 0) {
     ?>
     <div id="new_products" class="contentText">
         <h3><?php echo lang('new_products_name') ?></h3>
         <div class="row">
-            <?php foreach (Products::$new_products as $value) {
+            <?php foreach (Products::newProducts(8) as $value) {
                 ?>
                 <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">

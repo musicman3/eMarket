@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Cache,
     Func,
     Messages,
     Pdo,
@@ -43,6 +44,8 @@ class BasicSettings {
     public static $password_email = FALSE;
     public static $smtp_secure = FALSE;
     public static $smtp_port = FALSE;
+    public static $cache_status = FALSE;
+    public static $caching_time = FALSE;
 
     /**
      * Constructor
@@ -62,6 +65,9 @@ class BasicSettings {
         $this->passwordEmail();
         $this->smtpSecure();
         $this->smtpPort();
+        $Cache = new Cache();
+        self::$cache_status = $Cache->cache_status;
+        self::$caching_time = $Cache->caching_time;
     }
 
     /**
@@ -139,6 +145,7 @@ class BasicSettings {
         if (Valid::inPOST('email')) {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET email=?", [Valid::inPOST('email')]);
             self::$email = Pdo::getValue("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 

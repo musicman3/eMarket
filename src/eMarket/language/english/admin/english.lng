@@ -172,6 +172,9 @@ basic_settings_smtp_use = Use SMTP
 basic_settings_email = Sender E-mail
 basic_settings_email_name = Sender name
 basic_settings_primary_language = Primary language
+basic_settings_caching = Caching
+basic_settings_use_caching = Use caching
+basic_settings_caching_time = Caching time (sec.)
 
 ;MANUFACTURERS
 manufacturer = Manufacturer
