@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
+    Cache,
     Ecb,
     Interfaces,
     Func,
@@ -163,6 +164,9 @@ class Success {
             ];
 
             array_push(self::$invoice, $data);
+
+            $Cache = new Cache();
+            $Cache->deleteItem('core.products_' . $value['id']);
 
             Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
         }

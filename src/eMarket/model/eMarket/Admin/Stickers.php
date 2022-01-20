@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Cache,
     Eac,
     Func,
     Lang,
@@ -220,16 +221,22 @@ class Stickers {
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
-                            Messages::alert('sticker_actions', 'success', lang('action_completed_successfully'), 0, true);
+
+                            $Cache = new Cache();
+                            $Cache->deleteItem('core.products_' . $sticker_id_arr);
                         }
                     }
                 } else {
                     if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", [$sticker, $id_prod[1]]);
-                        Messages::alert('sticker_actions', 'success', lang('action_completed_successfully'), 0, true);
+
+                        $Cache = new Cache();
+                        $Cache->deleteItem('core.products_' . $id_prod[1]);
                     }
                 }
+
+                Messages::alert('sticker_actions', 'success', lang('action_completed_successfully'), 0, true);
             }
         }
 

@@ -67,9 +67,18 @@ class Products {
         if ($language == null) {
             $language = lang('#lang_all')[0];
         }
-        self::$product_data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
 
-        return self::$product_data;
+        $Cache = new Cache();
+        $Cache->cache_name = 'core.products_' . $id;
+
+        if (!$Cache->isHit()) {
+            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+            self::$product_data = $Cache->data;
+            return $Cache->save($Cache->data);
+        }
+
+        self::$product_data = $Cache->cache_item->get();
+        return $Cache->cache_item->get();
     }
 
     /**

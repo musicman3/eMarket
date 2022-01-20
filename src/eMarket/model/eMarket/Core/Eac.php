@@ -241,6 +241,9 @@ final class Eac {
                             unset($_SESSION['buffer']['cat']);
                         }
                     }
+
+                    $Cache = new Cache();
+                    $Cache->clear();
                 } else {
                     // This is product
                     $id_prod = explode('products_', $idx[$i])[1];
@@ -254,7 +257,12 @@ final class Eac {
                             unset($_SESSION['buffer']['prod']);
                         }
                     }
+
+                    $Cache = new Cache();
+                    $Cache->deleteItem('core.new_products');
+                    $Cache->deleteItem('core.products_' . $id_prod);
                 }
+
                 Messages::alert('delete', 'success', lang('action_completed_successfully'), 0, true);
             }
         }
@@ -262,9 +270,6 @@ final class Eac {
         if (is_array(self::$parent_id) == TRUE) {
             self::$parent_id = 0;
         }
-
-        $Cache = new Cache();
-        $Cache->deleteItem('core.new_products');
     }
 
     /**
@@ -358,6 +363,9 @@ final class Eac {
                         $parent_id_real, json_encode([]), $_SESSION['buffer']['prod'][$buf]
                     ]);
                 }
+
+                $Cache = new Cache();
+                $Cache->clear();
             }
             unset($_SESSION['buffer']); // Buffer empty
             if ($parent_id_real > 0) {
@@ -418,33 +426,36 @@ final class Eac {
                             if ($parent_id_real > 0) {
                                 self::$parent_id = $parent_id_real;
                             }
-                            Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                         }
                     }
 
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
                         Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET status=? WHERE id=?", [$status, $id_cat]);
-                        Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
                     }
+
+                    $Cache = new Cache();
+                    $Cache->clear();
                 } else {
                     // This is product
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
                         $id_prod = explode('products_', $idx[$i])[1];
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET status=? WHERE id=?", [$status, $id_prod]);
-                        Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
+
+                        $Cache = new Cache();
+                        $Cache->deleteItem('core.new_products');
+                        $Cache->deleteItem('core.products_' . $id_prod);
                     }
                 }
+
+                Messages::alert('status', 'success', lang('action_completed_successfully'), 0, true);
             }
         }
 
         if (is_array(self::$parent_id) == TRUE) {
             self::$parent_id = 0;
         }
-
-        $Cache = new Cache();
-        $Cache->deleteItem('core.new_products');
     }
 
     /**
@@ -756,6 +767,7 @@ final class Eac {
 
             $Cache = new Cache();
             $Cache->deleteItem('core.new_products');
+            $Cache->deleteItem('core.products_' . Valid::inPOST('edit_product'));
 
             Messages::alert('edit_product', 'success', lang('action_completed_successfully'));
         }
