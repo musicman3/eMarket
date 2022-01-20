@@ -125,4 +125,15 @@ class Cache {
         }
     }
 
+    /**
+     * Delete item
+     * 
+     * @param string $item Cache item
+     *
+     */
+    public function deleteItem(string $item): void {
+        $Cache = new FilesystemAdapter();
+        $Cache->deleteItem($item);
+    }
+
 }

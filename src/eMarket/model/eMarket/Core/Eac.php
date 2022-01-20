@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Cache,
     Files,
     Func,
     Lang,
@@ -261,6 +262,9 @@ final class Eac {
         if (is_array(self::$parent_id) == TRUE) {
             self::$parent_id = 0;
         }
+
+        $Cache = new Cache();
+        $Cache->deleteItem('core.new_products');
     }
 
     /**
@@ -438,6 +442,9 @@ final class Eac {
         if (is_array(self::$parent_id) == TRUE) {
             self::$parent_id = 0;
         }
+
+        $Cache = new Cache();
+        $Cache->deleteItem('core.new_products');
     }
 
     /**
@@ -627,6 +634,9 @@ final class Eac {
                 ]);
             }
 
+            $Cache = new Cache();
+            $Cache->deleteItem('core.new_products');
+
             Messages::alert('add_product', 'success', lang('action_completed_successfully'));
         }
     }
@@ -743,6 +753,9 @@ final class Eac {
                     $min_quantity_product_stock, $selected_attributes_product_stock, Valid::inPOST('edit_product'), lang('#lang_all')[$x]
                 ]);
             }
+
+            $Cache = new Cache();
+            $Cache->deleteItem('core.new_products');
 
             Messages::alert('edit_product', 'success', lang('action_completed_successfully'));
         }

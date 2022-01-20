@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Cache,
     Files,
     Func,
     Messages,
@@ -155,6 +156,9 @@ class Slideshow {
                 $start_date, $end_date, $view_slideshow
             ]);
 
+            $Cache = new Cache();
+            $Cache->deleteItem('catalog.slideshow');
+
             Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
@@ -191,6 +195,9 @@ class Slideshow {
                 Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, Valid::inPOST('edit')
             ]);
 
+            $Cache = new Cache();
+            $Cache->deleteItem('catalog.slideshow');
+
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
@@ -219,6 +226,9 @@ class Slideshow {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
 
+            $Cache = new Cache();
+            $Cache->deleteItem('catalog.slideshow');
+
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
@@ -245,7 +255,17 @@ class Slideshow {
      *
      */
     public static function view(): void {
-        self::$slideshow = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+
+        $Cache = new Cache();
+        $Cache->cache_name = 'catalog.slideshow';
+
+        if (!$Cache->isHit()) {
+            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            self::$slideshow = $Cache->save($Cache->data);
+        } else {
+            self::$slideshow = $Cache->cache_item->get();
+        }
+
         $slideshow_pref = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
 
         self::$slide_interval = $slideshow_pref['show_interval'];
