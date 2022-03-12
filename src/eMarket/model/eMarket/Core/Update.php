@@ -26,7 +26,7 @@ class Update {
      * @return string Version
      */
     public static function thisVersion(): string {
-        return 'v 1.0 Beta 3';
+        return 'v 1.0 Beta 4';
     }
 
     /**
