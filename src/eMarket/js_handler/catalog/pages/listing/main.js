@@ -141,7 +141,6 @@ class ProductsListing {
      *
      */
     static setList() {
-        document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
         document.querySelectorAll('.item').forEach(e => e.classList.remove('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelectorAll('#card').forEach(e => e.classList.remove('card'));
         document.querySelectorAll('#image').forEach(e => e.classList.remove('h-100'));
@@ -155,7 +154,6 @@ class ProductsListing {
      *
      */
     static setGrid() {
-        document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
         document.querySelectorAll('.item').forEach(e => e.classList.remove('col-12', 'list-group-item'));
         document.querySelectorAll('.item').forEach(e => e.classList.add('col-xl-3', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelectorAll('#card').forEach(e => e.classList.add('card'));
@@ -173,12 +171,13 @@ class ProductsListing {
      */
     static pcsProduct(val, id, max_quantity = null) {
         var a = document.querySelector('#number_' + id).value;
+        var popover = new bootstrap.Popover(document.querySelector('#number_' + id));
 
         document.querySelector('body').addEventListener('click', (e) => {
             if (e.target.closest('.button-plus') !== null) {
                 return;
             }
-            document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
+            popover.hide();
         });
 
         if (val === 'minus' && a > 1) {
@@ -188,7 +187,7 @@ class ProductsListing {
             document.querySelector('#number_' + id).value = +a + 1;
         }
         if (Number(a) === Number(max_quantity)) {
-            new bootstrap.Popover(document.querySelector('#number_' + id)).show();
+            popover.show();
     }
 
     }

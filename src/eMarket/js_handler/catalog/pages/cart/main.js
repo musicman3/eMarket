@@ -67,12 +67,13 @@ class Cart {
      */
     static pcsProduct(val, id, max_quantity = null) {
         var a = document.querySelector('#number_' + id).value;
+        var popover = new bootstrap.Popover(document.querySelector('#number_' + id));
 
         document.querySelector('body').addEventListener('click', (e) => {
             if (e.target.closest('.button-plus') !== null) {
                 return;
             }
-            document.querySelectorAll('.popover').forEach(e => bootstrap.Popover.getInstance(e).hide());
+            popover.hide();
         });
 
         if (val === 'minus' && a > 1) {
@@ -82,7 +83,7 @@ class Cart {
             document.querySelector('#number_' + id).value = +a + 1;
         }
         if (Number(a) === Number(max_quantity)) {
-            new bootstrap.Popover(document.querySelector('#number_' + id)).show();
+            popover.show();
     }
 
     }
