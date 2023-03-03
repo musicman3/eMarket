@@ -16,6 +16,7 @@ title_success_index = Заказ успешно завершен
 title_orders_index = Мои заказы
 title_my_account_index = Мой аккаунт
 title_checkout_index = Заказ подготовлен
+title_without_registration_index = Данные о доставке
 
 ;INDEX
 index_text = eMarket Bootstrap 5 Demo
@@ -79,7 +80,6 @@ button_proceed_to_checkout = Перейти к оформлению
 ;PAGES
 shopping_cart = Корзина
 сheckout_click = Купить в 1 клик
-login_to_account = Авторизация
 regular_customer = Постоянный клиент
 new_customer = Новый покупатель
 sign_in = Войти
@@ -88,11 +88,20 @@ default = По умолчанию
 default_set = Установить по умолчанию
 password = Введите пароль
 confirm_password = Подтвердите пароль
-forgot_your_password = Забыли пароль?
-login_description = Создав аккаунт, Вы сможете использовать этот магазин для своих целей, делая покупки быстрыми и удобными. Вы будете уведомлены о состоянии заказов и сохраните историю заказов, которые делали здесь раньше.
 this_page_is_not_available = Эта страница не доступна!
 enter_a_new_password = Введите новый пароль
 e_mail = E-Mail
+
+;LOGIN
+login_e_mail = E-Mail
+login_password = Введите пароль
+login_sign_in = Войти
+login_to_account = Авторизация
+login_register = Зарегистрироваться
+login_buy_without_registration = Купить без регистрации
+login_new_customer = Новый покупатель
+login_description = Создав аккаунт, Вы сможете использовать этот магазин для своих целей, делая покупки быстрыми и удобными. Вы будете уведомлены о состоянии заказов и сохраните историю заказов, которые делали здесь раньше.
+login_forgot_your_password = Забыли пароль?
 
 ;BREADCRUMB
 breadcrumb_home = Главная
@@ -163,6 +172,9 @@ cart_payment_is_not_available = Оплата для этого вида дост
 cart_shipping_is_not_available_and_min_price = . Мин. сумма заказа:
 cart_shipping_price = Стоимость доставки:
 cart_subtotal = Стоимость товаров:
+cart_validate_purchase = Подтвердить заказ
+cart_complete = Завершить
+cart_edit_shipping_information = Изменить данные о доставке
 
 ;CHECKOUT
 checkout_text = Заказ подготовлен
@@ -209,6 +221,9 @@ register_telephone = Телефон (пример: +12345678900)
 register_details_password = Ваш пароль
 register_privacy_policy_tittle = Политика конфиденциальности
 register_privacy_policy_text = Текст политики конфиденциальности...
+
+;WITHOUT REGISTRATION
+without_registration_index = Данные о доставке
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!

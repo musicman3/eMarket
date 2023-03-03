@@ -40,6 +40,8 @@ class Success {
     public static $payment_method;
     public static $shipping_method;
     public static $primary_language;
+    public static $without_registration_user;
+    public static $customer_email;
 
     /**
      * Constructor
@@ -51,6 +53,30 @@ class Success {
     }
 
     /**
+     * Customer data
+     *
+     */
+    public function customerInit(): void {
+        if (isset($_SESSION['without_registration'])) {
+            self::$without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
+            self::$customer = [
+                'id' => '',
+                'address_book' => $_SESSION['without_registration'],
+                'gender' => '',
+                'firstname' => self::$without_registration_user['firstname'],
+                'lastname' => self::$without_registration_user['lastname'],
+                'middle_name' => '',
+                'fax' => '',
+                'telephone' => self::$without_registration_user['telephone']
+            ];
+            self::$customer_email = '';
+        } else {
+            self::$customer_email = $_SESSION['email_customer'];
+            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [self::$customer_email])[0];
+        }
+    }
+
+    /**
      * Data
      *
      */
@@ -58,7 +84,7 @@ class Success {
         if (Valid::inPOST('add') && password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') . Valid::inPOST('shipping_method') .
                         (float) Valid::inPOST('order_shipping_price') . (float) Valid::inPOST('order_total'), Valid::inPOST('hash'))) {
-            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+            $this->customerInit();
 
             $address_all = json_decode(self::$customer['address_book'], true);
             $address_data = $address_all[Valid::inPOST('address') - 1];
@@ -241,7 +267,7 @@ class Success {
     public function save(): void {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
-                [$_SESSION['email_customer'], json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
+                [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
                     NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, date("Y-m-d H:i:s"), Func::getToken(64)]);
 
         unset($_SESSION['cart']);
@@ -252,12 +278,12 @@ class Success {
      *
      */
     public function end(): void {
-        $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['email_customer']])[0];
+        $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=? ORDER BY id DESC", [Pdo::lastInsertId()])[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
         $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);
-        Messages::sendMail($_SESSION['email_customer'], $email_subject, $email_message);
+        Messages::sendMail(self::$customer_email, $email_subject, $email_message);
         Messages::sendProviders(json_decode($customer_order_data['customer_data'], true)['telephone'], $providers_message);
     }
 

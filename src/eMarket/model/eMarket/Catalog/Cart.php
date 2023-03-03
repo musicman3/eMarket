@@ -235,8 +235,14 @@ class Cart {
      */
     public function modal(): void {
         self::$address_data = [];
-        if (isset($_SESSION['email_customer'])) {
-            self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+
+        if (isset($_SESSION['email_customer']) || isset($_SESSION['without_registration'])) {
+
+            if (isset($_SESSION['without_registration'])) {
+                self::$address_data_json = $_SESSION['without_registration'];
+            } else {
+                self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+            }
 
             if (self::$address_data_json != FALSE) {
                 self::$address_data = json_decode(self::$address_data_json, true);

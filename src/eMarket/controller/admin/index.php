@@ -9,7 +9,7 @@ require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
 $HeaderMenu = new eMarket\Admin\HeaderMenu();
-$eMarketIndex = new \eMarket\Admin\Index();
+$eMarketIndex = new eMarket\Admin\Index();
 require_once($eMarketIndex->route());
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */

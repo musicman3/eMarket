@@ -78,12 +78,12 @@ use eMarket\Catalog\Cart;
                     <div id="total_tax_price" class="mb-1 text-end"></div>
                     <div id="shipping_price" class="mb-1 text-end"></div>
                     <div class="text-end">
-			<span id="total_price_to_pay_modal" class="badge bg-danger"></span>
+                        <span id="total_price_to_pay_modal" class="badge bg-danger"></span>
                     </div>
 
                 </div> 
                 <div class="modal-footer">
-                    <button id="complete" type="button" onclick="Cart.callSuccess()" class="btn btn-primary btn-sm bi-check"> <?php echo lang('cart_сheckout') ?></button>
+                    <button id="complete" type="button" onclick="Cart.callSuccess()" class="btn btn-success bi-check"> <?php echo lang('cart_complete') ?></button>
                 </div>
             </form>
         </div>

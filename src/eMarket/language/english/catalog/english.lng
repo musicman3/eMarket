@@ -16,6 +16,7 @@ title_success_index = Order completed successfully
 title_orders_index = My Orders
 title_my_account_index = My Account
 title_checkout_index = Order prepared
+title_without_registration_index = Shipping Information
 
 ;INDEX
 index_text = eMarket Bootstrap 5 Demo
@@ -79,7 +80,6 @@ button_proceed_to_checkout = Proceed to checkout
 ;PAGES
 shopping_cart = Cart
 сheckout_click = Buy in one click
-login_to_account = Authorization
 regular_customer = Regular customer
 new_customer = New Customer
 sign_in = Sign in
@@ -88,11 +88,20 @@ default = Default
 default_set = Default Set
 password = Enter password
 confirm_password = Confirm password
-forgot_your_password = Forgot your password?
-login_description = By creating an account you will be able to take advantage of this store by shopping faster, be kept up to date on the status of an order, and keep track of the orders you have made.
 this_page_is_not_available = This page is not available!
 enter_a_new_password = Enter a new password
 e_mail = E-Mail
+
+;LOGIN
+login_e_mail = E-Mail
+login_password = Enter password
+login_sign_in = Sign in
+login_to_account = Authorization
+login_register = Register
+login_buy_without_registration = Buy without registration
+login_new_customer = New Customer
+login_description = By creating an account you will be able to take advantage of this store by shopping faster, be kept up to date on the status of an order, and keep track of the orders you have made.
+login_forgot_your_password = Forgot your password?
 
 ;BREADCRUMB
 breadcrumb_home = Home
@@ -163,6 +172,9 @@ cart_payment_is_not_available = Payment for this shipping method is not availabl
 cart_shipping_is_not_available_and_min_price = . Min. order price:
 cart_shipping_price = Shipping price:
 cart_subtotal = Products subtotal:
+cart_validate_purchase = Validate purchase
+cart_complete = Complete
+cart_edit_shipping_information = Edit shipping information
 
 ;CHECKOUT
 checkout_text = Order prepared
@@ -209,6 +221,9 @@ register_telephone = Telephone (example: +12345678900)
 register_details_password = Password details
 register_privacy_policy_tittle = Privacy policy
 register_privacy_policy_text = Privacy policy text...
+
+;WITHOUT REGISTRATION
+without_registration_index = Shipping Information
 
 ;WELCOME
 welcome_name = Welcome %s!

@@ -35,20 +35,20 @@ require_once('modal/index.php')
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1) ?></td>
                             <td class="text-center text-nowrap">
-                                <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="Cart.quantityProduct(<?php echo $value['id'] ?>,  document.querySelector('#number_<?php echo $value['id'] ?>').value)">
+                                <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="Cart.quantityProduct(<?php echo $value['id'] ?>, document.querySelector('#number_<?php echo $value['id'] ?>').value)">
                                     <button class="btn btn-primary btn-sm bi-dash" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>)"></button>
-                                    <input id="number_<?php echo $value['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo \eMarket\Core\Cart::productQuantity($value['id']) ?>" class="quantity" disabled>
+                                    <input id="number_<?php echo $value['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo eMarket\Core\Cart::productQuantity($value['id']) ?>" class="quantity" disabled>
                                     <button class="btn btn-primary btn-sm button-plus bi-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>)"></button>
                                     <button class="btn btn-primary btn-sm bi-arrow-repeat" type="submit"></button>
                                     <button class="btn btn-primary btn-sm bi-trash" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"></button>
                                 </form>
                             </td>
-                            <td class="text-center"><?php echo Ecb::priceInterface($value, 1, \eMarket\Core\Cart::productQuantity($value['id'], 1)) ?></td>
+                            <td class="text-center"><?php echo Ecb::priceInterface($value, 1, eMarket\Core\Cart::productQuantity($value['id'], 1)) ?></td>
                         </tr>
                     <?php } ?>
-		    <tr class="border-end border-start border-bottom align-middle">
-			<td colspan="5"> </td>
-		    </tr>
+                    <tr class="border-end border-start border-bottom align-middle">
+                        <td colspan="5"> </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -68,7 +68,10 @@ require_once('modal/index.php')
 
         <div class="float-end">
             <?php if (isset($_SESSION['email_customer']) && Cart::$address_data_json != FALSE) { ?>
-                <button type="button" class="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#index"><?php echo lang('cart_сheckout') ?></button>
+                <button type="button" class="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#index"><?php echo lang('cart_validate_purchase') ?></button>
+            <?php } elseif (Cart::$address_data_json != FALSE && isset($_SESSION['without_registration'])) { ?>
+                <button type="button" class="btn btn btn-outline-dark" data-bs-toggle="modal" onClick='location.href = "/?route=without_registration"'><?php echo lang('cart_edit_shipping_information') ?></button>
+                <button type="button" class="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#index"><?php echo lang('cart_validate_purchase') ?></button>
             <?php } elseif (isset($_SESSION['email_customer']) && Cart::$address_data_json == FALSE) { ?>
                 <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><?php echo lang('cart_сheckout') ?></button>
             <?php } else { ?>
@@ -82,4 +85,5 @@ require_once('modal/index.php')
             <p class="card-text"><?php echo lang('cart_shopping_cart_empty') ?></p>
         </div>
     </div>
-<?php }
+    <?php
+}

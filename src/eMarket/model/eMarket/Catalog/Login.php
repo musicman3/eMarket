@@ -114,6 +114,8 @@ class Login {
             } else {
                 $_SESSION['password_customer'] = $HASH;
                 $_SESSION['email_customer'] = Valid::inPOST('email');
+                unset($_SESSION['without_registration']);
+                unset($_SESSION['without_registration_user']);
                 if (Valid::inGET('redirect') == 'cart') {
                     header('Location: ?route=cart');
                     exit;

@@ -28,25 +28,27 @@ require_once('modal/recovery_password.php')
                         <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
                         <legend><?php echo lang('regular_customer') ?></legend>
                         <div class="mb-3 email">
-                            <input class="form-control" type="email" placeholder="<?php echo lang('e_mail') ?>" id="email" name="email" required>
+                            <input class="form-control" type="email" placeholder="<?php echo lang('login_e_mail') ?>" id="email" name="email" required>
                         </div>
                         <div class="mb-3 password">
-                            <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('password') ?>" id="password" name="password" required>
+                            <input class="form-control" type="password" minlength="7" maxlength="40" placeholder="<?php echo lang('login_password') ?>" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary w-100" type="submit"><?php echo lang('sign_in') ?></button>
+                            <button class="btn btn-primary w-100" type="submit"><?php echo lang('login_sign_in') ?></button>
                         </div>
                     </form>
-                    <a class="btn btn-outline-secondary" href="#forgot_password" data-bs-toggle="modal"><?php echo lang('forgot_your_password') ?></a>
+                    <a class="btn btn-outline-secondary" href="#forgot_password" data-bs-toggle="modal"><?php echo lang('login_forgot_your_password') ?></a>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <legend><?php echo lang('new_customer') ?></legend>
+                    <legend><?php echo lang('login_new_customer') ?></legend>
                     <p><?php echo lang('login_description') ?></p>
-                    <a href="/?route=register" class="btn btn-primary w-100"><?php echo lang('continue') ?></a>
+                    <a href="/?route=register" class="btn btn-success w-100"><?php echo lang('login_register') ?></a>
+                    <p></p>
+                    <a href="/?route=without_registration" class="btn btn-outline-danger w-100"><?php echo lang('login_buy_without_registration') ?></a>
                 </div>
             </div>
         </div>
