@@ -224,6 +224,7 @@ register_privacy_policy_text = Текст политики конфиденци�
 
 ;WITHOUT REGISTRATION
 without_registration_index = Данные о доставке
+without_registration_your_address = Ваш адрес
 
 ;WELCOME
 welcome_name = Добро пожаловать %s!

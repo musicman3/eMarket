@@ -40,7 +40,6 @@ class Success {
     public static $payment_method;
     public static $shipping_method;
     public static $primary_language;
-    public static $without_registration_user;
     public static $customer_email;
 
     /**
@@ -58,16 +57,16 @@ class Success {
      */
     public function customerInit(): void {
         if (isset($_SESSION['without_registration_data'])) {
-            self::$without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
+            $without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
             self::$customer = [
                 'id' => '',
                 'address_book' => $_SESSION['without_registration_data'],
                 'gender' => '',
-                'firstname' => self::$without_registration_user['firstname'],
-                'lastname' => self::$without_registration_user['lastname'],
+                'firstname' => $without_registration_user['firstname'],
+                'lastname' => $without_registration_user['lastname'],
                 'middle_name' => '',
                 'fax' => '',
-                'telephone' => self::$without_registration_user['telephone']
+                'telephone' => $without_registration_user['telephone']
             ];
             self::$customer_email = '';
         } else {

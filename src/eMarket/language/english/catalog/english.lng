@@ -224,6 +224,7 @@ register_privacy_policy_text = Privacy policy text...
 
 ;WITHOUT REGISTRATION
 without_registration_index = Shipping Information
+without_registration_your_address = Your address
 
 ;WELCOME
 welcome_name = Welcome %s!

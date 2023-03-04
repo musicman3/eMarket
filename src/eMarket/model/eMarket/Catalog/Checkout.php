@@ -56,7 +56,17 @@ class Checkout {
      */
     public function customerData(): void {
         if (isset($_SESSION['without_registration_data'])) {
-            self::$customer = json_decode($_SESSION['without_registration_user'], true)[0];
+            $without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
+            self::$customer = [
+                'id' => '',
+                'address_book' => $_SESSION['without_registration_data'],
+                'gender' => '',
+                'firstname' => $without_registration_user['firstname'],
+                'lastname' => $without_registration_user['lastname'],
+                'middle_name' => '',
+                'fax' => '',
+                'telephone' => $without_registration_user['telephone']
+            ];
         } else {
             self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
         }
@@ -68,10 +78,10 @@ class Checkout {
      */
     public function customerAddress(): void {
         if (Valid::inPOST('address')) {
+            $address_all = json_decode(self::$customer['address_book'], true);
             if (isset($_SESSION['without_registration_data'])) {
-                self::$address_data = json_decode($_SESSION['without_registration_data'], true)[0];
+                self::$address_data = $address_all[0];
             } else {
-                $address_all = json_decode(self::$customer['address_book'], true);
                 self::$address_data = $address_all[Valid::inPOST('address') - 1];
             }
         }

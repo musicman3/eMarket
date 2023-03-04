@@ -55,7 +55,7 @@ require_once('modal/privacy_policy.php')
             </div>
             <div class="col-md-6">
                 <fieldset>
-                    <legend><?php echo lang('Ваш адрес') ?></legend>
+                    <legend><?php echo lang('without_registration_your_address') ?></legend>
                     <small class="form-text text-muted"><?php echo lang('address_book_country') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
