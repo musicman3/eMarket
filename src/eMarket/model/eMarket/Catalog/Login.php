@@ -95,8 +95,8 @@ class Login {
      */
     public function logout(): void {
         if (Valid::inGET('logout')) {
-            unset($_SESSION['password_customer']);
-            unset($_SESSION['email_customer']);
+            unset($_SESSION['customer_password']);
+            unset($_SESSION['customer_email']);
             header('Location: ?route=' . Valid::inGET('route'));
             exit;
         }
@@ -112,9 +112,9 @@ class Login {
             if (!password_verify(Valid::inPOST('password'), $HASH)) {
                 Messages::alert('messages_email_or_password_is_not_correct', 'danger', lang('messages_email_or_password_is_not_correct'), 7000, true);
             } else {
-                $_SESSION['password_customer'] = $HASH;
-                $_SESSION['email_customer'] = Valid::inPOST('email');
-                unset($_SESSION['without_registration']);
+                $_SESSION['customer_password'] = $HASH;
+                $_SESSION['customer_email'] = Valid::inPOST('email');
+                unset($_SESSION['without_registration_data']);
                 unset($_SESSION['without_registration_user']);
                 if (Valid::inGET('redirect') == 'cart') {
                     header('Location: ?route=cart');

@@ -81,7 +81,7 @@ class AddressBook {
         $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']]);
+        self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']]);
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];
@@ -138,7 +138,7 @@ class AddressBook {
             }
             array_unshift(self::$address_data, $address_array);
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
+            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['customer_email']]);
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
@@ -168,7 +168,7 @@ class AddressBook {
 
             self::$address_data[(int) Valid::inPOST('edit') - 1] = $address_array;
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['email_customer']]);
+            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['customer_email']]);
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
@@ -196,7 +196,7 @@ class AddressBook {
                 $address_data_out_table = json_encode($address_data_out);
             }
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['email_customer']]);
+            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['customer_email']]);
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }

@@ -67,12 +67,12 @@ require_once('modal/index.php')
         </div>
 
         <div class="float-end">
-            <?php if (isset($_SESSION['email_customer']) && Cart::$address_data_json != FALSE) { ?>
+            <?php if (isset($_SESSION['customer_email']) && Cart::$address_data_json != FALSE) { ?>
                 <button type="button" class="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#index"><?php echo lang('cart_validate_purchase') ?></button>
-            <?php } elseif (Cart::$address_data_json != FALSE && isset($_SESSION['without_registration'])) { ?>
+            <?php } elseif (Cart::$address_data_json != FALSE && isset($_SESSION['without_registration_data'])) { ?>
                 <button type="button" class="btn btn btn-outline-dark" data-bs-toggle="modal" onClick='location.href = "/?route=without_registration"'><?php echo lang('cart_edit_shipping_information') ?></button>
                 <button type="button" class="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#index"><?php echo lang('cart_validate_purchase') ?></button>
-            <?php } elseif (isset($_SESSION['email_customer']) && Cart::$address_data_json == FALSE) { ?>
+            <?php } elseif (isset($_SESSION['customer_email']) && Cart::$address_data_json == FALSE) { ?>
                 <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=address_book&redirect=cart"'><?php echo lang('cart_сheckout') ?></button>
             <?php } else { ?>
                 <button type="button" class="btn btn btn-primary" onClick='location.href = "/?route=login&redirect=cart"'><?php echo lang('cart_сheckout') ?></button>

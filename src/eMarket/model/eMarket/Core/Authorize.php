@@ -191,21 +191,21 @@ class Authorize {
      */
     private function catalog(): bool {
 
-        if (isset($_SESSION['email_customer'])) {
-            $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+        if (isset($_SESSION['customer_email'])) {
+            $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
         } else {
             $customer_data['status'] = 0;
         }
 
         if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() || $customer_data['status'] == 0) {
-            unset($_SESSION['password_customer']);
-            unset($_SESSION['email_customer']);
+            unset($_SESSION['customer_password']);
+            unset($_SESSION['customer_email']);
             unset($_SESSION['customer_session_start']);
             return FALSE;
         }
         $_SESSION['customer_session_start'] = time();
 
-        if (!isset($_SESSION['email_customer'])) {
+        if (!isset($_SESSION['customer_email'])) {
             self::$customer = FALSE;
         } else {
             self::$customer = $customer_data;

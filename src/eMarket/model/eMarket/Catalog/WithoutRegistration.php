@@ -73,7 +73,7 @@ class WithoutRegistration {
     public function sessionData(): void {
         if (Valid::inPOST('firstname') && Valid::inPOST('lastname') && Valid::inPOST('telephone') && Valid::inPOST('countries') && Valid::inPOST('regions') && Valid::inPOST('city') && Valid::inPOST('zip') && Valid::inPOST('address')) {
 
-            $_SESSION['without_registration'] = json_encode([[
+            $_SESSION['without_registration_data'] = json_encode([[
             'countries_id' => Valid::inPOST('countries'),
             'regions_id' => Valid::inPOST('regions'),
             'city' => Valid::inPOST('city'),

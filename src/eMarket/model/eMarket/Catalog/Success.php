@@ -57,11 +57,11 @@ class Success {
      *
      */
     public function customerInit(): void {
-        if (isset($_SESSION['without_registration'])) {
+        if (isset($_SESSION['without_registration_data'])) {
             self::$without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
             self::$customer = [
                 'id' => '',
-                'address_book' => $_SESSION['without_registration'],
+                'address_book' => $_SESSION['without_registration_data'],
                 'gender' => '',
                 'firstname' => self::$without_registration_user['firstname'],
                 'lastname' => self::$without_registration_user['lastname'],
@@ -71,7 +71,7 @@ class Success {
             ];
             self::$customer_email = '';
         } else {
-            self::$customer_email = $_SESSION['email_customer'];
+            self::$customer_email = $_SESSION['customer_email'];
             self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [self::$customer_email])[0];
         }
     }

@@ -44,7 +44,7 @@ class Checkout {
      *
      */
     public function authorize(): void {
-        if (Authorize::$customer == FALSE && !isset($_SESSION['without_registration'])) {
+        if (Authorize::$customer == FALSE && !isset($_SESSION['without_registration_data'])) {
             header('Location: ?route=login');
             exit;
         }
@@ -55,10 +55,10 @@ class Checkout {
      *
      */
     public function customerData(): void {
-        if (isset($_SESSION['without_registration'])) {
+        if (isset($_SESSION['without_registration_data'])) {
             self::$customer = json_decode($_SESSION['without_registration_user'], true)[0];
         } else {
-            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['email_customer']])[0];
+            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
         }
     }
 
@@ -68,8 +68,8 @@ class Checkout {
      */
     public function customerAddress(): void {
         if (Valid::inPOST('address')) {
-            if (isset($_SESSION['without_registration'])) {
-                self::$address_data = json_decode($_SESSION['without_registration'], true)[0];
+            if (isset($_SESSION['without_registration_data'])) {
+                self::$address_data = json_decode($_SESSION['without_registration_data'], true)[0];
             } else {
                 $address_all = json_decode(self::$customer['address_book'], true);
                 self::$address_data = $address_all[Valid::inPOST('address') - 1];
