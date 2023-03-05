@@ -29,6 +29,8 @@ class WithoutRegistration {
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
     public static $address_data;
+    public static $without_registration_data;
+    public static $without_registration_user;
 
     /**
      * Constructor
@@ -64,6 +66,14 @@ class WithoutRegistration {
         self::$countries_data_json = json_encode($countries_array);
         self::$address_data = [];
         self::$address_data_json = json_encode([]);
+
+        if (isset($_SESSION['without_registration_data']) && isset($_SESSION['without_registration_user'])) {
+            self::$without_registration_data = $_SESSION['without_registration_data'];
+            self::$without_registration_user = $_SESSION['without_registration_user'];
+        } else {
+            self::$without_registration_data = json_encode([]);
+            self::$without_registration_user = json_encode([]);
+        }
     }
 
     /**

@@ -25,6 +25,8 @@ require_once('modal/privacy_policy.php')
 <div id="ajax_data" class='hidden'
      data-json='<?php echo WithoutRegistration::$address_data_json ?>'
      data-countries='<?php echo WithoutRegistration::$countries_data_json ?>'
+     data-registrationdata='<?php echo WithoutRegistration::$without_registration_data ?>'
+     data-registrationuser='<?php echo WithoutRegistration::$without_registration_user ?>'
      ></div>
 <input type="hidden" id="add" name="add" value="" />
 
