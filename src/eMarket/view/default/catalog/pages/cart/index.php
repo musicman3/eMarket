@@ -35,11 +35,10 @@ require_once('modal/index.php')
                             <td class="text-center"><a href="/?route=products&category_id=<?php echo $value['parent_id'] ?>&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                             <td class="text-center"><?php echo Ecb::priceInterface($value, 1) ?></td>
                             <td class="text-center text-nowrap">
-                                <form id="quantity_product" name="quantity_product" action="javascript:void(null);" onsubmit="Cart.quantityProduct(<?php echo $value['id'] ?>, document.querySelector('#number_<?php echo $value['id'] ?>').value)">
-                                    <button class="btn btn-primary btn-sm bi-dash" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>)"></button>
+                                <form id="quantity_product" name="quantity_product" action="javascript:void(null);">
+                                    <button class="btn btn-primary btn-sm bi-dash" type="button" onclick="Cart.pcsProduct('minus', <?php echo $value['id'] ?>); Cart.quantityProduct(<?php echo $value['id'] ?>, document.querySelector('#number_<?php echo $value['id'] ?>').value)"></button>
                                     <input id="number_<?php echo $value['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo eMarket\Core\Cart::productQuantity($value['id']) ?>" class="quantity" disabled>
-                                    <button class="btn btn-primary btn-sm button-plus bi-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>)"></button>
-                                    <button class="btn btn-primary btn-sm bi-arrow-repeat" type="submit"></button>
+                                    <button class="btn btn-primary btn-sm button-plus bi-plus" type="button" onclick="Cart.pcsProduct('plus', <?php echo $value['id'] ?>, <?php echo $value['quantity'] ?>); Cart.quantityProduct(<?php echo $value['id'] ?>, document.querySelector('#number_<?php echo $value['id'] ?>').value)"></button>
                                     <button class="btn btn-primary btn-sm bi-trash" type="button" onclick="Cart.deleteProduct(<?php echo $value['id'] ?>)"></button>
                                 </form>
                             </td>

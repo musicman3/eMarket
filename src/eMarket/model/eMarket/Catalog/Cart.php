@@ -74,7 +74,7 @@ class Cart {
             }
 
             $count = 0;
-            if (!isset($_SESSION['cart']) OR count($_SESSION['cart']) == 0) {
+            if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
                 $_SESSION['cart'] = [['id' => $id, 'quantity' => $quantity]];
             } else {
 

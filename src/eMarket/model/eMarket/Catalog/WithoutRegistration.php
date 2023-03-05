@@ -97,6 +97,7 @@ class WithoutRegistration {
             'lastname' => Valid::inPOST('lastname'),
             'telephone' => Valid::inPOST('telephone')
             ]]);
+
             if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
                 header('Location: ?route=catalog');
             } else {
