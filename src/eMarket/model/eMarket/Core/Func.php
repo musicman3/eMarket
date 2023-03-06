@@ -9,10 +9,6 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Valid
-};
-
 /**
  * Functions
  *
@@ -58,17 +54,17 @@ class Func {
      * 
      */
     public static function filterArrayToKey(array $basic_array, string|int $search_key, mixed $search_value, string|int $data_key, mixed $sort = null): array {
-        $arr = [];
+        $output = [];
         foreach ($basic_array as $value) {
             if ($value[$search_key] == $search_value) {
-                array_push($arr, $value[$data_key]);
+                array_push($output, $value[$data_key]);
             }
         }
         if ($sort == null) {
-            $array_lowercase = array_map('strtolower', $arr);
-            array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $arr);
+            $array_lowercase = array_map('strtolower', $output);
+            array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $output);
         }
-        return $arr;
+        return $output;
     }
 
     /**
@@ -106,13 +102,13 @@ class Func {
     public static function filterArrayToKeyAssoc(array $basic_array, string|int $search_key, mixed $search_value, string|int $key_1, string|int $key_2): array {
         foreach ($basic_array as $value) {
             if ($value[$search_key] == $search_value) {
-                $arr[$value[$key_2]] = $value[$key_1];
+                $output[$value[$key_2]] = $value[$key_1];
             }
         }
 
-        natcasesort($arr);
+        natcasesort($output);
 
-        return $arr;
+        return $output;
     }
 
     /**
@@ -135,11 +131,11 @@ class Func {
      * @return array
      */
     public static function arrayExplode(array $array, string $delimiter): array {
-        $array_return = [];
+        $output = [];
         foreach ($array as $v) {
-            $array_return = array_merge($array_return, [explode($delimiter, $v)]);
+            $output = array_merge($output, [explode($delimiter, $v)]);
         }
-        return $array_return;
+        return $output;
     }
 
     /**
@@ -217,8 +213,8 @@ class Func {
     public static function deleteValInArray(mixed $array, array $val): mixed {
         if (isset($array) && is_array($array)) {
             $result = array_diff($array, $val);
-            $array_return = array_values($result);
-            return $array_return;
+            $output = array_values($result);
+            return $output;
         }
         return FALSE;
     }
@@ -269,8 +265,8 @@ class Func {
     public static function deleteEmptyInArray(mixed $array): mixed {
         if (isset($array) && is_array($array)) {
             $result = array_filter($array);
-            $array_return = array_values($result);
-            return $array_return;
+            $output = array_values($result);
+            return $output;
         }
         return FALSE;
     }
@@ -306,18 +302,9 @@ class Func {
         if (is_bool($key) || is_null($key)) {
             return $key;
         }
-        if (!is_array($key)) {
-            $array = [$key => ''];
-        } else {
-            $array = [];
-            foreach ($key as $val) {
-                $array[$val] = '';
-            }
-        }
-
+        $array = is_array($key) ? array_fill_keys($key, '') : [$key => ''];
         parse_str($get, $vars);
-        $url = http_build_query(array_diff_key($vars, $array));
-        return $url;
+        return http_build_query(array_diff_key($vars, $array));
     }
 
     /**
