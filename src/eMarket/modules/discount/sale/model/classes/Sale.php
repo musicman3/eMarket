@@ -262,6 +262,7 @@ class Sale {
                                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
 
                                 $Cache = new Cache();
+                                $Cache->deleteItem('core.new_products');
                                 $Cache->deleteItem('core.products_' . $val['id']);
 
                                 Messages::alert('sale_on', 'success', lang('action_completed_successfully'), 0, true);
@@ -290,6 +291,7 @@ class Sale {
                                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
 
                                 $Cache = new Cache();
+                                $Cache->deleteItem('core.new_products');
                                 $Cache->deleteItem('core.products_' . $val['id']);
                             }
 
@@ -314,6 +316,7 @@ class Sale {
                                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
 
                                 $Cache = new Cache();
+                                $Cache->deleteItem('core.new_products');
                                 $Cache->deleteItem('core.products_' . $val['id']);
                             }
 
@@ -341,6 +344,7 @@ class Sale {
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
 
                         $Cache = new Cache();
+                        $Cache->deleteItem('core.new_products');
                         $Cache->deleteItem('core.products_' . $id_prod[1]);
 
                         Messages::alert('sale_on', 'success', lang('action_completed_successfully'), 0, true);
@@ -362,6 +366,7 @@ class Sale {
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
 
                         $Cache = new Cache();
+                        $Cache->deleteItem('core.new_products');
                         $Cache->deleteItem('core.products_' . $id_prod[1]);
 
                         Messages::alert('sale_off', 'success', lang('action_completed_successfully'), 0, true);
@@ -378,6 +383,7 @@ class Sale {
                         Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
 
                         $Cache = new Cache();
+                        $Cache->deleteItem('core.new_products');
                         $Cache->deleteItem('core.products_' . $id_prod[1]);
 
                         Messages::alert('sale_off_all', 'success', lang('action_completed_successfully'), 0, true);

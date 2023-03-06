@@ -44,7 +44,7 @@ final class Ecb {
 
         self::discountHandler($input);
         $discounts_data = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
-        $discounted_price = self::currencyPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), $input['currency']);
+        $discounted_price = (string) self::currencyPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), $input['currency']);
 
         $count = 0;
         $discount_names = '';
@@ -58,7 +58,7 @@ final class Ecb {
             }
         }
 
-        $input_price = self::currencyPrice($input['price'], $input['currency']);
+        $input_price = (string) self::currencyPrice($input['price'], $input['currency']);
 
         if (Settings::path() == 'admin') {
             if ($discounts_data != [] && $input_price != $discounted_price && $count == 1) {
