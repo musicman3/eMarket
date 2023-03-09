@@ -96,11 +96,13 @@ class Authorize {
 
         if (Valid::isPOST()) {
             if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+                echo 'CSRF Token Error!';
                 exit;
             }
         }
         if (Valid::isPostJson()) {
             if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+                echo 'CSRF Token Error!';
                 exit;
             }
         }
