@@ -268,7 +268,6 @@ class Success {
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
                     NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, date("Y-m-d H:i:s"), Func::getToken(64)]);
-
         unset($_SESSION['cart']);
     }
 
@@ -278,7 +277,6 @@ class Success {
      */
     public function end(): void {
         $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=? ORDER BY id DESC", [Pdo::lastInsertId()])[0];
-
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
         $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);

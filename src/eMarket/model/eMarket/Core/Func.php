@@ -180,18 +180,9 @@ class Func {
      * @return array
      */
     public static function arrayMergeOriginKey(string|int $name_1, string|int $name_2, array $arr_1, array $arr_2): array {
-        $a = [$name_1 => $arr_1];
-
-        $count_a = count($arr_1);
-        for ($x = 0; $x < count($arr_2); $x++) {
-            $value = $arr_2[$x];
-            unset($arr_2[$x]);
-            $arr_2[$x + $count_a . 'a'] = $value;
-        }
-
-        $b = [$name_2 => $arr_2];
-
-        return array_merge($a, $b);
+        return [$name_1 => $arr_1, $name_2 => array_combine(array_map(function ($key) use ($arr_1) {
+                        return $key + count($arr_1) . 'a';
+                    }, array_keys($arr_2)), array_values($arr_2))];
     }
 
     /**

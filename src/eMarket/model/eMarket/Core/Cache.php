@@ -126,6 +126,15 @@ class Cache {
     }
 
     /**
+     * Clear cache
+     *
+     */
+    public function clear(): void {
+        $Cache = new FilesystemAdapter();
+        $Cache->clear();
+    }
+
+    /**
      * Delete item
      * 
      * @param string $item Cache item
