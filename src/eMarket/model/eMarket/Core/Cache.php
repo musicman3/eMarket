@@ -118,8 +118,7 @@ class Cache {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET caching_time=?", [Valid::inPOST('caching_time')]);
             $this->caching_time = Pdo::getValue("SELECT caching_time FROM " . TABLE_BASIC_SETTINGS . "", []);
 
-            $Cache = new FilesystemAdapter();
-            $Cache->clear();
+            $this->clear();
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
