@@ -270,37 +270,37 @@ final class Ecb {
 
         if ($format == 0) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $CURRENCIES[1] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
+                return number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[1];
             }
         }
 
         if ($format == 1) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $CURRENCIES[2] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
+                return number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[2];
             }
         }
 
         if ($format == 2) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[7] . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $CURRENCIES[7] . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . $CURRENCIES[7];
+                return number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . $CURRENCIES[7];
             }
         }
 
         if ($format == 3) {
             if ($CURRENCIES[8] == 'left') {
-                return $price_return = $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
+                return $CURRENCIES[3] . ' ' . number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language));
             }
             if ($CURRENCIES[8] == 'right') {
-                return $price_return = number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
+                return number_format($price * $CURRENCIES[5], (int) $CURRENCIES[9], lang('currency_separator', $language), lang('currency_group_separator', $language)) . ' ' . $CURRENCIES[3];
             }
         }
 
