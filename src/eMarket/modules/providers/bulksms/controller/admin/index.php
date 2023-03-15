@@ -9,4 +9,4 @@ $eMarketHandlerBulksms = new \eMarket\Core\Modules\Providers\Bulksms();
 
 \eMarket\Core\Settings::jsModulesHandler();
 
-require_once (\eMarket\Core\View::routingModules('view') . '/index.php');
+require_once (\eMarket\Core\Routing::modules('view') . '/index.php');

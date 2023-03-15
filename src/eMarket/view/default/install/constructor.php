@@ -6,7 +6,7 @@
 use eMarket\Core\{
     Settings,
     Valid,
-    View
+    Routing
 };
 ?>
 
@@ -32,7 +32,7 @@ use eMarket\Core\{
     </head>
     <body>
         <?php
-        require_once(View::routing());
+        require_once(Routing::install());
 
         require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/footer.php');

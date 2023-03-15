@@ -7,11 +7,11 @@
 use eMarket\Core\{
     Messages,
     Settings,
-    View
+    Routing
 };
 use eMarket\Catalog\AddressBook;
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/index.php')

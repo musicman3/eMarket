@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Valid,
-    Func
+    Routing
 };
 
 /**
@@ -31,11 +30,8 @@ class Index {
      * @return string url
      */
     public function route(): string {
-        $path = ROOT . '/controller/catalog/pages/catalog/index.php';
-        if (Valid::inGET('route') != '') {
-            $path = ROOT . '/controller/catalog/pages/' . Valid::inGET('route') . '/index.php';
-        }
-        return Func::outputDataFiltering($path);
+        $output = new Routing;
+        return $output->controller('catalog');
     }
 
 }

@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Valid,
-    Func
+    Routing
 };
 
 /**
@@ -31,11 +30,8 @@ class Index {
      * @return string url
      */
     public function route(): ?string {
-        $path = ROOT . '/controller/admin/pages/dashboard/index.php';
-        if (Valid::inGET('route') != '') {
-            $path = ROOT . '/controller/admin/pages/' . Valid::inGET('route') . '/index.php';
-        }
-        return Func::outputDataFiltering($path);
+        $output = new Routing;
+        return $output->controller('admin');
     }
 
 }

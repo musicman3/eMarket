@@ -8,7 +8,7 @@ use eMarket\Core\{
     Authorize,
     Debug,
     Settings,
-    View
+    Routing
 };
 ?>
 
@@ -57,7 +57,7 @@ use eMarket\Core\{
         <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
 
         <?php
-        foreach (View::tlpc('header') as $path) {
+        foreach (Routing::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -66,7 +66,7 @@ use eMarket\Core\{
             <div id="ajax">
 
                 <?php
-                require_once(View::routingAdmin());
+                require_once(Routing::template('admin'));
                 require_once('confirm.php');
                 ?>
 
@@ -74,7 +74,7 @@ use eMarket\Core\{
         </div>
 
         <?php
-        foreach (View::tlpc('footer') as $path) {
+        foreach (Routing::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

@@ -10,11 +10,11 @@ use eMarket\Core\{
     Pages,
     Products,
     Valid,
-    View
+    Routing
 };
 use eMarket\Catalog\Listing;
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/cart_message.php')

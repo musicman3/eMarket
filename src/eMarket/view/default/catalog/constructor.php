@@ -8,7 +8,7 @@ use eMarket\Core\{
     Authorize,
     Debug,
     Settings,
-    View
+    Routing
 };
 ?>
 
@@ -28,7 +28,7 @@ use eMarket\Core\{
         <meta name="description" content="">
 
         <title><?php echo Settings::titleCatalog() ?></title>
-        
+
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
@@ -54,7 +54,7 @@ use eMarket\Core\{
 
         <?php
         require_once('confirm.php');
-        foreach (View::tlpc('header') as $path) {
+        foreach (Routing::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -62,67 +62,67 @@ use eMarket\Core\{
         <div id="bodyWrapper" class="container-fluid mt-3">
             <div class="row">
 
-		<?php
-		    if (View::tlpc('boxes-left', 'count') > 0) {
-		?>
-                <div id="columnLeft" class="col-xl-2 col-lg-3">
-                    <?php
-                        foreach (View::tlpc('boxes-left') as $path) {
+                <?php
+                if (Routing::tlpc('boxes-left', 'count') > 0) {
+                    ?>
+                    <div id="columnLeft" class="col-xl-2 col-lg-3">
+                        <?php
+                        foreach (Routing::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
-                    ?>
-                </div>
+                        ?>
+                    </div>
                 <?php } ?>
 
                 <?php
-                if (View::tlpc('boxes-left', 'count') > 0) {
+                if (Routing::tlpc('boxes-left', 'count') > 0) {
                     ?>
                     <div id="bodyContent" class="col-xl-10 col-lg-9">
                         <?php
-                        require_once(View::routingCatalog());
+                        require_once(Routing::template('catalog'));
                         ?>
                     </div>
-                <?php } elseif (View::tlpc('boxes-left', 'count') == 0 && View::tlpc('boxes-right', 'count') == 0) { ?>
+                <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
-                        require_once(View::routingCatalog());
+                        require_once(Routing::template('catalog'));
                         ?>
                     </div>
                 <?php } ?>
 
                 <?php
-                if (View::tlpc('boxes-right', 'count') > 0) {
+                if (Routing::tlpc('boxes-right', 'count') > 0) {
                     ?>
                     <div id="bodyContent" class="col-xl-10 col-lg-9 order-2 order-lg-1">
                         <?php
-                        require_once(View::routingCatalog());
+                        require_once(Routing::template('catalog'));
                         ?>
                     </div>
-                <?php } elseif (View::tlpc('boxes-left', 'count') == 0 && View::tlpc('boxes-right', 'count') == 0) { ?>
+                <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
-                        require_once(View::routingCatalog());
+                        require_once(Routing::template('catalog'));
                         ?>
                     </div>
                 <?php } ?>
 
                 <?php
-		    if (View::tlpc('boxes-right', 'count') > 0) {
-		?>
-                <div id="columnRight" class="col-xl-2 col-lg-3 order-1 order-lg-2">
-                    <?php
-                        foreach (View::tlpc('boxes-right') as $path) {
+                if (Routing::tlpc('boxes-right', 'count') > 0) {
+                    ?>
+                    <div id="columnRight" class="col-xl-2 col-lg-3 order-1 order-lg-2">
+                        <?php
+                        foreach (Routing::tlpc('boxes-right') as $path) {
                             require_once (ROOT . $path);
                         }
-                    ?>
-                </div>
+                        ?>
+                    </div>
                 <?php } ?>
 
             </div>
         </div>
 
         <?php
-        foreach (View::tlpc('footer') as $path) {
+        foreach (Routing::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

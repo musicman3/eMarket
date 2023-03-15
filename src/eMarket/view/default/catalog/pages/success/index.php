@@ -6,10 +6,10 @@
 
 use eMarket\Core\{
     Messages,
-    View
+    Routing
 };
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>

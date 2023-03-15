@@ -6,11 +6,11 @@
 
 use eMarket\Core\{
     Ecb,
-    View
+    Routing
 };
 use eMarket\Catalog\Cart;
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/index.php')

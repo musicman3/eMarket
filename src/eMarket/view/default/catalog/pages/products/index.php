@@ -9,7 +9,7 @@ use eMarket\Core\{
     Ecb,
     Messages,
     Products as ProductsCore,
-    View
+    Routing
 };
 use eMarket\Catalog\{
     Products
@@ -134,6 +134,6 @@ if (Products::$products != FALSE) {
     <?php
 }
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }    

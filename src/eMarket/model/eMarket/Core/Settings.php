@@ -14,7 +14,7 @@ use eMarket\Core\{
     Pdo,
     Products,
     Valid,
-    View
+    Routing
 };
 
 /**
@@ -138,7 +138,7 @@ class Settings {
      */
     public static function jsModulesHandler(?string $js_path = null): void {
         if (self::path() == 'admin') {
-            $path = View::routingModules('js_handler');
+            $path = Routing::modules('js_handler');
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }

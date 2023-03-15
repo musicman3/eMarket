@@ -18,7 +18,7 @@ use eMarket\Core\{
 };
 
 /**
- * View class
+ * Routing class
  *
  * @package Core
  * @author eMarket Team
@@ -26,14 +26,14 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class View {
+class Routing {
 
     /**
-     * Routing
+     * Template routing for install
      *
      * @return string $str (routing)
      */
-    public static function routing(): string {
+    public static function install(): string {
 
         $str = str_replace('controller', 'view/' . Settings::template(), getenv('SCRIPT_FILENAME'));
 
@@ -41,11 +41,39 @@ class View {
     }
 
     /**
-     * View routing for admin
+     * Controller routing
      *
+     * @param string $path (path marker admin|catalog)
+     * @return string url
+     */
+    public function controller(string $path): ?string {
+        $default = 'catalog';
+
+        if ($path == 'admin') {
+            $default = 'dashboard';
+        }
+
+        $output = ROOT . '/controller/' . $path . '/pages/' . $default . '/index.php';
+        if (Valid::inGET('route') != '') {
+            $output = ROOT . '/controller/' . $path . '/pages/' . Valid::inGET('route') . '/index.php';
+        }
+
+        return Func::outputDataFiltering($output);
+    }
+
+    /**
+     * Template routing for catalog
+     *
+     * @param string $path (path marker admin|catalog)
      * @return string|bool $str (view routing)
      */
-    public static function routingAdmin(): string|bool {
+    public static function template(string $path): string|bool {
+
+        $default = 'catalog';
+
+        if ($path == 'admin') {
+            $default = 'dashboard';
+        }
 
         if (Valid::inGET('route_file') != '') {
             $page = Valid::inGET('route_file') . '.php';
@@ -58,29 +86,12 @@ class View {
         if (Valid::inGET('route') != '') {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/' . $page);
         } else {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/dashboard/index.php');
+            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $default . '/index.php');
         }
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);
         }
-        return false;
-    }
 
-    /**
-     * View routing for admin
-     *
-     * @return string|bool $str (view routing)
-     */
-    public static function routingCatalog(): string|bool {
-
-        if (Valid::inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/index.php');
-        } else {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/catalog/index.php');
-        }
-        if (file_exists($str)) {
-            return Func::outputDataFiltering($str);
-        }
         return false;
     }
 
@@ -90,7 +101,7 @@ class View {
      * @param string $path (path marker controller/view)
      * @return string $str (modules routing)
      */
-    public static function routingModules(string $path): string {
+    public static function modules(string $path): string {
 
         if (Valid::inGET('module_path')) {
             return Modules::modulesPath() . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
@@ -115,8 +126,7 @@ class View {
             $array_out = [];
             foreach ($array_pos_value as $val) {
                 if ($val[1] == $position) {
-                    $path_view = str_replace('controller', 'view/' . Settings::template(), $val[0]);
-                    $array_out[] = $path_view;
+                    $array_out[] = str_replace('controller', 'view/' . Settings::template(), $val[0]);
                 }
             }
             if ($count == 'count') {
@@ -130,8 +140,7 @@ class View {
             $array_out = [];
             foreach ($array_pos as $val) {
                 if ($val[1] == 'all') {
-                    $path_view = str_replace('controller', 'view/' . Settings::template(), $val[0]);
-                    $array_out[] = $path_view;
+                    $array_out[] = str_replace('controller', 'view/' . Settings::template(), $val[0]);
                 }
             }
             if ($count == 'count') {

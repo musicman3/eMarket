@@ -9,6 +9,6 @@
 <h1><?php echo lang('index_text') ?></h1>
 
 <?php
-foreach (\eMarket\Core\View::tlpc('content') as $path) {
+foreach (\eMarket\Core\Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }

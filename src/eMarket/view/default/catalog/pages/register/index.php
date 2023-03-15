@@ -8,11 +8,11 @@ use eMarket\Core\{
     Authorize,
     Messages,
     Valid,
-    View
+    Routing
 };
 use eMarket\Catalog\Register;
 
-foreach (View::tlpc('content') as $path) {
+foreach (Routing::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/privacy_policy.php')

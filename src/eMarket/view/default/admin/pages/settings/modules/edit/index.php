@@ -8,7 +8,7 @@ use eMarket\Core\{
     Messages,
     Settings,
     Valid,
-    View
+    Routing
 };
 use eMarket\Admin\ModulesEdit;
 ?>
@@ -49,7 +49,7 @@ use eMarket\Admin\ModulesEdit;
             </div>
             <div class="clearfix"></div></br>
 
-            <?php require_once (View::routingModules('controller') . '/index.php'); ?>
+            <?php require_once (Routing::modules('controller') . '/index.php'); ?>
 
         </div>
 
