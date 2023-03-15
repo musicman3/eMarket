@@ -79,13 +79,13 @@ use eMarket\Core\{
                     ?>
                     <div id="bodyContent" class="col-xl-10 col-lg-9">
                         <?php
-                        require_once(Routing::template('catalog'));
+                        require_once(Routing::template());
                         ?>
                     </div>
                 <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
-                        require_once(Routing::template('catalog'));
+                        require_once(Routing::template());
                         ?>
                     </div>
                 <?php } ?>
@@ -95,13 +95,13 @@ use eMarket\Core\{
                     ?>
                     <div id="bodyContent" class="col-xl-10 col-lg-9 order-2 order-lg-1">
                         <?php
-                        require_once(Routing::template('catalog'));
+                        require_once(Routing::template());
                         ?>
                     </div>
                 <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
-                        require_once(Routing::template('catalog'));
+                        require_once(Routing::template());
                         ?>
                     </div>
                 <?php } ?>

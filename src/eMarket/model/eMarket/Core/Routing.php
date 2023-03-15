@@ -46,19 +46,18 @@ class Routing {
     /**
      * Controller routing
      *
-     * @param string $path (path marker admin|catalog)
      * @return string url
      */
-    public function controller(string $path): ?string {
+    public function controller(): ?string {
         $default = 'catalog';
 
-        if ($path == 'admin') {
+        if (Settings::path() == 'admin') {
             $default = 'dashboard';
         }
 
-        $output = ROOT . '/controller/' . $path . '/pages/' . $default . '/index.php';
+        $output = ROOT . '/controller/' . Settings::path() . '/pages/' . $default . '/index.php';
         if (Valid::inGET('route') != '') {
-            $output = ROOT . '/controller/' . $path . '/pages/' . Valid::inGET('route') . '/index.php';
+            $output = ROOT . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/index.php';
         }
 
         return Func::outputDataFiltering($output);
@@ -67,14 +66,13 @@ class Routing {
     /**
      * Template routing for catalog
      *
-     * @param string $path (path marker admin|catalog)
      * @return string|bool $str (view routing)
      */
-    public static function template(string $path): string|bool {
+    public static function template(): string|bool {
 
         $default = 'catalog';
 
-        if ($path == 'admin') {
+        if (Settings::path() == 'admin') {
             $default = 'dashboard';
         }
 

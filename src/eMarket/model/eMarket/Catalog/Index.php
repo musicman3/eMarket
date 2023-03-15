@@ -31,7 +31,7 @@ class Index {
      */
     public function route(): string {
         $output = new Routing;
-        return $output->controller('catalog');
+        return $output->controller();
     }
 
 }

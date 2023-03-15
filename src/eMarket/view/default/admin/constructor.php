@@ -66,7 +66,7 @@ use eMarket\Core\{
             <div id="ajax">
 
                 <?php
-                require_once(Routing::template('admin'));
+                require_once(Routing::template());
                 require_once('confirm.php');
                 ?>
 
