@@ -82,11 +82,11 @@ use eMarket\Core\{
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <?php
-        if (Settings::$js_handler != FALSE) {
-            require_once(Settings::$js_handler . '/js.php');
+        if (Routing::$js_handler != FALSE) {
+            require_once(Routing::$js_handler . '/js.php');
         }
-        if (Settings::$js_modules_handler != FALSE) {
-            require_once(Settings::$js_modules_handler . '/js.php');
+        if (Routing::$js_modules_handler != FALSE) {
+            require_once(Routing::$js_modules_handler . '/js.php');
         }
         Debug::info();
         ?>

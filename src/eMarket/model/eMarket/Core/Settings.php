@@ -13,8 +13,7 @@ use eMarket\Core\{
     Func,
     Pdo,
     Products,
-    Valid,
-    Routing
+    Valid
 };
 
 /**
@@ -32,8 +31,6 @@ class Settings {
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
-    public static $js_handler = FALSE;
-    public static $js_modules_handler = FALSE;
     public static $session_expr_time = FALSE;
     public static $path = FALSE;
 
@@ -98,63 +95,6 @@ class Settings {
     public static function sessionExprTime(): int {
 
         return (int) self::basicSettings('session_expr_time');
-    }
-
-    /**
-     * JS Handler
-     *
-     */
-    public static function jsHandler(): void {
-        if (self::path() == 'admin') {
-            if (Valid::inGET('route')) {
-                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
-            } else {
-                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/dashboard';
-            }
-            if (file_exists($path . '/js.php')) {
-                self::$js_handler = $path;
-            }
-        }
-
-        if (Settings::path() == 'catalog') {
-            $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . '/pages/' . Valid::inGET('route');
-            if (file_exists($path . '/js.php')) {
-                self::$js_handler = $path;
-            }
-        }
-
-        if (self::path() == 'install') {
-            $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . self::path() . Valid::inGET('route');
-            if (file_exists($path . '/js.php')) {
-                self::$js_handler = $path;
-            }
-        }
-    }
-
-    /**
-     * JS Modules Handler
-     *
-     * @param string $js_path Path to js.php
-     */
-    public static function jsModulesHandler(?string $js_path = null): void {
-        if (self::path() == 'admin') {
-            $path = Routing::modules('js_handler');
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
-        }
-        if (self::path() == 'catalog' && $js_path == null) {
-            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js_handler/catalog';
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
-        }
-        if (self::path() == 'catalog' && $js_path != null) {
-            $path = ROOT . '/modules/' . $js_path . '/js_handler/catalog';
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
-        }
     }
 
     /**

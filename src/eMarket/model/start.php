@@ -18,6 +18,7 @@ use eMarket\Core\{
     Debug,
     Lang,
     Messages,
+    Routing,
     Settings,
     Tree
 };
@@ -48,4 +49,4 @@ new Authorize();
 //Languages
 new Lang();
 //JS Handler
-Settings::jsHandler();
+Routing::jsHandler();

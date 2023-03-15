@@ -7,6 +7,6 @@
 
 $eMarketTabsReviews = new \eMarket\Core\Modules\Tabs\Reviews();
 
-\eMarket\Core\Settings::jsModulesHandler('tabs/reviews');
+\eMarket\Core\Routing::jsModulesHandler('tabs/reviews');
 
-require_once (ROOT. '/modules/tabs/reviews/view/catalog/index.php');
+require_once (ROOT . '/modules/tabs/reviews/view/catalog/index.php');

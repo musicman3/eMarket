@@ -28,6 +28,9 @@ use eMarket\Core\{
  */
 class Routing {
 
+    public static $js_handler = FALSE;
+    public static $js_modules_handler = FALSE;
+
     /**
      * Template routing for install
      *
@@ -88,6 +91,7 @@ class Routing {
         } else {
             $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $default . '/index.php');
         }
+
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);
         }
@@ -122,6 +126,7 @@ class Routing {
         $array_pos_value = Pdo::getIndex("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
                     Settings::path(), Settings::titleDir(), Settings::template()
         ]);
+
         if (count($array_pos_value) > 0) {
             $array_out = [];
             foreach ($array_pos_value as $val) {
@@ -147,6 +152,67 @@ class Routing {
                 return count($array_out);
             }
             return $array_out;
+        }
+    }
+
+    /**
+     * JS Handler routing
+     *
+     */
+    public static function jsHandler(): void {
+
+        if (Settings::path() == 'admin') {
+            if (Valid::inGET('route')) {
+                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/' . Valid::inGET('route');
+            } else {
+                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/dashboard';
+            }
+            if (file_exists($path . '/js.php')) {
+                self::$js_handler = $path;
+            }
+        }
+
+        if (Settings::path() == 'catalog') {
+            $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/' . Valid::inGET('route');
+            if (file_exists($path . '/js.php')) {
+                self::$js_handler = $path;
+            }
+        }
+
+        if (Settings::path() == 'install') {
+            $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . Valid::inGET('route');
+            if (file_exists($path . '/js.php')) {
+                self::$js_handler = $path;
+            }
+        }
+    }
+
+    /**
+     * JS Modules Handler routing
+     *
+     * @param string $js_path Path to js.php
+     */
+    public static function jsModulesHandler(?string $js_path = null): void {
+
+        if (Settings::path() == 'admin') {
+            $path = self::modules('js_handler');
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
+        }
+
+        if (Settings::path() == 'catalog' && $js_path == null) {
+            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js_handler/catalog';
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
+        }
+
+        if (Settings::path() == 'catalog' && $js_path != null) {
+            $path = ROOT . '/modules/' . $js_path . '/js_handler/catalog';
+            if (file_exists($path . '/js.php')) {
+                self::$js_modules_handler = $path;
+            }
         }
     }
 
