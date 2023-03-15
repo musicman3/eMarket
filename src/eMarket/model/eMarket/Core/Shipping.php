@@ -29,7 +29,7 @@ final class Shipping {
      * @param string $region Regions numbers
      * @return array
      */
-    public static function shippingZonesAvailable(string $region): array {
+    private function shippingZonesAvailable(string $region): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
@@ -59,7 +59,7 @@ final class Shipping {
      * @param array $shipping_zones_id_available Id of zones in which the region is located
      * @return array
      */
-    public static function shippingModulesAvailable(array $shipping_zones_id_available): array {
+    private function shippingModulesAvailable(array $shipping_zones_id_available): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
 
         $modules_data = [];
@@ -91,10 +91,10 @@ final class Shipping {
      * 
      * @param string $region Data on available shipping zones for region
      */
-    public static function loadData(string $region): void {
-        
-        $zones_id = self::shippingZonesAvailable($region);
-        $modules_names = self::shippingModulesAvailable($zones_id);
+    public function loadData(string $region): void {
+
+        $zones_id = $this->shippingZonesAvailable($region);
+        $modules_names = $this->shippingModulesAvailable($zones_id);
 
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Core\Modules\Shipping\\' . ucfirst($name);

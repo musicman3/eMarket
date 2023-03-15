@@ -53,7 +53,7 @@ class Cart {
     /**
      * Add product to cart
      */
-    public function addProduct(): void {
+    private function addProduct(): void {
 
         if (Valid::inGET('add_to_cart') || Valid::inPostJson('add_to_cart')) {
             if (Valid::inGET('add_to_cart')) {
@@ -97,7 +97,7 @@ class Cart {
      * Edit products quantity in cart
      * 
      */
-    public function editProduct(): void {
+    private function editProduct(): void {
 
         if (Valid::inPostJson('quantity_product_id') && isset($_SESSION['cart'])) {
             $count = 0;
@@ -114,7 +114,7 @@ class Cart {
      * Product removing from cart
      * 
      */
-    public function deleteProduct(): void {
+    private function deleteProduct(): void {
 
         if (Valid::inPostJson('delete_product') && isset($_SESSION['cart'])) {
             $array = [];
@@ -131,10 +131,11 @@ class Cart {
      * Json Echo Shipping
      *
      */
-    public function jsonEchoShipping(): void {
+    private function jsonEchoShipping(): void {
 
         if (Valid::inPostJson('shipping_region_json')) {
-            Shipping::loadData(Valid::inPostJson('shipping_region_json'));
+            $shipping = new Shipping();
+            $shipping->loadData(Valid::inPostJson('shipping_region_json'));
 
             $INTERFACE = new Interfaces();
             $modules_data = $INTERFACE->load('shipping');
@@ -177,9 +178,10 @@ class Cart {
      * Json Echo Payment
      *
      */
-    public function jsonEchoPayment(): void {
+    private function jsonEchoPayment(): void {
         if (Valid::inPostJson('payment_shipping_json')) {
-            Payment::loadData(Valid::inPostJson('payment_shipping_json'));
+            $payment = new Payment();
+            $payment->loadData(Valid::inPostJson('payment_shipping_json'));
 
             $INTERFACE = new Interfaces();
             $modules_data = $INTERFACE->load('payment');
@@ -212,7 +214,7 @@ class Cart {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $output = [];
         if (isset($_SESSION['cart'])) {
             $x = 0;
@@ -233,7 +235,7 @@ class Cart {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$address_data = [];
 
         if (isset($_SESSION['customer_email']) || isset($_SESSION['without_registration_data'])) {

@@ -29,7 +29,7 @@ final class Payment {
      * @param string $name Payment module name
      * @return array
      */
-    public static function paymentModulesAvailable(string $name): array {
+    private function paymentModulesAvailable(string $name): array {
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
 
         $output = [];
@@ -47,9 +47,9 @@ final class Payment {
      * 
      * @param string $input Data on available names of delivery modules
      */
-    public static function loadData(string $input): void {
+    public function loadData(string $input): void {
 
-        $modules_names = self::paymentModulesAvailable($input);
+        $modules_names = $this->paymentModulesAvailable($input);
 
         foreach ($modules_names as $name) {
             $namespace = '\eMarket\Core\Modules\Payment\\' . ucfirst($name);
