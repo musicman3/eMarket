@@ -91,7 +91,7 @@ class Cache {
      * Cache status
      *
      */
-    public function cacheStatus(): void {
+    private function cacheStatus(): void {
 
         $this->cache_status = Pdo::getValue("SELECT cache_status FROM " . TABLE_BASIC_SETTINGS . "", []);
 
@@ -110,7 +110,7 @@ class Cache {
      * Caching time
      *
      */
-    public function cachingTime(): void {
+    private function cachingTime(): void {
 
         $this->caching_time = Pdo::getValue("SELECT caching_time FROM " . TABLE_BASIC_SETTINGS . "", []);
 
