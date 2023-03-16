@@ -23,8 +23,9 @@
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
   - PSR-6 (Caching Interface)
-  - PSR-12 partly (Extended Coding Style Guide)
-  - PHPDoc documenting (see PSR-5 and PSR-19)
+  - PSR-12 (Extended Coding Style Guide)
+  - PSR-5 (PHPDoc Standard)
+  - PSR-19 (PHPDoc tags)
 
 ---
 ### Installation  
