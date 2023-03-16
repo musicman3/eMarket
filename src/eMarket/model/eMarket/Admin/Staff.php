@@ -47,7 +47,7 @@ class Staff {
      * Staff manager id
      *
      */
-    public function staffManagerId(): void  {
+    private function staffManagerId(): void {
         if (Valid::inGET('staff_manager_id')) {
             self::$staff_manager_id = Valid::inGET('staff_manager_id');
         }
@@ -63,7 +63,7 @@ class Staff {
      * Add
      *
      */
-    public function add(): void  {
+    private function add(): void {
         if (Valid::inPOST('add')) {
             Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?", [Valid::inPOST('email'),
                 Authorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note')]);
@@ -76,7 +76,7 @@ class Staff {
      * Delete
      *
      */
-    public function delete(): void  {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('delete')]);
@@ -89,7 +89,7 @@ class Staff {
      * Data
      *
      */
-    public function data(): void  {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [self::$staff_manager_id]);
         Pages::data(self::$sql_data);
     }

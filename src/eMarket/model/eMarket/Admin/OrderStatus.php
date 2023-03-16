@@ -51,30 +51,17 @@ class OrderStatus {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default_order_status')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @return string Output text
-     */
-    public static function defaultText(): string {
-        $output = lang('confirm-no');
-        if (Pages::$table['line']['default_order_status'] == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -101,7 +88,7 @@ class OrderStatus {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
@@ -123,7 +110,7 @@ class OrderStatus {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -135,7 +122,7 @@ class OrderStatus {
      * Recount
      *
      */
-    public function recount(): void {
+    private function recount(): void {
         Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
     }
 
@@ -143,7 +130,7 @@ class OrderStatus {
      * Sorting
      *
      */
-    public function sorting(): void {
+    private function sorting(): void {
         if (Valid::inPostJson('ids')) {
             $sort_array_id_ajax = explode(',', Valid::inPostJson('ids'));
             $sort_array_id = Func::deleteEmptyInArray($sort_array_id_ajax);
@@ -170,7 +157,7 @@ class OrderStatus {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -180,7 +167,7 @@ class OrderStatus {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
@@ -205,6 +192,19 @@ class OrderStatus {
                 ]);
             }
         }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_order_status'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
     }
 
 }

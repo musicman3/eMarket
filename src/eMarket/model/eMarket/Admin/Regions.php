@@ -50,7 +50,7 @@ class Regions {
      * Country id
      *
      */
-    public function countryId(): void {
+    private function countryId(): void {
         if (Valid::inGET('country_id')) {
             self::$country_id = Valid::inGET('country_id');
         }
@@ -66,7 +66,7 @@ class Regions {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -87,7 +87,7 @@ class Regions {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -105,7 +105,7 @@ class Regions {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [self::$country_id, Valid::inPOST('delete')]);
@@ -118,7 +118,7 @@ class Regions {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE country_id=? ORDER BY name", [self::$country_id]);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -128,7 +128,7 @@ class Regions {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $lines = Pages::$table['lines'];

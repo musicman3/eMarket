@@ -27,7 +27,6 @@ use eMarket\Admin\HeaderMenu;
  */
 class Dashboard {
 
-    public static $dashboard_orders = FALSE;
     public static $min_year = FALSE;
     public static $select_year = FALSE;
     public static $json_data = FALSE;
@@ -54,18 +53,6 @@ class Dashboard {
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][] = ['?route=dashboard', 'bi-pie-chart-fill', lang('menu_dashboard'), '', 'false'];
-    }
-
-    /**
-     * Dashboard Orders
-     *
-     * @return mixed Data
-     */
-    public static function orders(): mixed {
-        if (self::$dashboard_orders == FALSE) {
-            self::$dashboard_orders = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC LIMIT 0,5", []);
-        }
-        return self::$dashboard_orders;
     }
 
     /**

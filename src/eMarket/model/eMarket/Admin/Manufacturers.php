@@ -61,7 +61,7 @@ class Manufacturers {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -79,7 +79,7 @@ class Manufacturers {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -94,7 +94,7 @@ class Manufacturers {
      * Image Upload
      *
      */
-    public function imgUpload(): void {
+    private function imgUpload(): void {
         // add before delete
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '94']); // width, height
@@ -109,7 +109,7 @@ class Manufacturers {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -122,7 +122,7 @@ class Manufacturers {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -132,7 +132,7 @@ class Manufacturers {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

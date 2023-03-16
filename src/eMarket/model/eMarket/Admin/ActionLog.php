@@ -49,9 +49,9 @@ class ActionLog {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/storage/logs/actions.log')) {
-            
+
             unlink(ROOT . '/storage/logs/actions.log');
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -61,7 +61,7 @@ class ActionLog {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         if (file_exists(ROOT . '/storage/logs/actions.log')) {
             $lines = array_reverse(file(ROOT . '/storage/logs/actions.log'));
         } else {

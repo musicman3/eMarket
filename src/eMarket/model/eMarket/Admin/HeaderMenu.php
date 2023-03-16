@@ -55,7 +55,7 @@ class HeaderMenu {
      * Init
      *
      */
-    public function init(): void {
+    private function init(): void {
         $files = glob(ROOT . '/model/eMarket/Admin/*');
         foreach ($files as $filename) {
             $namespace = '\eMarket\Admin\\' . pathinfo($filename, PATHINFO_FILENAME);
@@ -69,7 +69,7 @@ class HeaderMenu {
      * Init Modules
      *
      */
-    public function initModules(): void {
+    private function initModules(): void {
         $group = glob(ROOT . '/modules/*');
         $files = [];
         foreach ($group as $group_name) {
@@ -90,7 +90,7 @@ class HeaderMenu {
      * Level One
      *
      */
-    public function levelOne(): void {
+    private function levelOne(): void {
         self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
         self::$level[self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
         self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
@@ -134,7 +134,7 @@ class HeaderMenu {
      * Static levels
      *
      */
-    public function staticLevels(): void {
+    private function staticLevels(): void {
 
         //LANGUAGES
         self::$level['languages'] = ['#', lang('menu_languages'), 'true', 'bi-translate'];
@@ -152,7 +152,7 @@ class HeaderMenu {
      * Exit
      *
      */
-    public function exit(): void {
+    private function exit(): void {
         //EXIT
         self::$level['exit'] = ['?route=login&logout=ok', lang('menu_exit'), 'false', 'bi-box-arrow-right'];
     }
@@ -161,7 +161,7 @@ class HeaderMenu {
      * Staff init
      *
      */
-    public function staffInit(): void {
+    private function staffInit(): void {
         if (isset($_SESSION['login'])) {
             $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             if ($staff_permission != 'admin') {
@@ -203,7 +203,7 @@ class HeaderMenu {
      * Permissions
      *
      */
-    public function permissions(): void {
+    private function permissions(): void {
         $count = 0;
         foreach (self::$staff_data as $page) {
             if (strpos('/?route=' . Valid::inGET('route'), $page)) {

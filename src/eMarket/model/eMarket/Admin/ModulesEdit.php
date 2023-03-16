@@ -39,7 +39,7 @@ class ModulesEdit {
      * Bootstrap class helper
      *
      */
-    public function switchActive(): void {
+    private function switchActive(): void {
         $active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
                     Valid::inGET('type'), Valid::inGET('name')])[0];
 

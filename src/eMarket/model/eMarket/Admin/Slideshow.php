@@ -83,7 +83,7 @@ class Slideshow {
      * Settings
      *
      */
-    public function settings(): void {
+    private function settings(): void {
         self::$settings = json_encode(Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
     }
 
@@ -91,7 +91,7 @@ class Slideshow {
      * Slideshow Pref
      *
      */
-    public function slideshowPref(): void {
+    private function slideshowPref(): void {
         if (Valid::inPOST('slideshow_pref')) {
             $mouse_stop = 0;
             $autostart = 0;
@@ -127,7 +127,7 @@ class Slideshow {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
             $view_slideshow = '0';
             $animation = '0';
@@ -167,7 +167,7 @@ class Slideshow {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
             $view_slideshow = '0';
             $animation = '0';
@@ -206,7 +206,7 @@ class Slideshow {
      * Upload Images
      *
      */
-    public function imgUpload(): void {
+    private function imgUpload(): void {
         // add before delete
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '63']); // width, height
@@ -222,7 +222,7 @@ class Slideshow {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -237,7 +237,7 @@ class Slideshow {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$set_language = lang('#lang_all')[0];
         if (Valid::inGET('slide_lang')) {
             self::$set_language = Valid::inGET('slide_lang');
@@ -248,6 +248,49 @@ class Slideshow {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
         Pages::data($lines);
+    }
+
+    /**
+     * Modal
+     *
+     */
+    private function modal(): void {
+        self::$json_data = json_encode([]);
+        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
+            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
+
+                $modal_id = Pages::$table['lines'][$i]['id'];
+
+                foreach (self::$sql_data as $sql_modal) {
+                    if ($sql_modal['id'] == $modal_id) {
+                        $name[$modal_id] = $sql_modal['name'];
+                        $url[$modal_id] = $sql_modal['url'];
+                        $heading[$modal_id] = $sql_modal['heading'];
+                        $logo[$modal_id] = json_decode($sql_modal['logo'], true);
+                        $logo_general[$modal_id] = $sql_modal['logo_general'];
+                        $animation[$modal_id] = (int) $sql_modal['animation'];
+                        $color[$modal_id] = $sql_modal['color'];
+                        $heading[$modal_id] = $sql_modal['heading'];
+                        $date_start[$modal_id] = $sql_modal['date_start'];
+                        $date_finish[$modal_id] = $sql_modal['date_finish'];
+                        $status[$modal_id] = (int) $sql_modal['status'];
+                    }
+                }
+
+                self::$json_data = json_encode([
+                    'name' => $name,
+                    'url' => $url,
+                    'heading' => $heading,
+                    'logo' => $logo,
+                    'logo_general' => $logo_general,
+                    'animation' => $animation,
+                    'color' => $color,
+                    'date_start' => $date_start,
+                    'date_finish' => $date_finish,
+                    'status' => $status
+                ]);
+            }
+        }
     }
 
     /**
@@ -302,49 +345,6 @@ class Slideshow {
                 if ($images_data['status'] == '1' && strtotime($images_data['date_start']) <= self::$this_time && strtotime($images_data['date_finish']) >= self::$this_time) {
                     array_push(self::$slideshow_array, $logo);
                 }
-            }
-        }
-    }
-
-    /**
-     * Modal
-     *
-     */
-    public function modal(): void {
-        self::$json_data = json_encode([]);
-        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
-            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
-
-                $modal_id = Pages::$table['lines'][$i]['id'];
-
-                foreach (self::$sql_data as $sql_modal) {
-                    if ($sql_modal['id'] == $modal_id) {
-                        $name[$modal_id] = $sql_modal['name'];
-                        $url[$modal_id] = $sql_modal['url'];
-                        $heading[$modal_id] = $sql_modal['heading'];
-                        $logo[$modal_id] = json_decode($sql_modal['logo'], true);
-                        $logo_general[$modal_id] = $sql_modal['logo_general'];
-                        $animation[$modal_id] = (int) $sql_modal['animation'];
-                        $color[$modal_id] = $sql_modal['color'];
-                        $heading[$modal_id] = $sql_modal['heading'];
-                        $date_start[$modal_id] = $sql_modal['date_start'];
-                        $date_finish[$modal_id] = $sql_modal['date_finish'];
-                        $status[$modal_id] = (int) $sql_modal['status'];
-                    }
-                }
-
-                self::$json_data = json_encode([
-                    'name' => $name,
-                    'url' => $url,
-                    'heading' => $heading,
-                    'logo' => $logo,
-                    'logo_general' => $logo_general,
-                    'animation' => $animation,
-                    'color' => $color,
-                    'date_start' => $date_start,
-                    'date_finish' => $date_finish,
-                    'status' => $status
-                ]);
             }
         }
     }

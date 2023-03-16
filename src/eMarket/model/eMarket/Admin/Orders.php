@@ -57,7 +57,7 @@ class Orders {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $primary_language = Settings::primaryLanguage();
@@ -110,7 +110,7 @@ class Orders {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -123,7 +123,7 @@ class Orders {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
 
         $search = '%' . Valid::inGET('search') . '%';
@@ -144,7 +144,7 @@ class Orders {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {

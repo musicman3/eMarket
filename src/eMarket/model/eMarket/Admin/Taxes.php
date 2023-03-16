@@ -53,7 +53,7 @@ class Taxes {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $tax_type = 0;
@@ -85,7 +85,7 @@ class Taxes {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $tax_type = 0;
@@ -115,7 +115,7 @@ class Taxes {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -127,7 +127,7 @@ class Taxes {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
 
         self::$zones_names = [];
@@ -147,7 +147,7 @@ class Taxes {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

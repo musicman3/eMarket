@@ -49,7 +49,7 @@ class Modules {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
             $module = explode('_', Valid::inPOST('add'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
@@ -63,7 +63,7 @@ class Modules {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit_active')) {
 
             $active = 0;
@@ -86,7 +86,7 @@ class Modules {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             $module = explode('_', Valid::inPOST('delete'));
             $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
@@ -100,7 +100,7 @@ class Modules {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$installed = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
         self::$installed_active = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
     }

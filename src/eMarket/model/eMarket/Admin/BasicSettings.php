@@ -83,7 +83,7 @@ class BasicSettings {
      * Lines on page
      *
      */
-    public function linesOnPage(): void {
+    private function linesOnPage(): void {
         if (Valid::inPOST('lines_on_page')) {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET lines_on_page=?", [Valid::inPOST('lines_on_page')]);
             self::$lines_on_page = Settings::linesOnPage();
@@ -95,7 +95,7 @@ class BasicSettings {
      * Session Expr Time
      *
      */
-    public function sessionExprTime(): void {
+    private function sessionExprTime(): void {
         if (Valid::inPOST('session_expr_time')) {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [Valid::inPOST('session_expr_time')]);
             self::$session_expr_time = Settings::sessionExprTime();
@@ -106,7 +106,7 @@ class BasicSettings {
      * Debug
      *
      */
-    public function debug(): void {
+    private function debug(): void {
         self::$debug = Pdo::getValue("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('debug')) {
@@ -125,7 +125,7 @@ class BasicSettings {
      * Primary Language
      *
      */
-    public function primaryLanguage(): void {
+    private function primaryLanguage(): void {
         self::$primary_language = Settings::primaryLanguage();
         self::$langs_settings = Func::deleteValInArray(lang('#lang_all'), [self::$primary_language]);
 
@@ -139,7 +139,7 @@ class BasicSettings {
      * Email
      *
      */
-    public function email(): void {
+    private function email(): void {
         self::$email = Pdo::getValue("SELECT email FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('email')) {
@@ -153,7 +153,7 @@ class BasicSettings {
      * Email Name
      *
      */
-    public function emailName(): void {
+    private function emailName(): void {
         self::$email_name = Pdo::getValue("SELECT email_name FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('email_name')) {
@@ -166,7 +166,7 @@ class BasicSettings {
      * Smtp Status
      *
      */
-    public function smtpStatus(): void {
+    private function smtpStatus(): void {
         self::$smtp_status = Pdo::getValue("SELECT smtp_status FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('smtp_status')) {
@@ -185,7 +185,7 @@ class BasicSettings {
      * SMTP Auth
      *
      */
-    public function smtpAuth(): void {
+    private function smtpAuth(): void {
         self::$smtp_auth = Pdo::getValue("SELECT smtp_auth FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('smtp_auth')) {
@@ -204,7 +204,7 @@ class BasicSettings {
      * Host
      *
      */
-    public function hostEmail(): void {
+    private function hostEmail(): void {
         self::$host_email = Pdo::getValue("SELECT host_email FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('host_email')) {
@@ -217,7 +217,7 @@ class BasicSettings {
      * Username
      *
      */
-    public function usernameEmail(): void {
+    private function usernameEmail(): void {
         self::$username_email = Pdo::getValue("SELECT username_email FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('username_email')) {
@@ -230,7 +230,7 @@ class BasicSettings {
      * Password
      *
      */
-    public function passwordEmail(): void {
+    private function passwordEmail(): void {
         self::$password_email = Pdo::getValue("SELECT password_email FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('password_email')) {
@@ -243,7 +243,7 @@ class BasicSettings {
      * SMTP Secure
      *
      */
-    public function smtpSecure(): void {
+    private function smtpSecure(): void {
         self::$smtp_secure = Pdo::getValue("SELECT smtp_secure FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('smtp_secure')) {
@@ -256,7 +256,7 @@ class BasicSettings {
      * SMTP Port
      *
      */
-    public function smtpPort(): void {
+    private function smtpPort(): void {
         self::$smtp_port = Pdo::getValue("SELECT smtp_port FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         if (Valid::inPOST('smtp_port')) {

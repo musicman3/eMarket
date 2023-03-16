@@ -49,7 +49,7 @@ class ErrorLog {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete') == 'delete' && file_exists(ROOT . '/storage/logs/errors.log')) {
             unlink(ROOT . '/storage/logs/errors.log');
 
@@ -61,7 +61,7 @@ class ErrorLog {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $lines = [];
         if (file_exists(ROOT . '/storage/logs/errors.log')) {
             $lines = array_reverse(file(ROOT . '/storage/logs/errors.log'));

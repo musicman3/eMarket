@@ -48,7 +48,7 @@ class Countries {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -69,7 +69,7 @@ class Countries {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
@@ -87,7 +87,7 @@ class Countries {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -101,7 +101,7 @@ class Countries {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $_SESSION['country_page'] = Valid::inSERVER('REQUEST_URI');
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
@@ -112,7 +112,7 @@ class Countries {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {

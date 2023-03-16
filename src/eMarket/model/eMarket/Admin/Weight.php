@@ -50,30 +50,17 @@ class Weight {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default_weight')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @return string Output text
-     */
-    public static function defaultText(): string {
-        $output = lang('confirm-no');
-        if (Pages::$table['line']['default_weight'] == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -96,7 +83,7 @@ class Weight {
      * @param int|string $id ID
      * @param int|string $value Value
      */
-    public function addAction(int|string $id, int|string $value): void {
+    private function addAction(int|string $id, int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
             Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
                 $id, Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
@@ -109,7 +96,7 @@ class Weight {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
@@ -128,7 +115,7 @@ class Weight {
      *
      * @param int|string $value Value
      */
-    public function editAction(int|string $value): void {
+    private function editAction(int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
             Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
                 Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), $value, $this->default, Valid::inPOST('edit'),
@@ -141,7 +128,7 @@ class Weight {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -153,7 +140,7 @@ class Weight {
      * Recount
      *
      */
-    public function recount(): void {
+    private function recount(): void {
         Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
         $data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT, []);
@@ -168,7 +155,7 @@ class Weight {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -178,7 +165,7 @@ class Weight {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $code = [];
@@ -209,6 +196,19 @@ class Weight {
                 ]);
             }
         }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_weight'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
     }
 
 }

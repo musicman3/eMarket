@@ -54,7 +54,7 @@ class Customers {
      * Status
      *
      */
-    public function status(): void {
+    private function status(): void {
         if (Valid::inPOST('status')) {
 
             $status_data = Pdo::getValue("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
@@ -73,7 +73,7 @@ class Customers {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -86,7 +86,7 @@ class Customers {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
             $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);

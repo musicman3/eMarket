@@ -66,30 +66,17 @@ class Stickers {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default_stickers')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @return string Output text
-     */
-    public static function defaultText(): string {
-        $output = lang('confirm-no');
-        if (Pages::$table['line']['default_stickers'] == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STICKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -113,7 +100,7 @@ class Stickers {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
@@ -134,7 +121,7 @@ class Stickers {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -146,10 +133,42 @@ class Stickers {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
+    }
+
+    /**
+     * Modal
+     *
+     */
+    private function modal(): void {
+        self::$json_data = json_encode([]);
+        $name = [];
+        $status = [];
+        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
+            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
+
+                $modal_id = Pages::$table['lines'][$i]['id'];
+
+                foreach (self::$sql_data as $sql_modal) {
+                    if ($sql_modal['id'] == $modal_id) {
+                        $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
+                    }
+                    if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
+                        $status[$modal_id] = (int) $sql_modal['default_stickers'];
+                    }
+                }
+
+                ksort($name);
+
+                self::$json_data = json_encode([
+                    'name' => $name,
+                    'default_stickers' => $status
+                ]);
+            }
+        }
     }
 
     /**
@@ -246,35 +265,16 @@ class Stickers {
     }
 
     /**
-     * Modal
+     * Default text
      *
+     * @return string Output text
      */
-    public function modal(): void {
-        self::$json_data = json_encode([]);
-        $name = [];
-        $status = [];
-        for ($i = Pages::$start; $i < Pages::$finish; $i++) {
-            if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
-
-                $modal_id = Pages::$table['lines'][$i]['id'];
-
-                foreach (self::$sql_data as $sql_modal) {
-                    if ($sql_modal['id'] == $modal_id) {
-                        $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
-                    }
-                    if ($sql_modal['language'] == lang('#lang_all')[0] && $sql_modal['id'] == $modal_id) {
-                        $status[$modal_id] = (int) $sql_modal['default_stickers'];
-                    }
-                }
-
-                ksort($name);
-
-                self::$json_data = json_encode([
-                    'name' => $name,
-                    'default_stickers' => $status
-                ]);
-            }
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_stickers'] == 1) {
+            $output = lang('confirm-yes');
         }
+        return $output;
     }
 
 }

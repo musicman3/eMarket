@@ -50,30 +50,17 @@ class Units {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default_unit')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @return string Output text
-     */
-    public static function defaultText(): string {
-        $output = lang('confirm-no');
-        if (Pages::$table['line']['default_unit'] == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -97,7 +84,7 @@ class Units {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
@@ -118,7 +105,7 @@ class Units {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -130,7 +117,7 @@ class Units {
      * Recount
      *
      */
-    public function recount(): void {
+    private function recount(): void {
         Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
     }
 
@@ -138,7 +125,7 @@ class Units {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -148,7 +135,7 @@ class Units {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $code = [];
@@ -177,6 +164,19 @@ class Units {
                 ]);
             }
         }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_unit'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
     }
 
 }

@@ -50,30 +50,17 @@ class VendorCodes {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default_vendor_code')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @return string Output text
-     */
-    public static function defaultText(): string {
-        $output = lang('confirm-no');
-        if (Pages::$table['line']['default_vendor_code'] == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $id_max = Pdo::getValue("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -97,7 +84,7 @@ class VendorCodes {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
@@ -119,7 +106,7 @@ class VendorCodes {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
             Pdo::action("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [Valid::inPOST('delete')]);
 
@@ -131,7 +118,7 @@ class VendorCodes {
      * Recount
      *
      */
-    public function recount(): void {
+    private function recount(): void {
         Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
     }
 
@@ -139,7 +126,7 @@ class VendorCodes {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
@@ -149,7 +136,7 @@ class VendorCodes {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $code = [];
@@ -178,6 +165,19 @@ class VendorCodes {
                 ]);
             }
         }
+    }
+
+    /**
+     * Default text
+     *
+     * @return string Output text
+     */
+    public static function defaultText(): string {
+        $output = lang('confirm-no');
+        if (Pages::$table['line']['default_vendor_code'] == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
     }
 
 }

@@ -54,7 +54,7 @@ class ZonesListing {
      * Zones id
      *
      */
-    public function zones_id(): void {
+    private function zones_id(): void {
         if (Valid::inPOST('zone_id')) {
             self::$zones_id = (int) Valid::inPOST('zone_id');
         }
@@ -68,7 +68,7 @@ class ZonesListing {
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
@@ -90,7 +90,7 @@ class ZonesListing {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$count = 0;
 
         self::$countries_multiselect_temp = Pdo::getIndex("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
@@ -110,7 +110,7 @@ class ZonesListing {
      * Tooltip data
      *
      */
-    public function tooltip(): void {
+    private function tooltip(): void {
         self::$text_arr = [];
 
         for ($y = Pages::$start; $y < Pages::$finish; $y++) {

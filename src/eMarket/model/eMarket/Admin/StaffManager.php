@@ -59,7 +59,7 @@ class StaffManager {
      *
      * @return mixed permissions
      */
-    public function permissions(): mixed {
+    private function permissions(): mixed {
         $permission = Valid::inPOST('permissions');
         if (!Valid::inPOST('permissions')) {
             $permission = [];
@@ -78,23 +78,10 @@ class StaffManager {
     }
 
     /**
-     * Permission class
-     *
-     * @param string $input Route path
-     * @return string Bootstrap class
-     */
-    public static function permissionClass(?string $input): string {
-        if ($input == '?route=dashboard') {
-            return ' selected disabled';
-        }
-        return '';
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $demo_mode = 0;
@@ -120,7 +107,7 @@ class StaffManager {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $demo_mode = 0;
@@ -143,7 +130,7 @@ class StaffManager {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -157,7 +144,7 @@ class StaffManager {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
@@ -168,7 +155,7 @@ class StaffManager {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$json_data = json_encode([]);
         $name = [];
         $note = [];
@@ -201,6 +188,19 @@ class StaffManager {
                 ]);
             }
         }
+    }
+
+    /**
+     * Permission class
+     *
+     * @param string $input Route path
+     * @return string Bootstrap class
+     */
+    public static function permissionClass(?string $input): string {
+        if ($input == '?route=dashboard') {
+            return ' selected disabled';
+        }
+        return '';
     }
 
 }

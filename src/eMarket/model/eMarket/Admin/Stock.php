@@ -93,7 +93,7 @@ class Stock {
      * Image Upload for Categories
      *
      */
-    public function imgUploadCategories(): void {
+    private function imgUploadCategories(): void {
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '94']); // width, height
     }
@@ -102,7 +102,7 @@ class Stock {
      * Image Upload for Products
      *
      */
-    public function imgUploadProducts(): void {
+    private function imgUploadProducts(): void {
         self::$resize_param_product = [];
         array_push(self::$resize_param_product, ['125', '94']); // width, height
         array_push(self::$resize_param_product, ['200', '150']);
@@ -115,7 +115,7 @@ class Stock {
      * Init Eac
      *
      */
-    public function initEac(): void {
+    private function initEac(): void {
         $EAC_ENGINE = Eac::init(self::$resize_param, self::$resize_param_product);
         self::$idsx_real_parent_id = $EAC_ENGINE[0];
         self::$parent_id = $EAC_ENGINE[1];
@@ -125,7 +125,7 @@ class Stock {
      * Select Data
      *
      */
-    public function selectData(): void {
+    private function selectData(): void {
         self::$currencies_all = Pdo::getAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
         self::$taxes_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
         self::$units_all = Pdo::getAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
@@ -139,7 +139,7 @@ class Stock {
      * Prepared Data
      *
      */
-    public function preparedData(): void {
+    private function preparedData(): void {
         if (Valid::inGET('nav_parent_id')) {
             self::$parent_id = Valid::inGET('nav_parent_id');
         }
@@ -168,7 +168,7 @@ class Stock {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
@@ -215,7 +215,7 @@ class Stock {
      * Categories Modal
      *
      */
-    public function modalCategories(): void {
+    private function modalCategories(): void {
         self::$json_data_category = json_encode(json_encode([]));
         $name = [];
         for ($i = self::$start; $i < self::$finish; $i++) {
@@ -250,7 +250,7 @@ class Stock {
      * Products Modal
      *
      */
-    public function modalProducts(): void {
+    private function modalProducts(): void {
         self::$json_data_product = json_encode([]);
         $name_product = [];
         $description_product = [];
