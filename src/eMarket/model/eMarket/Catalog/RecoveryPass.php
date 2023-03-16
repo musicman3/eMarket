@@ -41,7 +41,7 @@ class RecoveryPass {
      * Recovery
      *
      */
-    public function recovery(): void {
+    private function recovery(): void {
         if (Valid::inGET('recovery_code')) {
             self::$customer_id = Pdo::getValue("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
                         Valid::inGET('recovery_code')]

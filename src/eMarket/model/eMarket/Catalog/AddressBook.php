@@ -52,7 +52,7 @@ class AddressBook {
      * Authorize
      *
      */
-    public function authorize(): void {
+    private function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -63,7 +63,7 @@ class AddressBook {
      * Json Echo
      *
      */
-    public function jsonEcho(): void {
+    private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
             self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
                         lang('#lang_all')[0], Valid::inPostJson('countries_select')
@@ -77,7 +77,7 @@ class AddressBook {
      * Init Data
      *
      */
-    public function initData(): void {
+    private function initData(): void {
         $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
 
@@ -95,31 +95,17 @@ class AddressBook {
      * Default
      *
      */
-    public function default(): void {
+    private function default(): void {
         if (Valid::inPOST('default')) {
             $this->default = 1;
         }
     }
 
     /**
-     * Default text
-     *
-     * @param int|string $value Default value
-     * @return string Output text
-     */
-    public static function defaultText(int|string $value): string {
-        $output = lang('confirm-no');
-        if ($value == 1) {
-            $output = lang('confirm-yes');
-        }
-        return $output;
-    }
-
-    /**
      * Add
      *
      */
-    public function add(): void {
+    private function add(): void {
         if (Valid::inPOST('add')) {
 
             $address_array = ['countries_id' => Valid::inPOST('countries'),
@@ -148,7 +134,7 @@ class AddressBook {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
 
             $address_array = ['countries_id' => Valid::inPOST('countries'),
@@ -178,7 +164,7 @@ class AddressBook {
      * Delete
      *
      */
-    public function delete(): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
 
             $number = (int) Valid::inPOST('delete') - 1;
@@ -206,7 +192,7 @@ class AddressBook {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $x = 0;
         foreach (self::$address_data as $address_val) {
             $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
@@ -218,6 +204,20 @@ class AddressBook {
             }
             $x++;
         }
+    }
+
+    /**
+     * Default text
+     *
+     * @param int|string $value Default value
+     * @return string Output text
+     */
+    public static function defaultText(int|string $value): string {
+        $output = lang('confirm-no');
+        if ($value == 1) {
+            $output = lang('confirm-yes');
+        }
+        return $output;
     }
 
 }

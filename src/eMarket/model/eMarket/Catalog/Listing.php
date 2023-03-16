@@ -50,12 +50,12 @@ class Listing {
      * Init Data
      *
      */
-    public function initData(): void {
+    private function initData(): void {
         self::$checked_stock = '';
         $qnt_flag = 'AND quantity>0 ';
         self::$sort_flag = 'off';
 
-        if (Valid::inGET('change') == 'on' OR!Valid::inGET('change')) {
+        if (Valid::inGET('change') == 'on' OR !Valid::inGET('change')) {
             self::$checked_stock = ' checked';
             $qnt_flag = '';
         }
@@ -86,7 +86,7 @@ class Listing {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         if (Valid::inGET('search')) {
             $search = '%' . Valid::inGET('search') . '%';
             self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . self::$sort_parameter, [
@@ -107,7 +107,7 @@ class Listing {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$product_edit = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(self::$lines[$i]['id']) == TRUE) {

@@ -47,7 +47,7 @@ class Success {
      * Config
      *
      */
-    public function config(): void {
+    private function config(): void {
         self::$root = getenv('DOCUMENT_ROOT');
         self::$db_family = Valid::inPOST('database_family');
         $db_pref = Valid::inPOST('database_prefix');
@@ -103,7 +103,7 @@ class Success {
      * Save
      *
      */
-    public function save(): void {
+    private function save(): void {
         $fpd = fopen(self::$root . '/storage/configure/configure.php', 'w+');
         fputs($fpd, self::$config);
         fclose($fpd);
@@ -131,7 +131,7 @@ class Success {
         if (self::$db_family == 'myisam') {
             $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
-        
+
         $pdo = new \PDO(DB_TYPE . ':host=' . DB_SERVER, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"]);
         $mysql_version = $pdo->query('select version()')->fetchColumn();
 
@@ -139,7 +139,7 @@ class Success {
             header('Location: /controller/install/error.php?mysql_version_false=true');
             exit;
         }
-        
+
         $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
         Pdo::getExec($buffer);
 

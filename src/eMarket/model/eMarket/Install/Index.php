@@ -37,7 +37,7 @@ class Index {
      * Default language
      *
      */
-    public function lang(): void {
+    private function lang(): void {
         if (!Valid::inPOST('language') && Settings::path() == 'install') {
             self::$default_language = 'english';
         }

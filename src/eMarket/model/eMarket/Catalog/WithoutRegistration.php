@@ -47,7 +47,7 @@ class WithoutRegistration {
      * Json Echo
      *
      */
-    public function jsonEcho(): void {
+    private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
             self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
                         lang('#lang_all')[0], Valid::inPostJson('countries_select')
@@ -61,7 +61,7 @@ class WithoutRegistration {
      * Init Data
      *
      */
-    public function initData(): void {
+    private function initData(): void {
         $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
         self::$countries_data_json = json_encode($countries_array);
         self::$address_data = [];
@@ -80,7 +80,7 @@ class WithoutRegistration {
      * Session Data
      *
      */
-    public function sessionData(): void {
+    private function sessionData(): void {
         if (Valid::inPOST('firstname') && Valid::inPOST('lastname') && Valid::inPOST('telephone') && Valid::inPOST('countries') && Valid::inPOST('regions') && Valid::inPOST('city') && Valid::inPOST('zip') && Valid::inPOST('address')) {
 
             $_SESSION['without_registration_data'] = json_encode([[
@@ -110,7 +110,7 @@ class WithoutRegistration {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         $x = 0;
         foreach (self::$address_data as $address_val) {
             $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];

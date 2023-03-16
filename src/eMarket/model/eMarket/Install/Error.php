@@ -39,7 +39,7 @@ class Error {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         if (Valid::inGET('file_configure_not_found')) {
             self::$message = 'file_configure_not_found';
         }

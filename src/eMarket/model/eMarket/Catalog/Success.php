@@ -55,7 +55,7 @@ class Success {
      * Customer data
      *
      */
-    public function customerInit(): void {
+    private function customerInit(): void {
         if (isset($_SESSION['without_registration_data'])) {
             $without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
             self::$customer = [
@@ -79,7 +79,7 @@ class Success {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         if (Valid::inPOST('add') && password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') . Valid::inPOST('shipping_method') .
                         (float) Valid::inPOST('order_shipping_price') . (float) Valid::inPOST('order_total'), Valid::inPOST('hash'))) {
@@ -127,7 +127,7 @@ class Success {
      * Invoice
      *
      */
-    public function invoice(): void {
+    private function invoice(): void {
         $cart = json_decode(Valid::inPOST('products_order'), true);
 
         $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [self::$primary_language]);
@@ -201,7 +201,7 @@ class Success {
      * Order Total Data
      *
      */
-    public function orderTotalData(): void {
+    private function orderTotalData(): void {
         $INTERFACE = new Interfaces();
         Ecb::priceTerminal(self::$primary_language);
         self::$order_total['admin'] = [
@@ -237,7 +237,7 @@ class Success {
      * Payment Data
      *
      */
-    public function paymentData(): void {
+    private function paymentData(): void {
         $admin_payment_method = lang('modules_payment_' . Valid::inPOST('payment_method') . '_name', self::$primary_language, 'all');
         $customer_payment_method = lang('modules_payment_' . Valid::inPOST('payment_method') . '_name');
         self::$payment_method = json_encode([
@@ -250,7 +250,7 @@ class Success {
      * Shipping Data
      *
      */
-    public function shippingData(): void {
+    private function shippingData(): void {
         $admin_shipping_method = lang('modules_shipping_' . Valid::inPOST('shipping_method') . '_name', self::$primary_language, 'all');
         $customer_shipping_method = lang('modules_shipping_' . Valid::inPOST('shipping_method') . '_name');
         self::$shipping_method = json_encode([
@@ -263,7 +263,7 @@ class Success {
      * Save
      *
      */
-    public function save(): void {
+    private function save(): void {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
@@ -275,7 +275,7 @@ class Success {
      * End
      *
      */
-    public function end(): void {
+    private function end(): void {
         $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=? ORDER BY id DESC", [Pdo::lastInsertId()])[0];
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
@@ -288,7 +288,7 @@ class Success {
      * Verify
      *
      */
-    public function verify(): void {
+    private function verify(): void {
         if (Valid::inPOST('add') && !password_verify((float) Valid::inPOST('order_total_tax') . (float) Valid::inPOST('order_to_pay') .
                         (float) Valid::inPOST('order_total_with_shipping') . Valid::inPOST('products_order') .
                         Valid::inPOST('shipping_method') . (float) Valid::inPOST('order_shipping_price') .

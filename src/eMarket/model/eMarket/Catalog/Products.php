@@ -59,7 +59,7 @@ class Products {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$products = ProductsCore::productData(Valid::inGET('id'));
     }
 
@@ -67,7 +67,7 @@ class Products {
      * Dimensions
      *
      */
-    public function dimensions(): void {
+    private function dimensions(): void {
 
         self::$dimension_name = ProductsCore::length(self::$products['dimension'])['code'];
         self::$dimensions = '';
@@ -123,7 +123,7 @@ class Products {
      * Weight
      *
      */
-    public function weight(): void {
+    private function weight(): void {
         self::$weight = ProductsCore::weight(self::$products['weight'])['code'];
 
         if (self::$weight != NULL && self::$weight != FALSE) {
@@ -135,7 +135,7 @@ class Products {
      * Images
      *
      */
-    public function images(): void {
+    private function images(): void {
         self::$images = Func::deleteValInArray(json_decode(self::$products['logo'], true), [self::$products['logo_general']]);
     }
 
@@ -143,7 +143,7 @@ class Products {
      * Attributes
      *
      */
-    public function attributes(): void {
+    private function attributes(): void {
         $categories_data = ProductsCore::categoryData(Valid::inGET('category_id'));
         if (Valid::inGET('category_id') == 0) {
             self::$attributes_data = json_encode([]);
@@ -156,7 +156,7 @@ class Products {
      * Tabs
      *
      */
-    public function tabs(): void {
+    private function tabs(): void {
         Tabs::loadData();
 
         $INTERFACE = new Interfaces();

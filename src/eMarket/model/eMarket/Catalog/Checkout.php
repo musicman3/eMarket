@@ -43,7 +43,7 @@ class Checkout {
      * Authorize
      *
      */
-    public function authorize(): void {
+    private function authorize(): void {
         if (Authorize::$customer == FALSE && !isset($_SESSION['without_registration_data'])) {
             header('Location: ?route=login');
             exit;
@@ -54,7 +54,7 @@ class Checkout {
      * Customer Data
      *
      */
-    public function customerData(): void {
+    private function customerData(): void {
         if (isset($_SESSION['without_registration_data'])) {
             $without_registration_user = json_decode($_SESSION['without_registration_user'], true)[0];
             self::$customer = [
@@ -76,7 +76,7 @@ class Checkout {
      * Customer Address
      *
      */
-    public function customerAddress(): void {
+    private function customerAddress(): void {
         if (Valid::inPOST('address')) {
             $address_all = json_decode(self::$customer['address_book'], true);
             if (isset($_SESSION['without_registration_data'])) {

@@ -43,7 +43,7 @@ class Orders {
      * Authorize
      *
      */
-    public function authorize(): void {
+    private function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -54,7 +54,7 @@ class Orders {
      * Data
      *
      */
-    public function data(): void {
+    private function data(): void {
         self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['customer_email']]);
         Pages::data(self::$lines);
     }
@@ -63,7 +63,7 @@ class Orders {
      * Modal
      *
      */
-    public function modal(): void {
+    private function modal(): void {
         self::$orders_edit = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(self::$lines[$i]['id']) == TRUE) {

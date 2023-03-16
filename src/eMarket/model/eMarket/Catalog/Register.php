@@ -43,7 +43,7 @@ class Register {
      * Init
      *
      */
-    public function init(): void {
+    private function init(): void {
         if (Valid::inPOST('email')) {
 
             self::$user_email = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);

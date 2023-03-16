@@ -40,7 +40,7 @@ class MyAccount {
      * Authorize
      *
      */
-    public function authorize(): void {
+    private function authorize(): void {
         if (Authorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
@@ -51,7 +51,7 @@ class MyAccount {
      * Edit
      *
      */
-    public function edit(): void {
+    private function edit(): void {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
                 $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
