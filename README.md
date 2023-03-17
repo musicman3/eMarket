@@ -1,5 +1,5 @@
 [![N|Solid](https://raw.githubusercontent.com/musicman3/eMarketHandler/main/logo2.png)](https://github.com/musicman3/eMarket)
-## eMarket Online Store
+## eMarket Online Store - It is a free online shop engine
 
 [![N|Solid](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/emarket)
 
