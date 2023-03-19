@@ -59,7 +59,7 @@ class Templates {
      *
      */
     private function data(): void {
-        self::$layout_pages = scandir(ROOT . '/controller/catalog/pages/');
+        self::$layout_pages = scandir(ROOT . '/view/' . Settings::template() . '/catalog/pages/');
         self::$name_template = scandir(ROOT . '/view/');
     }
 
