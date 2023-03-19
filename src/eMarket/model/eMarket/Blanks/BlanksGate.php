@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace eMarket\Blanks;
 
 /**
- * Blank class
+ * BlanksGate class
  *
- * @package Core
+ * @package Blanks
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0

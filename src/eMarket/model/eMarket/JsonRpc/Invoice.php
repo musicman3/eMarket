@@ -19,7 +19,7 @@ use \Mpdf\Mpdf;
 /**
  * Invoice
  *
- * @package Blanks
+ * @package JsonRpc
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
