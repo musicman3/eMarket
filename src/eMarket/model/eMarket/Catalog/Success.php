@@ -32,6 +32,7 @@ use eMarket\Core\{
  */
 class Success {
 
+    public static $routing_parameter = 'success';
     public static $customer_orders_status_history;
     public static $customer;
     public static $orders_status_history;

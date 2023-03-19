@@ -29,6 +29,7 @@ use eMarket\Core\{
  */
 class Countries {
 
+    public static $routing_parameter = 'settings/countries';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 

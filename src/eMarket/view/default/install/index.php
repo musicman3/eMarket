@@ -8,16 +8,16 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header text-white bg-success">
-            
+
             <div class="row">
                 <h5 class="col"><?php echo lang('install_panel') ?></h5>
                 <div class="col-xl-3 col-md-4 col-5 float-end">
-                    <form action="index.php" method="post" accept-charset="utf-8">
+                    <form action="/controller/install/" method="post" accept-charset="utf-8">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-globe"></span>
                             <select name='language' class="input-sm form-select" onchange="submit();">
                                 <option><?php echo lang('select_language') ?></option>
-                                <?php for ($x = 0; $x < \eMarket\Core\Lang::$count; $x++) { ?>
+                                <?php for ($x = 0; $x < eMarket\Core\Lang::$count; $x++) { ?>
                                     <option value='<?php echo lang('#lang_all')[$x] ?>'><?php echo lang('language_name', lang('#lang_all')[$x]) ?></option>
                                 <?php } ?>
                             </select>
@@ -29,8 +29,8 @@
         </div>
         <div class="card-body">
 
-            <form class="was-validated" action="success.php" method="post" accept-charset="utf-8" oninput="validate()">
-                <input type='hidden' name='language' value='<?php echo \eMarket\Install\Index::$default_language ?>' />
+            <form class="was-validated" action="?route=success" method="post" accept-charset="utf-8" oninput="validate()">
+                <input type='hidden' name='language' value='<?php echo eMarket\Install\Index::$default_language ?>' />
 
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">

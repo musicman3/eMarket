@@ -30,6 +30,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class StaffManager {
 
+    public static $routing_parameter = 'staff_manager';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 

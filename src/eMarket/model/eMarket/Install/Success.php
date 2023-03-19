@@ -26,6 +26,7 @@ use eMarket\Core\{
  */
 class Success {
 
+    public static $routing_parameter = 'success';
     public static $lng;
     public static $root;
     public static $login_admin;
@@ -111,7 +112,7 @@ class Success {
         if (file_exists(self::$root . '/storage/configure/configure.php')) {
             chmod(self::$root . '/storage/configure/configure.php', 0644);
         } else {
-            header('Location: /controller/install/error.php?file_configure_not_found=true');
+            header('Location: /controller/install/?route=error&file_configure_not_found=true');
             exit;
         }
 
@@ -122,7 +123,7 @@ class Success {
         }
 
         if (!file_exists($file_name)) {
-            header('Location: /controller/install/error.php?file_not_found=true');
+            header('Location: /controller/install/?route=error&file_not_found=true');
             exit;
         }
 
@@ -136,7 +137,7 @@ class Success {
         $mysql_version = $pdo->query('select version()')->fetchColumn();
 
         if (version_compare($mysql_version, '5.7.8') < 0) {
-            header('Location: /controller/install/error.php?mysql_version_false=true');
+            header('Location: /controller/install/?route=error&mysql_version_false=true');
             exit;
         }
 

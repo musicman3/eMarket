@@ -30,6 +30,7 @@ use eMarket\Core\{
  */
 class Taxes {
 
+    public static $routing_parameter = 'settings/taxes';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones = FALSE;

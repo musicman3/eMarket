@@ -209,6 +209,7 @@ class Settings {
         if ($title_dir == '' && self::path() == 'install') {
             $title_dir = 'install';
         }
+
         return $title_dir;
     }
 
@@ -220,7 +221,7 @@ class Settings {
     public static function titlePageGenerator(): string {
 
         if (self::path() == 'install') {
-            $title = lang('title_' . self::titleDir() . '_' . basename(Valid::inSERVER('PHP_SELF'), '.php'));
+            $title = lang('title_' . self::titleDir());
             return $title;
         }
 

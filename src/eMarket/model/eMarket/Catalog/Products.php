@@ -28,6 +28,7 @@ use eMarket\Core\{
  */
 class Products {
 
+    public static $routing_parameter = 'products';
     public static $dimension_name;
     public static $dimensions = FALSE;
     public static $products = FALSE;

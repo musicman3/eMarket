@@ -29,6 +29,7 @@ use eMarket\Core\{
  */
 class Zones {
 
+    public static $routing_parameter = 'settings/zones';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 

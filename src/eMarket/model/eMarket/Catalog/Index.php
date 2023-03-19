@@ -9,10 +9,6 @@ declare(strict_types=1);
 
 namespace eMarket\Catalog;
 
-use eMarket\Core\{
-    Routing
-};
-
 /**
  * Index
  *
@@ -24,14 +20,6 @@ use eMarket\Core\{
  */
 class Index {
 
-    /**
-     * Route
-     *
-     * @return string url
-     */
-    public function route(): string {
-        $output = new Routing;
-        return $output->controller();
-    }
+    public static $routing_parameter = 'catalog';
 
 }

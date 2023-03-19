@@ -25,6 +25,7 @@ use eMarket\Core\{
  */
 class ModulesEdit {
 
+    public static $routing_parameter = 'settings/modules/edit';
     public static string $switch_active = '';
 
     /**

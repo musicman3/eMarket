@@ -27,6 +27,7 @@ use eMarket\Core\{
  */
 class Login {
 
+    public static $routing_parameter = 'login';
     public static $login_error = FALSE;
 
     /**

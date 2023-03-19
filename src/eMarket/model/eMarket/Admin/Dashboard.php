@@ -27,6 +27,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class Dashboard {
 
+    public static $routing_parameter = 'dashboard';
     public static $min_year = FALSE;
     public static $select_year = FALSE;
     public static $json_data = FALSE;

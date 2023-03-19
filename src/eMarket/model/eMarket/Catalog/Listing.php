@@ -28,6 +28,7 @@ use eMarket\Core\{
  */
 class Listing {
 
+    public static $routing_parameter = 'listing';
     public static $checked_stock = FALSE;
     public static $sort_parameter = FALSE;
     public static $sort_name;

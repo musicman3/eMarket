@@ -16,7 +16,7 @@ use eMarket\Install\Error;
             <h5 class="card-title"><?php echo lang('install_panel') ?></h5>
         </div>
         <div class="card-body">
-            <form action='index.php' method='post' accept-charset='utf-8'>
+            <form action='/controller/install/' method='post' accept-charset='utf-8'>
                 <div class="alert alert-danger"><?php echo lang(Error::$message) ?></div>
 
                 <?php if (Valid::inGET('error_message')) { ?>

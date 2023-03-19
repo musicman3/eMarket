@@ -24,6 +24,7 @@ use eMarket\Core\{
  */
 class Error {
 
+    public static $routing_parameter = 'error';
     public static $message;
     public static $error_message;
 

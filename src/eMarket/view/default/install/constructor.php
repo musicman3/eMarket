@@ -3,9 +3,9 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
 use eMarket\Core\{
     Settings,
-    Valid,
     Routing
 };
 ?>
@@ -23,7 +23,7 @@ use eMarket\Core\{
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
 
-        <title><?php echo lang('title_' . Settings::titleDir() . '_' . basename(Valid::inSERVER('PHP_SELF'), '.php')) ?></title>
+        <title><?php echo lang(Settings::titlePageGenerator()) ?></title>
 
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
@@ -33,16 +33,14 @@ use eMarket\Core\{
     <body>
         <?php
         require_once(Routing::install());
-
-        require_once (getenv('DOCUMENT_ROOT') . '/controller/install/footer.php');
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/footer.php');
         ?>
 
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <?php
-        if (Settings::$js_handler != FALSE) {
-            require_once(Settings::$js_handler . '/js.php');
+        if (Routing::$js_handler != FALSE) {
+            require_once(Routing::$js_handler . '/js.php');
         }
         ?>
     </body>

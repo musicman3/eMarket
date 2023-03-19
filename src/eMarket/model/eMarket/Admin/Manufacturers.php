@@ -31,6 +31,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class Manufacturers {
 
+    public static $routing_parameter = 'manufacturers';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $resize_param;

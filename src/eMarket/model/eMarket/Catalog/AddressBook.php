@@ -27,6 +27,7 @@ use eMarket\Core\{
  */
 class AddressBook {
 
+    public static $routing_parameter = 'address_book';
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;

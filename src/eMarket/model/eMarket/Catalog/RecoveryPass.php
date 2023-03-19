@@ -27,6 +27,7 @@ use eMarket\Core\{
  */
 class RecoveryPass {
 
+    public static $routing_parameter = 'recoverypass';
     public static $customer_id;
 
     /**

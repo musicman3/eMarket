@@ -57,6 +57,7 @@ class Authorize {
         }
 
         if (Settings::path() == 'install' && !$this->installVerify()) {
+            echo 'Error! Installation already completed!';
             exit;
         }
     }

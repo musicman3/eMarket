@@ -29,6 +29,7 @@ use eMarket\Core\{
  */
 class Staff {
 
+    public static $routing_parameter = 'staff_manager/staff';
     public static $sql_data = FALSE;
     public static $staff_manager_id = FALSE;
 

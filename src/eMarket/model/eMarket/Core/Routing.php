@@ -32,14 +32,36 @@ class Routing {
     public static $js_modules_handler = FALSE;
 
     /**
+     * Routing Map
+     *
+     */
+    private function routingMap(): array {
+        $routing_parameters = [];
+        $path = ucfirst(Settings::path());
+        $files = glob(getenv('DOCUMENT_ROOT') . '/model/eMarket/' . $path . '/*');
+
+        foreach ($files as $filename) {
+            $namespace = '\eMarket\\' . $path . '\\' . pathinfo($filename, PATHINFO_FILENAME);
+            if (isset($namespace::$routing_parameter)) {
+                $routing_parameters[$namespace::$routing_parameter] = pathinfo($filename, PATHINFO_FILENAME);
+            }
+        }
+
+        return $routing_parameters;
+    }
+
+    /**
      * Template routing for install
      *
      * @return string $str (routing)
      */
     public static function install(): string {
 
-        $str = str_replace('controller', 'view/' . Settings::template(), getenv('SCRIPT_FILENAME'));
-
+        if (Valid::inGET('route') != '') {
+            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/' . Valid::inGET('route') . '.php');
+        } else {
+            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/index.php');
+        }
         return $str;
     }
 
@@ -48,19 +70,24 @@ class Routing {
      *
      * @return string url
      */
-    public function controller(): ?string {
+    public function page(): ?string {
         $default = 'catalog';
 
         if (Settings::path() == 'admin') {
             $default = 'dashboard';
         }
 
-        $output = ROOT . '/controller/' . Settings::path() . '/pages/' . $default . '/index.php';
-        if (Valid::inGET('route') != '') {
-            $output = ROOT . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/index.php';
+        if (Settings::path() == 'install') {
+            $default = 'index';
         }
 
-        return Func::outputDataFiltering($output);
+        if (Valid::inGET('route') != '') {
+            $output = $this->routingMap()[Valid::inGET('route')];
+        } else {
+            $output = $this->routingMap()[$default];
+        }
+
+        return Func::outputDataFiltering('eMarket\\' . ucfirst(Settings::path()) . '\\' . $output);
     }
 
     /**

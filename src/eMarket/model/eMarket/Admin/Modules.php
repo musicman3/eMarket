@@ -28,6 +28,7 @@ use eMarket\Admin\Modules;
  */
 class Modules {
 
+    public static $routing_parameter = 'settings/modules';
     public static $installed = FALSE;
     public static $installed_active = FALSE;
     public static $installed_filter = FALSE;

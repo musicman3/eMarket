@@ -32,6 +32,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class Stickers {
 
+    public static $routing_parameter = 'stickers';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $stickers = FALSE;

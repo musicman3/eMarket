@@ -31,6 +31,7 @@ use eMarket\Admin\HeaderMenu;
  */
 class Slideshow {
 
+    public static $routing_parameter = 'slideshow';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $settings = FALSE;

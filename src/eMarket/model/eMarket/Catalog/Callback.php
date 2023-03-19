@@ -7,31 +7,19 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Admin;
-
-use eMarket\Core\{
-    Routing
-};
+namespace eMarket\Catalog;
 
 /**
- * Index
+ * Callback
  *
- * @package Admin
+ * @package Catalog
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
  * 
  */
-class Index {
+class Callback {
 
-    /**
-     * Route
-     *
-     * @return string url
-     */
-    public function route(): ?string {
-        $output = new Routing;
-        return $output->controller();
-    }
+    public static $routing_parameter = 'callback';
 
 }

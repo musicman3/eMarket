@@ -23,6 +23,7 @@ use eMarket\Core\{
  */
 class Index {
 
+    public static $routing_parameter = 'index';
     public static $default_language;
 
     /**

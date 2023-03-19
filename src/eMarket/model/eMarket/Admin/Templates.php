@@ -27,6 +27,7 @@ use eMarket\Core\{
  */
 class Templates {
 
+    public static $routing_parameter = 'settings/templates';
     public static $layout_pages;
     public static $name_template;
     public static $select_page;

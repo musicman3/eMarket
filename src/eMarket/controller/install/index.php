@@ -9,7 +9,9 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$eMarket = new eMarket\Install\Index();
+$eMarketRouting = new eMarket\Core\Routing();
+$eMarketPage = $eMarketRouting->page();
+$eMarket = new $eMarketPage();
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');

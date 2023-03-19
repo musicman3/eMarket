@@ -27,6 +27,8 @@ use eMarket\Admin\HeaderMenu;
  */
 class ErrorLog {
 
+    public static $routing_parameter = 'error_log';
+
     /**
      * Constructor
      *

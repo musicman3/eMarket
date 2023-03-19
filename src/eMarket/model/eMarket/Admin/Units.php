@@ -29,6 +29,7 @@ use eMarket\Core\{
  */
 class Units {
 
+    public static $routing_parameter = 'settings/units';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
