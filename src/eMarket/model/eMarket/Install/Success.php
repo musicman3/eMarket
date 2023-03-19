@@ -161,6 +161,8 @@ Options -Indexes
 
 RewriteEngine On
 #Redirect
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* controller/index.php
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
 RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
