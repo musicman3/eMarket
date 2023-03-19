@@ -9,9 +9,15 @@
 require_once(getenv('DOCUMENT_ROOT') . '/model/start.php');
 /* ------------------------------------------ */
 
-$eMarketRouting = new eMarket\Core\Routing();
-$eMarketPage = $eMarketRouting->page();
-$eMarket = new $eMarketPage();
+use eMarket\Core\{
+    Settings
+};
+
+if (Settings::path() != 'blanks') {
+    $eMarketRouting = new eMarket\Core\Routing();
+    $eMarketPage = $eMarketRouting->page();
+    $eMarket = new $eMarketPage();
+}
 
 /* ->-->-->-->  CONNECT PAGE END  <--<--<--<- */
 require_once(getenv('DOCUMENT_ROOT') . '/model/end.php');

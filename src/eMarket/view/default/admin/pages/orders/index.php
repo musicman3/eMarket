@@ -86,7 +86,7 @@ require_once('modal/index.php')
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], true)[0]['admin']['status'] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
-                                        <button onclick="location.href = '<?php echo JsonRpc::encodeGetData(Pages::$table['line']['uid'], 'Invoice') ?>'" type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"> <?php echo lang('blanks_invoice_title') ?></button>
+                                        <button onclick="location.href = '<?php echo JsonRpc::encodeGetData(Pages::$table['line']['uid'], 'Invoice') ?>'" type="submit" class="btn btn-danger btn-sm bi-file-pdf-fill"> <?php echo lang('orders_blanks_invoice_title') ?></button>
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>
                                         <form id="form_delete<?php echo Pages::$table['line']['id'] ?>" name="form_delete" action="javascript:void(null);" enctype="multipart/form-data">
                                             <input hidden name="delete" value="<?php echo Pages::$table['line']['id'] ?>">

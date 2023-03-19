@@ -170,10 +170,14 @@ class Settings {
     public static function path(): string {
 
         if (self::$path == FALSE) {
-            if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
-                self::$path = 'admin';
+            if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/blanks/')) {
+                self::$path = 'blanks';
             } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/install/')) {
                 self::$path = 'install';
+            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/jsonrpc/')) {
+                self::$path = 'JsonRpc';
+            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
+                self::$path = 'admin';
             } else {
                 self::$path = 'catalog';
             }

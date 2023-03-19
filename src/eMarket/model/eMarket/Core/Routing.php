@@ -13,8 +13,12 @@ use eMarket\Core\{
     Pdo,
     Settings,
     Func,
+    JsonRpc,
     Modules,
     Valid
+};
+use eMarket\Admin\{
+    HeaderMenu
 };
 
 /**
@@ -56,14 +60,23 @@ class Routing {
      * @return string url
      */
     public function page(): ?string {
-        $default = 'catalog';
+
+        if (Settings::path() == 'catalog') {
+            $default = 'catalog';
+        }
 
         if (Settings::path() == 'admin') {
+            new HeaderMenu();
             $default = 'dashboard';
         }
 
         if (Settings::path() == 'install') {
             $default = 'index';
+        }
+
+        if (Settings::path() == 'JsonRpc') {
+            $jsonrpc = new JsonRpc();
+            $default = $jsonrpc->decodeGetData('method');
         }
 
         if (Valid::inGET('route') != '') {

@@ -266,6 +266,7 @@ orders_email = E-mail
 orders_change_status_subject = Status order #%s has been changed (%s).
 orders_change_status_message = Dear customer. The status of your order #%s has been changed <br><br>New order status: %s. <br><br>Details of the order can be found in your personal account: <a href="%s" target="_blank">%s</a>
 orders_change_status_message_providers = Status order #%s has been changed (%s).
+orders_blanks_invoice_title = Invoice
 
 ;STOCK
 stock_tittle_specification_group_name = Specification group name

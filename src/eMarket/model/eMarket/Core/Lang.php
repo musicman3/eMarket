@@ -62,7 +62,7 @@ final class Lang {
     public static function path(): string {
 
         if (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/jsonrpc/')) {
-            return 'admin';
+            return 'blanks';
         }
         return Settings::path();
     }

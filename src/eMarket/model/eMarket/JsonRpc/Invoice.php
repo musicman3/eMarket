@@ -27,6 +27,7 @@ use \Mpdf\Mpdf;
  */
 class Invoice extends JsonRpc {
 
+    public static $routing_parameter = 'Invoice';
     private $mpdf = FALSE;
     private $order_data = FALSE;
     private $uid = FALSE;
@@ -108,7 +109,7 @@ class Invoice extends JsonRpc {
                 'invoice_notice' => lang('blanks_invoice_notice'),
                 'invoice_notice_text' => lang('blanks_invoice_notice_text'),
             ];
-            $html = $this->curl($data, HTTP_SERVER . 'controller/admin/blanks/invoice.php');
+            $html = $this->curl($data, HTTP_SERVER . 'controller/blanks/?blank=invoice');
             return $html;
         } else {
             return FALSE;
