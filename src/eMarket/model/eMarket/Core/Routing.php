@@ -55,37 +55,46 @@ class Routing {
     }
 
     /**
-     * Controller routing
+     * Pages routing
      *
      * @return string url
      */
     public function page(): ?string {
 
         if (Settings::path() == 'catalog') {
-            $default = 'catalog';
+            $routing_parameter = 'catalog';
+            $class_path = 'Catalog';
         }
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
-            $default = 'dashboard';
+            $routing_parameter = 'dashboard';
+            $class_path = 'Admin';
         }
 
         if (Settings::path() == 'install') {
-            $default = 'index';
+            $routing_parameter = 'index';
+            $class_path = 'Install';
+        }
+
+        if (Settings::path() == 'blanks') {
+            $routing_parameter = 'BlanksGate';
+            $class_path = 'Blanks';
         }
 
         if (Settings::path() == 'JsonRpc') {
             $jsonrpc = new JsonRpc();
-            $default = $jsonrpc->decodeGetData('method');
+            $routing_parameter = $jsonrpc->decodeGetData('method');
+            $class_path = 'JsonRpc';
         }
 
         if (Valid::inGET('route') != '') {
             $output = $this->routingMap()[Valid::inGET('route')];
         } else {
-            $output = $this->routingMap()[$default];
+            $output = $this->routingMap()[$routing_parameter];
         }
 
-        return Func::outputDataFiltering('eMarket\\' . ucfirst(Settings::path()) . '\\' . $output);
+        return Func::outputDataFiltering('eMarket\\' . $class_path . '\\' . $output);
     }
 
     /**

@@ -59,7 +59,7 @@ class Invoice extends JsonRpc {
      * @param string|int $name Orders column name
      * @return mixed Output data
      */
-    private function orderData(string|int $name): mixed {
+    private function data(string|int $name): mixed {
         if (!$this->order_data) {
             $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [$this->uid]);
             if (count($order_data) > 0) {
@@ -79,15 +79,15 @@ class Invoice extends JsonRpc {
      * @return mixed HTML data
      */
     private function html(): mixed {
-        if ($this->orderData('id')) {
+        if ($this->data('id')) {
             $data = [
-                'invoice_id' => $this->orderData('id'),
-                'invoice_email' => $this->orderData('email'),
-                'invoice_date_purchased' => Settings::dateLocale($this->orderData('date_purchased')),
-                'invoice_customer_data' => json_decode($this->orderData('customer_data'), true),
-                'invoice_customer_address_book' => json_decode(json_decode($this->orderData('customer_data'), true)['address_book'], true),
-                'invoice_data' => json_decode($this->orderData('invoice'), true),
-                'invoice_order_total' => json_decode($this->orderData('order_total'), true),
+                'invoice_id' => $this->data('id'),
+                'invoice_email' => $this->data('email'),
+                'invoice_date_purchased' => Settings::dateLocale($this->data('date_purchased')),
+                'invoice_customer_data' => json_decode($this->data('customer_data'), true),
+                'invoice_customer_address_book' => json_decode(json_decode($this->data('customer_data'), true)['address_book'], true),
+                'invoice_data' => json_decode($this->data('invoice'), true),
+                'invoice_order_total' => json_decode($this->data('order_total'), true),
                 'invoice_title' => lang('blanks_invoice_title'),
                 'invoice_to' => lang('blanks_invoice_to'),
                 'invoice_name' => lang('blanks_invoice_name'),
