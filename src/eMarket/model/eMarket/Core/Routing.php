@@ -51,21 +51,6 @@ class Routing {
     }
 
     /**
-     * Template routing for install
-     *
-     * @return string $str (routing)
-     */
-    public static function install(): string {
-
-        if (Valid::inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/' . Valid::inGET('route') . '.php');
-        } else {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/index.php');
-        }
-        return $str;
-    }
-
-    /**
      * Controller routing
      *
      * @return string url
@@ -101,6 +86,10 @@ class Routing {
 
         if (Settings::path() == 'admin') {
             $default = 'dashboard';
+        }
+
+        if (Settings::path() == 'install') {
+            $default = 'index';
         }
 
         if (Valid::inGET('route_file') != '') {
