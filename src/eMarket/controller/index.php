@@ -25,8 +25,8 @@ use eMarket\Core\{
     Tree
 };
 
-// Load Debug time
-Debug::$time_start = $eMarketDebugStopwatch;
+// Load Debug stopwatch
+Debug::$debug_stopwatch = $eMarketDebugStopwatch;
 
 // Autoload for function
 foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/library/php/functions/') as $path) {

@@ -24,7 +24,7 @@ use eMarket\Core\{
  */
 class Debug {
 
-    public static $time_start;
+    public static $debug_stopwatch;
 
     /**
      * Array displaying when debugging
@@ -50,7 +50,7 @@ class Debug {
         if ($val == 1) {
             $tend = microtime(true);
 
-            $totaltime = round(($tend - self::$time_start), 2);
+            $totaltime = round(($tend - self::$debug_stopwatch), 2);
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
             echo lang('debug_db_queries') . " " . Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
