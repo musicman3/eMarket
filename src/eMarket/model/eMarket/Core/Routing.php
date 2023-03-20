@@ -93,41 +93,41 @@ class Routing {
     public function page(): ?string {
 
         if (Settings::path() == 'catalog') {
-            $routing_parameter = 'catalog';
+            $routing_parameter_type = 'catalog';
             $class_path = 'Catalog';
         }
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
-            $routing_parameter = 'dashboard';
+            $routing_parameter_type = 'dashboard';
             $class_path = 'Admin';
         }
 
         if (Settings::path() == 'install') {
-            $routing_parameter = 'index';
+            $routing_parameter_type = 'index';
             $class_path = 'Install';
         }
 
         if (Settings::path() == 'blanks') {
-            $routing_parameter = 'blanks';
+            $routing_parameter_type = 'blanks';
             $class_path = 'Blanks';
         }
 
         if (Settings::path() == 'uploads') {
-            $routing_parameter = 'uploads';
+            $routing_parameter_type = 'uploads';
             $class_path = 'Uploads';
         }
 
         if (Settings::path() == 'JsonRpc') {
             $jsonrpc = new JsonRpc();
-            $routing_parameter = $jsonrpc->decodeGetData('method');
+            $routing_parameter_type = $jsonrpc->decodeGetData('method');
             $class_path = 'JsonRpc';
         }
 
         if (Valid::inGET('route') != '') {
             $output = $this->routingMap()[Valid::inGET('route')];
         } else {
-            $output = $this->routingMap()[$routing_parameter];
+            $output = $this->routingMap()[$routing_parameter_type];
         }
 
         return Func::outputDataFiltering('eMarket\\' . $class_path . '\\' . $output);
