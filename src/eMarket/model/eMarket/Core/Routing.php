@@ -297,6 +297,10 @@ class Routing {
             return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/constructor.php';
         }
 
+        if (Settings::path() == 'catalog' && Valid::inGET('route') == 'callback') {
+            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/pages/callback/index.php';
+        }
+
         if (Settings::path() == 'install') {
             return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/constructor.php';
         }
