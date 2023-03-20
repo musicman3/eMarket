@@ -195,7 +195,7 @@ class Routing {
      * JS Handler routing
      *
      */
-    public static function jsHandler(): void {
+    public function jsHandler(): void {
 
         if (Settings::path() == 'admin') {
             if (Valid::inGET('route')) {
@@ -250,6 +250,32 @@ class Routing {
                 self::$js_modules_handler = $path;
             }
         }
+    }
+
+    /**
+     * Constructor routing
+     *
+     * @return string (constructor routing string)
+     */
+    public function constructor(): string|bool {
+
+        if (Settings::path() == 'admin') {
+            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/admin/constructor.php';
+        }
+
+        if (Settings::path() == 'blanks') {
+            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/blanks/' . Valid::inGET('blank') . '.php';
+        }
+
+        if (Settings::path() == 'catalog' && Valid::inGET('route') !== 'callback') {
+            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/constructor.php';
+        }
+
+        if (Settings::path() == 'install') {
+            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/constructor.php';
+        }
+
+        return false;
     }
 
 }
