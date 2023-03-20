@@ -20,6 +20,6 @@ namespace eMarket\Blanks;
  */
 class BlanksGate {
 
-    public static $routing_parameter = 'BlanksGate';
+    public static $routing_parameter = 'blanks';
 
 }

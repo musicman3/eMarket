@@ -109,8 +109,13 @@ class Routing {
         }
 
         if (Settings::path() == 'blanks') {
-            $routing_parameter = 'BlanksGate';
+            $routing_parameter = 'blanks';
             $class_path = 'Blanks';
+        }
+
+        if (Settings::path() == 'uploads') {
+            $routing_parameter = 'uploads';
+            $class_path = 'Uploads';
         }
 
         if (Settings::path() == 'JsonRpc') {

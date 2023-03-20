@@ -185,6 +185,8 @@ class Settings {
                 self::$path = 'install';
             } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/jsonrpc/')) {
                 self::$path = 'JsonRpc';
+            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'uploads/temp/')) {
+                self::$path = 'uploads';
             } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
                 self::$path = 'admin';
             } else {
