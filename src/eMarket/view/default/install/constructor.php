@@ -39,7 +39,7 @@ use eMarket\Core\{
         <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <?php
-        if (Routing::$js_handler != FALSE) {
+        if (Routing::$js_handler) {
             require_once(Routing::$js_handler . '/js.php');
         }
         ?>

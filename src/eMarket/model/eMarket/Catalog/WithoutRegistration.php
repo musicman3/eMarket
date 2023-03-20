@@ -26,6 +26,7 @@ use eMarket\Core\{
 class WithoutRegistration {
 
     public static $routing_parameter = 'without_registration';
+    public $title = 'title_without_registration_index';
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;

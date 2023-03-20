@@ -21,5 +21,6 @@ namespace eMarket\Admin;
 class Settings {
 
     public static $routing_parameter = 'settings';
+    public $title = 'title_settings_index';
 
 }

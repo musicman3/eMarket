@@ -37,6 +37,7 @@ use eMarket\Admin\{
 class Stock {
 
     public static $routing_parameter = 'stock';
+    public $title = 'title_stock_index';
     public static $json_data_category = FALSE;
     public static $json_data_product = FALSE;
     public static $resize_param = FALSE;

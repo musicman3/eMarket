@@ -30,6 +30,7 @@ use eMarket\Core\{
 class OrderStatus {
 
     public static $routing_parameter = 'settings/order_status';
+    public $title = 'title_settings_order_status_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;

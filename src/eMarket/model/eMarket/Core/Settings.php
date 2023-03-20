@@ -27,12 +27,21 @@ use eMarket\Core\{
  */
 class Settings {
 
+    private static $emarket = FALSE;
     private static $default_currency = FALSE;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
     public static $session_expr_time = FALSE;
     public static $path = FALSE;
+
+    /**
+     * Load page object
+     *
+     */
+    public static function loadPage(object $eMarket): void {
+        self::$emarket = $eMarket;
+    }
 
     /**
      * Name of current template
@@ -218,24 +227,15 @@ class Settings {
     }
 
     /**
-     * Tittles generator
+     * Titles generator
      *
      * @return string
      */
     public static function titlePageGenerator(): string {
-
-        if (self::path() == 'install') {
-            $title = lang('title_' . self::titleDir());
-            return $title;
+        if (isset(self::$emarket->title)) {
+            return lang(self::$emarket->title);
         }
-
-        if (Valid::inGET('route') == 'settings/modules/edit') {
-            $title = lang('modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_name');
-            return $title;
-        }
-        $title = lang('title_' . self::titleDir() . '_index');
-
-        return $title;
+        return '';
     }
 
     /**
@@ -277,49 +277,6 @@ class Settings {
 
             return $output;
         }
-    }
-
-    /**
-     * Section name in catalog
-     *
-     * @param string $marker Marker
-     * @return mixed
-     */
-    public static function titleCatalog(?string $marker = null): mixed {
-
-        if ($marker == 'false') {
-            $sign = '';
-        }
-        if ($marker == null) {
-            $sign = ': ';
-        }
-
-        $route = Valid::inGET('route');
-
-        if (is_bool($route) || is_null($route)) {
-            $route = '';
-        }
-
-        $title = $sign . lang('title_' . basename($route) . '_index');
-
-        if (basename($route) == '' && self::path() == 'catalog' OR basename($route) == 'catalog' && self::path() == 'catalog') {
-            $title = '';
-        }
-
-        if (basename($route) == 'listing' && self::path() == 'catalog') {
-            $title = $sign . Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
-        }
-
-        if (basename($route) == 'products' && self::path() == 'catalog') {
-            $product_data = Products::productData(Valid::inGET('id'));
-            if ($product_data ['tags'] != NULL && $product_data ['tags'] != '') {
-                $title = $sign . $product_data ['tags'];
-            } else {
-                $title = $sign . $product_data ['name'];
-            }
-        }
-
-        return lang('title_catalog_index') . $title;
     }
 
     /**

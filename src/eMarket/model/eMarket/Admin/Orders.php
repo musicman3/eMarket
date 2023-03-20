@@ -30,6 +30,7 @@ use eMarket\Admin\HeaderMenu;
 class Orders {
 
     public static $routing_parameter = 'orders';
+    public $title = 'title_orders_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $order_status = FALSE;

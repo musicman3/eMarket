@@ -29,6 +29,7 @@ use eMarket\Admin\HeaderMenu;
 class Customers {
 
     public static $routing_parameter = 'customers';
+    public $title = 'title_customers_index';
     public static int $status = 0;
     public static $json_data = FALSE;
 

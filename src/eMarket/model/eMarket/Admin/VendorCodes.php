@@ -30,6 +30,7 @@ use eMarket\Core\{
 class VendorCodes {
 
     public static $routing_parameter = 'settings/vendor_codes';
+    public $title = 'title_settings_vendor_codes_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;

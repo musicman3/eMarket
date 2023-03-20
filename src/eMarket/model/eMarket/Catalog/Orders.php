@@ -27,6 +27,7 @@ use eMarket\Core\{
 class Orders {
 
     public static $routing_parameter = 'orders';
+    public $title = 'title_orders_index';
     public static $lines;
     public static $orders_edit = FALSE;
 

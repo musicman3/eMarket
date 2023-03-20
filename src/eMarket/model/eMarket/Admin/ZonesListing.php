@@ -29,6 +29,7 @@ use eMarket\Core\{
 class ZonesListing {
 
     public static $routing_parameter = 'settings/zones/listing';
+    public $title = 'title_settings_zones_listing_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones_id = FALSE;

@@ -31,6 +31,7 @@ use eMarket\Admin\HeaderMenu;
 class BasicSettings {
 
     public static $routing_parameter = 'settings/basic_settings';
+    public $title = 'title_settings_basic_settings_index';
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $debug = FALSE;

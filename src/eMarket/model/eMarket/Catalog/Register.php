@@ -30,6 +30,7 @@ use eMarket\Core\{
 class Register {
 
     public static $routing_parameter = 'register';
+    public $title = 'title_register_index';
     public static $user_email = FALSE;
 
     /**

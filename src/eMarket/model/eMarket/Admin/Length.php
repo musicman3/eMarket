@@ -30,6 +30,7 @@ use eMarket\Core\{
 class Length {
 
     public static $routing_parameter = 'settings/length';
+    public $title = 'title_settings_length_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;

@@ -32,6 +32,7 @@ use eMarket\Core\{
 class Cart {
 
     public static $routing_parameter = 'cart';
+    public $title = 'title_cart_index';
     public static $cart_info = FALSE;
     public static $address_data = FALSE;
     public static $products_order = FALSE;

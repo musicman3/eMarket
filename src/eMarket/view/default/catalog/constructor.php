@@ -27,7 +27,7 @@ use eMarket\Core\{
         <meta name="keywords" content="<?php echo Settings::keywordsCatalog() ?>">
         <meta name="description" content="">
 
-        <title><?php echo Settings::titleCatalog() ?></title>
+        <title><?php echo Settings::titlePageGenerator() ?></title>
 
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
@@ -132,10 +132,10 @@ use eMarket\Core\{
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
 
-        if (Routing::$js_handler != FALSE) {
+        if (Routing::$js_handler) {
             require_once(Routing::$js_handler . '/js.php');
         }
-        if (Routing::$js_modules_handler != FALSE) {
+        if (Routing::$js_modules_handler) {
             require_once(Routing::$js_modules_handler . '/js.php');
         }
 

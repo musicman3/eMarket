@@ -28,6 +28,7 @@ use eMarket\Core\{
 class MyAccount {
 
     public static $routing_parameter = 'my_account';
+    public $title = 'title_my_account_index';
 
     /**
      * Constructor

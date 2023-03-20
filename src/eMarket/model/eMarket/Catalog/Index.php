@@ -21,5 +21,6 @@ namespace eMarket\Catalog;
 class Index {
 
     public static $routing_parameter = 'catalog';
+    public $title = 'title_catalog_index';
 
 }

@@ -27,6 +27,7 @@ use eMarket\Core\{
 class Checkout {
 
     public static $routing_parameter = 'checkout';
+    public $title = 'title_checkout_index';
     public static $customer;
     public static $address_data;
 

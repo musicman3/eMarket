@@ -27,6 +27,7 @@ use eMarket\Core\{
 class Success {
 
     public static $routing_parameter = 'success';
+    public $title = 'title_success';
     public static $lng;
     public static $root;
     public static $login_admin;

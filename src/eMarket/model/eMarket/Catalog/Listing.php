@@ -42,9 +42,19 @@ class Listing {
      *
      */
     function __construct() {
+        $this->title();
         $this->initData();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Title
+     *
+     */
+    private function title(): void {
+        $title = Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
+        $this->title = lang('title_listing_index') . ': ' . $title;
     }
 
     /**

@@ -30,6 +30,7 @@ use eMarket\Core\{
 class Currencies {
 
     public static $routing_parameter = 'settings/currencies';
+    public $title = 'title_settings_currencies_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;

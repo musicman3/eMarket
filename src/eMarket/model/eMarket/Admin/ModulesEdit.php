@@ -26,6 +26,7 @@ use eMarket\Core\{
 class ModulesEdit {
 
     public static $routing_parameter = 'settings/modules/edit';
+    public $title;
     public static string $switch_active = '';
 
     /**
@@ -33,7 +34,16 @@ class ModulesEdit {
      *
      */
     function __construct() {
+        $this->title();
         $this->switchActive();
+    }
+
+    /**
+     * Title
+     *
+     */
+    function title() {
+        $this->title = 'modules_' . Valid::inGET('type') . '_' . Valid::inGET('name') . '_name';
     }
 
     /**

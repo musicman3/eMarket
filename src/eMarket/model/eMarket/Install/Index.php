@@ -24,6 +24,7 @@ use eMarket\Core\{
 class Index {
 
     public static $routing_parameter = 'index';
+    public $title = 'title_install';
     public static $default_language;
 
     /**

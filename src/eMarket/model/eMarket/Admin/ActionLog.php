@@ -28,6 +28,7 @@ use eMarket\Admin\HeaderMenu;
 class ActionLog {
 
     public static $routing_parameter = 'action_log';
+    public $title = 'title_action_log_index';
 
     /**
      * Constructor

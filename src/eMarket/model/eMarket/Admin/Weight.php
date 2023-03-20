@@ -30,6 +30,7 @@ use eMarket\Core\{
 class Weight {
 
     public static $routing_parameter = 'settings/weight';
+    public $title = 'title_settings_weight_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;

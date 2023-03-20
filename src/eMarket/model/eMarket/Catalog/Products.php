@@ -29,6 +29,7 @@ use eMarket\Core\{
 class Products {
 
     public static $routing_parameter = 'products';
+    public $title;
     public static $dimension_name;
     public static $dimensions = FALSE;
     public static $products = FALSE;
@@ -46,6 +47,7 @@ class Products {
      *
      */
     function __construct() {
+        $this->title();
         $this->data();
         $this->dimensions();
         $this->manufacturer();
@@ -54,6 +56,20 @@ class Products {
         $this->images();
         $this->attributes();
         $this->tabs();
+    }
+
+    /**
+     * Title
+     *
+     */
+    private function title(): void {
+        $product_data = ProductsCore::productData(Valid::inGET('id'));
+        if ($product_data['tags'] != NULL && $product_data['tags'] != '') {
+            $title = $product_data['tags'];
+        } else {
+            $title = $product_data['name'];
+        }
+        $this->title = lang('title_products_index') . ': ' . $title;
     }
 
     /**
