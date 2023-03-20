@@ -53,7 +53,6 @@ new Lang();
 
 // Routing
 $eMarketRouting = new Routing();
-$eMarketRouting->jsHandler();
 $eMarketPage = $eMarketRouting->page();
 $eMarket = new $eMarketPage();
 

@@ -36,6 +36,14 @@ class Routing {
     public static $js_modules_handler = FALSE;
 
     /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        $this->jsHandler();
+    }
+
+    /**
      * Routing Map
      *
      */
@@ -195,7 +203,7 @@ class Routing {
      * JS Handler routing
      *
      */
-    public function jsHandler(): void {
+    private function jsHandler(): void {
 
         if (Settings::path() == 'admin') {
             if (Valid::inGET('route')) {
