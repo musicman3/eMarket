@@ -196,37 +196,6 @@ class Settings {
     }
 
     /**
-     * Current directory
-     *
-     * @return mixed
-     */
-    public static function titleDir(): mixed {
-
-        $route = Valid::inGET('route');
-
-        if (is_bool($route) || is_null($route)) {
-            $route = '';
-        }
-
-        $title_dir = str_replace('/', '_', $route);
-        if (Valid::inGET('route_file') != '') {
-            $title_dir = $title_dir . '_page_' . Valid::inGET('route_file');
-        }
-
-        if ($title_dir == '' && self::path() == 'catalog') {
-            $title_dir = 'catalog';
-        }
-        if ($title_dir == '' && self::path() == 'admin') {
-            $title_dir = 'dashboard';
-        }
-        if ($title_dir == '' && self::path() == 'install') {
-            $title_dir = 'install';
-        }
-
-        return $title_dir;
-    }
-
-    /**
      * Titles generator
      *
      * @return string

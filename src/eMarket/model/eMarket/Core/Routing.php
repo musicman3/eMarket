@@ -44,6 +44,29 @@ class Routing {
     }
 
     /**
+     * Routing path
+     *
+     * @return string $page (routing path)
+     */
+    public static function routingPath(): string {
+
+        if (Settings::path() == 'catalog') {
+            $page = 'catalog';
+        }
+        if (Settings::path() == 'admin') {
+            $page = 'dashboard';
+        }
+        if (Settings::path() == 'install') {
+            $page = 'index';
+        }
+        if (Valid::inGET('route')) {
+            $page = Valid::inGET('route');
+        }
+
+        return $page;
+    }
+
+    /**
      * Routing Map
      *
      */
@@ -112,15 +135,7 @@ class Routing {
      */
     public static function template(): string|bool {
 
-        $default = 'catalog';
-
-        if (Settings::path() == 'admin') {
-            $default = 'dashboard';
-        }
-
-        if (Settings::path() == 'install') {
-            $default = 'index';
-        }
+        $default = self::routingPath();
 
         if (Valid::inGET('route_file') != '') {
             $page = Valid::inGET('route_file') . '.php';
@@ -130,11 +145,7 @@ class Routing {
             $page = 'index.php';
         }
 
-        if (Valid::inGET('route') != '') {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . Valid::inGET('route') . '/' . $page);
-        } else {
-            $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $default . '/index.php');
-        }
+        $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $default . '/' . $page);
 
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);
@@ -167,8 +178,10 @@ class Routing {
      */
     public static function tlpc(string $position, ?string $count = null): int|string|array {
 
+        $page = self::routingPath();
+
         $array_pos_value = Pdo::getIndex("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
-                    Settings::path(), Settings::titleDir(), Settings::template()
+                    Settings::path(), $page, Settings::template()
         ]);
 
         if (count($array_pos_value) > 0) {
