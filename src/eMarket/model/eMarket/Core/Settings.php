@@ -42,7 +42,7 @@ class Settings {
      *
      */
     public static function init(): void {
-        $ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/controller/settings.cfg', TRUE, INI_SCANNER_RAW);
+        $ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/storage/configure/settings.cfg', TRUE, INI_SCANNER_RAW);
         self::$path = $ini['path'];
         self::$lang = $ini['lang'];
         self::$default_page = $ini['default_page'];
