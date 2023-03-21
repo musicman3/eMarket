@@ -50,7 +50,7 @@ class Routing {
      */
     public static function routingPath(): string {
 
-        $page = Settings::$basic_page[Settings::path()];
+        $page = Settings::$default_page[Settings::path()];
 
         if (Valid::inGET('route')) {
             $page = Valid::inGET('route');
@@ -92,18 +92,13 @@ class Routing {
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
-            $default_routing_parameter = 'dashboard';
+            $default_routing_parameter = Settings::defaultPage();
             $class_path = 'Admin';
         }
 
         if (Settings::path() == 'install') {
             $default_routing_parameter = 'index';
             $class_path = 'Install';
-        }
-
-        if (Settings::path() == 'blanks') {
-            $default_routing_parameter = 'blanks';
-            $class_path = 'Blanks';
         }
 
         if (Settings::path() == 'uploads') {
@@ -220,7 +215,7 @@ class Routing {
             if (Valid::inGET('route')) {
                 $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/' . Valid::inGET('route');
             } else {
-                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/dashboard';
+                $path = getenv('DOCUMENT_ROOT') . '/js_handler/' . Settings::path() . '/pages/' . Settings::defaultPage();
             }
             if (file_exists($path . '/js.php')) {
                 self::$js_handler = $path;
@@ -282,7 +277,7 @@ class Routing {
             return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/admin/constructor.php';
         }
 
-        if (Settings::path() == 'blanks') {
+        if (Settings::path() == 'uploads' && Valid::inGET('blank')) {
             return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/blanks/' . Valid::inGET('blank') . '.php';
         }
 

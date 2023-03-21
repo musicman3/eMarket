@@ -109,7 +109,7 @@ class Invoice extends JsonRpc {
                 'invoice_notice' => lang('blanks_invoice_notice'),
                 'invoice_notice_text' => lang('blanks_invoice_notice_text'),
             ];
-            $html = $this->curl($data, HTTP_SERVER . 'controller/blanks/?blank=invoice');
+            $html = $this->curl($data, HTTP_SERVER . 'uploads/temp/?blank=invoice');
             return $html;
         } else {
             return FALSE;

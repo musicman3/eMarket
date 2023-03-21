@@ -15,6 +15,7 @@ use eMarket\Core\{
     Messages,
     Pages,
     Pdo,
+    Settings,
     Valid
 };
 use eMarket\Admin\HeaderMenu;
@@ -68,13 +69,13 @@ class StaffManager {
         }
         $dashboard_count = 0;
         foreach ($permission as $value) {
-            if ($value == '?route=dashboard') {
+            if ($value == '?route=' . Settings::defaultPage()) {
                 $dashboard_count++;
             }
         }
 
         if ($dashboard_count == 0) {
-            array_push($permission, '?route=dashboard');
+            array_push($permission, '?route=' . Settings::defaultPage());
         }
         return $permission;
     }
@@ -199,7 +200,7 @@ class StaffManager {
      * @return string Bootstrap class
      */
     public static function permissionClass(?string $input): string {
-        if ($input == '?route=dashboard') {
+        if ($input == '?route=' . Settings::defaultPage()) {
             return ' selected disabled';
         }
         return '';

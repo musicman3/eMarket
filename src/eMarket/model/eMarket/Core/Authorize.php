@@ -39,8 +39,8 @@ class Authorize {
     public function __construct() {
         $exceptions = FALSE;
 
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/blanks/')) {
-            $exceptions = 'blanks';
+        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'uploads/temp/')) {
+            $exceptions = 'uploads';
         }
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login' && !$exceptions) {
@@ -136,7 +136,7 @@ class Authorize {
                 $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), true);
                 $count = 0;
                 foreach ($staff_data as $value) {
-                    if ($value == '?route=dashboard') {
+                    if ($value == '?route=' . Settings::defaultPage()) {
                         $count++;
                     }
                 }

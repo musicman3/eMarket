@@ -30,7 +30,7 @@ class Settings {
     private static $emarket = FALSE;
     public static $path;
     public static $lang;
-    public static $basic_page;
+    public static $default_page;
     private static $default_currency = FALSE;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
@@ -45,7 +45,7 @@ class Settings {
         $ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/controller/settings.cfg', TRUE, INI_SCANNER_RAW);
         self::$path = $ini['path'];
         self::$lang = $ini['lang'];
-        self::$basic_page = $ini['basic_page'];
+        self::$default_page = $ini['default_page'];
     }
 
     /**
@@ -54,7 +54,7 @@ class Settings {
      * @return string (Default page)
      */
     public static function defaultPage(): string {
-        return self::$basic_page[self::path()];
+        return self::$default_page[self::path()];
     }
 
     /**
@@ -329,7 +329,7 @@ class Settings {
         if (Valid::inSERVER('REQUEST_URI') == '/') {
             self::$lang_currency_path = HTTP_SERVER . '?route=catalog';
         } elseif (Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
-            self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=dashboard';
+            self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=' . self::defaultPage();
         } elseif (Valid::inSERVER('REQUEST_URI') == '/?route=checkout') {
             self::$lang_currency_path = HTTP_SERVER . '?route=cart';
         } else {
