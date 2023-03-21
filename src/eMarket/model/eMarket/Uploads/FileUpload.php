@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Uploads;
 
 /**
- * FileUploads class
+ * FileUpload class
  *
  * @package Uploads
  * @author eMarket Team
@@ -18,7 +18,7 @@ namespace eMarket\Uploads;
  * @license GNU GPL v.3.0
  * 
  */
-class FileUploads {
+class FileUpload {
 
     public static $routing_parameter = 'uploads';
 
