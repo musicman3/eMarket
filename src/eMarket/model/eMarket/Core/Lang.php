@@ -61,10 +61,7 @@ final class Lang {
      */
     public static function path(): string {
 
-        if (Settings::path() == 'blanks' || Settings::path() == 'JsonRpc' || Settings::path() == 'uploads') {
-            return 'admin';
-        }
-        return Settings::path();
+        return Settings::$lang[Settings::path()];
     }
 
     /**

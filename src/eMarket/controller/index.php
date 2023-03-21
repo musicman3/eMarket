@@ -28,6 +28,9 @@ use eMarket\Core\{
 // Load Debug stopwatch
 Debug::$debug_stopwatch = $eMarketDebugStopwatch;
 
+// Settings init
+Settings::init();
+
 // Autoload for function
 foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/library/php/functions/') as $path) {
     require_once($path);
@@ -45,6 +48,7 @@ Messages::monologErrorHandler();
 if (Settings::path() != 'install') {
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
 }
+
 // Load Autorize
 new Authorize();
 

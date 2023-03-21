@@ -50,15 +50,8 @@ class Routing {
      */
     public static function routingPath(): string {
 
-        if (Settings::path() == 'catalog') {
-            $page = 'catalog';
-        }
-        if (Settings::path() == 'admin') {
-            $page = 'dashboard';
-        }
-        if (Settings::path() == 'install') {
-            $page = 'index';
-        }
+        $page = Settings::$basic_page[Settings::path()];
+
         if (Valid::inGET('route')) {
             $page = Valid::inGET('route');
         }
@@ -93,41 +86,41 @@ class Routing {
     public function page(): ?string {
 
         if (Settings::path() == 'catalog') {
-            $routing_parameter_type = 'catalog';
+            $default_routing_parameter = 'catalog';
             $class_path = 'Catalog';
         }
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
-            $routing_parameter_type = 'dashboard';
+            $default_routing_parameter = 'dashboard';
             $class_path = 'Admin';
         }
 
         if (Settings::path() == 'install') {
-            $routing_parameter_type = 'index';
+            $default_routing_parameter = 'index';
             $class_path = 'Install';
         }
 
         if (Settings::path() == 'blanks') {
-            $routing_parameter_type = 'blanks';
+            $default_routing_parameter = 'blanks';
             $class_path = 'Blanks';
         }
 
         if (Settings::path() == 'uploads') {
-            $routing_parameter_type = 'uploads';
+            $default_routing_parameter = 'uploads';
             $class_path = 'Uploads';
         }
 
         if (Settings::path() == 'JsonRpc') {
             $jsonrpc = new JsonRpc();
-            $routing_parameter_type = $jsonrpc->decodeGetData('method');
+            $default_routing_parameter = $jsonrpc->decodeGetData('method');
             $class_path = 'JsonRpc';
         }
 
         if (Valid::inGET('route') != '') {
             $output = $this->routingMap()[Valid::inGET('route')];
         } else {
-            $output = $this->routingMap()[$routing_parameter_type];
+            $output = $this->routingMap()[$default_routing_parameter];
         }
 
         return Func::outputDataFiltering('eMarket\\' . $class_path . '\\' . $output);
@@ -140,7 +133,7 @@ class Routing {
      */
     public static function template(): string|bool {
 
-        $default = self::routingPath();
+        $page_dir = self::routingPath();
 
         if (Valid::inGET('route_file') != '') {
             $page = Valid::inGET('route_file') . '.php';
@@ -150,7 +143,7 @@ class Routing {
             $page = 'index.php';
         }
 
-        $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $default . '/' . $page);
+        $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $page_dir . '/' . $page);
 
         if (file_exists($str)) {
             return Func::outputDataFiltering($str);

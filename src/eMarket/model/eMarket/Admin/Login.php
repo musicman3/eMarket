@@ -69,7 +69,7 @@ class Login {
                 header('Location: ' . $session_page);
                 exit;
             } else {
-                header('Location: ?route=dashboard');
+                header('Location: ?route=' . Settings::defaultPage());
                 exit;
             }
         }
@@ -119,12 +119,12 @@ class Login {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
                     if ($session_page == '/controller/admin/') {
-                        $session_page = '?route=dashboard';
+                        $session_page = '?route=' . Settings::defaultPage();
                     }
                     header('Location: ' . $session_page);
                     exit;
                 } else {
-                    header('Location: ?route=dashboard');
+                    header('Location: ?route=' . Settings::defaultPage());
                     exit;
                 }
             }

@@ -28,12 +28,34 @@ use eMarket\Core\{
 class Settings {
 
     private static $emarket = FALSE;
+    public static $path;
+    public static $lang;
+    public static $basic_page;
     private static $default_currency = FALSE;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
     public static $currencies_data = FALSE;
     public static $session_expr_time = FALSE;
-    public static $path = FALSE;
+
+    /**
+     * Load page object
+     *
+     */
+    public static function init(): void {
+        $ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/controller/settings.cfg', TRUE, INI_SCANNER_RAW);
+        self::$path = $ini['path'];
+        self::$lang = $ini['lang'];
+        self::$basic_page = $ini['basic_page'];
+    }
+
+    /**
+     * Default page
+     *
+     * @return string (Default page)
+     */
+    public static function defaultPage(): string {
+        return self::$basic_page[self::path()];
+    }
 
     /**
      * Load page object
@@ -41,6 +63,22 @@ class Settings {
      */
     public static function loadPage(object $eMarket): void {
         self::$emarket = $eMarket;
+    }
+
+    /**
+     * Current branch (admin/catalog/install)
+     *
+     * @return string
+     */
+    public static function path(): string {
+
+        foreach (self::$path as $key => $value) {
+            if (strrpos(Valid::inSERVER('REQUEST_URI'), $key)) {
+                return $value;
+            }
+        }
+
+        return 'catalog';
     }
 
     /**
@@ -107,6 +145,16 @@ class Settings {
     }
 
     /**
+     * Primary language
+     *
+     * @return string
+     */
+    public static function primaryLanguage(): string {
+
+        return self::basicSettings('primary_language');
+    }
+
+    /**
      * Currency default
      *
      * @param string $language Language
@@ -169,32 +217,6 @@ class Settings {
         }
 
         return $path;
-    }
-
-    /**
-     * Current branch (admin/catalog/install)
-     *
-     * @return string
-     */
-    public static function path(): string {
-
-        if (self::$path == FALSE) {
-            if (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/blanks/')) {
-                self::$path = 'blanks';
-            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/install/')) {
-                self::$path = 'install';
-            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'services/jsonrpc/')) {
-                self::$path = 'JsonRpc';
-            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'uploads/temp/')) {
-                self::$path = 'uploads';
-            } elseif (strrpos(Valid::inSERVER('REQUEST_URI'), 'controller/admin/')) {
-                self::$path = 'admin';
-            } else {
-                self::$path = 'catalog';
-            }
-        }
-
-        return self::$path;
     }
 
     /**
@@ -277,47 +299,6 @@ class Settings {
     }
 
     /**
-     * Select view
-     *
-     * @param array $value Select array
-     * @param string|int $default Default sell name
-     * @param string|bool
-     */
-    public static function viewSelect(array $value, string|int $default): string|bool {
-
-        if ($value[$default] == 1) {
-            return 'selected';
-        }
-        return false;
-    }
-
-    /**
-     * IP address
-     *
-     * @return string $ipaddress
-     */
-    public static function ipAddress(): string {
-
-        $ipaddress = '';
-        if (getenv('HTTP_CLIENT_IP')) {
-            $ipaddress = getenv('HTTP_CLIENT_IP');
-        } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
-            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-        } elseif (getenv('HTTP_X_FORWARDED')) {
-            $ipaddress = getenv('HTTP_X_FORWARDED');
-        } elseif (getenv('HTTP_FORWARDED_FOR')) {
-            $ipaddress = getenv('HTTP_FORWARDED_FOR');
-        } elseif (getenv('HTTP_FORWARDED')) {
-            $ipaddress = getenv('HTTP_FORWARDED');
-        } elseif (getenv('REMOTE_ADDR')) {
-            $ipaddress = getenv('REMOTE_ADDR');
-        } else {
-            $ipaddress = 'UNKNOWN';
-        }
-        return $ipaddress;
-    }
-
-    /**
      * Breadcrumb data
      *
      * @param array $breadcrumb_array Input array
@@ -367,13 +348,65 @@ class Settings {
     }
 
     /**
-     * Primary language
-     *
-     * @return string
+     * Formatted date
+     * 
+     * @param mixed $date Date
+     * @param mixed $format Manual format
+     * @param string $language Language
+     * @return string|bool
      */
-    public static function primaryLanguage(): string {
+    public static function dateLocale(mixed $date, mixed $format = null, ?string $language = null): string|bool {
+        if ($date == NULL) {
+            return '';
+        }
 
-        return self::basicSettings('primary_language');
+        if ($format != null) {
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale', $language));
+            }
+            if ($language == null) {
+                setlocale(LC_ALL, lang('language_locale'));
+            }
+            $output = strftime($format, (int) date('U', strtotime($date)));
+            return $output;
+        } else {
+            if ($language != null) {
+                setlocale(LC_ALL, lang('language_locale', $language));
+            }
+            if ($language == null) {
+                setlocale(LC_ALL, lang('language_locale'));
+            }
+            $output = strftime('%x', (int) date('U', strtotime($date)));
+            return $output;
+        }
+
+        return FALSE;
+    }
+
+    /**
+     * IP address
+     *
+     * @return string $ipaddress
+     */
+    public static function ipAddress(): string {
+
+        $ipaddress = '';
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ipaddress = getenv('HTTP_CLIENT_IP');
+        } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif (getenv('HTTP_X_FORWARDED')) {
+            $ipaddress = getenv('HTTP_X_FORWARDED');
+        } elseif (getenv('HTTP_FORWARDED_FOR')) {
+            $ipaddress = getenv('HTTP_FORWARDED_FOR');
+        } elseif (getenv('HTTP_FORWARDED')) {
+            $ipaddress = getenv('HTTP_FORWARDED');
+        } elseif (getenv('REMOTE_ADDR')) {
+            $ipaddress = getenv('REMOTE_ADDR');
+        } else {
+            $ipaddress = 'UNKNOWN';
+        }
+        return $ipaddress;
     }
 
     /**
@@ -426,39 +459,18 @@ class Settings {
     }
 
     /**
-     * Formatted date
-     * 
-     * @param mixed $date Date
-     * @param mixed $format Manual format
-     * @param string $language Language
-     * @return string|bool
+     * Select view
+     *
+     * @param array $value Select array
+     * @param string|int $default Default sell name
+     * @param string|bool
      */
-    public static function dateLocale(mixed $date, mixed $format = null, ?string $language = null): string|bool {
-        if ($date == NULL) {
-            return '';
-        }
+    public static function viewSelect(array $value, string|int $default): string|bool {
 
-        if ($format != null) {
-            if ($language != null) {
-                setlocale(LC_ALL, lang('language_locale', $language));
-            }
-            if ($language == null) {
-                setlocale(LC_ALL, lang('language_locale'));
-            }
-            $output = strftime($format, (int) date('U', strtotime($date)));
-            return $output;
-        } else {
-            if ($language != null) {
-                setlocale(LC_ALL, lang('language_locale', $language));
-            }
-            if ($language == null) {
-                setlocale(LC_ALL, lang('language_locale'));
-            }
-            $output = strftime('%x', (int) date('U', strtotime($date)));
-            return $output;
+        if ($value[$default] == 1) {
+            return 'selected';
         }
-
-        return FALSE;
+        return false;
     }
 
     /**
