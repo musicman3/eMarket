@@ -10,11 +10,13 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Debug,
     Pdo,
     Settings,
     Func,
     JsonRpc,
     Modules,
+    Tree,
     Valid
 };
 use eMarket\Admin\{
@@ -273,27 +275,24 @@ class Routing {
      */
     public function constructor(): string|bool {
 
-        if (Settings::path() == 'admin') {
-            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/admin/constructor.php';
+        $constructor_list = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/eMarket/Constructor');
+
+        $constructor_data = [];
+        foreach ($constructor_list as $key => $val) {
+            $namespace = 'eMarket\Constructor\\' . pathinfo($val, PATHINFO_FILENAME);
+            if ($namespace::init()) {
+                $constructor_data[$namespace] = $namespace::init();
+            }
         }
 
-        if (Settings::path() == 'uploads' && Valid::inGET('blank')) {
-            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/blanks/' . Valid::inGET('blank') . '.php';
-        }
+        if (count($constructor_data) > 1) {
+            echo '<pre><b>Attention! Conflict inside the constructor. See data:</b></pre>';
 
-        if (Settings::path() == 'catalog' && Valid::inGET('route') !== 'callback') {
-            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/constructor.php';
+            Debug::trace($constructor_data);
+            return false;
+        } else {
+            return current($constructor_data);
         }
-
-        if (Settings::path() == 'catalog' && Valid::inGET('route') == 'callback') {
-            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/catalog/pages/callback/index.php';
-        }
-
-        if (Settings::path() == 'install') {
-            return getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/constructor.php';
-        }
-
-        return false;
     }
 
 }
