@@ -9,6 +9,12 @@ declare(strict_types=1);
 
 namespace eMarket\Catalog;
 
+use eMarket\Core\{
+    Products as ProductsCore,
+    Valid,
+    Settings as SettingsCore
+};
+
 /**
  * Index
  *
@@ -22,5 +28,31 @@ class Index {
 
     public static $routing_parameter = 'catalog';
     public $title = 'title_catalog_index';
+
+    /**
+     * Keywords
+     *
+     * @return mixed
+     */
+    public static function keywordsCatalog(): mixed {
+
+        $keywords = '';
+        $route = Valid::inGET('route');
+
+        if (is_bool($route) || is_null($route)) {
+            $route = '';
+        }
+
+        if (basename($route) == 'products' && SettingsCore::path() == 'catalog') {
+            $product_data = ProductsCore::productData(Valid::inGET('id'));
+            if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {
+                $keywords = $product_data ['keyword'];
+            } else {
+                $keywords = '';
+            }
+        }
+
+        return $keywords;
+    }
 
 }

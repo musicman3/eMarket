@@ -10,6 +10,9 @@ use eMarket\Core\{
     Settings,
     Routing
 };
+use eMarket\Catalog\{
+    Index
+};
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +27,7 @@ use eMarket\Core\{
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <meta name="keywords" content="<?php echo Settings::keywordsCatalog() ?>">
+        <meta name="keywords" content="<?php echo Index::keywordsCatalog() ?>">
         <meta name="description" content="">
 
         <title><?php echo Settings::titlePageGenerator() ?></title>

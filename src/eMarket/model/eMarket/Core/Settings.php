@@ -273,32 +273,6 @@ class Settings {
     }
 
     /**
-     * Keywords
-     *
-     * @return mixed
-     */
-    public static function keywordsCatalog(): mixed {
-
-        $keywords = '';
-        $route = Valid::inGET('route');
-
-        if (is_bool($route) || is_null($route)) {
-            $route = '';
-        }
-
-        if (basename($route) == 'products' && self::path() == 'catalog') {
-            $product_data = Products::productData(Valid::inGET('id'));
-            if ($product_data ['keyword'] != NULL && $product_data ['keyword'] != '') {
-                $keywords = $product_data ['keyword'];
-            } else {
-                $keywords = '';
-            }
-        }
-
-        return $keywords;
-    }
-
-    /**
      * Breadcrumb data
      *
      * @param array $breadcrumb_array Input array
