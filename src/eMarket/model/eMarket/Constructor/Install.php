@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Constructor;
 
 use eMarket\Core\{
+    ConstructorInterface,
     Settings
 };
 
@@ -22,7 +23,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class Install {
+class Install implements ConstructorInterface {
 
     /**
      * Init
