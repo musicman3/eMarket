@@ -30,7 +30,7 @@ class Products {
 
     public static $sticker_data = FALSE;
     public static $product_data = FALSE;
-    public static $category_data = FALSE;
+    public static $category_data = [];
     private static $manufacturer = FALSE;
     private static $vendor_codes = FALSE;
     private static $weight = FALSE;
@@ -90,7 +90,7 @@ class Products {
      */
     public static function categoryData(string|int $id, ?string $language = null): array {
 
-        if (self::$category_data == FALSE) {
+        if (count(self::$category_data) == 0) {
             if ($language == null) {
                 $language = lang('#lang_all')[0];
             }

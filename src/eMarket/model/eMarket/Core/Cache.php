@@ -28,9 +28,9 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 class Cache {
 
     public $cache_name = FALSE;
+    public $data = FALSE;
     public $cache_item = FALSE;
     public $cache_adapter = FALSE;
-    public $cache_data = FALSE;
     public $cache_status = FALSE;
     public $caching_time = FALSE;
 

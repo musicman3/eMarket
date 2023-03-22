@@ -341,7 +341,8 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $output = strftime($format, (int) date('U', strtotime($date)));
+            $format_date = new \DateTimeImmutable($date);
+            $output = $format_date->format('Y-m-d H:i:s');
             return $output;
         } else {
             if ($language != null) {
@@ -350,7 +351,8 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $output = strftime('%x', (int) date('U', strtotime($date)));
+            $format_date = new \DateTimeImmutable($date);
+            $output = $format_date->format('Y-m-d H:i:s');
             return $output;
         }
 

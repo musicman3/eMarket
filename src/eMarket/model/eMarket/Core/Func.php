@@ -328,6 +328,10 @@ class Func {
             return $data;
         }
 
+        if (is_int($data)) {
+            return str_ireplace($find, $replace, (string) $data);
+        }
+
         if (!is_array($data)) {
             return str_ireplace($find, $replace, $data);
         }
