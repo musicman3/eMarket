@@ -11,6 +11,7 @@ namespace eMarket\Core\Modules\Discount;
 
 use eMarket\Core\{
     Cache,
+    Clock\SystemClock,
     Eac,
     Ecb,
     Func,
@@ -161,8 +162,9 @@ class Sale {
         $input_price = Ecb::currencyPrice($input['price'], $currency);
 
         $INTERFACE = new Interfaces();
+        $clock = new SystemClock();
 
-        if (array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
+        if (is_array($discount_val) && array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
 
             $discount_out = [];
             $discount_names = [];
@@ -170,7 +172,7 @@ class Sale {
             foreach ($discount_val['sale'] as $val) {
                 $data = Pdo::getAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
                 if (count($data) > 0) {
-                    $this_time = time();
+                    $this_time = $clock->now()->format('U');
                     $date_start = $data['UNIX_TIMESTAMP (date_start)'];
                     $date_end = $data['UNIX_TIMESTAMP (date_end)'];
 
@@ -471,12 +473,13 @@ class Sale {
      */
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
+        $clock = new SystemClock();
 
         self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
 
-        self::$this_time = time();
+        self::$this_time = $clock->now()->format('U');
     }
 
     /**
