@@ -15,6 +15,7 @@
         "phpmailer/phpmailer": "^6.0",
         "monolog/monolog": "^2.2",
         "mpdf/mpdf": "^8.0",
-        "symfony/cache": "^5.4"
+        "symfony/cache": "^5.4",
+        "psr/clock" : "^1.0.0"
     }
 }

@@ -211,4 +211,31 @@ final class FuncTest extends TestCase {
         $this->assertCount(3, $result['prod']);
     }
 
+    /**
+     * deleteValueFromArray()
+     * 
+     */
+    public function testRemoveValueFromArrayLevel() {
+        $sample = [
+            'apple' => [
+                '0' => '17',
+                '1' => '2',
+                '2' => '6'],
+            'banana' => [
+                '0' => '4',
+                '1' => '6',
+                '2' => '7']
+        ];
+        $result = Func::removeValueFromArrayLevel('apple', '2', $sample);
+        $this->assertSame($result['apple'][0], '17');
+        $this->assertSame($result['apple'][1], '6');
+        $this->assertSame($result['banana'][0], '4');
+        $this->assertSame($result['banana'][1], '6');
+        $this->assertSame($result['banana'][2], '7');
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+        $this->assertCount(2, $result['apple']);
+        $this->assertCount(3, $result['banana']);
+    }
+
 }

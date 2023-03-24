@@ -454,11 +454,10 @@ class Sale {
             $discount_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
             foreach ($discount_id_array as $discount_id_arr) {
-                $discount_str_temp = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr]);
-                $discount_str_explode_temp = explode(',', $discount_str_temp);
-                $discount_str_explode = Func::deleteValInArray(Func::deleteEmptyInArray($discount_str_explode_temp), [Valid::inPOST('delete')]);
-                $discount_str_implode = implode(',', $discount_str_explode);
-                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [$discount_str_implode, $discount_id_arr]);
+                $discount_str_temp = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr['id']]);
+                $discount_str_explode_temp = json_decode($discount_str_temp, true);
+                $discount_str_explode = Func::removeValueFromArrayLevel('sale', Valid::inPOST('delete'), $discount_str_explode_temp);
+                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_str_explode), $discount_id_arr['id']]);
             }
 
             Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
@@ -500,7 +499,7 @@ class Sale {
                         $sale_value[$modal_id] = (float) $sql_modal['sale_value'];
                         $date_start[$modal_id] = $sql_modal['date_start'];
                         $date_end[$modal_id] = $sql_modal['date_end'];
-                        $default_set[$modal_id] = $sql_modal['default_set'];
+                        $default_set[$modal_id] = (int) $sql_modal['default_set'];
                     }
                 }
 

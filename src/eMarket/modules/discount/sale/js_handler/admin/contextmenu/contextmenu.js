@@ -28,20 +28,24 @@ class DiscountSale {
             }
         }
 
-        var discounts_options = '';
-        var discounts_view = 0;
-        for (key in discounts) {
-            discounts_options = discounts_options + '<option value="' + key + '">' + discounts[key] + '</option>';
-            if (key !== '' || key !== undefined) {
-                discounts_view++;
-            }
-        }
-
-        var discount_dafault = '';
+        var discount_default = '';
         for (var key in discounts_interface[4]) {
             var default_id = key.split('_');
             if (default_id[0] === 'sale') {
-                discount_dafault = default_id[1];
+                discount_default = default_id[1];
+            }
+        }
+
+        var discounts_options = '';
+        var discounts_view = 0;
+        for (key in discounts) {
+            var discounts_selected = '';
+            if (discount_default === key){
+                discounts_selected = ' selected';
+            }
+            discounts_options = discounts_options + '<option' + discounts_selected + ' value="' + key + '">' + discounts[key] +'</option>';
+            if (key !== '' || key !== undefined) {
+                discounts_view++;
             }
         }
 

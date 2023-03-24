@@ -10,9 +10,10 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Clock\SystemClock,
+    Clock\FrozenClock,
     Func,
     Pdo,
-    Products,
     Valid
 };
 
@@ -341,8 +342,8 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $format_date = new \DateTimeImmutable($date);
-            $output = $format_date->format('Y-m-d H:i:s');
+            $format_date = new SystemClock();
+            $output = $format_date->get($date)->format('d.m.Y H:m:sP');
             return $output;
         } else {
             if ($language != null) {
@@ -351,8 +352,8 @@ class Settings {
             if ($language == null) {
                 setlocale(LC_ALL, lang('language_locale'));
             }
-            $format_date = new \DateTimeImmutable($date);
-            $output = $format_date->format('Y-m-d H:i:s');
+            $format_date = new SystemClock();
+            $output = $format_date->get($date)->format('d.m.Y H:m:s');
             return $output;
         }
 

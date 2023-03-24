@@ -361,4 +361,21 @@ class Func {
         return $output;
     }
 
+    /**
+     * Remove Value from Array level
+     *
+     * @param string|int $key_search Key from one level
+     * @param string|int $value Search value from level
+     * @param array $array input array
+     * @return output array
+     */
+    public static function removeValueFromArrayLevel(string|int $key_search, string|int $value, array $array): array {
+        foreach ($array as $key => $val) {
+            if ($key == $key_search) {
+                $array[$key] = self::deleteValInArray($val, [$value]);
+            }
+        }
+        return $array;
+    }
+
 }

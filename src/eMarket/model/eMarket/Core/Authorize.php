@@ -12,7 +12,8 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Pdo,
     Settings,
-    Valid
+    Valid,
+    Clock\SystemClock
 };
 use \eMarket\Catalog\{
     Cart
@@ -159,8 +160,10 @@ class Authorize {
 
         $this->demoModeInit();
         $this->dashboardCheck();
+        $clock = new SystemClock();
+        $new_datestamp = $clock->now()->format('U');
 
-        if (isset($_SESSION['session_start']) && (time() - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
+        if (isset($_SESSION['session_start']) && ($new_datestamp - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
             unset($_SESSION['session_start']);
@@ -168,7 +171,7 @@ class Authorize {
             header('Location: ?route=login');
             exit;
         }
-        $_SESSION['session_start'] = time();
+        $_SESSION['session_start'] = $new_datestamp;
 
         if (!isset($_SESSION['login'])) {
             unset($_SESSION['login']);
@@ -194,19 +197,22 @@ class Authorize {
      */
     private function catalog(): bool {
 
+        $clock = new SystemClock();
+        $new_datestamp = $clock->now()->format('U');
+
         if (isset($_SESSION['customer_email'])) {
             $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
         } else {
             $customer_data['status'] = 0;
         }
 
-        if (isset($_SESSION['customer_session_start']) && (time() - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() || $customer_data['status'] == 0) {
+        if (isset($_SESSION['customer_session_start']) && ($new_datestamp - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() || $customer_data['status'] == 0) {
             unset($_SESSION['customer_password']);
             unset($_SESSION['customer_email']);
             unset($_SESSION['customer_session_start']);
             return FALSE;
         }
-        $_SESSION['customer_session_start'] = time();
+        $_SESSION['customer_session_start'] = $new_datestamp;
 
         if (!isset($_SESSION['customer_email'])) {
             self::$customer = FALSE;

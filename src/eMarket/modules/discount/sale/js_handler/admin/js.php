@@ -23,17 +23,16 @@
             var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
 
             for (var x = 0; x < json_data.name.length; x++) {
-                document.querySelector('#name_module_' + x).value = json_data['name'][x][modal_id];
+                document.querySelector('#name_module_' + x).value = json_data.name[x][modal_id];
             }
 
-            document.querySelector('#sale_value').value = json_data['value'][modal_id];
+            document.querySelector('#sale_value').value = json_data.value[modal_id];
             document.querySelector('#edit').value = modal_id;
             document.querySelector('#add').value = '';
 
             var start = json_data.start[modal_id];
             var end = json_data.end[modal_id];
             new SmartDatepicker(start, end);
-
             document.querySelector('#default_module').checked = json_data.default[modal_id];
         } else {
             document.querySelector('#edit').value = '';
