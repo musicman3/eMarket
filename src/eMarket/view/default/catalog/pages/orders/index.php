@@ -8,7 +8,6 @@ use eMarket\Core\{
     Clock\SystemClock,
     Messages,
     Pages,
-    Settings,
     Valid,
     Routing
 };
