@@ -19,13 +19,16 @@
   - Bootstrap 5
   - SQL + noSQL concept for query optimization (MySQL json fields)
   - Development in `error_reporting(-1)` mode (show all errors)
+
+### PHP Standards Recommendations Used: 
   - PSR-1 (Basic Coding Standard)
   - PSR-3 (Logger Interface)
   - PSR-4 (Autoloading Standard)
+  - PSR-5 (PHPDoc Standard)
   - PSR-6 (Caching Interface)
   - PSR-12 (Extended Coding Style Guide)
-  - PSR-5 (PHPDoc Standard)
   - PSR-19 (PHPDoc tags)
+  - PSR-20 (Clock)
 
 ---
 ### Installation  
