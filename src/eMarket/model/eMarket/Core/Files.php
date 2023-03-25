@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Func,
     Pdo,
     Tree,
@@ -38,7 +39,8 @@ class Files {
 
         self::imgThumbAndSize($resize_param);
 
-        $prefix = time() . '_';
+        $clock = new SystemClock();
+        $prefix = $clock->now()->format('U') . '_';
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
@@ -193,7 +195,8 @@ class Files {
 
         self::imgThumbAndSize($resize_param);
 
-        $prefix = time() . '_';
+        $clock = new SystemClock();
+        $prefix = $clock->now()->format('U') . '_';
 
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
