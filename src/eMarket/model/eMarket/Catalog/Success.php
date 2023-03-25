@@ -11,6 +11,7 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Cache,
+    Clock\SystemClock,
     Ecb,
     Interfaces,
     Func,
@@ -107,11 +108,11 @@ class Success {
             $orders_status_history_data = [[
             'admin' => [
                 'status' => $admin_orders_status_history,
-                'date' => Settings::dateLocale($date, '%c', self::$primary_language)
+                'date' => SystemClock::getDateTime($date, self::$primary_language)
             ],
             'customer' => [
                 'status' => self::$customer_orders_status_history,
-                'date' => Settings::dateLocale($date, '%c')
+                'date' => SystemClock::getDateTime($date)
             ]
             ]];
             self::$orders_status_history = json_encode($orders_status_history_data);

@@ -8,6 +8,8 @@
 language_name = Русский
 language_code = ru-RU
 language_locale = ru_RU.UTF-8
+localized_datetime_format = d.m.Y H:i:s
+localized_date_format = d.m.Y
 meta-language = ru
 currency_separator = .
 currency_group_separator = " "

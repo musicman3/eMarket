@@ -5,8 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Pages,
-    Settings,
     Valid
 };
 use eMarket\Core\Modules\Discount\Sale;
@@ -72,8 +72,8 @@ require_once('modal/index.php')
 
                     <td><?php echo Pages::$table['line']['name'] ?></td>
                     <td class="text-center"><?php echo Pages::$table['line']['sale_value'] ?></td>
-                    <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_start']); ?></td>
-                    <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_end']); ?></td>
+                    <td class="text-center"><?php echo SystemClock::getDate(Pages::$table['line']['date_start']); ?></td>
+                    <td class="text-center"><?php echo SystemClock::getDate(Pages::$table['line']['date_end']); ?></td>
                     <td class="text-center"><?php echo Sale::defaultText() ?></td>
                     <td>
                         <div class="gap-2 d-flex justify-content-end">

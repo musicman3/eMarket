@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Messages,
     Pages,
     Valid,
@@ -71,7 +72,7 @@ use eMarket\Core\{
                             <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line'][18]) ?> align-middle">
                                 <td><?php echo Pages::$table['line'][3] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line'][4] ?></td>
-                                <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line'][6]) ?></td>
+                                <td class="text-center"><?php echo SystemClock::getDateTime(Pages::$table['line'][6]) ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line'][11] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">

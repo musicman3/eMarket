@@ -8,6 +8,8 @@
 language_name = English
 language_code = en-GB
 language_locale = en_GB.UTF-8
+localized_datetime_format = Y-m-d H:i:s
+localized_date_format = Y-m-d
 meta-language = en
 currency_separator = ,
 currency_group_separator = " "

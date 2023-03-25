@@ -6,6 +6,7 @@
 
 use eMarket\Core\{
     Authorize,
+    Clock\SystemClock,
     Settings
 };
 use eMarket\Core\Modules\Tabs\Reviews;
@@ -113,7 +114,7 @@ use eMarket\Core\Modules\Tabs\Reviews;
                     <div class="card mt-2">
                         <div class="card-header container">
                             <div class="row">
-                                <div class="col-auto me-auto"><?php echo Settings::dateLocale($review['date_add']) ?>
+                                <div class="col-auto me-auto"><?php echo SystemClock::getDate($review['date_add']) ?>
                                     <?php
                                     for ($count = 0; $count < 5; $count++) {
                                         if ($count < $review['stars']) {

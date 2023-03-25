@@ -11,10 +11,10 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Cache,
+    Clock\SystemClock,
     Ecb,
     Interfaces,
-    Pdo,
-    Settings,
+    Pdo
 };
 
 /**
@@ -191,7 +191,7 @@ class Products {
     public static function inStock(?string $date_available, int|string $quantity): array {
         if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
             $date_available_marker = 'false';
-            $date_available_text = lang('product_in_stock_from') . ' ' . Settings::dateLocale($date_available);
+            $date_available_text = lang('product_in_stock_from') . ' ' . SystemClock::getDate($date_available);
         } elseif ($quantity != NULL && $quantity <= 0) {
             $date_available_text = lang('product_out_of_stock');
             $date_available_marker = 'true';

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Messages,
     Pages,
     Pdo,
@@ -62,6 +63,8 @@ class Orders {
     private function edit(): void {
         if (Valid::inPOST('edit')) {
 
+            $clock = new SystemClock();
+
             $primary_language = Settings::primaryLanguage();
 
             $order_data = Pdo::getAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
@@ -80,15 +83,15 @@ class Orders {
             $orders_status_history = json_decode($order_data['orders_status_history'], true);
 
             if ($orders_status_history[0]['admin']['status'] != $admin_status_history_select) {
-                $date = date("Y-m-d H:i:s");
+                $date = $clock->now()->format('Y-m-d H:i:s');
                 array_unshift($orders_status_history, [
                     'customer' => [
                         'status' => $customer_status_history_select,
-                        'date' => Settings::dateLocale($date, '%c', $customer_language)
+                        'date' => SystemClock::getDateTime($date, $customer_language)
                     ],
                     'admin' => [
                         'status' => $admin_status_history_select,
-                        'date' => Settings::dateLocale($date, '%c', $primary_language)
+                        'date' => SystemClock::getDateTime($date, $primary_language)
                 ]]);
 
                 Pdo::action("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [
@@ -155,7 +158,7 @@ class Orders {
 
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {
-                        $sql_modal['date_purchased'] = Settings::dateLocale($sql_modal['date_purchased'], '%c');
+                        $sql_modal['date_purchased'] = SystemClock::getDateTime($sql_modal['date_purchased']);
                         $orders[$modal_id] = $sql_modal;
                     }
                 }

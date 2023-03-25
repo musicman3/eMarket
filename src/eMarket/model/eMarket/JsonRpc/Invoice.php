@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     JsonRpc,
     Pdo,
     Settings
@@ -83,7 +84,7 @@ class Invoice extends JsonRpc {
             $data = [
                 'invoice_id' => $this->data('id'),
                 'invoice_email' => $this->data('email'),
-                'invoice_date_purchased' => Settings::dateLocale($this->data('date_purchased')),
+                'invoice_date_purchased' => SystemClock::getDate($this->data('date_purchased')),
                 'invoice_customer_data' => json_decode($this->data('customer_data'), true),
                 'invoice_customer_address_book' => json_decode(json_decode($this->data('customer_data'), true)['address_book'], true),
                 'invoice_data' => json_decode($this->data('invoice'), true),

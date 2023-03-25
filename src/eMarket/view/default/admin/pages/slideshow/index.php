@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Lang,
     Messages,
     Pages,
@@ -91,8 +92,8 @@ require_once('modal/index.php')
                                             <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" /></td>
                                             <td class="text-center"><?php echo count(json_decode(Pages::$table['line']['logo'])) ?></td>
                                             <td class="text-center"><?php echo Pages::$table['line']['name'] ?></td>
-                                            <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_start']); ?></td>
-                                            <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_finish']); ?></td>
+                                            <td class="text-center"><?php echo SystemClock::getDate(Pages::$table['line']['date_start']); ?></td>
+                                            <td class="text-center"><?php echo SystemClock::getDate(Pages::$table['line']['date_finish']); ?></td>
                                             <td>
                                                 <div class="gap-2 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>

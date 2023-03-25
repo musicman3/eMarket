@@ -63,4 +63,49 @@ final class SystemClock implements ClockInterface {
         return new DateTimeImmutable($date, $this->timezone);
     }
 
+    /**
+     * Get formating localized date
+     * 
+     * @param string $date Date with DateTimeImmutable format
+     * @param string $language language
+     * @return string formating localized date
+     *
+     */
+    public static function getDateTime(?string $date, ?string $language = null): string {
+
+        if ($date == null) {
+            return '';
+        }
+        $clock = new SystemClock();
+        return $clock->get($date)->format(lang('localized_datetime_format', $language));
+    }
+
+    /**
+     * Get formating localized date
+     * 
+     * @param string $date Date with DateTimeImmutable format
+     * @param string $language language
+     * @return string formating localized date
+     *
+     */
+    public static function getDate(?string $date, ?string $language = null): string {
+
+        if ($date == null) {
+            return '';
+        }
+        $clock = new SystemClock();
+        return $clock->get($date)->format(lang('localized_date_format', $language));
+    }
+
+    /**
+     * Now SQL-formating datetime
+     * 
+     * @return string now SQL-formating datetime
+     *
+     */
+    public function nowSqlDateTime(): string {
+
+        return $this->now()->format('Y-m-d H:i:s');
+    }
+
 }

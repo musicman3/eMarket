@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Messages,
     JsonRpc,
     Pages,
@@ -81,8 +82,8 @@ require_once('modal/index.php')
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['customer_data'], true)['firstname'] . ' ' . json_decode(Pages::$table['line']['customer_data'], true)['lastname'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['email'] ?></td>
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['order_total'], true)['admin']['total_to_pay_format'] ?></td>
-                                <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['date_purchased'], '%c') ?></td>
-                                <td class="text-center"><?php echo Settings::dateLocale(Pages::$table['line']['last_modified'], '%c') ?></td>
+                                <td class="text-center"><?php echo SystemClock::getDateTime(Pages::$table['line']['date_purchased']) ?></td>
+                                <td class="text-center"><?php echo SystemClock::getDateTime(Pages::$table['line']['last_modified']) ?></td>
                                 <td class="text-center"><?php echo json_decode(Pages::$table['line']['orders_status_history'], true)[0]['admin']['status'] ?></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">

@@ -10,8 +10,6 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Clock\SystemClock,
-    Clock\FrozenClock,
     Func,
     Pdo,
     Valid
@@ -320,44 +318,6 @@ class Settings {
         }
 
         return self::$lang_currency_path;
-    }
-
-    /**
-     * Formatted date
-     * 
-     * @param mixed $date Date
-     * @param mixed $format Manual format
-     * @param string $language Language
-     * @return string|bool
-     */
-    public static function dateLocale(mixed $date, mixed $format = null, ?string $language = null): string|bool {
-        if ($date == NULL) {
-            return '';
-        }
-
-        if ($format != null) {
-            if ($language != null) {
-                setlocale(LC_ALL, lang('language_locale', $language));
-            }
-            if ($language == null) {
-                setlocale(LC_ALL, lang('language_locale'));
-            }
-            $format_date = new SystemClock();
-            $output = $format_date->get($date)->format('d-m-Y H:i:s');
-            return $output;
-        } else {
-            if ($language != null) {
-                setlocale(LC_ALL, lang('language_locale', $language));
-            }
-            if ($language == null) {
-                setlocale(LC_ALL, lang('language_locale'));
-            }
-            $format_date = new SystemClock();
-            $output = $format_date->get($date)->format('d-m-Y H:i:s');
-            return $output;
-        }
-
-        return FALSE;
     }
 
     /**
