@@ -66,7 +66,7 @@ use eMarket\Admin\BasicSettings;
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3"><?php echo lang('session_expr_time') ?> <span data-bs-toggle="tooltip" data-bs-placement="right" title="<?php echo lang('session_expr_time_help') ?>" class="bi-question-circle"></span></label>
                             <div class="col-md-9">
-                                <input type="text" name="session_expr_time" class="input-sm form-control" value="<?php echo Settings::sessionExprTime() ?>" required />
+                                <input type="text" name="session_expr_time" class="input-sm form-control" value="<?php echo Settings::adminSessionTime() ?>" required />
                             </div>
                         </div>
                         <div class="mb-3 row">

@@ -140,7 +140,7 @@ class Settings {
      *
      * @return int
      */
-    public static function sessionExprTime(): int {
+    public static function adminSessionTime(): int {
 
         return (int) self::basicSettings('session_expr_time');
     }

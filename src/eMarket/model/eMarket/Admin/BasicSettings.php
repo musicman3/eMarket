@@ -100,7 +100,7 @@ class BasicSettings {
     private function sessionExprTime(): void {
         if (Valid::inPOST('session_expr_time')) {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET session_expr_time=?", [Valid::inPOST('session_expr_time')]);
-            self::$session_expr_time = Settings::sessionExprTime();
+            self::$session_expr_time = Settings::adminSessionTime();
         }
     }
 

@@ -163,7 +163,7 @@ class Authorize {
         $clock = new SystemClock();
         $new_datestamp = $clock->now()->format('U');
 
-        if (isset($_SESSION['session_start']) && ($new_datestamp - $_SESSION['session_start']) / 60 > Settings::sessionExprTime()) {
+        if (isset($_SESSION['session_start']) && ($new_datestamp - $_SESSION['session_start']) / 60 > Settings::adminSessionTime()) {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);
             unset($_SESSION['session_start']);
@@ -206,7 +206,7 @@ class Authorize {
             $customer_data['status'] = 0;
         }
 
-        if (isset($_SESSION['customer_session_start']) && ($new_datestamp - $_SESSION['customer_session_start']) / 60 > Settings::sessionExprTime() || $customer_data['status'] == 0) {
+        if (isset($_SESSION['customer_session_start']) && ($new_datestamp - $_SESSION['customer_session_start']) / 60 > Settings::adminSessionTime() || $customer_data['status'] == 0) {
             unset($_SESSION['customer_password']);
             unset($_SESSION['customer_email']);
             unset($_SESSION['customer_session_start']);
