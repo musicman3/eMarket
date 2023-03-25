@@ -11,6 +11,7 @@ namespace eMarket\Core\Modules\Providers;
 
 use eMarket\Core\{
     Interfaces,
+    Interfaces\ProvidersModulesInterface,
     Messages,
     Modules,
     Pdo,
@@ -26,7 +27,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class Bulksms {
+final class Bulksms implements ProvidersModulesInterface {
 
     public static $data;
     public static $order_status;
@@ -53,12 +54,62 @@ class Bulksms {
     }
 
     /**
-     * Delete
+     * Uninstall
      *
      * @param array $module (input data)
      */
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
+    }
+
+    /**
+     * Load data
+     *
+     * @return array $interface (data)
+     */
+    public static function load(): void {
+
+        $INTERFACE = new Interfaces();
+
+        $interface = [
+            'chanel_module_name' => 'bulksms'
+        ];
+
+        $INTERFACE->save('providers', 'bulksms', $interface);
+    }
+
+    /**
+     * Save
+     *
+     */
+    public function save(): void {
+        if (Valid::inPOST('save')) {
+
+            $MODULE_DB = Modules::moduleDatabase();
+
+            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
+            if ($data == FALSE) {
+                Pdo::action("INSERT INTO " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
+            } else {
+                Pdo::action("UPDATE " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
+            }
+
+            Messages::alert('save_providers_bulksms', 'success', lang('action_completed_successfully'));
+            exit;
+        }
+    }
+
+    /**
+     * Data
+     *
+     */
+    public static function data(): void {
+        $data = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_bulksms', []);
+        if (count($data) > 0) {
+            self::$data = $data[0];
+        } else {
+            self::$data = ['login' => '', 'password' => '', 'sender' => ''];
+        }
     }
 
     /**
@@ -113,56 +164,6 @@ class Bulksms {
         $output['error'] = curl_error($ch);
         curl_close($ch);
         return $output;
-    }
-
-    /**
-     * Load data
-     *
-     * @return array $interface (data)
-     */
-    public static function load(): void {
-
-        $INTERFACE = new Interfaces();
-
-        $interface = [
-            'chanel_module_name' => 'bulksms'
-        ];
-
-        $INTERFACE->save('providers', 'bulksms', $interface);
-    }
-
-    /**
-     * Save
-     *
-     */
-    public function save(): void {
-        if (Valid::inPOST('save')) {
-
-            $MODULE_DB = Modules::moduleDatabase();
-
-            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
-            if ($data == FALSE) {
-                Pdo::action("INSERT INTO " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
-            } else {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
-            }
-
-            Messages::alert('save_providers_bulksms', 'success', lang('action_completed_successfully'));
-            exit;
-        }
-    }
-
-    /**
-     * Data
-     *
-     */
-    public static function data(): void {
-        $data = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_bulksms', []);
-        if (count($data) > 0) {
-            self::$data = $data[0];
-        } else {
-            self::$data = ['login' => '', 'password' => '', 'sender' => ''];
-        }
     }
 
 }

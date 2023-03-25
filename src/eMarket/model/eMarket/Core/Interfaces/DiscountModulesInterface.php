@@ -7,22 +7,28 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core;
+namespace eMarket\Core\Interfaces;
 
 /**
- * ConstructorInterface class
+ * DiscountModulesInterface class
  *
- * @package Core
+ * @package Core\Interfaces
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
  * 
  */
-interface ConstructorInterface {
+interface DiscountModulesInterface {
 
     /**
-     * Init
+     * Install
      *
      */
-    public static function init(): string|bool;
+    public static function install(array $module): void;
+
+    /**
+     * Uninstall
+     *
+     */
+    public static function uninstall(array $module): void;
 }

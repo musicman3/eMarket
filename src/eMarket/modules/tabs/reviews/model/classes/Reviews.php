@@ -12,6 +12,7 @@ namespace eMarket\Core\Modules\Tabs;
 use eMarket\Core\{
     Authorize,
     Interfaces,
+    Interfaces\TabsModulesInterface,
     Modules,
     Messages,
     Pdo,
@@ -30,7 +31,7 @@ use eMarket\Admin\HeaderMenu;
  * @license GNU GPL v.3.0
  * 
  */
-class Reviews {
+class Reviews implements TabsModulesInterface {
 
     public static $reviews = [];
     public static $reviews_count = 0;

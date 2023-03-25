@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Constructor;
 
 use eMarket\Core\{
-    ConstructorInterface,
+    Interfaces\ConstructorInterface,
     Settings,
     Valid
 };

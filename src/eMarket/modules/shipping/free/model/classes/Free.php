@@ -12,6 +12,7 @@ namespace eMarket\Core\Modules\Shipping;
 use eMarket\Core\{
     Ecb,
     Interfaces,
+    Interfaces\ShippingModulesInterface,
     Messages,
     Modules,
     Pages,
@@ -30,7 +31,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class Free {
+class Free implements ShippingModulesInterface {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

@@ -16,6 +16,7 @@ use eMarket\Core\{
     Ecb,
     Func,
     Interfaces,
+    Interfaces\DiscountModulesInterface,
     Lang,
     Messages,
     Modules,
@@ -34,7 +35,7 @@ use eMarket\Admin\HeaderMenu;
  * @license GNU GPL v.3.0
  * 
  */
-class Sale {
+class Sale implements DiscountModulesInterface {
 
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
@@ -65,6 +66,30 @@ class Sale {
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
+    }
+
+    /**
+     * Install
+     *
+     * @param array $module (input data)
+     */
+    public static function install(array $module): void {
+        Modules::install($module);
+    }
+
+    /**
+     * Delete
+     *
+     * @param array $module (input data)
+     */
+    public static function uninstall(array $module): void {
+        Modules::uninstall($module);
+        $products_data = Pdo::getAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+        foreach ($products_data as $data) {
+            $discounts = json_decode($data['discount'], true);
+            unset($discounts['sale']);
+            Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
+        }
     }
 
     /**
@@ -107,30 +132,6 @@ class Sale {
     public function endDate(): void {
         if (Valid::inPOST('end_date')) {
             $this->end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
-        }
-    }
-
-    /**
-     * Install
-     *
-     * @param array $module (input data)
-     */
-    public static function install(array $module): void {
-        Modules::install($module);
-    }
-
-    /**
-     * Delete
-     *
-     * @param array $module (input data)
-     */
-    public static function uninstall(array $module): void {
-        Modules::uninstall($module);
-        $products_data = Pdo::getAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
-        foreach ($products_data as $data) {
-            $discounts = json_decode($data['discount'], true);
-            unset($discounts['sale']);
-            Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
         }
     }
 

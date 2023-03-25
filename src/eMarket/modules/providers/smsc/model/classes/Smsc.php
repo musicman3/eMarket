@@ -11,6 +11,7 @@ namespace eMarket\Core\Modules\Providers;
 
 use eMarket\Core\{
     Interfaces,
+    Interfaces\ProvidersModulesInterface,
     Messages,
     Modules,
     Pdo,
@@ -26,7 +27,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class Smsc {
+final class Smsc implements ProvidersModulesInterface {
 
     public static $data;
     public static $order_status;
@@ -53,63 +54,12 @@ class Smsc {
     }
 
     /**
-     * Delete
+     * Uninstall
      *
      * @param array $module (input data)
      */
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
-    }
-
-    /**
-     * Send message to server
-     *
-     * @param string $to_phone_number ('To' phone_number)
-     * @param string $body (message)
-     */
-    public static function send(string $to_phone_number, string $body): void {
-        $username = self::$data['login'];
-        $password = self::$data['password'];
-        $sender = self::$data['sender'];
-        $messages = ['sender' => $sender, 'phones' => $to_phone_number, 'mes' => $body, 'login' => $username, 'psw' => $password];
-        $encoded = '';
-        foreach ($messages as $name => $value) {
-            $encoded .= urlencode($name) . '=' . urlencode($value) . '&';
-        }
-
-        $result = self::curl($encoded, 'https://smsc.ru/sys/send.php');
-        
-        if ($result['http_status'] != 201) {
-            echo 'error';
-        } else {
-            echo 'ok';
-        }
-    }
-
-    /**
-     * Curl 
-     *
-     * @param array $post_body (json post body)
-     * @param string $url (url)
-     */
-    public static function curl(array $post_body, string $url): void {
-        $ch = curl_init();
-        $headers = [
-            'Content-Type:application/x-www-form-urlencoded'
-        ];
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        $output = [];
-        $output['server_response'] = curl_exec($ch);
-        $curl_info = curl_getinfo($ch);
-        $output['http_status'] = $curl_info['http_code'];
-        $output['error'] = curl_error($ch);
-        curl_close($ch);
     }
 
     /**
@@ -160,6 +110,57 @@ class Smsc {
         } else {
             self::$data = ['login' => '', 'password' => '', 'sender' => ''];
         }
+    }
+
+    /**
+     * Send message to server
+     *
+     * @param string $to_phone_number ('To' phone_number)
+     * @param string $body (message)
+     */
+    public static function send(string $to_phone_number, string $body): void {
+        $username = self::$data['login'];
+        $password = self::$data['password'];
+        $sender = self::$data['sender'];
+        $messages = ['sender' => $sender, 'phones' => $to_phone_number, 'mes' => $body, 'login' => $username, 'psw' => $password];
+        $encoded = '';
+        foreach ($messages as $name => $value) {
+            $encoded .= urlencode($name) . '=' . urlencode($value) . '&';
+        }
+
+        $result = self::curl($encoded, 'https://smsc.ru/sys/send.php');
+
+        if ($result['http_status'] != 201) {
+            echo 'error';
+        } else {
+            echo 'ok';
+        }
+    }
+
+    /**
+     * Curl 
+     *
+     * @param array $post_body (json post body)
+     * @param string $url (url)
+     */
+    public static function curl(array $post_body, string $url): void {
+        $ch = curl_init();
+        $headers = [
+            'Content-Type:application/x-www-form-urlencoded'
+        ];
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        $output = [];
+        $output['server_response'] = curl_exec($ch);
+        $curl_info = curl_getinfo($ch);
+        $output['http_status'] = $curl_info['http_code'];
+        $output['error'] = curl_error($ch);
+        curl_close($ch);
     }
 
 }

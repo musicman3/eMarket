@@ -11,6 +11,7 @@ namespace eMarket\Core\Modules\Payment;
 
 use eMarket\Core\{
     Interfaces,
+    Interfaces\PaymentModulesInterface,
     Messages,
     Modules,
     Pdo,
@@ -28,7 +29,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class Cash {
+class Cash implements PaymentModulesInterface {
 
     public static $shipping_method;
     public static $order_status;
