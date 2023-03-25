@@ -9,6 +9,10 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
+use eMarket\Core\{
+    Clock\SystemClock
+};
+
 /**
  * Update class
  *
@@ -36,7 +40,9 @@ class Update {
      */
     public static function checkVersion(): string|array {
 
-        if (isset($_SESSION['version']['time']) && (time() - $_SESSION['version']['time']) / 60 > 60) {
+        $clock = new SystemClock();
+
+        if (isset($_SESSION['version']['time']) && ($clock->now()->format('U') - $_SESSION['version']['time']) / 60 > 60) {
             unset($_SESSION['version']);
         }
 
@@ -46,7 +52,7 @@ class Update {
                     'status' => 'ok',
                     'this_version' => self::thisVersion(),
                     'new_version' => self::eMarketData(),
-                    'time' => time(),
+                    'time' => $clock->now()->format('U'),
                     'message' => ''
                 ];
             } elseif (self::gitHubData() != FALSE) {
@@ -54,7 +60,7 @@ class Update {
                     'status' => 'ok',
                     'this_version' => self::thisVersion(),
                     'new_version' => self::gitHubData(),
-                    'time' => time(),
+                    'time' => $clock->now()->format('U'),
                     'message' => ''
                 ];
             }
@@ -66,7 +72,7 @@ class Update {
                 'status' => 'false',
                 'this_version' => self::thisVersion(),
                 'new_version' => '',
-                'time' => time(),
+                'time' => $clock->now()->format('U'),
                 'message' => ''
             ];
             return $output;

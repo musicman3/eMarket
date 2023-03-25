@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Cache,
     Files,
     Func,
@@ -245,7 +246,9 @@ class Slideshow {
             self::$set_language = Valid::inGET('slide_lang');
         }
 
-        self::$this_time = time();
+        $clock = new SystemClock();
+
+        self::$this_time = $clock->now()->format('U');
 
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
@@ -340,7 +343,9 @@ class Slideshow {
             self::$navigation_key = 'true';
         }
 
-        self::$this_time = time();
+        $clock = new SystemClock();
+
+        self::$this_time = $clock->now()->format('U');
 
         foreach (self::$slideshow as $images_data) {
             foreach (json_decode($images_data['logo'], true) as $logo) {

@@ -343,7 +343,7 @@ class Settings {
                 setlocale(LC_ALL, lang('language_locale'));
             }
             $format_date = new SystemClock();
-            $output = $format_date->get($date)->format('d.m.Y H:m:sP');
+            $output = $format_date->get($date)->format('d-m-Y H:i:s');
             return $output;
         } else {
             if ($language != null) {
@@ -353,7 +353,7 @@ class Settings {
                 setlocale(LC_ALL, lang('language_locale'));
             }
             $format_date = new SystemClock();
-            $output = $format_date->get($date)->format('d.m.Y H:m:s');
+            $output = $format_date->get($date)->format('d-m-Y H:i:s');
             return $output;
         }
 

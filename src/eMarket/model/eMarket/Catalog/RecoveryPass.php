@@ -11,6 +11,7 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Authorize,
+    Clock\SystemClock,
     Messages,
     Pdo,
     Valid
@@ -45,6 +46,7 @@ class RecoveryPass {
      */
     private function recovery(): void {
         if (Valid::inGET('recovery_code')) {
+            $clock = new SystemClock();
             self::$customer_id = Pdo::getValue("SELECT customer_id FROM " . TABLE_PASSWORD_RECOVERY . " WHERE recovery_code=?", [
                         Valid::inGET('recovery_code')]
             );
@@ -52,7 +54,7 @@ class RecoveryPass {
                 $recovery_code_created = Pdo::getValue("SELECT UNIX_TIMESTAMP (recovery_code_created) FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [
                             self::$customer_id
                 ]);
-                if ($recovery_code_created + (3 * 24 * 60 * 60) > time()) {
+                if ($recovery_code_created + (3 * 24 * 60 * 60) > $clock->now()->format('U')) {
                     Pdo::action("DELETE FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [self::$customer_id]);
 
                     $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
