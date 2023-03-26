@@ -63,8 +63,6 @@ class Orders {
     private function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            $clock = new SystemClock();
-
             $primary_language = Settings::primaryLanguage();
 
             $order_data = Pdo::getAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
@@ -83,7 +81,7 @@ class Orders {
             $orders_status_history = json_decode($order_data['orders_status_history'], true);
 
             if ($orders_status_history[0]['admin']['status'] != $admin_status_history_select) {
-                $date = $clock->now()->format('Y-m-d H:i:s');
+                $date = SystemClock::nowSqlDateTime();
                 array_unshift($orders_status_history, [
                     'customer' => [
                         'status' => $customer_status_history_select,
