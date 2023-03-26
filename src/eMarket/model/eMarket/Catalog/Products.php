@@ -11,7 +11,7 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Func,
-    Interfaces,
+    DataBuffer,
     Products as ProductsCore,
     Valid,
     Tabs
@@ -176,8 +176,8 @@ class Products {
     private function tabs(): void {
         Tabs::loadData();
 
-        $INTERFACE = new Interfaces();
-        $modules_data = $INTERFACE->load('tabs');
+        $DataBuffer = new DataBuffer();
+        $modules_data = $DataBuffer->load('tabs');
 
         $interface_data = [];
         if (is_array($modules_data)) {

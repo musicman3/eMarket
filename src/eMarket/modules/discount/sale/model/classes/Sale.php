@@ -15,7 +15,7 @@ use eMarket\Core\{
     Eac,
     Ecb,
     Func,
-    Interfaces,
+    DataBuffer,
     Interfaces\DiscountModulesInterface,
     Lang,
     Messages,
@@ -162,7 +162,7 @@ class Sale implements DiscountModulesInterface {
         $currency = $input['currency'];
         $input_price = Ecb::currencyPrice($input['price'], $currency);
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         $clock = new SystemClock();
 
         if (is_array($discount_val) && array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
@@ -197,7 +197,7 @@ class Sale implements DiscountModulesInterface {
                 'discounts' => $discount_out
             ];
 
-            $INTERFACE->save('discount', 'sale', $out_data);
+            $DataBuffer->save('discount', 'sale', $out_data);
         } else {
 
             $out_data = [
@@ -206,7 +206,7 @@ class Sale implements DiscountModulesInterface {
                 'discounts' => 'false'
             ];
 
-            $INTERFACE->save('discount', 'sale', $out_data);
+            $DataBuffer->save('discount', 'sale', $out_data);
         }
     }
 

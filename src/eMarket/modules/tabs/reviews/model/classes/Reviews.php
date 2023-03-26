@@ -11,7 +11,7 @@ namespace eMarket\Core\Modules\Tabs;
 
 use eMarket\Core\{
     Authorize,
-    Interfaces,
+    DataBuffer,
     Interfaces\TabsModulesInterface,
     Modules,
     Messages,
@@ -93,7 +93,7 @@ class Reviews implements TabsModulesInterface {
      */
     public static function load(): void {
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         self::reviewsData();
         self::reviewsCount();
 
@@ -102,7 +102,7 @@ class Reviews implements TabsModulesInterface {
             'chanel_name' => lang('modules_tabs_reviews_name') . ' <span id="reviews_count" class="badge bg-primary">' . Reviews::$reviews_count . '</span>'
         ];
 
-        $INTERFACE->save('tabs', 'reviews', $interface);
+        $DataBuffer->save('tabs', 'reviews', $interface);
     }
 
     /**

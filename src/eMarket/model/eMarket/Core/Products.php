@@ -13,7 +13,7 @@ use eMarket\Core\{
     Cache,
     Clock\SystemClock,
     Ecb,
-    Interfaces,
+    DataBuffer,
     Pdo
 };
 
@@ -239,9 +239,9 @@ class Products {
             $sticker_name[$val['id']] = $val['name'];
         }
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         Ecb::discountHandler($input);
-        $discount_handler = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
+        $discount_handler = $DataBuffer->load('discountHandler', 'data', 'discounts_data');
 
         $discount_total_sale = 0;
         foreach ($discount_handler as $data) {

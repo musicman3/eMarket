@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 /**
- * Data Interfaces
+ * Data Buffer
  *
  * @package Core
  * @author eMarket Team
@@ -18,7 +18,7 @@ namespace eMarket\Core;
  * @license GNU GPL v.3.0
  * 
  */
-class Interfaces {
+class DataBuffer {
 
     public static $storage = [];
 

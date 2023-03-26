@@ -11,7 +11,7 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Cart,
-    Interfaces,
+    DataBuffer,
     Pdo,
     Settings,
 };
@@ -40,11 +40,11 @@ final class Ecb {
      */
     public static function priceInterface(array $input, ?int $marker = null, int|string $quantity = 1, string $class = 'danger'): string {
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
 
         self::discountHandler($input);
-        $discounts_data = $INTERFACE->load('discountHandler', 'data', 'discounts_data');
-        $discounted_price = (string) self::currencyPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), $input['currency']);
+        $discounts_data = $DataBuffer->load('discountHandler', 'data', 'discounts_data');
+        $discounted_price = (string) self::currencyPrice($DataBuffer->load('discountHandler', 'data', 'out_price'), $input['currency']);
 
         $count = 0;
         $discount_names = '';
@@ -87,9 +87,9 @@ final class Ecb {
      */
     public static function totalPriceCartInterface(?int $marker = null, string $class = 'danger'): string {
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         self::priceTerminal();
-        $discounted_price = $INTERFACE->load('priceTerminal', 'data', 'discounted_price');
+        $discounted_price = $DataBuffer->load('priceTerminal', 'data', 'discounted_price');
 
         $total_price = Cart::totalPrice();
 
@@ -114,7 +114,7 @@ final class Ecb {
         $total_price_with_tax = 0;
         $price_terminal_data = [];
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
 
         $taxes_data = Pdo::getAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
 
@@ -124,7 +124,7 @@ final class Ecb {
                 if ($data != FALSE) {
 
                     self::discountHandler($data, $language);
-                    $discounted_price = $INTERFACE->load('discountHandler', 'data', 'out_price');
+                    $discounted_price = $DataBuffer->load('discountHandler', 'data', 'out_price');
 
                     $tax = [];
                     foreach ($taxes_data as $tax_data) {
@@ -142,7 +142,7 @@ final class Ecb {
                         'currency' => $data['currency'],
                         'price_with_currency' => self::currencyPrice($data['price'], $data['currency']),
                         'quantity' => $value['quantity'],
-                        'discount' => $INTERFACE->load('discountHandler', 'data', 'total_discount'),
+                        'discount' => $DataBuffer->load('discountHandler', 'data', 'total_discount'),
                         'tax' => $tax
                     ];
 
@@ -153,7 +153,7 @@ final class Ecb {
         $price_terminal_data['discounted_price'] = $discounted_total_price;
         $price_terminal_data['total_tax_price'] = $total_price_with_tax;
 
-        $INTERFACE->save('priceTerminal', 'data', $price_terminal_data);
+        $DataBuffer->save('priceTerminal', 'data', $price_terminal_data);
     }
 
     /**
@@ -193,14 +193,14 @@ final class Ecb {
         $input_price = self::currencyPrice($input['price'], $input['currency']);
 
         $discounts_data = [];
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
 
         $total_discount = 0;
 
         foreach (self::$active_modules as $module) {
             $namespace = '\eMarket\Core\Modules\Discount\\' . ucfirst($module['name']);
             $namespace::dataInterface($input, $language);
-            array_push($discounts_data, $INTERFACE->load('discount', $module['name']));
+            array_push($discounts_data, $DataBuffer->load('discount', $module['name']));
         }
 
         foreach ($discounts_data as $value) {
@@ -221,7 +221,7 @@ final class Ecb {
                 'discounts_data' => $discounts_data
             ];
 
-            $INTERFACE->save('discountHandler', 'data', $out_data);
+            $DataBuffer->save('discountHandler', 'data', $out_data);
         } else {
             $out_data = [
                 'out_price' => $input_price,
@@ -229,7 +229,7 @@ final class Ecb {
                 'discounts_data' => $discounts_data
             ];
 
-            $INTERFACE->save('discountHandler', 'data', $out_data);
+            $DataBuffer->save('discountHandler', 'data', $out_data);
         }
     }
 

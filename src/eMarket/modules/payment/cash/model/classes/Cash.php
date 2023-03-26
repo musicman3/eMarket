@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core\Modules\Payment;
 
 use eMarket\Core\{
-    Interfaces,
+    DataBuffer,
     Interfaces\PaymentModulesInterface,
     Messages,
     Modules,
@@ -73,7 +73,7 @@ class Cash implements PaymentModulesInterface {
      */
     public static function load(): void {
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
 
         $interface = [
             'chanel_module_name' => 'cash',
@@ -86,7 +86,7 @@ class Cash implements PaymentModulesInterface {
             'chanel_image' => ''
         ];
 
-        $INTERFACE->save('payment', 'cash', $interface);
+        $DataBuffer->save('payment', 'cash', $interface);
     }
 
     /**

@@ -13,7 +13,7 @@ use eMarket\Core\{
     Authorize,
     Ecb,
     Func,
-    Interfaces,
+    DataBuffer,
     Payment,
     Pdo,
     Shipping,
@@ -139,8 +139,8 @@ class Cart {
             $shipping = new Shipping();
             $shipping->loadData(Valid::inPostJson('shipping_region_json'));
 
-            $INTERFACE = new Interfaces();
-            $modules_data = $INTERFACE->load('shipping');
+            $DataBuffer = new DataBuffer();
+            $modules_data = $DataBuffer->load('shipping');
 
             $interface_data = [];
             if (is_array($modules_data)) {
@@ -185,8 +185,8 @@ class Cart {
             $payment = new Payment();
             $payment->loadData(Valid::inPostJson('payment_shipping_json'));
 
-            $INTERFACE = new Interfaces();
-            $modules_data = $INTERFACE->load('payment');
+            $DataBuffer = new DataBuffer();
+            $modules_data = $DataBuffer->load('payment');
 
             $interface_data = [];
             if (is_array($modules_data)) {

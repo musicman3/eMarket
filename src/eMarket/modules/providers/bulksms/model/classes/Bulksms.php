@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core\Modules\Providers;
 
 use eMarket\Core\{
-    Interfaces,
+    DataBuffer,
     Interfaces\ProvidersModulesInterface,
     Messages,
     Modules,
@@ -69,13 +69,13 @@ final class Bulksms implements ProvidersModulesInterface {
      */
     public static function load(): void {
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
 
         $interface = [
             'chanel_module_name' => 'bulksms'
         ];
 
-        $INTERFACE->save('providers', 'bulksms', $interface);
+        $DataBuffer->save('providers', 'bulksms', $interface);
     }
 
     /**

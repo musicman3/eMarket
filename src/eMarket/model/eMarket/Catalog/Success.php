@@ -13,7 +13,7 @@ use eMarket\Core\{
     Cache,
     Clock\SystemClock,
     Ecb,
-    Interfaces,
+    DataBuffer,
     Func,
     Messages,
     Pdo,
@@ -145,7 +145,7 @@ class Success {
             $sticker_name_customer[$val['id']] = $val['name'];
         }
 
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         self::$invoice = [];
 
         foreach ($cart as $value) {
@@ -170,9 +170,9 @@ class Success {
             $data['admin'] = [
                 'name' => $admin_product_data['name'],
                 'id' => $admin_product_data['id'],
-                'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1, self::$primary_language),
+                'price' => Ecb::formatPrice($DataBuffer->load('discountHandler', 'data', 'out_price'), 1, self::$primary_language),
                 'unit' => $admin_unit['unit'],
-                'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1, self::$primary_language),
+                'amount' => Ecb::formatPrice($DataBuffer->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1, self::$primary_language),
                 'sticker' => $sticker_name_data
             ];
 
@@ -181,9 +181,9 @@ class Success {
             $data['customer'] = [
                 'name' => $product_data['name'],
                 'id' => $admin_product_data['id'],
-                'price' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price'), 1),
+                'price' => Ecb::formatPrice($DataBuffer->load('discountHandler', 'data', 'out_price'), 1),
                 'unit' => $unit['unit'],
-                'amount' => Ecb::formatPrice($INTERFACE->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1),
+                'amount' => Ecb::formatPrice($DataBuffer->load('discountHandler', 'data', 'out_price') * $value['quantity'], 1),
                 'sticker' => $sticker_name_customer_data
             ];
 
@@ -205,7 +205,7 @@ class Success {
      *
      */
     private function orderTotalData(): void {
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         Ecb::priceTerminal(self::$primary_language);
         self::$order_total['admin'] = [
             'total_with_shipping_format' => Ecb::formatPrice(Valid::inPOST('order_total_with_shipping'), 1, self::$primary_language),
@@ -213,7 +213,7 @@ class Success {
             'shipping_price_format' => Ecb::formatPrice(Valid::inPOST('order_shipping_price'), 1, self::$primary_language),
             'total_to_pay_format' => Ecb::formatPrice(Valid::inPOST('order_to_pay'), 1, self::$primary_language),
             'order_total_tax_format' => Ecb::formatPrice(Valid::inPOST('order_total_tax'), 1, self::$primary_language),
-            'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+            'order_interface_data' => $DataBuffer->load('priceTerminal', 'data')
         ];
 
         Ecb::priceTerminal(lang('#lang_all')[0]);
@@ -223,7 +223,7 @@ class Success {
             'shipping_price_format' => Ecb::formatPrice(Valid::inPOST('order_shipping_price'), 1),
             'total_to_pay_format' => Ecb::formatPrice(Valid::inPOST('order_to_pay'), 1),
             'order_total_tax_format' => Ecb::formatPrice(Valid::inPOST('order_total_tax'), 1),
-            'order_interface_data' => $INTERFACE->load('priceTerminal', 'data')
+            'order_interface_data' => $DataBuffer->load('priceTerminal', 'data')
         ];
 
         self::$order_total['data'] = [

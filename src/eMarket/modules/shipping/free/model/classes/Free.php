@@ -11,7 +11,7 @@ namespace eMarket\Core\Modules\Shipping;
 
 use eMarket\Core\{
     Ecb,
-    Interfaces,
+    DataBuffer,
     Interfaces\ShippingModulesInterface,
     Messages,
     Modules,
@@ -77,7 +77,7 @@ class Free implements ShippingModulesInterface {
     public static function load(array $zones_id): void {
 
         $interface_data_all = [];
-        $INTERFACE = new Interfaces();
+        $DataBuffer = new DataBuffer();
         Ecb::priceTerminal();
 
         foreach ($zones_id as $zone) {
@@ -88,16 +88,16 @@ class Free implements ShippingModulesInterface {
                     'chanel_id' => $data['id'],
                     'chanel_module_name' => 'free',
                     'chanel_name' => lang('modules_shipping_free_name'),
-                    'chanel_total_price' => $INTERFACE->load('priceTerminal', 'data', 'discounted_price'),
-                    'chanel_total_price_format' => Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'discounted_price'), 1),
+                    'chanel_total_price' => $DataBuffer->load('priceTerminal', 'data', 'discounted_price'),
+                    'chanel_total_price_format' => Ecb::formatPrice($DataBuffer->load('priceTerminal', 'data', 'discounted_price'), 1),
                     'chanel_minimum_price' => Ecb::currencyPrice($data['minimum_price'], $data['currency']),
                     'chanel_minimum_price_format' => Ecb::formatPrice(Ecb::currencyPrice($data['minimum_price'], $data['currency']), 1),
                     'chanel_shipping_price' => 0,
                     'chanel_shipping_price_format' => Ecb::formatPrice(0, 1),
-                    'chanel_total_price_with_shipping' => $INTERFACE->load('priceTerminal', 'data', 'discounted_price') + 0,
-                    'chanel_total_price_with_shipping_format' => Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'discounted_price') + 0, 1),
-                    'chanel_total_tax' => $INTERFACE->load('priceTerminal', 'data', 'total_tax_price'),
-                    'chanel_total_tax_format' => Ecb::formatPrice($INTERFACE->load('priceTerminal', 'data', 'total_tax_price'), 1),
+                    'chanel_total_price_with_shipping' => $DataBuffer->load('priceTerminal', 'data', 'discounted_price') + 0,
+                    'chanel_total_price_with_shipping_format' => Ecb::formatPrice($DataBuffer->load('priceTerminal', 'data', 'discounted_price') + 0, 1),
+                    'chanel_total_tax' => $DataBuffer->load('priceTerminal', 'data', 'total_tax_price'),
+                    'chanel_total_tax_format' => Ecb::formatPrice($DataBuffer->load('priceTerminal', 'data', 'total_tax_price'), 1),
                     'chanel_image' => ''
                 ];
                 array_push($interface_data_all, $interface_data);
@@ -105,7 +105,7 @@ class Free implements ShippingModulesInterface {
         }
         $interface = Shipping::filterData($interface_data_all);
 
-        $INTERFACE->save('shipping', 'free', $interface);
+        $DataBuffer->save('shipping', 'free', $interface);
     }
 
     /**
