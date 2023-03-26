@@ -121,7 +121,7 @@ class Sale implements DiscountModulesInterface {
      */
     public function startDate(): void {
         if (Valid::inPOST('start_date')) {
-            $this->start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
+            $this->start_date = SystemClock::getSqlDate(Valid::inPOST('start_date'));
         }
     }
 
@@ -131,7 +131,7 @@ class Sale implements DiscountModulesInterface {
      */
     public function endDate(): void {
         if (Valid::inPOST('end_date')) {
-            $this->end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
+            $this->end_date = SystemClock::getSqlDate(Valid::inPOST('end_date'));
         }
     }
 

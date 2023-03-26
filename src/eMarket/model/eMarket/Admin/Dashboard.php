@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Ecb,
     Pdo,
     Valid
@@ -66,7 +67,7 @@ class Dashboard {
         if (self::$min_year == FALSE) {
             $min_clients_id = Pdo::getValue("SELECT MIN(id) FROM " . TABLE_CUSTOMERS, []);
 
-            $min_clients = date('Y');
+            $min_clients = SystemClock::nowFormatDate('Y');
             if ($min_clients_id != FALSE) {
                 $min_clients = Pdo::getValue("SELECT YEAR(date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=" . $min_clients_id, []);
             }
@@ -82,7 +83,7 @@ class Dashboard {
      * @return mixed Select Year
      */
     public static function selectYear(): mixed {
-        self::$select_year = date('Y');
+        self::$select_year = SystemClock::nowFormatDate('Y');
         if (Valid::inPostJson('year')) {
             self::$select_year = Valid::inPostJson('year');
         }

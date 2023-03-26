@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Messages
 };
 use \eMarket\Admin\{
@@ -49,7 +50,7 @@ use \eMarket\Admin\{
                 <div class="card-header text-white bg-danger"><?php echo lang('dashboard_period') ?></div>
                 <div class="card-body">
                     <select id="years" class="form-select text-center border-danger">
-                        <?php for ($x = date('Y'); $x > Dashboard::minYear() - 1; $x--) { ?>
+                        <?php for ($x = SystemClock::nowFormatDate('Y'); $x > Dashboard::minYear() - 1; $x--) { ?>
                             <option value="<?php echo $x ?>"<?php echo Dashboard::selectedYear($x) ?>><?php echo $x ?></option>
                         <?php } ?>
                     </select>

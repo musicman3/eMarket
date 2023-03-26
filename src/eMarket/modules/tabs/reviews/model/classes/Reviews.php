@@ -11,6 +11,7 @@ namespace eMarket\Core\Modules\Tabs;
 
 use eMarket\Core\{
     Authorize,
+    Clock\SystemClock,
     DataBuffer,
     Interfaces\TabsModulesInterface,
     Modules,
@@ -195,7 +196,7 @@ class Reviews implements TabsModulesInterface {
     public function addReview(): void {
         if (Authorize::$customer != FALSE && Valid::inPostJson('review')) {
             Pdo::action("INSERT INTO " . DB_PREFIX . "modules_tabs_reviews SET product_id=?, author=?, stars=?, status=?, likes=?, date_add=?, date_edit=?, reviews=?", [
-                Valid::inGET('id'), Authorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, date('Y-m-d H:i:s'), NULL, json_encode([Valid::inPostJson('review')])
+                Valid::inGET('id'), Authorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, SystemClock::nowSqlDateTime(), NULL, json_encode([Valid::inPostJson('review')])
             ]);
         }
     }
@@ -263,7 +264,7 @@ class Reviews implements TabsModulesInterface {
             $MODULE_DB = Modules::moduleDatabase();
 
             Pdo::action("UPDATE " . $MODULE_DB . " SET reviews=?, date_edit=? WHERE id=?", [
-                json_encode([Valid::inPOST('review')]), date('Y-m-d H:i:s'), Valid::inPOST('edit')]);
+                json_encode([Valid::inPOST('review')]), SystemClock::nowSqlDateTime(), Valid::inPOST('edit')]);
 
             Messages::alert('edit_tabs_reviews', 'success', lang('action_completed_successfully'));
             exit;

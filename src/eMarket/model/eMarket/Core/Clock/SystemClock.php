@@ -88,6 +88,19 @@ final class SystemClock implements ClockInterface {
     }
 
     /**
+     * Now My Format date
+     * 
+     * @param string $format format
+     * @return string now My Format date
+     *
+     */
+    public static function nowFormatDate(string $format): string {
+
+        $clock = new SystemClock();
+        return $clock->now()->format($format);
+    }
+
+    /**
      * Get date
      * 
      * @param string $date Date with DateTimeImmutable format

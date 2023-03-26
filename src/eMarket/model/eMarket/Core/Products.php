@@ -189,7 +189,7 @@ class Products {
      * @return array
      */
     public static function inStock(?string $date_available, int|string $quantity): array {
-        if ($date_available != NULL && $date_available != FALSE && strtotime($date_available) > strtotime(date('Y-m-d'))) {
+        if ($date_available != NULL && $date_available != FALSE && SystemClock::getUnixTime($date_available) > SystemClock::nowUnixTime()) {
             $date_available_marker = 'false';
             $date_available_text = lang('product_in_stock_from') . ' ' . SystemClock::getDate($date_available);
         } elseif ($quantity != NULL && $quantity <= 0) {

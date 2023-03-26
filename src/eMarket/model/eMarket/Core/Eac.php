@@ -11,6 +11,7 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Cache,
+    Clock\SystemClock,
     Files,
     Func,
     Lang,
@@ -187,7 +188,7 @@ final class Eac {
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("INSERT INTO " . TABLE_CATEGORIES . " SET id=?, name=?, sort_category=?, language=?, parent_id=?, date_added=?, status=?, logo=?, attributes=?", [
                     $id, Valid::inPOST('name_categories_stock_' . $x), $sort_category, lang('#lang_all')[$x], self::$parent_id,
-                    date("Y-m-d H:i:s"), 1, json_encode([]), $attributes
+                    SystemClock::nowSqlDateTime(), 1, json_encode([]), $attributes
                 ]);
             }
 
@@ -204,7 +205,7 @@ final class Eac {
 
             for ($x = 0; $x < Lang::$count; $x++) {
                 Pdo::action("UPDATE " . TABLE_CATEGORIES . " SET name=?, last_modified=?, attributes=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_categories_stock_' . $x), date("Y-m-d H:i:s"), Valid::inPOST('attributes'), Valid::inPOST('edit'),
+                    Valid::inPOST('name_categories_stock_' . $x), SystemClock::nowSqlDateTime(), Valid::inPOST('attributes'), Valid::inPOST('edit'),
                     lang('#lang_all')[$x]
                 ]);
             }
@@ -548,7 +549,7 @@ final class Eac {
 
             // Format date after Datepicker
             if (Valid::inPOST('date_available_product_stock')) {
-                self::$date_available = date('Y-m-d', strtotime(Valid::inPOST('date_available_product_stock')));
+                self::$date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
             }
 
             if (Valid::inPOST('tax_product_stock')) {
@@ -612,7 +613,7 @@ final class Eac {
                         " SET id=?, name=?, language=?, parent_id=?, date_added=?, date_available=?, model=?, price=?, currency=?, quantity=?, "
                         . "unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, "
                         . "weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, logo=?, discount=?, attributes=?", [
-                    $id, Valid::inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], self::$parent_id, date("Y-m-d H:i:s"),
+                    $id, Valid::inPOST('name_product_stock_' . $x), lang('#lang_all')[$x], self::$parent_id, SystemClock::nowSqlDateTime(),
                     self::$date_available, Valid::inPOST('model_product_stock'), Valid::inPOST('price_product_stock'),
                     self::$currency, Valid::inPOST('quantity_product_stock'), self::$unit,
                     Valid::inPOST('keyword_product_stock_' . $x), Valid::inPOST('tags_product_stock_' . $x),
@@ -640,7 +641,7 @@ final class Eac {
 
             // Format date after Datepicker
             if (Valid::inPOST('date_available_product_stock')) {
-                self::$date_available = date('Y-m-d', strtotime(Valid::inPOST('date_available_product_stock')));
+                self::$date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
             }
 
             if (Valid::inPOST('tax_product_stock')) {
@@ -700,7 +701,7 @@ final class Eac {
                 Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET name=?, last_modified=?, date_available=?, model=?, price=?, currency=?, quantity=?,"
                         . " unit=?, keyword=?, tags=?, description=?, tax=?, manufacturer=?, vendor_code=?, vendor_code_value=?, weight=?, "
                         . "weight_value=?, dimension=?, length=?, width=?, height=?, min_quantity=?, attributes=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_product_stock_' . $x), date("Y-m-d H:i:s"), self::$date_available,
+                    Valid::inPOST('name_product_stock_' . $x), SystemClock::nowSqlDateTime(), self::$date_available,
                     Valid::inPOST('model_product_stock'), Valid::inPOST('price_product_stock'), self::$currency,
                     Valid::inPOST('quantity_product_stock'), self::$unit, Valid::inPOST('keyword_product_stock_' . $x),
                     Valid::inPOST('tags_product_stock_' . $x), Valid::inPOST('description_product_stock_' . $x),

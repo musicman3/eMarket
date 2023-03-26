@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Pdo,
     Settings,
     Valid
@@ -87,10 +88,10 @@ class Messages {
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
             if ($time != null) {
-                $_SESSION['message'] = [$class, $message, $time, $start, date('H:i')];
+                $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
                 self::logging($class, '?route=' . Valid::inGET('route'), $action);
             } else {
-                $_SESSION['message'] = [$class, $message, 3000, $start, date('H:i')];
+                $_SESSION['message'] = [$class, $message, 3000, $start, SystemClock::nowFormatDate('H:i')];
                 self::logging($class, '?route=' . Valid::inGET('route'), $action);
             }
             if (Valid::inGET('route') == 'settings/modules/edit') {
@@ -127,7 +128,7 @@ class Messages {
             require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             unset($_SESSION['message']);
         }
-        
+
         return false;
     }
 
