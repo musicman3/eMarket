@@ -48,11 +48,10 @@ class Login {
      */
     private function activationCode(): void {
         if (Valid::inGET('activation_code')) {
-            $clock = new SystemClock();
             $id_actvation = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE activation_code=?", [Valid::inGET('activation_code')]);
             if ($id_actvation != NULL) {
                 $account_date = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
-                if ($account_date + (3 * 24 * 60 * 60) > $clock->now()->format('U')) {
+                if ($account_date + (3 * 24 * 60 * 60) > SystemClock::nowUnixTime()) {
                     Pdo::action("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
                     Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [1, $id_actvation]);
                     Messages::alert('messages_activation_complete', 'success', lang('messages_activation_complete'), 7000, true);

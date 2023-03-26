@@ -40,9 +40,7 @@ class Update {
      */
     public static function checkVersion(): string|array {
 
-        $clock = new SystemClock();
-
-        if (isset($_SESSION['version']['time']) && ($clock->now()->format('U') - $_SESSION['version']['time']) / 60 > 60) {
+        if (isset($_SESSION['version']['time']) && (SystemClock::nowUnixTime() - $_SESSION['version']['time']) / 60 > 60) {
             unset($_SESSION['version']);
         }
 
@@ -52,7 +50,7 @@ class Update {
                     'status' => 'ok',
                     'this_version' => self::thisVersion(),
                     'new_version' => self::eMarketData(),
-                    'time' => $clock->now()->format('U'),
+                    'time' => SystemClock::nowUnixTime(),
                     'message' => ''
                 ];
             } elseif (self::gitHubData() != FALSE) {
@@ -60,7 +58,7 @@ class Update {
                     'status' => 'ok',
                     'this_version' => self::thisVersion(),
                     'new_version' => self::gitHubData(),
-                    'time' => $clock->now()->format('U'),
+                    'time' => SystemClock::nowUnixTime(),
                     'message' => ''
                 ];
             }
@@ -72,7 +70,7 @@ class Update {
                 'status' => 'false',
                 'this_version' => self::thisVersion(),
                 'new_version' => '',
-                'time' => $clock->now()->format('U'),
+                'time' => SystemClock::nowUnixTime(),
                 'message' => ''
             ];
             return $output;

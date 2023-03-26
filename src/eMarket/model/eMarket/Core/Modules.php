@@ -58,14 +58,12 @@ final class Modules {
     public static function initDiscount(): void {
         $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
-        $clock = new SystemClock();
-
         foreach ($active_modules as $module) {
             $discount_default_flag = 0;
             $select_array = [];
             $discounts_all = Pdo::getAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
 
-            $this_time = $clock->now()->format('U');
+            $this_time = SystemClock::nowUnixTime();
 
             foreach ($discounts_all as $val) {
                 $date_end = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);

@@ -160,8 +160,7 @@ class Authorize {
 
         $this->demoModeInit();
         $this->dashboardCheck();
-        $clock = new SystemClock();
-        $new_datestamp = $clock->now()->format('U');
+        $new_datestamp = SystemClock::nowUnixTime();
 
         if (isset($_SESSION['session_start']) && ($new_datestamp - $_SESSION['session_start']) / 60 > Settings::adminSessionTime()) {
             unset($_SESSION['login']);
@@ -197,8 +196,7 @@ class Authorize {
      */
     private function catalog(): bool {
 
-        $clock = new SystemClock();
-        $new_datestamp = $clock->now()->format('U');
+        $new_datestamp = SystemClock::nowUnixTime();
 
         if (isset($_SESSION['customer_email'])) {
             $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];

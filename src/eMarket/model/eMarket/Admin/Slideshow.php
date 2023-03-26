@@ -146,11 +146,11 @@ class Slideshow {
             }
 
             if (Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
+                $start_date = SystemClock::getSqlDateTime(Valid::inPOST('start_date'));
             }
 
             if (Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
+                $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
             Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [
@@ -186,11 +186,11 @@ class Slideshow {
             }
 
             if (Valid::inPOST('start_date')) {
-                $start_date = date('Y-m-d', strtotime(Valid::inPOST('start_date')));
+                $start_date = SystemClock::getSqlDateTime(Valid::inPOST('start_date'));
             }
 
             if (Valid::inPOST('end_date')) {
-                $end_date = date('Y-m-d', strtotime(Valid::inPOST('end_date')));
+                $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
             Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [
@@ -246,9 +246,7 @@ class Slideshow {
             self::$set_language = Valid::inGET('slide_lang');
         }
 
-        $clock = new SystemClock();
-
-        self::$this_time = $clock->now()->format('U');
+        self::$this_time = SystemClock::nowUnixTime();
 
         self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
@@ -343,13 +341,11 @@ class Slideshow {
             self::$navigation_key = 'true';
         }
 
-        $clock = new SystemClock();
-
-        self::$this_time = $clock->now()->format('U');
+        self::$this_time = SystemClock::nowUnixTime();
 
         foreach (self::$slideshow as $images_data) {
             foreach (json_decode($images_data['logo'], true) as $logo) {
-                if ($images_data['status'] == '1' && strtotime($images_data['date_start']) <= self::$this_time && strtotime($images_data['date_finish']) >= self::$this_time) {
+                if ($images_data['status'] == '1' && SystemClock::getUnixTime($images_data['date_start']) <= self::$this_time && SystemClock::getUnixTime($images_data['date_finish']) >= self::$this_time) {
                     array_push(self::$slideshow_array, $logo);
                 }
             }

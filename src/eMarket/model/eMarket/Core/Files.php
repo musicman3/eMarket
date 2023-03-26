@@ -39,8 +39,7 @@ class Files {
 
         self::imgThumbAndSize($resize_param);
 
-        $clock = new SystemClock();
-        $prefix = $clock->now()->format('U') . '_';
+        $prefix = SystemClock::nowUnixTime() . '_';
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);
 
@@ -195,8 +194,7 @@ class Files {
 
         self::imgThumbAndSize($resize_param);
 
-        $clock = new SystemClock();
-        $prefix = $clock->now()->format('U') . '_';
+        $prefix = SystemClock::nowUnixTime() . '_';
 
         $files = glob(ROOT . '/uploads/temp/files/*');
         $count_files = count($files);

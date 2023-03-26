@@ -52,6 +52,42 @@ final class SystemClock implements ClockInterface {
     }
 
     /**
+     * Now SQL-formating datetime
+     * 
+     * @return string now SQL-formating datetime
+     *
+     */
+    public static function nowSqlDateTime(): string {
+
+        $clock = new SystemClock();
+        return $clock->now()->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Now SQL-formating date
+     * 
+     * @return string now SQL-formating datetime
+     *
+     */
+    public static function nowSqlDate(): string {
+
+        $clock = new SystemClock();
+        return $clock->now()->format('Y-m-d');
+    }
+
+    /**
+     * Now UNIX-formating datetime
+     * 
+     * @return string now UNIX-formating datetime
+     *
+     */
+    public static function nowUnixTime(): string {
+
+        $clock = new SystemClock();
+        return $clock->now()->format('U');
+    }
+
+    /**
      * Get date
      * 
      * @param string $date Date with DateTimeImmutable format
@@ -98,14 +134,51 @@ final class SystemClock implements ClockInterface {
     }
 
     /**
-     * Now SQL-formating datetime
+     * Get SQL-formating datetime
      * 
-     * @return string now SQL-formating datetime
+     * @param string $date Date with DateTimeImmutable format
+     * @return string SQL-formating datetime
      *
      */
-    public function nowSqlDateTime(): string {
+    public static function getSqlDateTime(?string $date): string {
 
-        return $this->now()->format('Y-m-d H:i:s');
+        if ($date == null) {
+            return '';
+        }
+        $clock = new SystemClock();
+        return $clock->get($date)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Get SQL-formating date
+     * 
+     * @param string $date Date with DateTimeImmutable format
+     * @return string SQL-formating date
+     *
+     */
+    public static function getSqlDate(?string $date): string {
+
+        if ($date == null) {
+            return '';
+        }
+        $clock = new SystemClock();
+        return $clock->get($date)->format('Y-m-d');
+    }
+
+    /**
+     * Get UNIX-formating datetime
+     * 
+     * @param string $date Date with DateTimeImmutable format
+     * @return string UNIX-formating datetime
+     *
+     */
+    public static function getUnixTime(?string $date): string {
+
+        if ($date == null) {
+            return '';
+        }
+        $clock = new SystemClock();
+        return $clock->get($date)->format('U');
     }
 
 }

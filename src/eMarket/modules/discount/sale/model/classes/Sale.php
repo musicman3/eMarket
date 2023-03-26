@@ -163,7 +163,6 @@ class Sale implements DiscountModulesInterface {
         $input_price = Ecb::currencyPrice($input['price'], $currency);
 
         $DataBuffer = new DataBuffer();
-        $clock = new SystemClock();
 
         if (is_array($discount_val) && array_key_exists('sale', $discount_val) && count($discount_val['sale']) > 0 && self::status() != FALSE && self::status() == 1) {
 
@@ -173,7 +172,7 @@ class Sale implements DiscountModulesInterface {
             foreach ($discount_val['sale'] as $val) {
                 $data = Pdo::getAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
                 if (count($data) > 0) {
-                    $this_time = $clock->now()->format('U');
+                    $this_time = SystemClock::nowUnixTime();
                     $date_start = $data['UNIX_TIMESTAMP (date_start)'];
                     $date_end = $data['UNIX_TIMESTAMP (date_end)'];
 
@@ -474,13 +473,12 @@ class Sale implements DiscountModulesInterface {
      */
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
-        $clock = new SystemClock();
 
         self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
 
-        self::$this_time = $clock->now()->format('U');
+        self::$this_time = SystemClock::nowUnixTime();
     }
 
     /**
