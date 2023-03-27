@@ -104,7 +104,7 @@ class Success {
 
             self::$customer_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
             $admin_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
-            $date = date("Y-m-d H:i:s");
+            $date = SystemClock::nowSqlDateTime();
             $orders_status_history_data = [[
             'admin' => [
                 'status' => $admin_orders_status_history,
@@ -270,7 +270,7 @@ class Success {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
-                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, date("Y-m-d H:i:s"), Func::getToken(64)]);
+                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, SystemClock::nowSqlDateTime(), Func::getToken(64)]);
         unset($_SESSION['cart']);
     }
 

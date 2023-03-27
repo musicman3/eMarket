@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Clock\SystemClock,
     Func,
     Lang,
     Pages,
@@ -124,7 +125,7 @@ class Currencies {
             Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
                 Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'), $value,
                 $this->default, Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'),
-                Valid::inPOST('decimal_places_currencies'), date("Y-m-d H:i:s"), Valid::inPOST('edit'), lang('#lang_all')[$x]
+                Valid::inPOST('decimal_places_currencies'), SystemClock::nowSqlDateTime(), Valid::inPOST('edit'), lang('#lang_all')[$x]
             ]);
         }
     }

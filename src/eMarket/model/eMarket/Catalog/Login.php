@@ -73,7 +73,7 @@ class Login {
             $recovery_check = Pdo::getValue("SELECT recovery_code FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
             if ($customer_id != FALSE && $recovery_check == FALSE) {
                 $recovery_code = Func::getToken(64);
-                Pdo::action("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, date("Y-m-d H:i:s")]);
+                Pdo::action("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, SystemClock::nowSqlDateTime()]);
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
                 Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
@@ -81,7 +81,7 @@ class Login {
                 Messages::alert('register_password_recovery_message_success', 'success', lang('register_password_recovery_message_success'), 7000, true);
             } elseif ($customer_id != FALSE && $recovery_check != FALSE) {
                 $recovery_code = Func::getToken(64);
-                Pdo::action("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, date("Y-m-d H:i:s"), $customer_id]);
+                Pdo::action("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, SystemClock::nowSqlDateTime(), $customer_id]);
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
                 Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
