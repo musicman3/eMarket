@@ -28,7 +28,7 @@ use eMarket\Core\{
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
+        <link rel="stylesheet" href="/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
 
         <?php

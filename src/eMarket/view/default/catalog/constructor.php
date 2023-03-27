@@ -35,7 +35,7 @@ use eMarket\Catalog\{
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap-icons.css"/>
+        <link rel="stylesheet" type="text/css" href="/ext/bootstrap-icons/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
 
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
