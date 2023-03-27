@@ -34,7 +34,7 @@ use eMarket\Catalog\{
 
         <link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
         <link rel="canonical" href="<?php echo Settings::canonicalPathCatalog() ?>" />
-        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
 
@@ -130,7 +130,7 @@ use eMarket\Catalog\{
         }
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <?php
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');

@@ -27,7 +27,7 @@ use eMarket\Core\{
 
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
-        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
 
@@ -79,7 +79,7 @@ use eMarket\Core\{
         }
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <?php
         if (Routing::$js_handler) {

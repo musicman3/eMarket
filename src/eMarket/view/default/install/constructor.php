@@ -25,7 +25,7 @@ use eMarket\Core\{
 
         <title><?php echo lang(Settings::titlePageGenerator()) ?></title>
 
-        <link rel="stylesheet" type="text/css" href="/ext/bootstrap/css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="/ext/bootstrap/css/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/install/style.css" media="screen" />
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
@@ -36,7 +36,7 @@ use eMarket\Core\{
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/footer.php');
         ?>
 
-        <script type="text/javascript" src="/ext/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <?php
         if (Routing::$js_handler) {
