@@ -17,14 +17,15 @@ class Ajax {
      * Ajax POST
      *
      * @param url {String} (url)
-     * @param data {Obj} (data)
+     * @param data {Object} (data)
      * @param reload {String} (reload marker)
      * @param relay {String} (relay marker)
      * @param func {Object} (function)
+     * @returns {Object|Void} (return data)
      */
     static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
 
-        data['csrf_token'] = document.querySelector('#csrf_token').dataset.csrf;
+        data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
 
         var pref = {
             method: 'POST',

@@ -36,6 +36,7 @@ class Login {
      *
      */
     function __construct() {
+        session_start();
         $this->logout();
         $this->login();
         $this->loginError();
@@ -48,7 +49,6 @@ class Login {
      *
      */
     private function logout(): void {
-        session_start();
         if (Valid::inGET('logout') == 'ok') {
             unset($_SESSION['login']);
             unset($_SESSION['pass']);

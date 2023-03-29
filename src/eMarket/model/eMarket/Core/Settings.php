@@ -30,6 +30,7 @@ class Settings {
     public static $path;
     public static $lang;
     public static $default_page;
+    public static $csrf;
     private static $default_currency = FALSE;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
@@ -45,6 +46,7 @@ class Settings {
         self::$path = $ini['path'];
         self::$lang = $ini['lang'];
         self::$default_page = $ini['default_page'];
+        self::$csrf = $ini['csrf'];
     }
 
     /**

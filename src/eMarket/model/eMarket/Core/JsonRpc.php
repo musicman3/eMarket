@@ -105,11 +105,12 @@ class JsonRpc {
     /**
      * Curl
      *
-     * @param array $data (request data)
+     * @param array|object $data (request data)
      * @param string $host (request host)
+     * @param array $header (CURLOPT_HTTPHEADER parameters)
      * @return mixed $response_string|FALSE (request string)
      */
-    public function curl(array $data, string $host): mixed {
+    public function curl(array|object $data, string $host, $header = ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']): mixed {
         $curl = curl_init($host);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -118,7 +119,7 @@ class JsonRpc {
         curl_setopt($curl, CURLOPT_SSLVERSION, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         $request_string = json_encode($data);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request_string);
         $response_string = curl_exec($curl);

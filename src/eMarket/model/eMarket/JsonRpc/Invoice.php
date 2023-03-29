@@ -12,8 +12,7 @@ namespace eMarket\JsonRpc;
 use eMarket\Core\{
     Clock\SystemClock,
     JsonRpc,
-    Pdo,
-    Settings
+    Pdo
 };
 use \Mpdf\Mpdf;
 

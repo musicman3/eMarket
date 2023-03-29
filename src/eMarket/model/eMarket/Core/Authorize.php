@@ -38,21 +38,20 @@ class Authorize {
      *
      */
     public function __construct() {
-        $exceptions = FALSE;
 
-        if (strrpos(Valid::inSERVER('REQUEST_URI'), 'uploads/temp/')) {
-            $exceptions = 'uploads';
+        if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' ||
+                Settings::path() == 'uploads') {
+            return;
         }
 
-        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login' && !$exceptions) {
-            session_start();
-            $this->csrfVerification();
+        session_start();
+        $this->csrfVerification();
+
+        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
             $this->admin();
         }
 
-        if (Settings::path() == 'catalog' && !$exceptions) {
-            session_start();
-            $this->csrfVerification();
+        if (Settings::path() == 'catalog') {
             $this->catalog();
             new Cart();
         }
@@ -70,7 +69,8 @@ class Authorize {
      * @return bool TRUE/FALSE
      */
     private function installVerify(): bool {
-        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') && file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
+        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') &&
+                file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
             return FALSE;
         }
         return TRUE;
@@ -96,14 +96,16 @@ class Authorize {
      */
     private function csrfVerification(): void {
 
+        $csrf_session_token = $_SESSION[Settings::$csrf[Settings::path()]];
+
         if (Valid::isPOST()) {
-            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $csrf_session_token) {
                 echo 'CSRF Token Error!';
                 exit;
             }
         }
         if (Valid::isPostJson()) {
-            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION['csrf_token_' . Settings::path()]) {
+            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $csrf_session_token) {
                 echo 'CSRF Token Error!';
                 exit;
             }
