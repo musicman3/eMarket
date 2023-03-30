@@ -40,8 +40,7 @@ class Authorize {
      */
     public function __construct() {
 
-        if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' ||
-                Settings::path() == 'uploads') {
+        if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
         }
 
