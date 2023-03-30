@@ -287,9 +287,9 @@ class Func {
      *
      * @param int|string $password Password
      * @param int|string $data Data
-     * @return string|bool
+     * @return string|false
      */
-    public static function encryption(int|string $password, int|string $data,): string|bool {
+    public static function encryption(int|string $password, int|string $data,): string|false {
         $key = substr(hash('sha256', $password, true), 0, 32);
         $cipher = CRYPT_METHOD;
         $iv_len = openssl_cipher_iv_length($cipher);
@@ -305,9 +305,9 @@ class Func {
      *
      * @param int|string $password Password
      * @param int|string $data Data
-     * @return string|bool
+     * @return string|false
      */
-    public static function decryption(int|string $password, int|string $data): string|bool {
+    public static function decryption(int|string $password, int|string $data): string|false {
         $encrypted = base64_decode($data);
         $key = substr(hash('sha256', $password, true), 0, 32);
         $cipher = CRYPT_METHOD;

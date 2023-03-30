@@ -347,6 +347,7 @@ staff_generate_password = Сгенерировать
 staff_note = Примечание
 staff_tooltip = После того как пароль будет сгенерирован, скопируйте его и сообщите новому сотруднику
 staff_chatgpt_token = ChatGPT токен
+staff_user_error = Внимание! Пользователь с таким Email уже есть. Пожалуйста, используйте другие данные для регистрации.
 
 ;MESSAGES
 messages_alert_name = Сообщение eMarket

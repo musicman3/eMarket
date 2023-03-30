@@ -56,7 +56,7 @@ use eMarket\Core\{
     </head>
     <body>
         <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
-        <div id="user_login" class='hidden' data-login='<?php echo Authorize::login() ?>'></div>
+        <div id="user_login" class='hidden' data-login='<?php echo Authorize::encryptedLogin() ?>'></div>
 
         <?php
         foreach (Routing::tlpc('header') as $path) {

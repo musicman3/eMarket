@@ -250,11 +250,11 @@ class Authorize {
     }
 
     /**
-     * Login
+     * Encrypted Login
      *
-     * @return string login
+     * @return string encrypted login
      */
-    public static function login(): string {
+    public static function encryptedLogin(): string {
 
         if (isset($_SESSION['login']) && $_SESSION['pass']) {
             return Func::encryption(DB_PASSWORD, $_SESSION['login']);
