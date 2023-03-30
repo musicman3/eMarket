@@ -53,6 +53,7 @@ $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product)
     var lang = <?php echo json_encode(lang()) ?>;
 
     new Stock(resize_max, lang, resize_max_prod);
+    new ChatGPT();
 </script>
 
 <?php

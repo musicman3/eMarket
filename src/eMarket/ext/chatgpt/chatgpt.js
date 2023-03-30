@@ -14,6 +14,14 @@
 class ChatGPT {
 
     /**
+     * Constructor
+     *
+     */
+    constructor() {
+        ChatGPT.init();
+    }
+
+    /**
      * ChatGPT POST request
      *
      * @param url {String} (url)
@@ -21,7 +29,7 @@ class ChatGPT {
      * @param func {Object} (function)
      * @returns {Object|Void} (return data)
      */
-    async request(url = '', data = {}, func = null) {
+    static async request(url = '', data = {}, func = null) {
 
         data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
 
@@ -58,7 +66,7 @@ class ChatGPT {
      *
      * @param content {String} (question for ChatGPT assistant)
      */
-    chat(content = 'Say this is a test!') {
+    static chat(content = 'Say this is a test!') {
 
         var randomizer = new Randomizer();
 
@@ -68,14 +76,43 @@ class ChatGPT {
             'param': [],
             'id': randomizer.uid(32)}));
 
-        this.request('/services/jsonrpc/?request=' + param,
+        ChatGPT.request('/services/jsonrpc/?request=' + param,
                 {'message': content,
-                'login': document.querySelector('#user_login').dataset.login},
-                this.Response).then((data) => {
+                    'login': document.querySelector('#user_login').dataset.login},
+                ChatGPT.Response).then((data) => {
         });
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
         document.querySelector('#chatgptsend').disabled = true;
+
+    }
+
+    /**
+     * Init
+     *
+     */
+    static init() {
+
+        document.querySelector('#chatgptsend').onclick = function () {
+            ChatGPT.chat(document.querySelector('#chat_user').value);
+        };
+
+        document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
+            ChatGPT.removeClass();
+            document.querySelector('#chatgptsend').disabled = false;
+            document.querySelector('#chat_user').value = '';
+            document.querySelector('#chat_bot').value = '';
+        });
+    }
+
+    /**
+     * Remove Class for send button
+     *
+     */
+    static removeClass() {
+        document.querySelector('#chatgptsendspan').classList.remove('spinner-grow');
+        document.querySelector('#chatgptsendspan').classList.remove('spinner-grow-sm');
+        document.querySelector('#chatgptsend').disabled = false;
     }
 
     /**
@@ -83,15 +120,13 @@ class ChatGPT {
      *
      * @param data {Object} (ChatGPT response)
      */
-    Response(data) {
+    static Response(data) {
         var input = JSON.parse(data);
-        if (input.choices[0].message.content !== undefined) {
-            document.querySelector('#chatgptsendspan').classList.remove('spinner-grow');
-            document.querySelector('#chatgptsendspan').classList.remove('spinner-grow-sm');
-            document.querySelector('#chatgptsend').disabled = false;
-            document.querySelector('#chat_bot').innerHTML = input.choices[0].message.content;
+        if (input !== undefined && input.choices !== undefined) {
+            document.querySelector('#chat_bot').value = input.choices[0].message.content;
         } else {
             console.log(data);
         }
+        ChatGPT.removeClass();
     }
 }
