@@ -13,6 +13,7 @@ CREATE TABLE emkt_administrators (
 	permission varchar(20) NOT NULL,
 	note varchar(256),
 	status int DEFAULT '0' NOT NULL,
+        chatgpt_token json,
 PRIMARY KEY (login))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

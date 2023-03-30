@@ -346,6 +346,7 @@ staff_password = Пароль
 staff_generate_password = Сгенерировать
 staff_note = Примечание
 staff_tooltip = После того как пароль будет сгенерирован, скопируйте его и сообщите новому сотруднику
+staff_chatgpt_token = ChatGPT токен
 
 ;MESSAGES
 messages_alert_name = Сообщение eMarket
@@ -381,3 +382,10 @@ dashboard_wed = Ср
 dashboard_thu = Чт
 dashboard_fri = Пт
 dashboard_sat = Сб
+
+;CHATGPT
+chatgpt_name = ChatGPT
+chatgpt_open_button = Спросить у ChatGPT
+chatgpt_send_button = Отправить
+chatgpt_user_placeholder = Спросить у ChatGPT...
+chatgpt_response = Ответ:

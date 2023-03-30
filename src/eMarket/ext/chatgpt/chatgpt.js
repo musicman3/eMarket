@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, fetch, AjaxSuccess, Randomizer */
+/* global bootstrap, fetch, AjaxSuccess, Randomizer, tinymce */
 
 /**
  * Ajax requests
@@ -68,10 +68,14 @@ class ChatGPT {
             'param': [],
             'id': randomizer.uid(32)}));
 
-        var chatrequest =  this.request('/services/jsonrpc/?request=' + param,
-                {'message': content},
-                ChatGPT.Response).then((data) => {
+        this.request('/services/jsonrpc/?request=' + param,
+                {'message': content,
+                'login': document.querySelector('#user_login').dataset.login},
+                this.Response).then((data) => {
         });
+        document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
+        document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
+        document.querySelector('#chatgptsend').disabled = true;
     }
 
     /**
@@ -79,9 +83,15 @@ class ChatGPT {
      *
      * @param data {Object} (ChatGPT response)
      */
-    static Response(data) {
-
+    Response(data) {
+        var input = JSON.parse(data);
+        if (input.choices[0].message.content !== undefined) {
+            document.querySelector('#chatgptsendspan').classList.remove('spinner-grow');
+            document.querySelector('#chatgptsendspan').classList.remove('spinner-grow-sm');
+            document.querySelector('#chatgptsend').disabled = false;
+            document.querySelector('#chat_bot').innerHTML = input.choices[0].message.content;
+        } else {
             console.log(data);
-        
+        }
     }
 }

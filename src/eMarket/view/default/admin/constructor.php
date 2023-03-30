@@ -39,6 +39,7 @@ use eMarket\Core\{
 
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/ext/chatgpt/chatgpt.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
 
@@ -55,6 +56,7 @@ use eMarket\Core\{
     </head>
     <body>
         <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
+        <div id="user_login" class='hidden' data-login='<?php echo Authorize::login() ?>'></div>
 
         <?php
         foreach (Routing::tlpc('header') as $path) {

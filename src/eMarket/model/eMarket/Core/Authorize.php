@@ -248,4 +248,17 @@ class Authorize {
         return $password_hash;
     }
 
+    /**
+     * Login
+     *
+     * @return string login
+     */
+    public static function login(): string {
+
+        if (isset($_SESSION['login'])) {
+            return $_SESSION['login'];
+        }
+        return '';
+    }
+
 }

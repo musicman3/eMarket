@@ -135,9 +135,13 @@ class StaffManager {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-
+            $user_check = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
             Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
             Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [Valid::inPOST('delete')]);
+
+            if ($user_check == Valid::inPOST('delete')) {
+                unset($_SESSION['login']);
+            }
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }

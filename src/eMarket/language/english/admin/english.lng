@@ -348,6 +348,7 @@ staff_password = Password
 staff_generate_password = Generate
 staff_note = Note
 staff_tooltip = After the password has been generated, copy it and inform the new employee
+staff_chatgpt_token = ChatGPT token
 
 ;MESSAGES
 messages_alert_name = eMarket message
@@ -383,3 +384,10 @@ dashboard_wed = Wed
 dashboard_thu = Thu
 dashboard_fri = Fri
 dashboard_sat = Sat
+
+;CHATGPT
+chatgpt_name = ChatGPT
+chatgpt_open_button = Ask ChatGPT
+chatgpt_send_button = Send
+chatgpt_user_placeholder = Ask ChatGPT...
+chatgpt_response = Reply:

@@ -45,6 +45,13 @@ use eMarket\Core\{
                                 <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="note" id="note" />
                             </div>
                         </div>
+                        <div class="mb-2">
+                            <small class="form-text text-muted" for="chatgpt_token"><?php echo lang('staff_chatgpt_token') ?></small>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bi-file-text"></span>
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="chatgpt_token" id="chatgpt_token" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 

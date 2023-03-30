@@ -25,6 +25,7 @@ class Stock {
         this.mousedown();
         this.tinymceInit();
         this.focusin();
+        this.chatgpt();
     }
 
     /**
@@ -124,5 +125,16 @@ class Stock {
         });
 
         return picker;
+    }
+
+    /**
+     * ChatGPT init
+     * 
+     */
+    chatgpt() {
+        document.querySelector('#chatgptsend').onclick = function () {
+            var chatgpt = new ChatGPT();
+            chatgpt.chat(document.querySelector('#chat_user').value);
+        };
     }
 }

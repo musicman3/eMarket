@@ -28,7 +28,6 @@ use eMarket\Admin\Stock;
                     <input id="general_image_edit_product" type="hidden" name="general_image_edit_product" value="" />
                     <input id="general_image_edit_new_product" type="hidden" name="general_image_edit_new_product" value="" />
                     <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
-
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#panel_add_product_1"><?php echo lang('stock_product_description') ?></a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_2"><?php echo lang('stock_product_basic') ?></a></li>
@@ -36,6 +35,8 @@ use eMarket\Admin\Stock;
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_4"><?php echo lang('stock_product_specification') ?></a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_5"><?php echo lang('stock_product_images') ?></a></li>
                     </ul>
+
+                    <?php require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php'); ?>
 
                     <div class="tab-content pt-2">
 
@@ -52,7 +53,10 @@ use eMarket\Admin\Stock;
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_name') ?></small></div>
                                             <div class="input-group input-group-sm">
                                                 <span class="input-group-text bi-file-text"></span>
-                                                <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" required />
+                                                <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" required />&nbsp;&nbsp;
+                                                <div>
+                                                    <button class="btn btn-sm btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <?php echo lang('chatgpt_open_button') ?></button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="mb-3">

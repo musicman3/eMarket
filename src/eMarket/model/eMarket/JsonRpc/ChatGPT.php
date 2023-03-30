@@ -11,6 +11,7 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     JsonRpc,
+    Pdo,
     Valid
 };
 
@@ -33,7 +34,17 @@ class ChatGPT extends JsonRpc {
      *
      */
     public function __construct() {
+        $this->getToken();
         $this->request();
+    }
+
+    /**
+     * Get token
+     *
+     */
+    private function getToken(): void {
+        $this->token = json_decode(Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [
+                            Valid::inPostJson('login')]), true)[0];
     }
 
     /**

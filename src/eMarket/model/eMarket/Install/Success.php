@@ -148,7 +148,7 @@ class Success {
         $password_admin_hash = Authorize::passwordHash(self::$password_admin);
 
         if (Valid::inPOST('login_admin') && Valid::inPOST('password_admin')) {
-            Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng]);
+            Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, chatgpt_token=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng, json_encode([])]);
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
         }
 

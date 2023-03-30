@@ -67,8 +67,14 @@ class Staff {
      */
     private function add(): void {
         if (Valid::inPOST('add')) {
-            Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?", [Valid::inPOST('email'),
-                Authorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note')]);
+
+            $chatgpt_token = json_encode([]);
+            if (Valid::inPOST('chatgpt_token')) {
+                $chatgpt_token = json_encode([Valid::inPOST('chatgpt_token')]);
+            }
+
+            Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?, chatgpt_token=?", [Valid::inPOST('email'),
+                Authorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note'), $chatgpt_token]);
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
@@ -82,6 +88,10 @@ class Staff {
         if (Valid::inPOST('delete')) {
 
             Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('delete')]);
+
+            if ($_SESSION['login'] == Valid::inPOST('delete')) {
+                unset($_SESSION['login']);
+            }
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
