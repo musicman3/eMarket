@@ -17,6 +17,7 @@
 ### Features: 
   - Vanilla JS
   - Bootstrap 5
+  - ChatGPT integration
   - SQL + noSQL concept for query optimization (MySQL json fields)
   - Development in `error_reporting(-1)` mode (show all errors)
 
