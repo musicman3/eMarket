@@ -99,7 +99,6 @@ class ChatGPT {
 
         document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
             ChatGPT.removeClass();
-            document.querySelector('#chatgptsend').disabled = false;
             document.querySelector('#chat_user').value = '';
             document.querySelector('#chat_bot').value = '';
         });
