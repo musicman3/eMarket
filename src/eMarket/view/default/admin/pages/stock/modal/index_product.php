@@ -18,6 +18,9 @@ use eMarket\Admin\Stock;
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
+            <?php require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php'); ?>
+
             <form id="form_add_product" class="was-validated" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="modal-body">
                     <input type="hidden" name="parent_id" value="<?php echo Stock::$parent_id ?>" />
@@ -35,8 +38,6 @@ use eMarket\Admin\Stock;
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_4"><?php echo lang('stock_product_specification') ?></a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#panel_add_product_5"><?php echo lang('stock_product_images') ?></a></li>
                     </ul>
-
-                    <?php require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php'); ?>
 
                     <div class="tab-content pt-2">
 

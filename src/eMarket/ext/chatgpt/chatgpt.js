@@ -92,10 +92,17 @@ class ChatGPT {
      *
      */
     static init() {
-
         document.querySelector('#chatgptsend').onclick = function () {
             ChatGPT.chat(document.querySelector('#chat_user').value);
         };
+
+        document.querySelector('#chat_user')
+                .addEventListener('keyup', function (event) {
+                    event.preventDefault();
+                    if (event.keyCode === 13) {
+                        ChatGPT.chat(document.querySelector('#chat_user').value);
+                    }
+                });
 
         document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
             ChatGPT.removeClass();
@@ -123,6 +130,7 @@ class ChatGPT {
         var input = JSON.parse(data);
         if (input !== undefined && input.choices !== undefined) {
             document.querySelector('#chat_bot').value = input.choices[0].message.content;
+            document.querySelector('#chat_user').value = '';
         } else {
             console.log(data);
         }

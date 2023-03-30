@@ -12,7 +12,7 @@
     </div>
     <div class="offcanvas-body">
         <div class="mb-3">
-            <textarea class="form-control" id="chat_user" rows="2" placeholder="<?php echo lang('chatgpt_user_placeholder') ?>" required></textarea>
+            <textarea class="form-control" id="chat_user" rows="2" placeholder="<?php echo lang('chatgpt_user_placeholder') ?>"></textarea>
         </div>
         <div class="mb-3">
             <button id="chatgptsend" class="btn btn-sm btn-success" type="button"><span id="chatgptsendspan" class="text-light"></span> <?php echo lang('chatgpt_send_button') ?></button>
