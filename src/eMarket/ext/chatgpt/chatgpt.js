@@ -100,6 +100,8 @@ class ChatGPT {
                 .addEventListener('keyup', function (event) {
                     event.preventDefault();
                     if (event.keyCode === 13) {
+                        document.querySelector('#chat_user').blur();
+                        document.querySelector('#chat_user').disabled = true;
                         ChatGPT.chat(document.querySelector('#chat_user').value);
                     }
                 });
@@ -107,7 +109,10 @@ class ChatGPT {
         document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
             ChatGPT.removeClass();
             document.querySelector('#chat_user').value = '';
-            document.querySelector('#chat_bot').value = '';
+        });
+        
+        document.querySelector('#offcanvasRight').addEventListener('shown.bs.offcanvas', function (event) {
+            document.querySelector('#chat_user').focus();
         });
     }
 
@@ -130,7 +135,9 @@ class ChatGPT {
         var input = JSON.parse(data);
         if (input !== undefined && input.choices !== undefined) {
             document.querySelector('#chat_bot').value = input.choices[0].message.content;
+            document.querySelector('#chat_user').disabled = false;
             document.querySelector('#chat_user').value = '';
+            document.querySelector('#chat_user').focus();
         } else {
             console.log(data);
         }
