@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
+    Func,
     JsonRpc,
     Pdo,
     Valid
@@ -34,7 +35,6 @@ class ChatGPT extends JsonRpc {
      *
      */
     public function __construct() {
-        $this->getToken();
         $this->request();
     }
 
@@ -43,8 +43,9 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function getToken(): void {
-        $this->token = json_decode(Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [
-                            Valid::inPostJson('login')]), true)[0];
+        $decrypt_login = Func::decryption(DB_PASSWORD, Valid::inPostJson('login'));
+        $this->token = json_decode(Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?",
+                                [$decrypt_login]), true)[0];
     }
 
     /**
@@ -53,6 +54,7 @@ class ChatGPT extends JsonRpc {
      */
     private function request(): void {
         if (Valid::inPostJson('message')) {
+            $this->getToken();
 
             $request = (object) ['model' => 'gpt-3.5-turbo',
                         'messages' => [(object) [

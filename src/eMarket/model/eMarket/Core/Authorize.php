@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
+    Func,
     Pdo,
     Settings,
     Valid,
@@ -255,8 +256,8 @@ class Authorize {
      */
     public static function login(): string {
 
-        if (isset($_SESSION['login'])) {
-            return $_SESSION['login'];
+        if (isset($_SESSION['login']) && $_SESSION['pass']) {
+            return Func::encryption(DB_PASSWORD, $_SESSION['login']);
         }
         return '';
     }

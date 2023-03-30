@@ -283,6 +283,43 @@ class Func {
     }
 
     /**
+     * Encryption
+     *
+     * @param int|string $password Password
+     * @param int|string $data Data
+     * @return string|bool
+     */
+    public static function encryption(int|string $password, int|string $data,): string|bool {
+        $key = substr(hash('sha256', $password, true), 0, 32);
+        $cipher = CRYPT_METHOD;
+        $iv_len = openssl_cipher_iv_length($cipher);
+        $tag_length = 16;
+        $iv = openssl_random_pseudo_bytes($iv_len);
+        $tag = '';
+        $ciphertext = openssl_encrypt($data, $cipher, $key, OPENSSL_RAW_DATA, $iv, $tag, '', $tag_length);
+        return $encrypted = base64_encode($iv . $ciphertext . $tag);
+    }
+
+    /**
+     * Decryption
+     *
+     * @param int|string $password Password
+     * @param int|string $data Data
+     * @return string|bool
+     */
+    public static function decryption(int|string $password, int|string $data): string|bool {
+        $encrypted = base64_decode($data);
+        $key = substr(hash('sha256', $password, true), 0, 32);
+        $cipher = CRYPT_METHOD;
+        $iv_len = openssl_cipher_iv_length($cipher);
+        $tag_length = 16;
+        $iv = substr($encrypted, 0, $iv_len);
+        $ciphertext = substr($encrypted, $iv_len, -$tag_length);
+        $tag = substr($encrypted, -$tag_length);
+        return $decrypted = openssl_decrypt($ciphertext, $cipher, $key, OPENSSL_RAW_DATA, $iv, $tag);
+    }
+
+    /**
      * Delete GET-parameter
      *
      * @param string $get GET-request
