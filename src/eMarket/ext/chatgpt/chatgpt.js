@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global bootstrap, fetch, AjaxSuccess, Randomizer, tinymce */
+/* global Ajax, Randomizer */
 
 /**
  * Ajax requests
@@ -22,46 +22,6 @@ class ChatGPT {
     }
 
     /**
-     * ChatGPT POST request
-     *
-     * @param url {String} (url)
-     * @param data {Obj} (data)
-     * @param func {Object} (function)
-     * @returns {Object|Void} (return data)
-     */
-    static async request(url = '', data = {}, func = null) {
-
-        data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
-
-        var pref = {
-            method: 'POST',
-            mode: 'no-cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'User-Agent': 'eMarket'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        };
-
-        const response = await fetch(url, pref).then(
-                data => {
-                    return data.text();
-                }
-        ).then(
-                text => {
-                    if (func !== null && func !== false && typeof func === 'function') {
-                        func(text);
-                    }
-                }
-        );
-    }
-
-    /**
      * Chat
      *
      * @param content {String} (question for ChatGPT assistant)
@@ -76,10 +36,10 @@ class ChatGPT {
             'param': [],
             'id': randomizer.uid(32)}));
 
-        ChatGPT.request('/services/jsonrpc/?request=' + param,
+        Ajax.postData('/services/jsonrpc/?request=' + param,
                 {'message': content,
                     'login': document.querySelector('#user_login').dataset.login},
-                ChatGPT.Response).then((data) => {
+                null, null, ChatGPT.Response).then((data) => {
         });
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
@@ -110,7 +70,7 @@ class ChatGPT {
             ChatGPT.removeClass();
             document.querySelector('#chat_user').value = '';
         });
-        
+
         document.querySelector('#offcanvasRight').addEventListener('shown.bs.offcanvas', function (event) {
             document.querySelector('#chat_user').focus();
         });

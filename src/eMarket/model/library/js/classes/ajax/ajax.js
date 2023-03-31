@@ -33,7 +33,9 @@ class Ajax {
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'User-Agent': 'eMarket'
             },
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
