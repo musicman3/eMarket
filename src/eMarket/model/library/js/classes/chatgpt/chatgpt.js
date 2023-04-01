@@ -44,7 +44,6 @@ class ChatGPT {
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
         document.querySelector('#chatgptsend').disabled = true;
-
     }
 
     /**
