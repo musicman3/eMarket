@@ -130,7 +130,6 @@ image_resize_error = ATTENTION: Some images not added. One of the sides of the i
 attention = ATTENTION!
 confirm_delete_product_or_category = Are you sure you want to delete a category or product?
 confirm_delete_sticker = Are you sure you want to remove sticker?
-alert_wait = Please wait. Processing is in progress...
 enter_value = Enter value
 
 ;DEBUG

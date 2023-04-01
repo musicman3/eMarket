@@ -83,9 +83,8 @@ class Ajax {
      *
      * @param name {String} (name)
      * @param url {String} (url)
-     * @param alert {String} (alert block)
      */
-    static callAdd(name, url, alert) {
+    static callAdd(name, url) {
         if (document.querySelector('#attributes') !== null) {
             document.querySelector('#attributes').value = sessionStorage.getItem('attributes');
         }
@@ -104,11 +103,7 @@ class Ajax {
         xhr.open('POST', window.location.href, false);
         xhr.send(data);
         if (xhr.status === 200) {
-            if (alert !== undefined && alert !== null) {
-                document.querySelector('#alert_block').innerHTML = '<div id="alert" class="alert text-danger fade in bi-alert-triangle"> ' + alert + '</div>';
-            }
             Ajax.closeModals(url);
-
         }
     }
 
