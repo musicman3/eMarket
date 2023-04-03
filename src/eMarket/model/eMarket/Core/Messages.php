@@ -50,6 +50,7 @@ class Messages {
      * @param string $action (add/edit/delete/cut and etc)
      */
     public static function logging(string $type, ?string $page = null, ?string $action = null): void {
+
         if (Settings::path() == 'admin') {
             $log = new Logger('eMarket');
             $log->pushHandler(new StreamHandler(getenv('DOCUMENT_ROOT') . '/storage/logs/actions.log', Logger::INFO));
@@ -76,24 +77,22 @@ class Messages {
     /**
      * Error notifications, success, etc.
      * 
-     * param string $action (add/edit/delete/cut and etc)
-     * @param string $class Bootstrap class
+     * param string $action|null (add/edit/delete/cut and etc)
+     * @param string|null $class Bootstrap class
      * @param mixed $message Message
-     * @param int $time Show time (ms)
+     * @param int|null $time Show time (ms)
      * @param bool $start Manual call
      * @return bool
      *
      */
-    public static function alert(?string $action = null, ?string $class = null, mixed $message = null, ?int $time = null, bool $start = false): bool {
+    public static function alert(?string $action = null, ?string $class = null, mixed $message = null, ?int $time = 3000, bool $start = false): bool {
+
         if ($message != null && $class != null) {
             $_SESSION['message_marker'] = 'ok';
-            if ($time != null) {
-                $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
-                self::logging($class, '?route=' . Valid::inGET('route'), $action);
-            } else {
-                $_SESSION['message'] = [$class, $message, 3000, $start, SystemClock::nowFormatDate('H:i')];
-                self::logging($class, '?route=' . Valid::inGET('route'), $action);
-            }
+
+            $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
+            self::logging($class, '?route=' . Valid::inGET('route'), $action);
+
             if (Valid::inGET('route') == 'settings/modules/edit') {
                 self::alert();
             }
@@ -173,10 +172,9 @@ class Messages {
 
         if ($basic_settings['smtp_status'] == 1) {
 
+            $smtp_auth = true;
             if ($basic_settings['smtp_auth'] == 0) {
                 $smtp_auth = false;
-            } else {
-                $smtp_auth = true;
             }
 
             $mail->isSMTP();

@@ -5,7 +5,7 @@
 /* global Ajax, Randomizer */
 
 /**
- * Ajax requests
+ * ChatGPT
  *
  * @package ChatGPT
  * @author eMarket
@@ -22,11 +22,11 @@ class ChatGPT {
     }
 
     /**
-     * Chat
+     * Request
      *
      * @param content {String} (question for ChatGPT assistant)
      */
-    static chat(content = 'Say this is a test!') {
+    static request(content = 'Say this is a test!') {
 
         var randomizer = new Randomizer();
 
@@ -52,7 +52,7 @@ class ChatGPT {
      */
     static init() {
         document.querySelector('#chatgptsend').onclick = function () {
-            ChatGPT.chat(document.querySelector('#chat_user').value);
+            ChatGPT.request(document.querySelector('#chat_user').value);
         };
 
         document.querySelector('#chat_user')
@@ -61,7 +61,7 @@ class ChatGPT {
                     if (event.keyCode === 13) {
                         document.querySelector('#chat_user').blur();
                         document.querySelector('#chat_user').disabled = true;
-                        ChatGPT.chat(document.querySelector('#chat_user').value);
+                        ChatGPT.request(document.querySelector('#chat_user').value);
                     }
                 });
 

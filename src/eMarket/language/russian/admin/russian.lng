@@ -50,6 +50,7 @@ menu_languages = Языки
 menu_support = Поддержка
 menu_tools = Инструменты
 
+;LOGIN
 login_error = Введены неверные E-Mail или пароль
 
 ;КНОПКИ
@@ -84,6 +85,7 @@ select_all = Выбрать все
 select_country_and_region = Выберите страну и регион
 positions_selected = Выбрано позиций
 pcs = шт.
+new_version_available = Доступна новая версия
 
 ;РАЗНОЕ
 with = Отображено с

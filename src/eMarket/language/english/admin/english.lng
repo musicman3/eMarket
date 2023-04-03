@@ -50,6 +50,7 @@ menu_languages = Languages
 menu_support = Support
 menu_tools = Tools
 
+;LOGIN
 login_error = E-Mail or password error
 
 ;BUTTONS
@@ -84,6 +85,7 @@ select_all = Select all
 select_country_and_region = Select country and region
 positions_selected = Positions selected
 pcs = pcs.
+new_version_available = New version available
 
 ;OTHER
 with = Displaying 
