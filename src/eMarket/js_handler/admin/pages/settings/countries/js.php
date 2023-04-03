@@ -5,9 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript" src="/js_handler/admin/pages/settings/countries/main.js"></script>
 <script type="text/javascript">
-    new Ajax();
     new Countries();
 </script>

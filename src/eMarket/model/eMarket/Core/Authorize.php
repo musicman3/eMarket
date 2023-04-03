@@ -258,7 +258,7 @@ class Authorize {
         if (isset($_SESSION['login']) && $_SESSION['pass']) {
             return Func::encryption(DB_PASSWORD, $_SESSION['login']);
         }
-        return '';
+        return 'false';
     }
 
 }

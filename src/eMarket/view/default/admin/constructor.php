@@ -39,6 +39,7 @@ use eMarket\Core\{
 
         <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/chatgpt/chatgpt.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/update/update.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
@@ -93,7 +94,9 @@ use eMarket\Core\{
         }
         Debug::info();
         ?>
+
         <script type="text/javascript">
+            new Ajax();
             new Update();
         </script>
     </body>

@@ -98,7 +98,7 @@ class ChatGPT {
             document.querySelector('#chat_user').value = '';
             document.querySelector('#chat_user').focus();
         } else {
-            console.log(data);
+            document.querySelector('#chat_bot').value = input.error.message;
         }
         ChatGPT.removeClass();
     }

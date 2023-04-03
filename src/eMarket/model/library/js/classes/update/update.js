@@ -34,11 +34,13 @@ class Update {
             'method': 'Update',
             'param': [],
             'id': randomizer.uid(32)}));
-
-        Ajax.postData('/services/jsonrpc/?request=' + param,
-                {'login': document.querySelector('#user_login').dataset.login},
-                null, null, Update.Response).then((data) => {
-        });
+        
+        if (document.querySelector('#user_login').dataset.login !== 'false') {
+            Ajax.postData('/services/jsonrpc/?request=' + param,
+                    {'login': document.querySelector('#user_login').dataset.login},
+                    null, null, Update.Response).then((data) => {
+            });
+        }
     }
 
     /**
@@ -56,12 +58,12 @@ class Update {
      */
     static Response(data) {
         var input = JSON.parse(data);
-        
+
         const tooltip = bootstrap.Tooltip.getInstance('#update_box');
         tooltip.setContent({'.tooltip-inner': input.message});
 
         var text_class = 'text-success';
-        
+
         if (input.status === 'false') {
             text_class = 'text-warning';
         }

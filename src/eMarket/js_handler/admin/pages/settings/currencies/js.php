@@ -5,10 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript" src="/js_handler/admin/pages/settings/currencies/main.js"></script>
 <script type="text/javascript">
-    new Ajax();
     new Currencies();
 </script>
 

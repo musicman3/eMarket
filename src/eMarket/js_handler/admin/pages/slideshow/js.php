@@ -18,11 +18,9 @@ $resize_max = json_encode(\eMarket\Core\Files::imgResizeMax(\eMarket\Admin\Slide
 <!--File Upload -->
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript" src="/js_handler/admin/pages/slideshow/main.js"></script>
 
 <script type="text/javascript">
-    new Ajax();
     new Slideshow();
     var resize_max = <?php echo $resize_max ?>;
     var lang = <?php echo json_encode(lang()) ?>;

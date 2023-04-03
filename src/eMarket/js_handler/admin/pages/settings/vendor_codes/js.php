@@ -6,8 +6,6 @@
 ?>
 
 <script type="text/javascript" src="/js_handler/admin/pages/settings/vendor_codes/main.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript">
-    new Ajax();
     new VendorCodes();
 </script>

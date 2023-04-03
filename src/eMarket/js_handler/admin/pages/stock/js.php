@@ -44,7 +44,6 @@ $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product)
     <script type="text/javascript" src="/ext/moment/locale/<?php echo lang('meta-language') ?>.js"></script>
 <?php } ?>
 
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript" src="/js_handler/admin/pages/stock/main.js"></script>
 
 <script type="text/javascript">

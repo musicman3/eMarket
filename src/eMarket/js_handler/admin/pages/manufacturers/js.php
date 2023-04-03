@@ -7,13 +7,11 @@ $resize_max = json_encode(\eMarket\Core\Files::imgResizeMax(eMarket\Admin\Manufa
 ?>
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
 <script type="text/javascript" src="/js_handler/admin/pages/manufacturers/main.js"></script>
 
 <script type="text/javascript">
     var resize_max = <?php echo $resize_max ?>;
     var lang = <?php echo json_encode(lang()) ?>;
     new Fileupload(resize_max, lang);
-    new Ajax();
     new Manufacturers();
 </script>

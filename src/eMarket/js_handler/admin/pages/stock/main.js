@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global tinymce, moment */
+/* global Ajax, tinymce, moment */
 
 /**
  * Stock
@@ -36,7 +36,6 @@ class Stock {
     init(resize_max, lang, resize_max_prod) {
         new Fileupload(resize_max, lang);
         new FileuploadProduct(resize_max_prod, lang);
-        new Ajax();
         new Mouse(lang);
         new GroupAttributes(lang);
         new Attributes(lang);
