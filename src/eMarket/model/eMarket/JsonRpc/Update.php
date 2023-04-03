@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
-    Clock\SystemClock,
     JsonRpc
 };
 

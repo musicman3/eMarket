@@ -54,7 +54,7 @@ class Update {
     /**
      * Response
      *
-     * @param data {Object} (ChatGPT response)
+     * @param data {Object} (response)
      */
     static Response(data) {
         var input = JSON.parse(data);
