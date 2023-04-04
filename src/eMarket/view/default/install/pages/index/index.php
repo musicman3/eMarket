@@ -24,7 +24,7 @@ use eMarket\Core\{
                                 <option><?php echo lang('select_language') ?></option>
                                 <?php for ($x = 0; $x < eMarket\Core\Lang::$count; $x++) { ?>
                                     <option value='<?php echo lang('#lang_all')[$x] ?>'><?php echo lang('language_name', lang('#lang_all')[$x]) ?></option>
-<?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                     </form>
@@ -36,6 +36,7 @@ use eMarket\Core\{
 
             <form class="was-validated" action="?route=success" method="post" accept-charset="utf-8" oninput="validate()">
                 <input type='hidden' name='language' value='<?php echo eMarket\Install\Index::$default_language ?>' />
+                <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
 
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
