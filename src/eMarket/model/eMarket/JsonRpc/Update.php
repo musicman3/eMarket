@@ -117,11 +117,11 @@ class Update extends JsonRpc {
     /**
      * eMarket Data
      *
-     * @return mixed eMarket update data
+     * @return mixed eMarket latest release data
      */
     private function eMarketData(): mixed {
 
-        $get_string = self::encodeGetData(Func::getToken(32), 'Update');
+        $get_string = self::encodeGetData(Func::getToken(32), 'UpdateChecker');
         $response = $this->curlFromGet('https://data.emarketforum.com' . $get_string);
 
         if (empty($response)) {
