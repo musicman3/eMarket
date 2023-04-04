@@ -76,7 +76,7 @@ class Update extends JsonRpc {
 
         $version = $this->checkVersion();
 
-        if ($version && $version['this_version'] >= $version['new_version']) {
+        if ($version && version_compare($version['this_version'], $version['new_version'], '>=')) {
             return [
                 'status' => 'ok',
                 'this_version' => $version['this_version'],
@@ -85,7 +85,7 @@ class Update extends JsonRpc {
             ];
         }
 
-        if ($version && $version['this_version'] < $version['new_version']) {
+        if ($version && version_compare($version['this_version'], $version['new_version'], '<')) {
             return [
                 'status' => 'false',
                 'this_version' => $version['this_version'],
