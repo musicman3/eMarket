@@ -3,6 +3,10 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use eMarket\Core\{
+    Authorize
+};
 ?>
 
 <div class="container-fluid">
@@ -13,13 +17,14 @@
                 <h5 class="col"><?php echo lang('install_panel') ?></h5>
                 <div class="col-xl-3 col-md-4 col-5 float-end">
                     <form action="/controller/install/" method="post" accept-charset="utf-8">
+                        <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-globe"></span>
                             <select name='language' class="input-sm form-select" onchange="submit();">
                                 <option><?php echo lang('select_language') ?></option>
                                 <?php for ($x = 0; $x < eMarket\Core\Lang::$count; $x++) { ?>
                                     <option value='<?php echo lang('#lang_all')[$x] ?>'><?php echo lang('language_name', lang('#lang_all')[$x]) ?></option>
-                                <?php } ?>
+<?php } ?>
                             </select>
                         </div>
                     </form>

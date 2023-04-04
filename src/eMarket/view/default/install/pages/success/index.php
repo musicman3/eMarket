@@ -4,6 +4,9 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+use eMarket\Core\{
+    Authorize
+};
 ?>
 
 <div class="container-fluid">
@@ -13,6 +16,7 @@
         </div>
         <div class="card-body">
             <form action='/controller/admin/?route=login' method='post' accept-charset='utf-8'>
+                <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
                 <input type="hidden" name="install" value="ok" />
                 <div class="alert alert-success"><?php echo lang('success') ?></div>
                 <input type="hidden" name="language" value="<?php echo \eMarket\Install\Success::$lng ?>" />

@@ -5,6 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
+    Authorize,
     Valid
 };
 use eMarket\Install\Error;
@@ -17,6 +18,7 @@ use eMarket\Install\Error;
         </div>
         <div class="card-body">
             <form action='/controller/install/' method='post' accept-charset='utf-8'>
+                <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
                 <div class="alert alert-danger"><?php echo lang(Error::$message) ?></div>
 
                 <?php if (Valid::inGET('error_message')) { ?>
