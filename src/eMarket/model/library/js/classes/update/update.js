@@ -57,7 +57,7 @@ class Update {
             sessionStorage.setItem('update_time', time_second);
             return true;
         }
-        if (sessionStorage.getItem('update_time') < (time_second - 20)) {
+        if (sessionStorage.getItem('update_time') < (time_second - 3600)) {
             sessionStorage.setItem('update_time', time_second);
             return true;
         }
