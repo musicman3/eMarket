@@ -258,30 +258,53 @@ function gitHubData($repo_init) {
             function success(xhr) {
                 var data = xhr.response;
                 var parse = JSON.parse(data);
+                var progress_bar = document.querySelectorAll('.progress-bar');
+
                 if (parse[0] === 'Install' && Number(parse[2]) < 6) {
                     document.querySelector('#parts').insertAdjacentHTML('beforeend', '<div><span class="badge bg-success">' + parse[1] + '</span>&nbsp;</div>');
                     document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 5';
-                    getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3]);
+
+                    progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 20 + '%');
+                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+
+                    setTimeout(() => {
+                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3]);
+                    }, 1250);
                 }
                 if (parse[0] === 'Error') {
                     document.querySelector('#part_I').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
                 }
 
                 if (parse[0] === 'Done') {
-                    window.location.href = 'controller/install/';
+                    progress_bar.forEach(e => e.style.width = '100%');
+                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+                    setTimeout(() => {
+                        window.location.href = 'controller/install/';
+                    }, 2500);
                 }
             }
         </script>
     </head>
     <body>
         <div class="card text-center">
+
             <div class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-label="Animated striped" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
             <div id="parts" class="card-body">
                 <div><span class="badge bg-danger">ACTIONS:</span>&nbsp;</div>
                 <div><span class="badge bg-success">Downloading <?php echo explode('/', $repo_init)[1] ?> archive</span>&nbsp;</div>
             </div>
             <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
         </div>
-        <script>getUpdate(window.location.href + '?step=1');</script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(() => {
+                    getUpdate(window.location.href + '?step=1');
+                }, 100);
+            });
+        </script>
     </body>
 </html>
