@@ -40,7 +40,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
                 </ul>
             </div>
             <div class="text-center">
-                <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left" title=" "></span>
+                <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left"></span>
             </div>
         </div>
 
