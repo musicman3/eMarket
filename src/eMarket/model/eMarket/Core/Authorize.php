@@ -69,8 +69,7 @@ class Authorize {
      * @return bool TRUE/FALSE
      */
     private function installVerify(): bool {
-        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php') &&
-                file_exists(getenv('DOCUMENT_ROOT') . '/.htaccess')) {
+        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
             return FALSE;
         }
         return TRUE;

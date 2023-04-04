@@ -152,27 +152,6 @@ class Success {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
         }
 
-        // .HTACCESS
-        $text = "#****** Copyright © 2018 eMarket ******#
-#   GNU GENERAL PUBLIC LICENSE v.3.0   #
-# https://github.com/musicman3/eMarket #
-#**************************************#
-
-Options -Indexes
-
-RewriteEngine On
-#Redirect
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* controller/index.php
-RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -d
-RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]
-RewriteCond %{DOCUMENT_ROOT}/controller/catalog/$1 -f
-RewriteRule ^(.*)$ controller/catalog/$1 [L,QSA]";
-
-        $fp = fopen(ROOT . '/.htaccess', "w+");
-        fwrite($fp, $text);
-        fclose($fp);
-
         if (file_exists(ROOT . '/.htaccess')) {
             chmod(ROOT . '/.htaccess', 0644);
         }
