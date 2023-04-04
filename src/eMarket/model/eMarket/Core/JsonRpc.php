@@ -103,7 +103,7 @@ class JsonRpc {
     }
 
     /**
-     * Curl
+     * Curl from POST-request
      *
      * @param array|object $data (request data)
      * @param string $host (request host)
@@ -131,6 +131,27 @@ class JsonRpc {
         } else {
             return FALSE;
         }
+    }
+
+    /**
+     * Curl from GET-request
+     *
+     * @param string $host (request host)
+     * @param array $header (CURLOPT_HTTPHEADER parameters)
+     * @return mixed $response_string|bool (request string)
+     */
+    public function curlFromGet(string $host, $header = ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']): mixed {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $host);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
+        $response = curl_exec($curl);
+        if (curl_errno($curl)) {
+            return FALSE;
+        }
+        curl_close($curl);
+        return $response;
     }
 
 }

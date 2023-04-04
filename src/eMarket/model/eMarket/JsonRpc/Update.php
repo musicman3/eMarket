@@ -10,7 +10,8 @@ declare(strict_types=1);
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
-    JsonRpc
+    JsonRpc,
+    Func
 };
 
 /**
@@ -78,17 +79,17 @@ class Update extends JsonRpc {
         if ($version && $version['this_version'] >= $version['new_version']) {
             return [
                 'status' => 'ok',
-                'this_version' => $this->thisVersion(),
-                'new_version' => $this->gitHubData(),
-                'message' => $this->thisVersion()
+                'this_version' => $version['this_version'],
+                'new_version' => $version['new_version'],
+                'message' => $version['this_version']
             ];
         }
 
         if ($version && $version['this_version'] < $version['new_version']) {
             return [
                 'status' => 'false',
-                'this_version' => $this->thisVersion(),
-                'new_version' => $this->gitHubData(),
+                'this_version' => $version['this_version'],
+                'new_version' => $version['new_version'],
                 'message' => lang('new_version_available')
             ];
         }
@@ -102,16 +103,8 @@ class Update extends JsonRpc {
      * @return mixed GitHub latest release data
      */
     private function gitHubData(): mixed {
-        $connect = curl_init();
-        curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: eMarket']);
-        curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/musicman3/eMarket/releases/latest');
-        curl_setopt($connect, CURLOPT_CONNECTTIMEOUT, 3);
-        $response_string = curl_exec($connect);
-        if (curl_errno($connect)) {
-            return FALSE;
-        }
-        curl_close($connect);
+        $response_string = $this->curlFromGet('https://api.github.com/repos/musicman3/eMarket/releases/latest');
+
         if (!empty($response_string)) {
             $response = json_decode($response_string, true);
             if (isset($response['name'])) {
@@ -127,25 +120,25 @@ class Update extends JsonRpc {
      * @return mixed eMarket update data
      */
     private function eMarketData(): mixed {
-        $data = [
-            'jsonrpc' => '2.0',
-            'method' => 'CheckVersion',
-            'param' => [
-                'this_version' => $this->thisVersion()
-            ]
-        ];
 
-        $response_string = $this->curl($data, 'https://data.emarketforum.com/services/jsonrpc/');
+        $get_string = self::encodeGetData(Func::getToken(32), 'Update');
+        $response = $this->curlFromGet('https://data.emarketforum.com' . $get_string);
 
-        if ($response_string != FALSE) {
-            if (isset($response_string->result)) {
-                return $response_string->result;
-            }
-            if (isset($response_string->error)) {
-                return $response_string->error;
+        if (empty($response)) {
+            return false;
+        }
+
+        if ($response !== false && $response !== null && $response !== '') {
+            if (json_last_error() === JSON_ERROR_NONE) {
+                return false;
             }
         }
-        return FALSE;
+
+        if (is_string($response) && strpos($response, 'v 1.')) {
+            return $response;
+        }
+
+        return false;
     }
 
 }

@@ -34,13 +34,35 @@ class Update {
             'method': 'Update',
             'param': [],
             'id': randomizer.uid(32)}));
-        
-        if (document.querySelector('#user_login').dataset.login !== 'false') {
+
+        if (document.querySelector('#user_login').dataset.login !== 'false' && Update.requestTime() === true) {
             Ajax.postData('/services/jsonrpc/?request=' + param,
                     {'login': document.querySelector('#user_login').dataset.login},
                     null, null, Update.Response).then((data) => {
             });
+        } else {
+            Update.Response(sessionStorage.getItem('update_response'));
         }
+    }
+
+    /**
+     * Time for request
+     *
+     */
+    static requestTime() {
+        var time = new Date();
+        var time_second = Math.round(time.getTime() / 1000);
+
+        if (sessionStorage.getItem('update_time') === null) {
+            sessionStorage.setItem('update_time', time_second);
+            return true;
+        }
+        if (sessionStorage.getItem('update_time') < (time_second - 3600)) {
+            sessionStorage.setItem('update_time', time_second);
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -58,9 +80,10 @@ class Update {
      */
     static Response(data) {
         var input = JSON.parse(data);
+        sessionStorage.setItem('update_response', data);
 
-        const tooltip = bootstrap.Tooltip.getInstance('#update_box');
-        tooltip.setContent({'.tooltip-inner': input.message});
+        const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
+        document.querySelector('#update_box').setAttribute('data-bs-original-title', input.message);
 
         var text_class = 'text-success';
 
