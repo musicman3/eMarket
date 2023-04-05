@@ -287,11 +287,12 @@ class Func {
      *
      * @param int|string $password Password
      * @param int|string $data Data
+     * @param string|null $method Crypt method
      * @return string|false
      */
-    public static function encryption(int|string $password, int|string $data,): string|false {
+    public static function encryption(int|string $password, int|string $data, ?string $method): string|false {
         $key = substr(hash('sha256', $password, true), 0, 32);
-        $cipher = CRYPT_METHOD;
+        $cipher = $method;
         $iv_len = openssl_cipher_iv_length($cipher);
         $tag_length = 16;
         $iv = openssl_random_pseudo_bytes($iv_len);
@@ -305,12 +306,13 @@ class Func {
      *
      * @param int|string $password Password
      * @param int|string $data Data
+     * @param string|null $method Crypt method
      * @return string|false
      */
-    public static function decryption(int|string $password, int|string $data): string|false {
+    public static function decryption(int|string $password, int|string $data, ?string $method): string|false {
         $encrypted = base64_decode($data);
         $key = substr(hash('sha256', $password, true), 0, 32);
-        $cipher = CRYPT_METHOD;
+        $cipher = $method;
         $iv_len = openssl_cipher_iv_length($cipher);
         $tag_length = 16;
         $iv = substr($encrypted, 0, $iv_len);

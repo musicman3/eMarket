@@ -255,7 +255,7 @@ class Authorize {
     public static function encryptedLogin(): string {
 
         if (isset($_SESSION['login']) && $_SESSION['pass']) {
-            return Func::encryption(DB_PASSWORD, $_SESSION['login']);
+            return Func::encryption(DB_PASSWORD, $_SESSION['login'], CRYPT_METHOD);
         }
         return 'false';
     }
