@@ -255,12 +255,18 @@ function gitHubData($repo_init) {
              */
             function getUpdate(url) {
                 let xhr = new XMLHttpRequest();
-                xhr.open('GET', url, false);
+                xhr.open('GET', url);
                 xhr.send();
-                if (xhr.status === 200) {
-                    success(xhr);
-                }
+                xhr.onreadystatechange = function () {
+                    if (this.readyState !== 4) {
+                        return;
+                    }
+                    if (this.status === 200) {
+                        success(xhr);
+                    }
+                };
             }
+
             /**
              * Success
              *
@@ -322,7 +328,8 @@ function gitHubData($repo_init) {
                     progress_bar.forEach(e => e.style.width = '5%');
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                 }, 1250);
-            });
+            }
+            );
         </script>
     </body>
 </html>
