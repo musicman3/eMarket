@@ -304,7 +304,7 @@ function gitHubData($repo_init) {
 
             <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-label="Animated striped" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar  progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
 
             <div id="parts" class="card-body">
@@ -316,8 +316,13 @@ function gitHubData($repo_init) {
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
-                    getUpdate(window.location.href + '?step=1');
-                }, 100);
+                    setTimeout(() => {
+                        getUpdate(window.location.href + '?step=1');
+                    }, 1250);
+                    var progress_bar = document.querySelectorAll('.progress-bar');
+                    progress_bar.forEach(e => e.style.width = '5%');
+                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+                }, 1250);
             });
         </script>
     </body>
