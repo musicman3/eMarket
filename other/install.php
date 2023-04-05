@@ -282,6 +282,7 @@ function gitHubData($repo_init) {
                         getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3]);
                     }, 1250);
                 }
+
                 if (parse[0] === 'Error') {
                     document.querySelector('#attention').innerHTML = '';
                     document.querySelector('#parts').innerHTML = '';
@@ -301,12 +302,10 @@ function gitHubData($repo_init) {
     </head>
     <body>
         <div class="card text-center">
-
             <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
             <div class="progress">
-                <div class="progress-bar  progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
-
             <div id="parts" class="card-body">
                 <div><span class="badge bg-danger">ACTIONS:</span>&nbsp;</div>
                 <div><span class="badge bg-success">Downloading <?php echo explode('/', $repo_init)[1] ?> archive</span>&nbsp;</div>
