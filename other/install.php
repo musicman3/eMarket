@@ -278,7 +278,7 @@ function gitHubData($repo_init) {
                 var progress_bar = document.querySelectorAll('.progress-bar');
 
                 if (parse[0] === 'Install' && Number(parse[2]) < 6) {
-                    document.querySelector('#parts').insertAdjacentHTML('beforeend', '<div><span class="badge bg-success">' + parse[1] + '</span>&nbsp;</div>');
+                    document.querySelector('#step_data').innerHTML = parse[1];
                     document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 5';
 
                     progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 20 + '%');
@@ -306,17 +306,18 @@ function gitHubData($repo_init) {
             }
         </script>
     </head>
-    <body>
-        <div class="card text-center">
-            <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+    <body><div class="bd-highlight d-flex align-items-center min-vh-100">
+            <div class="card w-25 text-center mx-auto p-2 bd-highlight">
+                <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+                <div id="parts" class="card-body">
+                    <div><span class="badge bg-danger">ACTIONS:</span>&nbsp;</div>
+                    <div><span id="step_data" class="badge bg-success">Downloading <?php echo explode('/', $repo_init)[1] ?> archive</span>&nbsp;</div>
+                </div>
+                <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
             </div>
-            <div id="parts" class="card-body">
-                <div><span class="badge bg-danger">ACTIONS:</span>&nbsp;</div>
-                <div><span class="badge bg-success">Downloading <?php echo explode('/', $repo_init)[1] ?> archive</span>&nbsp;</div>
-            </div>
-            <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
