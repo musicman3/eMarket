@@ -22,15 +22,16 @@ init($repo_init, $mode);
  * @param string $mode Mode
  */
 function init($repo_init, $mode) {
-    if (version_compare(PHP_VERSION, '8.2.0') < 0) {
-        echo 'Attention. Your PHP version < 8.2. Please use version >= 8.2';
-        exit;
-    }
-
     // Repo name
     $repo = explode('/', $repo_init)[1];
 
     if (inGET('step') == '1') {
+
+        if (version_compare(PHP_VERSION, '8.2.0', '<')) {
+            echo json_encode(['Error', 'Attention. Your PHP version < 8.2. Please use version >= 8.2']);
+            exit;
+        }
+
         $download = gitHubData($repo_init);
         if ($download !== FALSE) {
             downloadArchive($repo_init, $download, $mode);
@@ -272,7 +273,10 @@ function gitHubData($repo_init) {
                     }, 1250);
                 }
                 if (parse[0] === 'Error') {
-                    document.querySelector('#part_I').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
+                    document.querySelector('#attention').innerHTML = '';
+                    document.querySelector('#parts').innerHTML = '';
+                    document.querySelector('#step').innerHTML = '';
+                    document.querySelector('#attention').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
                 }
 
                 if (parse[0] === 'Done') {
@@ -288,7 +292,7 @@ function gitHubData($repo_init) {
     <body>
         <div class="card text-center">
 
-            <div class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
+            <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-label="Animated striped" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
