@@ -6,29 +6,34 @@
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
 $repo_init = 'musicman3/eMarket'; // GitHub name & repo
+$php_version_init = [
+    'release' => '8.0',
+    'master' => '8.2'
+];
 /* ++++++++++++++++++++++++++++++++++++++++ */
-
-$mode = 'release';
-$php_version = '8.0';
-if (inGET('install_type') == 'master') {
-    $mode = 'master';
-    $php_version = '8.2';
-}
 
 // php.ini set
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
 // Init
-init($repo_init, $mode, $php_version);
+init($repo_init, $php_version_init);
 
 /**
  * Init
  * 
  * @param string $repo_init GitHub repo data
- * @param string $mode Mode
- * @param string $php_version PHP version for branch
+ * @param array $php_version_init PHP versions for branchs
  */
-function init($repo_init, $mode, $php_version) {
+function init($repo_init, $php_version_init) {
+
+    $php_version = $php_version_init['release'];
+    $mode = 'release';
+
+    if (inGET('install_type') == 'master') {
+        $mode = 'master';
+        $php_version = $php_version_init['master'];
+    }
+
     // Repo name
     $repo = explode('/', $repo_init)[1];
 
@@ -251,7 +256,7 @@ function gitHubData($repo_init) {
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title>Preparing to install eMarket</title>
+        <title>Preparing to install</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script>
@@ -300,7 +305,6 @@ function gitHubData($repo_init) {
                     document.querySelector('#attention').innerHTML = parse[1];
                     document.querySelector('#step_data').innerHTML = 'Installation problem!';
                     document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
-                    //document.querySelector('#attention').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
                 }
 
                 if (parse[0] === 'Done') {
@@ -326,7 +330,7 @@ function gitHubData($repo_init) {
                 <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Install</button></div>
 
                 <div class="card-body p-1">
-                    <div id="attention" class="text-bg-warning p-1">Attention! The eMarket installation is being prepared. Please do not refresh the page.
+                    <div id="attention" class="text-bg-warning p-1">Attention! The Installation is being prepared. Please do not refresh the page.
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                         </div>
@@ -350,7 +354,7 @@ function gitHubData($repo_init) {
                                 install_type = 'master';
                             }
                             getUpdate(window.location.href + '?step=1' + '&install_type=' + install_type);
-                        }, 1250);
+                        }, 1500);
                         document.querySelector('#step_data').innerHTML = 'Downloading archive';
                         var progress_bar = document.querySelectorAll('.progress-bar');
                         progress_bar.forEach(e => e.style.width = '5%');
