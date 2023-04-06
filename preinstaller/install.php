@@ -9,7 +9,8 @@ $repo_init = [
     'name' => 'musicman3/eMarket', // GitHub name & repo
     'target_folder' => '/src', // Target folder from which files are copied
     'release_php_version' => '8.0', // Release php version
-    'master_php_version' => '8.2' // Master php version
+    'master_php_version' => '8.2', // Master php version
+    'redirect' => 'controller/install/' // Redirect after installation completed
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
@@ -316,13 +317,15 @@ function gitHubData(string $repo_name): mixed {
                     progress_bar.forEach(e => e.style.width = '100%');
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                     setTimeout(() => {
-                        window.location.href = 'controller/install/';
+                        window.location.href = document.querySelector('#redirect').dataset.redirect;
+                        ;
                     }, 2500);
                 }
             }
         </script>
     </head>
     <body>
+        <div id="redirect" class='hidden' data-redirect='<?php echo $repo_init['redirect'] ?>'></div>
         <div class="bd-highlight d-flex align-items-center min-vh-100">
             <div class="card w-25 text-center mx-auto p-2 bd-highlight">
                 <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
