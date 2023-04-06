@@ -320,7 +320,7 @@ function gitHubData($repo_init) {
                     <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
                     <label class="btn btn-outline-dark" for="release">GitHub Release</label>
                     <input type="radio" class="btn-check" name="install_type" id="master" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="master">GutHub Master</label>
+                    <label class="btn btn-outline-dark" for="master">GitHub Master</label>
                 </div>
 
                 <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Install</button></div>
