@@ -36,7 +36,7 @@
 #### Download the Preinstaller file here:  
 [![N|Solid](https://img.shields.io/badge/Preinstaller-download-blue)](https://github.com/musicman3/eMarket/raw/master/preinstaller/install.zip)  
 Unzip `install.zip` file. Copy install.php file to the empty root directory of the site and open the link in your browser: http://localhost/install.php  
-This wizard will automatically copy the latest eMarket release to your server and open the installation page.
+This Preinstaller will automatically copy the latest eMarket release/master to your server and open the installation page.
 
 ---
 ### Wiki  
