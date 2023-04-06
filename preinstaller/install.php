@@ -5,10 +5,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
-$repo_init = 'musicman3/eMarket'; // GitHub name & repo
-$php_version_init = [
-    'release' => '8.0',
-    'master' => '8.2'
+$repo_init = [
+    'name' => 'musicman3/eMarket', // GitHub name & repo
+    'target_folder' => '/src', // Target folder from which files are copied
+    'release_php_version' => '8.0', // Release php version
+    'master_php_version' => '8.2' // Master php version
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
@@ -16,26 +17,29 @@ $php_version_init = [
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
 // Init
-init($repo_init, $php_version_init);
+init($repo_init);
 
 /**
  * Init
  * 
- * @param string $repo_init GitHub repo data
- * @param array $php_version_init PHP versions for branchs
- */
-function init($repo_init, $php_version_init) {
+ * @param array $repo_init Init data
 
-    $php_version = $php_version_init['release'];
+ */
+function init(array $repo_init): void {
+
+    $repo_name = $repo_init['name'];
+    $target_folder = $repo_init['target_folder'];
+
+    $php_version = $repo_init['release_php_version'];
     $mode = 'release';
 
     if (inGET('install_type') == 'master') {
+        $php_version = $repo_init['master_php_version'];
         $mode = 'master';
-        $php_version = $php_version_init['master'];
     }
 
     // Repo name
-    $repo = explode('/', $repo_init)[1];
+    $repo = explode('/', $repo_name)[1];
 
     if (inGET('step') == '1') {
 
@@ -44,9 +48,9 @@ function init($repo_init, $php_version_init) {
             exit;
         }
 
-        $download = gitHubData($repo_init);
+        $download = gitHubData($repo_name);
         if ($download !== FALSE) {
-            downloadArchive($repo_init, $download, $mode);
+            downloadArchive($repo_name, $download, $mode);
         } else {
             echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the installation procedure.']);
             exit;
@@ -56,7 +60,7 @@ function init($repo_init, $php_version_init) {
         UnzipArchive(inGET('param'), $repo);
     }
     if (inGET('step') == '3') {
-        copyingFiles($repo);
+        copyingFiles($repo, $target_folder);
     }
     if (inGET('step') == '4') {
         downloadComposer();
@@ -72,7 +76,7 @@ function init($repo_init, $php_version_init) {
  * @param string $input Input data
  * @return mixed
  */
-function inGET($input) {
+function inGET(string $input): mixed {
     if (filter_input(INPUT_GET, $input, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FORCE_ARRAY) == TRUE) {
         if (isset($_GET[$input])) {
             return $_GET[$input];
@@ -84,16 +88,16 @@ function inGET($input) {
 /**
  * Download GitHub archive
  * 
- * @param string $repo_init GitHub repo data
+ * @param string $repo_name GitHub repo name
  * @param string $download file name
  * @param string $mode Mode
  */
-function downloadArchive($repo_init, $download, $mode) {
+function downloadArchive(string $repo_name, string $download, string $mode): void {
     $download_path = 'heads/master';
     if ($mode == 'release') {
         $download_path = 'tags/' . $download;
     }
-    $file = 'https://github.com/' . $repo_init . '/archive/refs/' . $download_path . '.tar.gz';
+    $file = 'https://github.com/' . $repo_name . '/archive/refs/' . $download_path . '.tar.gz';
     $file_name = basename($file);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name, file_get_contents($file));
 
@@ -107,7 +111,7 @@ function downloadArchive($repo_init, $download, $mode) {
  * @param string $file_name GutHub archive name
  * @param string $repo GitHub repo name
  */
-function UnzipArchive($file_name, $repo) {
+function UnzipArchive(string $file_name, string $repo): void {
 
     // ungz
     $gz = new PharData(getenv('DOCUMENT_ROOT') . '/' . $file_name);
@@ -133,10 +137,11 @@ function UnzipArchive($file_name, $repo) {
  * Copying GutHub files
  *
  * @param string $repo GitHub repo name
+ * @param string $target_folder target folder
  */
-function copyingFiles($repo) {
+function copyingFiles(string $repo, string $target_folder): void {
     $source_dir = glob($repo . '*')[0];
-    $copying_dir = $source_dir . '/src/' . $repo;
+    $copying_dir = $source_dir . $target_folder . '/' . $repo;
     $dest_dir = getenv('DOCUMENT_ROOT');
     if (!file_exists($dest_dir)) {
         mkdir($dest_dir, 0755, true);
@@ -158,7 +163,7 @@ function copyingFiles($repo) {
  * Download composer.phar
  *
  */
-function downloadComposer() {
+function downloadComposer(): void {
     $file_composer = 'https://getcomposer.org/download/latest-stable/composer.phar';
     $file_name_composer = basename($file_composer);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name_composer, file_get_contents($file_composer));
@@ -171,7 +176,7 @@ function downloadComposer() {
  * Composer install
  *
  */
-function composerInstall() {
+function composerInstall(): void {
     $root = realpath(getenv('DOCUMENT_ROOT'));
     $vendor_dir = $root . '/temp/vendor';
     $composerPhar = new Phar($root . '/composer.phar');
@@ -204,9 +209,9 @@ function composerInstall() {
  * Files removing
  *
  * @param string $path Path
- * @return bool
+ * @return mixed
  */
-function filesRemoving($path) {
+function filesRemoving($path): mixed {
     if (is_file($path)) {
         return unlink($path);
     }
@@ -224,14 +229,14 @@ function filesRemoving($path) {
 /**
  * GitHub Data
  * 
- * @param string $repo_init GitHub repo data
- * @return string|bool GitHub latest release name
+ * @param string $repo_name GitHub repo name
+ * @return mixed GitHub latest release name
  */
-function gitHubData($repo_init) {
+function gitHubData(string $repo_name): mixed {
     $connect = curl_init();
     curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Installer']);
-    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_init . '/releases/latest');
+    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name . '/releases/latest');
     $response_string = curl_exec($connect);
     curl_close($connect);
     if (!empty($response_string)) {
