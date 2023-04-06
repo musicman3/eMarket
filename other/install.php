@@ -5,30 +5,37 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
-$mode = 'release'; // Mode release/master
 $repo_init = 'musicman3/eMarket'; // GitHub name & repo
 /* ++++++++++++++++++++++++++++++++++++++++ */
+
+$mode = 'release';
+$php_version = '8.0';
+if (inGET('install_type') == 'master') {
+    $mode = 'master';
+    $php_version = '8.2';
+}
 
 // php.ini set
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
 // Init
-init($repo_init, $mode);
+init($repo_init, $mode, $php_version);
 
 /**
  * Init
  * 
  * @param string $repo_init GitHub repo data
  * @param string $mode Mode
+ * @param string $php_version PHP version for branch
  */
-function init($repo_init, $mode) {
+function init($repo_init, $mode, $php_version) {
     // Repo name
     $repo = explode('/', $repo_init)[1];
 
     if (inGET('step') == '1') {
 
-        if (version_compare(PHP_VERSION, '8.2.0', '<')) {
-            echo json_encode(['Error', 'Attention. Your PHP version < 8.2. Please use version >= 8.2']);
+        if (version_compare(PHP_VERSION, $php_version, '<')) {
+            echo json_encode(['Error', 'Attention. Your PHP version < ' . $php_version . '.<br>Please use version >= ' . $php_version]);
             exit;
         }
 
@@ -290,10 +297,10 @@ function gitHubData($repo_init) {
                 }
 
                 if (parse[0] === 'Error') {
-                    document.querySelector('#attention').innerHTML = '';
-                    document.querySelector('#parts').innerHTML = '';
-                    document.querySelector('#step').innerHTML = '';
-                    document.querySelector('#attention').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
+                    document.querySelector('#attention').innerHTML = parse[1];
+                    document.querySelector('#step_data').innerHTML = 'Installation problem!';
+                    document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
+                    //document.querySelector('#attention').insertAdjacentHTML('beforeend', '<div><span class="badge bg-dark">' + parse[1] + '</span>&nbsp;</div>');
                 }
 
                 if (parse[0] === 'Done') {
@@ -306,29 +313,50 @@ function gitHubData($repo_init) {
             }
         </script>
     </head>
-    <body><div class="bd-highlight d-flex align-items-center min-vh-100">
+    <body>
+        <div class="bd-highlight d-flex align-items-center min-vh-100">
             <div class="card w-25 text-center mx-auto p-2 bd-highlight">
-                <div id="attention" class="card-header text-dark bg-warning">Attention! The eMarket installation is being prepared. Please do not refresh the page.</div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="release">GitHub Release</label>
+                    <input type="radio" class="btn-check" name="install_type" id="master" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="master">GutHub Master</label>
                 </div>
-                <div id="parts" class="card-body">
-                    <div><span class="badge bg-danger">ACTIONS:</span>&nbsp;</div>
-                    <div><span id="step_data" class="badge bg-success">Downloading <?php echo explode('/', $repo_init)[1] ?> archive</span>&nbsp;</div>
+
+                <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Install</button></div>
+
+                <div class="card-body p-1">
+                    <div id="attention" class="text-bg-warning p-1">Attention! The eMarket installation is being prepared. Please do not refresh the page.
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div id="parts" class="card-body p-1">
+                        <div><span id="step_data" class="badge bg-success">Preparing for installation</span>&nbsp;</div>
+                    </div>
                 </div>
                 <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
             </div>
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                setTimeout(() => {
+                document.querySelector('#install_button').onclick = function () {
+                    document.querySelector('#install_button').classList.add('disabled');
+                    document.querySelector('#step_data').innerHTML = 'Requirements check';
                     setTimeout(() => {
-                        getUpdate(window.location.href + '?step=1');
+                        setTimeout(() => {
+                            var install_type = 'release';
+                            if (document.querySelector('#master').checked) {
+                                install_type = 'master';
+                            }
+                            getUpdate(window.location.href + '?step=1' + '&install_type=' + install_type);
+                        }, 1250);
+                        document.querySelector('#step_data').innerHTML = 'Downloading archive';
+                        var progress_bar = document.querySelectorAll('.progress-bar');
+                        progress_bar.forEach(e => e.style.width = '5%');
+                        progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                     }, 1250);
-                    var progress_bar = document.querySelectorAll('.progress-bar');
-                    progress_bar.forEach(e => e.style.width = '5%');
-                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
-                }, 1250);
+                };
             }
             );
         </script>
