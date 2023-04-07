@@ -26,7 +26,7 @@ use eMarket\Core\{
  */
 final class Modules {
 
-    private static $discount_router = FALSE;
+    private static $discount_router = [];
     public static $discounts = [];
     public static $discount_default = [];
 
@@ -90,10 +90,10 @@ final class Modules {
      */
     public static function discountRouter(string $marker): array|string {
 
-        if (self::$discount_router != FALSE && $marker == 'data') {
+        if (count(self::$discount_router) > 0 && $marker == 'data') {
             return self::$discount_router['data'];
         }
-        if (self::$discount_router != FALSE && $marker == 'functions') {
+        if (count(self::$discount_router) > 0 && $marker == 'functions') {
             return self::$discount_router['functions'];
         }
 
