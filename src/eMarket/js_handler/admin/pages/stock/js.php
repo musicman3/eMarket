@@ -36,12 +36,25 @@ use eMarket\Core\{
     <script type="text/javascript" src="/ext/moment/locale/<?php echo lang('meta-language') ?>.js"></script>
 <?php } ?>
 
+<!-- Main Class -->
 <script type="text/javascript" src="/js_handler/admin/pages/stock/main.js"></script>
+<!-- Context Menu -->
 <link rel="stylesheet" type="text/css" href="/ext/ctxmenu/ctxmenu.css" media="screen" />
 <script src="/ext/ctxmenu/ctxmenu.min.js"></script>
 
+<!-- Discount load classes -->
 <?php
 foreach (Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
-require_once ('context.php');
+?>
+<!-- Add Discount to context menu -->
+<script type="text/javascript">
+<?php echo Modules::addDiscountsToContextMenu() ?>
+</script>
+
+<!-- Init -->
+<script type="text/javascript">
+    new Stock();
+    ctxmenu.attach('#sort-list', []);
+</script>

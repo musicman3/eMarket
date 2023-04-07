@@ -138,6 +138,19 @@ final class Modules {
     }
 
     /**
+     * Add Discounts to ContextMenu
+     *
+     * @return string 
+     */
+    public static function addDiscountsToContextMenu(): string {
+
+        $discounts_string = self::discountRouter('functions');
+        $context = file_get_contents(ROOT . '/js_handler/admin/pages/stock/context.js');
+        $replace = str_replace('// ---------- Discounts ----------', ' ' . $discounts_string . ', // ---------- Discounts ----------', $context);
+        return $replace;
+    }
+
+    /**
      * Module database name
      *
      * @return string 

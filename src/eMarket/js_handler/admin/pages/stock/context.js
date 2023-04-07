@@ -1,20 +1,31 @@
-<?php
 /* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
-  |  https://github.com/musicman3/eMark
-  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+ |    GNU GENERAL PUBLIC LICENSE v.3.0    |
+ |  https://github.com/musicman3/eMarket  |
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+/* global bootstrap, fetch, tinymce, AjaxSuccess, confirmation, ctxmenu */
 
-use eMarket\Core\{
-    Modules
-};
-?>
+/**
+ * ContextMenu
+ *
+ * @package ContextMenu
+ * @author eMarket
+ * 
+ */
+class ContextMenu {
 
-<script type="text/javascript">
+    /**
+     * Constructor
+     *
+     */
+    constructor() {
+        this.contextMenuInit();
+    }
 
-    new Stock();
-    ctxmenu.attach('#sort-list', []);
-
-    function contextMenuInit() {
+    /**
+     * Context Menu Init
+     *
+     */
+    contextMenuInit() {
         var picker = Stock.pikaday();
         var buttons = document.querySelectorAll('.context-one');
         buttons.forEach(function (button) {
@@ -42,7 +53,7 @@ use eMarket\Core\{
                 ];
 
                 var stickers_options = '';
-                for (key in stickers) {
+                for (var key in stickers) {
                     stickers_options = stickers_options + '<option value="' + key + '">' + stickers[key] + '</option>';
                 }
 
@@ -269,7 +280,7 @@ use eMarket\Core\{
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
                             }
                         ]
-                    },<?php echo Modules::discountRouter('functions') ?>, // ---------- Discounts ----------
+                    }, // ---------- Discounts ----------
                     {
                         // ---------- Sticker ----------
                         text: '<span class="bi-bookmark"> ' + lang['button_sticker'] + '</span>',
@@ -347,4 +358,4 @@ use eMarket\Core\{
             });
         });
     }
-</script>
+}

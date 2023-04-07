@@ -13,6 +13,7 @@
  * 
  */
 class Stock {
+    
     /**
      * Constructor
      *
@@ -24,7 +25,6 @@ class Stock {
         } else {
             this.init();
         }
-
     }
 
     /**
@@ -37,7 +37,7 @@ class Stock {
         var resize_max_prod = JSON.parse(document.querySelector('#ajax_data').dataset.resizemaxprod);
         var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
 
-        contextMenuInit();
+        new ContextMenu();
         this.mousedown();
         new Fileupload(resize_max, lang);
         new FileuploadProduct(resize_max_prod, lang);
