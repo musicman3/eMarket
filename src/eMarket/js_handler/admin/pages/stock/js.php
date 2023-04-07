@@ -3,6 +3,10 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use eMarket\Core\{
+    Modules
+};
 ?>
 
 <!-- FileUpload -->
@@ -33,6 +37,11 @@
 <?php } ?>
 
 <script type="text/javascript" src="/js_handler/admin/pages/stock/main.js"></script>
+<link rel="stylesheet" type="text/css" href="/ext/ctxmenu/ctxmenu.css" media="screen" />
+<script src="/ext/ctxmenu/ctxmenu.min.js"></script>
 
 <?php
+foreach (Modules::discountRouter('data') as $js_path) {
+    echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
+}
 require_once ('context.php');
