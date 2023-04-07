@@ -36,7 +36,8 @@ class Stock {
         var resize_max = JSON.parse(document.querySelector('#ajax_data').dataset.resizemax);
         var resize_max_prod = JSON.parse(document.querySelector('#ajax_data').dataset.resizemaxprod);
         var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
-        
+
+        contextMenuInit();
         this.mousedown();
         new Fileupload(resize_max, lang);
         new FileuploadProduct(resize_max_prod, lang);
@@ -68,8 +69,6 @@ class Stock {
     update() {
         this.init('update');
         Mouse.sortInitAll();
-
-        contextMenuInit();
 
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -143,7 +142,7 @@ class Stock {
      * 
      * @return {Object} Picker
      */
-    pikaday() {
+    static pikaday() {
         moment.locale(document.documentElement.lang);
         var months = moment.months();
         var weekdays = moment.weekdays();
@@ -163,5 +162,19 @@ class Stock {
         });
 
         return picker;
+    }
+
+    /**
+     * Ajax Success
+     *
+     *@param data {Object} (ajax data)
+     */
+    static AjaxSuccess(data) {
+        setTimeout(function () {
+            var ajax_data = document.createElement('div');
+            ajax_data.innerHTML = data;
+            document.querySelector('#ajax').replaceWith(ajax_data.querySelector('#ajax'));
+            new Stock('update');
+        }, 100);
     }
 }

@@ -9,26 +9,20 @@
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload_product.js"></script>
-
 <!-- Sortable -->
 <script type="text/javascript" src="/ext/sortablejs/sortable.min.js"></script>
-
 <!-- Table select -->
 <script type="text/javascript" src="/ext/table-select/table-select.js"></script>
-
 <!-- Attributes -->
 <script type="text/javascript" src="/model/library/js/classes/attributes/group_attributes.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/attributes/attributes.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/attributes/values_attribute.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
-
 <!-- TinyMCE -->
 <script type="text/javascript" src="/ext/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-
 <!-- Mouse -->
 <script type="text/javascript" src="/model/library/js/classes/mouse/mouse.js"></script>
-
 <!-- Datepicker -->
 <script src="/ext/moment/moment.min.js"></script>
 <script src="/ext/pikaday/pikaday.js"></script>

@@ -20,11 +20,12 @@ foreach (Modules::discountRouter('data') as $js_path) {
 <script src="/ext/ctxmenu/ctxmenu.min.js"></script>
 
 <script type="text/javascript">
+
+    new Stock();
     ctxmenu.attach('#sort-list', []);
 
     function contextMenuInit() {
-        const stock = new Stock();
-        var picker = stock.pikaday();
+        var picker = Stock.pikaday();
         var buttons = document.querySelectorAll('.context-one');
         buttons.forEach(function (button) {
             button.addEventListener('mousedown', function (e) {
@@ -183,7 +184,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                     }, false).then((data) => {
                                         Ajax.postData(window.location.href, {
                                             parent_down: parent_id
-                                        });
+                                        }, null, null, Stock.AjaxSuccess);
                                     });
 
                                 },
@@ -204,7 +205,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                     }, false).then((data) => {
                                         Ajax.postData(window.location.href, {
                                             parent_down: parent_id
-                                        });
+                                        }, null, null, Stock.AjaxSuccess);
                                     });
                                 },
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -225,7 +226,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                         }, false).then((data) => {
                                             Ajax.postData(window.location.href, {
                                                 parent_down: parent_id
-                                            });
+                                            }, null, null, Stock.AjaxSuccess);
                                         });
                                     });
 
@@ -243,7 +244,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                         Ajax.postData(window.location.href, {
                                             parent_down: parent_id,
                                             message: 'ok'
-                                        });
+                                        }, null, null, Stock.AjaxSuccess);
                                     });
                                 },
                                 disabled: session === '0' || (new URL(document.location)).searchParams.get('search') !== null
@@ -271,7 +272,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                             Ajax.postData(window.location.href, {
                                                 parent_down: parent_id,
                                                 message: 'ok'
-                                            });
+                                            }, null, null, Stock.AjaxSuccess);
                                         });
                                     };
                                 },
@@ -305,7 +306,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                     }, false).then((data) => {
                                         Ajax.postData(window.location.href, {
                                             parent_down: parent_id
-                                        });
+                                        }, null, null, Stock.AjaxSuccess);
                                     });
                                 },
                                 disabled: false
@@ -333,7 +334,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
                                         }, false).then((data) => {
                                             Ajax.postData(window.location.href, {
                                                 parent_down: parent_id
-                                            });
+                                            }, null, null, Stock.AjaxSuccess);
                                         });
                                     };
                                 },
@@ -355,22 +356,5 @@ foreach (Modules::discountRouter('data') as $js_path) {
                 ctxmenu.update('#' + elem.id, menuDefinition);
             });
         });
-    }
-
-    // Init Context menu
-    contextMenuInit();
-
-    /**
-     * Ajax Success
-     *
-     *@param data {Object} (ajax data)
-     */
-    function AjaxSuccess(data) {
-        setTimeout(function () {
-            var ajax_data = document.createElement('div');
-            ajax_data.innerHTML = data;
-            document.querySelector('#ajax').replaceWith(ajax_data.querySelector('#ajax'));
-            new Stock('update');
-        }, 100);
     }
 </script>

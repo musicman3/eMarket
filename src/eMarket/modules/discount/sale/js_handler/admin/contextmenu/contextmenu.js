@@ -82,7 +82,7 @@ class DiscountSale {
                         }, false).then((data) => {
                             Ajax.postData(window.location.href, {
                                 parent_down: parent_id
-                            });
+                            }, null, null, Stock.AjaxSuccess);
                         });
                     },
                     disabled: json_data_product.name === undefined && json_data_category.name === undefined
@@ -110,7 +110,7 @@ class DiscountSale {
                             }, false).then((data) => {
                                 Ajax.postData(window.location.href, {
                                     parent_down: parent_id
-                                });
+                                }, null, null, Stock.AjaxSuccess);
                             });
                         };
                     },
@@ -139,7 +139,7 @@ class DiscountSale {
                             }, false).then((data) => {
                                 Ajax.postData(window.location.href, {
                                     parent_down: parent_id
-                                });
+                                }, null, null, Stock.AjaxSuccess);
                             });
                         };
                     },
