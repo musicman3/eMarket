@@ -27,8 +27,8 @@ use eMarket\Core\{
 final class Modules {
 
     private static $discount_router = FALSE;
-    public static $discounts = '';
-    public static $discount_default = '';
+    public static $discounts = [];
+    public static $discount_default = [];
 
     /**
      * Install module
@@ -68,17 +68,19 @@ final class Modules {
             foreach ($discounts_all as $val) {
                 $date_end = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
                 if ($this_time < $date_end) {
-                    self::$discounts .= $module['name'] . '_' . $val['id'] . ': ' . "'" . $val['name'] . "', ";
+                    self::$discounts[$module['name'] . '_' . $val['id']] = $val['name'];
                     array_push($select_array, $val['id']);
                     if ($val['default_set'] == 1) {
-                        self::$discount_default .= $module['name'] . '_' . $val['id'] . ': ' . "'" . $val['name'] . "', ";
+                        self::$discount_default[$module['name'] . '_' . $val['id']] = $val['name'];
                         $discount_default_flag = 1;
                     } elseif ($discount_default_flag == 0) {
-                        self::$discount_default = $module['name'] . '_' . $val['id'] . ': ' . "'" . $val['name'] . "', ";
+                        self::$discount_default[$module['name'] . '_' . $val['id']] = $val['name'];
                         $discount_default_flag = 1;
                     }
                 }
             }
+            self::$discounts = json_encode(self::$discounts);
+            self::$discount_default = json_encode(self::$discount_default);
         }
     }
 

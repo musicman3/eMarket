@@ -36,7 +36,7 @@ class Stickers {
     public $title = 'title_stickers_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
-    public static $stickers = FALSE;
+    public static $stickers = [];
     public static $stickers_default = FALSE;
     public static $stickers_flag = FALSE;
     public static $sticker_name = FALSE;
@@ -178,18 +178,19 @@ class Stickers {
      *
      */
     public static function initStickers(): void {
-        self::$stickers = '';
         self::$stickers_default = 0;
         self::$stickers_flag = 0;
         $stickers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
 
         foreach ($stickers_data as $val) {
             self::$stickers_flag = 1;
-            self::$stickers .= $val['id'] . ': ' . "'" . $val['name'] . "', ";
+            self::$stickers[$val['id']] = $val['name'];
             if ($val['default_stickers'] == 1) {
                 self::$stickers_default = $val['id'];
             }
         }
+
+        self::$stickers = json_encode(self::$stickers);
 
         self::$sticker_name = [];
         foreach ($stickers_data as $val) {

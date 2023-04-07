@@ -7,10 +7,6 @@
 use eMarket\Core\{
     Modules
 };
-use eMarket\Admin\{
-    Stock,
-    Stickers
-};
 ?>
 
 <script type="text/javascript">
@@ -25,24 +21,24 @@ use eMarket\Admin\{
             button.addEventListener('mousedown', function (e) {
 
                 var elem = e.currentTarget;
-                var session = '<?php echo Stock::$ses_verify ?>';
-                let parent_id = '<?php echo Stock::$parent_id ?>';
-                var idsx_real_parent_id = '<?php echo Stock::$idsx_real_parent_id ?>';
-                var discounts = {<?php echo Modules::$discounts ?>};
-                var discount_dafault = {<?php echo Modules::$discount_default ?>};
-                var sticker = '<?php echo Stickers::$stickers_flag ?>';
-                var stickers = {<?php echo Stickers::$stickers ?>};
-                var stickers_default = '<?php echo Stickers::$stickers_default ?>';
-                var attributes_category = <?php echo json_encode(Stock::$attributes_category) ?>;
-                var lang_name = '<?php echo lang('#lang_all')[0] ?>';
+                var session = JSON.parse(document.querySelector('#ajax_data').dataset.session);
+                let parent_id = JSON.parse(document.querySelector('#ajax_data').dataset.parentid);
+                var idsx_real_parent_id = JSON.parse(document.querySelector('#ajax_data').dataset.idsxrealparentid);
+                var sticker = JSON.parse(document.querySelector('#ajax_data').dataset.sticker);
+                var stickers = JSON.parse(document.querySelector('#ajax_data').dataset.stickers);
+                var stickers_default = JSON.parse(document.querySelector('#ajax_data').dataset.stickersdefault);
+                var lang_name = JSON.parse(document.querySelector('#ajax_data').dataset.langname);
                 var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
+                var attributes_category = JSON.parse(document.querySelector('#ajax_data').dataset.attributescategory);
+                var discounts = JSON.parse(document.querySelector('#ajax_data').dataset.discounts);
+                var discount_default = JSON.parse(document.querySelector('#ajax_data').dataset.discountdefault);
 
                 var discounts_interface = [
                     lang,
                     parent_id,
                     idsx_real_parent_id,
                     discounts,
-                    discount_dafault
+                    discount_default
                 ];
 
                 var stickers_options = '';

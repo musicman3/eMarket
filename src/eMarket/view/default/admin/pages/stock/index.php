@@ -7,12 +7,16 @@
 use eMarket\Core\{
     Ecb,
     Messages,
+    Modules,
     Files,
     Pages,
     Settings,
     Valid
 };
-use eMarket\Admin\Stock;
+use eMarket\Admin\{
+    Stock,
+    Stickers
+};
 
 require_once('modal/index.php');
 require_once('modal/index_product.php');
@@ -33,6 +37,16 @@ require_once('modal/add_values_attribute.php');
             <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
         <div id="ajax_data" class='hidden' 
+             data-session='<?php echo json_encode(Stock::$ses_verify) ?>'
+             data-parentid='<?php echo json_encode(Stock::$parent_id) ?>'
+             data-idsxrealparentid='<?php echo json_encode(Stock::$idsx_real_parent_id) ?>'
+             data-sticker='<?php echo json_encode(Stickers::$stickers_flag) ?>'
+             data-stickersdefault='<?php echo json_encode(Stickers::$stickers_default) ?>'
+             data-stickers='<?php echo Stickers::$stickers ?>'
+             data-langname='<?php echo json_encode(lang('#lang_all')[0]) ?>'
+             data-attributescategory='<?php echo json_encode(Stock::$attributes_category) ?>'
+             data-discounts='<?php echo Modules::$discounts ?>'
+             data-discountdefault='<?php echo Modules::$discount_default ?>'
              data-resizemax='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param)) ?>'
              data-resizemaxprod='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param_product)) ?>'
              data-lang='<?php echo json_encode(lang()) ?>'
