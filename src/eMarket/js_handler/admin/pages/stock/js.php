@@ -48,7 +48,7 @@ foreach (Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
 ?>
-<!-- Add Discount to context menu -->
+<!-- Add Discount to context menu (context.js) -->
 <script type="text/javascript">
 <?php echo Modules::addDiscountsToContextMenu() ?>
 </script>
