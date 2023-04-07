@@ -42,7 +42,7 @@ require_once('modal/add_values_attribute.php');
              data-idsxrealparentid='<?php echo json_encode(Stock::$idsx_real_parent_id) ?>'
              data-sticker='<?php echo json_encode(Stickers::$stickers_flag) ?>'
              data-stickersdefault='<?php echo json_encode(Stickers::$stickers_default) ?>'
-             data-stickers='<?php echo Stickers::$stickers ?>'
+             data-stickers='<?php echo json_encode(Stickers::$stickers) ?>'
              data-langname='<?php echo json_encode(lang('#lang_all')[0]) ?>'
              data-attributescategory='<?php echo json_encode(Stock::$attributes_category) ?>'
              data-discounts='<?php echo json_encode(Modules::$discounts) ?>'

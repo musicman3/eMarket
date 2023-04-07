@@ -125,8 +125,15 @@ class Stickers {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            $all_products = Pdo::getAssoc("SELECT id, sticker FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
 
+            foreach ($all_products as $value) {
+                if ($value['sticker'] == Valid::inPOST('delete')) {
+                    Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", ['', $value['id']]);
+                }
+            }
+
+            Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
@@ -190,7 +197,7 @@ class Stickers {
             }
         }
 
-        self::$stickers = json_encode(self::$stickers);
+        self::$stickers = self::$stickers;
 
         self::$sticker_name = [];
         foreach ($stickers_data as $val) {
