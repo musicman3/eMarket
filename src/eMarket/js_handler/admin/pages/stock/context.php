@@ -4,7 +4,15 @@
   |  https://github.com/musicman3/eMark
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
+use eMarket\Core\{
+    Modules
+};
+use eMarket\Admin\{
+    Stock,
+    Stickers
+};
+
+foreach (Modules::discountRouter('data') as $js_path) {
     echo '<script type="text/javascript" src="/modules/discount/' . $js_path . '/js_handler/admin/contextmenu/contextmenu.js"></script>';
 }
 ?>
@@ -12,30 +20,27 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
 <script src="/ext/ctxmenu/ctxmenu.min.js"></script>
 
 <script type="text/javascript">
-
-    document.addEventListener("DOMContentLoaded", function () {
-        contextMenuInit();
-    });
-
     ctxmenu.attach('#sort-list', []);
-    var picker = Stock.pikaday();
 
     function contextMenuInit() {
+        const stock = new Stock();
+        var picker = stock.pikaday();
         var buttons = document.querySelectorAll('.context-one');
         buttons.forEach(function (button) {
             button.addEventListener('mousedown', function (e) {
 
                 var elem = e.currentTarget;
-                var session = '<?php echo \eMarket\Admin\Stock::$ses_verify ?>';
-                let parent_id = '<?php echo \eMarket\Admin\Stock::$parent_id ?>';
-                var idsx_real_parent_id = '<?php echo \eMarket\Admin\Stock::$idsx_real_parent_id ?>';
-                var discounts = {<?php echo \eMarket\Core\Modules::$discounts ?>};
-                var discount_dafault = {<?php echo \eMarket\Core\Modules::$discount_default ?>};
-                var sticker = '<?php echo \eMarket\Admin\Stickers::$stickers_flag ?>';
-                var stickers = {<?php echo \eMarket\Admin\Stickers::$stickers ?>};
-                var stickers_default = '<?php echo \eMarket\Admin\Stickers::$stickers_default ?>';
-                var attributes_category = <?php echo json_encode(\eMarket\Admin\Stock::$attributes_category) ?>;
+                var session = '<?php echo Stock::$ses_verify ?>';
+                let parent_id = '<?php echo Stock::$parent_id ?>';
+                var idsx_real_parent_id = '<?php echo Stock::$idsx_real_parent_id ?>';
+                var discounts = {<?php echo Modules::$discounts ?>};
+                var discount_dafault = {<?php echo Modules::$discount_default ?>};
+                var sticker = '<?php echo Stickers::$stickers_flag ?>';
+                var stickers = {<?php echo Stickers::$stickers ?>};
+                var stickers_default = '<?php echo Stickers::$stickers_default ?>';
+                var attributes_category = <?php echo json_encode(Stock::$attributes_category) ?>;
                 var lang_name = '<?php echo lang('#lang_all')[0] ?>';
+                var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
 
                 var discounts_interface = [
                     lang,
@@ -273,7 +278,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
                                 disabled: json_data_product.name === undefined && json_data_category.name === undefined
                             }
                         ]
-                    },<?php echo \eMarket\Core\Modules::discountRouter('functions') ?>, // ---------- Discounts ----------
+                    },<?php echo Modules::discountRouter('functions') ?>, // ---------- Discounts ----------
                     {
                         // ---------- Sticker ----------
                         text: '<span class="bi-bookmark"> ' + lang['button_sticker'] + '</span>',
@@ -352,6 +357,9 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
         });
     }
 
+    // Init Context menu
+    contextMenuInit();
+
     /**
      * Ajax Success
      *
@@ -362,25 +370,7 @@ foreach (\eMarket\Core\Modules::discountRouter('data') as $js_path) {
             var ajax_data = document.createElement('div');
             ajax_data.innerHTML = data;
             document.querySelector('#ajax').replaceWith(ajax_data.querySelector('#ajax'));
-            contextMenuInit();
-            Mouse.sortInitAll();
-
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-
-            new TableSelect(document.querySelector('#table-id'), {
-                selectedClassName: 'table-primary',
-                shouldSelectRow(row) {
-                    return !row.classList.contains('unselectable');
-                }
-            });
-            document.querySelector('#table-id').addEventListener('mousedown', function (event) {
-                if (event.ctrlKey) {
-                    event.preventDefault();
-                }
-            });
+            new Stock('update');
         }, 100);
     }
 </script>

@@ -7,6 +7,7 @@
 use eMarket\Core\{
     Ecb,
     Messages,
+    Files,
     Pages,
     Settings,
     Valid
@@ -32,6 +33,9 @@ require_once('modal/add_values_attribute.php');
             <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
         <div id="ajax_data" class='hidden' 
+             data-resizemax='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param)) ?>'
+             data-resizemaxprod='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param_product)) ?>'
+             data-lang='<?php echo json_encode(lang()) ?>'
              data-jsondataproduct='<?php echo Stock::$json_data_product ?>'
              data-jsondatacategory='<?php echo Stock::$json_data_category ?>'>
         </div>

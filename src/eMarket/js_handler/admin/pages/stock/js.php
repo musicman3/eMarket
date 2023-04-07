@@ -3,12 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
-use eMarket\Core\Files;
-use eMarket\Admin\Stock;
-
-$resize_max = json_encode(Files::imgResizeMax(Stock::$resize_param));
-$resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product));
 ?>
 
 <!-- FileUpload -->
@@ -45,15 +39,6 @@ $resize_max_prod = json_encode(Files::imgResizeMax(Stock::$resize_param_product)
 <?php } ?>
 
 <script type="text/javascript" src="/js_handler/admin/pages/stock/main.js"></script>
-
-<script type="text/javascript">
-    var resize_max = <?php echo $resize_max ?>;
-    var resize_max_prod = <?php echo $resize_max_prod ?>;
-    var lang = <?php echo json_encode(lang()) ?>;
-
-    new Stock(resize_max, lang, resize_max_prod);
-    new ChatGPT();
-</script>
 
 <?php
 require_once ('context.php');

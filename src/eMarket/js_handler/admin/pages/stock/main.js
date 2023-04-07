@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax, tinymce, moment */
+/* global Ajax, tinymce, moment, bootstrap, Mouse */
 
 /**
  * Stock
@@ -16,35 +16,75 @@ class Stock {
     /**
      * Constructor
      *
-     * @param {string} resize_max
-     * @param {string} lang
-     * @param {string} resize_max_prod
+     * @param action {String} (action)
      */
-    constructor(resize_max, lang, resize_max_prod) {
-        this.init(resize_max, lang, resize_max_prod);
-        this.mousedown();
-        this.tinymceInit();
-        this.focusin();
+    constructor(action) {
+        if (action === 'update') {
+            this.update();
+        } else {
+            this.init();
+        }
+
     }
 
     /**
      * Init
-     * @param {string} resize_max
-     * @param {string} lang
-     * @param {string} resize_max_prod
+     * 
+     * * @param action {String} (action)
      */
-    init(resize_max, lang, resize_max_prod) {
+    init(action) {
+        var resize_max = JSON.parse(document.querySelector('#ajax_data').dataset.resizemax);
+        var resize_max_prod = JSON.parse(document.querySelector('#ajax_data').dataset.resizemaxprod);
+        var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
+        
+        this.mousedown();
         new Fileupload(resize_max, lang);
         new FileuploadProduct(resize_max_prod, lang);
         new Mouse(lang);
         new GroupAttributes(lang);
         new Attributes(lang);
         new ValuesAttribute(lang);
+        new ChatGPT();
+        new Update();
+
+        if (action === 'update') {
+            tinymce.remove();
+        }
+        this.tinymceInit();
+        this.focusin();
 
         new TableSelect(document.querySelector('#table-id'), {
             selectedClassName: 'table-primary',
             shouldSelectRow(row) {
                 return !row.classList.contains('unselectable');
+            }
+        });
+    }
+
+    /**
+     * Update
+     *
+     */
+    update() {
+        this.init('update');
+        Mouse.sortInitAll();
+
+        contextMenuInit();
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        new TableSelect(document.querySelector('#table-id'), {
+            selectedClassName: 'table-primary',
+            shouldSelectRow(row) {
+                return !row.classList.contains('unselectable');
+            }
+        });
+        document.querySelector('#table-id').addEventListener('mousedown', function (event) {
+            if (event.ctrlKey) {
+                event.preventDefault();
             }
         });
     }
@@ -103,7 +143,7 @@ class Stock {
      * 
      * @return {Object} Picker
      */
-    static pikaday() {
+    pikaday() {
         moment.locale(document.documentElement.lang);
         var months = moment.months();
         var weekdays = moment.weekdays();
