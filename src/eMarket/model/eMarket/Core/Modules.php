@@ -79,8 +79,6 @@ final class Modules {
                     }
                 }
             }
-            self::$discounts = json_encode(self::$discounts);
-            self::$discount_default = json_encode(self::$discount_default);
         }
     }
 
@@ -104,7 +102,7 @@ final class Modules {
         $output_modules = [];
         foreach ($active_modules as $module) {
             if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/js_handler/admin/contextmenu/contextmenu.js')) {
-                $text .= 'Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
+                $text .= ' Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
                 $output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
             }
@@ -144,10 +142,11 @@ final class Modules {
      */
     public static function addDiscountsToContextMenu(): string {
 
-        $discounts_string = self::discountRouter('functions');
         $context = file_get_contents(ROOT . '/js_handler/admin/pages/stock/context.js');
-        $replace = str_replace('// ---------- Discounts ----------', ' ' . $discounts_string . ', // ---------- Discounts ----------', $context);
-        return $replace;
+        $find = '// ---------- Discounts ----------';
+        $replace = self::discountRouter('functions') . ', // ---------- Discounts ----------';
+        $output = str_replace($find, $replace, $context);
+        return $output;
     }
 
     /**
