@@ -13,7 +13,7 @@
  * 
  */
 class Stock {
-    
+
     /**
      * Constructor
      *
@@ -53,13 +53,7 @@ class Stock {
         }
         this.tinymceInit();
         this.focusin();
-
-        new TableSelect(document.querySelector('#table-id'), {
-            selectedClassName: 'table-primary',
-            shouldSelectRow(row) {
-                return !row.classList.contains('unselectable');
-            }
-        });
+        this.tableSelect();
     }
 
     /**
@@ -69,23 +63,28 @@ class Stock {
     update() {
         this.init('update');
         Mouse.sortInitAll();
+        this.mousedown();
+        this.tableSelect();
 
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl);
         });
+    }
 
-        new TableSelect(document.querySelector('#table-id'), {
-            selectedClassName: 'table-primary',
-            shouldSelectRow(row) {
-                return !row.classList.contains('unselectable');
-            }
-        });
-        document.querySelector('#table-id').addEventListener('mousedown', function (event) {
-            if (event.ctrlKey) {
-                event.preventDefault();
-            }
-        });
+    /**
+     * tableSelect
+     * 
+     */
+    tableSelect() {
+        if (document.querySelector('#table-id') !== null) {
+            new TableSelect(document.querySelector('#table-id'), {
+                selectedClassName: 'table-primary',
+                shouldSelectRow(row) {
+                    return !row.classList.contains('unselectable');
+                }
+            });
+        }
     }
 
     /**
@@ -93,11 +92,13 @@ class Stock {
      * 
      */
     mousedown() {
-        document.querySelector('#table-id').addEventListener('mousedown', function (event) {
-            if (event.ctrlKey) {
-                event.preventDefault();
-            }
-        });
+        if (document.querySelector('#table-id') !== null) {
+            document.querySelector('#table-id').addEventListener('mousedown', function (event) {
+                if (event.ctrlKey) {
+                    event.preventDefault();
+                }
+            });
+        }
     }
 
     /**

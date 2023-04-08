@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Eac,
     Ecb,
     Func,
     Modules,
@@ -21,6 +20,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\{
+    Eac,
     HeaderMenu,
     Stickers
 };
@@ -118,7 +118,8 @@ class Stock {
      *
      */
     private function initEac(): void {
-        $EAC_ENGINE = Eac::init(self::$resize_param, self::$resize_param_product);
+        $EAC = new Eac();
+        $EAC_ENGINE = $EAC->init(self::$resize_param, self::$resize_param_product);
         self::$idsx_real_parent_id = $EAC_ENGINE[0];
         self::$parent_id = $EAC_ENGINE[1];
     }

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core;
+namespace eMarket\Admin;
 
 use eMarket\Core\{
     Cache,
@@ -55,20 +55,16 @@ final class Eac {
      * @param array $resize_param_product Resize param for products
      * @return array [$idsx_real_parent_id, self::$parent_id]
      */
-    public static function init(array $resize_param, array $resize_param_product): array {
+    public function init(array $resize_param, array $resize_param_product): array {
 
         self::$resize_param = $resize_param;
         self::$resize_param_product = $resize_param_product;
 
-        self::parentIdStart();
-
-        self::addCategory();
-
-        self::editCategory();
-
-        self::addProduct();
-
-        self::editProduct();
+        $this->parentIdStart();
+        $this->addCategory();
+        $this->editCategory();
+        $this->addProduct();
+        $this->editProduct();
 
         //Image loader for categories (INSERT BEFORE DELETING)
         Files::imgUpload(TABLE_CATEGORIES, 'categories', self::$resize_param);
@@ -78,19 +74,15 @@ final class Eac {
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 
-        self::delete();
-
-        self::cut();
-
-        self::paste();
-
-        self::status();
-
-        self::initDiscount();
+        $this->delete();
+        $this->cut();
+        $this->paste();
+        $this->status();
+        $this->initDiscount();
 
         Stickers::initEac();
 
-        self::sortList();
+        $this->sortList();
 
         return [$idsx_real_parent_id, self::$parent_id];
     }
@@ -98,7 +90,7 @@ final class Eac {
     /**
      * Discounts init
      */
-    private static function initDiscount(): void {
+    private function initDiscount(): void {
 
         $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
 
@@ -111,7 +103,7 @@ final class Eac {
     /**
      * Parent_id init
      */
-    private static function parentIdStart(): void {
+    private function parentIdStart(): void {
 
         self::$parent_id = Valid::inPOST('parent_id');
         if (self::$parent_id == FALSE) {
@@ -138,7 +130,7 @@ final class Eac {
     /**
      * Sorting
      */
-    private static function sortList(): void {
+    private function sortList(): void {
 
         if (Valid::inPostJson('ids')) {
             $sort_array_id_ajax = explode(',', Valid::inPostJson('ids'));
@@ -167,7 +159,7 @@ final class Eac {
     /**
      * Add category
      */
-    private static function addCategory(): void {
+    private function addCategory(): void {
 
         if (Valid::inPOST('add')) {
 
@@ -199,7 +191,7 @@ final class Eac {
     /**
      * Edit category
      */
-    private static function editCategory(): void {
+    private function editCategory(): void {
 
         if (Valid::inPOST('edit')) {
 
@@ -217,7 +209,7 @@ final class Eac {
     /**
      * Delete category
      */
-    private static function delete(): void {
+    private function delete(): void {
 
         if (Valid::inPostJson('delete')) {
 
@@ -237,11 +229,11 @@ final class Eac {
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
                         // Removing product and images
-                        self::deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
+                        $this->deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
                         Pdo::action("DELETE FROM " . TABLE_PRODUCTS . " WHERE parent_id=?", [$keys[$x]]);
 
                         // Removing subcategories and images
-                        self::deleteImages(TABLE_CATEGORIES, $keys[$x], 'categories');
+                        $this->deleteImages(TABLE_CATEGORIES, $keys[$x], 'categories');
                         Pdo::action("DELETE FROM " . TABLE_CATEGORIES . " WHERE parent_id=?", [$keys[$x]]);
                     }
 
@@ -289,7 +281,7 @@ final class Eac {
     /**
      * Cut category
      */
-    private static function cut(): void {
+    private function cut(): void {
 
         if (Valid::inPostJson('idsx_cut_marker') == 'cut') {
             unset($_SESSION['buffer']);
@@ -341,7 +333,7 @@ final class Eac {
     /**
      * Paste category
      */
-    private static function paste(): void {
+    private function paste(): void {
 
         if (Valid::inPostJson('idsx_paste_key') == 'paste' && isset($_SESSION['buffer']) == TRUE) {
 
@@ -397,7 +389,7 @@ final class Eac {
     /**
      * Categories status
      */
-    private static function status(): void {
+    private function status(): void {
 
         if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                 or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
@@ -515,7 +507,7 @@ final class Eac {
      * @param string|int $keys Keys
      * @param string $path Path
      */
-    private static function deleteImages(string $TABLE, string|int $keys, string $path): void {
+    private function deleteImages(string $TABLE, string|int $keys, string $path): void {
 
         if ($path == 'categories') {
             $resize = self::$resize_param;
@@ -543,7 +535,7 @@ final class Eac {
     /**
      * Add product
      */
-    private static function addProduct(): void {
+    private function addProduct(): void {
 
         if (Valid::inPOST('add_product')) {
 
@@ -635,7 +627,7 @@ final class Eac {
     /**
      * Edit product
      */
-    private static function editProduct(): void {
+    private function editProduct(): void {
 
         if (Valid::inPOST('edit_product')) {
 

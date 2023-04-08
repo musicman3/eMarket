@@ -11,7 +11,6 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Cache,
-    Eac,
     Func,
     Lang,
     Messages,
@@ -19,7 +18,10 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
-use eMarket\Admin\HeaderMenu;
+use eMarket\Admin\{
+    HeaderMenu,
+    Eac
+};
 
 /**
  * Stickers

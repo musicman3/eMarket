@@ -12,7 +12,6 @@ namespace eMarket\Core\Modules\Discount;
 use eMarket\Core\{
     Cache,
     Clock\SystemClock,
-    Eac,
     Ecb,
     Func,
     DataBuffer,
@@ -24,7 +23,10 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
-use eMarket\Admin\HeaderMenu;
+use eMarket\Admin\{
+    HeaderMenu,
+    Eac
+};
 
 /**
  * Module Sale
