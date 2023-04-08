@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Authorize,
+    Cryptography,
     Messages,
     Pages,
     Pdo,
@@ -78,7 +78,7 @@ class Staff {
 
             if (!$user_detected) {
                 Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?, chatgpt_token=?", [Valid::inPOST('email'),
-                    Authorize::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note'), $chatgpt_token]);
+                    Cryptography::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note'), $chatgpt_token]);
                 Messages::alert('add', 'success', lang('action_completed_successfully'));
             }
             Messages::alert('add', 'danger', lang('staff_user_error'));

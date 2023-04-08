@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Install;
 
 use eMarket\Core\{
-    Authorize,
+    Cryptography,
     Pdo,
     Valid
 };
@@ -145,7 +145,7 @@ class Success {
         $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
         Pdo::getExec($buffer);
 
-        $password_admin_hash = Authorize::passwordHash(self::$password_admin);
+        $password_admin_hash = Cryptography::passwordHash(self::$password_admin);
 
         if (Valid::inPOST('login_admin') && Valid::inPOST('password_admin')) {
             Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, chatgpt_token=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng, json_encode([])]);

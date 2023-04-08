@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Authorize,
+    Cryptography,
     Clock\SystemClock,
     Func,
     Messages,
@@ -51,7 +51,7 @@ class Register {
 
             self::$user_email = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
             if (self::$user_email == NULL) {
-                $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
+                $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
                 Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'), SystemClock::nowSqlDateTime(),
                     Valid::inPOST('email'), Valid::inPOST('telephone'),

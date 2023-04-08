@@ -11,6 +11,7 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Authorize,
+    Cryptography,
     Messages,
     Pdo,
     Valid
@@ -57,7 +58,7 @@ class MyAccount {
     private function edit(): void {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
-                $password_hash = Authorize::passwordHash(Valid::inPOST('password'));
+                $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
                 Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
                     Valid::inPOST('firstname'), Valid::inPOST('lastname'),
                     Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,

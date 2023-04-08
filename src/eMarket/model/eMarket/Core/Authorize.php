@@ -11,6 +11,7 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Func,
+    Cryptography,
     Pdo,
     Settings,
     Valid,
@@ -223,31 +224,6 @@ class Authorize {
     }
 
     /**
-     * Password hashing
-     *
-     * @param string Password
-     * @return string $password Hash
-     */
-    public static function passwordHash(string $password): string {
-
-        if (HASH_METHOD == 'PASSWORD_DEFAULT') {
-            $options = ['cost' => 10];
-            $METHOD = PASSWORD_DEFAULT;
-        }
-        if (HASH_METHOD == 'PASSWORD_BCRYPT') {
-            $options = ['cost' => 10];
-            $METHOD = PASSWORD_BCRYPT;
-        }
-        if (HASH_METHOD == 'PASSWORD_ARGON2I') {
-            $options = ['time_cost' => 2];
-            $METHOD = PASSWORD_ARGON2I;
-        }
-        $password_hash = password_hash($password, $METHOD, $options);
-
-        return $password_hash;
-    }
-
-    /**
      * Encrypted Login
      *
      * @return string encrypted login
@@ -255,7 +231,7 @@ class Authorize {
     public static function encryptedLogin(): string {
 
         if (isset($_SESSION['login']) && $_SESSION['pass']) {
-            return Func::encryption(DB_PASSWORD, $_SESSION['login'], CRYPT_METHOD);
+            return Cryptography::encryption(DB_PASSWORD, $_SESSION['login'], CRYPT_METHOD);
         }
         return 'false';
     }
