@@ -6,9 +6,11 @@
 
 use eMarket\Core\{
     Authorize,
-    Cart,
     Ecb,
     Settings
+};
+use eMarket\Catalog\{
+    Cart
 };
 ?>
 

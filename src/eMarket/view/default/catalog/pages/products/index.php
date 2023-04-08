@@ -5,14 +5,14 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Cart,
     Ecb,
     Messages,
     Products as ProductsCore,
     Routing
 };
 use eMarket\Catalog\{
-    Products
+    Products,
+    Cart
 };
 
 if (Products::$products != FALSE) {
@@ -112,10 +112,11 @@ if (Products::$products != FALSE) {
                     <div id="panel_attribute" class="tab-pane fade show">
                         <div class="item-text border border-top-0 rounded-bottom p-2 product-attribute"></div>
                     </div>
-                        <?php foreach (Products::$tabs_data as $tabs) {
-                            require_once(ROOT. '/modules/tabs/' . $tabs['chanel_module_name'] . '/controller/catalog/index.php');
-                        }
-                        ?>
+                    <?php
+                    foreach (Products::$tabs_data as $tabs) {
+                        require_once(ROOT . '/modules/tabs/' . $tabs['chanel_module_name'] . '/controller/catalog/index.php');
+                    }
+                    ?>
                 </div>
             </div>
         </div>
