@@ -46,6 +46,36 @@ class Routing {
     }
 
     /**
+     * Page processor (route logic for page)
+     *
+     * @param string $path (route path)
+     * @return string (output path)
+     */
+    public static function pageProcessor(string $path): string {
+
+        $output = self::pageNotFound($path); // "Page not found" check
+        return $output;
+    }
+
+    /**
+     * Page Not Found
+     *
+     * @param string $path (route path)
+     * @return string (output path)
+     */
+    public static function pageNotFound(string $path): string {
+
+        foreach (self::routingMap() as $key => $page) {
+            if ($path == $key) {
+                return $path;
+            }
+        }
+
+        $page = 'page_not_found';
+        return $page;
+    }
+
+    /**
      * Routing path
      *
      * @return string $page (routing path)
@@ -54,8 +84,8 @@ class Routing {
 
         $page = Settings::$default_page[Settings::path()];
 
-        if (Valid::inGET('route')) {
-            $page = Valid::inGET('route');
+        if (Valid::inGET('route') != '') {
+            $page = self::pageProcessor(Valid::inGET('route'));
         }
 
         return $page;
@@ -64,8 +94,9 @@ class Routing {
     /**
      * Routing Map
      *
+     * @return array (Routing Map array)
      */
-    private function routingMap(): array {
+    public static function routingMap(): array {
         $routing_parameters = [];
         $path = ucfirst(Settings::path());
         $files = glob(getenv('DOCUMENT_ROOT') . '/model/eMarket/' . $path . '/*');
@@ -83,50 +114,49 @@ class Routing {
     /**
      * Pages routing
      *
-     * @return string url
+     * @return string|null url
      */
     public function page(): ?string {
 
         if (Settings::path() == 'catalog') {
             $default_routing_parameter = 'catalog';
-            $class_path = 'Catalog';
+            $class_path = 'eMarket\Catalog';
         }
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
             $default_routing_parameter = Settings::defaultPage();
-            $class_path = 'Admin';
+            $class_path = 'eMarket\Admin';
         }
 
         if (Settings::path() == 'install') {
             $default_routing_parameter = 'index';
-            $class_path = 'Install';
+            $class_path = 'eMarket\Install';
         }
 
         if (Settings::path() == 'uploads') {
             $default_routing_parameter = 'uploads';
-            $class_path = 'Uploads';
+            $class_path = 'eMarket\Uploads';
         }
 
         if (Settings::path() == 'JsonRpc') {
             $jsonrpc = new JsonRpc();
             $default_routing_parameter = $jsonrpc->decodeGetData('method');
-            $class_path = 'JsonRpc';
+            $class_path = 'eMarket\JsonRpc';
         }
 
         if (Valid::inGET('route') != '') {
-            $output = $this->routingMap()[Valid::inGET('route')];
-        } else {
-            $output = $this->routingMap()[$default_routing_parameter];
+            $page = self::pageProcessor(Valid::inGET('route'));
+            return Func::outputDataFiltering($class_path . '\\' . self::routingMap()[$page]);
         }
 
-        return Func::outputDataFiltering('eMarket\\' . $class_path . '\\' . $output);
+        return Func::outputDataFiltering($class_path . '\\' . self::routingMap()[$default_routing_parameter]);
     }
 
     /**
      * Template routing for catalog
      *
-     * @return string|bool $str (view routing)
+     * @return string|bool (view routing)
      */
     public static function template(): string|bool {
 
@@ -153,7 +183,7 @@ class Routing {
      * Modules routing
      *
      * @param string $path (path marker controller/view)
-     * @return string $str (modules routing)
+     * @return string (modules routing)
      */
     public static function modules(string $path): string {
 
@@ -278,7 +308,7 @@ class Routing {
         $constructor_list = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/eMarket/Constructor');
 
         $constructor_data = [];
-        foreach ($constructor_list as $key => $val) {
+        foreach ($constructor_list as $val) {
             $namespace = 'eMarket\Constructor\\' . pathinfo($val, PATHINFO_FILENAME);
             if ($namespace::init()) {
                 $constructor_data[$namespace] = $namespace::init();

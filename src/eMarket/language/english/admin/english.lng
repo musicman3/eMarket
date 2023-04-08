@@ -34,6 +34,7 @@ title_stock_index = Stock
 title_customers_index = Customers
 title_staff_manager_index = Staff manager
 title_staff_manager_staff_index = Staff
+title_page_not_found_index = Page Not Found
 
 ;MENU_BUTTONS
 menu_dashboard = Dashboard
@@ -393,3 +394,8 @@ chatgpt_open_button = Ask ChatGPT
 chatgpt_send_button = Send
 chatgpt_user_placeholder = Ask ChatGPT...
 chatgpt_response = Reply:
+
+;PAGE NOT FOUND
+page_not_found_header = Attention!
+page_not_found_title = Page not found
+page_not_found_text = Please enter a valid url or contact the administrator.

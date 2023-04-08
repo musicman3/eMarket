@@ -34,6 +34,7 @@ title_stock_index = Склад
 title_customers_index = Клиенты
 title_staff_manager_index = Менеджер персонала
 title_staff_manager_staff_index = Персонал
+title_page_not_found_index = Страница не найдена
 
 ;КНОПКИ МЕНЮ
 menu_dashboard = Мониторинг
@@ -391,3 +392,8 @@ chatgpt_open_button = Спросить у ChatGPT
 chatgpt_send_button = Отправить
 chatgpt_user_placeholder = Спросить у ChatGPT...
 chatgpt_response = Ответ:
+
+;PAGE NOT FOUND
+page_not_found_header = Внимание!
+page_not_found_title = Страница не найдена
+page_not_found_text = Пожалуйста, укажите верный url или свяжитесь с администратором.
