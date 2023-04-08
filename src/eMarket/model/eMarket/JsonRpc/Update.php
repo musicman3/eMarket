@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
-    JsonRpc,
-    Func
+    Cryptography,
+    JsonRpc
 };
 
 /**
@@ -121,7 +121,7 @@ class Update extends JsonRpc {
      */
     private function eMarketData(): mixed {
 
-        $get_string = self::encodeGetData(Func::getToken(32), 'UpdateChecker');
+        $get_string = self::encodeGetData(Cryptography::getToken(32), 'UpdateChecker');
         $response = $this->curlFromGet('https://data.emarketforum.com' . $get_string);
 
         if (empty($response)) {

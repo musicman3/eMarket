@@ -12,9 +12,9 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Cache,
     Clock\SystemClock,
+    Cryptography,
     Ecb,
     DataBuffer,
-    Func,
     Messages,
     Pdo,
     Products,
@@ -270,7 +270,7 @@ class Success {
         Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
                 . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
                 [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
-                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, SystemClock::nowSqlDateTime(), Func::getToken(64)]);
+                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, SystemClock::nowSqlDateTime(), Cryptography::getToken(64)]);
         unset($_SESSION['cart']);
     }
 

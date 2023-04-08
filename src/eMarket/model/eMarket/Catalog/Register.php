@@ -59,7 +59,7 @@ class Register {
                 ]);
 
                 $id = Pdo::lastInsertId();
-                $activation_code = Func::getToken(64);
+                $activation_code = Cryptography::getToken(64);
                 Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
 
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;

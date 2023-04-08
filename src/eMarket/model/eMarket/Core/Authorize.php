@@ -84,7 +84,7 @@ class Authorize {
     public static function csrfToken(): string {
 
         if (!self::$csrf_token) {
-            self::$csrf_token = Func::getToken(32);
+            self::$csrf_token = Cryptography::getToken(32);
             $_SESSION['csrf_token_' . Settings::path()] = self::$csrf_token;
         }
         return self::$csrf_token;

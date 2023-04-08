@@ -124,17 +124,6 @@ final class FuncTest extends TestCase {
     }
 
     /**
-     * getToken()
-     * 
-     */
-    public function testGetToken() {
-        $result = Func::getToken(20);
-        $this->assertIsString($result);
-        $this->assertSame(iconv_strlen($result), 20);
-        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]+$/', $result);
-    }
-
-    /**
      * deleteGet()
      * 
      */
@@ -236,18 +225,6 @@ final class FuncTest extends TestCase {
         $this->assertCount(2, $result);
         $this->assertCount(2, $result['apple']);
         $this->assertCount(3, $result['banana']);
-    }
-
-    /**
-     * encryption() and decryption()
-     * 
-     */
-    public function testEncryptionDecryption() {
-        $result = Func::encryption('pass', 'My number is 10!', 'aes-256-gcm');
-        $this->assertSame(Func::decryption('pass', $result, 'aes-256-gcm'), 'My number is 10!');
-
-        $result2 = Func::encryption('pass', 'My number is 10!', 'chacha20-poly1305');
-        $this->assertSame(Func::decryption('pass', $result2, 'chacha20-poly1305'), 'My number is 10!');
     }
 
 }

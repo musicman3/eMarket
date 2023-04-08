@@ -263,26 +263,6 @@ class Func {
     }
 
     /**
-     * Token
-     *
-     * @param int|string $length Length
-     * @return string
-     */
-    public static function getToken(int|string $length): string {
-        $token = '';
-        $symbols = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $symbols .= 'abcdefghijklmnopqrstuvwxyz';
-        $symbols .= '0123456789';
-        $max = strlen($symbols);
-
-        for ($i = 0; $i < (int) $length; $i++) {
-            $token .= $symbols[random_int(0, $max - 1)];
-        }
-
-        return $token;
-    }
-
-    /**
      * Delete GET-parameter
      *
      * @param string $get GET-request
