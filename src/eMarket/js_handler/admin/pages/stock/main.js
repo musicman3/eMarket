@@ -38,7 +38,6 @@ class Stock {
         var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
 
         new ContextMenu();
-        this.mousedown();
         new Fileupload(resize_max, lang);
         new FileuploadProduct(resize_max_prod, lang);
         new Mouse(lang);
@@ -51,6 +50,8 @@ class Stock {
         if (action === 'update') {
             tinymce.remove();
         }
+
+        this.mousedown();
         this.tinymceInit();
         this.focusin();
         this.tableSelect();
@@ -63,8 +64,6 @@ class Stock {
     update() {
         this.init('update');
         Mouse.sortInitAll();
-        this.mousedown();
-        this.tableSelect();
 
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
