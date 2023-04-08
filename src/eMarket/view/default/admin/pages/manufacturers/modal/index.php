@@ -6,6 +6,7 @@
 
 use eMarket\Core\{
     Lang,
+    Pages,
     Settings
 };
 ?>
@@ -31,7 +32,7 @@ use eMarket\Core\{
 
                         <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                            <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Pages::activeTab($x) ?>">
                                 <div class="mb-3">
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-file-text"></span>

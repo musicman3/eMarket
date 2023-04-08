@@ -6,6 +6,7 @@
 
 use eMarket\Core\{
     Lang,
+    Pages,
     Settings
 };
 use eMarket\Admin\Stock;
@@ -49,7 +50,7 @@ use eMarket\Admin\Stock;
 
                                 <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
 
-                                    <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                                    <div id="product_<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Pages::activeTab($x) ?>">
                                         <div class="mb-3">
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_name') ?></small></div>
                                             <div class="input-group input-group-sm">
@@ -102,7 +103,7 @@ use eMarket\Admin\Stock;
                                         <span class="input-group-text bi-cash"></span>
                                         <select name="currency_product_stock" id="currency_product_stock" class="form-select">
                                             <?php foreach (Stock::$currencies_all as $val) { ?>
-                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Pages::viewSelect($val, 'default_value') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -122,7 +123,7 @@ use eMarket\Admin\Stock;
                                         <span class="input-group-text bi-flag"></span>
                                         <select name="unit_product_stock" id="unit_product_stock" class="form-select">
                                             <?php foreach (Stock::$units_all as $val) { ?>
-                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_unit') ?>><?php echo $val['name'] ?></option>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Pages::viewSelect($val, 'default_unit') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -187,7 +188,7 @@ use eMarket\Admin\Stock;
                                         <span class="input-group-text bi-tag"></span>
                                         <select name="vendor_codes_product_stock" id="vendor_codes_product_stock" class="form-select">
                                             <?php foreach (Stock::$vendor_codes_all as $val) { ?>
-                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_vendor_code') ?>><?php echo $val['name'] ?></option>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Pages::viewSelect($val, 'default_vendor_code') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -207,7 +208,7 @@ use eMarket\Admin\Stock;
                                         <span class="input-group-text bi-minecart-loaded"></span>
                                         <select name="weight_product_stock" id="weight_product_stock" class="form-select">
                                             <?php foreach (Stock::$weight_all as $val) { ?>
-                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_weight') ?>><?php echo $val['name'] ?></option>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Pages::viewSelect($val, 'default_weight') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -227,7 +228,7 @@ use eMarket\Admin\Stock;
                                         <span class="input-group-text bi-rulers"></span>
                                         <select name="length_product_stock" id="length_product_stock" class="form-select ">
                                             <?php foreach (Stock::$length_all as $val) { ?>
-                                                <option value="<?php echo $val['id'] ?>" <?php echo Settings::viewSelect($val, 'default_length') ?>><?php echo $val['name'] ?></option>
+                                                <option value="<?php echo $val['id'] ?>" <?php echo Pages::viewSelect($val, 'default_length') ?>><?php echo $val['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

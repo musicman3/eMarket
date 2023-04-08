@@ -69,7 +69,7 @@ use eMarket\Core\{
                     </thead>
                     <tbody>
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                            <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line'][18]) ?> align-middle">
+                            <tr class="<?php echo Pages::statusSwitchClass(Pages::$table['line'][18]) ?> align-middle">
                                 <td><?php echo Pages::$table['line'][3] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line'][4] ?></td>
                                 <td class="text-center"><?php echo SystemClock::getDateTime(Pages::$table['line'][6]) ?></td>

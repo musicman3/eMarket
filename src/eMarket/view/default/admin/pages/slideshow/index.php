@@ -34,7 +34,7 @@ require_once('modal/index.php')
 
                 <?php for ($x = 0; $x < Lang::$count; $x++) { ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo Settings::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
+                        <a class="nav-link <?php echo Pages::activeTab(Slideshow::$set_language, lang('#lang_all')[$x]) ?>" data-bs-toggle="tab" href="#<?php echo lang('#lang_all')[$x] ?>"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo lang('#lang_all')[$x] ?>.png" alt="<?php echo lang('#lang_all')[$x] ?>" title="<?php echo lang('#lang_all')[$x] ?>" width="16" height="10" /> <?php echo lang('language_name', lang('#lang_all')[$x]) ?></a>
                     </li>
                 <?php } ?>
 
@@ -44,7 +44,7 @@ require_once('modal/index.php')
 
                 <?php for ($x = 0; $x < Lang::$count; $x++, Slideshow::helper()) { ?>
 
-                    <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Settings::activeTab($x) ?>">
+                    <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Pages::activeTab($x) ?>">
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
                                 <thead>
@@ -88,7 +88,7 @@ require_once('modal/index.php')
                                 </thead>
                                 <tbody>
                                     <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
-                                        <tr class="<?php echo Settings::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, SystemClock::getUnixTime(Pages::$table['line']['date_start'])], [SystemClock::getUnixTime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
+                                        <tr class="<?php echo Pages::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, SystemClock::getUnixTime(Pages::$table['line']['date_start'])], [SystemClock::getUnixTime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
                                             <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" /></td>
                                             <td class="text-center"><?php echo count(json_decode(Pages::$table['line']['logo'])) ?></td>
                                             <td class="text-center"><?php echo Pages::$table['line']['name'] ?></td>

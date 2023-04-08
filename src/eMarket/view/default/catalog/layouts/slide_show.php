@@ -7,7 +7,7 @@
 use eMarket\Admin\Slideshow;
 use eMarket\Core\{
     Clock\SystemClock,
-    Settings
+    Pages
 };
 
 Slideshow::view();
@@ -37,7 +37,7 @@ if (Slideshow::$slideshow == true) {
                     foreach (json_decode($images_data['logo'], true) as $logo) {
                         if ($images_data['status'] == 1 && SystemClock::getUnixTime($images_data['date_start']) <= Slideshow::$this_time && SystemClock::getUnixTime($images_data['date_finish']) >= Slideshow::$this_time) {
                             ?>
-                            <div class="carousel-item <?php echo Settings::activeTab($count) ?>">
+                            <div class="carousel-item <?php echo Pages::activeTab($count) ?>">
                                 <a href="<?php echo $images_data['url'] ?>">
                                     <img src="/uploads/images/slideshow/resize_4/<?php echo $logo ?>" class="d-block w-100" >
                                     <?php if ($images_data['animation'] == 1) { ?>

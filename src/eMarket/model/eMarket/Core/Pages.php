@@ -138,4 +138,84 @@ class Pages {
         return $output;
     }
 
+    /**
+     * Select view
+     *
+     * @param array $value Select array
+     * @param string|int $default Default sell name
+     * @param string|bool
+     */
+    public static function viewSelect(array $value, string|int $default): string|bool {
+
+        if ($value[$default] == 1) {
+            return 'selected';
+        }
+        return false;
+    }
+
+    /**
+     * Class for sorties
+     *
+     * @param string $class Bootstrap class
+     * @return string
+     */
+    public static function sortiesClass(string $class): string {
+
+        if (Valid::inGET('search')) {
+            return $class;
+        }
+        return '';
+    }
+
+    /**
+     * Switching class when changing status
+     *
+     * @param int|string $status Status from DB
+     * @param mixed $argument_1 Argument to compare
+     * @param mixed $argument_2 Argument to compare
+     * @param string $class Bootstrap class
+     * @param string $class_2 Bootstrap class
+     * @return string
+     */
+    public static function statusSwitchClass(int|string $status, mixed $argument_1 = null, mixed $argument_2 = null, string $class = '', string $class_2 = 'table-danger'): ?string {
+
+        if ($argument_1 == null) {
+            $arg_1 = null;
+        } elseif ($argument_1 != null && $argument_1[0] >= $argument_1[1]) {
+            $arg_1 = 'true';
+        } else {
+            $arg_1 = 'false';
+        }
+
+        if ($argument_2 == null) {
+            $arg_2 = null;
+        } elseif ($argument_2 != null && $argument_2[0] >= $argument_2[1]) {
+            $arg_2 = 'true';
+        } else {
+            $arg_2 = 'false';
+        }
+
+        if ($status == 0 OR $arg_1 == 'false' OR $arg_2 == 'false') {
+            return $class_2;
+        } else {
+            return $class;
+        }
+    }
+
+    /**
+     * Active tab
+     *
+     * @param string|int $active_tab Active tab
+     * @param string|int $active Active marker
+     * @param string $class Bootstrap class
+     * @return string
+     */
+    public static function activeTab(string|int $active_tab, string|int $active = 0, string $class = 'show in active'): ?string {
+
+        if ($active_tab == $active) {
+            return $class;
+        }
+        return '';
+    }
+
 }

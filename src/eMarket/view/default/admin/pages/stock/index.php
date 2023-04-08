@@ -121,7 +121,7 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start < Stock::$count_lines_cat) {
                                     ?>
 
-                                    <tr id="<?php echo Stock::categoriesText('transfer', 'context-one')[1] ?>" class="<?php echo Settings::sortiesClass('info') . ' ' . Stock::transferClass('unselectable') . ' ' . Stock::categoriesText('transfer', 'context-one')[0] ?>  sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
+                                    <tr id="<?php echo Stock::categoriesText('transfer', 'context-one')[1] ?>" class="<?php echo Pages::sortiesClass('info') . ' ' . Stock::transferClass('unselectable') . ' ' . Stock::categoriesText('transfer', 'context-one')[0] ?>  sort-list align-middle" unitid="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>">
 
                                         <?php if (!Valid::inGET('search')) { ?>
                                             <td class="sortyes sortleft-m bi-arrows-move"></td>
