@@ -7,7 +7,7 @@
 use eMarket\Core\{
     Messages,
     Settings,
-    Lang
+    Pages
 };
 use eMarket\Admin\BasicSettings;
 ?>
@@ -44,14 +44,9 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_primary_language') ?></label>
                             <div class="col-md-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-select">
-                                    <?php if (Lang::$count == 1) { ?>
-                                        <option value="<?php echo BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', BasicSettings::$primary_language) ?></option>
-                                    <?php } else { ?>
-                                        <option value="<?php echo BasicSettings::$primary_language ?>" selected><?php echo lang('language_name', BasicSettings::$primary_language) ?></option>
-                                        <?php foreach (BasicSettings::$langs_settings as $langs) { ?>
-                                            <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
-                                            <?php
-                                        }
+                                    <?php foreach (lang('#lang_all') as $langs) { ?>
+                                        <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
+                                        <?php
                                     }
                                     ?>
                                 </select>
@@ -73,13 +68,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('debug_info') ?></label>
                             <div class="col-md-9">
                                 <select name="debug" id="debug" class="input-sm form-select">
-                                    <?php if (BasicSettings::$debug == 1) { ?>
-                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
-                                        <option value="off"><?php echo lang('debug_off') ?></option>
-                                    <?php } else { ?>
-                                        <option value="on"><?php echo lang('debug_on') ?></option>
-                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
-                                    <?php } ?>
+                                    <option value="off"><?php echo lang('debug_off') ?></option>
+                                    <option value="on" <?php echo Pages::selectedAttr(BasicSettings::$debug) ?>><?php echo lang('debug_on') ?></option>
                                 </select>
                             </div>
                         </div>
@@ -108,13 +98,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_use') ?></label>
                             <div class="col-md-9">
                                 <select name="smtp_status" id="smtp_status" class="input-sm form-select">
-                                    <?php if (BasicSettings::$smtp_status == 1) { ?>
-                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
-                                        <option value="off"><?php echo lang('debug_off') ?></option>
-                                    <?php } else { ?>
-                                        <option value="on"><?php echo lang('debug_on') ?></option>
-                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
-                                    <?php } ?>
+                                    <option value="off"><?php echo lang('debug_off') ?></option>
+                                    <option value="on" <?php echo Pages::selectedAttr(BasicSettings::$smtp_status) ?>><?php echo lang('debug_on') ?></option>
                                 </select>
                             </div>
                         </div>
@@ -123,13 +108,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_smtp_auth') ?></label>
                             <div class="col-md-9">
                                 <select name="smtp_auth" id="smtp_auth" class="input-sm form-select">
-                                    <?php if (BasicSettings::$smtp_auth == 1) { ?>
-                                        <option selected><?php echo lang('debug_on') ?></option>
-                                        <option><?php echo lang('debug_off') ?></option>
-                                    <?php } else { ?>
-                                        <option><?php echo lang('debug_on') ?></option>
-                                        <option selected><?php echo lang('debug_off') ?></option>
-                                    <?php } ?>
+                                    <option value="off"><?php echo lang('debug_off') ?></option>
+                                    <option value="on" <?php echo Pages::selectedAttr(BasicSettings::$smtp_auth) ?>><?php echo lang('debug_on') ?></option>
                                 </select>
                             </div>
                         </div>
@@ -180,13 +160,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_use_caching') ?></label>
                             <div class="col-md-9">
                                 <select name="cache_status" id="cache_status" class="input-sm form-select">
-                                    <?php if (BasicSettings::$cache_status == 1) { ?>
-                                        <option value="on" selected><?php echo lang('debug_on') ?></option>
-                                        <option value="off"><?php echo lang('debug_off') ?></option>
-                                    <?php } else { ?>
-                                        <option value="on"><?php echo lang('debug_on') ?></option>
-                                        <option value="off" selected><?php echo lang('debug_off') ?></option>
-                                    <?php } ?>
+                                    <option value="off"><?php echo lang('debug_off') ?></option>
+                                    <option value="on" <?php echo Pages::selectedAttr(BasicSettings::$cache_status) ?>><?php echo lang('debug_on') ?></option>
                                 </select>
                             </div>
                         </div>

@@ -139,15 +139,15 @@ class Pages {
     }
 
     /**
-     * Select view
+     * Add "selected" attribute
      *
-     * @param array $value Select array
-     * @param string|int $default Default sell name
-     * @param string|bool
+     * @param string $data data
+     * @param string $value value
+     * @return string|bool
      */
-    public static function viewSelect(array $value, string|int $default): string|bool {
+    public static function selectedAttr(string $data, string|int $value = 1): string|bool {
 
-        if ($value[$default] == 1) {
+        if ($data == (string) $value) {
             return 'selected';
         }
         return false;

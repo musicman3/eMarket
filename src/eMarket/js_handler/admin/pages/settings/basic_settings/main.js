@@ -25,12 +25,12 @@ class BasicSettings {
      */
     change() {
         var smtp_status = document.querySelector('#smtp_status');
-        if (smtp_status.options.selectedIndex === 1) {
+        if (smtp_status.options.selectedIndex === 0) {
             BasicSettings.disableInput();
         }
 
         smtp_status.addEventListener('change', function (event) {
-            if (smtp_status.options.selectedIndex === 1) {
+            if (smtp_status.options.selectedIndex === 0) {
                 BasicSettings.disableInput();
             } else {
                 document.querySelector('#smtp_auth').removeAttribute('disabled');

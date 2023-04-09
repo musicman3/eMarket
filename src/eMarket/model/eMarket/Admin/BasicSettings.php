@@ -11,7 +11,6 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Cache,
-    Func,
     Messages,
     Pdo,
     Settings,
@@ -36,7 +35,6 @@ class BasicSettings {
     public static $session_expr_time = FALSE;
     public static $debug = FALSE;
     public static $primary_language = FALSE;
-    public static $langs_settings = FALSE;
     public static $email = FALSE;
     public static $email_name = FALSE;
     public static $smtp_status = FALSE;
@@ -129,7 +127,6 @@ class BasicSettings {
      */
     private function primaryLanguage(): void {
         self::$primary_language = Settings::primaryLanguage();
-        self::$langs_settings = Func::deleteValInArray(lang('#lang_all'), [self::$primary_language]);
 
         if (Valid::inPOST('primary_language')) {
             Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [Valid::inPOST('primary_language')]);
@@ -193,7 +190,7 @@ class BasicSettings {
         if (Valid::inPOST('smtp_auth')) {
             $smtp_auth_set = 0;
 
-            if (Valid::inPOST('smtp_auth') == lang('debug_on')) {
+            if (Valid::inPOST('smtp_auth') == 'on') {
                 $smtp_auth_set = 1;
             }
 

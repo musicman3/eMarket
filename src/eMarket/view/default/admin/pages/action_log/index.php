@@ -20,9 +20,9 @@ use eMarket\Admin\ActionLog;
             <div id="alert_block"><?php Messages::alert(); ?></div>
             <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
-        <?php if (file_exists(ROOT . '/storage/logs/actions.log') == true) { ?>
-            <div class="card-body">
 
+        <div class="card-body">
+            <?php if (file_exists(ROOT . '/storage/logs/actions.log') == true) { ?>
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead>
@@ -64,18 +64,21 @@ use eMarket\Admin\ActionLog;
                                 if (isset(Pages::$table['line']) == TRUE) {
                                     ?>
                                     <tr class="<?php echo ActionLog::errorClass(Pages::$table['line']) ?> align-middle"><td colspan="2"><?php echo Pages::$table['line'] ?></td></tr>
-                                    <?php
+                                        <?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
 
                         </tbody>
 
                     </table>
                 </div>
-            </div>
-        <?php } else { ?>
-            <div class="card-body"><?php echo lang('no_listing') ?></div>
-        <?php } ?>
+                <?php
+            } else {
+                echo lang('no_listing');
+            }
+            ?>
+        </div>
+
     </div>
 </div>
