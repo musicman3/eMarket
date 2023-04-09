@@ -95,6 +95,37 @@ class Listing {
     }
 
     /**
+     * Characteristics Data
+     *
+     * @return string|int
+     */
+    public static function getCharData(): array {
+
+        $output = [];
+
+        if (Pages::$table['line']['vendor_code'] != NULL && Pages::$table['line']['vendor_code'] != FALSE && Pages::$table['line']['vendor_code_value'] != NULL && Pages::$table['line']['vendor_code_value'] != FALSE) {
+            $output['vendor_code'] = [
+                'label' => Products::vendorCode(Pages::$table['line']['vendor_code'])['name'] . ':',
+                'text' => Pages::$table['line']['vendor_code_value']
+            ];
+        }
+        if (Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != NULL && Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != FALSE) {
+            $output['manufacturer'] = [
+                'label' => lang('product_manufacturer'),
+                'text' => Products::manufacturer(Pages::$table['line']['manufacturer'])['name']
+            ];
+        }
+        if (Pages::$table['line']['model'] != NULL && Pages::$table['line']['model'] != FALSE) {
+            $output['model'] = [
+                'label' => lang('product_model'),
+                'text' => Pages::$table['line']['model']
+            ];
+        }
+
+        return $output;
+    }
+
+    /**
      * Data
      *
      */

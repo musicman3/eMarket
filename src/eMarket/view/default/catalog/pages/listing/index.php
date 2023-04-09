@@ -55,7 +55,9 @@ require_once('modal/cart_message.php')
 
         <div id="product-data" class="row">
             <?php
-            for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
+            for (Pages::$start;
+                    Pages::$start < Pages::$finish;
+                    Pages::$start++, Pages::lineUpdate()) {
                 ?>
                 <div class="item mb-3 col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
                     <div id="card" class="card border rounded p-2 h-100">
@@ -66,25 +68,18 @@ require_once('modal/cart_message.php')
                             <?php } ?>
                         </div>
                         <div id="image" class="h-100">
-                            <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block mb-2"></a>
+                            <a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>">
+                                <img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block mb-2">
+                            </a>
                         </div>
                         <h5 class="item-heading"><a href="/?route=products&category_id=<?php echo Pages::$table['line']['parent_id'] ?>&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
                         <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
                         <div class="item-text">
                             <ul>
-                                <?php if (Pages::$table['line']['vendor_code'] != NULL && Pages::$table['line']['vendor_code'] != FALSE && Pages::$table['line']['vendor_code_value'] != NULL && Pages::$table['line']['vendor_code_value'] != FALSE) { ?>
+                                <?php foreach (Listing::getCharData() as $val) { ?>
                                     <li>
-                                        <label><?php echo Products::vendorCode(Pages::$table['line']['vendor_code'])['name'] ?>: </label> 
-                                        <?php echo Pages::$table['line']['vendor_code_value'] ?>
-                                    </li>
-                                <?php } if (Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != NULL && Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] != FALSE) { ?>
-                                    <li>
-                                        <label><?php echo lang('product_manufacturer') ?></label> <?php echo Products::manufacturer(Pages::$table['line']['manufacturer'])['name'] ?>
-                                    </li>
-                                <?php } if (Pages::$table['line']['model'] != NULL && Pages::$table['line']['model'] != FALSE) { ?>
-                                    <li>
-                                        <label><?php echo lang('product_model') ?></label> 
-                                        <?php echo Pages::$table['line']['model'] ?>
+                                        <label><?php echo $val['label'] ?> </label> 
+                                        <?php echo $val['text'] ?>
                                     </li>
                                 <?php } ?>
                                 <li>
