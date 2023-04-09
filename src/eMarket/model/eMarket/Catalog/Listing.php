@@ -97,7 +97,7 @@ class Listing {
     /**
      * Characteristics Data
      *
-     * @return string|int
+     * @return array
      */
     public static function getCharData(): array {
 
