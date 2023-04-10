@@ -105,6 +105,19 @@ class Fileupload {
             }, false).then((data) => {
             });
         });
+        // Fix display:none for z-index
+        document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
+            var elems = document.body.getElementsByTagName('*');
+            var largest = [];
+            var check = 16777270;
+            for (var i = 0; i < elems.length; i++) {
+                if (elems[i].style.zIndex >= check) {
+                    check = elems[i].style.zIndex;
+                    largest.push(elems[i]);
+                }
+            }
+            largest[2].style.display = 'none';
+        });
 
         document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
             document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
