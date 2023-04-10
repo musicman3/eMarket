@@ -208,6 +208,9 @@ class HeaderMenu {
     private function permissions(): void {
         $count = 0;
         foreach (self::$staff_data as $page) {
+            if (Valid::inGET('route') == 'page_not_found') {
+                $count++;
+            }
             if (strpos('/?route=' . Valid::inGET('route'), $page)) {
                 $count++;
             }
@@ -222,6 +225,7 @@ class HeaderMenu {
         }
 
         if ($count == 0) {
+            header('Location: ?route=page_not_found');
             exit;
         }
     }
