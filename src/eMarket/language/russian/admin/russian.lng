@@ -5,6 +5,9 @@
 
 [admin]
 
+;SHOP NAME
+shop_name = eMarket
+
 ;TITLE
 title_categories_index = Категории
 title_dashboard_index = Мониторинг
@@ -13,21 +16,20 @@ title_action_log_index = Лог действий
 title_login_index = Страница авторизации
 title_manufacturers_index = Производители
 title_orders_index = Заказы
-title_settings_basic_settings_index = Базовые настройки
-title_settings_countries_index = Страны
-title_settings_countries_regions_index = Регионы
-title_settings_currencies_index = Валюты
-title_settings_index = Настройки
-title_settings_length_index = Длина
-title_settings_modules_index = Модули
-title_settings_order_status_index = Статусы заказов
-title_settings_taxes_index = Налоги
-title_settings_templates_index = Компоновка шаблона
-title_settings_units_index = Единицы измерения
-title_settings_vendor_codes_index = Идентификаторы товара
-title_settings_weight_index = Вес
-title_settings_zones_index = Зоны
-title_settings_zones_listing_index = Страны и регионы
+title_basic_settings_index = Параметры
+title_countries_index = Страны
+title_countries_regions_index = Регионы
+title_currencies_index = Валюты
+title_length_index = Длина
+title_modules_index = Модули
+title_order_status_index = Статусы заказов
+title_taxes_index = Налоги
+title_templates_index = Компоновка шаблона
+title_units_index = Единицы измерения
+title_vendor_codes_index = Идентификаторы товара
+title_weight_index = Вес
+title_zones_index = Зоны
+title_zones_listing_index = Страны и регионы
 title_slideshow_index = Слайдшоу
 title_stickers_index = Стикеры
 title_stock_index = Склад
@@ -37,6 +39,7 @@ title_staff_manager_staff_index = Персонал
 title_page_not_found_index = Страница не найдена
 
 ;КНОПКИ МЕНЮ
+menu_name = Главное меню
 menu_dashboard = Мониторинг
 menu_catalog = Каталог товаров
 menu_market = Магазин
@@ -48,6 +51,7 @@ menu_action_log = Лог действий
 menu_exit = Выход
 menu_extra = Прочее
 menu_languages = Языки
+menu_settings = Настройки
 menu_support = Поддержка
 menu_tools = Инструменты
 

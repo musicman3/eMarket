@@ -10,8 +10,8 @@ use eMarket\Core\Messages;
 <div id="login" class="row">
     <div class="lbox-horz"></div>
     <div class="lbox-vert"></div>
-<div id="alert_block"><?php Messages::alert(); ?></div>
-    <div class="login_logo">eMarket</div>
+    <div id="alert_block"><?php Messages::alert(); ?></div>
+    <div class="login_logo"><?php echo lang('shop_name') ?></div>
 
 
     <div class="login-box side-form">

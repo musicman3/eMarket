@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class VendorCodes {
 
-    public static $routing_parameter = 'settings/vendor_codes';
-    public $title = 'title_settings_vendor_codes_index';
+    public static $routing_parameter = 'vendor_codes';
+    public $title = 'title_vendor_codes_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -46,6 +46,15 @@ class VendorCodes {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=vendor_codes', 'bi-tag-fill', lang('title_vendor_codes_index'), '', 'false'];
     }
 
     /**

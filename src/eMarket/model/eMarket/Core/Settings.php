@@ -245,22 +245,22 @@ class Settings {
             $route = '';
         }
 
-        if ($route == 'settings/modules/edit' && Valid::inGET('module_path')) {
+        if ($route == 'modules/edit' && Valid::inGET('module_path')) {
             $input = explode('/', Valid::inGET('module_path'));
             array_pop($input);
             $module_path = implode('/', $input);
 
             if ($module_path != '') {
-                $output = '?route=settings/modules/edit&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name') . '&module_path=' . $module_path;
+                $output = '?route=modules/edit&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name') . '&module_path=' . $module_path;
                 return $output;
             } else {
-                $output = '?route=settings/modules/edit&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name');
+                $output = '?route=modules/edit&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name');
                 return $output;
             }
         }
 
-        if ($route == 'settings/modules/edit' && !Valid::inGET('module_path')) {
-            $output = '?route=settings/modules&active=' . Valid::inGET('type');
+        if ($route == 'modules/edit' && !Valid::inGET('module_path')) {
+            $output = '?route=modules&active=' . Valid::inGET('type');
             return $output;
         }
 

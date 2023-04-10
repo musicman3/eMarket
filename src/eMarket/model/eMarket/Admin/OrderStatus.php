@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class OrderStatus {
 
-    public static $routing_parameter = 'settings/order_status';
-    public $title = 'title_settings_order_status_index';
+    public static $routing_parameter = 'order_status';
+    public $title = 'title_order_status_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -47,6 +47,15 @@ class OrderStatus {
         $this->sorting();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=order_status', 'bi-pin-angle-fill', lang('title_order_status_index'), '', 'false'];
     }
 
     /**

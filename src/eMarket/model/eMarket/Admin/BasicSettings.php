@@ -29,8 +29,8 @@ use eMarket\Admin\HeaderMenu;
  */
 class BasicSettings {
 
-    public static $routing_parameter = 'settings/basic_settings';
-    public $title = 'title_settings_basic_settings_index';
+    public static $routing_parameter = 'basic_settings';
+    public $title = 'title_basic_settings_index';
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $debug = FALSE;
@@ -76,7 +76,7 @@ class BasicSettings {
      * 
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=settings', 'bi-gear-fill', lang('title_settings_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=basic_settings', 'bi-gear-fill', lang('title_basic_settings_index'), '', 'false'];
     }
 
     /**

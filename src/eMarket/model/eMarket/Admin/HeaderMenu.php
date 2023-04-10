@@ -31,6 +31,7 @@ class HeaderMenu {
     public static $menu_marketing = 'marketing';
     public static $menu_customers = 'customers';
     public static $menu_tools = 'tools';
+    public static $menu_settings = 'settings';
     public static $level = [];
     public static $menu = [];
     public static $submenu = [];
@@ -96,6 +97,7 @@ class HeaderMenu {
         self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
         self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true', 'bi-person-lines-fill'];
         self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
+        self::$level[self::$menu_settings] = ['#', lang('menu_settings'), 'true', 'bi-sliders2-vertical'];
     }
 
     /**

@@ -9,7 +9,6 @@ use eMarket\Core\{
     Messages,
     JsonRpc,
     Pages,
-    Settings,
     Valid
 };
 use eMarket\Admin\Orders;
@@ -21,7 +20,6 @@ require_once('modal/index.php')
     <div class="card">
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
-            <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
         <div class="card-body">
             <div id="ajax_data" class='hidden' data-orders='<?php echo Orders::$json_data ?>'></div>

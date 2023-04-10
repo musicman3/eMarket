@@ -31,11 +31,9 @@ require_once('modal/add_values_attribute.php');
     <div class="card">
 
         <div class="card-header">
-
             <div id="alert_block"><?php Messages::alert(); ?></div>
-
-            <h5 class="card-title col text-center"><?php echo Settings::titlePageGenerator() ?></h5>
         </div>
+
         <div id="ajax_data" class='hidden' 
              data-session='<?php echo json_encode(Stock::$ses_verify) ?>'
              data-parentid='<?php echo json_encode(Stock::$parent_id) ?>'

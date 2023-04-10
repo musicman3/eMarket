@@ -30,8 +30,8 @@ use eMarket\Core\{
  */
 class Taxes {
 
-    public static $routing_parameter = 'settings/taxes';
-    public $title = 'title_settings_taxes_index';
+    public static $routing_parameter = 'taxes';
+    public $title = 'title_taxes_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones = FALSE;
@@ -49,6 +49,15 @@ class Taxes {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=taxes', 'bi-percent', lang('title_taxes_index'), '', 'false'];
     }
 
     /**

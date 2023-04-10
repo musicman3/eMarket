@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class Countries {
 
-    public static $routing_parameter = 'settings/countries';
-    public $title = 'title_settings_countries_index';
+    public static $routing_parameter = 'countries';
+    public $title = 'title_countries_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -44,6 +44,15 @@ class Countries {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=countries', 'bi-globe', lang('title_countries_index'), '', 'false'];
     }
 
     /**

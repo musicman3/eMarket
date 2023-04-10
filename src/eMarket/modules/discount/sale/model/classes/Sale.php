@@ -67,7 +67,7 @@ class Sale implements DiscountModulesInterface {
      * 
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=settings/modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
     }
 
     /**

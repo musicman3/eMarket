@@ -10,7 +10,6 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use eMarket\Admin\Staff;
 
 require_once('modal/index.php')
 ?>
@@ -24,10 +23,6 @@ require_once('modal/index.php')
                     <div class="col-4 text-start">
                         <button type="button" onClick='location.href = "<?php echo Settings::parentPartitionGenerator() ?>"' class="btn btn-primary btn-sm bi-reply"> <span><?php echo lang('button_back') ?></span></button>
                     </div>
-                    <div class="col-4 text-center">
-                        <span><?php echo Settings::titlePageGenerator() ?></span>
-                    </div>
-                    <div class="col-4 text-end"></div>
                 </div>
             </h5>
         </div>

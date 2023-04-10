@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class Zones {
 
-    public static $routing_parameter = 'settings/zones';
-    public $title = 'title_settings_zones_index';
+    public static $routing_parameter = 'zones';
+    public $title = 'title_zones_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -44,6 +44,15 @@ class Zones {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=zones', 'bi-geo-alt-fill', lang('title_zones_index'), '', 'false'];
     }
 
     /**

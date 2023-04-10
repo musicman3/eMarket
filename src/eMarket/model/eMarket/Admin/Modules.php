@@ -28,8 +28,8 @@ use eMarket\Admin\Modules;
  */
 class Modules {
 
-    public static $routing_parameter = 'settings/modules';
-    public $title = 'title_settings_modules_index';
+    public static $routing_parameter = 'modules';
+    public $title = 'title_modules_index';
     public static $installed = FALSE;
     public static $installed_active = FALSE;
     public static $installed_filter = FALSE;
@@ -45,6 +45,15 @@ class Modules {
         $this->edit();
         $this->delete();
         $this->data();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=modules', 'bi-cpu-fill', lang('title_modules_index'), '', 'false'];
     }
 
     /**

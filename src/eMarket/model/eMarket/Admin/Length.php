@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class Length {
 
-    public static $routing_parameter = 'settings/length';
-    public $title = 'title_settings_length_index';
+    public static $routing_parameter = 'length';
+    public $title = 'title_length_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -46,6 +46,15 @@ class Length {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=length', 'bi-rulers', lang('title_length_index'), '', 'false'];
     }
 
     /**

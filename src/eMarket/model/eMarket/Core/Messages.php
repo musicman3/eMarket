@@ -93,7 +93,7 @@ class Messages {
             $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
             self::logging($class, '?route=' . Valid::inGET('route'), $action);
 
-            if (Valid::inGET('route') == 'settings/modules/edit') {
+            if (Valid::inGET('route') == 'modules/edit') {
                 self::alert();
             }
             return true;

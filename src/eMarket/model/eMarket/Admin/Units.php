@@ -29,8 +29,8 @@ use eMarket\Core\{
  */
 class Units {
 
-    public static $routing_parameter = 'settings/units';
-    public $title = 'title_settings_units_index';
+    public static $routing_parameter = 'units';
+    public $title = 'title_units_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -46,6 +46,15 @@ class Units {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=units', 'bi-flag-fill', lang('title_units_index'), '', 'false'];
     }
 
     /**

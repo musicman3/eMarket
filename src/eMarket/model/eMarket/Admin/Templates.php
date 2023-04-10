@@ -27,8 +27,8 @@ use eMarket\Core\{
  */
 class Templates {
 
-    public static $routing_parameter = 'settings/templates';
-    public $title = 'title_settings_templates_index';
+    public static $routing_parameter = 'templates';
+    public $title = 'title_templates_index';
     public static $layout_pages;
     public static $name_template;
     public static $select_page;
@@ -53,6 +53,15 @@ class Templates {
         $this->selectTemplate();
         $this->loadData();
         $this->handler();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=templates', 'bi-intersect', lang('title_templates_index'), '', 'false'];
     }
 
     /**

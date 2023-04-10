@@ -30,8 +30,8 @@ use eMarket\Core\{
  */
 class Currencies {
 
-    public static $routing_parameter = 'settings/currencies';
-    public $title = 'title_settings_currencies_index';
+    public static $routing_parameter = 'currencies';
+    public $title = 'title_currencies_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -47,6 +47,15 @@ class Currencies {
         $this->delete();
         $this->data();
         $this->modal();
+    }
+
+    /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=currencies', 'bi-cash', lang('title_currencies_index'), '', 'false'];
     }
 
     /**
