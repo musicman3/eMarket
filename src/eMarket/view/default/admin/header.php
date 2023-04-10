@@ -17,7 +17,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#"><?php echo Settings::titlePageGenerator() ?></a>
+            <span class="navbar-brand"><?php echo Settings::titlePageGenerator() ?></span>
             <div class="text-center">
                 <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left"></span>
             </div>
