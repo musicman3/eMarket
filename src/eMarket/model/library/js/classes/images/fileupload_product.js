@@ -106,7 +106,7 @@ class FileuploadProduct {
             }, false).then((data) => {
             });
         });
-        // Fix display:none for z-index
+        // Fix display:none
         document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
             document.getElementsByName('uploadfile-product')[0].parentElement.style.display = 'none';
         });

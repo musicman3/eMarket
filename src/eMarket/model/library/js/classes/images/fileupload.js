@@ -105,7 +105,7 @@ class Fileupload {
             }, false).then((data) => {
             });
         });
-        // Fix display:none for z-index
+        // Fix display:none
         document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
             document.getElementsByName('uploadfile')[0].parentElement.style.display = 'none';
         });
