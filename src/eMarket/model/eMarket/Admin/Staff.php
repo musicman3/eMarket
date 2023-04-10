@@ -70,14 +70,14 @@ class Staff {
 
             $chatgpt_token = json_encode([]);
             if (Valid::inPOST('chatgpt_token')) {
-                $chatgpt_token = json_encode([Valid::inPOST('chatgpt_token')]);
+                $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPOST('chatgpt_token')]);
             }
 
             $user_detected = Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?",
                             [Valid::inPOST('email')]);
 
             if (!$user_detected) {
-                Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?, chatgpt_token=?", [Valid::inPOST('email'),
+                Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?, my_data=?", [Valid::inPOST('email'),
                     Cryptography::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note'), $chatgpt_token]);
                 Messages::alert('add', 'success', lang('action_completed_successfully'));
             }

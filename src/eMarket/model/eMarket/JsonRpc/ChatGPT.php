@@ -44,10 +44,10 @@ class ChatGPT extends JsonRpc {
      */
     private function getToken(): void {
         $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
-        $token = Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?",
+        $token = Pdo::getValue("SELECT my_data FROM " . TABLE_ADMINISTRATORS . " WHERE login=?",
                         [$decrypt_login]);
         if ($token != 'null') {
-            $this->token = json_decode($token, true)[0];
+            $this->token = json_decode($token, true)['chatgpt_token'];
         }
     }
 
