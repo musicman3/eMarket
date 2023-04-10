@@ -214,7 +214,7 @@ class HeaderMenu {
             if (!Valid::inGET('route')) {
                 $count++;
             }
-            if (Valid::inGET('route') == 'settings/modules/edit') {
+            if (Valid::inGET('route') == 'modules/edit') {
                 if (strpos('/?route=' . Valid::inGET('route') . '&type=' . Valid::inGET('type') . '&name=' . Valid::inGET('name'), $page)) {
                     $count++;
                 }

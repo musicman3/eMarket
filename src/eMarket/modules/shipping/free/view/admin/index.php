@@ -28,7 +28,7 @@ require_once('modal/index.php')
                         <a href="#index" class="btn btn-primary btn-sm bi-plus" data-bs-toggle="modal"></a>
 
                         <form>
-                            <input hidden name="route" value="settings/modules/edit">
+                            <input hidden name="route" value="modules/edit">
                             <input hidden name="backstart" value="<?php echo Pages::$start ?>">
                             <input hidden name="backfinish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
@@ -37,7 +37,7 @@ require_once('modal/index.php')
                         </form>
 
                         <form>
-                            <input hidden name="route" value="settings/modules/edit">
+                            <input hidden name="route" value="modules/edit">
                             <input hidden name="start" value="<?php echo Pages::$start ?>">
                             <input hidden name="finish" value="<?php echo Pages::$finish ?>">
                             <input hidden name="type" value="<?php echo Valid::inGET('type') ?>">
