@@ -93,11 +93,11 @@ class HeaderMenu {
      */
     private function levelOne(): void {
         self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
-        self::$level[self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
-        self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
-        self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true', 'bi-person-lines-fill'];
-        self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
         self::$level[self::$menu_settings] = ['#', lang('menu_settings'), 'true', 'bi-sliders2-vertical'];
+        self::$level[self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
+        self::$level[self::$menu_customers] = ['#', lang('menu_customers'), 'true', 'bi-person-lines-fill'];
+        self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
+        self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
     }
 
     /**
