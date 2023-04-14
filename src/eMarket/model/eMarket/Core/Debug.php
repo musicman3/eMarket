@@ -25,6 +25,8 @@ use eMarket\Core\{
 class Debug {
 
     public static $debug_stopwatch;
+    // Use: \eMarket\Core\Debug::$debug_helper = data for debug; 
+    public static $debug_helper = false;
 
     /**
      * Array displaying when debugging
@@ -54,6 +56,9 @@ class Debug {
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
             echo lang('debug_db_queries') . " " . Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
+        }
+        if (self::$debug_helper) {
+            echo self::trace(self::$debug_helper);
         }
     }
 

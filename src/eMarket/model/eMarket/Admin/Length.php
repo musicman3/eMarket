@@ -12,11 +12,11 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Func,
     Messages,
-    Pdo,
     Pages,
     Lang,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Length
@@ -34,12 +34,14 @@ class Length {
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -74,7 +76,13 @@ class Length {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_LENGTH . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_LENGTH)
+                    ->selectGetValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
@@ -95,11 +103,17 @@ class Length {
      * @param int|string $value Value
      */
     private function addAction(int|string $id, int|string $value): void {
+
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("INSERT INTO " . TABLE_LENGTH . " SET id=?, name=?, language=?, code=?, value_length=?, default_length=?", [
-                $id, Valid::inPOST('name_length_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_length_' . $x), $value,
-                $this->default
-            ]);
+            $this->db
+                    ->create(TABLE_LENGTH)
+                    ->set('id', $id)
+                    ->set('name', Valid::inPOST('name_length_' . $x))
+                    ->set('language', lang('#lang_all')[$x])
+                    ->set('code', Valid::inPOST('code_length_' . $x))
+                    ->set('value_length', $value)
+                    ->set('default_length', $this->default)
+                    ->save();
         }
     }
 
@@ -127,11 +141,17 @@ class Length {
      * @param int|string $value Value
      */
     private function editAction(int|string $value): void {
+
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("UPDATE " . TABLE_LENGTH . " SET name=?, code=?, value_length=?, default_length=? WHERE id=? AND language=?", [
-                Valid::inPOST('name_length_' . $x), Valid::inPOST('code_length_' . $x), $value, $this->default,
-                Valid::inPOST('edit'), lang('#lang_all')[$x]
-            ]);
+            $this->db
+                    ->update(TABLE_LENGTH)
+                    ->set('name', Valid::inPOST('name_length_' . $x))
+                    ->set('code', Valid::inPOST('code_length_' . $x))
+                    ->set('value_length', $value)
+                    ->set('default_length', $this->default)
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->and('language=', lang('#lang_all')[$x])
+                    ->save();
         }
     }
 
@@ -141,7 +161,11 @@ class Length {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_LENGTH . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_LENGTH)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -152,14 +176,25 @@ class Length {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_LENGTH . " SET default_length=?", [0]);
 
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH, []);
+        $this->db
+                ->update(TABLE_LENGTH)
+                ->set('default_length', 0)
+                ->save();
+
+        $data = $this->db
+                ->read(TABLE_LENGTH)
+                ->selectGetAssoc('*')
+                ->save();
+
         foreach ($data as $value) {
-            Pdo::action("UPDATE " . TABLE_LENGTH . " SET value_length=? WHERE id=? AND language=?", [
-                ($value['value_length'] / Valid::inPOST('value_length')), $value['id'],
-                $value['language']
-            ]);
+
+            $this->db
+                    ->update(TABLE_LENGTH)
+                    ->set('value_length', $value['value_length'] / Valid::inPOST('value_length'))
+                    ->where('id=', $value['id'])
+                    ->and('language=', $value['language'])
+                    ->save();
         }
     }
 
@@ -168,7 +203,13 @@ class Length {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_LENGTH)
+                ->selectGetAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

@@ -30,14 +30,14 @@ final class Pdo {
 
     /**
      * Conecting to DB
-     * @param string $marker Marker
+     * @param string $status Marker
      * @return object PDO object
      */
-    public static function connect(?string $marker = null): ?object {
+    public static function connect(?string $status = null): ?object {
 
         self::$query_count++;
 
-        if ($marker == 'end') {
+        if ($status == 'close') {
             self::$connect = null;
             return self::$connect;
         }

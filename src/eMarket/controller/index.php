@@ -19,10 +19,12 @@ use eMarket\Core\{
     Debug,
     Lang,
     Messages,
-    Pdo,
     Routing,
     Settings,
     Tree
+};
+use \Cruder\{
+    Pdo
 };
 
 // Load Debug stopwatch
@@ -44,9 +46,21 @@ foreach (Tree::modulesClasses() as $path) {
 // Load Monolog logging
 Messages::monologErrorHandler();
 
-// Add Config file
+// Add Config file and DB Settings
 if (Settings::path() != 'install') {
+
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
+
+    Pdo::$set = [
+        'db_type' => DB_TYPE,
+        'db_server' => DB_SERVER,
+        'db_name' => DB_NAME,
+        'db_username' => DB_USERNAME,
+        'db_password' => DB_PASSWORD,
+        'db_prefix' => DB_PREFIX,
+        'db_port' => DB_PORT,
+        'db_family' => DB_FAMILY
+    ];
 }
 
 // Load Autorize
@@ -66,4 +80,4 @@ if ($eMarketRouting->constructor()) {
 }
 
 // Close DB connect
-Pdo::connect('end');
+Pdo::connect('close');
