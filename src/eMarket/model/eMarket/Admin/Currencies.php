@@ -14,10 +14,10 @@ use eMarket\Core\{
     Func,
     Lang,
     Pages,
-    Pdo,
     Valid,
     Messages
 };
+use Cruder\Cruder;
 
 /**
  * Currencies
@@ -32,6 +32,7 @@ class Currencies {
 
     public static $routing_parameter = 'currencies';
     public $title = 'title_currencies_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -41,6 +42,7 @@ class Currencies {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -75,7 +77,13 @@ class Currencies {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_CURRENCIES)
+                    ->selectGetValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
@@ -97,11 +105,20 @@ class Currencies {
      */
     private function addAction(int|string $id, int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("INSERT INTO " . TABLE_CURRENCIES . " SET id=?, name=?, language=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?", [
-                $id, Valid::inPOST('name_currencies_' . $x), lang('#lang_all')[$x], Valid::inPOST('code_currencies_' . $x),
-                Valid::inPOST('iso_4217_currencies'), $value, $this->default, Valid::inPOST('symbol_currencies'),
-                Valid::inPOST('symbol_position_currencies'), Valid::inPOST('decimal_places_currencies')
-            ]);
+
+            $this->db
+                    ->create(TABLE_CURRENCIES)
+                    ->set('id', $id)
+                    ->set('name', Valid::inPOST('name_currencies_' . $x))
+                    ->set('language', lang('#lang_all')[$x])
+                    ->set('code', Valid::inPOST('code_currencies_' . $x))
+                    ->set('iso_4217', Valid::inPOST('iso_4217_currencies'))
+                    ->set('value', $value)
+                    ->set('default_value', $this->default)
+                    ->set('symbol', Valid::inPOST('symbol_currencies'))
+                    ->set('symbol_position', Valid::inPOST('symbol_position_currencies'))
+                    ->set('decimal_places', Valid::inPOST('decimal_places_currencies'))
+                    ->save();
         }
     }
 
@@ -113,7 +130,12 @@ class Currencies {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
-                Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET default_value=?", [0]);
+
+                $this->db
+                        ->update(TABLE_CURRENCIES)
+                        ->set('default_value', 0)
+                        ->save();
+
                 $this->recount();
                 $this->editAction(1);
             } else {
@@ -131,11 +153,21 @@ class Currencies {
      */
     private function editAction(int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET name=?, code=?, iso_4217=?, value=?, default_value=?, symbol=?, symbol_position=?, decimal_places=?, last_updated=? WHERE id=? AND language=?", [
-                Valid::inPOST('name_currencies_' . $x), Valid::inPOST('code_currencies_' . $x), Valid::inPOST('iso_4217_currencies'), $value,
-                $this->default, Valid::inPOST('symbol_currencies'), Valid::inPOST('symbol_position_currencies'),
-                Valid::inPOST('decimal_places_currencies'), SystemClock::nowSqlDateTime(), Valid::inPOST('edit'), lang('#lang_all')[$x]
-            ]);
+
+            $this->db
+                    ->update(TABLE_CURRENCIES)
+                    ->set('name', Valid::inPOST('name_currencies_' . $x))
+                    ->set('code', Valid::inPOST('code_currencies_' . $x))
+                    ->set('iso_4217', Valid::inPOST('iso_4217_currencies'))
+                    ->set('value', $value)
+                    ->set('default_value', $this->default)
+                    ->set('symbol', Valid::inPOST('symbol_currencies'))
+                    ->set('symbol_position', Valid::inPOST('symbol_position_currencies'))
+                    ->set('decimal_places', Valid::inPOST('decimal_places_currencies'))
+                    ->set('last_updated', SystemClock::nowSqlDateTime())
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->and('language=', lang('#lang_all')[$x])
+                    ->save();
         }
     }
 
@@ -146,7 +178,10 @@ class Currencies {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_CURRENCIES . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_CURRENCIES)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -157,12 +192,25 @@ class Currencies {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET default_value=?", [0]);
 
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES, []);
+        $this->db
+                ->update(TABLE_CURRENCIES)
+                ->set('default_value', 0)
+                ->save();
+
+        $data = $this->db
+                ->read(TABLE_CURRENCIES)
+                ->selectGetAssoc('*')
+                ->save();
+
         foreach ($data as $value) {
-            Pdo::action("UPDATE " . TABLE_CURRENCIES . " SET value=? WHERE id=? AND language=?", [
-                ($value['value'] / Valid::inPOST('value_currencies')), $value['id'], $value['language']]);
+
+            $this->db
+                    ->update(TABLE_CURRENCIES)
+                    ->set('value', $value['value'] / Valid::inPOST('value_currencies'))
+                    ->where('id=', $value['id'])
+                    ->and('language=', $value['language'])
+                    ->save();
         }
     }
 
@@ -171,7 +219,13 @@ class Currencies {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_CURRENCIES)
+                ->selectGetAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
