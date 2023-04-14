@@ -12,7 +12,6 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Cache,
     Messages,
-    Pdo,
     Settings,
     Valid
 };
@@ -120,7 +119,6 @@ class BasicSettings {
      *
      */
     private function debug(): void {
-        self::$debug = Pdo::getValue("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
 
         self::$debug = $this->db
                 ->read(TABLE_BASIC_SETTINGS)

@@ -14,9 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Countries
@@ -31,6 +31,7 @@ class Countries {
 
     public static $routing_parameter = 'countries';
     public $title = 'title_countries_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -39,6 +40,7 @@ class Countries {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -62,14 +64,25 @@ class Countries {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_COUNTRIES)
+                    ->selectGetValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_COUNTRIES . " SET id=?, name=?, language=?, alpha_2=?, alpha_3=?, address_format=?", [
-                    $id, Valid::inPOST('name_countries_' . $x), lang('#lang_all')[$x], Valid::inPOST('alpha_2_countries'),
-                    Valid::inPOST('alpha_3_countries'), Valid::inPOST('address_format_countries')
-                ]);
+                $this->db
+                        ->create(TABLE_COUNTRIES)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_countries_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('alpha_2', Valid::inPOST('alpha_2_countries'))
+                        ->set('alpha_3', Valid::inPOST('alpha_3_countries'))
+                        ->set('address_format', Valid::inPOST('address_format_countries'))
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -84,10 +97,15 @@ class Countries {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_COUNTRIES . " SET name=?, alpha_2=?, alpha_3=?, address_format=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_countries_' . $x), Valid::inPOST('alpha_2_countries'), Valid::inPOST('alpha_3_countries'),
-                    Valid::inPOST('address_format_countries'), Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+                $this->db
+                        ->update(TABLE_COUNTRIES)
+                        ->set('name', Valid::inPOST('name_countries_' . $x))
+                        ->set('alpha_2', Valid::inPOST('alpha_2_countries'))
+                        ->set('alpha_3', Valid::inPOST('alpha_3_countries'))
+                        ->set('address_format', Valid::inPOST('address_format_countries')->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -101,8 +119,15 @@ class Countries {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_COUNTRIES . " WHERE id=?", [Valid::inPOST('delete')]);
-            Pdo::action("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_COUNTRIES)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
+            $this->db
+                    ->delete(TABLE_REGIONS)
+                    ->where('country_id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -114,7 +139,13 @@ class Countries {
      */
     private function data(): void {
         $_SESSION['country_page'] = Valid::inSERVER('REQUEST_URI');
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " ORDER BY name", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_COUNTRIES)
+                ->selectGetAssoc('*')
+                ->orderByDesc('name')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
