@@ -31,10 +31,10 @@ class Length {
 
     public static $routing_parameter = 'length';
     public $title = 'title_length_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
-    public $db;
 
     /**
      * Constructor

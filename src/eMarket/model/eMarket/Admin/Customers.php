@@ -11,11 +11,11 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Messages,
-    Pdo,
     Pages,
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Cruder;
 
 /**
  * Customers
@@ -30,6 +30,7 @@ class Customers {
 
     public static $routing_parameter = 'customers';
     public $title = 'title_customers_index';
+    public $db;
     public static int $status = 0;
     public static $json_data = FALSE;
 
@@ -38,6 +39,7 @@ class Customers {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->status();
         $this->delete();
         $this->data();
@@ -59,13 +61,21 @@ class Customers {
     private function status(): void {
         if (Valid::inPOST('status')) {
 
-            $status_data = Pdo::getValue("SELECT status FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('status')]);
+            $status_data = $this->db
+                    ->read(TABLE_CUSTOMERS)
+                    ->selectGetValue('status')
+                    ->where('id=', Valid::inPOST('status'))
+                    ->save();
 
             if ($status_data == 0) {
                 self::$status = 1;
             }
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [self::$status, Valid::inPOST('status')]);
+            $this->db
+                    ->update(TABLE_CUSTOMERS)
+                    ->set('status', self::$status)
+                    ->where('id=', Valid::inPOST('status'))
+                    ->save();
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
@@ -78,7 +88,10 @@ class Customers {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_CUSTOMERS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -91,9 +104,23 @@ class Customers {
     private function data(): void {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
-            $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE firstname LIKE? OR lastname LIKE? OR middle_name LIKE? OR email LIKE? ORDER BY id DESC", [$search, $search, $search, $search]);
+
+            $lines = $this->db
+                    ->read(TABLE_CUSTOMERS)
+                    ->selectGetIndex('*')
+                    ->where('firstname LIKE', $search)
+                    ->or('lastname LIKE', $search)
+                    ->or('middle_name LIKE', $search)
+                    ->or('email LIKE', $search)
+                    ->orderByDesc('id')
+                    ->save();
         } else {
-            $lines = Pdo::getIndex("SELECT * FROM " . TABLE_CUSTOMERS . " ORDER BY id DESC", []);
+
+            $lines = $this->db
+                    ->read(TABLE_CUSTOMERS)
+                    ->selectGetIndex('*')
+                    ->orderByDesc('id')
+                    ->save();
         }
 
         Pages::data($lines);
