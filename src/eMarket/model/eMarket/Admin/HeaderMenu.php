@@ -11,9 +11,9 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Settings,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Header Menu
@@ -38,12 +38,14 @@ class HeaderMenu {
     public static $param_1 = [];
     public static $param_2 = [];
     public static $staff_data = false;
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->init();
         $this->initModules();
         $this->levelOne();
@@ -165,9 +167,22 @@ class HeaderMenu {
      */
     private function staffInit(): void {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+
+            $staff_permission = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectGetValue('permission')
+                    ->where('login=', $_SESSION['login'])
+                    ->save();
+
             if ($staff_permission != 'admin') {
-                self::$staff_data = json_decode(Pdo::getAssoc("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission])[0]['permissions'], true);
+
+                $staff_permissions = $this->db
+                        ->read(TABLE_STAFF_MANAGER)
+                        ->selectGetAssoc('permissions')
+                        ->where('id=', $staff_permission)
+                        ->save();
+
+                self::$staff_data = json_decode($staff_permissions[0]['permissions'], true);
 
                 $menu_array = [];
                 foreach (self::$menu as $menu_key => $menu_val) {
