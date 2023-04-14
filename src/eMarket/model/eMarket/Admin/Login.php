@@ -11,10 +11,10 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Messages,
-    Pdo,
     Settings,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Login
@@ -29,6 +29,7 @@ class Login {
 
     public static $routing_parameter = 'login';
     public $title = 'title_login_index';
+    public $db;
     public static $login_error = FALSE;
 
     /**
@@ -37,6 +38,7 @@ class Login {
      */
     function __construct() {
         session_start();
+        $this->db = new Cruder();
         $this->logout();
         $this->login();
         $this->loginError();
@@ -105,7 +107,13 @@ class Login {
     private function authorize(): void {
         if (Valid::inPOST('authorize') == 'ok') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
-            $HASH = (string) Pdo::getValue("SELECT password FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('login')]);
+
+            $HASH = (string) $this->db
+                            ->read(TABLE_ADMINISTRATORS)
+                            ->selectGetValue('password')
+                            ->where('login=', Valid::inPOST('login'))
+                            ->save();
+
             if (!password_verify(Valid::inPOST('pass'), $HASH)) {
                 unset($_SESSION['login']);
                 unset($_SESSION['pass']);
