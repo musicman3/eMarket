@@ -126,10 +126,10 @@ class Modules {
                 ->selectgetAssoc('name, type')
                 ->save();
 
-        self::$installed = $this->db
+        self::$installed_active = $this->db
                 ->read(TABLE_MODULES)
                 ->selectgetAssoc('name, type')
-                ->where('active', 1)
+                ->where('active=', 1)
                 ->save();
     }
 
