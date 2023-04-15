@@ -12,10 +12,10 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Func,
     Messages,
-    Pdo,
     Valid
 };
 use eMarket\Admin\Modules;
+use Cruder\Cruder;
 
 /**
  * Modules
@@ -30,6 +30,7 @@ class Modules {
 
     public static $routing_parameter = 'modules';
     public $title = 'title_modules_index';
+    public $db;
     public static $installed = FALSE;
     public static $installed_active = FALSE;
     public static $installed_filter = FALSE;
@@ -41,6 +42,7 @@ class Modules {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -83,7 +85,13 @@ class Modules {
             }
 
             $module = explode('_', Valid::inPOST('edit_active'));
-            Pdo::action("UPDATE " . TABLE_MODULES . " SET active=? WHERE name=? AND type=?", [$active, $module[1], $module[0]]);
+
+            $this->db
+                    ->update(TABLE_MODULES)
+                    ->set('active', $active)
+                    ->where('name=', $module[1])
+                    ->and('type=', $module[0])
+                    ->save();
 
             if (Valid::inPOST('alert_flag') == 'on') {
                 Messages::alert('edit_' . Valid::inPOST('edit_active'), 'success', lang('action_completed_successfully'));
@@ -112,8 +120,17 @@ class Modules {
      *
      */
     private function data(): void {
-        self::$installed = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . "", []);
-        self::$installed_active = Pdo::getAssoc("SELECT name, type FROM " . TABLE_MODULES . " WHERE active=?", [1]);
+
+        self::$installed = $this->db
+                ->read(TABLE_MODULES)
+                ->selectgetAssoc('name, type')
+                ->save();
+
+        self::$installed = $this->db
+                ->read(TABLE_MODULES)
+                ->selectgetAssoc('name, type')
+                ->where('active', 1)
+                ->save();
     }
 
     /**
