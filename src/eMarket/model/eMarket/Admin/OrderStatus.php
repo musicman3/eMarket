@@ -14,9 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Order Status
@@ -31,6 +31,7 @@ class OrderStatus {
 
     public static $routing_parameter = 'order_status';
     public $title = 'title_order_status_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -40,6 +41,7 @@ class OrderStatus {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -75,20 +77,35 @@ class OrderStatus {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $order_status = $this->db
+                    ->read(TABLE_ORDER_STATUS)
+                    ->selectGetAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
+            $id_max = $order_status['id'];
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
                 $this->recount();
             }
 
-            $id_max_sort = Pdo::getValue("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+            $id_max_sort = $order_status['sort'];
+
             $id_sort = intval($id_max_sort) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_ORDER_STATUS . " SET id=?, name=?, language=?, default_order_status=?, sort=?", [
-                    $id, Valid::inPOST('name_order_status_' . $x), lang('#lang_all')[$x], $this->default, $id_sort
-                ]);
+
+                $this->db
+                        ->create(TABLE_ORDER_STATUS)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_order_status_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('default_order_status', $this->default)
+                        ->set('sort', $id_sort)
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -107,10 +124,14 @@ class OrderStatus {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET name=?, default_order_status=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_order_status_' . $x), $this->default, Valid::inPOST('edit'),
-                    lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_ORDER_STATUS)
+                        ->set('name', Valid::inPOST('name_order_status_' . $x))
+                        ->set('default_order_status', $this->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -123,7 +144,11 @@ class OrderStatus {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_ORDER_STATUS . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_ORDER_STATUS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -134,7 +159,11 @@ class OrderStatus {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET default_order_status=?", [0]);
+
+        $this->db
+                ->update(TABLE_ORDER_STATUS)
+                ->set('default_order_status', 0)
+                ->save();
     }
 
     /**
@@ -148,9 +177,15 @@ class OrderStatus {
             $sort_array_order_status = [];
 
             foreach ($sort_array_id as $val) {
-                $sort_order_status = Pdo::getValue("SELECT sort FROM " . TABLE_ORDER_STATUS . " WHERE id=? AND language=? ORDER BY id ASC", [
-                            $val, lang('#lang_all')[0]
-                ]);
+
+                $sort_order_status = $this->db
+                        ->read(TABLE_ORDER_STATUS)
+                        ->selectGetValue('sort')
+                        ->where('id=', $val)
+                        ->and('language=', lang('#lang_all')[0])
+                        ->orderByAsc('id')
+                        ->save();
+
                 array_push($sort_array_order_status, $sort_order_status);
                 arsort($sort_array_order_status);
             }
@@ -159,7 +194,11 @@ class OrderStatus {
 
             foreach ($sort_array_id as $val) {
 
-                Pdo::action("UPDATE " . TABLE_ORDER_STATUS . " SET sort=? WHERE id=?", [(int) $sort_array_final[$val], (int) $val]);
+                $this->db
+                        ->update(TABLE_ORDER_STATUS)
+                        ->set('sort', (int) $sort_array_final[$val])
+                        ->where('id=', (int) $val)
+                        ->save();
             }
         }
     }
@@ -169,7 +208,13 @@ class OrderStatus {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " ORDER BY sort DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_ORDER_STATUS)
+                ->selectGetAssoc('*')
+                ->orderByDesc('sort')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
