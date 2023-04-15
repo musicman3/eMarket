@@ -15,10 +15,10 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Cruder;
 
 /**
  * Manufacturers
@@ -33,6 +33,7 @@ class Manufacturers {
 
     public static $routing_parameter = 'manufacturers';
     public $title = 'title_manufacturers_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $resize_param;
@@ -42,6 +43,7 @@ class Manufacturers {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->imgUpload();
@@ -66,11 +68,25 @@ class Manufacturers {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_MANUFACTURERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_MANUFACTURERS)
+                    ->selectGetValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_MANUFACTURERS . " SET id=?, name=?, language=?, site=?, logo=?", [$id, Valid::inPOST('name_manufacturers_' . $x), lang('#lang_all')[$x], Valid::inPOST('site_manufacturers'), json_encode([])]);
+
+                $this->db
+                        ->create(TABLE_MANUFACTURERS)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_manufacturers_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('site', Valid::inPOST('site_manufacturers'))
+                        ->set('logo', json_encode([]))
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -85,7 +101,14 @@ class Manufacturers {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_MANUFACTURERS . " SET name=?, site=? WHERE id=? AND language=?", [Valid::inPOST('name_manufacturers_' . $x), Valid::inPOST('site_manufacturers'), Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+
+                $this->db
+                        ->update(TABLE_MANUFACTURERS)
+                        ->set('name', Valid::inPOST('name_manufacturers_' . $x))
+                        ->set('site', Valid::inPOST('site_manufacturers'))
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -114,7 +137,10 @@ class Manufacturers {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_MANUFACTURERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_MANUFACTURERS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -125,7 +151,13 @@ class Manufacturers {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_MANUFACTURERS)
+                ->selectGetAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
