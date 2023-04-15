@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Modules/Edit
@@ -27,6 +27,7 @@ class ModulesEdit {
 
     public static $routing_parameter = 'modules/edit';
     public $title;
+    public $db;
     public static string $switch_active = '';
 
     /**
@@ -34,6 +35,7 @@ class ModulesEdit {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->title();
         $this->switchActive();
     }
@@ -51,8 +53,13 @@ class ModulesEdit {
      *
      */
     private function switchActive(): void {
-        $active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE type=? AND name=?", [
-                    Valid::inGET('type'), Valid::inGET('name')])[0];
+
+        $active = $this->db
+                        ->read(TABLE_MODULES)
+                        ->selectGetValue('active')
+                        ->where('type=', Valid::inGET('type'))
+                        ->and('name=', Valid::inGET('name'))
+                        ->save()[0];
 
         if ($active == 1) {
             self::$switch_active = 'checked';
