@@ -18,6 +18,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Cruder;
 
 /**
  * Orders
@@ -32,6 +33,7 @@ class Orders {
 
     public static $routing_parameter = 'orders';
     public $title = 'title_orders_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $order_status = FALSE;
@@ -41,6 +43,7 @@ class Orders {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->edit();
         $this->delete();
         $this->data();
@@ -65,18 +68,27 @@ class Orders {
 
             $primary_language = Settings::primaryLanguage();
 
-            $order_data = Pdo::getAssoc("SELECT orders_status_history, customer_data, email FROM " . TABLE_ORDERS . " WHERE id=?", [
-                        Valid::inPOST('edit')])[0];
+            $order_data = $this->db
+                            ->read(TABLE_ORDERS)
+                            ->selectGetAssoc('orders_status_history, customer_data, email')
+                            ->where('id=', Valid::inPOST('edit'))
+                            ->save()[0];
 
             $customer_language = json_decode($order_data['customer_data'], true)['language'];
 
-            $customer_status_history_select = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
-                        $customer_language, Valid::inPOST('status_history_select')
-            ]);
+            $customer_status_history_select = $this->db
+                    ->read(TABLE_ORDER_STATUS)
+                    ->selectGetValue('name')
+                    ->where('language=', $customer_language)
+                    ->and('id=', Valid::inPOST('status_history_select'))
+                    ->save();
 
-            $admin_status_history_select = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE language=? AND id=?", [
-                        $primary_language, Valid::inPOST('status_history_select')
-            ]);
+            $admin_status_history_select = $this->db
+                    ->read(TABLE_ORDER_STATUS)
+                    ->selectGetValue('name')
+                    ->where('language=', $primary_language)
+                    ->and('id=', Valid::inPOST('status_history_select'))
+                    ->save();
 
             $orders_status_history = json_decode($order_data['orders_status_history'], true);
 
@@ -92,9 +104,12 @@ class Orders {
                         'date' => SystemClock::getDateTime($date, $primary_language)
                 ]]);
 
-                Pdo::action("UPDATE " . TABLE_ORDERS . " SET orders_status_history=?, last_modified=? WHERE id=?", [
-                    json_encode($orders_status_history), $date, Valid::inPOST('edit')
-                ]);
+                $this->db
+                        ->update(TABLE_ORDERS)
+                        ->set('orders_status_history', json_encode($orders_status_history))
+                        ->set('last_modified', $date)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->save();
 
                 $email_subject = sprintf(lang('orders_change_status_subject'), Valid::inPOST('edit'), $customer_status_history_select);
                 $email_message = sprintf(lang('orders_change_status_message'), Valid::inPOST('edit'), mb_strtolower($customer_status_history_select), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
@@ -116,7 +131,10 @@ class Orders {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_ORDERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_ORDERS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -127,17 +145,33 @@ class Orders {
      *
      */
     private function data(): void {
-        self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
+
+        self::$order_status = $this->db
+                ->read(TABLE_ORDER_STATUS)
+                ->selectGetAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->orderByDesc('sort')
+                ->save();
 
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id LIKE? OR email LIKE? OR customer_data RLIKE? OR customer_data RLIKE? ORDER BY id DESC", [
-                        $search, $search, '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*', '"firstname": "(?i)([^"])*' .
-                        Valid::inGET('search') . '([^"])*'
-            ]);
+            self::$sql_data = $this->db
+                    ->read(TABLE_ORDERS)
+                    ->selectGetAssoc('*')
+                    ->where('id LIKE', $search)
+                    ->or('email LIKE', $search)
+                    ->or('customer_data RLIKE', '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
+                    ->or('customer_data RLIKE', '"firstname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
+                    ->orderByDesc('id')
+                    ->save();
         } else {
-            self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " ORDER BY id DESC", []);
+
+            self::$sql_data = $this->db
+                    ->read(TABLE_ORDERS)
+                    ->selectGetAssoc('*')
+                    ->orderByDesc('id')
+                    ->save();
         }
 
         Pages::data(self::$sql_data);
