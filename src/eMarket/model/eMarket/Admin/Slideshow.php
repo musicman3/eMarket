@@ -16,10 +16,10 @@ use eMarket\Core\{
     Func,
     Messages,
     Pages,
-    Pdo,
     Valid,
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Cruder;
 
 /**
  * Slideshow
@@ -34,6 +34,7 @@ class Slideshow {
 
     public static $routing_parameter = 'slideshow';
     public $title = 'title_slideshow_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $settings = FALSE;
@@ -54,6 +55,7 @@ class Slideshow {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->settings();
         $this->slideshowPref();
         $this->add();
@@ -87,7 +89,13 @@ class Slideshow {
      *
      */
     private function settings(): void {
-        self::$settings = json_encode(Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . "", [])[0]);
+
+        $settings = $this->db
+                ->read(TABLE_SLIDESHOW_PREF)
+                ->selectAssoc('*')
+                ->save();
+
+        self::$settings = json_encode($settings[0]);
     }
 
     /**
@@ -118,9 +126,16 @@ class Slideshow {
                 $navigation = 1;
             }
 
-            Pdo::action("UPDATE " . TABLE_SLIDESHOW_PREF . " SET show_interval=?, mouse_stop=?, autostart=?, cicles=?, indicators=?, navigation=? WHERE id=?", [
-                Valid::inPOST('show_interval'), $mouse_stop, $autostart, $cicles, $indicators, $navigation, 1
-            ]);
+            $this->db
+                    ->update(TABLE_SLIDESHOW_PREF)
+                    ->set('show_interval', Valid::inPOST('show_interval'))
+                    ->set('mouse_stop', $mouse_stop)
+                    ->set('autostart', $autostart)
+                    ->set('cicles', $cicles)
+                    ->set('indicators', $indicators)
+                    ->set('navigation', $navigation)
+                    ->where('id=', 1)
+                    ->save();
 
             Messages::alert('slideshow_pref edit', 'success', lang('action_completed_successfully'));
         }
@@ -132,13 +147,13 @@ class Slideshow {
      */
     private function add(): void {
         if (Valid::inPOST('add')) {
-            $view_slideshow = '0';
+            $status = '0';
             $animation = '0';
             $start_date = NULL;
             $end_date = NULL;
 
             if (Valid::inPOST('view_slideshow')) {
-                $view_slideshow = '1';
+                $status = '1';
             }
 
             if (Valid::inPOST('animation')) {
@@ -153,11 +168,19 @@ class Slideshow {
                 $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
-            Pdo::action("INSERT INTO " . TABLE_SLIDESHOW . " SET language=?, url=?, name=?, heading=?, logo=?, animation=?, color=?, date_start=?, date_finish=?, status=?", [
-                Valid::inPOST('set_language'), Valid::inPOST('url'), Valid::inPOST('name'),
-                Valid::inPOST('heading'), json_encode([]), $animation, Valid::inPOST('color'),
-                $start_date, $end_date, $view_slideshow
-            ]);
+            $this->db
+                    ->create(TABLE_SLIDESHOW)
+                    ->set('language', Valid::inPOST('set_language'))
+                    ->set('url', Valid::inPOST('url'))
+                    ->set('name', Valid::inPOST('name'))
+                    ->set('heading', Valid::inPOST('heading'))
+                    ->set('logo', json_encode([]))
+                    ->set('animation', $animation)
+                    ->set('color', Valid::inPOST('color'))
+                    ->set('date_start', $start_date)
+                    ->set('date_finish', $end_date)
+                    ->set('status', $status)
+                    ->save();
 
             $Cache = new Cache();
             $Cache->deleteItem('catalog.slideshow');
@@ -172,13 +195,13 @@ class Slideshow {
      */
     private function edit(): void {
         if (Valid::inPOST('edit')) {
-            $view_slideshow = '0';
+            $status = '0';
             $animation = '0';
             $start_date = NULL;
             $end_date = NULL;
 
             if (Valid::inPOST('view_slideshow')) {
-                $view_slideshow = '1';
+                $status = '1';
             }
 
             if (Valid::inPOST('animation')) {
@@ -193,10 +216,18 @@ class Slideshow {
                 $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
-            Pdo::action("UPDATE " . TABLE_SLIDESHOW . " SET url=?, name=?, heading=?, animation=?, color=?, date_start=?, date_finish=?, status=? WHERE id=?", [
-                Valid::inPOST('url'), Valid::inPOST('name'), Valid::inPOST('heading'), $animation,
-                Valid::inPOST('color'), $start_date, $end_date, $view_slideshow, Valid::inPOST('edit')
-            ]);
+            $this->db
+                    ->update(TABLE_SLIDESHOW)
+                    ->set('url', Valid::inPOST('url'))
+                    ->set('name', Valid::inPOST('name'))
+                    ->set('heading', Valid::inPOST('heading'))
+                    ->set('animation', $animation)
+                    ->set('color', Valid::inPOST('color'))
+                    ->set('date_start', $start_date)
+                    ->set('date_finish', $end_date)
+                    ->set('status', $status)
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->save();
 
             $Cache = new Cache();
             $Cache->deleteItem('catalog.slideshow');
@@ -227,7 +258,11 @@ class Slideshow {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_SLIDESHOW . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_SLIDESHOW)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             $Cache = new Cache();
             $Cache->deleteItem('catalog.slideshow');
@@ -248,7 +283,12 @@ class Slideshow {
 
         self::$this_time = SystemClock::nowUnixTime();
 
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " ORDER BY id DESC", []);
+        self::$sql_data = $this->db
+                ->read(TABLE_SLIDESHOW)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', self::$set_language);
         Pages::data($lines);
     }
@@ -306,13 +346,24 @@ class Slideshow {
         $Cache->cache_name = 'catalog.slideshow';
 
         if (!$Cache->isHit()) {
-            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+
+            $Cache->data = $this->db
+                    ->read(TABLE_SLIDESHOW)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             self::$slideshow = $Cache->save($Cache->data);
         } else {
             self::$slideshow = $Cache->cache_item->get();
         }
 
-        $slideshow_pref = Pdo::getAssoc("SELECT * FROM " . TABLE_SLIDESHOW_PREF . " WHERE id=?", [1])[0];
+        $slideshow_pref = $this->db
+                        ->read(TABLE_SLIDESHOW_PREF)
+                        ->selectAssoc('*')
+                        ->where('id=', 1)
+                        ->save()[0];
 
         self::$slide_interval = $slideshow_pref['show_interval'];
         self::$slide_pause = 'false';
