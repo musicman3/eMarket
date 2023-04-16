@@ -343,11 +343,12 @@ class Slideshow {
     public static function view(): void {
 
         $Cache = new Cache();
+        $db = new Cruder();
         $Cache->cache_name = 'catalog.slideshow';
 
         if (!$Cache->isHit()) {
 
-            $Cache->data = $this->db
+            $Cache->data = $db
                     ->read(TABLE_SLIDESHOW)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -359,7 +360,7 @@ class Slideshow {
             self::$slideshow = $Cache->cache_item->get();
         }
 
-        $slideshow_pref = $this->db
+        $slideshow_pref = $db
                         ->read(TABLE_SLIDESHOW_PREF)
                         ->selectAssoc('*')
                         ->where('id=', 1)

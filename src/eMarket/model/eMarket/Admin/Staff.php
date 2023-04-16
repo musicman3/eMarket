@@ -13,7 +13,6 @@ use eMarket\Core\{
     Cryptography,
     Messages,
     Pages,
-    Pdo,
     Valid,
     Settings
 };
@@ -78,7 +77,7 @@ class Staff {
 
             $user_detected = $this->db
                     ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('chatgpt_token')
+                    ->selectValue('password')
                     ->where('login=', Valid::inPOST('email'))
                     ->save();
 
@@ -95,8 +94,9 @@ class Staff {
                         ->save();
 
                 Messages::alert('add', 'success', lang('action_completed_successfully'));
+            } else {
+                Messages::alert('add', 'danger', lang('staff_user_error'));
             }
-            Messages::alert('add', 'danger', lang('staff_user_error'));
         }
     }
 

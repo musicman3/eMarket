@@ -14,11 +14,11 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Settings,
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Cruder;
 
 /**
  * Staff Manager
@@ -33,6 +33,7 @@ class StaffManager {
 
     public static $routing_parameter = 'staff_manager';
     public $title = 'title_staff_manager_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -41,6 +42,7 @@ class StaffManager {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -92,14 +94,26 @@ class StaffManager {
                 $demo_mode = 1;
             }
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STAFF_MANAGER . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_STAFF_MANAGER)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_STAFF_MANAGER . " SET id=?, name=?, language=?, note=?, permissions=?, mode=?", [
-                    $id, Valid::inPOST('staff_manager_group_' . $x), lang('#lang_all')[$x], Valid::inPOST('staff_manager_note_' . $x),
-                    json_encode($this->permissions()), $demo_mode
-                ]);
+
+                $this->db
+                        ->create(TABLE_STAFF_MANAGER)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('staff_manager_group_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('note', Valid::inPOST('staff_manager_note_' . $x))
+                        ->set('permissions', json_encode($this->permissions()))
+                        ->set('mode', $demo_mode)
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -119,10 +133,16 @@ class StaffManager {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_STAFF_MANAGER . " SET name=?, note=?, permissions=?, mode=? WHERE id=? AND language=?", [
-                    Valid::inPOST('staff_manager_group_' . $x), Valid::inPOST('staff_manager_note_' . $x), json_encode($this->permissions()),
-                    $demo_mode, Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_STAFF_MANAGER)
+                        ->set('name', Valid::inPOST('staff_manager_group_' . $x))
+                        ->set('note', Valid::inPOST('staff_manager_note_' . $x))
+                        ->set('permissions', json_encode($this->permissions()))
+                        ->set('mode', $demo_mode)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -135,9 +155,22 @@ class StaffManager {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            $user_check = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
-            Pdo::action("DELETE FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [Valid::inPOST('delete')]);
-            Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [Valid::inPOST('delete')]);
+
+            $user_check = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('permission')
+                    ->where('login=', $_SESSION['login'])
+                    ->save();
+
+            $this->db
+                    ->delete(TABLE_STAFF_MANAGER)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
+            $this->db
+                    ->delete(TABLE_ADMINISTRATORS)
+                    ->where('permission=', Valid::inPOST('delete'))
+                    ->save();
 
             if ($user_check == Valid::inPOST('delete')) {
                 unset($_SESSION['login']);
@@ -153,7 +186,13 @@ class StaffManager {
      */
     private function data(): void {
         $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STAFF_MANAGER . " ORDER BY name", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_STAFF_MANAGER)
+                ->selectAssoc('*')
+                ->orderBy('name')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
