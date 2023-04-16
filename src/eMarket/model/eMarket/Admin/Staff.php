@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid,
     Settings
 };
+use Cruder\Cruder;
 
 /**
  * Staff
@@ -31,6 +32,7 @@ class Staff {
 
     public static $routing_parameter = 'staff_manager/staff';
     public $title = 'title_staff_manager_staff_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $staff_manager_id = FALSE;
 
@@ -39,6 +41,7 @@ class Staff {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->staffManagerId();
         $this->add();
         $this->delete();
@@ -73,12 +76,24 @@ class Staff {
                 $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPOST('chatgpt_token')]);
             }
 
-            $user_detected = Pdo::getValue("SELECT chatgpt_token FROM " . TABLE_ADMINISTRATORS . " WHERE login=?",
-                            [Valid::inPOST('email')]);
+            $user_detected = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('chatgpt_token')
+                    ->where('login=', Valid::inPOST('email'))
+                    ->save();
 
             if (!$user_detected) {
-                Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, note=?, my_data=?", [Valid::inPOST('email'),
-                    Cryptography::passwordHash(Valid::inPOST('password')), self::$staff_manager_id, Settings::primaryLanguage(), Valid::inPOST('note'), $chatgpt_token]);
+
+                $this->db
+                        ->create(TABLE_ADMINISTRATORS)
+                        ->set('login', Valid::inPOST('email'))
+                        ->set('password', Cryptography::passwordHash(Valid::inPOST('password')))
+                        ->set('permission', self::$staff_manager_id)
+                        ->set('language', Settings::primaryLanguage())
+                        ->set('note', Valid::inPOST('note'))
+                        ->set('my_data', $chatgpt_token)
+                        ->save();
+
                 Messages::alert('add', 'success', lang('action_completed_successfully'));
             }
             Messages::alert('add', 'danger', lang('staff_user_error'));
@@ -92,7 +107,10 @@ class Staff {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_ADMINISTRATORS)
+                    ->where('login=', Valid::inPOST('delete'))
+                    ->save();
 
             if ($_SESSION['login'] == Valid::inPOST('delete')) {
                 unset($_SESSION['login']);
@@ -107,7 +125,13 @@ class Staff {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ADMINISTRATORS . " WHERE permission=?", [self::$staff_manager_id]);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_ADMINISTRATORS)
+                ->selectAssoc('*')
+                ->where('permission=', self::$staff_manager_id)
+                ->save();
+
         Pages::data(self::$sql_data);
     }
 
