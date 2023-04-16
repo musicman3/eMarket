@@ -17,6 +17,7 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Regions
@@ -31,6 +32,7 @@ class Regions {
 
     public static $routing_parameter = 'countries/regions';
     public $title = 'title_countries_regions_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $country_id = FALSE;
     public static $json_data = FALSE;
@@ -40,6 +42,7 @@ class Regions {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->countryId();
         $this->add();
         $this->edit();
@@ -71,14 +74,25 @@ class Regions {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_REGIONS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_REGIONS)
+                    ->selectGetValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_REGIONS . " SET id=?, country_id=?, name=?, language=?, region_code=?", [
-                    $id, self::$country_id, Valid::inPOST('name_regions_' . $x), lang('#lang_all')[$x],
-                    Valid::inPOST('region_code_regions')
-                ]);
+
+                $this->db
+                        ->create(TABLE_REGIONS)
+                        ->set('id', $id)
+                        ->set('country_id', self::$country_id)
+                        ->set('name', Valid::inPOST('name_regions_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('region_code', Valid::inPOST('region_code_regions'))
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -93,10 +107,14 @@ class Regions {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_REGIONS . " SET name=?, region_code=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_regions_' . $x), Valid::inPOST('region_code_regions'),
-                    Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_REGIONS)
+                        ->set('name', Valid::inPOST('name_regions_' . $x))
+                        ->set('region_code', VValid::inPOST('region_code_regions'))
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -110,7 +128,11 @@ class Regions {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_REGIONS . " WHERE country_id=? AND id=?", [self::$country_id, Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_REGIONS)
+                    ->where('country_id=', self::$country_id)
+                    ->and('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -121,7 +143,14 @@ class Regions {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE country_id=? ORDER BY name", [self::$country_id]);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_REGIONS)
+                ->selectGetAssoc('*')
+                ->where('country_id=', self::$country_id)
+                ->orderBy('name')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

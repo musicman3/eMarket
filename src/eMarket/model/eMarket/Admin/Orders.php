@@ -13,7 +13,6 @@ use eMarket\Core\{
     Clock\SystemClock,
     Messages,
     Pages,
-    Pdo,
     Settings,
     Valid
 };

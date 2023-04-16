@@ -143,7 +143,7 @@ class Countries {
         self::$sql_data = $this->db
                 ->read(TABLE_COUNTRIES)
                 ->selectGetAssoc('*')
-                ->orderByDesc('name')
+                ->orderBy('name')
                 ->save();
 
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
