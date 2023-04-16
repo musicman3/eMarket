@@ -79,7 +79,7 @@ class OrderStatus {
 
             $order_status = $this->db
                     ->read(TABLE_ORDER_STATUS)
-                    ->selectGetAssoc('*')
+                    ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -180,7 +180,7 @@ class OrderStatus {
 
                 $sort_order_status = $this->db
                         ->read(TABLE_ORDER_STATUS)
-                        ->selectGetValue('sort')
+                        ->selectValue('sort')
                         ->where('id=', $val)
                         ->and('language=', lang('#lang_all')[0])
                         ->orderByAsc('id')
@@ -211,7 +211,7 @@ class OrderStatus {
 
         self::$sql_data = $this->db
                 ->read(TABLE_ORDER_STATUS)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->orderByDesc('sort')
                 ->save();
 

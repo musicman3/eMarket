@@ -63,7 +63,7 @@ class Customers {
 
             $status_data = $this->db
                     ->read(TABLE_CUSTOMERS)
-                    ->selectGetValue('status')
+                    ->selectValue('status')
                     ->where('id=', Valid::inPOST('status'))
                     ->save();
 
@@ -107,7 +107,7 @@ class Customers {
 
             $lines = $this->db
                     ->read(TABLE_CUSTOMERS)
-                    ->selectGetIndex('*')
+                    ->selectIndex('*')
                     ->where('firstname LIKE', $search)
                     ->or('lastname LIKE', $search)
                     ->or('middle_name LIKE', $search)
@@ -118,7 +118,7 @@ class Customers {
 
             $lines = $this->db
                     ->read(TABLE_CUSTOMERS)
-                    ->selectGetIndex('*')
+                    ->selectIndex('*')
                     ->orderByDesc('id')
                     ->save();
         }

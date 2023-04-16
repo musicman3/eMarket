@@ -122,7 +122,7 @@ class BasicSettings {
 
         self::$debug = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('debug')
+                ->selectValue('debug')
                 ->save();
 
         if (Valid::inPOST('debug')) {
@@ -139,7 +139,7 @@ class BasicSettings {
 
             self::$debug = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('debug')
+                    ->selectValue('debug')
                     ->save();
         }
     }
@@ -170,7 +170,7 @@ class BasicSettings {
 
         self::$email = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('email')
+                ->selectValue('email')
                 ->save();
 
         if (Valid::inPOST('email')) {
@@ -182,7 +182,7 @@ class BasicSettings {
 
             self::$email = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('email')
+                    ->selectValue('email')
                     ->save();
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -197,7 +197,7 @@ class BasicSettings {
 
         self::$email_name = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('email_name')
+                ->selectValue('email_name')
                 ->save();
 
         if (Valid::inPOST('email_name')) {
@@ -209,7 +209,7 @@ class BasicSettings {
 
             self::$email_name = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('email_name')
+                    ->selectValue('email_name')
                     ->save();
         }
     }
@@ -222,7 +222,7 @@ class BasicSettings {
 
         self::$smtp_status = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('smtp_status')
+                ->selectValue('smtp_status')
                 ->save();
 
         if (Valid::inPOST('smtp_status')) {
@@ -239,7 +239,7 @@ class BasicSettings {
 
             self::$smtp_status = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('smtp_status')
+                    ->selectValue('smtp_status')
                     ->save();
         }
     }
@@ -252,7 +252,7 @@ class BasicSettings {
 
         self::$smtp_auth = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('smtp_auth')
+                ->selectValue('smtp_auth')
                 ->save();
 
         if (Valid::inPOST('smtp_auth')) {
@@ -269,7 +269,7 @@ class BasicSettings {
 
             self::$smtp_auth = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('smtp_auth')
+                    ->selectValue('smtp_auth')
                     ->save();
         }
     }
@@ -282,7 +282,7 @@ class BasicSettings {
 
         self::$host_email = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('host_email')
+                ->selectValue('host_email')
                 ->save();
 
         if (Valid::inPOST('host_email')) {
@@ -294,7 +294,7 @@ class BasicSettings {
 
             self::$host_email = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('host_email')
+                    ->selectValue('host_email')
                     ->save();
         }
     }
@@ -307,7 +307,7 @@ class BasicSettings {
 
         self::$username_email = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('username_email')
+                ->selectValue('username_email')
                 ->save();
 
         if (Valid::inPOST('username_email')) {
@@ -319,7 +319,7 @@ class BasicSettings {
 
             self::$username_email = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('username_email')
+                    ->selectValue('username_email')
                     ->save();
         }
     }
@@ -332,7 +332,7 @@ class BasicSettings {
 
         self::$password_email = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('password_email')
+                ->selectValue('password_email')
                 ->save();
 
         if (Valid::inPOST('password_email')) {
@@ -344,7 +344,7 @@ class BasicSettings {
 
             self::$password_email = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('password_email')
+                    ->selectValue('password_email')
                     ->save();
         }
     }
@@ -357,7 +357,7 @@ class BasicSettings {
 
         self::$smtp_secure = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('smtp_secure')
+                ->selectValue('smtp_secure')
                 ->save();
 
         if (Valid::inPOST('smtp_secure')) {
@@ -369,7 +369,7 @@ class BasicSettings {
 
             self::$smtp_secure = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('smtp_secure')
+                    ->selectValue('smtp_secure')
                     ->save();
         }
     }
@@ -382,7 +382,7 @@ class BasicSettings {
 
         self::$smtp_port = $this->db
                 ->read(TABLE_BASIC_SETTINGS)
-                ->selectGetValue('smtp_port')
+                ->selectValue('smtp_port')
                 ->save();
 
         if (Valid::inPOST('smtp_port')) {
@@ -394,7 +394,7 @@ class BasicSettings {
 
             self::$smtp_port = $this->db
                     ->read(TABLE_BASIC_SETTINGS)
-                    ->selectGetValue('smtp_port')
+                    ->selectValue('smtp_port')
                     ->save();
         }
     }

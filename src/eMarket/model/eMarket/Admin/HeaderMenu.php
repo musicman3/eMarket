@@ -170,7 +170,7 @@ class HeaderMenu {
 
             $staff_permission = $this->db
                     ->read(TABLE_ADMINISTRATORS)
-                    ->selectGetValue('permission')
+                    ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
                     ->save();
 
@@ -178,7 +178,7 @@ class HeaderMenu {
 
                 $staff_permissions = $this->db
                         ->read(TABLE_STAFF_MANAGER)
-                        ->selectGetAssoc('permissions')
+                        ->selectAssoc('permissions')
                         ->where('id=', $staff_permission)
                         ->save();
 

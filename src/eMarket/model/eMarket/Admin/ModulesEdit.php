@@ -56,7 +56,7 @@ class ModulesEdit {
 
         $active = $this->db
                         ->read(TABLE_MODULES)
-                        ->selectGetValue('active')
+                        ->selectValue('active')
                         ->where('type=', Valid::inGET('type'))
                         ->and('name=', Valid::inGET('name'))
                         ->save()[0];

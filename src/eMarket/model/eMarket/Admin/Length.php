@@ -78,7 +78,7 @@ class Length {
 
             $id_max = $this->db
                     ->read(TABLE_LENGTH)
-                    ->selectGetValue('id')
+                    ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -184,7 +184,7 @@ class Length {
 
         $data = $this->db
                 ->read(TABLE_LENGTH)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->save();
 
         foreach ($data as $value) {
@@ -206,7 +206,7 @@ class Length {
 
         self::$sql_data = $this->db
                 ->read(TABLE_LENGTH)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->orderByDesc('id')
                 ->save();
 

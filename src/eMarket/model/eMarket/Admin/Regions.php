@@ -76,7 +76,7 @@ class Regions {
 
             $id_max = $this->db
                     ->read(TABLE_REGIONS)
-                    ->selectGetValue('id')
+                    ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -146,7 +146,7 @@ class Regions {
 
         self::$sql_data = $this->db
                 ->read(TABLE_REGIONS)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->where('country_id=', self::$country_id)
                 ->orderBy('name')
                 ->save();

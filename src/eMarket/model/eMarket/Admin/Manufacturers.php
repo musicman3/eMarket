@@ -70,7 +70,7 @@ class Manufacturers {
 
             $id_max = $this->db
                     ->read(TABLE_MANUFACTURERS)
-                    ->selectGetValue('id')
+                    ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -154,7 +154,7 @@ class Manufacturers {
 
         self::$sql_data = $this->db
                 ->read(TABLE_MANUFACTURERS)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->orderByDesc('id')
                 ->save();
 

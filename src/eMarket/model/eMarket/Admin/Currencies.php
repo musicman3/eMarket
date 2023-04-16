@@ -79,7 +79,7 @@ class Currencies {
 
             $id_max = $this->db
                     ->read(TABLE_CURRENCIES)
-                    ->selectGetValue('id')
+                    ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -200,7 +200,7 @@ class Currencies {
 
         $data = $this->db
                 ->read(TABLE_CURRENCIES)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->save();
 
         foreach ($data as $value) {
@@ -222,7 +222,7 @@ class Currencies {
 
         self::$sql_data = $this->db
                 ->read(TABLE_CURRENCIES)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->orderByDesc('id')
                 ->save();
 

@@ -110,7 +110,7 @@ class Login {
 
             $HASH = (string) $this->db
                             ->read(TABLE_ADMINISTRATORS)
-                            ->selectGetValue('password')
+                            ->selectValue('password')
                             ->where('login=', Valid::inPOST('login'))
                             ->save();
 

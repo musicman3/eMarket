@@ -66,7 +66,7 @@ class Countries {
 
             $id_max = $this->db
                     ->read(TABLE_COUNTRIES)
-                    ->selectGetValue('id')
+                    ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
@@ -142,7 +142,7 @@ class Countries {
 
         self::$sql_data = $this->db
                 ->read(TABLE_COUNTRIES)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->orderBy('name')
                 ->save();
 

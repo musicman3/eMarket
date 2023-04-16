@@ -69,7 +69,7 @@ class Orders {
 
             $order_data = $this->db
                             ->read(TABLE_ORDERS)
-                            ->selectGetAssoc('orders_status_history, customer_data, email')
+                            ->selectAssoc('orders_status_history, customer_data, email')
                             ->where('id=', Valid::inPOST('edit'))
                             ->save()[0];
 
@@ -77,14 +77,14 @@ class Orders {
 
             $customer_status_history_select = $this->db
                     ->read(TABLE_ORDER_STATUS)
-                    ->selectGetValue('name')
+                    ->selectValue('name')
                     ->where('language=', $customer_language)
                     ->and('id=', Valid::inPOST('status_history_select'))
                     ->save();
 
             $admin_status_history_select = $this->db
                     ->read(TABLE_ORDER_STATUS)
-                    ->selectGetValue('name')
+                    ->selectValue('name')
                     ->where('language=', $primary_language)
                     ->and('id=', Valid::inPOST('status_history_select'))
                     ->save();
@@ -147,7 +147,7 @@ class Orders {
 
         self::$order_status = $this->db
                 ->read(TABLE_ORDER_STATUS)
-                ->selectGetAssoc('*')
+                ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
                 ->orderByDesc('sort')
                 ->save();
@@ -157,7 +157,7 @@ class Orders {
 
             self::$sql_data = $this->db
                     ->read(TABLE_ORDERS)
-                    ->selectGetAssoc('*')
+                    ->selectAssoc('*')
                     ->where('id LIKE', $search)
                     ->or('email LIKE', $search)
                     ->or('customer_data RLIKE', '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
@@ -168,7 +168,7 @@ class Orders {
 
             self::$sql_data = $this->db
                     ->read(TABLE_ORDERS)
-                    ->selectGetAssoc('*')
+                    ->selectAssoc('*')
                     ->orderByDesc('id')
                     ->save();
         }
