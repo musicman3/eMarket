@@ -14,10 +14,10 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Settings,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Taxes
@@ -32,6 +32,7 @@ class Taxes {
 
     public static $routing_parameter = 'taxes';
     public $title = 'title_taxes_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones = FALSE;
@@ -44,6 +45,7 @@ class Taxes {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -78,14 +80,28 @@ class Taxes {
                 $fixed = 1;
             }
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_TAXES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_TAXES)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TAXES . " SET id=?, name=?, language=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=?", [
-                    $id, Valid::inPOST('name_taxes_' . $x), lang('#lang_all')[$x], Valid::inPOST('rate_taxes'),
-                    $tax_type, Valid::inPOST('zones_id'), $fixed, Settings::currencyDefault()[0]
-                ]);
+
+                $this->db
+                        ->create(TABLE_TAXES)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_taxes_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('rate', Valid::inPOST('rate_taxes'))
+                        ->set('tax_type', $tax_type)
+                        ->set('zones_id', Valid::inPOST('zones_id'))
+                        ->set('fixed', $fixed)
+                        ->set('currency', Settings::currencyDefault()[0])
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -111,11 +127,18 @@ class Taxes {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_TAXES . " SET name=?, rate=?, tax_type=?, zones_id=?, fixed=?, currency=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_taxes_' . $x), Valid::inPOST('rate_taxes'), $tax_type,
-                    Valid::inPOST('zones_id'), $fixed, Settings::currencyDefault()[0],
-                    Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_TAXES)
+                        ->set('name', Valid::inPOST('name_taxes_' . $x))
+                        ->set('rate', Valid::inPOST('rate_taxes'))
+                        ->set('tax_type', $tax_type)
+                        ->set('zones_id', Valid::inPOST('zones_id'))
+                        ->set('fixed', $fixed)
+                        ->set('currency', Settings::currencyDefault()[0])
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -128,7 +151,11 @@ class Taxes {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_TAXES . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_TAXES)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -139,7 +166,12 @@ class Taxes {
      *
      */
     private function data(): void {
-        self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        self::$zones = $this->db
+                ->read(TABLE_ZONES)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
 
         self::$zones_names = [];
         foreach (self::$zones as $zones_val) {
@@ -149,7 +181,12 @@ class Taxes {
         self::$value_6 = [0 => sprintf(lang('taxes_value'), Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
         self::$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_TAXES . " ORDER BY id DESC", []);
+        self::$sql_data = $this->db
+                ->read(TABLE_TAXES)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
