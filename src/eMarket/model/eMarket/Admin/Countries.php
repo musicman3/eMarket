@@ -102,7 +102,7 @@ class Countries {
                         ->set('name', Valid::inPOST('name_countries_' . $x))
                         ->set('alpha_2', Valid::inPOST('alpha_2_countries'))
                         ->set('alpha_3', Valid::inPOST('alpha_3_countries'))
-                        ->set('address_format', Valid::inPOST('address_format_countries')->default)
+                        ->set('address_format', Valid::inPOST('address_format_countries'))
                         ->where('id=', Valid::inPOST('edit'))
                         ->and('language=', lang('#lang_all')[$x])
                         ->save();

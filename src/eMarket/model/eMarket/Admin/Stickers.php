@@ -15,13 +15,13 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
 use eMarket\Admin\{
     HeaderMenu,
     Eac
 };
+use Cruder\Cruder;
 
 /**
  * Stickers
@@ -36,6 +36,7 @@ class Stickers {
 
     public static $routing_parameter = 'stickers';
     public $title = 'title_stickers_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $stickers = [];
@@ -49,6 +50,7 @@ class Stickers {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -83,17 +85,32 @@ class Stickers {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_STICKERS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_STICKERS)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
-                Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
+
+                $this->db
+                        ->update(TABLE_STICKERS)
+                        ->set('default_stickers', 0)
+                        ->save();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_STICKERS . " SET id=?, name=?, language=?, default_stickers=?", [
-                    $id, Valid::inPOST('name_stickers_' . $x), lang('#lang_all')[$x], $this->default
-                ]);
+
+                $this->db
+                        ->create(TABLE_STICKERS)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_stickers_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('default_stickers', $this->default)
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -108,13 +125,22 @@ class Stickers {
         if (Valid::inPOST('edit')) {
 
             if ($this->default != 0) {
-                Pdo::action("UPDATE " . TABLE_STICKERS . " SET default_stickers=?", [0]);
+
+                $this->db
+                        ->update(TABLE_STICKERS)
+                        ->set('default_stickers', 0)
+                        ->save();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_STICKERS . " SET name=?, default_stickers=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_stickers_' . $x), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_STICKERS)
+                        ->set('name', Valid::inPOST('name_stickers_' . $x))
+                        ->set('default_stickers', $this->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -127,15 +153,29 @@ class Stickers {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            $all_products = Pdo::getAssoc("SELECT id, sticker FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            $all_products = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('id, sticker')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
 
             foreach ($all_products as $value) {
                 if ($value['sticker'] == Valid::inPOST('delete')) {
-                    Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", ['', $value['id']]);
+
+                    $this->db
+                            ->update(TABLE_PRODUCTS)
+                            ->set('sticker', '')
+                            ->where('id=', $value['id'])
+                            ->save();
                 }
             }
 
-            Pdo::action("DELETE FROM " . TABLE_STICKERS . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_STICKERS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
@@ -145,7 +185,13 @@ class Stickers {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_STICKERS)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
@@ -189,7 +235,14 @@ class Stickers {
     public static function initStickers(): void {
         self::$stickers_default = 0;
         self::$stickers_flag = 0;
-        $stickers_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        $db = new Cruder();
+
+        $stickers_data = $db
+                ->read(TABLE_STICKERS)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
 
         foreach ($stickers_data as $val) {
             self::$stickers_flag = 1;
@@ -215,6 +268,8 @@ class Stickers {
         if ((Valid::inPostJson('idsx_stickerOn_key') == 'On')
                 or (Valid::inPostJson('idsx_stickerOff_key') == 'Off')) {
 
+            $db = new Cruder();
+
             $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
             if (Valid::inPostJson('idsx_stickerOn_key') == 'On') {
@@ -233,37 +288,40 @@ class Stickers {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'products') {
-                    Eac::$parent_id = self::dataParentId($idx[$i]);
-                    $keys = self::dataKeys($idx[$i]);
+                    // This is category
+                    $id_cat = explode('category_', $idx[$i])[1];
+                    Eac::$parent_id = Eac::dataParentId($id_cat);
+                    $keys = Eac::dataKeys($id_cat);
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
 
                         if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
 
-                            $sticker_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [
-                                        lang('#lang_all')[0], $keys[$x]
-                            ]);
+                            $db->update(TABLE_PRODUCTS)
+                                    ->set('sticker', $sticker)
+                                    ->where('parent_id=', $keys[$x])
+                                    ->save();
 
-                            foreach ($sticker_id_array as $sticker_id_arr) {
-                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", [$sticker, $sticker_id_arr]);
-                            }
+                            $Cache = new Cache();
+                            $Cache->deleteItem('core.products_' . $keys[$x]);
 
                             if ($parent_id_real > 0) {
                                 Eac::$parent_id = $parent_id_real;
                             }
-
-                            $Cache = new Cache();
-                            $Cache->deleteItem('core.products_' . $sticker_id_arr);
                         }
                     }
                 } else {
                     if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
-                        $id_prod = explode('products_', $idx[$i]);
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET sticker=? WHERE id=?", [$sticker, $id_prod[1]]);
+                        $id_prod = explode('products_', $idx[$i])[1];
+
+                        $db->update(TABLE_PRODUCTS)
+                                ->set('sticker', $sticker)
+                                ->where('id=', $id_prod)
+                                ->save();
 
                         $Cache = new Cache();
-                        $Cache->deleteItem('core.products_' . $id_prod[1]);
+                        $Cache->deleteItem('core.products_' . $id_prod);
                     }
                 }
 
