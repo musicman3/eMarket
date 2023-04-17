@@ -14,7 +14,6 @@ use eMarket\Core\{
     Func,
     Modules,
     Navigation,
-    Pdo,
     Pages,
     Settings,
     Valid
@@ -24,6 +23,7 @@ use eMarket\Admin\{
     HeaderMenu,
     Stickers
 };
+use Cruder\Cruder;
 
 /**
  * Stock
@@ -38,6 +38,7 @@ class Stock {
 
     public static $routing_parameter = 'stock';
     public $title = 'title_stock_index';
+    public $db;
     public static $json_data_category = FALSE;
     public static $json_data_product = FALSE;
     public static $resize_param = FALSE;
@@ -70,6 +71,7 @@ class Stock {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->imgUploadCategories();
         $this->imgUploadProducts();
         $this->initEac();
@@ -129,13 +131,48 @@ class Stock {
      *
      */
     private function selectData(): void {
-        self::$currencies_all = Pdo::getAssoc("SELECT name, default_value, id FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$taxes_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_TAXES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$units_all = Pdo::getAssoc("SELECT name, default_unit, id FROM " . TABLE_UNITS . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$length_all = Pdo::getAssoc("SELECT name, default_length, id FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$weight_all = Pdo::getAssoc("SELECT name, default_weight, id FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$vendor_codes_all = Pdo::getAssoc("SELECT name, default_vendor_code, id FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$manufacturers_all = Pdo::getAssoc("SELECT name, id FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        self::$currencies_all = $this->db
+                ->read(TABLE_CURRENCIES)
+                ->selectAssoc('name, default_value, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$taxes_all = $this->db
+                ->read(TABLE_TAXES)
+                ->selectAssoc('name, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$units_all = $this->db
+                ->read(TABLE_UNITS)
+                ->selectAssoc('name, default_unit, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$length_all = $this->db
+                ->read(TABLE_LENGTH)
+                ->selectAssoc('name, default_length, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$weight_all = $this->db
+                ->read(TABLE_WEIGHT)
+                ->selectAssoc('name, default_weight, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$vendor_codes_all = $this->db
+                ->read(TABLE_VENDOR_CODES)
+                ->selectAssoc('name, default_vendor_code, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
+        self::$manufacturers_all = $this->db
+                ->read(TABLE_MANUFACTURERS)
+                ->selectAssoc('name, id')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
     }
 
     /**
@@ -160,8 +197,15 @@ class Stock {
         if (self::$parent_id == 0) {
             self::$attributes_category = json_encode(json_encode([]));
         } else {
-            self::$attributes_category = json_encode(Pdo::getAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
-                        self::$parent_id, lang('#lang_all')[0]])[0]['attributes']);
+
+            $attributes_category = $this->db
+                    ->read(TABLE_CATEGORIES)
+                    ->selectAssoc('attributes')
+                    ->where('id=', self::$parent_id)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->save();
+
+            self::$attributes_category = json_encode($attributes_category[0]['attributes']);
         }
 
         self::$transfer = 0;
@@ -175,31 +219,74 @@ class Stock {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            $sql_data_cat_search = Pdo::getAssoc("SELECT id FROM " . TABLE_CATEGORIES . " WHERE name LIKE? AND language=? ORDER BY sort_category DESC", [
-                        $search, lang('#lang_all')[0]]);
+            $sql_data_cat_search = $this->db
+                    ->read(TABLE_CATEGORIES)
+                    ->selectAssoc('id')
+                    ->where('name LIKE', $search)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->orderByDesc('sort_category')
+                    ->save();
 
             self::$sql_data_cat = [];
+
             foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
-                foreach (Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE id=? ORDER BY sort_category DESC", [
-                    $sql_data_cat_search_val['id']]) as $cat_array) {
+
+                $search_val = $this->db
+                        ->read(TABLE_CATEGORIES)
+                        ->selectAssoc('*')
+                        ->where('id=', $sql_data_cat_search_val['id'])
+                        ->orderByDesc('sort_category')
+                        ->save();
+
+                foreach ($search_val as $cat_array) {
                     self::$sql_data_cat[] = $cat_array;
                 }
             }
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
 
-            $sql_data_prod_search = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? ORDER BY id DESC", [$search, $search, lang('#lang_all')[0]]);
+            $sql_data_prod_search = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('id')
+                    ->where('name LIKE', $search)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->or('description LIKE', $search)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             self::$sql_data_prod = [];
+
             foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
-                foreach (Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? ORDER BY id DESC", [
-                    $sql_data_prod_search_val['id']]) as $prod_array) {
+
+                $prod_search_val = $this->db
+                        ->read(TABLE_PRODUCTS)
+                        ->selectAssoc('*')
+                        ->where('id=', $sql_data_prod_search_val['id'])
+                        ->orderByDesc('id')
+                        ->save();
+
+                foreach ($prod_search_val as $prod_array) {
                     self::$sql_data_prod[] = $prod_array;
                 }
             }
             self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         } else {
-            self::$sql_data_cat = Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE parent_id=? ORDER BY sort_category DESC", [self::$parent_id]);
+            self::$sql_data_cat = $this->db
+                    ->read(TABLE_CATEGORIES)
+                    ->selectAssoc('*')
+                    ->where('parent_id=', self::$parent_id)
+                    ->orderByDesc('sort_category')
+                    ->save();
+
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
-            self::$sql_data_prod = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE parent_id=? ORDER BY id DESC", [self::$parent_id]);
+
+            self::$sql_data_prod = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('parent_id=', self::$parent_id)
+                    ->orderByDesc('id')
+                    ->save();
+
             self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         }
 
@@ -296,10 +383,15 @@ class Stock {
                         if (self::$parent_id == 0) {
                             $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
                         } else {
-                            $attributes_data[$modal_id_prod] = json_encode(
-                                    Pdo::getAssoc("SELECT attributes FROM " . TABLE_CATEGORIES . " WHERE id=? AND language=?", [
-                                        self::$parent_id, lang('#lang_all')[0]])[0]['attributes']
-                            );
+
+                            $attributes = $this->db
+                                    ->read(TABLE_CATEGORIES)
+                                    ->selectAssoc('attributes')
+                                    ->where('id=', self::$parent_id)
+                                    ->and('language=', lang('#lang_all')[0])
+                                    ->save();
+
+                            $attributes_data[$modal_id_prod] = json_encode($attributes[0]['attributes']);
                         }
                     }
                 }
@@ -453,10 +545,19 @@ class Stock {
 
         $discount_json = json_decode($discount, true);
         $text = '';
+        $db = new Cruder();
         if (is_array($discount_json)) {
             foreach ($discount_json as $key => $id) {
                 foreach ($id as $val_id) {
-                    $text .= lang('modules_discount_' . $key . '_name') . ': ' . Pdo::getValue("SELECT name FROM " . DB_PREFIX . 'modules_discount_' . $key . "  WHERE language=? AND id=?", [lang('#lang_all')[0], $val_id]) . '<br>';
+
+                    $module_name = $db
+                            ->read(DB_PREFIX . 'modules_discount_' . $key)
+                            ->selectValue('name')
+                            ->where('language=', lang('#lang_all')[0])
+                            ->and('id=', $val_id)
+                            ->save();
+
+                    $text .= lang('modules_discount_' . $key . '_name') . ': ' . $module_name . '<br>';
                 }
             }
         }
