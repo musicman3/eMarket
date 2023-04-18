@@ -138,6 +138,22 @@ class Templates {
     }
 
     /**
+     * Builder
+     *
+     * @param string $url url
+     * @param string $value Value
+     * @param string $x sort number
+     */
+    private function builder(string $layout_data, string $layout): void {
+        if (Valid::inPostJson($layout_data)) {
+            for ($x = 0; $x < count(Valid::inPostJson($layout_data)); $x++) {
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson($layout_data)[$x] . '.php';
+                $this->set($url, $layout, $x);
+            }
+        }
+    }
+
+    /**
      * Load Data
      *
      */
@@ -199,22 +215,6 @@ class Templates {
             $this->content();
             $this->boxes();
             $this->footer();
-        }
-    }
-
-    /**
-     * Builder
-     *
-     * @param string $url url
-     * @param string $value Value
-     * @param string $x sort number
-     */
-    private function builder(string $layout_data, string $layout): void {
-        if (Valid::inPostJson($layout_data)) {
-            for ($x = 0; $x < count(Valid::inPostJson($layout_data)); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson($layout_data)[$x] . '.php';
-                $this->set($url, $layout, $x);
-            }
         }
     }
 
