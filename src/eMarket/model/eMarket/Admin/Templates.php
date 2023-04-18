@@ -11,10 +11,10 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Func,
-    Pdo,
     Settings,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Templates
@@ -29,6 +29,7 @@ class Templates {
 
     public static $routing_parameter = 'templates';
     public $title = 'title_templates_index';
+    public $db;
     public static $layout_pages;
     public static $name_template;
     public static $select_page;
@@ -48,6 +49,7 @@ class Templates {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->data();
         $this->selectPage();
         $this->selectTemplate();
@@ -106,7 +108,14 @@ class Templates {
      *
      */
     private function loadData(): void {
-        $layouts_data = Pdo::getAssoc("SELECT url, value, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND template_name=? ORDER BY sort ASC", ['catalog', self::$select_template]);
+        $layouts_data = $this->db
+                ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                ->selectAssoc('url, value, page')
+                ->where('group_id=', 'catalog')
+                ->and('template_name=', self::$select_template)
+                ->orderByAsc('sort')
+                ->save();
+
         $layouts = Func::filterData($layouts_data, 'page', self::$select_page);
 
         $layout_header_temp = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');
@@ -153,16 +162,54 @@ class Templates {
             if (Valid::inPostJson('page') == 'all') {
                 self::$select_page = 'all';
 
-                Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND template_name=?", ['catalog', Valid::inPostJson('template')]);
+                $this->db
+                        ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
+                        ->where('group_id=', 'catalog')
+                        ->and('template_name=', Valid::inPostJson('template'))
+                        ->save();
             } else {
                 self::$select_page = Valid::inPostJson('page');
             }
 
-            self::header();
-            self::content();
-            self::boxes();
-            self::footer();
+            $this->header();
+            $this->content();
+            $this->boxes();
+            $this->footer();
         }
+    }
+
+    /**
+     * Clear
+     *
+     * @param string $value Value
+     */
+    private function clear(string $value): void {
+        $this->db
+                ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
+                ->where('group_id=', 'catalog')
+                ->and('value=', $value)
+                ->and('template_name=', Valid::inPostJson('template'))
+                ->and('page=', self::$select_page)
+                ->save();
+    }
+
+    /**
+     * Set
+     *
+     * @param string $url url
+     * @param string $value Value
+     * @param string $x sort number
+     */
+    private function set(string $url, string $value, int $x): void {
+        $this->db
+                ->create(TABLE_TEMPLATE_CONSTRUCTOR)
+                ->set('url', $url)
+                ->set('group_id', 'catalog')
+                ->set('value', $value)
+                ->set('page', self::$select_page)
+                ->set('sort', $x)
+                ->set('template_name', Valid::inPostJson('template'))
+                ->save();
     }
 
     /**
@@ -170,42 +217,33 @@ class Templates {
      *
      */
     private function header(): void {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'header', Valid::inPostJson('template'), self::$select_page
-        ]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'header-basket', Valid::inPostJson('template'), self::$select_page
-        ]);
+
+        $this->clear('header');
+        $this->clear('header-basket');
 
         if (Valid::inPostJson('layout_header')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_header')); $x++) {
+
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_header')[$x] . '.php';
+
                 if (Valid::inPostJson('layout_header')[$x] == 'header') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/' . Valid::inPostJson('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
-                } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/layouts/' . Valid::inPostJson('layout_header')[$x] . '.php', 'catalog', 'header', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
+                    $url = '/controller/catalog/' . Valid::inPostJson('layout_header')[$x] . '.php';
                 }
+
+                $this->set($url, 'header', $x);
             }
         }
 
         if (Valid::inPostJson('layout_header_basket')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_header_basket')); $x++) {
+
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_header_basket')[$x] . '.php';
+
                 if (Valid::inPostJson('layout_header_basket')[$x] == 'header') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/' . Valid::inPostJson('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
-                } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/layouts/' . Valid::inPostJson('layout_header_basket')[$x] . '.php', 'catalog', 'header-basket',
-                        self::$select_page, $x, Valid::inPostJson('template')
-                    ]);
+                    $url = '/controller/catalog/' . Valid::inPostJson('layout_header_basket')[$x] . '.php';
                 }
+
+                $this->set($url, 'header-basket', $x);
             }
         }
     }
@@ -215,28 +253,21 @@ class Templates {
      *
      */
     private function content(): void {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'content', Valid::inPostJson('template'), self::$select_page
-        ]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'content-basket', Valid::inPostJson('template'), self::$select_page
-        ]);
+
+        $this->clear('content');
+        $this->clear('content-basket');
 
         if (Valid::inPostJson('layout_content')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_content')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                    '/controller/catalog/layouts/' . Valid::inPostJson('layout_content')[$x] . '.php', 'catalog', 'content', self::$select_page, $x,
-                    Valid::inPostJson('template')
-                ]);
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_content')[$x] . '.php';
+                $this->set($url, 'content', $x);
             }
         }
 
         if (Valid::inPostJson('layout_content_basket')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_content_basket')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                    '/controller/catalog/layouts/' . Valid::inPostJson('layout_content_basket')[$x] . '.php', 'catalog', 'content-basket',
-                    self::$select_page, $x, Valid::inPostJson('template')
-                ]);
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_content_basket')[$x] . '.php';
+                $this->set($url, 'content-basket', $x);
             }
         }
     }
@@ -246,40 +277,29 @@ class Templates {
      *
      */
     private function boxes(): void {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'boxes-left', Valid::inPostJson('template'), self::$select_page
-        ]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'boxes-right', Valid::inPostJson('template'), self::$select_page
-        ]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'boxes-basket', Valid::inPostJson('template'), self::$select_page
-        ]);
+
+        $this->clear('boxes-left');
+        $this->clear('boxes-right');
+        $this->clear('boxes-basket');
 
         if (Valid::inPostJson('layout_boxes_left')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_left')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                    '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_left')[$x] . '.php', 'catalog', 'boxes-left', self::$select_page, $x,
-                    Valid::inPostJson('template')
-                ]);
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_left')[$x] . '.php';
+                $this->set($url, 'boxes-left', $x);
             }
         }
 
         if (Valid::inPostJson('layout_boxes_right')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_right')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                    '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_right')[$x] . '.php', 'catalog', 'boxes-right', self::$select_page, $x,
-                    Valid::inPostJson('template')
-                ]);
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_right')[$x] . '.php';
+                $this->set($url, 'boxes-right', $x);
             }
         }
 
         if (Valid::inPostJson('layout_boxes_basket')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_basket')); $x++) {
-                Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                    '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_basket')[$x] . '.php', 'catalog', 'boxes-basket', self::$select_page, $x,
-                    Valid::inPostJson('template')
-                ]);
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_basket')[$x] . '.php';
+                $this->set($url, 'boxes-basket', $x);
             }
         }
     }
@@ -289,42 +309,33 @@ class Templates {
      *
      */
     private function footer(): void {
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'footer', Valid::inPostJson('template'), self::$select_page
-        ]);
-        Pdo::action("DELETE FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? AND page=?", [
-            'catalog', 'footer-basket', Valid::inPostJson('template'), self::$select_page
-        ]);
+
+        $this->clear('footer');
+        $this->clear('footer-basket');
 
         if (Valid::inPostJson('layout_footer')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_footer')); $x++) {
+
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer')[$x] . '.php';
+
                 if (Valid::inPostJson('layout_footer')[$x] == 'footer') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/' . Valid::inPostJson('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
-                } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer')[$x] . '.php', 'catalog', 'footer', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
+                    $url = '/controller/catalog/' . Valid::inPostJson('layout_footer')[$x] . '.php';
                 }
+
+                $this->set($url, 'footer', $x);
             }
         }
 
         if (Valid::inPostJson('layout_footer_basket')) {
             for ($x = 0; $x < count(Valid::inPostJson('layout_footer_basket')); $x++) {
+
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php';
+
                 if (Valid::inPostJson('layout_footer_basket')[$x] == 'footer') {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket', self::$select_page, $x,
-                        Valid::inPostJson('template')
-                    ]);
-                } else {
-                    Pdo::action("INSERT INTO " . TABLE_TEMPLATE_CONSTRUCTOR . " SET url=?, group_id=?, value=?, page=?, sort=?, template_name=?", [
-                        '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php', 'catalog', 'footer-basket',
-                        self::$select_page, $x, Valid::inPostJson('template')
-                    ]);
+                    $url = '/controller/catalog/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php';
                 }
+
+                $this->set($url, 'footer-basket', $x);
             }
         }
     }
