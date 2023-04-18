@@ -104,81 +104,6 @@ class Templates {
     }
 
     /**
-     * Load Data
-     *
-     */
-    private function loadData(): void {
-        $layouts_data = $this->db
-                ->read(TABLE_TEMPLATE_CONSTRUCTOR)
-                ->selectAssoc('url, value, page')
-                ->where('group_id=', 'catalog')
-                ->and('template_name=', self::$select_template)
-                ->orderByAsc('sort')
-                ->save();
-
-        $layouts = Func::filterData($layouts_data, 'page', self::$select_page);
-
-        $layout_header_temp = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');
-        $layout_header_basket_temp = Func::filterArrayToKey($layouts, 'value', 'header-basket', 'url', 'false');
-
-        if ($layout_header_temp == NULL && $layout_header_basket_temp == NULL) {
-            $layouts_all = Func::filterData($layouts_data, 'page', 'all');
-
-            self::$layout_header = Func::filterArrayToKey($layouts_all, 'value', 'header', 'url', 'false');
-            self::$layout_content = Func::filterArrayToKey($layouts_all, 'value', 'content', 'url', 'false');
-            self::$layout_boxes_left = Func::filterArrayToKey($layouts_all, 'value', 'boxes-left', 'url', 'false');
-            self::$layout_boxes_right = Func::filterArrayToKey($layouts_all, 'value', 'boxes-right', 'url', 'false');
-            self::$layout_footer = Func::filterArrayToKey($layouts_all, 'value', 'footer', 'url', 'false');
-
-            self::$layout_header_basket = Func::filterArrayToKey($layouts_all, 'value', 'header-basket', 'url', 'false');
-            self::$layout_content_basket = Func::filterArrayToKey($layouts_all, 'value', 'content-basket', 'url', 'false');
-            self::$layout_boxes_basket = Func::filterArrayToKey($layouts_all, 'value', 'boxes-basket', 'url', 'false');
-            self::$layout_footer_basket = Func::filterArrayToKey($layouts_all, 'value', 'footer-basket', 'url', 'false');
-        } else {
-            self::$layout_header = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');
-            self::$layout_content = Func::filterArrayToKey($layouts, 'value', 'content', 'url', 'false');
-            self::$layout_boxes_left = Func::filterArrayToKey($layouts, 'value', 'boxes-left', 'url', 'false');
-            self::$layout_boxes_right = Func::filterArrayToKey($layouts, 'value', 'boxes-right', 'url', 'false');
-            self::$layout_footer = Func::filterArrayToKey($layouts, 'value', 'footer', 'url', 'false');
-
-            self::$layout_header_basket = Func::filterArrayToKey($layouts, 'value', 'header-basket', 'url', 'false');
-            self::$layout_content_basket = Func::filterArrayToKey($layouts, 'value', 'content-basket', 'url', 'false');
-            self::$layout_boxes_basket = Func::filterArrayToKey($layouts, 'value', 'boxes-basket', 'url', 'false');
-            self::$layout_footer_basket = Func::filterArrayToKey($layouts, 'value', 'footer-basket', 'url', 'false');
-        }
-    }
-
-    /**
-     * Handler
-     *
-     */
-    private function handler(): void {
-
-        if (!Valid::inGET('layout_pages_templates')) {
-            self::$select_page = 'catalog';
-        }
-
-        if (Valid::inPostJson('layout_header') OR Valid::inPostJson('layout_header_basket')) {
-            if (Valid::inPostJson('page') == 'all') {
-                self::$select_page = 'all';
-
-                $this->db
-                        ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
-                        ->where('group_id=', 'catalog')
-                        ->and('template_name=', Valid::inPostJson('template'))
-                        ->save();
-            } else {
-                self::$select_page = Valid::inPostJson('page');
-            }
-
-            $this->header();
-            $this->content();
-            $this->boxes();
-            $this->footer();
-        }
-    }
-
-    /**
      * Clear
      *
      * @param string $value Value
@@ -213,39 +138,95 @@ class Templates {
     }
 
     /**
+     * Load Data
+     *
+     */
+    private function loadData(): void {
+        $layouts_data = $this->db
+                ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                ->selectAssoc('url, value, page')
+                ->where('group_id=', 'catalog')
+                ->and('template_name=', self::$select_template)
+                ->orderByAsc('sort')
+                ->save();
+
+        $layouts = Func::filterData($layouts_data, 'page', self::$select_page);
+
+        $layout_header_temp = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');
+        $layout_header_basket_temp = Func::filterArrayToKey($layouts, 'value', 'header-basket', 'url', 'false');
+
+        if ($layout_header_temp == NULL && $layout_header_basket_temp == NULL) {
+            $layouts = Func::filterData($layouts_data, 'page', 'all');
+        }
+
+        self::$layout_header = Func::filterArrayToKey($layouts, 'value', 'header', 'url', 'false');
+        self::$layout_content = Func::filterArrayToKey($layouts, 'value', 'content', 'url', 'false');
+        self::$layout_boxes_left = Func::filterArrayToKey($layouts, 'value', 'boxes-left', 'url', 'false');
+        self::$layout_boxes_right = Func::filterArrayToKey($layouts, 'value', 'boxes-right', 'url', 'false');
+        self::$layout_footer = Func::filterArrayToKey($layouts, 'value', 'footer', 'url', 'false');
+
+        self::$layout_header_basket = Func::filterArrayToKey($layouts, 'value', 'header-basket', 'url', 'false');
+        self::$layout_content_basket = Func::filterArrayToKey($layouts, 'value', 'content-basket', 'url', 'false');
+        self::$layout_boxes_basket = Func::filterArrayToKey($layouts, 'value', 'boxes-basket', 'url', 'false');
+        self::$layout_footer_basket = Func::filterArrayToKey($layouts, 'value', 'footer-basket', 'url', 'false');
+    }
+
+    /**
+     * Handler
+     *
+     */
+    private function handler(): void {
+
+        if (!Valid::inGET('layout_pages_templates')) {
+            self::$select_page = 'catalog';
+        }
+
+        if (Valid::inPostJson('layout_header') OR Valid::inPostJson('layout_header_basket')) {
+            if (Valid::inPostJson('page') == 'all') {
+                self::$select_page = 'all';
+
+                $this->db
+                        ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
+                        ->where('group_id=', 'catalog')
+                        ->and('template_name=', Valid::inPostJson('template'))
+                        ->save();
+            } else {
+
+                self::$select_page = Valid::inPostJson('page');
+            }
+
+            $this->header();
+            $this->content();
+            $this->boxes();
+            $this->footer();
+        }
+    }
+
+    /**
+     * Builder
+     *
+     * @param string $url url
+     * @param string $value Value
+     * @param string $x sort number
+     */
+    private function builder(string $layout_data, string $layout): void {
+        if (Valid::inPostJson($layout_data)) {
+            for ($x = 0; $x < count(Valid::inPostJson($layout_data)); $x++) {
+                $url = '/controller/catalog/layouts/' . Valid::inPostJson($layout_data)[$x] . '.php';
+                $this->set($url, $layout, $x);
+            }
+        }
+    }
+
+    /**
      * Header
      *
      */
     private function header(): void {
-
         $this->clear('header');
         $this->clear('header-basket');
-
-        if (Valid::inPostJson('layout_header')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_header')); $x++) {
-
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_header')[$x] . '.php';
-
-                if (Valid::inPostJson('layout_header')[$x] == 'header') {
-                    $url = '/controller/catalog/' . Valid::inPostJson('layout_header')[$x] . '.php';
-                }
-
-                $this->set($url, 'header', $x);
-            }
-        }
-
-        if (Valid::inPostJson('layout_header_basket')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_header_basket')); $x++) {
-
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_header_basket')[$x] . '.php';
-
-                if (Valid::inPostJson('layout_header_basket')[$x] == 'header') {
-                    $url = '/controller/catalog/' . Valid::inPostJson('layout_header_basket')[$x] . '.php';
-                }
-
-                $this->set($url, 'header-basket', $x);
-            }
-        }
+        $this->builder('layout_header', 'header');
+        $this->builder('layout_header_basket', 'header-basket');
     }
 
     /**
@@ -253,23 +234,10 @@ class Templates {
      *
      */
     private function content(): void {
-
         $this->clear('content');
         $this->clear('content-basket');
-
-        if (Valid::inPostJson('layout_content')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_content')); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_content')[$x] . '.php';
-                $this->set($url, 'content', $x);
-            }
-        }
-
-        if (Valid::inPostJson('layout_content_basket')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_content_basket')); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_content_basket')[$x] . '.php';
-                $this->set($url, 'content-basket', $x);
-            }
-        }
+        $this->builder('layout_content', 'content');
+        $this->builder('layout_content_basket', 'content-basket');
     }
 
     /**
@@ -277,31 +245,12 @@ class Templates {
      *
      */
     private function boxes(): void {
-
         $this->clear('boxes-left');
         $this->clear('boxes-right');
         $this->clear('boxes-basket');
-
-        if (Valid::inPostJson('layout_boxes_left')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_left')); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_left')[$x] . '.php';
-                $this->set($url, 'boxes-left', $x);
-            }
-        }
-
-        if (Valid::inPostJson('layout_boxes_right')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_right')); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_right')[$x] . '.php';
-                $this->set($url, 'boxes-right', $x);
-            }
-        }
-
-        if (Valid::inPostJson('layout_boxes_basket')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_boxes_basket')); $x++) {
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_boxes_basket')[$x] . '.php';
-                $this->set($url, 'boxes-basket', $x);
-            }
-        }
+        $this->builder('layout_boxes_left', 'boxes-left');
+        $this->builder('layout_boxes_right', 'boxes-right');
+        $this->builder('layout_boxes_basket', 'boxes-basket');
     }
 
     /**
@@ -309,35 +258,10 @@ class Templates {
      *
      */
     private function footer(): void {
-
         $this->clear('footer');
         $this->clear('footer-basket');
-
-        if (Valid::inPostJson('layout_footer')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_footer')); $x++) {
-
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer')[$x] . '.php';
-
-                if (Valid::inPostJson('layout_footer')[$x] == 'footer') {
-                    $url = '/controller/catalog/' . Valid::inPostJson('layout_footer')[$x] . '.php';
-                }
-
-                $this->set($url, 'footer', $x);
-            }
-        }
-
-        if (Valid::inPostJson('layout_footer_basket')) {
-            for ($x = 0; $x < count(Valid::inPostJson('layout_footer_basket')); $x++) {
-
-                $url = '/controller/catalog/layouts/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php';
-
-                if (Valid::inPostJson('layout_footer_basket')[$x] == 'footer') {
-                    $url = '/controller/catalog/' . Valid::inPostJson('layout_footer_basket')[$x] . '.php';
-                }
-
-                $this->set($url, 'footer-basket', $x);
-            }
-        }
+        $this->builder('layout_footer', 'footer');
+        $this->builder('layout_footer_basket', 'footer-basket');
     }
 
 }
