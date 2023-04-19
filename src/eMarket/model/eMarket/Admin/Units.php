@@ -17,6 +17,7 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Units
@@ -31,6 +32,7 @@ class Units {
 
     public static $routing_parameter = 'units';
     public $title = 'title_units_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -40,6 +42,7 @@ class Units {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -74,7 +77,13 @@ class Units {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_UNITS . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_UNITS)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
@@ -82,9 +91,15 @@ class Units {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_UNITS . " SET id=?, name=?, language=?, unit=?, default_unit=?", [
-                    $id, Valid::inPOST('name_units_' . $x), lang('#lang_all')[$x], Valid::inPOST('unit_units_' . $x), $this->default
-                ]);
+
+                $this->db
+                        ->create(TABLE_UNITS)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_units_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('unit', Valid::inPOST('unit_units_' . $x))
+                        ->set('default_unit', $this->default)
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -103,9 +118,15 @@ class Units {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_UNITS . " SET name=?, unit=?, default_unit=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_units_' . $x), Valid::inPOST('unit_units_' . $x), $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_UNITS)
+                        ->set('name', Valid::inPOST('name_units_' . $x))
+                        ->set('unit', Valid::inPOST('unit_units_' . $x))
+                        ->set('default_unit', $this->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -118,7 +139,11 @@ class Units {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_UNITS . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_UNITS)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -129,7 +154,10 @@ class Units {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_UNITS . " SET default_unit=?", [0]);
+        $this->db
+                ->update(TABLE_UNITS)
+                ->set('default_unit', 0)
+                ->save();
     }
 
     /**
@@ -137,7 +165,13 @@ class Units {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_UNITS)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
