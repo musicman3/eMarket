@@ -39,10 +39,10 @@ final class Eac {
     private static $date_available = NULL;
     private static $tax = NULL;
     private static $unit = NULL;
-    private static $manufacturers = NULL;
+    private static $manufacturer = NULL;
     private static $vendor_code = NULL;
     private static $weight = NULL;
-    private static $length = NULL;
+    private static $dimension = NULL;
     private static $currency = NULL;
     private static $weight_value = NULL;
     private static $length_value = NULL;
@@ -673,7 +673,7 @@ final class Eac {
             }
 
             if (Valid::inPOST('manufacturers_product_stock')) {
-                self::$manufacturers = (int) Valid::inPOST('manufacturers_product_stock');
+                self::$manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
             }
 
             if (Valid::inPOST('vendor_codes_product_stock')) {
@@ -685,7 +685,7 @@ final class Eac {
             }
 
             if (Valid::inPOST('length_product_stock')) {
-                self::$length = (int) Valid::inPOST('length_product_stock');
+                self::$dimension = (int) Valid::inPOST('length_product_stock');
             }
 
             if (Valid::inPOST('currency_product_stock')) {
@@ -745,12 +745,12 @@ final class Eac {
                         ->set('tags', Valid::inPOST('tags_product_stock_' . $x))
                         ->set('description', Valid::inPOST('description_product_stock_' . $x))
                         ->set('tax', self::$tax)
-                        ->set('manufacturer', self::$manufacturers)
+                        ->set('manufacturer', self::$manufacturer)
                         ->set('vendor_code', self::$vendor_code)
                         ->set('vendor_code_value', Valid::inPOST('vendor_code_value_product_stock'))
                         ->set('weight', self::$weight)
                         ->set('weight_value', self::$weight_value)
-                        ->set('dimension', self::$length)
+                        ->set('dimension', self::$dimension)
                         ->set('length', self::$length_value)
                         ->set('width', self::$width_value)
                         ->set('height', self::$height_value)
@@ -789,7 +789,7 @@ final class Eac {
             }
 
             if (Valid::inPOST('manufacturers_product_stock')) {
-                self::$manufacturers = (int) Valid::inPOST('manufacturers_product_stock');
+                self::$manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
             }
 
             if (Valid::inPOST('vendor_codes_product_stock')) {
@@ -801,7 +801,7 @@ final class Eac {
             }
 
             if (Valid::inPOST('length_product_stock')) {
-                self::$length = (int) Valid::inPOST('length_product_stock');
+                self::$dimension = (int) Valid::inPOST('length_product_stock');
             }
 
             if (Valid::inPOST('currency_product_stock')) {
@@ -849,12 +849,12 @@ final class Eac {
                         ->set('tags', Valid::inPOST('tags_product_stock_' . $x))
                         ->set('description', Valid::inPOST('description_product_stock_' . $x))
                         ->set('tax', self::$tax)
-                        ->set('manufacturer', self::$manufacturers)
+                        ->set('manufacturer', self::$manufacturer)
                         ->set('vendor_code', self::$vendor_code)
                         ->set('vendor_code_value', Valid::inPOST('vendor_code_value_product_stock'))
                         ->set('weight', self::$weight)
                         ->set('weight_value', self::$weight_value)
-                        ->set('dimension', self::$length)
+                        ->set('dimension', self::$dimension)
                         ->set('length', self::$length_value)
                         ->set('width', self::$width_value)
                         ->set('height', self::$height_value)
