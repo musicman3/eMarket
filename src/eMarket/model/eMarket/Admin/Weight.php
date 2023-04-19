@@ -14,9 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid,
 };
+use Cruder\Cruder;
 
 /**
  * Weight
@@ -31,6 +31,7 @@ class Weight {
 
     public static $routing_parameter = 'weight';
     public $title = 'title_weight_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -40,6 +41,7 @@ class Weight {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -74,7 +76,13 @@ class Weight {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_WEIGHT . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_WEIGHT)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
@@ -96,10 +104,16 @@ class Weight {
      */
     private function addAction(int|string $id, int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("INSERT INTO " . TABLE_WEIGHT . " SET id=?, name=?, language=?, code=?, value_weight=?, default_weight=?", [
-                $id, Valid::inPOST('name_weight_' . $x), lang('#lang_all')[$x],
-                Valid::inPOST('code_weight_' . $x), $value, $this->default
-            ]);
+
+            $this->db
+                    ->create(TABLE_WEIGHT)
+                    ->set('id', $id)
+                    ->set('name', Valid::inPOST('name_weight_' . $x))
+                    ->set('language', lang('#lang_all')[$x])
+                    ->set('code', Valid::inPOST('code_weight_' . $x))
+                    ->set('value_weight', $value)
+                    ->set('default_weight', $this->default)
+                    ->save();
         }
     }
 
@@ -128,10 +142,16 @@ class Weight {
      */
     private function editAction(int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
-            Pdo::action("UPDATE " . TABLE_WEIGHT . " SET name=?, code=?, value_weight=?, default_weight=? WHERE id=? AND language=?", [
-                Valid::inPOST('name_weight_' . $x), Valid::inPOST('code_weight_' . $x), $value, $this->default, Valid::inPOST('edit'),
-                lang('#lang_all')[$x]
-            ]);
+
+            $this->db
+                    ->update(TABLE_WEIGHT)
+                    ->set('name', Valid::inPOST('name_weight_' . $x))
+                    ->set('code', Valid::inPOST('code_weight_' . $x))
+                    ->set('value_weight', $value)
+                    ->set('default_weight', $this->default)
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->and('language=', lang('#lang_all')[$x])
+                    ->save();
         }
     }
 
@@ -141,7 +161,11 @@ class Weight {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_WEIGHT . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_WEIGHT)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -152,13 +176,25 @@ class Weight {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_WEIGHT . " SET default_weight=?", [0]);
 
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT, []);
+        $this->db
+                ->update(TABLE_WEIGHT)
+                ->set('default_weight', 0)
+                ->save();
+
+        $data = $this->db
+                ->read(TABLE_WEIGHT)
+                ->selectAssoc('*')
+                ->save();
+
         foreach ($data as $value) {
-            Pdo::action("UPDATE " . TABLE_WEIGHT . " SET value_weight=? WHERE id=? AND language=?", [
-                ($value['value_weight'] / Valid::inPOST('value_weight')), $value['id'],
-                $value['language']]);
+
+            $this->db
+                    ->update(TABLE_WEIGHT)
+                    ->set('value_weight', $value['value_weight'] / Valid::inPOST('value_weight'))
+                    ->where('id=', $value['id'])
+                    ->and('language=', $value['language'])
+                    ->save();
         }
     }
 
@@ -167,7 +203,13 @@ class Weight {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_WEIGHT)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
