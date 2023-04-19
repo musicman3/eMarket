@@ -13,9 +13,9 @@ use eMarket\Core\{
     Func,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Zones/Listing
@@ -30,6 +30,7 @@ class ZonesListing {
 
     public static $routing_parameter = 'zones/listing';
     public $title = 'title_zones_listing_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones_id = FALSE;
@@ -46,6 +47,7 @@ class ZonesListing {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->zones_id();
         $this->add();
         $this->data();
@@ -73,14 +75,21 @@ class ZonesListing {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
+            $this->db
+                    ->delete(TABLE_ZONES_VALUE)
+                    ->where('zones_id=', self::$zones_id)
+                    ->save();
 
             if (Valid::inPOST('multiselect')) {
                 $multiselect = Func::arrayExplode(Valid::inPOST('multiselect'), '-');
                 foreach ($multiselect as $value) {
-                    Pdo::action("INSERT INTO " . TABLE_ZONES_VALUE . " SET country_id=?, regions_id=?, zones_id=?", [
-                        $value[0], $value[1], self::$zones_id
-                    ]);
+
+                    $this->db
+                            ->create(TABLE_ZONES_VALUE)
+                            ->set('country_id', $value[0])
+                            ->set('regions_id', $value[1])
+                            ->set('zones_id', self::$zones_id)
+                            ->save();
                 }
             }
 
@@ -95,15 +104,35 @@ class ZonesListing {
     private function data(): void {
         self::$count = 0;
 
-        self::$countries_multiselect_temp = Pdo::getIndex("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+        self::$countries_multiselect_temp = $this->db
+                ->read(TABLE_COUNTRIES)
+                ->selectIndex('id, name')
+                ->where('language=', lang('#lang_all')[0])
+                ->orderByDesc('id')
+                ->save();
+
         self::$countries_multiselect = array_column(self::$countries_multiselect_temp, 1, 0);
 
         asort(self::$countries_multiselect);
 
-        self::$regions_multiselect = Pdo::getAssoc("SELECT id, country_id, name, region_code  FROM " . TABLE_REGIONS . " WHERE language=?", [lang('#lang_all')[0]]);
-        self::$regions = Pdo::getAssoc("SELECT country_id, regions_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
+        self::$regions_multiselect = $this->db
+                ->read(TABLE_REGIONS)
+                ->selectAssoc('id, country_id, name, region_code')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
 
-        self::$sql_data = Pdo::getIndex("SELECT country_id FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [self::$zones_id]);
+        self::$regions = $this->db
+                ->read(TABLE_ZONES_VALUE)
+                ->selectAssoc('country_id, regions_id')
+                ->where('zones_id=', self::$zones_id)
+                ->save();
+
+        self::$sql_data = $this->db
+                ->read(TABLE_ZONES_VALUE)
+                ->selectIndex('country_id')
+                ->where('zones_id=', self::$zones_id)
+                ->save();
+
         self::$lines = array_values(array_unique(self::$sql_data, SORT_REGULAR));
         Pages::data(self::$lines);
     }
