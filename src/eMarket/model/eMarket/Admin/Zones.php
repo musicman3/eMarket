@@ -14,9 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Zones
@@ -31,6 +31,7 @@ class Zones {
 
     public static $routing_parameter = 'zones';
     public $title = 'title_zones_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -39,6 +40,7 @@ class Zones {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -62,11 +64,24 @@ class Zones {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_ZONES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_ZONES)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_ZONES . " SET id=?, name=?, note=?, language=?", [$id, Valid::inPOST('name_zones_' . $x), Valid::inPOST('note_zones'), lang('#lang_all')[$x]]);
+
+                $this->db
+                        ->create(TABLE_ZONES)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_zones_' . $x))
+                        ->set('note', Valid::inPOST('note_zones'))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -81,9 +96,14 @@ class Zones {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_ZONES . " SET name=?, note=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_zones_' . $x), Valid::inPOST('note_zones'), Valid::inPOST('edit'), lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_ZONES)
+                        ->set('name', Valid::inPOST('name_zones_' . $x))
+                        ->set('note', Valid::inPOST('note_zones'))
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -97,8 +117,15 @@ class Zones {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            Pdo::action("DELETE FROM " . TABLE_ZONES . " WHERE id=?", [Valid::inPOST('delete')]);
-            Pdo::action("DELETE FROM " . TABLE_ZONES_VALUE . " WHERE zones_id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete(TABLE_ZONES)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
+            $this->db
+                    ->delete(TABLE_ZONES_VALUE)
+                    ->where('zones_id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -109,7 +136,13 @@ class Zones {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " ORDER BY name", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_ZONES)
+                ->selectAssoc('*')
+                ->orderBy('name')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }
