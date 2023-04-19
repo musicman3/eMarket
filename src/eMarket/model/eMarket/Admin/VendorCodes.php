@@ -14,9 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Vendor Codes
@@ -31,6 +31,7 @@ class VendorCodes {
 
     public static $routing_parameter = 'vendor_codes';
     public $title = 'title_vendor_codes_index';
+    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -40,6 +41,7 @@ class VendorCodes {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -74,7 +76,13 @@ class VendorCodes {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = Pdo::getValue("SELECT id FROM " . TABLE_VENDOR_CODES . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db
+                    ->read(TABLE_VENDOR_CODES)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
@@ -82,9 +90,15 @@ class VendorCodes {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . TABLE_VENDOR_CODES . " SET id=?, name=?, language=?, vendor_code=?, default_vendor_code=?", [
-                    $id, Valid::inPOST('name_vendor_codes_' . $x), lang('#lang_all')[$x], Valid::inPOST('vendor_code_' . $x), $this->default
-                ]);
+
+                $this->db
+                        ->create(TABLE_VENDOR_CODES)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_vendor_codes_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('vendor_code', Valid::inPOST('vendor_code_' . $x))
+                        ->set('default_vendor_code', $this->default)
+                        ->save();
             }
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
@@ -103,10 +117,15 @@ class VendorCodes {
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET name=?, vendor_code=?, default_vendor_code=? WHERE id=? AND language=?", [
-                    Valid::inPOST('name_vendor_codes_' . $x), Valid::inPOST('vendor_code_' . $x), $this->default, Valid::inPOST('edit'),
-                    lang('#lang_all')[$x]
-                ]);
+
+                $this->db
+                        ->update(TABLE_VENDOR_CODES)
+                        ->set('name', Valid::inPOST('name_vendor_codes_' . $x))
+                        ->set('vendor_code', Valid::inPOST('vendor_code_' . $x))
+                        ->set('default_vendor_code', $this->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
@@ -119,7 +138,11 @@ class VendorCodes {
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
-            Pdo::action("DELETE FROM " . TABLE_VENDOR_CODES . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            $this->db
+                    ->delete(TABLE_VENDOR_CODES)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -130,7 +153,10 @@ class VendorCodes {
      *
      */
     private function recount(): void {
-        Pdo::action("UPDATE " . TABLE_VENDOR_CODES . " SET default_vendor_code=?", [0]);
+        $this->db
+                ->update(TABLE_VENDOR_CODES)
+                ->set('default_vendor_code', 0)
+                ->save();
     }
 
     /**
@@ -138,7 +164,13 @@ class VendorCodes {
      *
      */
     private function data(): void {
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " ORDER BY id DESC", []);
+
+        self::$sql_data = $this->db
+                ->read(TABLE_VENDOR_CODES)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
     }

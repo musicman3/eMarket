@@ -14,7 +14,6 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
 use Cruder\Cruder;
