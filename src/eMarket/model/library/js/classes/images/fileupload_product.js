@@ -31,7 +31,7 @@ class FileuploadProduct {
      */
     static process(resize_max, lang) {
         'use strict';
-        var url = '/uploads/temp/';
+        var url = '/uploads/temp/?route=product';
 
         var uploader = new ss.SimpleUpload({
             button: 'fileupload-product',

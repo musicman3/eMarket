@@ -36,19 +36,19 @@ final class Eac {
     public static $parent_id = 0;
     private static $resize_param = FALSE;
     private static $resize_param_product = FALSE;
-    private static $date_available = NULL;
-    private static $tax = NULL;
-    private static $unit = NULL;
-    private static $manufacturer = NULL;
-    private static $vendor_code = NULL;
-    private static $weight = NULL;
-    private static $dimension = NULL;
-    private static $currency = NULL;
-    private static $weight_value = NULL;
-    private static $length_value = NULL;
-    private static $width_value = NULL;
-    private static $height_value = NULL;
-    private static $min_quantity = NULL;
+    private $date_available = NULL;
+    private $tax = NULL;
+    private $unit = NULL;
+    private $manufacturer = NULL;
+    private $vendor_code = NULL;
+    private $weight = NULL;
+    private $dimension = NULL;
+    private $currency = NULL;
+    private $weight_value = NULL;
+    private $length_value = NULL;
+    private $width_value = NULL;
+    private $height_value = NULL;
+    private $min_quantity = NULL;
 
     /**
      * Constructor
@@ -661,55 +661,55 @@ final class Eac {
 
             // Format date after Datepicker
             if (Valid::inPOST('date_available_product_stock')) {
-                self::$date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
+                $this->date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
             }
 
             if (Valid::inPOST('tax_product_stock')) {
-                self::$tax = (int) Valid::inPOST('tax_product_stock');
+                $this->tax = (int) Valid::inPOST('tax_product_stock');
             }
 
             if (Valid::inPOST('unit_product_stock')) {
-                self::$unit = (int) Valid::inPOST('unit_product_stock');
+                $this->unit = (int) Valid::inPOST('unit_product_stock');
             }
 
             if (Valid::inPOST('manufacturers_product_stock')) {
-                self::$manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
+                $this->manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
             }
 
             if (Valid::inPOST('vendor_codes_product_stock')) {
-                self::$vendor_code = (int) Valid::inPOST('vendor_codes_product_stock');
+                $this->vendor_code = (int) Valid::inPOST('vendor_codes_product_stock');
             }
 
             if (Valid::inPOST('weight_product_stock')) {
-                self::$weight = (int) Valid::inPOST('weight_product_stock');
+                $this->weight = (int) Valid::inPOST('weight_product_stock');
             }
 
             if (Valid::inPOST('length_product_stock')) {
-                self::$dimension = (int) Valid::inPOST('length_product_stock');
+                $this->dimension = (int) Valid::inPOST('length_product_stock');
             }
 
             if (Valid::inPOST('currency_product_stock')) {
-                self::$currency = (int) Valid::inPOST('currency_product_stock');
+                $this->currency = (int) Valid::inPOST('currency_product_stock');
             }
 
             if (Valid::inPOST('weight_value_product_stock')) {
-                self::$weight_value = Valid::inPOST('weight_value_product_stock');
+                $this->weight_value = Valid::inPOST('weight_value_product_stock');
             }
 
             if (Valid::inPOST('value_length_product_stock')) {
-                self::$length_value = Valid::inPOST('value_length_product_stock');
+                $this->length_value = Valid::inPOST('value_length_product_stock');
             }
 
             if (Valid::inPOST('value_width_product_stock')) {
-                self::$width_value = Valid::inPOST('value_width_product_stock');
+                $this->width_value = Valid::inPOST('value_width_product_stock');
             }
 
             if (Valid::inPOST('value_height_product_stock')) {
-                self::$height_value = Valid::inPOST('value_height_product_stock');
+                $this->height_value = Valid::inPOST('value_height_product_stock');
             }
 
             if (Valid::inPOST('min_quantity_product_stock')) {
-                self::$min_quantity = Valid::inPOST('min_quantity_product_stock');
+                $this->min_quantity = Valid::inPOST('min_quantity_product_stock');
             }
 
             $selected_attributes = json_encode([]);
@@ -735,26 +735,26 @@ final class Eac {
                         ->set('language', lang('#lang_all')[$x])
                         ->set('parent_id', self::$parent_id)
                         ->set('date_added', SystemClock::nowSqlDateTime())
-                        ->set('date_available', self::$date_available)
+                        ->set('date_available', $this->date_available)
                         ->set('model', Valid::inPOST('model_product_stock'))
                         ->set('price', Valid::inPOST('price_product_stock'))
-                        ->set('currency', self::$currency)
+                        ->set('currency', $this->currency)
                         ->set('quantity', Valid::inPOST('quantity_product_stock'))
-                        ->set('unit', self::$unit)
+                        ->set('unit', $this->unit)
                         ->set('keyword', Valid::inPOST('keyword_product_stock_' . $x))
                         ->set('tags', Valid::inPOST('tags_product_stock_' . $x))
                         ->set('description', Valid::inPOST('description_product_stock_' . $x))
-                        ->set('tax', self::$tax)
-                        ->set('manufacturer', self::$manufacturer)
-                        ->set('vendor_code', self::$vendor_code)
+                        ->set('tax', $this->tax)
+                        ->set('manufacturer', $this->manufacturer)
+                        ->set('vendor_code', $this->vendor_code)
                         ->set('vendor_code_value', Valid::inPOST('vendor_code_value_product_stock'))
-                        ->set('weight', self::$weight)
-                        ->set('weight_value', self::$weight_value)
-                        ->set('dimension', self::$dimension)
-                        ->set('length', self::$length_value)
-                        ->set('width', self::$width_value)
-                        ->set('height', self::$height_value)
-                        ->set('min_quantity', self::$min_quantity)
+                        ->set('weight', $this->weight)
+                        ->set('weight_value', $this->weight_value)
+                        ->set('dimension', $this->dimension)
+                        ->set('length', $this->length_value)
+                        ->set('width', $this->width_value)
+                        ->set('height', $this->height_value)
+                        ->set('min_quantity', $this->min_quantity)
                         ->set('logo', json_encode([]))
                         ->set('discount', json_encode([]))
                         ->set('attributes', $selected_attributes)
@@ -777,55 +777,55 @@ final class Eac {
 
             // Format date after Datepicker
             if (Valid::inPOST('date_available_product_stock')) {
-                self::$date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
+                $this->date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
             }
 
             if (Valid::inPOST('tax_product_stock')) {
-                self::$tax = (int) Valid::inPOST('tax_product_stock');
+                $this->tax = (int) Valid::inPOST('tax_product_stock');
             }
 
             if (Valid::inPOST('unit_product_stock')) {
-                self::$unit = (int) Valid::inPOST('unit_product_stock');
+                $this->unit = (int) Valid::inPOST('unit_product_stock');
             }
 
             if (Valid::inPOST('manufacturers_product_stock')) {
-                self::$manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
+                $this->manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
             }
 
             if (Valid::inPOST('vendor_codes_product_stock')) {
-                self::$vendor_code = (int) Valid::inPOST('vendor_codes_product_stock');
+                $this->vendor_code = (int) Valid::inPOST('vendor_codes_product_stock');
             }
 
             if (Valid::inPOST('weight_product_stock')) {
-                self::$weight = (int) Valid::inPOST('weight_product_stock');
+                $this->weight = (int) Valid::inPOST('weight_product_stock');
             }
 
             if (Valid::inPOST('length_product_stock')) {
-                self::$dimension = (int) Valid::inPOST('length_product_stock');
+                $this->dimension = (int) Valid::inPOST('length_product_stock');
             }
 
             if (Valid::inPOST('currency_product_stock')) {
-                self::$currency = (int) Valid::inPOST('currency_product_stock');
+                $this->currency = (int) Valid::inPOST('currency_product_stock');
             }
 
             if (Valid::inPOST('weight_value_product_stock')) {
-                self::$weight_value = Valid::inPOST('weight_value_product_stock');
+                $this->weight_value = Valid::inPOST('weight_value_product_stock');
             }
 
             if (Valid::inPOST('value_length_product_stock')) {
-                self::$length_value = Valid::inPOST('value_length_product_stock');
+                $this->length_value = Valid::inPOST('value_length_product_stock');
             }
 
             if (Valid::inPOST('value_width_product_stock')) {
-                self::$width_value = Valid::inPOST('value_width_product_stock');
+                $this->width_value = Valid::inPOST('value_width_product_stock');
             }
 
             if (Valid::inPOST('value_height_product_stock')) {
-                self::$height_value = Valid::inPOST('value_height_product_stock');
+                $this->height_value = Valid::inPOST('value_height_product_stock');
             }
 
             if (Valid::inPOST('min_quantity_product_stock')) {
-                self::$min_quantity = Valid::inPOST('min_quantity_product_stock');
+                $this->min_quantity = Valid::inPOST('min_quantity_product_stock');
             }
 
             $selected_attributes = json_encode([]);
@@ -839,26 +839,26 @@ final class Eac {
                         ->update(TABLE_PRODUCTS)
                         ->set('name', Valid::inPOST('name_product_stock_' . $x))
                         ->set('last_modified', SystemClock::nowSqlDateTime())
-                        ->set('date_available', self::$date_available)
+                        ->set('date_available', $this->date_available)
                         ->set('model', Valid::inPOST('model_product_stock'))
                         ->set('price', Valid::inPOST('price_product_stock'))
-                        ->set('currency', self::$currency)
+                        ->set('currency', $this->currency)
                         ->set('quantity', Valid::inPOST('quantity_product_stock'))
-                        ->set('unit', self::$unit)
+                        ->set('unit', $this->unit)
                         ->set('keyword', Valid::inPOST('keyword_product_stock_' . $x))
                         ->set('tags', Valid::inPOST('tags_product_stock_' . $x))
                         ->set('description', Valid::inPOST('description_product_stock_' . $x))
-                        ->set('tax', self::$tax)
-                        ->set('manufacturer', self::$manufacturer)
-                        ->set('vendor_code', self::$vendor_code)
+                        ->set('tax', $this->tax)
+                        ->set('manufacturer', $this->manufacturer)
+                        ->set('vendor_code', $this->vendor_code)
                         ->set('vendor_code_value', Valid::inPOST('vendor_code_value_product_stock'))
-                        ->set('weight', self::$weight)
-                        ->set('weight_value', self::$weight_value)
-                        ->set('dimension', self::$dimension)
-                        ->set('length', self::$length_value)
-                        ->set('width', self::$width_value)
-                        ->set('height', self::$height_value)
-                        ->set('min_quantity', self::$min_quantity)
+                        ->set('weight', $this->weight)
+                        ->set('weight_value', $this->weight_value)
+                        ->set('dimension', $this->dimension)
+                        ->set('length', $this->length_value)
+                        ->set('width', $this->width_value)
+                        ->set('height', $this->height_value)
+                        ->set('min_quantity', $this->min_quantity)
                         ->set('attributes', $selected_attributes)
                         ->where('id=', Valid::inPOST('edit_product'))
                         ->and('language=', lang('#lang_all')[$x])
