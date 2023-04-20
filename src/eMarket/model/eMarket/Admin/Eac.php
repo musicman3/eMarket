@@ -33,9 +33,8 @@ use Cruder\Cruder;
 final class Eac {
 
     public $db;
-    public static $parent_id = 0;
-    private static $resize_param = FALSE;
-    private static $resize_param_product = FALSE;
+    private $resize_param = FALSE;
+    private $resize_param_product = FALSE;
     private $date_available = NULL;
     private $tax = NULL;
     private $unit = NULL;
@@ -49,6 +48,7 @@ final class Eac {
     private $width_value = NULL;
     private $height_value = NULL;
     private $min_quantity = NULL;
+    public static $parent_id = 0;
 
     /**
      * Constructor
@@ -72,13 +72,13 @@ final class Eac {
      */
     public function init(array $resize_param, array $resize_param_product): array {
 
-        self::$resize_param = $resize_param;
-        self::$resize_param_product = $resize_param_product;
+        $this->resize_param = $resize_param;
+        $this->resize_param_product = $resize_param_product;
 
         //Image loader for categories (INSERT BEFORE DELETING)
-        Files::imgUpload(TABLE_CATEGORIES, 'categories', self::$resize_param);
+        Files::imgUpload(TABLE_CATEGORIES, 'categories', $this->resize_param);
         //Image loader for products (INSERT BEFORE DELETING)
-        Files::imgUploadProduct(TABLE_PRODUCTS, 'products', self::$resize_param_product);
+        Files::imgUploadProduct(TABLE_PRODUCTS, 'products', $this->resize_param_product);
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 
@@ -625,10 +625,10 @@ final class Eac {
     private function deleteImages(string $TABLE, string|int $keys, string $path): void {
 
         if ($path == 'categories') {
-            $resize = self::$resize_param;
+            $resize = $this->resize_param;
         }
         if ($path == 'products') {
-            $resize = self::$resize_param_product;
+            $resize = $this->resize_param_product;
         }
 
         $data = $this->db
