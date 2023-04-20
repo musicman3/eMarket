@@ -109,7 +109,13 @@ class ContextMenu {
 
                                 for (var x = 0; x < json_data_product.name.length; x++) {
                                     document.querySelector('#name_product_stock_' + x).value = json_data_product.name[x][modal_id];
-                                    tinymce.get('description_product_stock_' + x).setContent(json_data_product.description[x][modal_id]);
+                                    
+                                    var description = '';
+                                    if (json_data_product.description[x][modal_id] !== null){
+                                        description = json_data_product.description[x][modal_id];
+                                    }
+                                    tinymce.get('description_product_stock_' + x).setContent(description);
+                                    
                                     document.querySelector('#keyword_product_stock_' + x).value = json_data_product.keyword[x][modal_id];
                                     document.querySelector('#tags_product_stock_' + x).value = json_data_product.tags[x][modal_id];
                                 }
