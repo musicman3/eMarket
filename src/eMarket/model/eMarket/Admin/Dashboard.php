@@ -34,7 +34,7 @@ class Dashboard {
     public static $routing_parameter = 'dashboard';
     public $title = 'title_dashboard_index';
     public $db;
-    public $DbPattern;
+    public $db_functions;
     public $orders_quantity = FALSE;
     public $amount_of_orders = FALSE;
     public $day_of_week = FALSE;
@@ -50,7 +50,7 @@ class Dashboard {
      */
     function __construct() {
         $this->db = new Cruder();
-        $this->DbPattern = new DbFunctions();
+        $this->db_functions = new DbFunctions();
         $this->cardOrdersData();
         $this->jsonData();
         $this->customersData();
@@ -145,13 +145,13 @@ class Dashboard {
             $order_currency = $json_decode_month_amount['data']['currency'];
 
             for ($x = 0; $x < 7; $x++) {
-                if ($orders_value[$this->DbPattern->pattern('DAYOFWEEK', 'date_purchased')] == $x + 1) {
+                if ($orders_value[$this->db_functions->pattern('DAYOFWEEK', 'date_purchased')] == $x + 1) {
                     $day_count[$x]++;
                 }
             }
 
             for ($x = 0; $x < 12; $x++) {
-                if ($orders_value[$this->DbPattern->pattern('MONTH', 'date_purchased')] == $x + 1) {
+                if ($orders_value[$this->db_functions->pattern('MONTH', 'date_purchased')] == $x + 1) {
                     $month_count[$x]++;
                     $month_amount[$x] = $month_amount[$x] + Ecb::currencyPrice($total_to_pay, $order_currency);
                 }
