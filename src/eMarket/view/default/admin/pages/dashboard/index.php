@@ -25,7 +25,7 @@ use \eMarket\Admin\{
             <div class="card h-100">
                 <div class="card-header text-white bg-success"><?php echo lang('dashboard_new_customers') ?></div>
                 <div class="card-body">
-                    <h4 class="card-title"><?php echo count(Dashboard::customersData()) ?></h4>
+                    <h4 class="card-title"><?php echo count(Dashboard::$customers) ?></h4>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ use \eMarket\Admin\{
                 <div class="card-header text-white bg-danger"><?php echo lang('dashboard_period') ?></div>
                 <div class="card-body">
                     <select id="years" class="form-select text-center border-danger">
-                        <?php for ($x = SystemClock::nowFormatDate('Y'); $x > Dashboard::minYear() - 1; $x--) { ?>
+                        <?php for ($x = SystemClock::nowFormatDate('Y'); $x > Dashboard::$min_year - 1; $x--) { ?>
                             <option value="<?php echo $x ?>"<?php echo Dashboard::selectedYear($x) ?>><?php echo $x ?></option>
                         <?php } ?>
                     </select>

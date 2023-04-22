@@ -60,7 +60,6 @@ final class Eac {
         $this->parentIdStart();
         $this->addCategory();
         $this->editCategory();
-        $this->productVarSet();
         $this->addProduct();
         $this->editProduct();
         $this->sortList();
@@ -655,58 +654,47 @@ final class Eac {
     }
 
     /**
-     * Product var set
+     * Product vars set
+     * 
      */
-    private function productVarSet(): void {
+    private function productVarsSet(): void {
         // Format date after Datepicker
         if (Valid::inPOST('date_available_product_stock')) {
             $this->date_available = SystemClock::getSqlDate(Valid::inPOST('date_available_product_stock'));
         }
-
         if (Valid::inPOST('tax_product_stock')) {
             $this->tax = (int) Valid::inPOST('tax_product_stock');
         }
-
         if (Valid::inPOST('unit_product_stock')) {
             $this->unit = (int) Valid::inPOST('unit_product_stock');
         }
-
         if (Valid::inPOST('manufacturers_product_stock')) {
             $this->manufacturer = (int) Valid::inPOST('manufacturers_product_stock');
         }
-
         if (Valid::inPOST('vendor_codes_product_stock')) {
             $this->vendor_code = (int) Valid::inPOST('vendor_codes_product_stock');
         }
-
         if (Valid::inPOST('weight_product_stock')) {
             $this->weight = (int) Valid::inPOST('weight_product_stock');
         }
-
         if (Valid::inPOST('length_product_stock')) {
             $this->dimension = (int) Valid::inPOST('length_product_stock');
         }
-
         if (Valid::inPOST('currency_product_stock')) {
             $this->currency = (int) Valid::inPOST('currency_product_stock');
         }
-
         if (Valid::inPOST('weight_value_product_stock')) {
             $this->weight_value = Valid::inPOST('weight_value_product_stock');
         }
-
         if (Valid::inPOST('value_length_product_stock')) {
             $this->length_value = Valid::inPOST('value_length_product_stock');
         }
-
         if (Valid::inPOST('value_width_product_stock')) {
             $this->width_value = Valid::inPOST('value_width_product_stock');
         }
-
         if (Valid::inPOST('value_height_product_stock')) {
             $this->height_value = Valid::inPOST('value_height_product_stock');
         }
-
         if (Valid::inPOST('min_quantity_product_stock')) {
             $this->min_quantity = Valid::inPOST('min_quantity_product_stock');
         }
@@ -723,6 +711,8 @@ final class Eac {
     private function addProduct(): void {
 
         if (Valid::inPOST('add_product')) {
+
+            $this->productVarsSet();
 
             $id_max = $this->db
                     ->read(TABLE_PRODUCTS)
@@ -781,6 +771,8 @@ final class Eac {
     private function editProduct(): void {
 
         if (Valid::inPOST('edit_product')) {
+
+            $this->productVarsSet();
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
