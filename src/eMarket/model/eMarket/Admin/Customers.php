@@ -108,10 +108,10 @@ class Customers {
             $lines = $this->db
                     ->read(TABLE_CUSTOMERS)
                     ->selectIndex('*')
-                    ->where('firstname LIKE', $search)
-                    ->or('lastname LIKE', $search)
-                    ->or('middle_name LIKE', $search)
-                    ->or('email LIKE', $search)
+                    ->where('firstname {{LIKE}}', $search)
+                    ->or('lastname {{LIKE}}', $search)
+                    ->or('middle_name {{LIKE}}', $search)
+                    ->or('email {{LIKE}}', $search)
                     ->orderByDesc('id')
                     ->save();
         } else {

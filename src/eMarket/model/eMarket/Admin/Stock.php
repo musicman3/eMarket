@@ -222,7 +222,7 @@ class Stock {
             $sql_data_cat_search = $this->db
                     ->read(TABLE_CATEGORIES)
                     ->selectAssoc('id')
-                    ->where('name LIKE', $search)
+                    ->where('name {{LIKE}}', $search)
                     ->and('language=', lang('#lang_all')[0])
                     ->orderByDesc('sort_category')
                     ->save();
@@ -247,9 +247,9 @@ class Stock {
             $sql_data_prod_search = $this->db
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('id')
-                    ->where('name LIKE', $search)
+                    ->where('name {{LIKE}}', $search)
                     ->and('language=', lang('#lang_all')[0])
-                    ->or('description LIKE', $search)
+                    ->or('description {{LIKE}}', $search)
                     ->and('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
                     ->save();
