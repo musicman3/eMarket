@@ -12,9 +12,9 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Authorize,
     Messages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Address Book
@@ -29,6 +29,7 @@ class AddressBook {
 
     public static $routing_parameter = 'address_book';
     public $title = 'title_address_book_index';
+    public $db;
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
@@ -40,6 +41,7 @@ class AddressBook {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->authorize();
         $this->jsonEcho();
         $this->initData();
@@ -55,7 +57,7 @@ class AddressBook {
      *
      */
     private function authorize(): void {
-        if (Authorize::$customer == FALSE) {
+        if (!Authorize::$customer) {
             header('Location: ?route=login');
             exit;
         }
@@ -67,9 +69,15 @@ class AddressBook {
      */
     private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
-            self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
-                        lang('#lang_all')[0], Valid::inPostJson('countries_select')
-            ]);
+
+            self::$regions_data = $this->db
+                    ->read(TABLE_REGIONS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('country_id=', Valid::inPostJson('countries_select'))
+                    ->orderByAsc('name')
+                    ->save();
+
             echo json_encode(self::$regions_data);
             exit;
         }
@@ -80,10 +88,21 @@ class AddressBook {
      *
      */
     private function initData(): void {
-        $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+
+        $countries_array = $this->db
+                ->read(TABLE_COUNTRIES)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->orderByAsc('name')
+                ->save();
+
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']]);
+        self::$address_data_json = $this->db
+                ->read(TABLE_CUSTOMERS)
+                ->selectValue('address_book')
+                ->where('email=', $_SESSION['customer_email'])
+                ->save();
 
         if (self::$address_data_json == FALSE) {
             self::$address_data = [];
@@ -126,7 +145,11 @@ class AddressBook {
             }
             array_unshift(self::$address_data, $address_array);
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['customer_email']]);
+            $this->db
+                    ->update(TABLE_CUSTOMERS)
+                    ->set('address_book', json_encode(self::$address_data))
+                    ->where('email=', $_SESSION['customer_email'])
+                    ->save();
 
             Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
@@ -156,7 +179,11 @@ class AddressBook {
 
             self::$address_data[(int) Valid::inPOST('edit') - 1] = $address_array;
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [json_encode(self::$address_data), $_SESSION['customer_email']]);
+            $this->db
+                    ->update(TABLE_CUSTOMERS)
+                    ->set('address_book', json_encode(self::$address_data))
+                    ->where('email=', $_SESSION['customer_email'])
+                    ->save();
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
@@ -184,7 +211,11 @@ class AddressBook {
                 $address_data_out_table = json_encode($address_data_out);
             }
 
-            Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET address_book=? WHERE email=?", [$address_data_out_table, $_SESSION['customer_email']]);
+            $this->db
+                    ->update(TABLE_CUSTOMERS)
+                    ->set('address_book', $address_data_out_table)
+                    ->where('email=', $_SESSION['customer_email'])
+                    ->save();
 
             Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
@@ -197,8 +228,23 @@ class AddressBook {
     private function data(): void {
         $x = 0;
         foreach (self::$address_data as $address_val) {
-            $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-            $regions_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+
+            $countries_array = $this->db
+                            ->read(TABLE_COUNTRIES)
+                            ->selectAssoc('*')
+                            ->where('language=', lang('#lang_all')[0])
+                            ->and('id=', $address_val['countries_id'])
+                            ->orderByAsc('name')
+                            ->save()[0];
+
+            $regions_array = $this->db
+                            ->read(TABLE_REGIONS)
+                            ->selectAssoc('id, name')
+                            ->where('language=', lang('#lang_all')[0])
+                            ->and('id=', $address_val['regions_id'])
+                            ->orderByAsc('name')
+                            ->save()[0];
+
             if ($address_val['countries_id'] == $countries_array['id']) {
                 self::$address_data[$x]['countries_name'] = $countries_array['name'];
                 self::$address_data[$x]['alpha_2'] = $countries_array['alpha_2'];
