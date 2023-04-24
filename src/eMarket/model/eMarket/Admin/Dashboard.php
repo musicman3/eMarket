@@ -89,7 +89,7 @@ class Dashboard {
 
             $min_clients_id = $this->db
                     ->read(TABLE_CUSTOMERS)
-                    ->selectValue('{MIN->id}')
+                    ->selectValue('{{MIN->id}}')
                     ->save();
 
             $min_clients = SystemClock::nowFormatDate('Y');
@@ -97,7 +97,7 @@ class Dashboard {
             if ($min_clients_id != FALSE) {
                 $min_clients = $this->db
                         ->read(TABLE_CUSTOMERS)
-                        ->selectValue('{YEAR->date_account_created}')
+                        ->selectValue('{{YEAR->date_account_created}}')
                         ->where('id=', $min_clients_id)
                         ->save();
             }
@@ -130,8 +130,8 @@ class Dashboard {
 
         $orders = $this->db
                 ->read(TABLE_ORDERS)
-                ->selectAssoc('email, order_total, {DAYOFWEEK->date_purchased}, {MONTH->date_purchased}, {YEAR->date_purchased}')
-                ->where('{YEAR->date_purchased}=', $year)
+                ->selectAssoc('email, order_total, {{DAYOFWEEK->date_purchased}}, {{MONTH->date_purchased}}, {{YEAR->date_purchased}}')
+                ->where('{{YEAR->date_purchased}}=', $year)
                 ->save();
 
         $month_count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -240,7 +240,7 @@ class Dashboard {
             self::$customers = $this->db
                     ->read(TABLE_CUSTOMERS)
                     ->selectAssoc('id')
-                    ->where('{YEAR->date_account_created}=', $this->selectYear())
+                    ->where('{{YEAR->date_account_created}}=', $this->selectYear())
                     ->save();
         }
     }

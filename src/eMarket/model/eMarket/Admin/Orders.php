@@ -158,10 +158,10 @@ class Orders {
             self::$sql_data = $this->db
                     ->read(TABLE_ORDERS)
                     ->selectAssoc('*')
-                    ->where('id LIKE', $search)
-                    ->or('email LIKE', $search)
-                    ->or('customer_data RLIKE', '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
-                    ->or('customer_data RLIKE', '"firstname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
+                    ->where('id {{LIKE}}', $search)
+                    ->or('email {{LIKE}}', $search)
+                    ->or('customer_data {{RLIKE}} ', '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
+                    ->or('customer_data {{RLIKE}} ', '"firstname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
                     ->orderByDesc('id')
                     ->save();
         } else {
