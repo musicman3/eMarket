@@ -12,7 +12,6 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Ecb,
     Pages,
-    Pdo,
     Products,
     Valid
 };

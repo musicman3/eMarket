@@ -13,9 +13,9 @@ use eMarket\Core\{
     Clock\SystemClock,
     Cryptography,
     Messages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Login
@@ -30,12 +30,14 @@ class Login {
 
     public static $routing_parameter = 'login';
     public $title = 'title_login_index';
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->activationCode();
         $this->passwordRecovery();
         $this->logout();
@@ -48,16 +50,46 @@ class Login {
      */
     private function activationCode(): void {
         if (Valid::inGET('activation_code')) {
-            $id_actvation = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE activation_code=?", [Valid::inGET('activation_code')]);
+
+            $id_actvation = $this->db
+                    ->read(TABLE_CUSTOMERS_ACTIVATION)
+                    ->selectValue('id')
+                    ->where('activation_code=', Valid::inGET('activation_code'))
+                    ->save();
+
             if ($id_actvation != NULL) {
-                $account_date = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_account_created) FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
+
+                $id_actvation = $this->db
+                        ->read(TABLE_CUSTOMERS)
+                        ->selectValue('{{UNIX_TIMESTAMP->date_account_created}}')
+                        ->where('id=', $id_actvation)
+                        ->save();
+
                 if ($account_date + (3 * 24 * 60 * 60) > SystemClock::nowUnixTime()) {
-                    Pdo::action("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
-                    Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET status=? WHERE id=?", [1, $id_actvation]);
+
+                    $this->db
+                            ->delete(TABLE_CUSTOMERS_ACTIVATION)
+                            ->where('id=', $id_actvation)
+                            ->save();
+
+                    $this->db
+                            ->update(TABLE_CUSTOMERS)
+                            ->set('status', 1)
+                            ->where('id=', $id_actvation)
+                            ->save();
+
                     Messages::alert('messages_activation_complete', 'success', lang('messages_activation_complete'), 7000, true);
                 } else {
-                    Pdo::action("DELETE FROM " . TABLE_CUSTOMERS_ACTIVATION . " WHERE id=?", [$id_actvation]);
-                    Pdo::action("DELETE FROM " . TABLE_CUSTOMERS . " WHERE id=?", [$id_actvation]);
+
+                    $this->db
+                            ->delete(TABLE_CUSTOMERS_ACTIVATION)
+                            ->where('id=', $id_actvation)
+                            ->save();
+
+                    $this->db
+                            ->delete(TABLE_CUSTOMERS)
+                            ->where('id=', $id_actvation)
+                            ->save();
                 }
             }
         }
@@ -69,11 +101,28 @@ class Login {
      */
     private function passwordRecovery(): void {
         if (Valid::inPOST('email_for_recovery')) {
-            $customer_id = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email_for_recovery')]);
-            $recovery_check = Pdo::getValue("SELECT recovery_code FROM " . TABLE_PASSWORD_RECOVERY . " WHERE customer_id=?", [$customer_id]);
+
+            $customer_id = $this->db
+                    ->read(TABLE_CUSTOMERS)
+                    ->selectValue('id')
+                    ->where('email=', Valid::inPOST('email_for_recovery'))
+                    ->save();
+
+            $recovery_check = $this->db
+                    ->read(TABLE_PASSWORD_RECOVERY)
+                    ->selectValue('recovery_code')
+                    ->where('customer_id=', $customer_id)
+                    ->save();
+
             if ($customer_id != FALSE && $recovery_check == FALSE) {
                 $recovery_code = Cryptography::getToken(64);
-                Pdo::action("INSERT INTO " . TABLE_PASSWORD_RECOVERY . " SET customer_id=?, recovery_code=?, recovery_code_created=?", [$customer_id, $recovery_code, SystemClock::nowSqlDateTime()]);
+
+                $this->db
+                        ->create(TABLE_PASSWORD_RECOVERY)
+                        ->set('customer_id', $customer_id)
+                        ->set('recovery_code', $recovery_code)
+                        ->set('recovery_code_created', SystemClock::nowSqlDateTime())
+                        ->save();
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
                 Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
@@ -81,7 +130,13 @@ class Login {
                 Messages::alert('register_password_recovery_message_success', 'success', lang('register_password_recovery_message_success'), 7000, true);
             } elseif ($customer_id != FALSE && $recovery_check != FALSE) {
                 $recovery_code = Cryptography::getToken(64);
-                Pdo::action("UPDATE " . TABLE_PASSWORD_RECOVERY . " SET recovery_code=?, recovery_code_created=? WHERE customer_id=?", [$recovery_code, SystemClock::nowSqlDateTime(), $customer_id]);
+
+                $this->db
+                        ->update(TABLE_PASSWORD_RECOVERY)
+                        ->set('recovery_code', $recovery_code)
+                        ->set('recovery_code_created', SystemClock::nowSqlDateTime())
+                        ->where('customer_id=', $customer_id)
+                        ->save();
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
                 Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
@@ -112,7 +167,13 @@ class Login {
      */
     private function entry(): void {
         if (Valid::inPOST('email')) {
-            $HASH = (string) Pdo::getValue("SELECT password FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
+
+            $HASH = (string) $this->db
+                            ->read(TABLE_CUSTOMERS)
+                            ->selectValue('password')
+                            ->where('email=', Valid::inPOST('email'))
+                            ->save();
+
             if (!password_verify(Valid::inPOST('password'), $HASH)) {
                 Messages::alert('messages_email_or_password_is_not_correct', 'danger', lang('messages_email_or_password_is_not_correct'), 7000, true);
             } else {
