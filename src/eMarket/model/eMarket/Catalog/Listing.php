@@ -16,6 +16,7 @@ use eMarket\Core\{
     Products,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Listing
@@ -30,21 +31,22 @@ class Listing {
 
     public static $routing_parameter = 'listing';
     public $title = 'title_listing_index';
-    public static $checked_stock = FALSE;
-    public static $sort_parameter = FALSE;
+    public $db;
+    public static $checked_stock = '';
+    public $sort_parameter = '';
     public static $sort_name;
     public static $sort_flag;
     public static $categories_name;
     public static $product_edit;
-    public static $lines;
+    public static $sql_data;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->title();
-        $this->initData();
         $this->data();
         $this->modal();
     }
@@ -54,22 +56,26 @@ class Listing {
      *
      */
     private function title(): void {
-        $title = Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], Valid::inGET('category_id')]);
+        $title = $this->db
+                ->read(TABLE_CATEGORIES)
+                ->selectValue('name')
+                ->where('language=', lang('#lang_all')[0])
+                ->and('id=', Valid::inGET('category_id'))
+                ->save();
+
         $this->title = lang('title_listing_index') . ': ' . $title;
     }
 
     /**
-     * Init Data
+     * Sorting data
      *
+     * @param object $sql_data sql_data object
      */
-    private function initData(): void {
-        self::$checked_stock = '';
-        $qnt_flag = 'AND quantity>0 ';
+    private function sorting(object $sql_data): mixed {
         self::$sort_flag = 'off';
 
         if (Valid::inGET('change') == 'on' OR !Valid::inGET('change')) {
             self::$checked_stock = ' checked';
-            $qnt_flag = '';
         }
 
         if (!Valid::inGET('sort')) {
@@ -77,20 +83,20 @@ class Listing {
         }
 
         if (!Valid::inGET('sort') OR Valid::inGET('sort') == 'default') {
-            self::$sort_parameter = $qnt_flag . 'ORDER BY id DESC';
             self::$sort_name = lang('listing_sort_by_default');
+            return $sql_data->orderByDesc('id');
         }
         if (Valid::inGET('sort') == 'name') {
-            self::$sort_parameter = $qnt_flag . 'ORDER BY name ASC';
             self::$sort_name = lang('listing_sort_by_name');
+            return $sql_data->orderByAsc('name');
         }
         if (Valid::inGET('sort') == 'up') {
-            self::$sort_parameter = $qnt_flag . 'ORDER BY price ASC';
             self::$sort_name = lang('listing_sort_by_price_asc');
+            return $sql_data->orderByAsc('price');
         }
         if (Valid::inGET('sort') == 'down') {
-            self::$sort_parameter = $qnt_flag . 'ORDER BY price DESC';
             self::$sort_name = lang('listing_sort_by_price_desc');
+            return $sql_data->orderByDesc('price');
         }
     }
 
@@ -132,15 +138,35 @@ class Listing {
     private function data(): void {
         if (Valid::inGET('search')) {
             $search = '%' . Valid::inGET('search') . '%';
-            self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE (name LIKE? OR description LIKE?) AND language=? AND status=? " . self::$sort_parameter, [
-                        $search, $search, lang('#lang_all')[0], 1
-            ]);
+
+            $sql_data = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('name {{LIKE}}', $search)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->and('status=', 1)
+                    ->and('quantity>', 0)
+                    ->or('description {{LIKE}}', $search)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->and('status=', 1)
+                    ->and('quantity>', 0);
+
+            self::$sql_data = $this->sorting($sql_data)->save();
         } else {
-            self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=? AND status=? " . self::$sort_parameter, [
-                        lang('#lang_all')[0], Valid::inGET('category_id'), 1
-            ]);
+
+            $sql_data = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('parent_id=', Valid::inGET('category_id'))
+                    ->and('status=', 1)
+                    ->and('quantity>', 0);
+
+            self::$sql_data = $this->sorting($sql_data)->save();
         }
-        Pages::data(self::$lines);
+
+        Pages::data(self::$sql_data);
+
         if (Valid::inGET('category_id')) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
         }
@@ -153,11 +179,17 @@ class Listing {
     private function modal(): void {
         self::$product_edit = json_encode([]);
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
-            if (isset(self::$lines[$i]['id']) == TRUE) {
+            if (isset(self::$sql_data[$i]['id']) == TRUE) {
 
-                $modal_id = self::$lines[$i]['id'];
+                $modal_id = self::$sql_data[$i]['id'];
 
-                $query = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? and language=?", [$modal_id, lang('#lang_all')[0]])[0];
+                $query = $this->db
+                                ->read(TABLE_PRODUCTS)
+                                ->selectAssoc('*')
+                                ->where('id=', $modal_id)
+                                ->and('language=', lang('#lang_all')[0])
+                                ->save()[0];
+
                 $product_temp[$modal_id] = $query;
                 $product_temp[$modal_id]['price_formated'] = Ecb::priceInterface($query, 2);
 
