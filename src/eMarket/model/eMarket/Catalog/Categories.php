@@ -14,6 +14,7 @@ use eMarket\Core\{
     Valid,
     Tree
 };
+use Cruder\Cruder;
 
 /**
  * Index
@@ -36,7 +37,15 @@ class Categories {
      * @return obj
      */
     public static function data(): void {
-        $sql = Pdo::getObj("SELECT id, name, status, parent_id FROM " . TABLE_CATEGORIES . " WHERE language=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 1]);
+        $db = new Cruder();
+        $sql = $db
+                ->read(TABLE_CATEGORIES)
+                ->selectObj('id, name, status, parent_id')
+                ->where('language=', lang('#lang_all')[0])
+                ->and('status=', 1)
+                ->orderByDesc('sort_category')
+                ->save();
+
         self::$categories_and_breadcrumb = Tree::categories($sql, Valid::inGET('category_id'));
     }
 
@@ -46,7 +55,15 @@ class Categories {
      * @return string url
      */
     public static function indexData(): void {
-        self::$index_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], 0, 1]);
+        $db = new Cruder();
+        self::$index_data = $db
+                ->read(TABLE_CATEGORIES)
+                ->selectIndex('id, name, logo_general, status')
+                ->where('language=', lang('#lang_all')[0])
+                ->and('parent_id=', 0)
+                ->and('status=', 1)
+                ->orderByDesc('sort_category')
+                ->save();
     }
 
     /**
@@ -55,7 +72,15 @@ class Categories {
      * @return string url
      */
     public static function listingData(): void {
-        self::$listing_data = Pdo::getIndex("SELECT id, name, logo_general, status FROM " . TABLE_CATEGORIES . " WHERE language=? AND parent_id=? AND status=? ORDER BY sort_category DESC", [lang('#lang_all')[0], Valid::inGET('category_id'), 1]);
+        $db = new Cruder();
+        self::$listing_data = $db
+                ->read(TABLE_CATEGORIES)
+                ->selectIndex('id, name, logo_general, status')
+                ->where('language=', lang('#lang_all')[0])
+                ->and('parent_id=', Valid::inGET('category_id'))
+                ->and('status=', 1)
+                ->orderByDesc('sort_category')
+                ->save();
     }
 
 }
