@@ -14,6 +14,7 @@ use eMarket\Core\{
     Pages,
     Pdo
 };
+use Cruder\Cruder;
 
 /**
  * Orders
@@ -28,6 +29,7 @@ class Orders {
 
     public static $routing_parameter = 'orders';
     public $title = 'title_orders_index';
+    public $db;
     public static $lines;
     public static $orders_edit = FALSE;
 
@@ -36,6 +38,7 @@ class Orders {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->authorize();
         $this->data();
         $this->modal();
@@ -57,7 +60,14 @@ class Orders {
      *
      */
     private function data(): void {
-        self::$lines = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE email=? ORDER BY id DESC", [$_SESSION['customer_email']]);
+
+        self::$lines = $this->db
+                ->read(TABLE_ORDERS)
+                ->selectAssoc('*')
+                ->where('email=', $_SESSION['customer_email'])
+                ->orderByDesc('id')
+                ->save();
+
         Pages::data(self::$lines);
     }
 
