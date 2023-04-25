@@ -15,10 +15,10 @@ use eMarket\Core\{
     Func,
     DataBuffer,
     Payment,
-    Pdo,
     Shipping,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Cart
@@ -33,6 +33,7 @@ class Cart {
 
     public static $routing_parameter = 'cart';
     public $title = 'title_cart_index';
+    public $db;
     public static $cart_info = FALSE;
     public static $address_data = FALSE;
     public static $products_order = FALSE;
@@ -44,6 +45,7 @@ class Cart {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->addProduct();
         $this->editProduct();
         $this->deleteProduct();
@@ -222,7 +224,14 @@ class Cart {
         if (isset($_SESSION['cart'])) {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
-                $product = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value['id']]);
+
+                $product = $this->db
+                        ->read(TABLE_PRODUCTS)
+                        ->selectAssoc('*')
+                        ->where('language=', lang('#lang_all')[0])
+                        ->and('id=', $value['id'])
+                        ->save();
+
                 if ($product != FALSE) {
                     array_push($output, $product[0]);
                 } else {
@@ -246,7 +255,11 @@ class Cart {
             if (isset($_SESSION['without_registration_data'])) {
                 self::$address_data_json = $_SESSION['without_registration_data'];
             } else {
-                self::$address_data_json = Pdo::getValue("SELECT address_book FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']]);
+                self::$address_data_json = $this->db
+                        ->read(TABLE_CUSTOMERS)
+                        ->selectValue('address_book')
+                        ->where('email=', $_SESSION['customer_email'])
+                        ->save();
             }
 
             if (self::$address_data_json != FALSE) {
@@ -255,8 +268,23 @@ class Cart {
 
             $x = 0;
             foreach (self::$address_data as $address_val) {
-                $countries_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-                $regions_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+
+                $countries_array = $this->db
+                                ->read(TABLE_COUNTRIES)
+                                ->selectAssoc('id, name')
+                                ->where('language=', lang('#lang_all')[0])
+                                ->and('id=', $address_val['countries_id'])
+                                ->orderByAsc('name')
+                                ->save()[0];
+
+                $regions_array = $this->db
+                                ->read(TABLE_REGIONS)
+                                ->selectAssoc('id, name')
+                                ->where('language=', lang('#lang_all')[0])
+                                ->and('id=', $address_val['regions_id'])
+                                ->orderByAsc('name')
+                                ->save()[0];
+
                 if ($address_val['countries_id'] == $countries_array['id']) {
                     self::$address_data[$x]['countries_name'] = $countries_array['name'];
                     self::$address_data[$x]['regions_name'] = $regions_array['name'];
@@ -302,11 +330,17 @@ class Cart {
      */
     public static function totalPrice(): float {
 
+        $db = new Cruder();
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $product = Pdo::getAssoc("SELECT price, currency FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [
-                            $value['id'], lang('#lang_all')[0]])[0];
+
+                $product = $db
+                                ->read(TABLE_PRODUCTS)
+                                ->selectAssoc('price, currency')
+                                ->where('language=', lang('#lang_all')[0])
+                                ->and('id=', $value['id'])
+                                ->save()[0];
 
                 $total_price = $total_price + Ecb::currencyPrice($product['price'], $product['currency']) * $value['quantity'];
             }
