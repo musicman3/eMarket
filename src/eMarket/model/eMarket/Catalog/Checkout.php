@@ -14,6 +14,7 @@ use eMarket\Core\{
     Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Checkout
@@ -28,6 +29,7 @@ class Checkout {
 
     public static $routing_parameter = 'checkout';
     public $title = 'title_checkout_index';
+    public $db;
     public static $customer;
     public static $address_data;
 
@@ -36,6 +38,7 @@ class Checkout {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->authorize();
         $this->customerData();
         $this->customerAddress();
@@ -70,7 +73,13 @@ class Checkout {
                 'telephone' => $without_registration_user['telephone']
             ];
         } else {
-            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
+
+            self::$customer = $this->db
+                            ->read(TABLE_CUSTOMERS)
+                            ->selectAssoc('id, address_book, gender, firstname, lastname, middle_name, fax, telephone')
+                            ->where('email=', $_SESSION['customer_email'])
+                            ->orderByDesc('id')
+                            ->save()[0];
         }
     }
 
