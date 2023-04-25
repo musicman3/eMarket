@@ -13,9 +13,9 @@ use eMarket\Core\{
     Authorize,
     Cryptography,
     Messages,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * My Account
@@ -30,12 +30,14 @@ class MyAccount {
 
     public static $routing_parameter = 'my_account';
     public $title = 'title_my_account_index';
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->authorize();
         $this->edit();
     }
@@ -59,17 +61,26 @@ class MyAccount {
         if (Valid::inPOST('edit')) {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
                 $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
-                Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=?, password=? WHERE email=?", [
-                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
-                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'), $password_hash,
-                    Authorize::$customer['email']
-                ]);
+
+                $this->db
+                        ->update(TABLE_CUSTOMERS)
+                        ->set('firstname', Valid::inPOST('firstname'))
+                        ->set('lastname', Valid::inPOST('lastname'))
+                        ->set('middle_name', Valid::inPOST('middle_name'))
+                        ->set('telephone', Valid::inPOST('telephone'))
+                        ->set('password', $password_hash)
+                        ->where('email=', Authorize::$customer['email'])
+                        ->save();
             } else {
-                Pdo::action("UPDATE " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, middle_name=?, telephone=? WHERE email=?", [
-                    Valid::inPOST('firstname'), Valid::inPOST('lastname'),
-                    Valid::inPOST('middle_name'), Valid::inPOST('telephone'),
-                    Authorize::$customer['email']
-                ]);
+
+                $this->db
+                        ->update(TABLE_CUSTOMERS)
+                        ->set('firstname', Valid::inPOST('firstname'))
+                        ->set('lastname', Valid::inPOST('lastname'))
+                        ->set('middle_name', Valid::inPOST('middle_name'))
+                        ->set('telephone', Valid::inPOST('telephone'))
+                        ->where('email=', Authorize::$customer['email'])
+                        ->save();
             }
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
