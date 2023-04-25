@@ -12,7 +12,6 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Authorize,
     Pages,
-    Pdo
 };
 use Cruder\Cruder;
 
