@@ -137,13 +137,15 @@ class Messages {
      * @param string $to ('To' contact)
      * @param string $body (message)
      */
-    public static function sendProviders(string $to, ?string $body): void {
+    public static function sendProviders(?string $to, ?string $body): void {
 
-        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
-        foreach ($active_modules as $module) {
-            $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
-            $namespace::data();
-            $namespace::send($to, $body);
+        if ($to !== null) {
+            $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
+            foreach ($active_modules as $module) {
+                $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
+                $namespace::data();
+                $namespace::send($to, $body);
+            }
         }
     }
 

@@ -21,6 +21,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Success
@@ -35,6 +36,7 @@ class Success {
 
     public static $routing_parameter = 'success';
     public $title = 'title_success_index';
+    public $db;
     public static $customer_orders_status_history;
     public static $customer;
     public static $orders_status_history;
@@ -50,6 +52,7 @@ class Success {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->data();
         $this->verify();
     }
@@ -74,7 +77,12 @@ class Success {
             self::$customer_email = '';
         } else {
             self::$customer_email = $_SESSION['customer_email'];
-            self::$customer = Pdo::getAssoc("SELECT id, address_book, gender, firstname, lastname, middle_name, fax, telephone FROM " . TABLE_CUSTOMERS . " WHERE email=?", [self::$customer_email])[0];
+
+            self::$customer = $this->db
+                            ->read(TABLE_CUSTOMERS)
+                            ->selectAssoc('id, address_book, gender, firstname, lastname, middle_name, fax, telephone')
+                            ->where('email=', self::$customer_email)
+                            ->save()[0];
         }
     }
 
@@ -90,8 +98,20 @@ class Success {
 
             $address_all = json_decode(self::$customer['address_book'], true);
             $address_data = $address_all[Valid::inPOST('address') - 1];
-            $address_data['region'] = Pdo::getValue("SELECT name FROM " . TABLE_REGIONS . " WHERE id=? AND language=?", [$address_data['regions_id'], lang('#lang_all')[0]]);
-            $address_data['country'] = Pdo::getValue("SELECT name FROM " . TABLE_COUNTRIES . " WHERE id=? AND language=?", [$address_data['countries_id'], lang('#lang_all')[0]]);
+
+            $address_data['region'] = $this->db
+                    ->read(TABLE_REGIONS)
+                    ->selectValue('name')
+                    ->where('id=', $address_data['regions_id'])
+                    ->and('language=', lang('#lang_all')[0])
+                    ->save();
+
+            $address_data['country'] = $this->db
+                    ->read(TABLE_COUNTRIES)
+                    ->selectValue('name')
+                    ->where('id=', $address_data['countries_id'])
+                    ->and('language=', lang('#lang_all')[0])
+                    ->save();
 
             unset($address_data['default']);
             unset($address_data['regions_id']);
@@ -102,8 +122,20 @@ class Success {
 
             self::$primary_language = Settings::primaryLanguage();
 
-            self::$customer_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, lang('#lang_all')[0]]);
-            $admin_orders_status_history = Pdo::getValue("SELECT name FROM " . TABLE_ORDER_STATUS . " WHERE default_order_status=? AND language=?", [1, self::$primary_language]);
+            self::$customer_orders_status_history = $this->db
+                    ->read(TABLE_ORDER_STATUS)
+                    ->selectValue('name')
+                    ->where('default_order_status=', 1)
+                    ->and('language=', lang('#lang_all')[0])
+                    ->save();
+
+            $admin_orders_status_history = $this->db
+                    ->read(TABLE_ORDER_STATUS)
+                    ->selectValue('name')
+                    ->where('default_order_status=', 1)
+                    ->and('language=', self::$primary_language)
+                    ->save();
+
             $date = SystemClock::nowSqlDateTime();
             $orders_status_history_data = [[
             'admin' => [
@@ -133,13 +165,23 @@ class Success {
     private function invoice(): void {
         $cart = json_decode(Valid::inPOST('products_order'), true);
 
-        $sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [self::$primary_language]);
+        $sticker_data = $this->db
+                ->read(TABLE_STICKERS)
+                ->selectAssoc('*')
+                ->where('language=', self::$primary_language)
+                ->save();
+
         $sticker_name = [];
         foreach ($sticker_data as $val) {
             $sticker_name[$val['id']] = $val['name'];
         }
 
-        $sticker_data_customer = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+        $sticker_data_customer = $this->db
+                ->read(TABLE_STICKERS)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
         $sticker_name_customer = [];
         foreach ($sticker_data_customer as $val) {
             $sticker_name_customer[$val['id']] = $val['name'];
@@ -151,8 +193,20 @@ class Success {
         foreach ($cart as $value) {
             $product_data = Products::productData($value['id']);
             $admin_product_data = Products::productData($value['id'], self::$primary_language);
-            $unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], lang('#lang_all')[0]])[0];
-            $admin_unit = Pdo::getAssoc("SELECT * FROM " . TABLE_UNITS . " WHERE id=? AND language=?", [$product_data['unit'], self::$primary_language])[0];
+
+            $unit = $this->db
+                            ->read(TABLE_UNITS)
+                            ->selectAssoc('*')
+                            ->where('id=', $product_data['unit'])
+                            ->and('language=', lang('#lang_all')[0])
+                            ->save()[0];
+
+            $admin_unit = $this->db
+                            ->read(TABLE_UNITS)
+                            ->selectAssoc('*')
+                            ->where('id=', $product_data['unit'])
+                            ->and('language=', self::$primary_language)
+                            ->save()[0];
 
             if (isset($sticker_name[$product_data['sticker']])) {
                 $sticker_name_data = $sticker_name[$product_data['sticker']];
@@ -196,7 +250,12 @@ class Success {
             $Cache = new Cache();
             $Cache->deleteItem('core.products_' . $value['id']);
 
-            Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET quantity=quantity- " . $value['quantity'] . ", ordered=ordered+ " . $value['quantity'] . " WHERE id=?", [$value['id']]);
+            $this->db
+                    ->update(TABLE_PRODUCTS)
+                    ->set('quantity', $product_data['quantity'] - $value['quantity'])
+                    ->set('ordered', $product_data['ordered'] + $value['quantity'])
+                    ->where('id=', $value['id'])
+                    ->save();
         }
     }
 
@@ -232,7 +291,13 @@ class Success {
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
             'order_total_tax' => Valid::inPOST('order_total_tax'),
-            'currency' => Pdo::getValue("SELECT id FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [self::$primary_language, 1])
+            'currency' => $this->db
+                    ->read(TABLE_CURRENCIES)
+                    ->selectValue('id')
+                    ->where('language=', self::$primary_language)
+                    ->and('default_value=', 1)
+                    ->orderByDesc('id')
+                    ->save()
         ];
     }
 
@@ -267,10 +332,23 @@ class Success {
      *
      */
     private function save(): void {
-        Pdo::action("INSERT INTO " . TABLE_ORDERS . " SET email=?, customer_data=?, orders_status_history=?, products_order=?, order_total=?, invoice=?"
-                . ", orders_transactions_history=?, customer_ip_address=?, payment_method=?, shipping_method=?, last_modified=?, date_purchased=?, uid=?",
-                [self::$customer_email, json_encode(self::$customer), self::$orders_status_history, Valid::inPOST('products_order'), json_encode(self::$order_total), json_encode(self::$invoice),
-                    NULL, Settings::ipAddress(), self::$payment_method, self::$shipping_method, NULL, SystemClock::nowSqlDateTime(), Cryptography::getToken(64)]);
+        $this->db
+                ->create(TABLE_ORDERS)
+                ->set('email', self::$customer_email)
+                ->set('customer_data', json_encode(self::$customer))
+                ->set('orders_status_history', self::$orders_status_history)
+                ->set('products_order', Valid::inPOST('products_order'))
+                ->set('order_total', json_encode(self::$order_total))
+                ->set('invoice', json_encode(self::$invoice))
+                ->set('orders_transactions_history', NULL)
+                ->set('customer_ip_address', Settings::ipAddress())
+                ->set('payment_method', self::$payment_method)
+                ->set('shipping_method', self::$shipping_method)
+                ->set('last_modified', NULL)
+                ->set('date_purchased', SystemClock::nowSqlDateTime())
+                ->set('uid', Cryptography::getToken(64))
+                ->save();
+
         unset($_SESSION['cart']);
     }
 
@@ -279,7 +357,15 @@ class Success {
      *
      */
     private function end(): void {
-        $customer_order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE id=? ORDER BY id DESC", [Pdo::lastInsertId()])[0];
+
+        $last_insert_id = $this->db->lastInsertId()->save();
+        $customer_order_data = $this->db
+                        ->read(TABLE_ORDERS)
+                        ->selectAssoc('*')
+                        ->where('id=', $last_insert_id)
+                        ->orderByDesc('id')
+                        ->save()[0];
+
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
         $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
         $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);
