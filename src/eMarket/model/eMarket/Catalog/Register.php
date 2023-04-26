@@ -12,12 +12,12 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Cryptography,
     Clock\SystemClock,
-    Func,
     Messages,
     Pdo,
     Settings,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Register
@@ -32,6 +32,7 @@ class Register {
 
     public static $routing_parameter = 'register';
     public $title = 'title_register_index';
+    public $db;
     public static $user_email = FALSE;
 
     /**
@@ -39,6 +40,7 @@ class Register {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->init();
     }
 
@@ -49,18 +51,35 @@ class Register {
     private function init(): void {
         if (Valid::inPOST('email')) {
 
-            self::$user_email = Pdo::getValue("SELECT id FROM " . TABLE_CUSTOMERS . " WHERE email=?", [Valid::inPOST('email')]);
+            self::$user_email = $this->db
+                    ->read(TABLE_CUSTOMERS)
+                    ->selectValue('id')
+                    ->where('email=', Valid::inPOST('email'))
+                    ->save();
+
             if (self::$user_email == NULL) {
                 $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
-                Pdo::action("INSERT INTO " . TABLE_CUSTOMERS . " SET firstname=?, lastname=?, date_account_created=?, email=?, telephone=?, ip_address=?, password=?", [
-                    Valid::inPOST('firstname'), Valid::inPOST('lastname'), SystemClock::nowSqlDateTime(),
-                    Valid::inPOST('email'), Valid::inPOST('telephone'),
-                    Settings::ipAddress(), $password_hash
-                ]);
 
-                $id = Pdo::lastInsertId();
+                $this->db
+                        ->create(TABLE_CUSTOMERS)
+                        ->set('firstname', Valid::inPOST('firstname'))
+                        ->set('lastname', Valid::inPOST('lastname'))
+                        ->set('date_account_created', SystemClock::nowSqlDateTime())
+                        ->set('email', Valid::inPOST('email'))
+                        ->set('telephone', Valid::inPOST('telephone'))
+                        ->set('ip_address', Settings::ipAddress())
+                        ->set('password', $password_hash)
+                        ->save();
+
+                $id = $this->db->lastInsertId()->save();
+
                 $activation_code = Cryptography::getToken(64);
-                Pdo::action("INSERT INTO " . TABLE_CUSTOMERS_ACTIVATION . " SET id=?, activation_code=?", [$id, $activation_code]);
+
+                $this->db
+                        ->create(TABLE_CUSTOMERS_ACTIVATION)
+                        ->set('id', $id)
+                        ->set('activation_code', $activation_code)
+                        ->save();
 
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
                 Messages::sendMail(Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
