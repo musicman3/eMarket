@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * WithoutRegistration
@@ -27,6 +27,7 @@ class WithoutRegistration {
 
     public static $routing_parameter = 'without_registration';
     public $title = 'title_without_registration_index';
+    public $db;
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
@@ -39,6 +40,7 @@ class WithoutRegistration {
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->jsonEcho();
         $this->initData();
         $this->sessionData();
@@ -51,9 +53,15 @@ class WithoutRegistration {
      */
     private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
-            self::$regions_data = Pdo::getAssoc("SELECT * FROM " . TABLE_REGIONS . " WHERE language=? AND country_id=? ORDER BY name ASC", [
-                        lang('#lang_all')[0], Valid::inPostJson('countries_select')
-            ]);
+
+            self::$regions_data = $this->db
+                    ->read(TABLE_REGIONS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('country_id=', Valid::inPostJson('countries_select'))
+                    ->orderByAsc('name')
+                    ->save();
+
             echo json_encode(self::$regions_data);
             exit;
         }
@@ -64,7 +72,14 @@ class WithoutRegistration {
      *
      */
     private function initData(): void {
-        $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? ORDER BY name ASC", [lang('#lang_all')[0]]);
+
+        $countries_array = $this->db
+                ->read(TABLE_COUNTRIES)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->orderByAsc('name')
+                ->save();
+
         self::$countries_data_json = json_encode($countries_array);
         self::$address_data = [];
         self::$address_data_json = json_encode([]);
@@ -115,8 +130,23 @@ class WithoutRegistration {
     private function data(): void {
         $x = 0;
         foreach (self::$address_data as $address_val) {
-            $countries_array = Pdo::getAssoc("SELECT * FROM " . TABLE_COUNTRIES . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['countries_id']])[0];
-            $regions_array = Pdo::getAssoc("SELECT id, name FROM " . TABLE_REGIONS . " WHERE language=? AND id=? ORDER BY name ASC", [lang('#lang_all')[0], $address_val['regions_id']])[0];
+
+            $countries_array = $this->db
+                            ->read(TABLE_COUNTRIES)
+                            ->selectAssoc('*')
+                            ->where('language=', lang('#lang_all')[0])
+                            ->and('id=', $address_val['countries_id'])
+                            ->orderByAsc('name')
+                            ->save()[0];
+
+            $regions_array = $this->db
+                            ->read(TABLE_REGIONS)
+                            ->selectAssoc('id, name')
+                            ->where('language=', lang('#lang_all')[0])
+                            ->and('id=', $address_val['regions_id'])
+                            ->orderByAsc('name')
+                            ->save()[0];
+
             if ($address_val['countries_id'] == $countries_array['id']) {
                 self::$address_data[$x]['countries_name'] = $countries_array['name'];
                 self::$address_data[$x]['alpha_2'] = $countries_array['alpha_2'];

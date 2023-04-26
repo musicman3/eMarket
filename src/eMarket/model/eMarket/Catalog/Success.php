@@ -16,7 +16,6 @@ use eMarket\Core\{
     Ecb,
     DataBuffer,
     Messages,
-    Pdo,
     Products,
     Settings,
     Valid
