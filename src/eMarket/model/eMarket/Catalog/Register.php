@@ -13,7 +13,6 @@ use eMarket\Core\{
     Cryptography,
     Clock\SystemClock,
     Messages,
-    Pdo,
     Settings,
     Valid
 };
