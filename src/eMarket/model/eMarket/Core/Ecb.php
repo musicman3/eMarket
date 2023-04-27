@@ -11,12 +11,12 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     DataBuffer,
-    Pdo,
     Settings,
 };
 use eMarket\Catalog\{
     Cart
 };
+use Cruder\Cruder;
 
 /**
  * eMarket Calculated Block
@@ -118,11 +118,22 @@ final class Ecb {
 
         $DataBuffer = new DataBuffer();
 
-        $taxes_data = Pdo::getAssoc("SELECT * FROM " . TABLE_TAXES . " WHERE language=?", [$language]);
+        $db = new Cruder();
+        $taxes_data = $db
+                ->read(TABLE_TAXES)
+                ->selectAssoc('*')
+                ->where('language=', $language)
+                ->save();
 
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
-                $data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=?", [$value['id'], $language])[0];
+
+                $data = $db->read(TABLE_PRODUCTS)
+                                ->selectAssoc('*')
+                                ->where('id=', $value['id'])
+                                ->and('language=', $language)
+                                ->save()[0];
+
                 if ($data != FALSE) {
 
                     self::discountHandler($data, $language);
@@ -188,8 +199,16 @@ final class Ecb {
      */
     public static function discountHandler(array $input, ?string $language = null): void {
 
+        $db = new Cruder();
+
         if (self::$active_modules == FALSE) {
-            self::$active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+
+            self::$active_modules = $db
+                    ->read(TABLE_MODULES)
+                    ->selectAssoc('*')
+                    ->where('type=', 'discount')
+                    ->and('active=', '1')
+                    ->save();
         }
 
         $input_price = self::currencyPrice($input['price'], $input['currency']);

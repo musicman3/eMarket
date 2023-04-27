@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Pdo,
     Messages,
     Valid
 };
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Cruder\Cruder;
 
 /**
  * Cache class
@@ -33,12 +33,14 @@ class Cache {
     public $cache_adapter = FALSE;
     public $cache_status = FALSE;
     public $caching_time = FALSE;
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->cacheStatus();
         $this->cachingTime();
     }
@@ -93,7 +95,10 @@ class Cache {
      */
     private function cacheStatus(): void {
 
-        $this->cache_status = Pdo::getValue("SELECT cache_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $this->cache_status = $this->db
+                ->read(TABLE_BASIC_SETTINGS)
+                ->selectValue('cache_status')
+                ->save();
 
         if (Valid::inPOST('cache_status')) {
             $cache_status = 0;
@@ -101,8 +106,16 @@ class Cache {
             if (Valid::inPOST('cache_status') == 'on') {
                 $cache_status = 1;
             }
-            Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET cache_status=?", [$cache_status]);
-            $this->cache_status = Pdo::getValue("SELECT cache_status FROM " . TABLE_BASIC_SETTINGS . "", []);
+
+            $this->db
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('cache_status', $cache_status)
+                    ->save();
+
+            $this->cache_status = $this->db
+                    ->read(TABLE_BASIC_SETTINGS)
+                    ->selectValue('cache_status')
+                    ->save();
         }
     }
 
@@ -112,11 +125,22 @@ class Cache {
      */
     private function cachingTime(): void {
 
-        $this->caching_time = Pdo::getValue("SELECT caching_time FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $this->caching_time = $this->db
+                ->read(TABLE_BASIC_SETTINGS)
+                ->selectValue('caching_time')
+                ->save();
 
         if (Valid::inPOST('caching_time')) {
-            Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET caching_time=?", [Valid::inPOST('caching_time')]);
-            $this->caching_time = Pdo::getValue("SELECT caching_time FROM " . TABLE_BASIC_SETTINGS . "", []);
+
+            $this->db
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('caching_time', Valid::inPOST('caching_time'))
+                    ->save();
+
+            $this->caching_time = $this->db
+                    ->read(TABLE_BASIC_SETTINGS)
+                    ->selectValue('caching_time')
+                    ->save();
 
             $this->clear();
 

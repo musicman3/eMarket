@@ -11,9 +11,9 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Modules
@@ -37,8 +37,14 @@ final class Modules {
      */
     public static function install(array $module): void {
 
-        Pdo::action("INSERT INTO " . TABLE_MODULES . " SET name=?, type=?, active=?", [$module[1], $module[0], 1]);
-        Pdo::dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
+        $db = new Cruder();
+        $db->create(TABLE_MODULES)
+                ->set('name', $module[1])
+                ->set('type', $module[0])
+                ->set('active', 1)
+                ->save();
+
+        $db->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
     }
 
     /**
@@ -47,8 +53,14 @@ final class Modules {
      * @param array $module Input data
      */
     public static function uninstall(array $module): void {
-        Pdo::action("DELETE FROM " . TABLE_MODULES . " WHERE name=? AND type=?", [$module[1], $module[0]]);
-        Pdo::action("DROP TABLE " . DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1], []);
+
+        $db = new Cruder();
+        $db->delete(TABLE_MODULES)
+                ->where('name=', $module[1])
+                ->and('type=', $module[0])
+                ->save();
+
+        $db->drop(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save();
     }
 
     /**
@@ -56,17 +68,35 @@ final class Modules {
      *
      */
     public static function initDiscount(): void {
-        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+
+        $db = new Cruder();
+        $active_modules = $db
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('type=', 'discount')
+                ->and('active=', '1')
+                ->save();
 
         foreach ($active_modules as $module) {
             $discount_default_flag = 0;
             $select_array = [];
-            $discounts_all = Pdo::getAssoc("SELECT id, name, default_set FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            $discounts_all = $db
+                    ->read(DB_PREFIX . 'modules_discount_' . $module['name'])
+                    ->selectAssoc('id, name, default_set')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
 
             $this_time = SystemClock::nowUnixTime();
 
             foreach ($discounts_all as $val) {
-                $date_end = Pdo::getValue("SELECT UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_' . $module['name'] . " WHERE id=?", [$val['id']]);
+
+                $date_end = $db
+                        ->read(DB_PREFIX . 'modules_discount_' . $module['name'])
+                        ->selectValue('{{UNIX_TIMESTAMP->date_end}}')
+                        ->where('id=', $val['id'])
+                        ->save();
+
                 if ($this_time < $date_end) {
                     self::$discounts[$module['name'] . '_' . $val['id']] = $val['name'];
                     array_push($select_array, $val['id']);
@@ -95,7 +125,13 @@ final class Modules {
             return self::$discount_router['functions'];
         }
 
-        $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['discount', '1']);
+        $db = new Cruder();
+        $active_modules = $db
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('type=', 'discount')
+                ->and('active=', '1')
+                ->save();
 
         $text = '{isDivider: true},';
         $discount_router = [];

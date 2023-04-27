@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Pdo,
     Settings,
     Tree,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Languages
@@ -28,12 +28,14 @@ use eMarket\Core\{
 final class Lang {
 
     public static $count;
+    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
+        $this->db = new Cruder();
         $this->init();
     }
 
@@ -44,9 +46,13 @@ final class Lang {
     private function init(): void {
 
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            Pdo::action("UPDATE " . TABLE_ADMINISTRATORS . " SET language=? WHERE login=? AND password=?", [
-                Valid::inGET('language'), $_SESSION['login'], $_SESSION['pass']
-            ]);
+
+            $this->db
+                    ->update(TABLE_ADMINISTRATORS)
+                    ->set('language', Valid::inGET('language'))
+                    ->where('login=', $_SESSION['login'])
+                    ->and('password=', $_SESSION['pass'])
+                    ->save();
         }
 
         setlocale(LC_ALL, lang('language_locale'));

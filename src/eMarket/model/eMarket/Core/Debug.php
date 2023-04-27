@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Pdo
-};
+use Cruder\Cruder;
 
 /**
  * Debug class
@@ -48,7 +46,12 @@ class Debug {
      */
     public static function info(): void {
 
-        $val = Pdo::getValue("SELECT debug FROM " . TABLE_BASIC_SETTINGS . "", []);
+        $db = new Cruder();
+        $val = $db
+                ->read(TABLE_BASIC_SETTINGS)
+                ->selectValue('debug')
+                ->save();
+
         if ($val == 1) {
             $tend = microtime(true);
 

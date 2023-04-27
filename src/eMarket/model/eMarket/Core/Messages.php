@@ -11,13 +11,13 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Pdo,
     Settings,
     Valid
 };
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\ErrorHandler;
+use Cruder\Cruder;
 
 /**
  * Messages
@@ -139,8 +139,17 @@ class Messages {
      */
     public static function sendProviders(?string $to, ?string $body): void {
 
+        $db = new Cruder();
+
         if ($to !== null) {
-            $active_modules = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=?", ['providers', '1']);
+
+            $active_modules = $db
+                    ->read(TABLE_MODULES)
+                    ->selectAssoc('*')
+                    ->where('type=', 'providers')
+                    ->and('active=', '1')
+                    ->save();
+
             foreach ($active_modules as $module) {
                 $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
                 $namespace::data();
@@ -158,10 +167,15 @@ class Messages {
      */
     public static function sendMail(string $email_to, ?string $subject, ?string $message): void {
 
+        $db = new Cruder();
+
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = Pdo::getAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS . "", [])[0];
+        $basic_settings = $db
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectAssoc('*')
+                        ->save()[0];
 
         if ($basic_settings['smtp_status'] == 0) {
             $mail->isSendmail();

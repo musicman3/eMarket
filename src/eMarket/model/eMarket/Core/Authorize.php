@@ -10,9 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Func,
     Cryptography,
-    Pdo,
     Settings,
     Valid,
     Clock\SystemClock
@@ -20,6 +18,7 @@ use eMarket\Core\{
 use \eMarket\Catalog\{
     Cart
 };
+use Cruder\Cruder;
 
 /**
  * Class for user authorization
@@ -34,12 +33,15 @@ class Authorize {
 
     public static $customer;
     public static $csrf_token = FALSE;
+    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
+
+        $this->db = new Cruder();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
@@ -118,9 +120,21 @@ class Authorize {
      */
     private function demoModeInit(): void {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+
+            $staff_permission = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('permission')
+                    ->where('login=', $_SESSION['login'])
+                    ->save();
+
             if ($staff_permission != 'admin') {
-                $mode = Pdo::getValue("SELECT mode FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]);
+
+                $mode = $this->db
+                        ->read(TABLE_STAFF_MANAGER)
+                        ->selectValue('mode')
+                        ->where('id=', $staff_permission)
+                        ->save();
+
                 if ($mode == 1) {
                     Valid::$demo_mode = TRUE;
                 }
@@ -134,9 +148,23 @@ class Authorize {
      */
     private function dashboardCheck(): void {
         if (isset($_SESSION['login'])) {
-            $staff_permission = Pdo::getValue("SELECT permission FROM " . TABLE_ADMINISTRATORS . " WHERE login=?", [$_SESSION['login']]);
+
+            $staff_permission = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('permission')
+                    ->where('login=', $_SESSION['login'])
+                    ->save();
+
             if ($staff_permission != 'admin') {
-                $staff_data = json_decode(Pdo::getValue("SELECT permissions FROM " . TABLE_STAFF_MANAGER . " WHERE id=?", [$staff_permission]), true);
+
+                $staff_data_prepare = $this->db
+                        ->read(TABLE_STAFF_MANAGER)
+                        ->selectValue('permissions')
+                        ->where('id=', $staff_permission)
+                        ->save();
+
+                $staff_data = json_decode($staff_data_prepare, true);
+
                 $count = 0;
                 foreach ($staff_data as $value) {
                     if ($value == '?route=' . Settings::defaultPage()) {
@@ -181,9 +209,13 @@ class Authorize {
             header('Location: ?route=login');
             exit;
         } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
-            $_SESSION['DEFAULT_LANGUAGE'] = Pdo::getValue("SELECT language FROM " . TABLE_ADMINISTRATORS . " WHERE login=? AND password=?", [
-                        $_SESSION['login'], $_SESSION['pass']
-            ]);
+
+            $_SESSION['DEFAULT_LANGUAGE'] = $this->db
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('language')
+                    ->where('login=', $_SESSION['login'])
+                    ->and('password=', $_SESSION['pass'])
+                    ->save();
         } else {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
         }
@@ -201,7 +233,12 @@ class Authorize {
         $new_datestamp = SystemClock::nowUnixTime();
 
         if (isset($_SESSION['customer_email'])) {
-            $customer_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$_SESSION['customer_email']])[0];
+
+            $customer_data = $this->db
+                            ->read(TABLE_CUSTOMERS)
+                            ->selectAssoc('*')
+                            ->where('email=', $_SESSION['customer_email'])
+                            ->save()[0];
         } else {
             $customer_data['status'] = 0;
         }
