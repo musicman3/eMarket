@@ -44,7 +44,7 @@ final class Modules {
                 ->set('active', 1)
                 ->save();
 
-        $db->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/');
+        $db->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql');
     }
 
     /**
