@@ -563,21 +563,19 @@ final class Eac {
      */
     public static function dataParentId(string|int $idx): void {
 
-        $db = new Cruder();
-
-        self::$parent_id = $db
+        self::$parent_id = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectValue('parent_id')
                 ->where('id=', $idx)
                 ->save();
 
-        $parent_id_up = $db
+        $parent_id_up = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectValue('parent_id')
                 ->where('id=', self::$parent_id)
                 ->save();
 
-        $parent_id_num = $db
+        $parent_id_num = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectIndex('id')
                 ->where('parent_id=', self::$parent_id)
@@ -595,8 +593,7 @@ final class Eac {
      */
     public static function dataKeys(string|int $category): array {
 
-        $db = new Cruder();
-        $data_cat = $db
+        $data_cat = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectAssoc('id, parent_id')
                 ->where('language=', lang('#lang_all')[0])

@@ -15,10 +15,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\{
-    Db,
-    DbFunctions
-};
+use Cruder\Db;
 
 /**
  * Dashboard
@@ -48,7 +45,6 @@ class Dashboard {
      *
      */
     function __construct() {
-        $this->db_functions = new DbFunctions();
         $this->cardOrdersData();
         $this->jsonData();
         $this->customersData();
@@ -143,13 +139,13 @@ class Dashboard {
             $order_currency = $json_decode_month_amount['data']['currency'];
 
             for ($x = 0; $x < 7; $x++) {
-                if ($orders_value[$this->db_functions->pattern('DAYOFWEEK', 'date_purchased')] == $x + 1) {
+                if ($orders_value[Db::functions('DAYOFWEEK', 'date_purchased')] == $x + 1) {
                     $day_count[$x]++;
                 }
             }
 
             for ($x = 0; $x < 12; $x++) {
-                if ($orders_value[$this->db_functions->pattern('MONTH', 'date_purchased')] == $x + 1) {
+                if ($orders_value[Db::functions('MONTH', 'date_purchased')] == $x + 1) {
                     $month_count[$x]++;
                     $month_amount[$x] = $month_amount[$x] + Ecb::currencyPrice($total_to_pay, $order_currency);
                 }

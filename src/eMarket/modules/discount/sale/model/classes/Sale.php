@@ -26,7 +26,7 @@ use eMarket\Admin\{
     HeaderMenu,
     Eac
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Module Sale
@@ -45,14 +45,12 @@ class Sale implements DiscountModulesInterface {
     public int $default = 0;
     public $start_date = NULL;
     public $end_date = NULL;
-    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->startDate();
         $this->endDate();
@@ -89,9 +87,7 @@ class Sale implements DiscountModulesInterface {
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
 
-        $db = new Cruder();
-
-        $products_data = $db
+        $products_data = Db::connect()
                 ->read(TABLE_PRODUCTS)
                 ->selectAssoc('id, discount')
                 ->where('language=', lang('#lang_all')[0])
@@ -101,7 +97,8 @@ class Sale implements DiscountModulesInterface {
             $discounts = json_decode($data['discount'], true);
             unset($discounts['sale']);
 
-            $db->update(TABLE_PRODUCTS)
+            Db::connect()
+                    ->update(TABLE_PRODUCTS)
                     ->set('discount=', json_encode($discounts))
                     ->where('id=', $data['id'])
                     ->save();
@@ -158,9 +155,7 @@ class Sale implements DiscountModulesInterface {
      */
     public static function status(): mixed {
 
-        $db = new Cruder();
-
-        $module_active = $db
+        $module_active = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectValue('active')
                 ->where('name=', 'sale')
@@ -179,8 +174,6 @@ class Sale implements DiscountModulesInterface {
      */
     public static function dataInterface(array $input, ?string $language = null): void {
 
-        $db = new Cruder();
-
         if ($language == null) {
             $language = lang('#lang_all')[0];
         }
@@ -198,20 +191,21 @@ class Sale implements DiscountModulesInterface {
 
             foreach ($discount_val['sale'] as $val) {
 
-                $data = $db->read(DB_PREFIX . 'modules_discount_sale')
-                                ->selectIndex('sale_value, name, {{UNIX_TIMESTAMP->date_start}}, {{UNIX_TIMESTAMP->date_end}}')
+                $data = Db::connect()
+                                ->read(DB_PREFIX . 'modules_discount_sale')
+                                ->selectAssoc('sale_value, name, {{UNIX_TIMESTAMP->date_start}}, {{UNIX_TIMESTAMP->date_end}}')
                                 ->where('language=', $language)
                                 ->and('id=', $val)
                                 ->save()[0];
 
                 if (count($data) > 0) {
                     $this_time = SystemClock::nowUnixTime();
-                    $date_start = $data[2];
-                    $date_end = $data[3];
+                    $date_start = $data[Db::functions('UNIX_TIMESTAMP', 'date_start')];
+                    $date_end = $data[Db::functions('UNIX_TIMESTAMP', 'date_end')];
 
                     if ($this_time > $date_start && $this_time < $date_end) {
-                        array_push($discount_out, $data[0]);
-                        array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data[1] . ' (' . $data[0] . '%)');
+                        array_push($discount_out, $data['sale_value']);
+                        array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data['name'] . ' (' . $data['sale_value'] . '%)');
                     }
                 }
             }
@@ -251,7 +245,6 @@ class Sale implements DiscountModulesInterface {
                 or (Valid::inPostJson('idsx_sale_off_key') == 'Off')
                 or (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll')) {
 
-            $db = new Cruder();
             $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
             if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
@@ -282,7 +275,8 @@ class Sale implements DiscountModulesInterface {
                     for ($x = 0; $x < $count_keys; $x++) {
                         if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
 
-                            $products_id = $db->read(TABLE_PRODUCTS)
+                            $products_id = Db::connect()
+                                    ->read(TABLE_PRODUCTS)
                                     ->selectAssoc('id')
                                     ->where('language=', lang('#lang_all')[0])
                                     ->and('parent_id=', $keys[$x])
@@ -290,7 +284,8 @@ class Sale implements DiscountModulesInterface {
 
                             foreach ($products_id as $val) {
 
-                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                $discount_json = Db::connect()
+                                        ->read(TABLE_PRODUCTS)
                                         ->selectValue('discount')
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -305,7 +300,8 @@ class Sale implements DiscountModulesInterface {
                                     }
                                 }
 
-                                $db->update(TABLE_PRODUCTS)
+                                Db::connect()
+                                        ->update(TABLE_PRODUCTS)
                                         ->set('discount', json_encode($discount_array))
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -324,7 +320,8 @@ class Sale implements DiscountModulesInterface {
 
                         if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
 
-                            $products_id = $db->read(TABLE_PRODUCTS)
+                            $products_id = Db::connect()
+                                    ->read(TABLE_PRODUCTS)
                                     ->selectAssoc('id')
                                     ->where('language=', lang('#lang_all')[0])
                                     ->and('parent_id=', $keys[$x])
@@ -332,7 +329,8 @@ class Sale implements DiscountModulesInterface {
 
                             foreach ($products_id as $val) {
 
-                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                $discount_json = Db::connect()
+                                        ->read(TABLE_PRODUCTS)
                                         ->selectValue('discount')
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -347,7 +345,8 @@ class Sale implements DiscountModulesInterface {
                                     }
                                 }
 
-                                $db->update(TABLE_PRODUCTS)
+                                Db::connect()
+                                        ->update(TABLE_PRODUCTS)
                                         ->set('discount', json_encode($discount_array))
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -366,7 +365,8 @@ class Sale implements DiscountModulesInterface {
 
                         if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
 
-                            $products_id = $db->read(TABLE_PRODUCTS)
+                            $products_id = Db::connect()
+                                    ->read(TABLE_PRODUCTS)
                                     ->selectAssoc('id')
                                     ->where('language=', lang('#lang_all')[0])
                                     ->and('parent_id=', $keys[$x])
@@ -374,7 +374,8 @@ class Sale implements DiscountModulesInterface {
 
                             foreach ($products_id as $val) {
 
-                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                $discount_json = Db::connect()
+                                        ->read(TABLE_PRODUCTS)
                                         ->selectValue('discount')
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -385,7 +386,8 @@ class Sale implements DiscountModulesInterface {
                                     unset($discount_array['sale']);
                                 }
 
-                                $db->update(TABLE_PRODUCTS)
+                                Db::connect()
+                                        ->update(TABLE_PRODUCTS)
                                         ->set('discount', json_encode($discount_array))
                                         ->where('id=', $val['id'])
                                         ->save();
@@ -406,7 +408,8 @@ class Sale implements DiscountModulesInterface {
                     if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('products_', $idx[$i]);
 
-                        $discount_json = $db->read(TABLE_PRODUCTS)
+                        $discount_json = Db::connect()
+                                ->read(TABLE_PRODUCTS)
                                 ->selectValue('discount')
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -421,7 +424,8 @@ class Sale implements DiscountModulesInterface {
                             }
                         }
 
-                        $db->update(TABLE_PRODUCTS)
+                        Db::connect()
+                                ->update(TABLE_PRODUCTS)
                                 ->set('discount', json_encode($discount_array))
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -436,7 +440,8 @@ class Sale implements DiscountModulesInterface {
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
 
-                        $discount_json = $db->read(TABLE_PRODUCTS)
+                        $discount_json = Db::connect()
+                                ->read(TABLE_PRODUCTS)
                                 ->selectValue('discount')
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -451,7 +456,8 @@ class Sale implements DiscountModulesInterface {
                             }
                         }
 
-                        $db->update(TABLE_PRODUCTS)
+                        Db::connect()
+                                ->update(TABLE_PRODUCTS)
                                 ->set('discount', json_encode($discount_array))
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -466,7 +472,8 @@ class Sale implements DiscountModulesInterface {
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('products_', $idx[$i]);
 
-                        $discount_json = $db->read(TABLE_PRODUCTS)
+                        $discount_json = Db::connect()
+                                ->read(TABLE_PRODUCTS)
                                 ->selectValue('discount')
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -477,7 +484,8 @@ class Sale implements DiscountModulesInterface {
                             unset($discount_array['sale']);
                         }
 
-                        $db->update(TABLE_PRODUCTS)
+                        Db::connect()
+                                ->update(TABLE_PRODUCTS)
                                 ->set('discount', json_encode($discount_array))
                                 ->where('id=', $id_prod[1])
                                 ->save();
@@ -506,7 +514,7 @@ class Sale implements DiscountModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $id_max = $this->db->read($MODULE_DB)
+            $id_max = Db::connect()->read($MODULE_DB)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
@@ -516,7 +524,7 @@ class Sale implements DiscountModulesInterface {
 
             if ($id > 1 && $this->default != 0) {
 
-                $this->db
+                Db::connect()
                         ->update($MODULE_DB)
                         ->set('default_set', 0)
                         ->save();
@@ -524,7 +532,7 @@ class Sale implements DiscountModulesInterface {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create($MODULE_DB)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_module_' . $x))
@@ -551,7 +559,7 @@ class Sale implements DiscountModulesInterface {
 
             if ($this->default != 0) {
 
-                $this->db
+                Db::connect()
                         ->update($MODULE_DB)
                         ->set('default_set', 0)
                         ->save();
@@ -559,7 +567,7 @@ class Sale implements DiscountModulesInterface {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update($MODULE_DB)
                         ->set('name', Valid::inPOST('name_module_' . $x))
                         ->set('sale_value', Valid::inPOST('sale_value'))
@@ -584,7 +592,7 @@ class Sale implements DiscountModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $discount_id_array = $this->db
+            $discount_id_array = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -592,7 +600,7 @@ class Sale implements DiscountModulesInterface {
 
             foreach ($discount_id_array as $discount_id_arr) {
 
-                $discount_str_temp = $this->db
+                $discount_str_temp = Db::connect()
                         ->read(TABLE_PRODUCTS)
                         ->selectValue('discount')
                         ->where('id=', $discount_id_arr['id'])
@@ -601,14 +609,14 @@ class Sale implements DiscountModulesInterface {
                 $discount_str_explode_temp = json_decode($discount_str_temp, true);
                 $discount_str_explode = Func::removeValueFromArrayLevel('sale', Valid::inPOST('delete'), $discount_str_explode_temp);
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_PRODUCTS)
                         ->set('discount', json_encode($discount_str_explode))
                         ->where('id=', $discount_id_arr['id'])
                         ->save();
             }
 
-            $this->db
+            Db::connect()
                     ->delete($MODULE_DB)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -624,7 +632,7 @@ class Sale implements DiscountModulesInterface {
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read($MODULE_DB)
                 ->selectAssoc('*, {{UNIX_TIMESTAMP->date_end}}')
                 ->orderByDesc('id')
