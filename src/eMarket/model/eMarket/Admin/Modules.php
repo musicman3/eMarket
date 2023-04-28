@@ -15,7 +15,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\Modules;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Modules
@@ -30,7 +30,6 @@ class Modules {
 
     public static $routing_parameter = 'modules';
     public $title = 'title_modules_index';
-    public $db;
     public static $installed = FALSE;
     public static $installed_active = FALSE;
     public static $installed_filter = FALSE;
@@ -42,7 +41,6 @@ class Modules {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -86,7 +84,7 @@ class Modules {
 
             $module = explode('_', Valid::inPOST('edit_active'));
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_MODULES)
                     ->set('active', $active)
                     ->where('name=', $module[1])
@@ -121,12 +119,12 @@ class Modules {
      */
     private function data(): void {
 
-        self::$installed = $this->db
+        self::$installed = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('name, type')
                 ->save();
 
-        self::$installed_active = $this->db
+        self::$installed_active = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('name, type')
                 ->where('active=', 1)

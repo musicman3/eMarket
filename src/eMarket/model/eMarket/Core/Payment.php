@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Payment
@@ -22,16 +22,6 @@ use Cruder\Cruder;
  */
 final class Payment {
 
-    public $db;
-
-    /**
-     * Constructor
-     *
-     */
-    function __construct() {
-        $this->db = new Cruder();
-    }
-
     /**
      * List of payment modules that are available for the selected delivery module
      * @param string $name Payment module name
@@ -39,7 +29,7 @@ final class Payment {
      */
     private function paymentModulesAvailable(string $name): array {
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('active=', 1)
@@ -48,7 +38,7 @@ final class Payment {
 
         $output = [];
         foreach ($data as $payment_module) {
-            $shipping_val_prepare = $this->db
+            $shipping_val_prepare = Db::connect()
                     ->read(DB_PREFIX . 'modules_payment_' . $payment_module['name'])
                     ->selectValue('shipping_module')
                     ->save();

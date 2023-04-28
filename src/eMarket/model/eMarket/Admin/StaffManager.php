@@ -18,7 +18,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Staff Manager
@@ -33,7 +33,6 @@ class StaffManager {
 
     public static $routing_parameter = 'staff_manager';
     public $title = 'title_staff_manager_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -42,7 +41,6 @@ class StaffManager {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -94,7 +92,7 @@ class StaffManager {
                 $demo_mode = 1;
             }
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_STAFF_MANAGER)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -105,7 +103,7 @@ class StaffManager {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_STAFF_MANAGER)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('staff_manager_group_' . $x))
@@ -134,7 +132,7 @@ class StaffManager {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_STAFF_MANAGER)
                         ->set('name', Valid::inPOST('staff_manager_group_' . $x))
                         ->set('note', Valid::inPOST('staff_manager_note_' . $x))
@@ -156,18 +154,18 @@ class StaffManager {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $user_check = $this->db
+            $user_check = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
                     ->save();
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_STAFF_MANAGER)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ADMINISTRATORS)
                     ->where('permission=', Valid::inPOST('delete'))
                     ->save();
@@ -187,7 +185,7 @@ class StaffManager {
     private function data(): void {
         $_SESSION['staff_manager_page'] = Valid::inSERVER('REQUEST_URI');
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_STAFF_MANAGER)
                 ->selectAssoc('*')
                 ->orderBy('name')

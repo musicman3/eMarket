@@ -13,7 +13,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Header Menu
@@ -38,14 +38,12 @@ class HeaderMenu {
     public static $param_1 = [];
     public static $param_2 = [];
     public static $staff_data = false;
-    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->init();
         $this->initModules();
         $this->levelOne();
@@ -168,7 +166,7 @@ class HeaderMenu {
     private function staffInit(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = $this->db
+            $staff_permission = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
@@ -176,7 +174,7 @@ class HeaderMenu {
 
             if ($staff_permission != 'admin') {
 
-                $staff_permissions = $this->db
+                $staff_permissions = Db::connect()
                         ->read(TABLE_STAFF_MANAGER)
                         ->selectAssoc('permissions')
                         ->where('id=', $staff_permission)

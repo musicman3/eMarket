@@ -13,7 +13,7 @@ use eMarket\Core\{
     Func,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Settings
@@ -100,10 +100,9 @@ class Settings {
      */
     public static function basicSettings(mixed $param = null): mixed {
 
-        $db = new Cruder();
         if (self::$basic_settings == FALSE) {
 
-            self::$basic_settings = $db
+            self::$basic_settings = Db::connect()
                             ->read(TABLE_BASIC_SETTINGS)
                             ->selectAssoc('*')
                             ->save()[0];
@@ -123,10 +122,9 @@ class Settings {
      */
     public static function currenciesData(): mixed {
 
-        $db = new Cruder();
         if (self::$currencies_data == FALSE) {
 
-            self::$currencies_data = $db
+            self::$currencies_data = Db::connect()
                     ->read(TABLE_CURRENCIES)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -174,8 +172,6 @@ class Settings {
      */
     public static function currencyDefault(?string $language = null): mixed {
 
-        $db = new Cruder();
-
         if ($language == null) {
             $language = lang('#lang_all')[0];
         } else {
@@ -187,7 +183,7 @@ class Settings {
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
 
-                    $currency = $db
+                    $currency = Db::connect()
                                     ->read(TABLE_CURRENCIES)
                                     ->selectIndex('*')
                                     ->where('language=', $language)
@@ -197,7 +193,7 @@ class Settings {
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && !Valid::inGET('currency_default')) {
 
-                    $currency = $db
+                    $currency = Db::connect()
                                     ->read(TABLE_CURRENCIES)
                                     ->selectIndex('*')
                                     ->where('language=', $language)
@@ -205,7 +201,7 @@ class Settings {
                                     ->save()[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
 
-                    $currency = $db
+                    $currency = Db::connect()
                                     ->read(TABLE_CURRENCIES)
                                     ->selectIndex('*')
                                     ->where('language=', $language)
@@ -218,7 +214,7 @@ class Settings {
 
             if (self::path() == 'admin') {
 
-                $currency = $db
+                $currency = Db::connect()
                                 ->read(TABLE_CURRENCIES)
                                 ->selectIndex('*')
                                 ->where('language=', $language)
@@ -320,11 +316,10 @@ class Settings {
      */
     public static function breadcrumbName(array $breadcrumb_array): array {
 
-        $db = new Cruder();
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
 
-            $name = $db
+            $name = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectValue('name')
                     ->where('language=', lang('#lang_all')[0])

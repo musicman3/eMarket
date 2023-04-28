@@ -20,7 +20,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Success
@@ -35,7 +35,6 @@ class Success {
 
     public static $routing_parameter = 'success';
     public $title = 'title_success_index';
-    public $db;
     public static $customer_orders_status_history;
     public static $customer;
     public static $orders_status_history;
@@ -51,7 +50,6 @@ class Success {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->data();
         $this->verify();
     }
@@ -77,7 +75,7 @@ class Success {
         } else {
             self::$customer_email = $_SESSION['customer_email'];
 
-            self::$customer = $this->db
+            self::$customer = Db::connect()
                             ->read(TABLE_CUSTOMERS)
                             ->selectAssoc('id, address_book, gender, firstname, lastname, middle_name, fax, telephone')
                             ->where('email=', self::$customer_email)
@@ -98,14 +96,14 @@ class Success {
             $address_all = json_decode(self::$customer['address_book'], true);
             $address_data = $address_all[Valid::inPOST('address') - 1];
 
-            $address_data['region'] = $this->db
+            $address_data['region'] = Db::connect()
                     ->read(TABLE_REGIONS)
                     ->selectValue('name')
                     ->where('id=', $address_data['regions_id'])
                     ->and('language=', lang('#lang_all')[0])
                     ->save();
 
-            $address_data['country'] = $this->db
+            $address_data['country'] = Db::connect()
                     ->read(TABLE_COUNTRIES)
                     ->selectValue('name')
                     ->where('id=', $address_data['countries_id'])
@@ -121,14 +119,14 @@ class Success {
 
             self::$primary_language = Settings::primaryLanguage();
 
-            self::$customer_orders_status_history = $this->db
+            self::$customer_orders_status_history = Db::connect()
                     ->read(TABLE_ORDER_STATUS)
                     ->selectValue('name')
                     ->where('default_order_status=', 1)
                     ->and('language=', lang('#lang_all')[0])
                     ->save();
 
-            $admin_orders_status_history = $this->db
+            $admin_orders_status_history = Db::connect()
                     ->read(TABLE_ORDER_STATUS)
                     ->selectValue('name')
                     ->where('default_order_status=', 1)
@@ -164,7 +162,7 @@ class Success {
     private function invoice(): void {
         $cart = json_decode(Valid::inPOST('products_order'), true);
 
-        $sticker_data = $this->db
+        $sticker_data = Db::connect()
                 ->read(TABLE_STICKERS)
                 ->selectAssoc('*')
                 ->where('language=', self::$primary_language)
@@ -175,7 +173,7 @@ class Success {
             $sticker_name[$val['id']] = $val['name'];
         }
 
-        $sticker_data_customer = $this->db
+        $sticker_data_customer = Db::connect()
                 ->read(TABLE_STICKERS)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -193,14 +191,14 @@ class Success {
             $product_data = Products::productData($value['id']);
             $admin_product_data = Products::productData($value['id'], self::$primary_language);
 
-            $unit = $this->db
+            $unit = Db::connect()
                             ->read(TABLE_UNITS)
                             ->selectAssoc('*')
                             ->where('id=', $product_data['unit'])
                             ->and('language=', lang('#lang_all')[0])
                             ->save()[0];
 
-            $admin_unit = $this->db
+            $admin_unit = Db::connect()
                             ->read(TABLE_UNITS)
                             ->selectAssoc('*')
                             ->where('id=', $product_data['unit'])
@@ -249,7 +247,7 @@ class Success {
             $Cache = new Cache();
             $Cache->deleteItem('core.products_' . $value['id']);
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_PRODUCTS)
                     ->set('quantity', $product_data['quantity'] - $value['quantity'])
                     ->set('ordered', $product_data['ordered'] + $value['quantity'])
@@ -290,7 +288,7 @@ class Success {
             'shipping_price' => Valid::inPOST('order_shipping_price'),
             'total_to_pay' => Valid::inPOST('order_to_pay'),
             'order_total_tax' => Valid::inPOST('order_total_tax'),
-            'currency' => $this->db
+            'currency' => Db::connect()
                     ->read(TABLE_CURRENCIES)
                     ->selectValue('id')
                     ->where('language=', self::$primary_language)
@@ -331,7 +329,7 @@ class Success {
      *
      */
     private function save(): void {
-        $this->db
+        Db::connect()
                 ->create(TABLE_ORDERS)
                 ->set('email', self::$customer_email)
                 ->set('customer_data', json_encode(self::$customer))
@@ -357,8 +355,8 @@ class Success {
      */
     private function end(): void {
 
-        $last_insert_id = $this->db->lastInsertId()->save();
-        $customer_order_data = $this->db
+        $last_insert_id = Db::connect()->lastInsertId()->save();
+        $customer_order_data = Db::connect()
                         ->read(TABLE_ORDERS)
                         ->selectAssoc('*')
                         ->where('id=', $last_insert_id)

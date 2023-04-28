@@ -14,7 +14,7 @@ use eMarket\Core\{
     JsonRpc
 };
 use \Mpdf\Mpdf;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Invoice
@@ -31,14 +31,12 @@ class Invoice extends JsonRpc {
     private $mpdf = FALSE;
     private $order_data = FALSE;
     private $uid = FALSE;
-    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
-        $this->db = new Cruder();
         $this->createBlank();
     }
 
@@ -64,10 +62,10 @@ class Invoice extends JsonRpc {
     private function data(string|int $name): mixed {
         if (!$this->order_data) {
 
-            $order_data = $this->db
+            $order_data = Db::connect()
                     ->read(TABLE_ORDERS)
                     ->selectAssoc('*')
-                    ->where('uid', $this->uid)
+                    ->where('uid=', $this->uid)
                     ->save();
 
             if (count($order_data) > 0) {

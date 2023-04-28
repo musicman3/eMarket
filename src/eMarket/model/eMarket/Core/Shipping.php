@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Shipping
@@ -22,16 +22,6 @@ use Cruder\Cruder;
  */
 final class Shipping {
 
-    public $db;
-
-    /**
-     * Constructor
-     *
-     */
-    function __construct() {
-        $this->db = new Cruder();
-    }
-
     /**
      * List of zones for which delivery to the buyer is available
      * @param string $region Regions numbers
@@ -39,7 +29,7 @@ final class Shipping {
      */
     private function shippingZonesAvailable(string $region): array {
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('active=', 1)
@@ -49,7 +39,7 @@ final class Shipping {
         $modules_data = [];
         foreach ($data as $module) {
 
-            $mod_array = $this->db
+            $mod_array = Db::connect()
                     ->read(DB_PREFIX . 'modules_shipping_' . $module['name'])
                     ->selectAssoc('*')
                     ->save();
@@ -59,7 +49,7 @@ final class Shipping {
 
         $output = [];
 
-        $zones_id = $this->db
+        $zones_id = Db::connect()
                 ->read(TABLE_ZONES_VALUE)
                 ->selectValue('zones_id')
                 ->where('regions_id=', $region)
@@ -85,7 +75,7 @@ final class Shipping {
      */
     private function shippingModulesAvailable(array $shipping_zones_id_available): array {
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('active=', 1)
@@ -95,7 +85,7 @@ final class Shipping {
         $modules_data = [];
         foreach ($data as $module) {
 
-            $mod_array = $this->db
+            $mod_array = Db::connect()
                     ->read(DB_PREFIX . 'modules_shipping_' . $module['name'])
                     ->selectAssoc('*')
                     ->save();

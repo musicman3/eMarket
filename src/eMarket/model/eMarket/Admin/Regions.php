@@ -14,10 +14,9 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Pdo,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Regions
@@ -32,7 +31,6 @@ class Regions {
 
     public static $routing_parameter = 'countries/regions';
     public $title = 'title_countries_regions_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $country_id = FALSE;
     public static $json_data = FALSE;
@@ -42,7 +40,6 @@ class Regions {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->countryId();
         $this->add();
         $this->edit();
@@ -74,7 +71,7 @@ class Regions {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_REGIONS)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -85,7 +82,7 @@ class Regions {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_REGIONS)
                         ->set('id', $id)
                         ->set('country_id', self::$country_id)
@@ -108,7 +105,7 @@ class Regions {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_REGIONS)
                         ->set('name', Valid::inPOST('name_regions_' . $x))
                         ->set('region_code', VValid::inPOST('region_code_regions'))
@@ -128,7 +125,7 @@ class Regions {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_REGIONS)
                     ->where('country_id=', self::$country_id)
                     ->and('id=', Valid::inPOST('delete'))
@@ -144,7 +141,7 @@ class Regions {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_REGIONS)
                 ->selectAssoc('*')
                 ->where('country_id=', self::$country_id)

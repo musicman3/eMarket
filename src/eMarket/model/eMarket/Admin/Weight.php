@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid,
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Weight
@@ -31,7 +31,6 @@ class Weight {
 
     public static $routing_parameter = 'weight';
     public $title = 'title_weight_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -41,7 +40,6 @@ class Weight {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -76,7 +74,7 @@ class Weight {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_WEIGHT)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -105,7 +103,7 @@ class Weight {
     private function addAction(int|string $id, int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
 
-            $this->db
+            Db::connect()
                     ->create(TABLE_WEIGHT)
                     ->set('id', $id)
                     ->set('name', Valid::inPOST('name_weight_' . $x))
@@ -143,7 +141,7 @@ class Weight {
     private function editAction(int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_WEIGHT)
                     ->set('name', Valid::inPOST('name_weight_' . $x))
                     ->set('code', Valid::inPOST('code_weight_' . $x))
@@ -162,7 +160,7 @@ class Weight {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_WEIGHT)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -177,19 +175,19 @@ class Weight {
      */
     private function recount(): void {
 
-        $this->db
+        Db::connect()
                 ->update(TABLE_WEIGHT)
                 ->set('default_weight', 0)
                 ->save();
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read(TABLE_WEIGHT)
                 ->selectAssoc('*')
                 ->save();
 
         foreach ($data as $value) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_WEIGHT)
                     ->set('value_weight', $value['value_weight'] / Valid::inPOST('value_weight'))
                     ->where('id=', $value['id'])
@@ -204,7 +202,7 @@ class Weight {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_WEIGHT)
                 ->selectAssoc('*')
                 ->orderByDesc('id')

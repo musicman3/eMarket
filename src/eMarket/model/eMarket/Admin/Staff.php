@@ -16,7 +16,7 @@ use eMarket\Core\{
     Valid,
     Settings
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Staff
@@ -31,7 +31,6 @@ class Staff {
 
     public static $routing_parameter = 'staff_manager/staff';
     public $title = 'title_staff_manager_staff_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $staff_manager_id = FALSE;
 
@@ -40,7 +39,6 @@ class Staff {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->staffManagerId();
         $this->add();
         $this->delete();
@@ -75,7 +73,7 @@ class Staff {
                 $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPOST('chatgpt_token')]);
             }
 
-            $user_detected = $this->db
+            $user_detected = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('password')
                     ->where('login=', Valid::inPOST('email'))
@@ -83,7 +81,7 @@ class Staff {
 
             if (!$user_detected) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_ADMINISTRATORS)
                         ->set('login', Valid::inPOST('email'))
                         ->set('password', Cryptography::passwordHash(Valid::inPOST('password')))
@@ -107,7 +105,7 @@ class Staff {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ADMINISTRATORS)
                     ->where('login=', Valid::inPOST('delete'))
                     ->save();
@@ -126,7 +124,7 @@ class Staff {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_ADMINISTRATORS)
                 ->selectAssoc('*')
                 ->where('permission=', self::$staff_manager_id)

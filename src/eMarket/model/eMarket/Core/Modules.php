@@ -13,7 +13,7 @@ use eMarket\Core\{
     Clock\SystemClock,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Modules
@@ -37,8 +37,7 @@ final class Modules {
      */
     public static function install(array $module): void {
 
-        $db = new Cruder();
-        $db->create(TABLE_MODULES)
+        Db::connect()->create(TABLE_MODULES)
                 ->set('name', $module[1])
                 ->set('type', $module[0])
                 ->set('active', 1)
@@ -54,8 +53,7 @@ final class Modules {
      */
     public static function uninstall(array $module): void {
 
-        $db = new Cruder();
-        $db->delete(TABLE_MODULES)
+        Db::connect()->delete(TABLE_MODULES)
                 ->where('name=', $module[1])
                 ->and('type=', $module[0])
                 ->save();
@@ -69,8 +67,7 @@ final class Modules {
      */
     public static function initDiscount(): void {
 
-        $db = new Cruder();
-        $active_modules = $db
+        $active_modules = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('type=', 'discount')
@@ -81,7 +78,7 @@ final class Modules {
             $discount_default_flag = 0;
             $select_array = [];
 
-            $discounts_all = $db
+            $discounts_all = Db::connect()
                     ->read(DB_PREFIX . 'modules_discount_' . $module['name'])
                     ->selectAssoc('id, name, default_set')
                     ->where('language=', lang('#lang_all')[0])
@@ -91,7 +88,7 @@ final class Modules {
 
             foreach ($discounts_all as $val) {
 
-                $date_end = $db
+                $date_end = Db::connect()
                         ->read(DB_PREFIX . 'modules_discount_' . $module['name'])
                         ->selectValue('{{UNIX_TIMESTAMP->date_end}}')
                         ->where('id=', $val['id'])
@@ -125,8 +122,7 @@ final class Modules {
             return self::$discount_router['functions'];
         }
 
-        $db = new Cruder();
-        $active_modules = $db
+        $active_modules = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('type=', 'discount')

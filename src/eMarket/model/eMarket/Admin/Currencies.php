@@ -17,7 +17,7 @@ use eMarket\Core\{
     Valid,
     Messages
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Currencies
@@ -32,7 +32,6 @@ class Currencies {
 
     public static $routing_parameter = 'currencies';
     public $title = 'title_currencies_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -42,7 +41,6 @@ class Currencies {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -77,7 +75,7 @@ class Currencies {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_CURRENCIES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -106,7 +104,7 @@ class Currencies {
     private function addAction(int|string $id, int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
 
-            $this->db
+            Db::connect()
                     ->create(TABLE_CURRENCIES)
                     ->set('id', $id)
                     ->set('name', Valid::inPOST('name_currencies_' . $x))
@@ -131,7 +129,7 @@ class Currencies {
 
             if ($this->default != 0) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_CURRENCIES)
                         ->set('default_value', 0)
                         ->save();
@@ -154,7 +152,7 @@ class Currencies {
     private function editAction(int|string $value): void {
         for ($x = 0; $x < Lang::$count; $x++) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CURRENCIES)
                     ->set('name', Valid::inPOST('name_currencies_' . $x))
                     ->set('code', Valid::inPOST('code_currencies_' . $x))
@@ -178,7 +176,7 @@ class Currencies {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_CURRENCIES)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -193,19 +191,19 @@ class Currencies {
      */
     private function recount(): void {
 
-        $this->db
+        Db::connect()
                 ->update(TABLE_CURRENCIES)
                 ->set('default_value', 0)
                 ->save();
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read(TABLE_CURRENCIES)
                 ->selectAssoc('*')
                 ->save();
 
         foreach ($data as $value) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CURRENCIES)
                     ->set('value', $value['value'] / Valid::inPOST('value_currencies'))
                     ->where('id=', $value['id'])
@@ -220,7 +218,7 @@ class Currencies {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_CURRENCIES)
                 ->selectAssoc('*')
                 ->orderByDesc('id')

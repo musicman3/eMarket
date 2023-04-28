@@ -18,7 +18,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Manufacturers
@@ -33,7 +33,6 @@ class Manufacturers {
 
     public static $routing_parameter = 'manufacturers';
     public $title = 'title_manufacturers_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $resize_param;
@@ -43,7 +42,6 @@ class Manufacturers {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->imgUpload();
@@ -68,7 +66,7 @@ class Manufacturers {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_MANUFACTURERS)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -79,7 +77,7 @@ class Manufacturers {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_MANUFACTURERS)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_manufacturers_' . $x))
@@ -102,7 +100,7 @@ class Manufacturers {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_MANUFACTURERS)
                         ->set('name', Valid::inPOST('name_manufacturers_' . $x))
                         ->set('site', Valid::inPOST('site_manufacturers'))
@@ -137,7 +135,7 @@ class Manufacturers {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_MANUFACTURERS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -152,7 +150,7 @@ class Manufacturers {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_MANUFACTURERS)
                 ->selectAssoc('*')
                 ->orderByDesc('id')

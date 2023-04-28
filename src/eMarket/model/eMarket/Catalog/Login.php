@@ -15,7 +15,7 @@ use eMarket\Core\{
     Messages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Login
@@ -30,14 +30,12 @@ class Login {
 
     public static $routing_parameter = 'login';
     public $title = 'title_login_index';
-    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->activationCode();
         $this->passwordRecovery();
         $this->logout();
@@ -51,7 +49,7 @@ class Login {
     private function activationCode(): void {
         if (Valid::inGET('activation_code')) {
 
-            $id_actvation = $this->db
+            $id_actvation = Db::connect()
                     ->read(TABLE_CUSTOMERS_ACTIVATION)
                     ->selectValue('id')
                     ->where('activation_code=', Valid::inGET('activation_code'))
@@ -59,7 +57,7 @@ class Login {
 
             if ($id_actvation != NULL) {
 
-                $id_actvation = $this->db
+                $id_actvation = Db::connect()
                         ->read(TABLE_CUSTOMERS)
                         ->selectValue('{{UNIX_TIMESTAMP->date_account_created}}')
                         ->where('id=', $id_actvation)
@@ -67,12 +65,12 @@ class Login {
 
                 if ($account_date + (3 * 24 * 60 * 60) > SystemClock::nowUnixTime()) {
 
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_CUSTOMERS_ACTIVATION)
                             ->where('id=', $id_actvation)
                             ->save();
 
-                    $this->db
+                    Db::connect()
                             ->update(TABLE_CUSTOMERS)
                             ->set('status', 1)
                             ->where('id=', $id_actvation)
@@ -81,12 +79,12 @@ class Login {
                     Messages::alert('messages_activation_complete', 'success', lang('messages_activation_complete'), 7000, true);
                 } else {
 
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_CUSTOMERS_ACTIVATION)
                             ->where('id=', $id_actvation)
                             ->save();
 
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_CUSTOMERS)
                             ->where('id=', $id_actvation)
                             ->save();
@@ -102,13 +100,13 @@ class Login {
     private function passwordRecovery(): void {
         if (Valid::inPOST('email_for_recovery')) {
 
-            $customer_id = $this->db
+            $customer_id = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectValue('id')
                     ->where('email=', Valid::inPOST('email_for_recovery'))
                     ->save();
 
-            $recovery_check = $this->db
+            $recovery_check = Db::connect()
                     ->read(TABLE_PASSWORD_RECOVERY)
                     ->selectValue('recovery_code')
                     ->where('customer_id=', $customer_id)
@@ -117,7 +115,7 @@ class Login {
             if ($customer_id != FALSE && $recovery_check == FALSE) {
                 $recovery_code = Cryptography::getToken(64);
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_PASSWORD_RECOVERY)
                         ->set('customer_id', $customer_id)
                         ->set('recovery_code', $recovery_code)
@@ -131,7 +129,7 @@ class Login {
             } elseif ($customer_id != FALSE && $recovery_check != FALSE) {
                 $recovery_code = Cryptography::getToken(64);
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_PASSWORD_RECOVERY)
                         ->set('recovery_code', $recovery_code)
                         ->set('recovery_code_created', SystemClock::nowSqlDateTime())
@@ -168,7 +166,7 @@ class Login {
     private function entry(): void {
         if (Valid::inPOST('email')) {
 
-            $HASH = (string) $this->db
+            $HASH = (string) Db::connect()
                             ->read(TABLE_CUSTOMERS)
                             ->selectValue('password')
                             ->where('email=', Valid::inPOST('email'))

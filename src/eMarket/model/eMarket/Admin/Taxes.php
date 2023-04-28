@@ -17,7 +17,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Taxes
@@ -32,7 +32,6 @@ class Taxes {
 
     public static $routing_parameter = 'taxes';
     public $title = 'title_taxes_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones = FALSE;
@@ -45,7 +44,6 @@ class Taxes {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -80,7 +78,7 @@ class Taxes {
                 $fixed = 1;
             }
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_TAXES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -91,7 +89,7 @@ class Taxes {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_TAXES)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_taxes_' . $x))
@@ -128,7 +126,7 @@ class Taxes {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_TAXES)
                         ->set('name', Valid::inPOST('name_taxes_' . $x))
                         ->set('rate', Valid::inPOST('rate_taxes'))
@@ -152,7 +150,7 @@ class Taxes {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_TAXES)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -167,7 +165,7 @@ class Taxes {
      */
     private function data(): void {
 
-        self::$zones = $this->db
+        self::$zones = Db::connect()
                 ->read(TABLE_ZONES)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -181,7 +179,7 @@ class Taxes {
         self::$value_6 = [0 => sprintf(lang('taxes_value'), Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
         self::$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_TAXES)
                 ->selectAssoc('*')
                 ->orderByDesc('id')

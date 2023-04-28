@@ -14,7 +14,7 @@ use eMarket\Core\{
     Tree,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Languages
@@ -35,7 +35,6 @@ final class Lang {
      *
      */
     public function __construct() {
-        $this->db = new Cruder();
         $this->init();
     }
 
@@ -47,7 +46,7 @@ final class Lang {
 
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_ADMINISTRATORS)
                     ->set('language', Valid::inGET('language'))
                     ->where('login=', $_SESSION['login'])

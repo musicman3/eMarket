@@ -19,7 +19,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\Stickers;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * eMarket Ajax Catalog
@@ -32,7 +32,6 @@ use Cruder\Cruder;
  */
 final class Eac {
 
-    public $db;
     private $resize_param = FALSE;
     private $resize_param_product = FALSE;
     private $date_available = NULL;
@@ -56,7 +55,6 @@ final class Eac {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->parentIdStart();
         $this->addCategory();
         $this->editCategory();
@@ -99,7 +97,7 @@ final class Eac {
      */
     private function initDiscount(): void {
 
-        $active_modules = $this->db
+        $active_modules = Db::connect()
                 ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('type=', 'discount')
@@ -123,7 +121,7 @@ final class Eac {
         }
 
         if (Valid::inGET('parent_up')) {
-            self::$parent_id = $this->db
+            self::$parent_id = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectValue('parent_id')
                     ->where('id=', Valid::inGET('parent_up'))
@@ -157,7 +155,7 @@ final class Eac {
 
             foreach ($sort_array_id as $val) {
 
-                $sort_category = $this->db
+                $sort_category = Db::connect()
                         ->read(TABLE_CATEGORIES)
                         ->selectValue('sort_category')
                         ->where('id=', $val)
@@ -173,7 +171,7 @@ final class Eac {
 
             foreach ($sort_array_id as $val) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_CATEGORIES)
                         ->set('sort_category', (int) $sort_array_final[$val])
                         ->where('id=', (int) $val)
@@ -190,7 +188,7 @@ final class Eac {
 
         if (Valid::inPOST('add')) {
 
-            $sort_max = $this->db
+            $sort_max = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectValue('sort_category')
                     ->where('language=', lang('#lang_all')[0])
@@ -200,7 +198,7 @@ final class Eac {
 
             $sort_category = intval($sort_max) + 1;
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -217,7 +215,7 @@ final class Eac {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_CATEGORIES)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_categories_stock_' . $x))
@@ -244,7 +242,7 @@ final class Eac {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_CATEGORIES)
                         ->set('name', Valid::inPOST('name_categories_stock_' . $x))
                         ->set('last_modified', SystemClock::nowSqlDateTime())
@@ -282,21 +280,21 @@ final class Eac {
                     for ($x = 0; $x < $count_keys; $x++) {
                         // Removing product and images
                         $this->deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
-                        $this->db
+                        Db::connect()
                                 ->delete(TABLE_PRODUCTS)
                                 ->where('parent_id=', $keys[$x])
                                 ->save();
 
                         // Removing subcategories and images
                         $this->deleteImages(TABLE_CATEGORIES, $keys[$x], 'categories');
-                        $this->db
+                        Db::connect()
                                 ->delete(TABLE_CATEGORIES)
                                 ->where('parent_id=', $keys[$x])
                                 ->save();
                     }
 
                     // Removing general category
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_CATEGORIES)
                             ->where('id=', $id_cat)
                             ->save();
@@ -315,7 +313,7 @@ final class Eac {
                     // This is product
                     $id_prod = explode('products_', $idx[$i])[1];
                     //Removing general product
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_PRODUCTS)
                             ->where('id=', $id_prod)
                             ->save();
@@ -419,7 +417,7 @@ final class Eac {
                 // This is category
                 if (isset($_SESSION['buffer']['cat'][$buf]) && count($_SESSION['buffer']['cat']) > 0) {
 
-                    $sort_max = $this->db
+                    $sort_max = Db::connect()
                             ->read(TABLE_CATEGORIES)
                             ->selectValue('sort_category')
                             ->where('language=', lang('#lang_all')[0])
@@ -429,7 +427,7 @@ final class Eac {
 
                     $sort_category = intval($sort_max) + 1;
 
-                    $this->db
+                    Db::connect()
                             ->update(TABLE_CATEGORIES)
                             ->set('parent_id', $parent_id_real)
                             ->set('sort_category', $sort_category)
@@ -439,7 +437,7 @@ final class Eac {
 
                 if (isset($_SESSION['buffer']['prod'][$buf]) && count($_SESSION['buffer']['prod']) > 0) {
                     // This is product
-                    $this->db
+                    Db::connect()
                             ->update(TABLE_PRODUCTS)
                             ->set('parent_id', $parent_id_real)
                             ->set('attributes', json_encode([]))
@@ -501,14 +499,14 @@ final class Eac {
                                 or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
 
                             // This is category
-                            $this->db
+                            Db::connect()
                                     ->update(TABLE_CATEGORIES)
                                     ->set('status', $status)
                                     ->where('parent_id=', $keys[$x])
                                     ->save();
 
                             // This is product
-                            $this->db
+                            Db::connect()
                                     ->update(TABLE_PRODUCTS)
                                     ->set('status', $status)
                                     ->where('parent_id=', $keys[$x])
@@ -523,7 +521,7 @@ final class Eac {
                     if ((Valid::inPostJson('idsx_status_on_key') == 'On')
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
 
-                        $this->db
+                        Db::connect()
                                 ->update(TABLE_CATEGORIES)
                                 ->set('status', $status)
                                 ->where('id=', $id_cat)
@@ -538,7 +536,7 @@ final class Eac {
                             or (Valid::inPostJson('idsx_status_off_key') == 'Off')) {
 
                         $id_prod = explode('products_', $idx[$i])[1];
-                        $this->db
+                        Db::connect()
                                 ->update(TABLE_PRODUCTS)
                                 ->set('status', $status)
                                 ->where('id=', $id_prod)
@@ -632,7 +630,7 @@ final class Eac {
             $resize = $this->resize_param_product;
         }
 
-        $data = $this->db
+        $data = Db::connect()
                 ->read($TABLE)
                 ->selectValue('logo')
                 ->where('parent_id=', $keys)
@@ -714,7 +712,7 @@ final class Eac {
 
             $this->productVarsSet();
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -725,7 +723,7 @@ final class Eac {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_PRODUCTS)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_product_stock_' . $x))
@@ -776,7 +774,7 @@ final class Eac {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_PRODUCTS)
                         ->set('name', Valid::inPOST('name_product_stock_' . $x))
                         ->set('last_modified', SystemClock::nowSqlDateTime())

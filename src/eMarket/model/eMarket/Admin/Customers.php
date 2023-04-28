@@ -15,7 +15,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Customers
@@ -30,7 +30,6 @@ class Customers {
 
     public static $routing_parameter = 'customers';
     public $title = 'title_customers_index';
-    public $db;
     public static int $status = 0;
     public static $json_data = FALSE;
 
@@ -39,7 +38,6 @@ class Customers {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->status();
         $this->delete();
         $this->data();
@@ -61,7 +59,7 @@ class Customers {
     private function status(): void {
         if (Valid::inPOST('status')) {
 
-            $status_data = $this->db
+            $status_data = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectValue('status')
                     ->where('id=', Valid::inPOST('status'))
@@ -71,7 +69,7 @@ class Customers {
                 self::$status = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CUSTOMERS)
                     ->set('status', self::$status)
                     ->where('id=', Valid::inPOST('status'))
@@ -88,7 +86,7 @@ class Customers {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_CUSTOMERS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -105,7 +103,7 @@ class Customers {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            $lines = $this->db
+            $lines = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectIndex('*')
                     ->where('firstname {{LIKE}}', $search)
@@ -116,7 +114,7 @@ class Customers {
                     ->save();
         } else {
 
-            $lines = $this->db
+            $lines = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectIndex('*')
                     ->orderByDesc('id')

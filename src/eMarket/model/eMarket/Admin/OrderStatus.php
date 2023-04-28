@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Order Status
@@ -31,7 +31,6 @@ class OrderStatus {
 
     public static $routing_parameter = 'order_status';
     public $title = 'title_order_status_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -41,7 +40,6 @@ class OrderStatus {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -77,7 +75,7 @@ class OrderStatus {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $order_status = $this->db
+            $order_status = Db::connect()
                     ->read(TABLE_ORDER_STATUS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -98,7 +96,7 @@ class OrderStatus {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_ORDER_STATUS)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_order_status_' . $x))
@@ -125,7 +123,7 @@ class OrderStatus {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_ORDER_STATUS)
                         ->set('name', Valid::inPOST('name_order_status_' . $x))
                         ->set('default_order_status', $this->default)
@@ -145,7 +143,7 @@ class OrderStatus {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ORDER_STATUS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -160,7 +158,7 @@ class OrderStatus {
      */
     private function recount(): void {
 
-        $this->db
+        Db::connect()
                 ->update(TABLE_ORDER_STATUS)
                 ->set('default_order_status', 0)
                 ->save();
@@ -178,7 +176,7 @@ class OrderStatus {
 
             foreach ($sort_array_id as $val) {
 
-                $sort_order_status = $this->db
+                $sort_order_status = Db::connect()
                         ->read(TABLE_ORDER_STATUS)
                         ->selectValue('sort')
                         ->where('id=', $val)
@@ -194,7 +192,7 @@ class OrderStatus {
 
             foreach ($sort_array_id as $val) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_ORDER_STATUS)
                         ->set('sort', (int) $sort_array_final[$val])
                         ->where('id=', (int) $val)
@@ -209,7 +207,7 @@ class OrderStatus {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_ORDER_STATUS)
                 ->selectAssoc('*')
                 ->orderByDesc('sort')

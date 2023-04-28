@@ -15,7 +15,7 @@ use eMarket\Core\{
     Products,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Listing
@@ -30,7 +30,6 @@ class Listing {
 
     public static $routing_parameter = 'listing';
     public $title = 'title_listing_index';
-    public $db;
     public static $checked_stock = '';
     public $sort_parameter = '';
     public static $sort_name;
@@ -44,7 +43,6 @@ class Listing {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->title();
         $this->data();
         $this->modal();
@@ -55,7 +53,7 @@ class Listing {
      *
      */
     private function title(): void {
-        $title = $this->db
+        $title = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectValue('name')
                 ->where('language=', lang('#lang_all')[0])
@@ -138,7 +136,7 @@ class Listing {
         if (Valid::inGET('search')) {
             $search = '%' . Valid::inGET('search') . '%';
 
-            $sql_data = $this->db
+            $sql_data = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('*')
                     ->where('name {{LIKE}}', $search)
@@ -153,7 +151,7 @@ class Listing {
             self::$sql_data = $this->sorting($sql_data)->save();
         } else {
 
-            $sql_data = $this->db
+            $sql_data = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -182,7 +180,7 @@ class Listing {
 
                 $modal_id = self::$sql_data[$i]['id'];
 
-                $query = $this->db
+                $query = Db::connect()
                                 ->read(TABLE_PRODUCTS)
                                 ->selectAssoc('*')
                                 ->where('id=', $modal_id)

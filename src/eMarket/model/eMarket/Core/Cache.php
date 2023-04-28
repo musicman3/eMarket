@@ -14,7 +14,7 @@ use eMarket\Core\{
     Valid
 };
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Cache class
@@ -33,14 +33,12 @@ class Cache {
     public $cache_adapter = FALSE;
     public $cache_status = FALSE;
     public $caching_time = FALSE;
-    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->cacheStatus();
         $this->cachingTime();
     }
@@ -95,7 +93,7 @@ class Cache {
      */
     private function cacheStatus(): void {
 
-        $this->cache_status = $this->db
+        $this->cache_status = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('cache_status')
                 ->save();
@@ -107,12 +105,12 @@ class Cache {
                 $cache_status = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('cache_status', $cache_status)
                     ->save();
 
-            $this->cache_status = $this->db
+            $this->cache_status = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('cache_status')
                     ->save();
@@ -125,19 +123,19 @@ class Cache {
      */
     private function cachingTime(): void {
 
-        $this->caching_time = $this->db
+        $this->caching_time = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('caching_time')
                 ->save();
 
         if (Valid::inPOST('caching_time')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('caching_time', Valid::inPOST('caching_time'))
                     ->save();
 
-            $this->caching_time = $this->db
+            $this->caching_time = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('caching_time')
                     ->save();

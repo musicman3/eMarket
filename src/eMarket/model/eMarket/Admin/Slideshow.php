@@ -19,7 +19,7 @@ use eMarket\Core\{
     Valid,
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Slideshow
@@ -34,7 +34,6 @@ class Slideshow {
 
     public static $routing_parameter = 'slideshow';
     public $title = 'title_slideshow_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $settings = FALSE;
@@ -55,7 +54,6 @@ class Slideshow {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->settings();
         $this->slideshowPref();
         $this->add();
@@ -90,7 +88,7 @@ class Slideshow {
      */
     private function settings(): void {
 
-        $settings = $this->db
+        $settings = Db::connect()
                 ->read(TABLE_SLIDESHOW_PREF)
                 ->selectAssoc('*')
                 ->save();
@@ -126,7 +124,7 @@ class Slideshow {
                 $navigation = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_SLIDESHOW_PREF)
                     ->set('show_interval', Valid::inPOST('show_interval'))
                     ->set('mouse_stop', $mouse_stop)
@@ -168,7 +166,7 @@ class Slideshow {
                 $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
-            $this->db
+            Db::connect()
                     ->create(TABLE_SLIDESHOW)
                     ->set('language', Valid::inPOST('set_language'))
                     ->set('url', Valid::inPOST('url'))
@@ -216,7 +214,7 @@ class Slideshow {
                 $end_date = SystemClock::getSqlDateTime(Valid::inPOST('end_date'));
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_SLIDESHOW)
                     ->set('url', Valid::inPOST('url'))
                     ->set('name', Valid::inPOST('name'))
@@ -259,7 +257,7 @@ class Slideshow {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_SLIDESHOW)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -283,7 +281,7 @@ class Slideshow {
 
         self::$this_time = SystemClock::nowUnixTime();
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_SLIDESHOW)
                 ->selectAssoc('*')
                 ->orderByDesc('id')
@@ -343,12 +341,11 @@ class Slideshow {
     public static function view(): void {
 
         $Cache = new Cache();
-        $db = new Cruder();
         $Cache->cache_name = 'catalog.slideshow';
 
         if (!$Cache->isHit()) {
 
-            $Cache->data = $db
+            $Cache->data = Db::connect()
                     ->read(TABLE_SLIDESHOW)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -360,7 +357,7 @@ class Slideshow {
             self::$slideshow = $Cache->cache_item->get();
         }
 
-        $slideshow_pref = $db
+        $slideshow_pref = Db::connect()
                         ->read(TABLE_SLIDESHOW_PREF)
                         ->selectAssoc('*')
                         ->where('id=', 1)

@@ -14,7 +14,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Templates
@@ -29,7 +29,6 @@ class Templates {
 
     public static $routing_parameter = 'templates';
     public $title = 'title_templates_index';
-    public $db;
     public static $layout_pages;
     public static $name_template;
     public static $select_page;
@@ -49,7 +48,6 @@ class Templates {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->data();
         $this->selectPage();
         $this->selectTemplate();
@@ -109,7 +107,7 @@ class Templates {
      * @param string $value Value
      */
     private function clear(string $value): void {
-        $this->db
+        Db::connect()
                 ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
                 ->where('group_id=', 'catalog')
                 ->and('value=', $value)
@@ -126,7 +124,7 @@ class Templates {
      * @param string $x sort number
      */
     private function set(string $url, string $value, int $x): void {
-        $this->db
+        Db::connect()
                 ->create(TABLE_TEMPLATE_CONSTRUCTOR)
                 ->set('url', $url)
                 ->set('group_id', 'catalog')
@@ -158,7 +156,7 @@ class Templates {
      *
      */
     private function loadData(): void {
-        $layouts_data = $this->db
+        $layouts_data = Db::connect()
                 ->read(TABLE_TEMPLATE_CONSTRUCTOR)
                 ->selectAssoc('url, value, page')
                 ->where('group_id=', 'catalog')
@@ -201,7 +199,7 @@ class Templates {
             if (Valid::inPostJson('page') == 'all') {
                 self::$select_page = 'all';
 
-                $this->db
+                Db::connect()
                         ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
                         ->where('group_id=', 'catalog')
                         ->and('template_name=', Valid::inPostJson('template'))

@@ -15,7 +15,7 @@ use eMarket\Core\{
     Messages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * My Account
@@ -30,14 +30,12 @@ class MyAccount {
 
     public static $routing_parameter = 'my_account';
     public $title = 'title_my_account_index';
-    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->authorize();
         $this->edit();
     }
@@ -62,7 +60,7 @@ class MyAccount {
             if (Valid::inPOST('password') && Valid::inPOST('confirm_password') && Valid::inPOST('password') == Valid::inPOST('confirm_password')) {
                 $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_CUSTOMERS)
                         ->set('firstname', Valid::inPOST('firstname'))
                         ->set('lastname', Valid::inPOST('lastname'))
@@ -73,7 +71,7 @@ class MyAccount {
                         ->save();
             } else {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_CUSTOMERS)
                         ->set('firstname', Valid::inPOST('firstname'))
                         ->set('lastname', Valid::inPOST('lastname'))

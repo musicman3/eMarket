@@ -14,7 +14,7 @@ use eMarket\Core\{
     Messages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Address Book
@@ -29,7 +29,6 @@ class AddressBook {
 
     public static $routing_parameter = 'address_book';
     public $title = 'title_address_book_index';
-    public $db;
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
@@ -41,7 +40,6 @@ class AddressBook {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->authorize();
         $this->jsonEcho();
         $this->initData();
@@ -70,7 +68,7 @@ class AddressBook {
     private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
 
-            self::$regions_data = $this->db
+            self::$regions_data = Db::connect()
                     ->read(TABLE_REGIONS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -89,7 +87,7 @@ class AddressBook {
      */
     private function initData(): void {
 
-        $countries_array = $this->db
+        $countries_array = Db::connect()
                 ->read(TABLE_COUNTRIES)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -98,7 +96,7 @@ class AddressBook {
 
         self::$countries_data_json = json_encode($countries_array);
 
-        self::$address_data_json = $this->db
+        self::$address_data_json = Db::connect()
                 ->read(TABLE_CUSTOMERS)
                 ->selectValue('address_book')
                 ->where('email=', $_SESSION['customer_email'])
@@ -145,7 +143,7 @@ class AddressBook {
             }
             array_unshift(self::$address_data, $address_array);
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CUSTOMERS)
                     ->set('address_book', json_encode(self::$address_data))
                     ->where('email=', $_SESSION['customer_email'])
@@ -179,7 +177,7 @@ class AddressBook {
 
             self::$address_data[(int) Valid::inPOST('edit') - 1] = $address_array;
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CUSTOMERS)
                     ->set('address_book', json_encode(self::$address_data))
                     ->where('email=', $_SESSION['customer_email'])
@@ -211,7 +209,7 @@ class AddressBook {
                 $address_data_out_table = json_encode($address_data_out);
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_CUSTOMERS)
                     ->set('address_book', $address_data_out_table)
                     ->where('email=', $_SESSION['customer_email'])
@@ -229,7 +227,7 @@ class AddressBook {
         $x = 0;
         foreach (self::$address_data as $address_val) {
 
-            $countries_array = $this->db
+            $countries_array = Db::connect()
                             ->read(TABLE_COUNTRIES)
                             ->selectAssoc('*')
                             ->where('language=', lang('#lang_all')[0])
@@ -237,7 +235,7 @@ class AddressBook {
                             ->orderByAsc('name')
                             ->save()[0];
 
-            $regions_array = $this->db
+            $regions_array = Db::connect()
                             ->read(TABLE_REGIONS)
                             ->selectAssoc('id, name')
                             ->where('language=', lang('#lang_all')[0])

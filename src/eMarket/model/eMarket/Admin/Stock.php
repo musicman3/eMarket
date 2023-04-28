@@ -23,7 +23,7 @@ use eMarket\Admin\{
     HeaderMenu,
     Stickers
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Stock
@@ -38,7 +38,6 @@ class Stock {
 
     public static $routing_parameter = 'stock';
     public $title = 'title_stock_index';
-    public $db;
     public static $json_data_category = FALSE;
     public static $json_data_product = FALSE;
     public static $resize_param = FALSE;
@@ -71,7 +70,6 @@ class Stock {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->imgUploadCategories();
         $this->imgUploadProducts();
         $this->initEac();
@@ -132,43 +130,43 @@ class Stock {
      */
     private function selectData(): void {
 
-        self::$currencies_all = $this->db
+        self::$currencies_all = Db::connect()
                 ->read(TABLE_CURRENCIES)
                 ->selectAssoc('name, default_value, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$taxes_all = $this->db
+        self::$taxes_all = Db::connect()
                 ->read(TABLE_TAXES)
                 ->selectAssoc('name, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$units_all = $this->db
+        self::$units_all = Db::connect()
                 ->read(TABLE_UNITS)
                 ->selectAssoc('name, default_unit, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$length_all = $this->db
+        self::$length_all = Db::connect()
                 ->read(TABLE_LENGTH)
                 ->selectAssoc('name, default_length, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$weight_all = $this->db
+        self::$weight_all = Db::connect()
                 ->read(TABLE_WEIGHT)
                 ->selectAssoc('name, default_weight, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$vendor_codes_all = $this->db
+        self::$vendor_codes_all = Db::connect()
                 ->read(TABLE_VENDOR_CODES)
                 ->selectAssoc('name, default_vendor_code, id')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$manufacturers_all = $this->db
+        self::$manufacturers_all = Db::connect()
                 ->read(TABLE_MANUFACTURERS)
                 ->selectAssoc('name, id')
                 ->where('language=', lang('#lang_all')[0])
@@ -198,7 +196,7 @@ class Stock {
             self::$attributes_category = json_encode(json_encode([]));
         } else {
 
-            $attributes_category = $this->db
+            $attributes_category = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectAssoc('attributes')
                     ->where('id=', self::$parent_id)
@@ -219,7 +217,7 @@ class Stock {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            $sql_data_cat_search = $this->db
+            $sql_data_cat_search = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectAssoc('id')
                     ->where('name {{LIKE}}', $search)
@@ -231,7 +229,7 @@ class Stock {
 
             foreach ($sql_data_cat_search as $sql_data_cat_search_val) {
 
-                $search_val = $this->db
+                $search_val = Db::connect()
                         ->read(TABLE_CATEGORIES)
                         ->selectAssoc('*')
                         ->where('id=', $sql_data_cat_search_val['id'])
@@ -244,7 +242,7 @@ class Stock {
             }
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
 
-            $sql_data_prod_search = $this->db
+            $sql_data_prod_search = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('id')
                     ->where('name {{LIKE}}', $search)
@@ -258,7 +256,7 @@ class Stock {
 
             foreach ($sql_data_prod_search as $sql_data_prod_search_val) {
 
-                $prod_search_val = $this->db
+                $prod_search_val = Db::connect()
                         ->read(TABLE_PRODUCTS)
                         ->selectAssoc('*')
                         ->where('id=', $sql_data_prod_search_val['id'])
@@ -271,7 +269,7 @@ class Stock {
             }
             self::$lines_prod = Func::filterData(self::$sql_data_prod, 'language', lang('#lang_all')[0]);
         } else {
-            self::$sql_data_cat = $this->db
+            self::$sql_data_cat = Db::connect()
                     ->read(TABLE_CATEGORIES)
                     ->selectAssoc('*')
                     ->where('parent_id=', self::$parent_id)
@@ -280,7 +278,7 @@ class Stock {
 
             self::$lines_cat = Func::filterData(self::$sql_data_cat, 'language', lang('#lang_all')[0]);
 
-            self::$sql_data_prod = $this->db
+            self::$sql_data_prod = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('*')
                     ->where('parent_id=', self::$parent_id)
@@ -384,7 +382,7 @@ class Stock {
                             $attributes_data[$modal_id_prod] = json_encode(json_encode([]));
                         } else {
 
-                            $attributes = $this->db
+                            $attributes = Db::connect()
                                     ->read(TABLE_CATEGORIES)
                                     ->selectAssoc('attributes')
                                     ->where('id=', self::$parent_id)
@@ -545,12 +543,12 @@ class Stock {
 
         $discount_json = json_decode($discount, true);
         $text = '';
-        $db = new Cruder();
+
         if (is_array($discount_json)) {
             foreach ($discount_json as $key => $id) {
                 foreach ($id as $val_id) {
 
-                    $module_name = $db
+                    $module_name = Db::connect()
                             ->read(DB_PREFIX . 'modules_discount_' . $key)
                             ->selectValue('name')
                             ->where('language=', lang('#lang_all')[0])

@@ -14,7 +14,7 @@ use eMarket\Core\{
     JsonRpc,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * ChatGPT
@@ -29,14 +29,12 @@ class ChatGPT extends JsonRpc {
 
     public static $routing_parameter = 'ChatGPT';
     private $token = '';
-    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
-        $this->db = new Cruder();
         $this->request();
     }
 
@@ -47,7 +45,7 @@ class ChatGPT extends JsonRpc {
     private function getToken(): void {
         $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
 
-        $token = $this->db
+        $token = Db::connect()
                 ->read(TABLE_ADMINISTRATORS)
                 ->selectValue('my_data')
                 ->where('login=', $decrypt_login)

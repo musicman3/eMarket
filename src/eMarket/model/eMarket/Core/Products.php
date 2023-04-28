@@ -15,7 +15,7 @@ use eMarket\Core\{
     Ecb,
     DataBuffer
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Products
@@ -44,14 +44,12 @@ class Products {
      */
     public static function newProducts(string $count = ''): mixed {
 
-        $db = new Cruder();
-
         $Cache = new Cache();
         $Cache->cache_name = 'core.new_products';
 
         if (!$Cache->isHit()) {
 
-            $Cache->data = $db
+            $Cache->data = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -79,14 +77,12 @@ class Products {
             $language = lang('#lang_all')[0];
         }
 
-        $db = new Cruder();
-
         $Cache = new Cache();
         $Cache->cache_name = 'core.products_' . $id;
 
         if (!$Cache->isHit()) {
 
-            $Cache->data = $db
+            $Cache->data = Db::connect()
                             ->read(TABLE_PRODUCTS)
                             ->selectAssoc('*')
                             ->where('id=', $id)
@@ -111,14 +107,12 @@ class Products {
      */
     public static function categoryData(string|int $id, ?string $language = null): array {
 
-        $db = new Cruder();
-
         if (count(self::$category_data) == 0) {
             if ($language == null) {
                 $language = lang('#lang_all')[0];
             }
 
-            self::$category_data = $db
+            self::$category_data = Db::connect()
                             ->read(TABLE_CATEGORIES)
                             ->selectAssoc('*')
                             ->where('language=', $language)
@@ -139,11 +133,9 @@ class Products {
      */
     public static function manufacturer(string|int $id): array|bool {
 
-        $db = new Cruder();
-
         if (self::$manufacturer == FALSE) {
 
-            self::$manufacturer = $db
+            self::$manufacturer = Db::connect()
                     ->read(TABLE_MANUFACTURERS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -166,11 +158,9 @@ class Products {
      */
     public static function vendorCode(string|int $id): array|bool {
 
-        $db = new Cruder();
-
         if (self::$vendor_codes == FALSE) {
 
-            self::$vendor_codes = $db
+            self::$vendor_codes = Db::connect()
                     ->read(TABLE_VENDOR_CODES)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -193,11 +183,9 @@ class Products {
      */
     public static function weight(string|int $id): array|bool {
 
-        $db = new Cruder();
-
         if (self::$weight == FALSE) {
 
-            self::$weight = $db
+            self::$weight = Db::connect()
                     ->read(TABLE_WEIGHT)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -220,11 +208,9 @@ class Products {
      */
     public static function length(string|int $id): array|bool {
 
-        $db = new Cruder();
-
         if (self::$length == FALSE) {
 
-            self::$length = $db
+            self::$length = Db::connect()
                     ->read(TABLE_LENGTH)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -283,8 +269,6 @@ class Products {
      */
     public static function stickers(array $input, ?string $class = null, ?string $class2 = null): array {
 
-        $db = new Cruder();
-
         if ($class == null) {
             $class = 'danger';
         }
@@ -293,7 +277,7 @@ class Products {
         }
         if (self::$sticker_data == false) {
 
-            self::$sticker_data = $db
+            self::$sticker_data = Db::connect()
                     ->read(TABLE_STICKERS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])

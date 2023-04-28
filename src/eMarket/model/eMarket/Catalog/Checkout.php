@@ -11,10 +11,9 @@ namespace eMarket\Catalog;
 
 use eMarket\Core\{
     Authorize,
-    Pdo,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Checkout
@@ -29,7 +28,6 @@ class Checkout {
 
     public static $routing_parameter = 'checkout';
     public $title = 'title_checkout_index';
-    public $db;
     public static $customer;
     public static $address_data;
 
@@ -38,7 +36,6 @@ class Checkout {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->authorize();
         $this->customerData();
         $this->customerAddress();
@@ -74,7 +71,7 @@ class Checkout {
             ];
         } else {
 
-            self::$customer = $this->db
+            self::$customer = Db::connect()
                             ->read(TABLE_CUSTOMERS)
                             ->selectAssoc('id, address_book, gender, firstname, lastname, middle_name, fax, telephone')
                             ->where('email=', $_SESSION['customer_email'])

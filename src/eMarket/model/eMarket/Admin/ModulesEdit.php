@@ -12,7 +12,7 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Modules/Edit
@@ -27,7 +27,6 @@ class ModulesEdit {
 
     public static $routing_parameter = 'modules/edit';
     public $title;
-    public $db;
     public static string $switch_active = '';
 
     /**
@@ -35,7 +34,6 @@ class ModulesEdit {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->title();
         $this->switchActive();
     }
@@ -54,7 +52,7 @@ class ModulesEdit {
      */
     private function switchActive(): void {
 
-        $active = $this->db
+        $active = Db::connect()
                         ->read(TABLE_MODULES)
                         ->selectValue('active')
                         ->where('type=', Valid::inGET('type'))

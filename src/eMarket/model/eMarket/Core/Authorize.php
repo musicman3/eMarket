@@ -18,7 +18,7 @@ use eMarket\Core\{
 use \eMarket\Catalog\{
     Cart
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Class for user authorization
@@ -33,15 +33,12 @@ class Authorize {
 
     public static $customer;
     public static $csrf_token = FALSE;
-    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
-
-        $this->db = new Cruder();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
@@ -121,7 +118,7 @@ class Authorize {
     private function demoModeInit(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = $this->db
+            $staff_permission = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
@@ -129,7 +126,7 @@ class Authorize {
 
             if ($staff_permission != 'admin') {
 
-                $mode = $this->db
+                $mode = Db::connect()
                         ->read(TABLE_STAFF_MANAGER)
                         ->selectValue('mode')
                         ->where('id=', $staff_permission)
@@ -149,7 +146,7 @@ class Authorize {
     private function dashboardCheck(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = $this->db
+            $staff_permission = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
@@ -157,7 +154,7 @@ class Authorize {
 
             if ($staff_permission != 'admin') {
 
-                $staff_data_prepare = $this->db
+                $staff_data_prepare = Db::connect()
                         ->read(TABLE_STAFF_MANAGER)
                         ->selectValue('permissions')
                         ->where('id=', $staff_permission)
@@ -210,7 +207,7 @@ class Authorize {
             exit;
         } elseif (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
-            $_SESSION['DEFAULT_LANGUAGE'] = $this->db
+            $_SESSION['DEFAULT_LANGUAGE'] = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('language')
                     ->where('login=', $_SESSION['login'])
@@ -234,7 +231,7 @@ class Authorize {
 
         if (isset($_SESSION['customer_email'])) {
 
-            $customer_data = $this->db
+            $customer_data = Db::connect()
                             ->read(TABLE_CUSTOMERS)
                             ->selectAssoc('*')
                             ->where('email=', $_SESSION['customer_email'])

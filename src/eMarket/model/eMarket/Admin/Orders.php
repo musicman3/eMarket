@@ -17,7 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Orders
@@ -32,7 +32,6 @@ class Orders {
 
     public static $routing_parameter = 'orders';
     public $title = 'title_orders_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $order_status = FALSE;
@@ -42,7 +41,6 @@ class Orders {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->edit();
         $this->delete();
         $this->data();
@@ -67,7 +65,7 @@ class Orders {
 
             $primary_language = Settings::primaryLanguage();
 
-            $order_data = $this->db
+            $order_data = Db::connect()
                             ->read(TABLE_ORDERS)
                             ->selectAssoc('orders_status_history, customer_data, email')
                             ->where('id=', Valid::inPOST('edit'))
@@ -75,14 +73,14 @@ class Orders {
 
             $customer_language = json_decode($order_data['customer_data'], true)['language'];
 
-            $customer_status_history_select = $this->db
+            $customer_status_history_select = Db::connect()
                     ->read(TABLE_ORDER_STATUS)
                     ->selectValue('name')
                     ->where('language=', $customer_language)
                     ->and('id=', Valid::inPOST('status_history_select'))
                     ->save();
 
-            $admin_status_history_select = $this->db
+            $admin_status_history_select = Db::connect()
                     ->read(TABLE_ORDER_STATUS)
                     ->selectValue('name')
                     ->where('language=', $primary_language)
@@ -103,7 +101,7 @@ class Orders {
                         'date' => SystemClock::getDateTime($date, $primary_language)
                 ]]);
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_ORDERS)
                         ->set('orders_status_history', json_encode($orders_status_history))
                         ->set('last_modified', $date)
@@ -130,7 +128,7 @@ class Orders {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ORDERS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -145,7 +143,7 @@ class Orders {
      */
     private function data(): void {
 
-        self::$order_status = $this->db
+        self::$order_status = Db::connect()
                 ->read(TABLE_ORDER_STATUS)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -155,7 +153,7 @@ class Orders {
         $search = '%' . Valid::inGET('search') . '%';
         if (Valid::inGET('search')) {
 
-            self::$sql_data = $this->db
+            self::$sql_data = Db::connect()
                     ->read(TABLE_ORDERS)
                     ->selectAssoc('*')
                     ->where('id {{LIKE}}', $search)
@@ -166,7 +164,7 @@ class Orders {
                     ->save();
         } else {
 
-            self::$sql_data = $this->db
+            self::$sql_data = Db::connect()
                     ->read(TABLE_ORDERS)
                     ->selectAssoc('*')
                     ->orderByDesc('id')

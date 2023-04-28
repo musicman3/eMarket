@@ -17,7 +17,7 @@ use eMarket\Core\{
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\ErrorHandler;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Messages
@@ -139,11 +139,9 @@ class Messages {
      */
     public static function sendProviders(?string $to, ?string $body): void {
 
-        $db = new Cruder();
-
         if ($to !== null) {
 
-            $active_modules = $db
+            $active_modules = Db::connect()
                     ->read(TABLE_MODULES)
                     ->selectAssoc('*')
                     ->where('type=', 'providers')
@@ -167,12 +165,10 @@ class Messages {
      */
     public static function sendMail(string $email_to, ?string $subject, ?string $message): void {
 
-        $db = new Cruder();
-
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = 'UTF-8';
 
-        $basic_settings = $db
+        $basic_settings = Db::connect()
                         ->read(TABLE_BASIC_SETTINGS)
                         ->selectAssoc('*')
                         ->save()[0];

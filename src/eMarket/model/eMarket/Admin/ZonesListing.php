@@ -15,7 +15,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Zones/Listing
@@ -30,7 +30,6 @@ class ZonesListing {
 
     public static $routing_parameter = 'zones/listing';
     public $title = 'title_zones_listing_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $zones_id = FALSE;
@@ -47,7 +46,6 @@ class ZonesListing {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->zones_id();
         $this->add();
         $this->data();
@@ -75,7 +73,7 @@ class ZonesListing {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ZONES_VALUE)
                     ->where('zones_id=', self::$zones_id)
                     ->save();
@@ -84,7 +82,7 @@ class ZonesListing {
                 $multiselect = Func::arrayExplode(Valid::inPOST('multiselect'), '-');
                 foreach ($multiselect as $value) {
 
-                    $this->db
+                    Db::connect()
                             ->create(TABLE_ZONES_VALUE)
                             ->set('country_id', $value[0])
                             ->set('regions_id', $value[1])
@@ -104,7 +102,7 @@ class ZonesListing {
     private function data(): void {
         self::$count = 0;
 
-        self::$countries_multiselect_temp = $this->db
+        self::$countries_multiselect_temp = Db::connect()
                 ->read(TABLE_COUNTRIES)
                 ->selectIndex('id, name')
                 ->where('language=', lang('#lang_all')[0])
@@ -115,19 +113,19 @@ class ZonesListing {
 
         asort(self::$countries_multiselect);
 
-        self::$regions_multiselect = $this->db
+        self::$regions_multiselect = Db::connect()
                 ->read(TABLE_REGIONS)
                 ->selectAssoc('id, country_id, name, region_code')
                 ->where('language=', lang('#lang_all')[0])
                 ->save();
 
-        self::$regions = $this->db
+        self::$regions = Db::connect()
                 ->read(TABLE_ZONES_VALUE)
                 ->selectAssoc('country_id, regions_id')
                 ->where('zones_id=', self::$zones_id)
                 ->save();
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_ZONES_VALUE)
                 ->selectIndex('country_id')
                 ->where('zones_id=', self::$zones_id)

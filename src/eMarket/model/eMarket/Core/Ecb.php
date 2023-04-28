@@ -16,7 +16,7 @@ use eMarket\Core\{
 use eMarket\Catalog\{
     Cart
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * eMarket Calculated Block
@@ -118,8 +118,7 @@ final class Ecb {
 
         $DataBuffer = new DataBuffer();
 
-        $db = new Cruder();
-        $taxes_data = $db
+        $taxes_data = Db::connect()
                 ->read(TABLE_TAXES)
                 ->selectAssoc('*')
                 ->where('language=', $language)
@@ -128,7 +127,8 @@ final class Ecb {
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
 
-                $data = $db->read(TABLE_PRODUCTS)
+                $data = Db::connect()
+                                ->read(TABLE_PRODUCTS)
                                 ->selectAssoc('*')
                                 ->where('id=', $value['id'])
                                 ->and('language=', $language)
@@ -199,11 +199,9 @@ final class Ecb {
      */
     public static function discountHandler(array $input, ?string $language = null): void {
 
-        $db = new Cruder();
-
         if (self::$active_modules == FALSE) {
 
-            self::$active_modules = $db
+            self::$active_modules = Db::connect()
                     ->read(TABLE_MODULES)
                     ->selectAssoc('*')
                     ->where('type=', 'discount')

@@ -13,7 +13,7 @@ use eMarket\Core\{
     Authorize,
     Pages,
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Orders
@@ -28,7 +28,6 @@ class Orders {
 
     public static $routing_parameter = 'orders';
     public $title = 'title_orders_index';
-    public $db;
     public static $lines;
     public static $orders_edit = FALSE;
 
@@ -37,7 +36,6 @@ class Orders {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->authorize();
         $this->data();
         $this->modal();
@@ -60,7 +58,7 @@ class Orders {
      */
     private function data(): void {
 
-        self::$lines = $this->db
+        self::$lines = Db::connect()
                 ->read(TABLE_ORDERS)
                 ->selectAssoc('*')
                 ->where('email=', $_SESSION['customer_email'])

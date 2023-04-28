@@ -12,7 +12,7 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * WithoutRegistration
@@ -27,7 +27,6 @@ class WithoutRegistration {
 
     public static $routing_parameter = 'without_registration';
     public $title = 'title_without_registration_index';
-    public $db;
     public static $regions_data;
     public static $address_data_json = FALSE;
     public static $countries_data_json = FALSE;
@@ -40,7 +39,6 @@ class WithoutRegistration {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->jsonEcho();
         $this->initData();
         $this->sessionData();
@@ -54,7 +52,7 @@ class WithoutRegistration {
     private function jsonEcho(): void {
         if (Valid::inPostJson('countries_select')) {
 
-            self::$regions_data = $this->db
+            self::$regions_data = Db::connect()
                     ->read(TABLE_REGIONS)
                     ->selectAssoc('*')
                     ->where('language=', lang('#lang_all')[0])
@@ -73,7 +71,7 @@ class WithoutRegistration {
      */
     private function initData(): void {
 
-        $countries_array = $this->db
+        $countries_array = Db::connect()
                 ->read(TABLE_COUNTRIES)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -131,7 +129,7 @@ class WithoutRegistration {
         $x = 0;
         foreach (self::$address_data as $address_val) {
 
-            $countries_array = $this->db
+            $countries_array = Db::connect()
                             ->read(TABLE_COUNTRIES)
                             ->selectAssoc('*')
                             ->where('language=', lang('#lang_all')[0])
@@ -139,7 +137,7 @@ class WithoutRegistration {
                             ->orderByAsc('name')
                             ->save()[0];
 
-            $regions_array = $this->db
+            $regions_array = Db::connect()
                             ->read(TABLE_REGIONS)
                             ->selectAssoc('id, name')
                             ->where('language=', lang('#lang_all')[0])

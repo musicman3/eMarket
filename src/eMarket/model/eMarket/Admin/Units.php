@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Units
@@ -31,7 +31,6 @@ class Units {
 
     public static $routing_parameter = 'units';
     public $title = 'title_units_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -41,7 +40,6 @@ class Units {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -76,7 +74,7 @@ class Units {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_UNITS)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -91,7 +89,7 @@ class Units {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_UNITS)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_units_' . $x))
@@ -118,7 +116,7 @@ class Units {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_UNITS)
                         ->set('name', Valid::inPOST('name_units_' . $x))
                         ->set('unit', Valid::inPOST('unit_units_' . $x))
@@ -139,7 +137,7 @@ class Units {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_UNITS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -153,7 +151,7 @@ class Units {
      *
      */
     private function recount(): void {
-        $this->db
+        Db::connect()
                 ->update(TABLE_UNITS)
                 ->set('default_unit', 0)
                 ->save();
@@ -165,7 +163,7 @@ class Units {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_UNITS)
                 ->selectAssoc('*')
                 ->orderByDesc('id')

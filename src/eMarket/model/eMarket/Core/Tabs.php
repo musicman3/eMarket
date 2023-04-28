@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Tabs
@@ -28,9 +28,8 @@ final class Tabs {
      */
     public static function tabsModulesAvailable(): array {
 
-        $db = new Cruder();
-
-        $data = $db->read(TABLE_MODULES)
+        $data = Db::connect()
+                ->read(TABLE_MODULES)
                 ->selectAssoc('*')
                 ->where('active=', 1)
                 ->and('type=', 'tabs')

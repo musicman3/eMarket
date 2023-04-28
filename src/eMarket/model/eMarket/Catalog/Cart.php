@@ -18,7 +18,7 @@ use eMarket\Core\{
     Shipping,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Cart
@@ -33,7 +33,6 @@ class Cart {
 
     public static $routing_parameter = 'cart';
     public $title = 'title_cart_index';
-    public $db;
     public static $cart_info = FALSE;
     public static $address_data = FALSE;
     public static $products_order = FALSE;
@@ -45,7 +44,6 @@ class Cart {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->addProduct();
         $this->editProduct();
         $this->deleteProduct();
@@ -225,7 +223,7 @@ class Cart {
             $x = 0;
             foreach ($_SESSION['cart'] as $value) {
 
-                $product = $this->db
+                $product = Db::connect()
                         ->read(TABLE_PRODUCTS)
                         ->selectAssoc('*')
                         ->where('language=', lang('#lang_all')[0])
@@ -255,7 +253,7 @@ class Cart {
             if (isset($_SESSION['without_registration_data'])) {
                 self::$address_data_json = $_SESSION['without_registration_data'];
             } else {
-                self::$address_data_json = $this->db
+                self::$address_data_json = Db::connect()
                         ->read(TABLE_CUSTOMERS)
                         ->selectValue('address_book')
                         ->where('email=', $_SESSION['customer_email'])
@@ -269,7 +267,7 @@ class Cart {
             $x = 0;
             foreach (self::$address_data as $address_val) {
 
-                $countries_array = $this->db
+                $countries_array = Db::connect()
                                 ->read(TABLE_COUNTRIES)
                                 ->selectAssoc('id, name')
                                 ->where('language=', lang('#lang_all')[0])
@@ -277,7 +275,7 @@ class Cart {
                                 ->orderByAsc('name')
                                 ->save()[0];
 
-                $regions_array = $this->db
+                $regions_array = Db::connect()
                                 ->read(TABLE_REGIONS)
                                 ->selectAssoc('id, name')
                                 ->where('language=', lang('#lang_all')[0])
@@ -330,12 +328,11 @@ class Cart {
      */
     public static function totalPrice(): float {
 
-        $db = new Cruder();
         $total_price = 0;
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $value) {
 
-                $product = $db
+                $product = Db::connect()
                                 ->read(TABLE_PRODUCTS)
                                 ->selectAssoc('price, currency')
                                 ->where('language=', lang('#lang_all')[0])

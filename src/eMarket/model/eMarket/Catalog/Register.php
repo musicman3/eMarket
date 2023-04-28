@@ -16,7 +16,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Register
@@ -31,7 +31,6 @@ class Register {
 
     public static $routing_parameter = 'register';
     public $title = 'title_register_index';
-    public $db;
     public static $user_email = FALSE;
 
     /**
@@ -39,7 +38,6 @@ class Register {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->init();
     }
 
@@ -50,7 +48,7 @@ class Register {
     private function init(): void {
         if (Valid::inPOST('email')) {
 
-            self::$user_email = $this->db
+            self::$user_email = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectValue('id')
                     ->where('email=', Valid::inPOST('email'))
@@ -59,7 +57,7 @@ class Register {
             if (self::$user_email == NULL) {
                 $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_CUSTOMERS)
                         ->set('firstname', Valid::inPOST('firstname'))
                         ->set('lastname', Valid::inPOST('lastname'))
@@ -70,11 +68,11 @@ class Register {
                         ->set('password', $password_hash)
                         ->save();
 
-                $id = $this->db->lastInsertId()->save();
+                $id = Db::connect()->lastInsertId()->save();
 
                 $activation_code = Cryptography::getToken(64);
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_CUSTOMERS_ACTIVATION)
                         ->set('id', $id)
                         ->set('activation_code', $activation_code)

@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Countries
@@ -31,7 +31,6 @@ class Countries {
 
     public static $routing_parameter = 'countries';
     public $title = 'title_countries_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -40,7 +39,6 @@ class Countries {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -64,7 +62,7 @@ class Countries {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_COUNTRIES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -74,7 +72,7 @@ class Countries {
             $id = intval($id_max) + 1;
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                $this->db
+                Db::connect()
                         ->create(TABLE_COUNTRIES)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_countries_' . $x))
@@ -97,7 +95,7 @@ class Countries {
         if (Valid::inPOST('edit')) {
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                $this->db
+                Db::connect()
                         ->update(TABLE_COUNTRIES)
                         ->set('name', Valid::inPOST('name_countries_' . $x))
                         ->set('alpha_2', Valid::inPOST('alpha_2_countries'))
@@ -119,12 +117,12 @@ class Countries {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_COUNTRIES)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_REGIONS)
                     ->where('country_id=', Valid::inPOST('delete'))
                     ->save();
@@ -140,7 +138,7 @@ class Countries {
     private function data(): void {
         $_SESSION['country_page'] = Valid::inSERVER('REQUEST_URI');
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_COUNTRIES)
                 ->selectAssoc('*')
                 ->orderBy('name')

@@ -14,7 +14,7 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Login
@@ -29,7 +29,6 @@ class Login {
 
     public static $routing_parameter = 'login';
     public $title = 'title_login_index';
-    public $db;
     public static $login_error = FALSE;
 
     /**
@@ -38,7 +37,6 @@ class Login {
      */
     function __construct() {
         session_start();
-        $this->db = new Cruder();
         $this->logout();
         $this->login();
         $this->loginError();
@@ -108,7 +106,7 @@ class Login {
         if (Valid::inPOST('authorize') == 'ok') {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
 
-            $HASH = (string) $this->db
+            $HASH = (string) Db::connect()
                             ->read(TABLE_ADMINISTRATORS)
                             ->selectValue('password')
                             ->where('login=', Valid::inPOST('login'))

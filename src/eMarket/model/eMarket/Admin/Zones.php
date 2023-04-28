@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Zones
@@ -31,7 +31,6 @@ class Zones {
 
     public static $routing_parameter = 'zones';
     public $title = 'title_zones_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
 
@@ -40,7 +39,6 @@ class Zones {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->add();
         $this->edit();
         $this->delete();
@@ -64,7 +62,7 @@ class Zones {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_ZONES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -75,7 +73,7 @@ class Zones {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_ZONES)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_zones_' . $x))
@@ -97,7 +95,7 @@ class Zones {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_ZONES)
                         ->set('name', Valid::inPOST('name_zones_' . $x))
                         ->set('note', Valid::inPOST('note_zones'))
@@ -117,12 +115,12 @@ class Zones {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ZONES)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_ZONES_VALUE)
                     ->where('zones_id=', Valid::inPOST('delete'))
                     ->save();
@@ -137,7 +135,7 @@ class Zones {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_ZONES)
                 ->selectAssoc('*')
                 ->orderBy('name')

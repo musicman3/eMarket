@@ -10,11 +10,10 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Pdo,
     Valid,
     Tree
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Index
@@ -37,8 +36,8 @@ class Categories {
      * @return obj
      */
     public static function data(): void {
-        $db = new Cruder();
-        $sql = $db
+
+        $sql = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectObj('id, name, status, parent_id')
                 ->where('language=', lang('#lang_all')[0])
@@ -55,8 +54,8 @@ class Categories {
      * @return string url
      */
     public static function indexData(): void {
-        $db = new Cruder();
-        self::$index_data = $db
+
+        self::$index_data = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectIndex('id, name, logo_general, status')
                 ->where('language=', lang('#lang_all')[0])
@@ -72,8 +71,8 @@ class Categories {
      * @return string url
      */
     public static function listingData(): void {
-        $db = new Cruder();
-        self::$listing_data = $db
+
+        self::$listing_data = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectIndex('id, name, logo_general, status')
                 ->where('language=', lang('#lang_all')[0])

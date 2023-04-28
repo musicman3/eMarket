@@ -16,7 +16,7 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Admin\HeaderMenu;
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Basic Settings
@@ -31,7 +31,6 @@ class BasicSettings {
 
     public static $routing_parameter = 'basic_settings';
     public $title = 'title_basic_settings_index';
-    public $db;
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;
     public static $debug = FALSE;
@@ -53,7 +52,6 @@ class BasicSettings {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->linesOnPage();
         $this->sessionExprTime();
         $this->debug();
@@ -88,7 +86,7 @@ class BasicSettings {
     private function linesOnPage(): void {
         if (Valid::inPOST('lines_on_page')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('lines_on_page', Valid::inPOST('lines_on_page'))
                     ->save();
@@ -105,7 +103,7 @@ class BasicSettings {
     private function sessionExprTime(): void {
         if (Valid::inPOST('session_expr_time')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('session_expr_time', Valid::inPOST('session_expr_time'))
                     ->save();
@@ -120,7 +118,7 @@ class BasicSettings {
      */
     private function debug(): void {
 
-        self::$debug = $this->db
+        self::$debug = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('debug')
                 ->save();
@@ -132,12 +130,12 @@ class BasicSettings {
                 $debug_set = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('debug', $debug_set)
                     ->save();
 
-            self::$debug = $this->db
+            self::$debug = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('debug')
                     ->save();
@@ -153,7 +151,7 @@ class BasicSettings {
 
         if (Valid::inPOST('primary_language')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('primary_language', Valid::inPOST('primary_language'))
                     ->save();
@@ -168,19 +166,19 @@ class BasicSettings {
      */
     private function email(): void {
 
-        self::$email = $this->db
+        self::$email = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('email')
                 ->save();
 
         if (Valid::inPOST('email')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('email', Valid::inPOST('email'))
                     ->save();
 
-            self::$email = $this->db
+            self::$email = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('email')
                     ->save();
@@ -195,19 +193,19 @@ class BasicSettings {
      */
     private function emailName(): void {
 
-        self::$email_name = $this->db
+        self::$email_name = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('email_name')
                 ->save();
 
         if (Valid::inPOST('email_name')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('email_name', Valid::inPOST('email_name'))
                     ->save();
 
-            self::$email_name = $this->db
+            self::$email_name = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('email_name')
                     ->save();
@@ -220,7 +218,7 @@ class BasicSettings {
      */
     private function smtpStatus(): void {
 
-        self::$smtp_status = $this->db
+        self::$smtp_status = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('smtp_status')
                 ->save();
@@ -232,12 +230,12 @@ class BasicSettings {
                 $smtp_status_set = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('smtp_status', $smtp_status_set)
                     ->save();
 
-            self::$smtp_status = $this->db
+            self::$smtp_status = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_status')
                     ->save();
@@ -250,7 +248,7 @@ class BasicSettings {
      */
     private function smtpAuth(): void {
 
-        self::$smtp_auth = $this->db
+        self::$smtp_auth = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('smtp_auth')
                 ->save();
@@ -262,12 +260,12 @@ class BasicSettings {
                 $smtp_auth_set = 1;
             }
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('smtp_auth', $smtp_auth_set)
                     ->save();
 
-            self::$smtp_auth = $this->db
+            self::$smtp_auth = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_auth')
                     ->save();
@@ -280,19 +278,19 @@ class BasicSettings {
      */
     private function hostEmail(): void {
 
-        self::$host_email = $this->db
+        self::$host_email = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('host_email')
                 ->save();
 
         if (Valid::inPOST('host_email')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('host_email', Valid::inPOST('host_email'))
                     ->save();
 
-            self::$host_email = $this->db
+            self::$host_email = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('host_email')
                     ->save();
@@ -305,19 +303,19 @@ class BasicSettings {
      */
     private function usernameEmail(): void {
 
-        self::$username_email = $this->db
+        self::$username_email = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('username_email')
                 ->save();
 
         if (Valid::inPOST('username_email')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('username_email', Valid::inPOST('username_email'))
                     ->save();
 
-            self::$username_email = $this->db
+            self::$username_email = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('username_email')
                     ->save();
@@ -330,19 +328,19 @@ class BasicSettings {
      */
     private function passwordEmail(): void {
 
-        self::$password_email = $this->db
+        self::$password_email = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('password_email')
                 ->save();
 
         if (Valid::inPOST('password_email')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('password_email', Valid::inPOST('password_email'))
                     ->save();
 
-            self::$password_email = $this->db
+            self::$password_email = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('password_email')
                     ->save();
@@ -355,19 +353,19 @@ class BasicSettings {
      */
     private function smtpSecure(): void {
 
-        self::$smtp_secure = $this->db
+        self::$smtp_secure = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('smtp_secure')
                 ->save();
 
         if (Valid::inPOST('smtp_secure')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('smtp_secure', Valid::inPOST('smtp_secure'))
                     ->save();
 
-            self::$smtp_secure = $this->db
+            self::$smtp_secure = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_secure')
                     ->save();
@@ -380,19 +378,19 @@ class BasicSettings {
      */
     private function smtpPort(): void {
 
-        self::$smtp_port = $this->db
+        self::$smtp_port = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('smtp_port')
                 ->save();
 
         if (Valid::inPOST('smtp_port')) {
 
-            $this->db
+            Db::connect()
                     ->update(TABLE_BASIC_SETTINGS)
                     ->set('smtp_port', Valid::inPOST('smtp_port'))
                     ->save();
 
-            self::$smtp_port = $this->db
+            self::$smtp_port = Db::connect()
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_port')
                     ->save();

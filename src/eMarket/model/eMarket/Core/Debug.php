@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use Cruder\{
-    Cruder,
+    Db,
     Pdo as CruderPdo
 };
 
@@ -49,8 +49,7 @@ class Debug {
      */
     public static function info(): void {
 
-        $db = new Cruder();
-        $val = $db
+        $val = Db::connect()
                 ->read(TABLE_BASIC_SETTINGS)
                 ->selectValue('debug')
                 ->save();

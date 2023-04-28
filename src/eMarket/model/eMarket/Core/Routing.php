@@ -18,7 +18,7 @@ use eMarket\Core\{
     Tree,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 use eMarket\Admin\{
     HeaderMenu
 };
@@ -203,11 +203,9 @@ class Routing {
      */
     public static function tlpc(string $position, ?string $count = null): int|string|array {
 
-        $db = new Cruder();
-
         $page = self::routingPath();
 
-        $array_pos_value = $db
+        $array_pos_value = Db::connect()
                 ->read(TABLE_TEMPLATE_CONSTRUCTOR)
                 ->selectIndex('url, value')
                 ->where('group_id=', Settings::path())
@@ -229,7 +227,7 @@ class Routing {
             return $array_out;
         } else {
 
-            $array_pos = $db
+            $array_pos = Db::connect()
                     ->read(TABLE_TEMPLATE_CONSTRUCTOR)
                     ->selectIndex('url, page')
                     ->where('group_id=', Settings::path())

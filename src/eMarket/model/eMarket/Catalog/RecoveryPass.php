@@ -15,7 +15,7 @@ use eMarket\Core\{
     Messages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Recovery Password
@@ -30,7 +30,6 @@ class RecoveryPass {
 
     public static $routing_parameter = 'recoverypass';
     public $title = 'title_recoverypass_index';
-    public $db;
     public static $customer_id;
 
     /**
@@ -38,7 +37,6 @@ class RecoveryPass {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->recovery();
     }
 
@@ -49,7 +47,7 @@ class RecoveryPass {
     private function recovery(): void {
         if (Valid::inGET('recovery_code')) {
 
-            self::$customer_id = $this->db
+            self::$customer_id = Db::connect()
                     ->read(TABLE_PASSWORD_RECOVERY)
                     ->selectValue('customer_id')
                     ->where('recovery_code=', Valid::inGET('recovery_code'))
@@ -57,7 +55,7 @@ class RecoveryPass {
 
             if (self::$customer_id != FALSE && Valid::inPOST('password')) {
 
-                $recovery_code_created = $this->db
+                $recovery_code_created = Db::connect()
                         ->read(TABLE_PASSWORD_RECOVERY)
                         ->selectValue('{{UNIX_TIMESTAMP->recovery_code_created}}')
                         ->where('customer_id=', self::$customer_id)
@@ -65,14 +63,14 @@ class RecoveryPass {
 
                 if ($recovery_code_created + (3 * 24 * 60 * 60) > SystemClock::nowUnixTime()) {
 
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_PASSWORD_RECOVERY)
                             ->where('customer_id=', self::$customer_id)
                             ->save();
 
                     $password_hash = Cryptography::passwordHash(Valid::inPOST('password'));
 
-                    $this->db
+                    Db::connect()
                             ->update(TABLE_CUSTOMERS)
                             ->set('password', $password_hash)
                             ->where('id=', self::$customer_id)
@@ -81,7 +79,7 @@ class RecoveryPass {
                     Messages::alert('messages_recovery_password_complete', 'success', lang('messages_recovery_password_complete'), 7000, true);
                 } else {
 
-                    $this->db
+                    Db::connect()
                             ->delete(TABLE_PASSWORD_RECOVERY)
                             ->where('customer_id=', self::$customer_id)
                             ->save();

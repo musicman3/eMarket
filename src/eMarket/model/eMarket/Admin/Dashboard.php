@@ -16,7 +16,7 @@ use eMarket\Core\{
 };
 use eMarket\Admin\HeaderMenu;
 use Cruder\{
-    Cruder,
+    Db,
     DbFunctions
 };
 
@@ -33,7 +33,6 @@ class Dashboard {
 
     public static $routing_parameter = 'dashboard';
     public $title = 'title_dashboard_index';
-    public $db;
     public $db_functions;
     public $orders_quantity = FALSE;
     public $amount_of_orders = FALSE;
@@ -49,7 +48,6 @@ class Dashboard {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->db_functions = new DbFunctions();
         $this->cardOrdersData();
         $this->jsonData();
@@ -87,7 +85,7 @@ class Dashboard {
     private function minYear(): void {
         if (self::$min_year == FALSE) {
 
-            $min_clients_id = $this->db
+            $min_clients_id = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectValue('{{MIN->id}}')
                     ->save();
@@ -95,7 +93,7 @@ class Dashboard {
             $min_clients = SystemClock::nowFormatDate('Y');
 
             if ($min_clients_id != FALSE) {
-                $min_clients = $this->db
+                $min_clients = Db::connect()
                         ->read(TABLE_CUSTOMERS)
                         ->selectValue('{{YEAR->date_account_created}}')
                         ->where('id=', $min_clients_id)
@@ -128,7 +126,7 @@ class Dashboard {
 
         $year = self::selectYear();
 
-        $orders = $this->db
+        $orders = Db::connect()
                 ->read(TABLE_ORDERS)
                 ->selectAssoc('email, order_total, {{DAYOFWEEK->date_purchased}}, {{MONTH->date_purchased}}, {{YEAR->date_purchased}}')
                 ->where('{{YEAR->date_purchased}}=', $year)
@@ -237,7 +235,7 @@ class Dashboard {
     private function customersData(): void {
         if (self::$customers == FALSE) {
 
-            self::$customers = $this->db
+            self::$customers = Db::connect()
                     ->read(TABLE_CUSTOMERS)
                     ->selectAssoc('id')
                     ->where('{{YEAR->date_account_created}}=', $this->selectYear())

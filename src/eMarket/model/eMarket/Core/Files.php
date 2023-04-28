@@ -15,7 +15,7 @@ use eMarket\Core\{
     Tree,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Class for working with files
@@ -36,8 +36,6 @@ class Files {
      * @param array $resize_param Resize param
      */
     public static function imgUpload(string $TABLE, string $dir, array $resize_param): void {
-
-        $db = new Cruder();
 
         self::imgThumbAndSize($resize_param);
 
@@ -66,7 +64,7 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = $db
+                $id_max = Db::connect()
                         ->read($TABLE)
                         ->selectValue('id')
                         ->where('language=', $language)
@@ -92,7 +90,8 @@ class Files {
 
                 Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->set('logo_general', $general_image_add)
                         ->where('id=', $id)
@@ -108,7 +107,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list_prepare = $db
+            $image_list_prepare = Db::connect()
                     ->read($TABLE)
                     ->selectValue('logo')
                     ->where('id=', $id)
@@ -138,14 +137,16 @@ class Files {
 
             if (isset($general_image_edit)) {
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->set('logo_general', $general_image_edit)
                         ->where('id=', $id)
                         ->save();
             } else {
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->where('id=', $id)
                         ->save();
@@ -154,7 +155,7 @@ class Files {
             if (Valid::inPOST('delete_image')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image'), -1);
 
-                $image_list_arr_prepare = $db
+                $image_list_arr_prepare = Db::connect()
                         ->read($TABLE)
                         ->selectValue('logo')
                         ->where('id=', $id)
@@ -172,7 +173,7 @@ class Files {
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
 
-                        $file_prepare = $db
+                        $file_prepare = Db::connect()
                                 ->read($TABLE)
                                 ->selectValue('logo_general')
                                 ->where('id=', $id)
@@ -180,7 +181,8 @@ class Files {
 
                         if ($file == $file_prepare) {
 
-                            $db->update($TABLE)
+                            Db::connect()
+                                    ->update($TABLE)
                                     ->set('logo_general', NULL)
                                     ->where('id=', $id)
                                     ->save();
@@ -191,14 +193,16 @@ class Files {
                 }
                 if (isset($logo_general_update) && count($image_list_new) > 0) {
 
-                    $db->update($TABLE)
+                    Db::connect()
+                            ->update($TABLE)
                             ->set('logo', json_encode($image_list_new))
                             ->set('logo_general', $image_list_new[0])
                             ->where('id=', $id)
                             ->save();
                 } else {
 
-                    $db->update($TABLE)
+                    Db::connect()
+                            ->update($TABLE)
                             ->set('logo', json_encode($image_list_new))
                             ->where('id=', $id)
                             ->save();
@@ -217,7 +221,7 @@ class Files {
                     if (strstr($idx[$i], '_', true) != 'product') {
                         $id = $idx[$i];
 
-                        $logo_delete_prepare = $db
+                        $logo_delete_prepare = Db::connect()
                                 ->read($TABLE)
                                 ->selectValue('logo')
                                 ->where('id=', $id)
@@ -255,8 +259,6 @@ class Files {
      */
     public static function imgUploadProduct(string $TABLE, string $dir, array $resize_param): void {
 
-        $db = new Cruder();
-
         self::imgThumbAndSize($resize_param);
 
         $prefix = SystemClock::nowUnixTime() . '_';
@@ -285,7 +287,7 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = $db
+                $id_max = Db::connect()
                         ->read($TABLE)
                         ->selectValue('id')
                         ->where('language=', $language)
@@ -311,7 +313,8 @@ class Files {
 
                 Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->set('logo_general', $general_image_add)
                         ->where('id=', $id)
@@ -327,7 +330,7 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list_prepare = $db
+            $image_list_prepare = Db::connect()
                     ->read($TABLE)
                     ->selectValue('logo')
                     ->where('id=', $id)
@@ -357,14 +360,16 @@ class Files {
 
             if (isset($general_image_edit)) {
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->set('logo_general', $general_image_edit)
                         ->where('id=', $id)
                         ->save();
             } else {
 
-                $db->update($TABLE)
+                Db::connect()
+                        ->update($TABLE)
                         ->set('logo', json_encode($image_list))
                         ->where('id=', $id)
                         ->save();
@@ -373,7 +378,7 @@ class Files {
             if (Valid::inPOST('delete_image_product')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image_product'), -1);
 
-                $image_list_arr_prepare = $db
+                $image_list_arr_prepare = Db::connect()
                         ->read($TABLE)
                         ->selectValue('logo')
                         ->where('id=', $id)
@@ -391,7 +396,7 @@ class Files {
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
 
-                        $file_prepare = $db
+                        $file_prepare = Db::connect()
                                 ->read($TABLE)
                                 ->selectValue('logo_general')
                                 ->where('id=', $id)
@@ -399,7 +404,8 @@ class Files {
 
                         if ($file == $file_prepare) {
 
-                            $db->update($TABLE)
+                            Db::connect()
+                                    ->update($TABLE)
                                     ->set('logo_general', NULL)
                                     ->where('id=', $id)
                                     ->save();
@@ -410,14 +416,16 @@ class Files {
                 }
                 if (isset($logo_general_update) && is_array($image_list_new)) {
 
-                    $db->update($TABLE)
+                    Db::connect()
+                            ->update($TABLE)
                             ->set('logo', json_encode($image_list_new))
                             ->set('logo_general', $image_list_new[0])
                             ->where('id=', $id)
                             ->save();
                 } else {
 
-                    $db->update($TABLE)
+                    Db::connect()
+                            ->update($TABLE)
                             ->set('logo', json_encode($image_list_new))
                             ->where('id=', $id)
                             ->save();
@@ -432,7 +440,7 @@ class Files {
                 if (strstr($idx[$i], '_', true) == 'product') {
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete_prepare = $db
+                    $logo_delete_prepare = Db::connect()
                             ->read($TABLE)
                             ->selectValue('logo')
                             ->where('id=', $id[1])

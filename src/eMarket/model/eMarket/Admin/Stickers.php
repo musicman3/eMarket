@@ -21,7 +21,7 @@ use eMarket\Admin\{
     HeaderMenu,
     Eac
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Stickers
@@ -36,7 +36,6 @@ class Stickers {
 
     public static $routing_parameter = 'stickers';
     public $title = 'title_stickers_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public static $stickers = [];
@@ -50,7 +49,6 @@ class Stickers {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -85,7 +83,7 @@ class Stickers {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_STICKERS)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -96,7 +94,7 @@ class Stickers {
 
             if ($id > 1 && $this->default != 0) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_STICKERS)
                         ->set('default_stickers', 0)
                         ->save();
@@ -104,7 +102,7 @@ class Stickers {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_STICKERS)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_stickers_' . $x))
@@ -126,7 +124,7 @@ class Stickers {
 
             if ($this->default != 0) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_STICKERS)
                         ->set('default_stickers', 0)
                         ->save();
@@ -134,7 +132,7 @@ class Stickers {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_STICKERS)
                         ->set('name', Valid::inPOST('name_stickers_' . $x))
                         ->set('default_stickers', $this->default)
@@ -154,7 +152,7 @@ class Stickers {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $all_products = $this->db
+            $all_products = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('id, sticker')
                     ->where('language=', lang('#lang_all')[0])
@@ -163,7 +161,7 @@ class Stickers {
             foreach ($all_products as $value) {
                 if ($value['sticker'] == Valid::inPOST('delete')) {
 
-                    $this->db
+                    Db::connect()
                             ->update(TABLE_PRODUCTS)
                             ->set('sticker', '')
                             ->where('id=', $value['id'])
@@ -171,7 +169,7 @@ class Stickers {
                 }
             }
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_STICKERS)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -186,7 +184,7 @@ class Stickers {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_STICKERS)
                 ->selectAssoc('*')
                 ->orderByDesc('id')
@@ -236,9 +234,7 @@ class Stickers {
         self::$stickers_default = 0;
         self::$stickers_flag = 0;
 
-        $db = new Cruder();
-
-        $stickers_data = $db
+        $stickers_data = Db::connect()
                 ->read(TABLE_STICKERS)
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
@@ -268,8 +264,6 @@ class Stickers {
         if ((Valid::inPostJson('idsx_stickerOn_key') == 'On')
                 or (Valid::inPostJson('idsx_stickerOff_key') == 'Off')) {
 
-            $db = new Cruder();
-
             $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
             if (Valid::inPostJson('idsx_stickerOn_key') == 'On') {
@@ -298,7 +292,7 @@ class Stickers {
 
                         if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
 
-                            $db->update(TABLE_PRODUCTS)
+                            Db::connect()->update(TABLE_PRODUCTS)
                                     ->set('sticker', $sticker)
                                     ->where('parent_id=', $keys[$x])
                                     ->save();
@@ -315,7 +309,7 @@ class Stickers {
                     if (Valid::inPostJson('idsx_stickerOn_key') == 'On' OR Valid::inPostJson('idsx_stickerOff_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i])[1];
 
-                        $db->update(TABLE_PRODUCTS)
+                        Db::connect()->update(TABLE_PRODUCTS)
                                 ->set('sticker', $sticker)
                                 ->where('id=', $id_prod)
                                 ->save();

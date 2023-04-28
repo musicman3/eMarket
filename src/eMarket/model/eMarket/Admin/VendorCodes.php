@@ -16,7 +16,7 @@ use eMarket\Core\{
     Pages,
     Valid
 };
-use Cruder\Cruder;
+use Cruder\Db;
 
 /**
  * Vendor Codes
@@ -31,7 +31,6 @@ class VendorCodes {
 
     public static $routing_parameter = 'vendor_codes';
     public $title = 'title_vendor_codes_index';
-    public $db;
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
@@ -41,7 +40,6 @@ class VendorCodes {
      *
      */
     function __construct() {
-        $this->db = new Cruder();
         $this->default();
         $this->add();
         $this->edit();
@@ -76,7 +74,7 @@ class VendorCodes {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $id_max = $this->db
+            $id_max = Db::connect()
                     ->read(TABLE_VENDOR_CODES)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
@@ -91,7 +89,7 @@ class VendorCodes {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->create(TABLE_VENDOR_CODES)
                         ->set('id', $id)
                         ->set('name', Valid::inPOST('name_vendor_codes_' . $x))
@@ -118,7 +116,7 @@ class VendorCodes {
 
             for ($x = 0; $x < Lang::$count; $x++) {
 
-                $this->db
+                Db::connect()
                         ->update(TABLE_VENDOR_CODES)
                         ->set('name', Valid::inPOST('name_vendor_codes_' . $x))
                         ->set('vendor_code', Valid::inPOST('vendor_code_' . $x))
@@ -139,7 +137,7 @@ class VendorCodes {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $this->db
+            Db::connect()
                     ->delete(TABLE_VENDOR_CODES)
                     ->where('id=', Valid::inPOST('delete'))
                     ->save();
@@ -153,7 +151,7 @@ class VendorCodes {
      *
      */
     private function recount(): void {
-        $this->db
+        Db::connect()
                 ->update(TABLE_VENDOR_CODES)
                 ->set('default_vendor_code', 0)
                 ->save();
@@ -165,7 +163,7 @@ class VendorCodes {
      */
     private function data(): void {
 
-        self::$sql_data = $this->db
+        self::$sql_data = Db::connect()
                 ->read(TABLE_VENDOR_CODES)
                 ->selectAssoc('*')
                 ->orderByDesc('id')
