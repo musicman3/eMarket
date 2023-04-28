@@ -13,9 +13,9 @@ use eMarket\Core\{
     Cache,
     Clock\SystemClock,
     Ecb,
-    DataBuffer,
-    Pdo
+    DataBuffer
 };
+use Cruder\Cruder;
 
 /**
  * Products
@@ -42,13 +42,24 @@ class Products {
      * @param string|int|null $count Number of new products
      * @return mixed New products data
      */
-    public static function newProducts(string|int|null $count = null): mixed {
+    public static function newProducts(string $count = ''): mixed {
+
+        $db = new Cruder();
 
         $Cache = new Cache();
         $Cache->cache_name = 'core.new_products';
 
         if (!$Cache->isHit()) {
-            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE language=? AND status=? ORDER BY id DESC LIMIT " . $count . "", [lang('#lang_all')[0], 1]);
+
+            $Cache->data = $db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('status=', 1)
+                    ->orderByDesc('id')
+                    ->limit($count)
+                    ->save();
+
             return $Cache->save($Cache->data);
         }
 
@@ -68,11 +79,21 @@ class Products {
             $language = lang('#lang_all')[0];
         }
 
+        $db = new Cruder();
+
         $Cache = new Cache();
         $Cache->cache_name = 'core.products_' . $id;
 
         if (!$Cache->isHit()) {
-            $Cache->data = Pdo::getAssoc("SELECT * FROM " . TABLE_PRODUCTS . " WHERE id=? AND language=? AND status=?", [$id, $language, 1])[0];
+
+            $Cache->data = $db
+                            ->read(TABLE_PRODUCTS)
+                            ->selectAssoc('*')
+                            ->where('id=', $id)
+                            ->and('language=', $language)
+                            ->and('status=', 1)
+                            ->save()[0];
+
             self::$product_data = $Cache->data;
             return $Cache->save($Cache->data);
         }
@@ -90,11 +111,20 @@ class Products {
      */
     public static function categoryData(string|int $id, ?string $language = null): array {
 
+        $db = new Cruder();
+
         if (count(self::$category_data) == 0) {
             if ($language == null) {
                 $language = lang('#lang_all')[0];
             }
-            self::$category_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [$language, $id])[0];
+
+            self::$category_data = $db
+                            ->read(TABLE_CATEGORIES)
+                            ->selectAssoc('*')
+                            ->where('language=', $language)
+                            ->and('id=', $id)
+                            ->save()[0];
+
             return self::$category_data;
         }
 
@@ -109,8 +139,15 @@ class Products {
      */
     public static function manufacturer(string|int $id): array|bool {
 
+        $db = new Cruder();
+
         if (self::$manufacturer == FALSE) {
-            self::$manufacturer = Pdo::getAssoc("SELECT * FROM " . TABLE_MANUFACTURERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$manufacturer = $db
+                    ->read(TABLE_MANUFACTURERS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
 
         foreach (self::$manufacturer as $value) {
@@ -129,8 +166,15 @@ class Products {
      */
     public static function vendorCode(string|int $id): array|bool {
 
+        $db = new Cruder();
+
         if (self::$vendor_codes == FALSE) {
-            self::$vendor_codes = Pdo::getAssoc("SELECT * FROM " . TABLE_VENDOR_CODES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$vendor_codes = $db
+                    ->read(TABLE_VENDOR_CODES)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
 
         foreach (self::$vendor_codes as $value) {
@@ -149,8 +193,15 @@ class Products {
      */
     public static function weight(string|int $id): array|bool {
 
+        $db = new Cruder();
+
         if (self::$weight == FALSE) {
-            self::$weight = Pdo::getAssoc("SELECT * FROM " . TABLE_WEIGHT . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$weight = $db
+                    ->read(TABLE_WEIGHT)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
 
         foreach (self::$weight as $value) {
@@ -169,8 +220,15 @@ class Products {
      */
     public static function length(string|int $id): array|bool {
 
+        $db = new Cruder();
+
         if (self::$length == FALSE) {
-            self::$length = Pdo::getAssoc("SELECT * FROM " . TABLE_LENGTH . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$length = $db
+                    ->read(TABLE_LENGTH)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
 
         foreach (self::$length as $value) {
@@ -225,6 +283,8 @@ class Products {
      */
     public static function stickers(array $input, ?string $class = null, ?string $class2 = null): array {
 
+        $db = new Cruder();
+
         if ($class == null) {
             $class = 'danger';
         }
@@ -232,7 +292,12 @@ class Products {
             $class2 = 'success';
         }
         if (self::$sticker_data == false) {
-            self::$sticker_data = Pdo::getAssoc("SELECT * FROM " . TABLE_STICKERS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$sticker_data = $db
+                    ->read(TABLE_STICKERS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
         $sticker_name = [];
         foreach (self::$sticker_data as $val) {

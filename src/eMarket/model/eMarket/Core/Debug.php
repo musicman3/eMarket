@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use Cruder\Cruder;
+use Cruder\{
+    Cruder,
+    Pdo as CruderPdo
+};
 
 /**
  * Debug class
@@ -58,7 +61,7 @@ class Debug {
             $totaltime = round(($tend - self::$debug_stopwatch), 2);
 
             echo lang('debug_page_generation_time') . " " . $totaltime . " " . lang('debug_sec') . "<br>";
-            echo lang('debug_db_queries') . " " . Pdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
+            echo lang('debug_db_queries') . " " . CruderPdo::$query_count . " " . lang('debug_pcs') . "<br><br>";
         }
         if (self::$debug_helper) {
             echo self::trace(self::$debug_helper);

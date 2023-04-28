@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Pdo,
-};
+use Cruder\Cruder;
 
 /**
  * Tabs
@@ -29,7 +27,15 @@ final class Tabs {
      * @return array
      */
     public static function tabsModulesAvailable(): array {
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'tabs']);
+
+        $db = new Cruder();
+
+        $data = $db->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('active=', 1)
+                ->and('type=', 'tabs')
+                ->save();
+
         $output = [];
         foreach ($data as $tabs_module) {
             array_push($output, $tabs_module['name']);
@@ -42,7 +48,7 @@ final class Tabs {
      * 
      * @return array
      */
-    public static function loadData():array {
+    public static function loadData(): array {
 
         $modules_names = self::tabsModulesAvailable();
 

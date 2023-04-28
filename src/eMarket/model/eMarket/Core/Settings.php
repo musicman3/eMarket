@@ -11,9 +11,9 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Func,
-    Pdo,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Settings
@@ -100,8 +100,13 @@ class Settings {
      */
     public static function basicSettings(mixed $param = null): mixed {
 
+        $db = new Cruder();
         if (self::$basic_settings == FALSE) {
-            self::$basic_settings = Pdo::getAssoc("SELECT * FROM " . TABLE_BASIC_SETTINGS, [])[0];
+
+            self::$basic_settings = $db
+                            ->read(TABLE_BASIC_SETTINGS)
+                            ->selectAssoc('*')
+                            ->save()[0];
         }
 
         if ($param != null) {
@@ -118,8 +123,14 @@ class Settings {
      */
     public static function currenciesData(): mixed {
 
+        $db = new Cruder();
         if (self::$currencies_data == FALSE) {
-            self::$currencies_data = Pdo::getAssoc("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=?", [lang('#lang_all')[0]]);
+
+            self::$currencies_data = $db
+                    ->read(TABLE_CURRENCIES)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
         }
 
         return self::$currencies_data;
@@ -163,6 +174,8 @@ class Settings {
      */
     public static function currencyDefault(?string $language = null): mixed {
 
+        $db = new Cruder();
+
         if ($language == null) {
             $language = lang('#lang_all')[0];
         } else {
@@ -173,18 +186,44 @@ class Settings {
 
             if (self::path() == 'catalog') {
                 if (!isset($_SESSION['currency_default_catalog'])) {
-                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+
+                    $currency = $db
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('default_value=', 1)
+                                    ->save()[0];
+
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && !Valid::inGET('currency_default')) {
-                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, $_SESSION['currency_default_catalog']])[0];
+
+                    $currency = $db
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('id=', $_SESSION['currency_default_catalog'])
+                                    ->save()[0];
                 } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
-                    $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND id=?", [$language, Valid::inGET('currency_default')])[0];
+
+                    $currency = $db
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('id=', Valid::inGET('currency_default'))
+                                    ->save()[0];
+
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 }
             }
 
             if (self::path() == 'admin') {
-                $currency = Pdo::getIndex("SELECT * FROM " . TABLE_CURRENCIES . " WHERE language=? AND default_value=?", [$language, 1])[0];
+
+                $currency = $db
+                                ->read(TABLE_CURRENCIES)
+                                ->selectIndex('*')
+                                ->where('language=', $language)
+                                ->and('default_value=', 1)
+                                ->save()[0];
             }
 
             self::$default_currency = $currency;
@@ -281,9 +320,17 @@ class Settings {
      */
     public static function breadcrumbName(array $breadcrumb_array): array {
 
+        $db = new Cruder();
         $breadcrumb = [];
         foreach ($breadcrumb_array as $value) {
-            $name = Pdo::getValue("SELECT name FROM " . TABLE_CATEGORIES . " WHERE language=? AND id=?", [lang('#lang_all')[0], $value]);
+
+            $name = $db
+                    ->read(TABLE_CATEGORIES)
+                    ->selectValue('name')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('id=', $value)
+                    ->save();
+
             array_push($breadcrumb, $name);
         }
 

@@ -12,10 +12,10 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Clock\SystemClock,
     Func,
-    Pdo,
     Tree,
     Valid
 };
+use Cruder\Cruder;
 
 /**
  * Class for working with files
@@ -36,6 +36,8 @@ class Files {
      * @param array $resize_param Resize param
      */
     public static function imgUpload(string $TABLE, string $dir, array $resize_param): void {
+
+        $db = new Cruder();
 
         self::imgThumbAndSize($resize_param);
 
@@ -64,7 +66,13 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = Pdo::getValue("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = $db
+                        ->read($TABLE)
+                        ->selectValue('id')
+                        ->where('language=', $language)
+                        ->orderByDesc('id')
+                        ->save();
+
                 $id = intval($id_max);
 
                 $image_list = [];
@@ -84,7 +92,11 @@ class Files {
 
                 Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->set('logo_general', $general_image_add)
+                        ->where('id=', $id)
+                        ->save();
             }
         }
 
@@ -96,7 +108,14 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
+            $image_list_prepare = $db
+                    ->read($TABLE)
+                    ->selectValue('logo')
+                    ->where('id=', $id)
+                    ->save();
+
+            $image_list = json_decode($image_list_prepare, true);
+
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -118,15 +137,31 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             if (isset($general_image_edit)) {
-                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->set('logo_general', $general_image_edit)
+                        ->where('id=', $id)
+                        ->save();
             } else {
-                Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->where('id=', $id)
+                        ->save();
             }
 
             if (Valid::inPOST('delete_image')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image'), -1);
 
-                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
+                $image_list_arr_prepare = $db
+                        ->read($TABLE)
+                        ->selectValue('logo')
+                        ->where('id=', $id)
+                        ->save();
+
+                $image_list_arr = json_decode($image_list_arr_prepare, true);
+
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -136,16 +171,37 @@ class Files {
                             Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == Pdo::getValue("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+
+                        $file_prepare = $db
+                                ->read($TABLE)
+                                ->selectValue('logo_general')
+                                ->where('id=', $id)
+                                ->save();
+
+                        if ($file == $file_prepare) {
+
+                            $db->update($TABLE)
+                                    ->set('logo_general', NULL)
+                                    ->where('id=', $id)
+                                    ->save();
+
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && count($image_list_new) > 0) {
-                    Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+
+                    $db->update($TABLE)
+                            ->set('logo', json_encode($image_list_new))
+                            ->set('logo_general', $image_list_new[0])
+                            ->where('id=', $id)
+                            ->save();
                 } else {
-                    Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+
+                    $db->update($TABLE)
+                            ->set('logo', json_encode($image_list_new))
+                            ->where('id=', $id)
+                            ->save();
                 }
             }
         }
@@ -161,7 +217,14 @@ class Files {
                     if (strstr($idx[$i], '_', true) != 'product') {
                         $id = $idx[$i];
 
-                        $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
+                        $logo_delete_prepare = $db
+                                ->read($TABLE)
+                                ->selectValue('logo')
+                                ->where('id=', $id)
+                                ->save();
+
+                        $logo_delete = json_decode($logo_delete_prepare, true);
+
                         if (is_countable($logo_delete)) {
                             foreach ($logo_delete as $file) {
                                 foreach ($resize_param as $key => $value) {
@@ -192,6 +255,8 @@ class Files {
      */
     public static function imgUploadProduct(string $TABLE, string $dir, array $resize_param): void {
 
+        $db = new Cruder();
+
         self::imgThumbAndSize($resize_param);
 
         $prefix = SystemClock::nowUnixTime() . '_';
@@ -220,7 +285,13 @@ class Files {
                     $language = lang('#lang_all')[0];
                 }
 
-                $id_max = Pdo::getValue("SELECT id FROM " . $TABLE . " WHERE language=? ORDER BY id DESC", [$language]);
+                $id_max = $db
+                        ->read($TABLE)
+                        ->selectValue('id')
+                        ->where('language=', $language)
+                        ->orderByDesc('id')
+                        ->save();
+
                 $id = intval($id_max);
 
                 $image_list = [];
@@ -240,7 +311,11 @@ class Files {
 
                 Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
-                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_add, $id]);
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->set('logo_general', $general_image_add)
+                        ->where('id=', $id)
+                        ->save();
             }
         }
 
@@ -252,7 +327,14 @@ class Files {
 
             $files = glob(ROOT . '/uploads/temp/originals/*');
 
-            $image_list = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
+            $image_list_prepare = $db
+                    ->read($TABLE)
+                    ->selectValue('logo')
+                    ->where('id=', $id)
+                    ->save();
+
+            $image_list = json_decode($image_list_prepare, true);
+
             foreach ($files as $file) {
                 if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
                     array_push($image_list, basename($file));
@@ -274,15 +356,31 @@ class Files {
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $dir . '/originals/');
 
             if (isset($general_image_edit)) {
-                Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list), $general_image_edit, $id]);
+
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->set('logo_general', $general_image_edit)
+                        ->where('id=', $id)
+                        ->save();
             } else {
-                Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list), $id]);
+
+                $db->update($TABLE)
+                        ->set('logo', json_encode($image_list))
+                        ->where('id=', $id)
+                        ->save();
             }
 
             if (Valid::inPOST('delete_image_product')) {
                 $delete_image_arr = explode(',', Valid::inPOST('delete_image_product'), -1);
 
-                $image_list_arr = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id]), true);
+                $image_list_arr_prepare = $db
+                        ->read($TABLE)
+                        ->selectValue('logo')
+                        ->where('id=', $id)
+                        ->save();
+
+                $image_list_arr = json_decode($image_list_arr_prepare, true);
+
                 $image_list_new = [];
                 foreach ($image_list_arr as $key => $file) {
                     if (!in_array($file, $delete_image_arr)) {
@@ -292,16 +390,37 @@ class Files {
                             Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $file);
                         }
                         Func::deleteFile(ROOT . '/uploads/images/' . $dir . '/originals/' . $file);
-                        if ($file == Pdo::getValue("SELECT logo_general FROM " . $TABLE . " WHERE id=?", [$id])) {
-                            Pdo::action("UPDATE " . $TABLE . " SET logo_general=? WHERE id=?", [NULL, $id]);
+
+                        $file_prepare = $db
+                                ->read($TABLE)
+                                ->selectValue('logo_general')
+                                ->where('id=', $id)
+                                ->save();
+
+                        if ($file == $file_prepare) {
+
+                            $db->update($TABLE)
+                                    ->set('logo_general', NULL)
+                                    ->where('id=', $id)
+                                    ->save();
+
                             $logo_general_update = 'ok';
                         }
                     }
                 }
                 if (isset($logo_general_update) && is_array($image_list_new)) {
-                    Pdo::action("UPDATE " . $TABLE . " SET logo=?, logo_general=? WHERE id=?", [json_encode($image_list_new), $image_list_new[0], $id]);
+
+                    $db->update($TABLE)
+                            ->set('logo', json_encode($image_list_new))
+                            ->set('logo_general', $image_list_new[0])
+                            ->where('id=', $id)
+                            ->save();
                 } else {
-                    Pdo::action("UPDATE " . $TABLE . " SET logo=? WHERE id=?", [json_encode($image_list_new), $id]);
+
+                    $db->update($TABLE)
+                            ->set('logo', json_encode($image_list_new))
+                            ->where('id=', $id)
+                            ->save();
                 }
             }
         }
@@ -313,7 +432,14 @@ class Files {
                 if (strstr($idx[$i], '_', true) == 'product') {
                     $id = explode('product_', $idx[$i]);
 
-                    $logo_delete = json_decode(Pdo::getValue("SELECT logo FROM " . $TABLE . " WHERE id=?", [$id[1]]), true);
+                    $logo_delete_prepare = $db
+                            ->read($TABLE)
+                            ->selectValue('logo')
+                            ->where('id=', $id[1])
+                            ->save();
+
+                    $logo_delete = json_decode($logo_delete_prepare, true);
+
                     if (is_countable($logo_delete)) {
                         foreach ($logo_delete as $file) {
                             foreach ($resize_param as $key => $value) {

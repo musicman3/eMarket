@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Pdo,
-};
+use Cruder\Cruder;
 
 /**
  * Payment
@@ -24,17 +22,39 @@ use eMarket\Core\{
  */
 final class Payment {
 
+    public $db;
+
+    /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        $this->db = new Cruder();
+    }
+
     /**
      * List of payment modules that are available for the selected delivery module
      * @param string $name Payment module name
      * @return array
      */
     private function paymentModulesAvailable(string $name): array {
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'payment']);
+
+        $data = $this->db
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('active=', 1)
+                ->and('type=', 'payment')
+                ->save();
 
         $output = [];
         foreach ($data as $payment_module) {
-            $shipping_val = json_decode(Pdo::getValue("SELECT shipping_module FROM " . DB_PREFIX . 'modules_payment_' . $payment_module['name'], []), true);
+            $shipping_val_prepare = $this->db
+                    ->read(DB_PREFIX . 'modules_payment_' . $payment_module['name'])
+                    ->selectValue('shipping_module')
+                    ->save();
+
+            $shipping_val = json_decode($shipping_val_prepare, true);
+
             if (is_array($shipping_val) && in_array($name, $shipping_val) && !in_array($payment_module['name'], $output)) {
                 array_push($output, $payment_module['name']);
             }

@@ -23,9 +23,7 @@ use eMarket\Core\{
     Settings,
     Tree
 };
-use \Cruder\{
-    Pdo
-};
+use \Cruder\Db;
 
 // Load Debug stopwatch
 Debug::$debug_stopwatch = $eMarketDebugStopwatch;
@@ -51,7 +49,7 @@ if (Settings::path() != 'install') {
 
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
 
-    Pdo::$set = [
+    Db::set([
         'db_type' => DB_TYPE,
         'db_server' => DB_SERVER,
         'db_name' => DB_NAME,
@@ -60,7 +58,7 @@ if (Settings::path() != 'install') {
         'db_prefix' => DB_PREFIX,
         'db_port' => DB_PORT,
         'db_family' => DB_FAMILY
-    ];
+    ]);
 }
 
 // Load Autorize
@@ -80,4 +78,4 @@ if ($eMarketRouting->constructor()) {
 }
 
 // Close DB connect
-Pdo::connect('close');
+Db::close();

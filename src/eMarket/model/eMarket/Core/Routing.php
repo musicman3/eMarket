@@ -11,7 +11,6 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Debug,
-    Pdo,
     Settings,
     Func,
     JsonRpc,
@@ -19,6 +18,7 @@ use eMarket\Core\{
     Tree,
     Valid
 };
+use Cruder\Cruder;
 use eMarket\Admin\{
     HeaderMenu
 };
@@ -203,11 +203,18 @@ class Routing {
      */
     public static function tlpc(string $position, ?string $count = null): int|string|array {
 
+        $db = new Cruder();
+
         $page = self::routingPath();
 
-        $array_pos_value = Pdo::getIndex("SELECT url, value FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND page=? AND template_name=? ORDER BY sort ASC", [
-                    Settings::path(), $page, Settings::template()
-        ]);
+        $array_pos_value = $db
+                ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                ->selectIndex('url, value')
+                ->where('group_id=', Settings::path())
+                ->and('page=', $page)
+                ->and('template_name=', Settings::template())
+                ->orderByAsc('sort')
+                ->save();
 
         if (count($array_pos_value) > 0) {
             $array_out = [];
@@ -221,9 +228,16 @@ class Routing {
             }
             return $array_out;
         } else {
-            $array_pos = Pdo::getIndex("SELECT url, page FROM " . TABLE_TEMPLATE_CONSTRUCTOR . " WHERE group_id=? AND value=? AND template_name=? ORDER BY sort ASC", [
-                        Settings::path(), $position, Settings::template()
-            ]);
+
+            $array_pos = $db
+                    ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->selectIndex('url, page')
+                    ->where('group_id=', Settings::path())
+                    ->and('value=', $position)
+                    ->and('template_name=', Settings::template())
+                    ->orderByAsc('sort')
+                    ->save();
+
             $array_out = [];
             foreach ($array_pos as $val) {
                 if ($val[1] == 'all') {

@@ -11,10 +11,10 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    JsonRpc,
-    Pdo
+    JsonRpc
 };
 use \Mpdf\Mpdf;
+use Cruder\Cruder;
 
 /**
  * Invoice
@@ -31,12 +31,14 @@ class Invoice extends JsonRpc {
     private $mpdf = FALSE;
     private $order_data = FALSE;
     private $uid = FALSE;
+    public $db;
 
     /**
      * Constructor
      *
      */
     public function __construct() {
+        $this->db = new Cruder();
         $this->createBlank();
     }
 
@@ -61,7 +63,13 @@ class Invoice extends JsonRpc {
      */
     private function data(string|int $name): mixed {
         if (!$this->order_data) {
-            $order_data = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDERS . " WHERE uid=?", [$this->uid]);
+
+            $order_data = $this->db
+                    ->read(TABLE_ORDERS)
+                    ->selectAssoc('*')
+                    ->where('uid', $this->uid)
+                    ->save();
+
             if (count($order_data) > 0) {
                 $this->order_data = $order_data[0];
             }

@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Pdo
-};
+use Cruder\Cruder;
 
 /**
  * Shipping
@@ -24,22 +22,48 @@ use eMarket\Core\{
  */
 final class Shipping {
 
+    public $db;
+
+    /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        $this->db = new Cruder();
+    }
+
     /**
      * List of zones for which delivery to the buyer is available
      * @param string $region Regions numbers
      * @return array
      */
     private function shippingZonesAvailable(string $region): array {
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+
+        $data = $this->db
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('active=', 1)
+                ->and('type=', 'shipping')
+                ->save();
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+
+            $mod_array = $this->db
+                    ->read(DB_PREFIX . 'modules_shipping_' . $module['name'])
+                    ->selectAssoc('*')
+                    ->save();
+
             array_push($modules_data, $mod_array);
         }
 
         $output = [];
-        $zones_id = Pdo::getValue("SELECT zones_id FROM " . TABLE_ZONES_VALUE . " WHERE regions_id=?", [$region]);
+
+        $zones_id = $this->db
+                ->read(TABLE_ZONES_VALUE)
+                ->selectValue('zones_id')
+                ->where('regions_id=', $region)
+                ->save();
 
         if ($zones_id != FALSE) {
             foreach ($modules_data as $mod_data_ext) {
@@ -60,11 +84,22 @@ final class Shipping {
      * @return array
      */
     private function shippingModulesAvailable(array $shipping_zones_id_available): array {
-        $data = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE active=? AND type=?", [1, 'shipping']);
+
+        $data = $this->db
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('active=', 1)
+                ->and('type=', 'shipping')
+                ->save();
 
         $modules_data = [];
         foreach ($data as $module) {
-            $mod_array = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_' . $module['name'], []);
+
+            $mod_array = $this->db
+                    ->read(DB_PREFIX . 'modules_shipping_' . $module['name'])
+                    ->selectAssoc('*')
+                    ->save();
+
             array_push($modules_data, [$module['name'] => $mod_array]);
         }
         $output = [];

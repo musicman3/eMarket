@@ -20,13 +20,13 @@ use eMarket\Core\{
     Messages,
     Modules,
     Pages,
-    Pdo,
     Valid
 };
 use eMarket\Admin\{
     HeaderMenu,
     Eac
 };
+use Cruder\Cruder;
 
 /**
  * Module Sale
@@ -45,12 +45,14 @@ class Sale implements DiscountModulesInterface {
     public int $default = 0;
     public $start_date = NULL;
     public $end_date = NULL;
+    public $db;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->db = new Cruder();
         $this->default();
         $this->startDate();
         $this->endDate();
@@ -86,11 +88,23 @@ class Sale implements DiscountModulesInterface {
      */
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
-        $products_data = Pdo::getAssoc("SELECT id, discount FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+
+        $db = new Cruder();
+
+        $products_data = $db
+                ->read(TABLE_PRODUCTS)
+                ->selectAssoc('id, discount')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
+
         foreach ($products_data as $data) {
             $discounts = json_decode($data['discount'], true);
             unset($discounts['sale']);
-            Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discounts), $data['id']]);
+
+            $db->update(TABLE_PRODUCTS)
+                    ->set('discount=', json_encode($discounts))
+                    ->where('id=', $data['id'])
+                    ->save();
         }
     }
 
@@ -143,7 +157,16 @@ class Sale implements DiscountModulesInterface {
      * @return mixed
      */
     public static function status(): mixed {
-        $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['sale', 'discount']);
+
+        $db = new Cruder();
+
+        $module_active = $db
+                ->read(TABLE_MODULES)
+                ->selectValue('active')
+                ->where('name=', 'sale')
+                ->and('type=', 'discount')
+                ->save();
+
         return $module_active;
     }
 
@@ -155,6 +178,8 @@ class Sale implements DiscountModulesInterface {
      * @return array (output data)
      */
     public static function dataInterface(array $input, ?string $language = null): void {
+
+        $db = new Cruder();
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
@@ -172,15 +197,21 @@ class Sale implements DiscountModulesInterface {
             $discount_names = [];
 
             foreach ($discount_val['sale'] as $val) {
-                $data = Pdo::getAssoc("SELECT sale_value, name, UNIX_TIMESTAMP (date_start), UNIX_TIMESTAMP (date_end) FROM " . DB_PREFIX . 'modules_discount_sale' . " WHERE language=? AND id=?", [$language, $val])[0];
+
+                $data = $db->read(DB_PREFIX . 'modules_discount_sale')
+                                ->selectIndex('sale_value, name, {{UNIX_TIMESTAMP->date_start}}, {{UNIX_TIMESTAMP->date_end}}')
+                                ->where('language=', $language)
+                                ->and('id=', $val)
+                                ->save()[0];
+
                 if (count($data) > 0) {
                     $this_time = SystemClock::nowUnixTime();
-                    $date_start = $data['UNIX_TIMESTAMP (date_start)'];
-                    $date_end = $data['UNIX_TIMESTAMP (date_end)'];
+                    $date_start = $data[2];
+                    $date_end = $data[3];
 
                     if ($this_time > $date_start && $this_time < $date_end) {
-                        array_push($discount_out, $data['sale_value']);
-                        array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data['name'] . ' (' . $data['sale_value'] . '%)');
+                        array_push($discount_out, $data[0]);
+                        array_push($discount_names, lang('modules_discount_sale_name') . ': ' . $data[1] . ' (' . $data[0] . '%)');
                     }
                 }
             }
@@ -220,6 +251,7 @@ class Sale implements DiscountModulesInterface {
                 or (Valid::inPostJson('idsx_sale_off_key') == 'Off')
                 or (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll')) {
 
+            $db = new Cruder();
             $parent_id_real = (int) Valid::inPostJson('idsx_real_parent_id');
 
             if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
@@ -249,10 +281,20 @@ class Sale implements DiscountModulesInterface {
 
                     for ($x = 0; $x < $count_keys; $x++) {
                         if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
-                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            $products_id = $db->read(TABLE_PRODUCTS)
+                                    ->selectAssoc('id')
+                                    ->where('language=', lang('#lang_all')[0])
+                                    ->and('parent_id=', $keys[$x])
+                                    ->save();
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+
+                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                        ->selectValue('discount')
+                                        ->where('id=', $val['id'])
+                                        ->save();
+
                                 $discount_array = json_decode($discount_json, true);
 
                                 if (!array_key_exists('sale', $discount_array)) {
@@ -263,7 +305,10 @@ class Sale implements DiscountModulesInterface {
                                     }
                                 }
 
-                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                $db->update(TABLE_PRODUCTS)
+                                        ->set('discount', json_encode($discount_array))
+                                        ->where('id=', $val['id'])
+                                        ->save();
 
                                 $Cache = new Cache();
                                 $Cache->deleteItem('core.new_products');
@@ -278,10 +323,20 @@ class Sale implements DiscountModulesInterface {
                         }
 
                         if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
-                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            $products_id = $db->read(TABLE_PRODUCTS)
+                                    ->selectAssoc('id')
+                                    ->where('language=', lang('#lang_all')[0])
+                                    ->and('parent_id=', $keys[$x])
+                                    ->save();
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+
+                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                        ->selectValue('discount')
+                                        ->where('id=', $val['id'])
+                                        ->save();
+
                                 $discount_array = json_decode($discount_json, true);
 
                                 if (array_key_exists('sale', $discount_array)) {
@@ -292,7 +347,10 @@ class Sale implements DiscountModulesInterface {
                                     }
                                 }
 
-                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                $db->update(TABLE_PRODUCTS)
+                                        ->set('discount', json_encode($discount_array))
+                                        ->where('id=', $val['id'])
+                                        ->save();
 
                                 $Cache = new Cache();
                                 $Cache->deleteItem('core.new_products');
@@ -307,17 +365,30 @@ class Sale implements DiscountModulesInterface {
                         }
 
                         if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
-                            $products_id = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=? AND parent_id=?", [lang('#lang_all')[0], $keys[$x]]);
+
+                            $products_id = $db->read(TABLE_PRODUCTS)
+                                    ->selectAssoc('id')
+                                    ->where('language=', lang('#lang_all')[0])
+                                    ->and('parent_id=', $keys[$x])
+                                    ->save();
 
                             foreach ($products_id as $val) {
-                                $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$val['id']]);
+
+                                $discount_json = $db->read(TABLE_PRODUCTS)
+                                        ->selectValue('discount')
+                                        ->where('id=', $val['id'])
+                                        ->save();
+
                                 $discount_array = json_decode($discount_json, true);
 
                                 if (array_key_exists('sale', $discount_array)) {
                                     unset($discount_array['sale']);
                                 }
 
-                                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $val['id']]);
+                                $db->update(TABLE_PRODUCTS)
+                                        ->set('discount', json_encode($discount_array))
+                                        ->where('id=', $val['id'])
+                                        ->save();
 
                                 $Cache = new Cache();
                                 $Cache->deleteItem('core.new_products');
@@ -334,7 +405,12 @@ class Sale implements DiscountModulesInterface {
                 } else {
                     if (Valid::inPostJson('idsx_sale_on_key') == 'On') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+
+                        $discount_json = $db->read(TABLE_PRODUCTS)
+                                ->selectValue('discount')
+                                ->where('id=', $id_prod[1])
+                                ->save();
+
                         $discount_array = json_decode($discount_json, true);
 
                         if (!array_key_exists('sale', $discount_array)) {
@@ -345,7 +421,10 @@ class Sale implements DiscountModulesInterface {
                             }
                         }
 
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        $db->update(TABLE_PRODUCTS)
+                                ->set('discount', json_encode($discount_array))
+                                ->where('id=', $id_prod[1])
+                                ->save();
 
                         $Cache = new Cache();
                         $Cache->deleteItem('core.new_products');
@@ -356,7 +435,12 @@ class Sale implements DiscountModulesInterface {
 
                     if (Valid::inPostJson('idsx_sale_off_key') == 'Off') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+
+                        $discount_json = $db->read(TABLE_PRODUCTS)
+                                ->selectValue('discount')
+                                ->where('id=', $id_prod[1])
+                                ->save();
+
                         $discount_array = json_decode($discount_json, true);
 
                         if (array_key_exists('sale', $discount_array)) {
@@ -367,7 +451,10 @@ class Sale implements DiscountModulesInterface {
                             }
                         }
 
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+                        $db->update(TABLE_PRODUCTS)
+                                ->set('discount', json_encode($discount_array))
+                                ->where('id=', $id_prod[1])
+                                ->save();
 
                         $Cache = new Cache();
                         $Cache->deleteItem('core.new_products');
@@ -378,13 +465,22 @@ class Sale implements DiscountModulesInterface {
 
                     if (Valid::inPostJson('idsx_sale_off_all_key') == 'OffAll') {
                         $id_prod = explode('products_', $idx[$i]);
-                        $discount_json = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$id_prod[1]]);
+
+                        $discount_json = $db->read(TABLE_PRODUCTS)
+                                ->selectValue('discount')
+                                ->where('id=', $id_prod[1])
+                                ->save();
+
                         $discount_array = json_decode($discount_json, true);
 
                         if (array_key_exists('sale', $discount_array)) {
                             unset($discount_array['sale']);
                         }
-                        Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_array), $id_prod[1]]);
+
+                        $db->update(TABLE_PRODUCTS)
+                                ->set('discount', json_encode($discount_array))
+                                ->where('id=', $id_prod[1])
+                                ->save();
 
                         $Cache = new Cache();
                         $Cache->deleteItem('core.new_products');
@@ -410,15 +506,34 @@ class Sale implements DiscountModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $id_max = Pdo::getValue("SELECT id FROM " . $MODULE_DB . " WHERE language=? ORDER BY id DESC", [lang('#lang_all')[0]]);
+            $id_max = $this->db->read($MODULE_DB)
+                    ->selectValue('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->orderByDesc('id')
+                    ->save();
+
             $id = intval($id_max) + 1;
 
             if ($id > 1 && $this->default != 0) {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+
+                $this->db
+                        ->update($MODULE_DB)
+                        ->set('default_set', 0)
+                        ->save();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("INSERT INTO " . $MODULE_DB . " SET id=?, name=?, language=?, sale_value=?, date_start=?, date_end=?, default_set=?", [$id, Valid::inPOST('name_module_' . $x), lang('#lang_all')[$x], Valid::inPOST('sale_value'), $this->start_date, $this->end_date, $this->default]);
+
+                $this->db
+                        ->create($MODULE_DB)
+                        ->set('id', $id)
+                        ->set('name', Valid::inPOST('name_module_' . $x))
+                        ->set('language', lang('#lang_all')[$x])
+                        ->set('sale_value', Valid::inPOST('sale_value'))
+                        ->set('date_start', $this->start_date)
+                        ->set('date_end', $this->end_date)
+                        ->set('default_set', $this->default)
+                        ->save();
             }
 
             Messages::alert('add_discount_sale', 'success', lang('action_completed_successfully'));
@@ -435,11 +550,25 @@ class Sale implements DiscountModulesInterface {
             $MODULE_DB = Modules::moduleDatabase();
 
             if ($this->default != 0) {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET default_set=?", [0]);
+
+                $this->db
+                        ->update($MODULE_DB)
+                        ->set('default_set', 0)
+                        ->save();
             }
 
             for ($x = 0; $x < Lang::$count; $x++) {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET name=?, sale_value=?, date_start=?, date_end=?, default_set=? WHERE id=? AND language=?", [Valid::inPOST('name_module_' . $x), Valid::inPOST('sale_value'), $this->start_date, $this->end_date, $this->default, Valid::inPOST('edit'), lang('#lang_all')[$x]]);
+
+                $this->db
+                        ->update($MODULE_DB)
+                        ->set('name', Valid::inPOST('name_module_' . $x))
+                        ->set('sale_value', Valid::inPOST('sale_value'))
+                        ->set('date_start', $this->start_date)
+                        ->set('date_end', $this->end_date)
+                        ->set('default_set', $this->default)
+                        ->where('id=', Valid::inPOST('edit'))
+                        ->and('language=', lang('#lang_all')[$x])
+                        ->save();
             }
 
             Messages::alert('edit_discount_sale', 'success', lang('action_completed_successfully'));
@@ -455,16 +584,35 @@ class Sale implements DiscountModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $discount_id_array = Pdo::getAssoc("SELECT id FROM " . TABLE_PRODUCTS . " WHERE language=?", [lang('#lang_all')[0]]);
+            $discount_id_array = $this->db
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('id')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
 
             foreach ($discount_id_array as $discount_id_arr) {
-                $discount_str_temp = Pdo::getValue("SELECT discount FROM " . TABLE_PRODUCTS . " WHERE id=?", [$discount_id_arr['id']]);
+
+                $discount_str_temp = $this->db
+                        ->read(TABLE_PRODUCTS)
+                        ->selectValue('discount')
+                        ->where('id=', $discount_id_arr['id'])
+                        ->save();
+
                 $discount_str_explode_temp = json_decode($discount_str_temp, true);
                 $discount_str_explode = Func::removeValueFromArrayLevel('sale', Valid::inPOST('delete'), $discount_str_explode_temp);
-                Pdo::action("UPDATE " . TABLE_PRODUCTS . " SET discount=? WHERE id=?", [json_encode($discount_str_explode), $discount_id_arr['id']]);
+
+                $this->db
+                        ->update(TABLE_PRODUCTS)
+                        ->set('discount', json_encode($discount_str_explode))
+                        ->where('id=', $discount_id_arr['id'])
+                        ->save();
             }
 
-            Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
+            $this->db
+                    ->delete($MODULE_DB)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
             Messages::alert('delete_discount_sale', 'success', lang('action_completed_successfully'));
         }
     }
@@ -476,7 +624,12 @@ class Sale implements DiscountModulesInterface {
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_end) FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        self::$sql_data = $this->db
+                ->read($MODULE_DB)
+                ->selectAssoc('*, {{UNIX_TIMESTAMP->date_end}}')
+                ->orderByDesc('id')
+                ->save();
+
         $lines = Func::filterData(self::$sql_data, 'language', lang('#lang_all')[0]);
         Pages::data($lines);
 
