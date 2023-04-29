@@ -16,11 +16,11 @@ use eMarket\Core\{
     Messages,
     Modules,
     Pages,
-    Pdo,
     Settings,
     Shipping,
     Valid
 };
+use Cruder\Db;
 
 /**
  * Module Shipping Free
@@ -81,7 +81,13 @@ class Free implements ShippingModulesInterface {
         Ecb::priceTerminal();
 
         foreach ($zones_id as $zone) {
-            $data_arr = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_shipping_free' . " WHERE shipping_zone=?", [$zone]);
+
+            $data_arr = Db::connect()
+                    ->read(DB_PREFIX . 'modules_shipping_free')
+                    ->selectAssoc('*')
+                    ->where('shipping_zone=', $zone)
+                    ->save();
+
             foreach ($data_arr as $data) {
 
                 $interface_data = [
@@ -115,7 +121,13 @@ class Free implements ShippingModulesInterface {
     public function add(): void {
         if (Valid::inPOST('add')) {
             $MODULE_DB = Modules::moduleDatabase();
-            Pdo::action("INSERT INTO " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0]]);
+
+            Db::connect()
+                    ->create($MODULE_DB)
+                    ->set('minimum_price', Valid::inPOST('minimum_price'))
+                    ->set('shipping_zone', Valid::inPOST('zone'))
+                    ->set('currency', Settings::currencyDefault()[0])
+                    ->save();
 
             Messages::alert('add_shipping_free', 'success', lang('action_completed_successfully'));
             exit;
@@ -129,7 +141,14 @@ class Free implements ShippingModulesInterface {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
             $MODULE_DB = Modules::moduleDatabase();
-            Pdo::action("UPDATE " . $MODULE_DB . " SET minimum_price=?, shipping_zone=?, currency=? WHERE id=?", [Valid::inPOST('minimum_price'), Valid::inPOST('zone'), Settings::currencyDefault()[0], Valid::inPOST('edit')]);
+
+            Db::connect()
+                    ->update($MODULE_DB)
+                    ->set('minimum_price', Valid::inPOST('minimum_price'))
+                    ->set('shipping_zone', Valid::inPOST('zone'))
+                    ->set('currency', Settings::currencyDefault()[0])
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->save();
 
             Messages::alert('edit_shipping_free', 'success', lang('action_completed_successfully'));
             exit;
@@ -143,7 +162,11 @@ class Free implements ShippingModulesInterface {
     public function delete(): void {
         if (Valid::inPOST('delete')) {
             $MODULE_DB = Modules::moduleDatabase();
-            Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
+
+            Db::connect()
+                    ->delete($MODULE_DB)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
 
             Messages::alert('delete_shipping_free', 'success', lang('action_completed_successfully'));
             exit;
@@ -157,14 +180,23 @@ class Free implements ShippingModulesInterface {
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$zones = Pdo::getAssoc("SELECT * FROM " . TABLE_ZONES . " WHERE language=?", [lang('#lang_all')[0]]);
+        self::$zones = Db::connect()
+                ->read(TABLE_ZONES)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->save();
 
         self::$zones_name = [];
         foreach (self::$zones as $val) {
             self::$zones_name[$val['id']] = $val['name'];
         }
 
-        self::$sql_data = Pdo::getAssoc("SELECT * FROM " . $MODULE_DB . " ORDER BY id DESC", []);
+        self::$sql_data = Db::connect()
+                ->read($MODULE_DB)
+                ->selectAssoc('*')
+                ->orderByDesc('id')
+                ->save();
+
         Pages::data(self::$sql_data);
     }
 
@@ -180,7 +212,12 @@ class Free implements ShippingModulesInterface {
 
                 $modal_id = Pages::$table['lines'][$i]['id'];
 
-                $query = Pdo::getAssoc("SELECT minimum_price, shipping_zone, currency FROM " . $MODULE_DB . " WHERE id=?", [$modal_id])[0];
+                $query = Db::connect()
+                                ->read($MODULE_DB)
+                                ->selectAssoc('minimum_price, shipping_zone, currency')
+                                ->where('id=', $modal_id)
+                                ->save()[0];
+
                 $minimum_price[$modal_id] = round(Ecb::currencyPrice($query['minimum_price'], $query['currency']), 2);
                 $shipping_zone[$modal_id] = $query['shipping_zone'];
 

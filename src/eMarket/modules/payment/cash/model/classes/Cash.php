@@ -14,11 +14,11 @@ use eMarket\Core\{
     Interfaces\PaymentModulesInterface,
     Messages,
     Modules,
-    Pdo,
     Routing,
     Settings,
     Valid
 };
+use Cruder\Db;
 
 /**
  * Module Cash
@@ -98,17 +98,36 @@ class Cash implements PaymentModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
+            $data = Db::connect()
+                    ->read($MODULE_DB)
+                    ->selectValue('*')
+                    ->save();
+
             if ($data == FALSE) {
                 if (Valid::inPOST('multiselect')) {
                     $multiselect = json_encode(Valid::inPOST('multiselect'));
-                    Pdo::action("INSERT INTO " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), $multiselect]);
+
+                    Db::connect()
+                            ->create($MODULE_DB)
+                            ->set('order_status', Valid::inPOST('order_status'))
+                            ->set('shipping_module', $multiselect)
+                            ->save();
                 }
             } elseif (Valid::inPOST('multiselect')) {
                 $multiselect = json_encode(Valid::inPOST('multiselect'));
-                Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), $multiselect]);
+
+                Db::connect()
+                        ->update($MODULE_DB)
+                        ->set('order_status', Valid::inPOST('order_status'))
+                        ->set('shipping_module', $multiselect)
+                        ->save();
             } else {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET order_status=?, shipping_module=?", [Valid::inPOST('order_status'), NULL]);
+
+                Db::connect()
+                        ->update($MODULE_DB)
+                        ->set('order_status', Valid::inPOST('order_status'))
+                        ->set('shipping_module', NULL)
+                        ->save();
             }
 
             Messages::alert('save_payment_cash', 'success', lang('action_completed_successfully'));
@@ -123,10 +142,32 @@ class Cash implements PaymentModulesInterface {
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$shipping_method = Pdo::getAssoc("SELECT * FROM " . TABLE_MODULES . " WHERE type=? AND active=? ORDER BY name ASC", ['shipping', 1]);
-        self::$order_status = Pdo::getAssoc("SELECT * FROM " . TABLE_ORDER_STATUS . " WHERE language=? ORDER BY sort DESC", [lang('#lang_all')[0]]);
-        self::$order_status_selected = Pdo::getValue("SELECT order_status FROM " . $MODULE_DB, []);
-        self::$shipping_val = json_decode((string) Pdo::getValue("SELECT shipping_module FROM " . $MODULE_DB, []), true);
+        self::$shipping_method = Db::connect()
+                ->read(TABLE_MODULES)
+                ->selectAssoc('*')
+                ->where('type=', 'shipping')
+                ->and('active=', 1)
+                ->orderByAsc('name')
+                ->save();
+
+        self::$order_status = Db::connect()
+                ->read(TABLE_ORDER_STATUS)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->orderByDesc('sort')
+                ->save();
+
+        self::$order_status_selected = Db::connect()
+                ->read($MODULE_DB)
+                ->selectValue('order_status')
+                ->save();
+
+        $shipping_val_prepare = Db::connect()
+                ->read($MODULE_DB)
+                ->selectValue('shipping_module')
+                ->save();
+
+        self::$shipping_val = json_decode((string) $shipping_val_prepare, true);
     }
 
 }

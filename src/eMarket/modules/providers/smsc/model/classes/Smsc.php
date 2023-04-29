@@ -14,9 +14,9 @@ use eMarket\Core\{
     Interfaces\ProvidersModulesInterface,
     Messages,
     Modules,
-    Pdo,
     Valid
 };
+use Cruder\Db;
 
 /**
  * Module Smsc
@@ -87,11 +87,27 @@ final class Smsc implements ProvidersModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
+            $data = Db::connect()
+                    ->read($MODULE_DB)
+                    ->selectValue('*')
+                    ->save();
+
             if ($data == FALSE) {
-                Pdo::action("INSERT INTO " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
+
+                Db::connect()
+                        ->create($MODULE_DB)
+                        ->set('login', Valid::inPOST('login'))
+                        ->set('password', Valid::inPOST('password'))
+                        ->set('sender', Valid::inPOST('sender'))
+                        ->save();
             } else {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET login=?, password=?, sender=?", [Valid::inPOST('login'), Valid::inPOST('password'), Valid::inPOST('sender')]);
+
+                Db::connect()
+                        ->update($MODULE_DB)
+                        ->set('login', Valid::inPOST('login'))
+                        ->set('password', Valid::inPOST('password'))
+                        ->set('sender', Valid::inPOST('sender'))
+                        ->save();
             }
 
             Messages::alert('save_providers_smsc', 'success', lang('action_completed_successfully'));
@@ -104,7 +120,12 @@ final class Smsc implements ProvidersModulesInterface {
      *
      */
     public static function data(): void {
-        $data = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . 'modules_providers_smsc', []);
+
+        $data = Db::connect()
+                ->read(DB_PREFIX . 'modules_providers_smsc')
+                ->selectAssoc('*')
+                ->save();
+
         if (count($data) > 0) {
             self::$data = $data[0];
         } else {

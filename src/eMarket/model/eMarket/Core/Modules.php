@@ -43,7 +43,7 @@ final class Modules {
                 ->set('active', 1)
                 ->save();
 
-        $db->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql');
+        Db::connect()->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql');
     }
 
     /**
@@ -58,7 +58,7 @@ final class Modules {
                 ->and('type=', $module[0])
                 ->save();
 
-        $db->drop(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save();
+        Db::connect()->drop(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save();
     }
 
     /**

@@ -16,12 +16,12 @@ use eMarket\Core\{
     Interfaces\TabsModulesInterface,
     Modules,
     Messages,
-    Pdo,
     Pages,
     Settings,
     Valid
 };
 use eMarket\Admin\HeaderMenu;
+use Cruder\Db;
 
 /**
  * Module Reviews
@@ -112,7 +112,15 @@ class Reviews implements TabsModulesInterface {
      * @return mixed
      */
     public static function status(): mixed {
-        $module_active = Pdo::getValue("SELECT active FROM " . TABLE_MODULES . " WHERE name=? AND type=?", ['reviews', 'tabs']);
+
+        $module_active = Db::connect()
+                ->read(TABLE_MODULES)
+                ->selectValue('active')
+                ->where('name=', 'reviews')
+                ->and('type=', 'tabs')
+                ->orderByDesc('id')
+                ->save();
+
         return $module_active;
     }
 
@@ -123,7 +131,13 @@ class Reviews implements TabsModulesInterface {
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
-        self::$sql_data = Pdo::getAssoc("SELECT *, UNIX_TIMESTAMP (date_add) FROM " . $MODULE_DB . " WHERE status=? ORDER BY id DESC", [0]);
+        self::$sql_data = Db::connect()
+                ->read($MODULE_DB)
+                ->selectAssoc('*, {{UNIX_TIMESTAMP->date_add}}')
+                ->where('status=', 0)
+                ->orderByDesc('id')
+                ->save();
+
         Pages::data(self::$sql_data);
     }
 
@@ -133,7 +147,13 @@ class Reviews implements TabsModulesInterface {
      */
     public function authorCheck(): void {
         if (Authorize::$customer != FALSE) {
-            self::$author_check = Pdo::getValue("SELECT id FROM " . DB_PREFIX . "modules_tabs_reviews WHERE author=? AND product_id=?", [Authorize::$customer['email'], Valid::inGET('id')]);
+
+            self::$author_check = Db::connect()
+                    ->read(DB_PREFIX . 'modules_tabs_reviews')
+                    ->selectValue('id')
+                    ->where('author=', Authorize::$customer['email'])
+                    ->and('product_id=', Valid::inGET('id'))
+                    ->save();
         }
     }
 
@@ -144,7 +164,12 @@ class Reviews implements TabsModulesInterface {
      * @return mixed Author data
      */
     public static function reviewAuthor(string $email): mixed {
-        self::$author = Pdo::getAssoc("SELECT * FROM " . TABLE_CUSTOMERS . " WHERE email=?", [$email])[0];
+
+        self::$author = Db::connect()
+                        ->read(TABLE_CUSTOMERS)
+                        ->selectAssoc('*')
+                        ->where('email=', $email)
+                        ->save()[0];
 
         return self::$author;
     }
@@ -156,7 +181,13 @@ class Reviews implements TabsModulesInterface {
      * @return array Author data
      */
     public static function purchaseCheck(string $email): string {
-        $purchase = Pdo::getAssoc("SELECT products_order FROM " . TABLE_ORDERS . " WHERE email=?", [$email]);
+
+        $purchase = Db::connect()
+                ->read(TABLE_ORDERS)
+                ->selectAssoc('products_order')
+                ->where('email=', $email)
+                ->save();
+
         $purchase_flag = 'FALSE';
 
         foreach ($purchase as $data) {
@@ -195,9 +226,18 @@ class Reviews implements TabsModulesInterface {
      */
     public function addReview(): void {
         if (Authorize::$customer != FALSE && Valid::inPostJson('review')) {
-            Pdo::action("INSERT INTO " . DB_PREFIX . "modules_tabs_reviews SET product_id=?, author=?, stars=?, status=?, likes=?, date_add=?, date_edit=?, reviews=?", [
-                Valid::inGET('id'), Authorize::$customer['email'], Valid::inPostJson('stars'), 0, 0, SystemClock::nowSqlDateTime(), NULL, json_encode([Valid::inPostJson('review')])
-            ]);
+
+            Db::connect()
+                    ->create(DB_PREFIX . 'modules_tabs_reviews')
+                    ->set('product_id', Valid::inGET('id'))
+                    ->set('author', Authorize::$customer['email'])
+                    ->set('stars', Valid::inPostJson('stars'))
+                    ->set('status', 0)
+                    ->set('likes', 0)
+                    ->set('date_add', SystemClock::nowSqlDateTime())
+                    ->set('date_edit', NULL)
+                    ->set('reviews', json_encode([Valid::inPostJson('review')]))
+                    ->save();
         }
     }
 
@@ -207,9 +247,25 @@ class Reviews implements TabsModulesInterface {
      */
     public static function reviewsData(): void {
         if (!Valid::inPostJson('start_review')) {
-            self::$reviews = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT 0," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
+
+            self::$reviews = Db::connect()
+                    ->read(DB_PREFIX . 'modules_tabs_reviews')
+                    ->selectAssoc('*')
+                    ->where('product_id=', Valid::inGET('id'))
+                    ->and('status=', 1)
+                    ->orderByDesc('date_add')
+                    ->limit('0,' . Settings::linesOnPage())
+                    ->save();
         } else {
-            self::$reviews = Pdo::getAssoc("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=? ORDER BY date_add DESC LIMIT " . Valid::inPostJson('start_review') . "," . Settings::linesOnPage(), [Valid::inGET('id'), 1]);
+
+            self::$reviews = Db::connect()
+                    ->read(DB_PREFIX . 'modules_tabs_reviews')
+                    ->selectAssoc('*')
+                    ->where('product_id=', Valid::inGET('id'))
+                    ->and('status=', 1)
+                    ->orderByDesc('date_add')
+                    ->limit(Valid::inPostJson('start_review') . ',' . Settings::linesOnPage())
+                    ->save();
         }
         self::$count_to_page = count(self::$reviews);
     }
@@ -221,7 +277,13 @@ class Reviews implements TabsModulesInterface {
      *
      */
     public static function reviewStatus(): mixed {
-        $data_review = Pdo::getValue("SELECT status FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND author=?", [Valid::inGET('id'), Authorize::$customer['email']]);
+
+        $data_review = Db::connect()
+                ->read(DB_PREFIX . 'modules_tabs_reviews')
+                ->selectValue('status')
+                ->where('product_id=', Valid::inGET('id'))
+                ->and('author=', Authorize::$customer['email'])
+                ->save();
 
         return $data_review;
     }
@@ -231,7 +293,14 @@ class Reviews implements TabsModulesInterface {
      *
      */
     public static function reviewsCount(): void {
-        $count = Pdo::getRowCount("SELECT * FROM " . DB_PREFIX . "modules_tabs_reviews WHERE product_id=? AND status=?", [Valid::inGET('id'), 1]);
+
+        $count = Db::connect()
+                ->read(DB_PREFIX . 'modules_tabs_reviews')
+                ->selectRowCount('*')
+                ->where('product_id=', Valid::inGET('id'))
+                ->and('status=', 1)
+                ->save();
+
         self::$reviews_count = $count;
     }
 
@@ -244,9 +313,18 @@ class Reviews implements TabsModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $data = Pdo::getValue("SELECT * FROM " . $MODULE_DB, []);
+            $data = Db::connect()
+                    ->read($MODULE_DB)
+                    ->selectValue('*')
+                    ->save();
+
             if ($data != FALSE) {
-                Pdo::action("UPDATE " . $MODULE_DB . " SET status=? WHERE id=?", [1, Valid::inPOST('publish')]);
+
+                Db::connect()
+                        ->update($MODULE_DB)
+                        ->set('status', 1)
+                        ->where('id=', Valid::inPOST('publish'))
+                        ->save();
 
                 Messages::alert('publish_tabs_reviews', 'success', lang('action_completed_successfully'));
                 exit;
@@ -263,8 +341,12 @@ class Reviews implements TabsModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            Pdo::action("UPDATE " . $MODULE_DB . " SET reviews=?, date_edit=? WHERE id=?", [
-                json_encode([Valid::inPOST('review')]), SystemClock::nowSqlDateTime(), Valid::inPOST('edit')]);
+            Db::connect()
+                    ->update($MODULE_DB)
+                    ->set('reviews', json_encode([Valid::inPOST('review')]))
+                    ->set('date_edit', SystemClock::nowSqlDateTime())
+                    ->where('id=', Valid::inPOST('edit'))
+                    ->save();
 
             Messages::alert('edit_tabs_reviews', 'success', lang('action_completed_successfully'));
             exit;
@@ -280,7 +362,11 @@ class Reviews implements TabsModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            Pdo::action("DELETE FROM " . $MODULE_DB . " WHERE id=?", [Valid::inPOST('delete')]);
+            Db::connect()
+                    ->delete($MODULE_DB)
+                    ->where('id=', Valid::inPOST('delete'))
+                    ->save();
+
             Messages::alert('delete_tabs_reviews', 'success', lang('action_completed_successfully'));
         }
     }
