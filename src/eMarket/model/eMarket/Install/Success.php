@@ -119,20 +119,10 @@ class Success {
 
         require_once(self::$root . '/storage/configure/configure.php');
 
-        if (DB_TYPE == 'mysql') {
-            $file_name = ROOT . '/storage/databases/mysql.sql';
-        }
+        $file_name = ROOT . '/storage/databases/' . DB_TYPE . '.sql';
 
         if (!file_exists($file_name)) {
             header('Location: /controller/install/?route=error&file_not_found=true');
-            exit;
-        }
-
-        $pdo = new \PDO(DB_TYPE . ':host=' . DB_SERVER, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"]);
-        $mysql_version = $pdo->query('select version()')->fetchColumn();
-
-        if (version_compare($mysql_version, '5.7.8') < 0) {
-            header('Location: /controller/install/?route=error&mysql_version_false=true');
             exit;
         }
 
@@ -149,7 +139,9 @@ class Success {
             'db_collate' => 'utf8mb4_unicode_ci'
         ]);
 
-        Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+        if (DB_TYPE == 'mysql') {
+            Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+        }
 
         Db::connect()->dbInstall($file_name);
 
