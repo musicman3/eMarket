@@ -11,9 +11,9 @@ namespace eMarket\Install;
 
 use eMarket\Core\{
     Cryptography,
-    Pdo,
     Valid
 };
+use Cruder\Db;
 
 /**
  * Success
@@ -119,19 +119,13 @@ class Success {
 
         require_once(self::$root . '/storage/configure/configure.php');
 
-        if (self::$db_type == 'mysql') {
+        if (DB_TYPE == 'mysql') {
             $file_name = ROOT . '/storage/databases/mysql.sql';
         }
 
         if (!file_exists($file_name)) {
             header('Location: /controller/install/?route=error&file_not_found=true');
             exit;
-        }
-
-        $buffer = str_replace('emkt_', DB_PREFIX, implode(file($file_name)));
-
-        if (self::$db_family == 'myisam') {
-            $buffer = str_ireplace('ENGINE=InnoDB', 'ENGINE=MyISAM', $buffer);
         }
 
         $pdo = new \PDO(DB_TYPE . ':host=' . DB_SERVER, DB_USERNAME, DB_PASSWORD, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"]);
@@ -142,21 +136,50 @@ class Success {
             exit;
         }
 
-        $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-        Pdo::getExec($buffer);
+        Db::set([
+            'db_type' => DB_TYPE,
+            'db_server' => DB_SERVER,
+            'db_name' => DB_NAME,
+            'db_username' => DB_USERNAME,
+            'db_password' => DB_PASSWORD,
+            'db_prefix' => DB_PREFIX,
+            'db_port' => DB_PORT,
+            'db_family' => DB_FAMILY,
+            'db_charset' => 'utf8mb4',
+            'db_collate' => 'utf8mb4_unicode_ci'
+        ]);
+
+        Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
+        Db::connect()->dbInstall($file_name);
 
         $password_admin_hash = Cryptography::passwordHash(self::$password_admin);
 
         if (Valid::inPOST('login_admin') && Valid::inPOST('password_admin')) {
-            Pdo::action("INSERT INTO " . TABLE_ADMINISTRATORS . "  SET login=?, password=?, permission=?, language=?, my_data=?", [self::$login_admin, $password_admin_hash, 'admin', self::$lng, json_encode(['chatgpt_token' => ''])]);
-            Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
+
+            Db::connect()
+                    ->create(TABLE_ADMINISTRATORS)
+                    ->set('login', self::$login_admin)
+                    ->set('password', $password_admin_hash)
+                    ->set('permission', 'admin')
+                    ->set('language', self::$lng)
+                    ->set('my_data', json_encode(['chatgpt_token' => '']))
+                    ->save();
+
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('primary_language', self::$lng)
+                    ->save();
         }
 
         if (file_exists(ROOT . '/.htaccess')) {
             chmod(ROOT . '/.htaccess', 0644);
         }
 
-        Pdo::action("UPDATE " . TABLE_BASIC_SETTINGS . " SET primary_language=?", [self::$lng]);
+        Db::connect()
+                ->update(TABLE_BASIC_SETTINGS)
+                ->set('primary_language', self::$lng)
+                ->save();
     }
 
 }

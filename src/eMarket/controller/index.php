@@ -57,7 +57,9 @@ if (Settings::path() != 'install') {
         'db_password' => DB_PASSWORD,
         'db_prefix' => DB_PREFIX,
         'db_port' => DB_PORT,
-        'db_family' => DB_FAMILY
+        'db_family' => DB_FAMILY,
+        'db_charset' => 'utf8mb4',
+        'db_collate' => 'utf8mb4_unicode_ci'
     ]);
 }
 
