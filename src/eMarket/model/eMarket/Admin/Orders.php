@@ -158,8 +158,9 @@ class Orders {
                     ->selectAssoc('*')
                     ->where('{{CAST AS CHAR->id}} {{LIKE}} ', $search)
                     ->or('email {{LIKE}} ', $search)
-                    ->or('customer_data {{RLIKE}} ', '"lastname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
-                    ->or('customer_data {{RLIKE}} ', '"firstname": "(?i)([^"])*' . Valid::inGET('search') . '([^"])*')
+                    ->or('lastname {{LIKE}} ', $search)
+                    ->or('firstname {{LIKE}} ', $search)
+                    ->or('telephone {{LIKE}} ', $search)
                     ->orderByDesc('id')
                     ->save();
         } else {
