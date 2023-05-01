@@ -18,7 +18,7 @@
   - Vanilla JS
   - Bootstrap 5
   - ChatGPT integration
-  - SQL + noSQL concept for query optimization (MySQL json fields)
+  - SQL + noSQL concept for query optimization (JSON fields)
   - Development in `error_reporting(-1)` mode (show all errors)
 
 ### PHP Standards Recommendations Used: 
