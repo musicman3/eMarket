@@ -47,8 +47,9 @@ use eMarket\Core\{
                                     <small class="form-text text-muted"><?php echo lang('database_type') ?></small>
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
-                                        <select name="database_type" class="form-select">
+                                        <select id="database_type" name="database_type" class="form-select">
                                             <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
+                                            <option value='pgsql'><?php echo lang('database_family_pgsql') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -56,7 +57,7 @@ use eMarket\Core\{
                                     <small class="form-text text-muted"><?php echo lang('database_family') ?></small>
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
-                                        <select name="database_family" class="form-select">
+                                        <select id="database_family" name="database_family" class="form-select">
                                             <option value='innodb'><?php echo lang('database_innodb') ?></option>
                                             <option value='myisam'><?php echo lang('database_myisam') ?></option>
                                         </select>
@@ -73,7 +74,7 @@ use eMarket\Core\{
                                     <small class="form-text text-muted"><?php echo lang('database_port') ?></small>
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
-                                        <input class="form-control" placeholder="<?php echo lang('database_port') ?>" type="text" name="database_port" value="3306" required />
+                                        <input class="form-control" placeholder="<?php echo lang('database_port') ?>" id="database_port" type="text" name="database_port" value="3306" required />
                                     </div>
                                 </div>
                                 <div class="mb-0">
@@ -187,6 +188,10 @@ use eMarket\Core\{
                                     <div class="row">
                                         <div class="col">pdo_mysql:</div>
                                         <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_mysql') ?>"></span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">pdo_pgsql:</div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_pgsql') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">SPL:</div>

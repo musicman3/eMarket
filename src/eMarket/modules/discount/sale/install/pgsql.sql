@@ -4,13 +4,14 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 DROP TABLE IF EXISTS emkt_modules_discount_sale;
+DROP SEQUENCE IF EXISTS emkt_modules_discount_sale_seq;
+CREATE SEQUENCE emkt_modules_discount_sale_seq;
 CREATE TABLE emkt_modules_discount_sale (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_modules_discount_sale_seq'),
         name varchar(256),
         language varchar(64),
         sale_value decimal(4,2),
-	date_start datetime,
-        date_end datetime,
+	date_start date,
+        date_end date,
         default_set int,
-	PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+	PRIMARY KEY (id, language));

@@ -10,7 +10,6 @@ use eMarket\Core\{
     Valid
 };
 use eMarket\Core\Modules\Discount\Sale;
-use Cruder\Db;
 
 require_once('modal/index.php')
 ?>
@@ -63,7 +62,7 @@ require_once('modal/index.php')
         <tbody>
             <?php
             for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) {
-                if (Sale::$this_time > Pages::$table['line'][Db::functions('UNIX_TIMESTAMP', 'date_end')]) {
+                if (Sale::$this_time > SystemClock::getUnixTime(Pages::$table['line']['date_end'])) {
                     $active = ' class="danger"';
                 } else {
                     $active = '';

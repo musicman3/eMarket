@@ -4,10 +4,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 DROP TABLE IF EXISTS emkt_modules_shipping_free;
+DROP SEQUENCE IF EXISTS emkt_modules_shipping_free_seq;
+CREATE SEQUENCE emkt_modules_shipping_free_seq;
 CREATE TABLE emkt_modules_shipping_free (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_modules_shipping_free_seq'),
         minimum_price decimal(12,2),
         shipping_zone int,
         currency int,
-	PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+	PRIMARY KEY (id));

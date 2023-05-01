@@ -14,12 +14,13 @@ CREATE TABLE emkt_administrators (
 	note varchar(256),
 	status int DEFAULT '0' NOT NULL,
         my_data json,
-PRIMARY KEY (login))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (login));
 
 DROP TABLE IF EXISTS emkt_basic_settings;
+DROP SEQUENCE IF EXISTS emkt_basic_settings_seq;
+CREATE SEQUENCE emkt_basic_settings_seq;
 CREATE TABLE emkt_basic_settings (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_basic_settings_seq'),
 	lines_on_page int DEFAULT '20' NOT NULL,
         session_expr_time int DEFAULT '60' NOT NULL,
         debug int DEFAULT '0' NOT NULL,
@@ -35,8 +36,7 @@ CREATE TABLE emkt_basic_settings (
         primary_language varchar(128) DEFAULT '' NOT NULL,
         cache_status int DEFAULT '0' NOT NULL,
         caching_time int DEFAULT '7200' NOT NULL,
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
@@ -45,14 +45,13 @@ CREATE TABLE emkt_categories (
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
         logo json,
-	date_added datetime,
-	last_modified datetime,
+	date_added timestamp(0),
+	last_modified timestamp(0),
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
         logo_general varchar(128),
         attributes json,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
@@ -62,8 +61,7 @@ CREATE TABLE emkt_countries (
         alpha_2 varchar(2),
         alpha_3 varchar(3),
         address_format varchar(256) NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_currencies;
 CREATE TABLE emkt_currencies (
@@ -77,23 +75,24 @@ CREATE TABLE emkt_currencies (
         symbol varchar(16),
         symbol_position varchar(16),
         decimal_places char(1),
-        last_updated datetime NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        last_updated timestamp(0) NULL,
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_customers;
+DROP SEQUENCE IF EXISTS emkt_customers_seq;
+CREATE SEQUENCE emkt_customers_seq;
 CREATE TABLE emkt_customers (
-        id int NOT NULL auto_increment,
+        id int NOT NULL default nextval ('emkt_customers_seq'),
         address_book json,
         gender char(1),
         firstname varchar(32) NOT NULL,
         lastname varchar(32) NOT NULL,
         middle_name varchar(32),
-        date_account_created datetime,
-        date_account_last_modified datetime,
-        date_last_logon datetime,
+        date_account_created timestamp(0),
+        date_account_last_modified timestamp(0),
+        date_last_logon timestamp(0),
         default_address_id int,
-        date_of_birth datetime,
+        date_of_birth timestamp(0),
         email varchar(128) NOT NULL,
         fax varchar(32),
         global_product_notifications int DEFAULT '0',
@@ -103,15 +102,13 @@ CREATE TABLE emkt_customers (
         password varchar(256) NOT NULL,
         status int DEFAULT '0',
         telephone varchar(32),
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_customers_activation;
 CREATE TABLE emkt_customers_activation (
         id int NOT NULL,
         activation_code varchar(64),
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_length;
 CREATE TABLE emkt_length (
@@ -121,8 +118,7 @@ CREATE TABLE emkt_length (
 	language varchar(64),
         value_length decimal(14,7),
         default_length int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_manufacturers;
 CREATE TABLE emkt_manufacturers (
@@ -132,17 +128,17 @@ CREATE TABLE emkt_manufacturers (
         logo json,
         logo_general varchar(128),
         site varchar(256),
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_modules;
+DROP SEQUENCE IF EXISTS emkt_modules_seq;
+CREATE SEQUENCE emkt_modules_seq;
 CREATE TABLE emkt_modules (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_modules_seq'),
 	name varchar(256),
 	type varchar(256),
-        active int(64),
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        active int,
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_order_status;
 CREATE TABLE emkt_order_status (
@@ -151,12 +147,13 @@ CREATE TABLE emkt_order_status (
 	language varchar(64),
         default_order_status int NOT NULL,
         sort int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_orders;
+DROP SEQUENCE IF EXISTS emkt_orders_seq;
+CREATE SEQUENCE emkt_orders_seq;
 CREATE TABLE emkt_orders (
-        id int NOT NULL auto_increment,
+        id int NOT NULL default nextval ('emkt_orders_seq'),
         email varchar(128) NOT NULL,
         customer_data json,
         orders_status_history json,
@@ -167,20 +164,20 @@ CREATE TABLE emkt_orders (
         customer_ip_address varchar(30),
         payment_method json,
         shipping_method json,
-        last_modified datetime,
-        date_purchased datetime,
+        last_modified timestamp(0),
+        date_purchased timestamp(0),
         uid varchar(64),
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_password_recovery;
+DROP SEQUENCE IF EXISTS emkt_password_recovery_seq;
+CREATE SEQUENCE emkt_password_recovery_seq;
 CREATE TABLE emkt_password_recovery (
-        id int NOT NULL auto_increment,
+        id int NOT NULL default nextval ('emkt_password_recovery_seq'),
         customer_id int NOT NULL,
         recovery_code varchar(64),
-        recovery_code_created datetime,
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        recovery_code_created timestamp(0),
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_products;
 CREATE TABLE emkt_products (
@@ -192,8 +189,8 @@ CREATE TABLE emkt_products (
 	parent_id int DEFAULT '0' NOT NULL,
 	logo json,
         logo_general varchar(128),
-	date_added datetime,
-	last_modified datetime,
+	date_added timestamp(0),
+	last_modified timestamp(0),
         keyword varchar(256),
         tags varchar(256),
         price decimal(12,2),
@@ -223,8 +220,7 @@ CREATE TABLE emkt_products (
         discount json,
         attributes json,
         sticker varchar(64),
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_regions;
 CREATE TABLE emkt_regions (
@@ -233,8 +229,7 @@ CREATE TABLE emkt_regions (
         region_code varchar(8),
 	name varchar(256),
 	language varchar(64),
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_stickers;
 CREATE TABLE emkt_stickers (
@@ -242,12 +237,13 @@ CREATE TABLE emkt_stickers (
 	name varchar(256),
 	language varchar(64),
         default_stickers int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_slideshow;
+DROP SEQUENCE IF EXISTS emkt_slideshow_seq;
+CREATE SEQUENCE emkt_slideshow_seq;
 CREATE TABLE emkt_slideshow (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_slideshow_seq'),
 	language varchar(64),
 	logo json,
         logo_general varchar(128),
@@ -256,23 +252,23 @@ CREATE TABLE emkt_slideshow (
         url text,
         name varchar(256),
         heading text,
-        date_start datetime,
-        date_finish datetime,
+        date_start timestamp(0),
+        date_finish timestamp(0),
         status int DEFAULT '1' NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_slideshow_pref;
+DROP SEQUENCE IF EXISTS emkt_slideshow_pref_seq;
+CREATE SEQUENCE emkt_slideshow_pref_seq;
 CREATE TABLE emkt_slideshow_pref (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_slideshow_pref_seq'),
 	show_interval varchar(64),
 	mouse_stop varchar(64),
 	autostart varchar(64),
 	cicles varchar(64),
 	indicators varchar(64),
 	navigation varchar(64),
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_staff_manager;
 CREATE TABLE emkt_staff_manager (
@@ -282,8 +278,7 @@ CREATE TABLE emkt_staff_manager (
         note varchar(256),
         permissions json,
         mode varchar(256),
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_taxes;
 CREATE TABLE emkt_taxes (
@@ -295,20 +290,20 @@ CREATE TABLE emkt_taxes (
         zones_id int NOT NULL,
         fixed int NOT NULL,
         currency int,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_template_constructor;
+DROP SEQUENCE IF EXISTS emkt_template_constructor_seq;
+CREATE SEQUENCE emkt_template_constructor_seq;
 CREATE TABLE emkt_template_constructor (
-        id int UNSIGNED NOT NULL auto_increment,
+        id int CHECK (id > 0) NOT NULL default nextval ('emkt_template_constructor_seq'),
 	url varchar(256),
         group_id varchar(32),
         value varchar(32),
         page varchar(256),
         template_name varchar(256),
         sort int NOT NULL,
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_units;
 CREATE TABLE emkt_units (
@@ -317,8 +312,7 @@ CREATE TABLE emkt_units (
 	language varchar(64),
         unit varchar(256),
         default_unit int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_vendor_codes;
 CREATE TABLE emkt_vendor_codes (
@@ -327,8 +321,7 @@ CREATE TABLE emkt_vendor_codes (
 	language varchar(64),
         vendor_code varchar(256),
         default_vendor_code int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_weight;
 CREATE TABLE emkt_weight (
@@ -338,8 +331,7 @@ CREATE TABLE emkt_weight (
 	language varchar(64),
         value_weight decimal(14,7),
         default_weight int NOT NULL,
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_zones;
 CREATE TABLE emkt_zones (
@@ -347,18 +339,17 @@ CREATE TABLE emkt_zones (
 	name varchar(256),
         note varchar(256),
 	language varchar(64),
-PRIMARY KEY (id, language))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_zones_value;
+DROP SEQUENCE IF EXISTS emkt_zones_value_seq;
+CREATE SEQUENCE emkt_zones_value_seq;
 CREATE TABLE emkt_zones_value (
-	id int NOT NULL auto_increment,
+	id int NOT NULL default nextval ('emkt_zones_value_seq'),
         country_id int NOT NULL,
         regions_id int NOT NULL,
         zones_id int NOT NULL,
-PRIMARY KEY (id))
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+PRIMARY KEY (id));
 
 /* Load data */
 /* russian */
@@ -492,7 +483,7 @@ INSERT INTO emkt_regions VALUES(118, 3, '48', 'ولاية غليزان', 'russia
 INSERT INTO emkt_countries VALUES (4,'Американское Самоа','russian','AS','ASM','');
 
 INSERT INTO emkt_regions VALUES(119, 4, 'EA', 'Eastern', 'russian');
-INSERT INTO emkt_regions VALUES(120, 4, 'MA', 'Manu\'a', 'russian');
+INSERT INTO emkt_regions VALUES(120, 4, 'MA', 'Manu''a', 'russian');
 INSERT INTO emkt_regions VALUES(121, 4, 'RI', 'Rose Island', 'russian');
 INSERT INTO emkt_regions VALUES(122, 4, 'SI', 'Swains Island', 'russian');
 INSERT INTO emkt_regions VALUES(123, 4, 'WE', 'Western', 'russian');
@@ -702,7 +693,7 @@ INSERT INTO emkt_regions VALUES(287, 16, 'CI', 'Cat Island', 'russian');
 INSERT INTO emkt_regions VALUES(288, 16, 'EX', 'Exuma', 'russian');
 INSERT INTO emkt_regions VALUES(289, 16, 'FR', 'Freeport', 'russian');
 INSERT INTO emkt_regions VALUES(290, 16, 'FC', 'Fresh Creek', 'russian');
-INSERT INTO emkt_regions VALUES(291, 16, 'GH', 'Governor\'s Harbour', 'russian');
+INSERT INTO emkt_regions VALUES(291, 16, 'GH', 'Governor''s Harbour', 'russian');
 INSERT INTO emkt_regions VALUES(292, 16, 'GT', 'Green Turtle Cay', 'russian');
 INSERT INTO emkt_regions VALUES(293, 16, 'HI', 'Harbour Island', 'russian');
 INSERT INTO emkt_regions VALUES(294, 16, 'HR', 'High Rock', 'russian');
@@ -745,7 +736,7 @@ INSERT INTO emkt_regions VALUES(324, 18, '07', 'Bhola', 'russian');
 INSERT INTO emkt_regions VALUES(325, 18, '08', 'Comilla', 'russian');
 INSERT INTO emkt_regions VALUES(326, 18, '09', 'Chandpur', 'russian');
 INSERT INTO emkt_regions VALUES(327, 18, '10', 'Chittagong', 'russian');
-INSERT INTO emkt_regions VALUES(328, 18, '11', 'Cox\'s Bazar', 'russian');
+INSERT INTO emkt_regions VALUES(328, 18, '11', 'Cox''s Bazar', 'russian');
 INSERT INTO emkt_regions VALUES(329, 18, '12', 'Chuadanga', 'russian');
 INSERT INTO emkt_regions VALUES(330, 18, '13', 'Dhaka', 'russian');
 INSERT INTO emkt_regions VALUES(331, 18, '14', 'Dinajpur', 'russian');
@@ -870,7 +861,7 @@ INSERT INTO emkt_regions VALUES(431, 24, 'PAG', 'Paget', 'russian');
 INSERT INTO emkt_regions VALUES(432, 24, 'PEM', 'Pembroke', 'russian');
 INSERT INTO emkt_regions VALUES(433, 24, 'SAN', 'Sandys', 'russian');
 INSERT INTO emkt_regions VALUES(434, 24, 'SG', 'Saint George City', 'russian');
-INSERT INTO emkt_regions VALUES(435, 24, 'SGE', 'Saint George\'s', 'russian');
+INSERT INTO emkt_regions VALUES(435, 24, 'SGE', 'Saint George''s', 'russian');
 INSERT INTO emkt_regions VALUES(436, 24, 'SMI', 'Smiths', 'russian');
 INSERT INTO emkt_regions VALUES(437, 24, 'SOU', 'Southampton', 'russian');
 INSERT INTO emkt_regions VALUES(438, 24, 'WAR', 'Warwick', 'russian');
@@ -1153,7 +1144,7 @@ INSERT INTO emkt_regions VALUES(660, 41, 'KB ', 'Nana-Grébizi', 'russian');
 INSERT INTO emkt_regions VALUES(661, 41, 'KG ', 'Kémo', 'russian');
 INSERT INTO emkt_regions VALUES(662, 41, 'LB ', 'Lobaye', 'russian');
 INSERT INTO emkt_regions VALUES(663, 41, 'MB ', 'Mbomou', 'russian');
-INSERT INTO emkt_regions VALUES(664, 41, 'MP ', 'Ombella-M\'Poko', 'russian');
+INSERT INTO emkt_regions VALUES(664, 41, 'MP ', 'Ombella-M''Poko', 'russian');
 INSERT INTO emkt_regions VALUES(665, 41, 'NM ', 'Nana-Mambéré', 'russian');
 INSERT INTO emkt_regions VALUES(666, 41, 'OP ', 'Ouham-Pendé', 'russian');
 INSERT INTO emkt_regions VALUES(667, 41, 'SE ', 'Sangha-Mbaéré', 'russian');
@@ -1185,7 +1176,7 @@ INSERT INTO emkt_regions VALUES(686, 43, 'AR', 'La Araucanía', 'russian');
 INSERT INTO emkt_regions VALUES(687, 43, 'AT', 'Atacama', 'russian');
 INSERT INTO emkt_regions VALUES(688, 43, 'BI', 'Biobío', 'russian');
 INSERT INTO emkt_regions VALUES(689, 43, 'CO', 'Coquimbo', 'russian');
-INSERT INTO emkt_regions VALUES(690, 43, 'LI', 'Libertador Bernardo O\'Higgins', 'russian');
+INSERT INTO emkt_regions VALUES(690, 43, 'LI', 'Libertador Bernardo O''Higgins', 'russian');
 INSERT INTO emkt_regions VALUES(691, 43, 'LL', 'Los Lagos', 'russian');
 INSERT INTO emkt_regions VALUES(692, 43, 'MA', 'Magallanes y de la Antartica', 'russian');
 INSERT INTO emkt_regions VALUES(693, 43, 'ML', 'Maule', 'russian');
@@ -1326,7 +1317,7 @@ INSERT INTO emkt_regions VALUES(802, 51, 'L', 'Limón', 'russian');
 INSERT INTO emkt_regions VALUES(803, 51, 'P', 'Puntarenas', 'russian');
 INSERT INTO emkt_regions VALUES(804, 51, 'SJ', 'San José', 'russian');
 
-INSERT INTO emkt_countries VALUES (52,'Кот-Д\'Ивуар','russian','CI','CIV','');
+INSERT INTO emkt_countries VALUES (52,'Кот-Д''Ивуар','russian','CI','CIV','');
 
 INSERT INTO emkt_regions VALUES(805, 52, '01', 'Lagunes', 'russian');
 INSERT INTO emkt_regions VALUES(806, 52, '02', 'Haut-Sassandra', 'russian');
@@ -1338,7 +1329,7 @@ INSERT INTO emkt_regions VALUES(811, 52, '07', 'Lacs', 'russian');
 INSERT INTO emkt_regions VALUES(812, 52, '08', 'Zanzan', 'russian');
 INSERT INTO emkt_regions VALUES(813, 52, '09', 'Bas-Sassandra', 'russian');
 INSERT INTO emkt_regions VALUES(814, 52, '10', 'Denguélé', 'russian');
-INSERT INTO emkt_regions VALUES(815, 52, '11', 'N\'zi-Comoé', 'russian');
+INSERT INTO emkt_regions VALUES(815, 52, '11', 'N''zi-Comoé', 'russian');
 INSERT INTO emkt_regions VALUES(816, 52, '12', 'Marahoué', 'russian');
 INSERT INTO emkt_regions VALUES(817, 52, '13', 'Sud-Comoé', 'russian');
 INSERT INTO emkt_regions VALUES(818, 52, '14', 'Worodouqou', 'russian');
@@ -1437,11 +1428,11 @@ INSERT INTO emkt_regions VALUES(895, 57, '076', 'Viborg Amt', 'russian');
 
 INSERT INTO emkt_countries VALUES (58,'Джибути','russian','DJ','DJI','');
 
-INSERT INTO emkt_regions VALUES(896, 58, 'AS', 'Region d\'Ali Sabieh', 'russian');
-INSERT INTO emkt_regions VALUES(897, 58, 'AR', 'Region d\'Arta', 'russian');
+INSERT INTO emkt_regions VALUES(896, 58, 'AS', 'Region d''Ali Sabieh', 'russian');
+INSERT INTO emkt_regions VALUES(897, 58, 'AR', 'Region d''Arta', 'russian');
 INSERT INTO emkt_regions VALUES(898, 58, 'DI', 'Region de Dikhil', 'russian');
 INSERT INTO emkt_regions VALUES(899, 58, 'DJ', 'Ville de Djibouti', 'russian');
-INSERT INTO emkt_regions VALUES(900, 58, 'OB', 'Region d\'Obock', 'russian');
+INSERT INTO emkt_regions VALUES(900, 58, 'OB', 'Region d''Obock', 'russian');
 INSERT INTO emkt_regions VALUES(901, 58, 'TA', 'Region de Tadjourah', 'russian');
 
 INSERT INTO emkt_countries VALUES (59,'Доминика','russian','DM','DMA','');
@@ -1593,7 +1584,7 @@ INSERT INTO emkt_regions VALUES(1024, 66, 'AN', 'Zoba Anseba', 'russian');
 INSERT INTO emkt_regions VALUES(1025, 66, 'DK', 'Zoba Debubawi Keyih Bahri', 'russian');
 INSERT INTO emkt_regions VALUES(1026, 66, 'DU', 'Zoba Debub', 'russian');
 INSERT INTO emkt_regions VALUES(1027, 66, 'GB', 'Zoba Gash-Barka', 'russian');
-INSERT INTO emkt_regions VALUES(1028, 66, 'MA', 'Zoba Ma\'akel', 'russian');
+INSERT INTO emkt_regions VALUES(1028, 66, 'MA', 'Zoba Ma''akel', 'russian');
 INSERT INTO emkt_regions VALUES(1029, 66, 'SK', 'Zoba Semienawi Keyih Bahri', 'russian');
 
 INSERT INTO emkt_countries VALUES (67,'Эстония','russian','EE','EST','');
@@ -1674,8 +1665,8 @@ INSERT INTO emkt_regions VALUES(1082, 73, '16', 'Charente', 'russian');
 INSERT INTO emkt_regions VALUES(1083, 73, '17', 'Charente-Maritime', 'russian');
 INSERT INTO emkt_regions VALUES(1084, 73, '18', 'Cher', 'russian');
 INSERT INTO emkt_regions VALUES(1085, 73, '19', 'Corrèze', 'russian');
-INSERT INTO emkt_regions VALUES(1086, 73, '21', 'Côte-d\'Or', 'russian');
-INSERT INTO emkt_regions VALUES(1087, 73, '22', 'Côtes-d\'Armor', 'russian');
+INSERT INTO emkt_regions VALUES(1086, 73, '21', 'Côte-d''Or', 'russian');
+INSERT INTO emkt_regions VALUES(1087, 73, '22', 'Côtes-d''Armor', 'russian');
 INSERT INTO emkt_regions VALUES(1088, 73, '23', 'Creuse', 'russian');
 INSERT INTO emkt_regions VALUES(1089, 73, '24', 'Dordogne', 'russian');
 INSERT INTO emkt_regions VALUES(1090, 73, '25', 'Doubs', 'russian');
@@ -1750,7 +1741,7 @@ INSERT INTO emkt_regions VALUES(1158, 73, '91', 'Essonne', 'russian');
 INSERT INTO emkt_regions VALUES(1159, 73, '92', 'Hauts-de-Seine', 'russian');
 INSERT INTO emkt_regions VALUES(1160, 73, '93', 'Seine-Saint-Denis', 'russian');
 INSERT INTO emkt_regions VALUES(1161, 73, '94', 'Val-de-Marne', 'russian');
-INSERT INTO emkt_regions VALUES(1162, 73, '95', 'Val-d\'Oise', 'russian');
+INSERT INTO emkt_regions VALUES(1162, 73, '95', 'Val-d''Oise', 'russian');
 INSERT INTO emkt_regions VALUES(1163, 73, 'NC', 'Territoire des Nouvelle-Calédonie et Dependances', 'russian');
 INSERT INTO emkt_regions VALUES(1164, 73, 'PF', 'Polynésie Française', 'russian');
 INSERT INTO emkt_regions VALUES(1165, 73, 'PM', 'Saint-Pierre et Miquelon', 'russian');
@@ -2022,7 +2013,7 @@ INSERT INTO emkt_countries VALUES (92,'Гаити','russian','HT','HTI','');
 
 INSERT INTO emkt_regions VALUES(1371, 92, 'AR', 'Artibonite', 'russian');
 INSERT INTO emkt_regions VALUES(1372, 92, 'CE', 'Centre', 'russian');
-INSERT INTO emkt_regions VALUES(1373, 92, 'GA', 'Grand\'Anse', 'russian');
+INSERT INTO emkt_regions VALUES(1373, 92, 'GA', 'Grand''Anse', 'russian');
 INSERT INTO emkt_regions VALUES(1374, 92, 'NI', 'Nippes', 'russian');
 INSERT INTO emkt_regions VALUES(1375, 92, 'ND', 'Nord', 'russian');
 INSERT INTO emkt_regions VALUES(1376, 92, 'NE', 'Nord-Est', 'russian');
@@ -2302,9 +2293,9 @@ INSERT INTO emkt_countries VALUES (104,'Италия','russian','IT','ITA','');
 INSERT INTO emkt_regions VALUES(1614, 104, 'AG', 'Agrigento', 'russian');
 INSERT INTO emkt_regions VALUES(1615, 104, 'AL', 'Alessandria', 'russian');
 INSERT INTO emkt_regions VALUES(1616, 104, 'AN', 'Ancona', 'russian');
-INSERT INTO emkt_regions VALUES(1617, 104, 'AO', 'Valle d\'Aosta', 'russian');
+INSERT INTO emkt_regions VALUES(1617, 104, 'AO', 'Valle d''Aosta', 'russian');
 INSERT INTO emkt_regions VALUES(1618, 104, 'AP', 'Ascoli Piceno', 'russian');
-INSERT INTO emkt_regions VALUES(1619, 104, 'AQ', 'L\'Aquila', 'russian');
+INSERT INTO emkt_regions VALUES(1619, 104, 'AQ', 'L''Aquila', 'russian');
 INSERT INTO emkt_regions VALUES(1620, 104, 'AR', 'Arezzo', 'russian');
 INSERT INTO emkt_regions VALUES(1621, 104, 'AT', 'Asti', 'russian');
 INSERT INTO emkt_regions VALUES(1622, 104, 'AV', 'Avellino', 'russian');
@@ -2417,7 +2408,7 @@ INSERT INTO emkt_regions VALUES(1725, 105, '02', 'Half Way Tree', 'russian');
 INSERT INTO emkt_regions VALUES(1726, 105, '03', 'Morant Bay', 'russian');
 INSERT INTO emkt_regions VALUES(1727, 105, '04', 'Port Antonio', 'russian');
 INSERT INTO emkt_regions VALUES(1728, 105, '05', 'Port Maria', 'russian');
-INSERT INTO emkt_regions VALUES(1729, 105, '06', 'Saint Ann\'s Bay', 'russian');
+INSERT INTO emkt_regions VALUES(1729, 105, '06', 'Saint Ann''s Bay', 'russian');
 INSERT INTO emkt_regions VALUES(1730, 105, '07', 'Falmouth', 'russian');
 INSERT INTO emkt_regions VALUES(1731, 105, '08', 'Montego Bay', 'russian');
 INSERT INTO emkt_regions VALUES(1732, 105, '09', 'Lucea', 'russian');
@@ -2652,9 +2643,9 @@ INSERT INTO emkt_regions VALUES(1920, 118, 'B', 'Butha-Buthe', 'russian');
 INSERT INTO emkt_regions VALUES(1921, 118, 'C', 'Leribe', 'russian');
 INSERT INTO emkt_regions VALUES(1922, 118, 'D', 'Berea', 'russian');
 INSERT INTO emkt_regions VALUES(1923, 118, 'E', 'Mafeteng', 'russian');
-INSERT INTO emkt_regions VALUES(1924, 118, 'F', 'Mohale\'s Hoek', 'russian');
+INSERT INTO emkt_regions VALUES(1924, 118, 'F', 'Mohale''s Hoek', 'russian');
 INSERT INTO emkt_regions VALUES(1925, 118, 'G', 'Quthing', 'russian');
-INSERT INTO emkt_regions VALUES(1926, 118, 'H', 'Qacha\'s Nek', 'russian');
+INSERT INTO emkt_regions VALUES(1926, 118, 'H', 'Qacha''s Nek', 'russian');
 INSERT INTO emkt_regions VALUES(1927, 118, 'J', 'Mokhotlong', 'russian');
 INSERT INTO emkt_regions VALUES(1928, 118, 'K', 'Thaba-Tseka', 'russian');
 
@@ -3293,7 +3284,7 @@ INSERT INTO emkt_regions VALUES(2455, 152, 'AUK', 'Auckland', 'russian');
 INSERT INTO emkt_regions VALUES(2456, 152, 'BOP', 'Bay of Plenty', 'russian');
 INSERT INTO emkt_regions VALUES(2457, 152, 'CAN', 'Canterbury', 'russian');
 INSERT INTO emkt_regions VALUES(2458, 152, 'GIS', 'Gisborne', 'russian');
-INSERT INTO emkt_regions VALUES(2459, 152, 'HKB', 'Hawke\'s Bay', 'russian');
+INSERT INTO emkt_regions VALUES(2459, 152, 'HKB', 'Hawke''s Bay', 'russian');
 INSERT INTO emkt_regions VALUES(2460, 152, 'MBH', 'Marlborough', 'russian');
 INSERT INTO emkt_regions VALUES(2461, 152, 'MWT', 'Manawatu-Wanganui', 'russian');
 INSERT INTO emkt_regions VALUES(2462, 152, 'NSN', 'Nelson', 'russian');
@@ -3856,16 +3847,16 @@ INSERT INTO emkt_regions VALUES(2932, 179, 'P', 'Saint Patrick', 'russian');
 
 INSERT INTO emkt_countries VALUES (180,'Самоа','russian','WS','WSM','');
 
-INSERT INTO emkt_regions VALUES(2933, 180, 'AA', 'A\'ana', 'russian');
+INSERT INTO emkt_regions VALUES(2933, 180, 'AA', 'A''ana', 'russian');
 INSERT INTO emkt_regions VALUES(2934, 180, 'AL', 'Aiga-i-le-Tai', 'russian');
 INSERT INTO emkt_regions VALUES(2935, 180, 'AT', 'Atua', 'russian');
-INSERT INTO emkt_regions VALUES(2936, 180, 'FA', 'Fa\'asaleleaga', 'russian');
-INSERT INTO emkt_regions VALUES(2937, 180, 'GE', 'Gaga\'emauga', 'russian');
-INSERT INTO emkt_regions VALUES(2938, 180, 'GI', 'Gaga\'ifomauga', 'russian');
+INSERT INTO emkt_regions VALUES(2936, 180, 'FA', 'Fa''asaleleaga', 'russian');
+INSERT INTO emkt_regions VALUES(2937, 180, 'GE', 'Gaga''emauga', 'russian');
+INSERT INTO emkt_regions VALUES(2938, 180, 'GI', 'Gaga''ifomauga', 'russian');
 INSERT INTO emkt_regions VALUES(2939, 180, 'PA', 'Palauli', 'russian');
-INSERT INTO emkt_regions VALUES(2940, 180, 'SA', 'Satupa\'itea', 'russian');
+INSERT INTO emkt_regions VALUES(2940, 180, 'SA', 'Satupa''itea', 'russian');
 INSERT INTO emkt_regions VALUES(2941, 180, 'TU', 'Tuamasaga', 'russian');
-INSERT INTO emkt_regions VALUES(2942, 180, 'VF', 'Va\'a-o-Fonoti', 'russian');
+INSERT INTO emkt_regions VALUES(2942, 180, 'VF', 'Va''a-o-Fonoti', 'russian');
 INSERT INTO emkt_regions VALUES(2943, 180, 'VS', 'Vaisigano', 'russian');
 
 INSERT INTO emkt_countries VALUES (181,'Сан-Марино','russian','SM','SMR','');
@@ -3929,8 +3920,8 @@ INSERT INTO emkt_regions VALUES(2987, 185, 'BA', 'Bel Air', 'russian');
 INSERT INTO emkt_regions VALUES(2988, 185, 'BO', 'Bel Ombre', 'russian');
 INSERT INTO emkt_regions VALUES(2989, 185, 'CA', 'Cascade', 'russian');
 INSERT INTO emkt_regions VALUES(2990, 185, 'GL', 'Glacis', 'russian');
-INSERT INTO emkt_regions VALUES(2991, 185, 'GM', 'Grand\' Anse (on Mahe)', 'russian');
-INSERT INTO emkt_regions VALUES(2992, 185, 'GP', 'Grand\' Anse (on Praslin)', 'russian');
+INSERT INTO emkt_regions VALUES(2991, 185, 'GM', 'Grand'' Anse (on Mahe)', 'russian');
+INSERT INTO emkt_regions VALUES(2992, 185, 'GP', 'Grand'' Anse (on Praslin)', 'russian');
 INSERT INTO emkt_regions VALUES(2993, 185, 'DG', 'La Digue', 'russian');
 INSERT INTO emkt_regions VALUES(2994, 185, 'RA', 'La Riviere Anglaise', 'russian');
 INSERT INTO emkt_regions VALUES(2995, 185, 'MB', 'Mont Buxton', 'russian');
@@ -4572,9 +4563,9 @@ INSERT INTO emkt_regions VALUES(3550, 210, 'N', 'Nukunonu', 'russian');
 
 INSERT INTO emkt_countries VALUES (211,'Тонга','russian','TO','TON','');
 
-INSERT INTO emkt_regions VALUES(3551, 211, 'H', 'Ha\'apai', 'russian');
+INSERT INTO emkt_regions VALUES(3551, 211, 'H', 'Ha''apai', 'russian');
 INSERT INTO emkt_regions VALUES(3552, 211, 'T', 'Tongatapu', 'russian');
-INSERT INTO emkt_regions VALUES(3553, 211, 'V', 'Vava\'u', 'russian');
+INSERT INTO emkt_regions VALUES(3553, 211, 'V', 'Vava''u', 'russian');
 
 INSERT INTO emkt_countries VALUES (212,'Тринидад и Тобаго','russian','TT','TTO','');
 
@@ -5165,12 +5156,12 @@ INSERT INTO emkt_countries VALUES (225,'Узбекистан','russian','UZ','UZ
 
 INSERT INTO emkt_regions VALUES(4099, 225, 'AN', 'Andijon viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4100, 225, 'BU', 'Buxoro viloyati', 'russian');
-INSERT INTO emkt_regions VALUES(4101, 225, 'FA', 'Farg\'ona viloyati', 'russian');
+INSERT INTO emkt_regions VALUES(4101, 225, 'FA', 'Farg''ona viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4102, 225, 'JI', 'Jizzax viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4103, 225, 'NG', 'Namangan viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4104, 225, 'NW', 'Navoiy viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4105, 225, 'QA', 'Qashqadaryo viloyati', 'russian');
-INSERT INTO emkt_regions VALUES(4106, 225, 'QR', 'Qoraqalpog\'iston Respublikasi', 'russian');
+INSERT INTO emkt_regions VALUES(4106, 225, 'QR', 'Qoraqalpog''iston Respublikasi', 'russian');
 INSERT INTO emkt_regions VALUES(4107, 225, 'SA', 'Samarqand viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4108, 225, 'SI', 'Sirdaryo viloyati', 'russian');
 INSERT INTO emkt_regions VALUES(4109, 225, 'SU', 'Surxondaryo viloyati', 'russian');
@@ -5490,7 +5481,7 @@ INSERT INTO emkt_regions VALUES(118, 3, '48', 'ولاية غليزان', 'englis
 INSERT INTO emkt_countries VALUES (4,'American Samoa','english','AS','ASM','');
 
 INSERT INTO emkt_regions VALUES(119, 4, 'EA', 'Eastern', 'english');
-INSERT INTO emkt_regions VALUES(120, 4, 'MA', 'Manu\'a', 'english');
+INSERT INTO emkt_regions VALUES(120, 4, 'MA', 'Manu''a', 'english');
 INSERT INTO emkt_regions VALUES(121, 4, 'RI', 'Rose Island', 'english');
 INSERT INTO emkt_regions VALUES(122, 4, 'SI', 'Swains Island', 'english');
 INSERT INTO emkt_regions VALUES(123, 4, 'WE', 'Western', 'english');
@@ -5700,7 +5691,7 @@ INSERT INTO emkt_regions VALUES(287, 16, 'CI', 'Cat Island', 'english');
 INSERT INTO emkt_regions VALUES(288, 16, 'EX', 'Exuma', 'english');
 INSERT INTO emkt_regions VALUES(289, 16, 'FR', 'Freeport', 'english');
 INSERT INTO emkt_regions VALUES(290, 16, 'FC', 'Fresh Creek', 'english');
-INSERT INTO emkt_regions VALUES(291, 16, 'GH', 'Governor\'s Harbour', 'english');
+INSERT INTO emkt_regions VALUES(291, 16, 'GH', 'Governor''s Harbour', 'english');
 INSERT INTO emkt_regions VALUES(292, 16, 'GT', 'Green Turtle Cay', 'english');
 INSERT INTO emkt_regions VALUES(293, 16, 'HI', 'Harbour Island', 'english');
 INSERT INTO emkt_regions VALUES(294, 16, 'HR', 'High Rock', 'english');
@@ -5743,7 +5734,7 @@ INSERT INTO emkt_regions VALUES(324, 18, '07', 'Bhola', 'english');
 INSERT INTO emkt_regions VALUES(325, 18, '08', 'Comilla', 'english');
 INSERT INTO emkt_regions VALUES(326, 18, '09', 'Chandpur', 'english');
 INSERT INTO emkt_regions VALUES(327, 18, '10', 'Chittagong', 'english');
-INSERT INTO emkt_regions VALUES(328, 18, '11', 'Cox\'s Bazar', 'english');
+INSERT INTO emkt_regions VALUES(328, 18, '11', 'Cox''s Bazar', 'english');
 INSERT INTO emkt_regions VALUES(329, 18, '12', 'Chuadanga', 'english');
 INSERT INTO emkt_regions VALUES(330, 18, '13', 'Dhaka', 'english');
 INSERT INTO emkt_regions VALUES(331, 18, '14', 'Dinajpur', 'english');
@@ -5868,7 +5859,7 @@ INSERT INTO emkt_regions VALUES(431, 24, 'PAG', 'Paget', 'english');
 INSERT INTO emkt_regions VALUES(432, 24, 'PEM', 'Pembroke', 'english');
 INSERT INTO emkt_regions VALUES(433, 24, 'SAN', 'Sandys', 'english');
 INSERT INTO emkt_regions VALUES(434, 24, 'SG', 'Saint George City', 'english');
-INSERT INTO emkt_regions VALUES(435, 24, 'SGE', 'Saint George\'s', 'english');
+INSERT INTO emkt_regions VALUES(435, 24, 'SGE', 'Saint George''s', 'english');
 INSERT INTO emkt_regions VALUES(436, 24, 'SMI', 'Smiths', 'english');
 INSERT INTO emkt_regions VALUES(437, 24, 'SOU', 'Southampton', 'english');
 INSERT INTO emkt_regions VALUES(438, 24, 'WAR', 'Warwick', 'english');
@@ -6151,7 +6142,7 @@ INSERT INTO emkt_regions VALUES(660, 41, 'KB ', 'Nana-Grébizi', 'english');
 INSERT INTO emkt_regions VALUES(661, 41, 'KG ', 'Kémo', 'english');
 INSERT INTO emkt_regions VALUES(662, 41, 'LB ', 'Lobaye', 'english');
 INSERT INTO emkt_regions VALUES(663, 41, 'MB ', 'Mbomou', 'english');
-INSERT INTO emkt_regions VALUES(664, 41, 'MP ', 'Ombella-M\'Poko', 'english');
+INSERT INTO emkt_regions VALUES(664, 41, 'MP ', 'Ombella-M''Poko', 'english');
 INSERT INTO emkt_regions VALUES(665, 41, 'NM ', 'Nana-Mambéré', 'english');
 INSERT INTO emkt_regions VALUES(666, 41, 'OP ', 'Ouham-Pendé', 'english');
 INSERT INTO emkt_regions VALUES(667, 41, 'SE ', 'Sangha-Mbaéré', 'english');
@@ -6183,7 +6174,7 @@ INSERT INTO emkt_regions VALUES(686, 43, 'AR', 'La Araucanía', 'english');
 INSERT INTO emkt_regions VALUES(687, 43, 'AT', 'Atacama', 'english');
 INSERT INTO emkt_regions VALUES(688, 43, 'BI', 'Biobío', 'english');
 INSERT INTO emkt_regions VALUES(689, 43, 'CO', 'Coquimbo', 'english');
-INSERT INTO emkt_regions VALUES(690, 43, 'LI', 'Libertador Bernardo O\'Higgins', 'english');
+INSERT INTO emkt_regions VALUES(690, 43, 'LI', 'Libertador Bernardo O''Higgins', 'english');
 INSERT INTO emkt_regions VALUES(691, 43, 'LL', 'Los Lagos', 'english');
 INSERT INTO emkt_regions VALUES(692, 43, 'MA', 'Magallanes y de la Antartica', 'english');
 INSERT INTO emkt_regions VALUES(693, 43, 'ML', 'Maule', 'english');
@@ -6324,7 +6315,7 @@ INSERT INTO emkt_regions VALUES(802, 51, 'L', 'Limón', 'english');
 INSERT INTO emkt_regions VALUES(803, 51, 'P', 'Puntarenas', 'english');
 INSERT INTO emkt_regions VALUES(804, 51, 'SJ', 'San José', 'english');
 
-INSERT INTO emkt_countries VALUES (52,'Cote D\'Ivoire','english','CI','CIV','');
+INSERT INTO emkt_countries VALUES (52,'Cote D''Ivoire','english','CI','CIV','');
 
 INSERT INTO emkt_regions VALUES(805, 52, '01', 'Lagunes', 'english');
 INSERT INTO emkt_regions VALUES(806, 52, '02', 'Haut-Sassandra', 'english');
@@ -6336,7 +6327,7 @@ INSERT INTO emkt_regions VALUES(811, 52, '07', 'Lacs', 'english');
 INSERT INTO emkt_regions VALUES(812, 52, '08', 'Zanzan', 'english');
 INSERT INTO emkt_regions VALUES(813, 52, '09', 'Bas-Sassandra', 'english');
 INSERT INTO emkt_regions VALUES(814, 52, '10', 'Denguélé', 'english');
-INSERT INTO emkt_regions VALUES(815, 52, '11', 'N\'zi-Comoé', 'english');
+INSERT INTO emkt_regions VALUES(815, 52, '11', 'N''zi-Comoé', 'english');
 INSERT INTO emkt_regions VALUES(816, 52, '12', 'Marahoué', 'english');
 INSERT INTO emkt_regions VALUES(817, 52, '13', 'Sud-Comoé', 'english');
 INSERT INTO emkt_regions VALUES(818, 52, '14', 'Worodouqou', 'english');
@@ -6435,11 +6426,11 @@ INSERT INTO emkt_regions VALUES(895, 57, '076', 'Viborg Amt', 'english');
 
 INSERT INTO emkt_countries VALUES (58,'Djibouti','english','DJ','DJI','');
 
-INSERT INTO emkt_regions VALUES(896, 58, 'AS', 'Region d\'Ali Sabieh', 'english');
-INSERT INTO emkt_regions VALUES(897, 58, 'AR', 'Region d\'Arta', 'english');
+INSERT INTO emkt_regions VALUES(896, 58, 'AS', 'Region d''Ali Sabieh', 'english');
+INSERT INTO emkt_regions VALUES(897, 58, 'AR', 'Region d''Arta', 'english');
 INSERT INTO emkt_regions VALUES(898, 58, 'DI', 'Region de Dikhil', 'english');
 INSERT INTO emkt_regions VALUES(899, 58, 'DJ', 'Ville de Djibouti', 'english');
-INSERT INTO emkt_regions VALUES(900, 58, 'OB', 'Region d\'Obock', 'english');
+INSERT INTO emkt_regions VALUES(900, 58, 'OB', 'Region d''Obock', 'english');
 INSERT INTO emkt_regions VALUES(901, 58, 'TA', 'Region de Tadjourah', 'english');
 
 INSERT INTO emkt_countries VALUES (59,'Dominica','english','DM','DMA','');
@@ -6591,7 +6582,7 @@ INSERT INTO emkt_regions VALUES(1024, 66, 'AN', 'Zoba Anseba', 'english');
 INSERT INTO emkt_regions VALUES(1025, 66, 'DK', 'Zoba Debubawi Keyih Bahri', 'english');
 INSERT INTO emkt_regions VALUES(1026, 66, 'DU', 'Zoba Debub', 'english');
 INSERT INTO emkt_regions VALUES(1027, 66, 'GB', 'Zoba Gash-Barka', 'english');
-INSERT INTO emkt_regions VALUES(1028, 66, 'MA', 'Zoba Ma\'akel', 'english');
+INSERT INTO emkt_regions VALUES(1028, 66, 'MA', 'Zoba Ma''akel', 'english');
 INSERT INTO emkt_regions VALUES(1029, 66, 'SK', 'Zoba Semienawi Keyih Bahri', 'english');
 
 INSERT INTO emkt_countries VALUES (67,'Estonia','english','EE','EST','');
@@ -6672,8 +6663,8 @@ INSERT INTO emkt_regions VALUES(1082, 73, '16', 'Charente', 'english');
 INSERT INTO emkt_regions VALUES(1083, 73, '17', 'Charente-Maritime', 'english');
 INSERT INTO emkt_regions VALUES(1084, 73, '18', 'Cher', 'english');
 INSERT INTO emkt_regions VALUES(1085, 73, '19', 'Corrèze', 'english');
-INSERT INTO emkt_regions VALUES(1086, 73, '21', 'Côte-d\'Or', 'english');
-INSERT INTO emkt_regions VALUES(1087, 73, '22', 'Côtes-d\'Armor', 'english');
+INSERT INTO emkt_regions VALUES(1086, 73, '21', 'Côte-d''Or', 'english');
+INSERT INTO emkt_regions VALUES(1087, 73, '22', 'Côtes-d''Armor', 'english');
 INSERT INTO emkt_regions VALUES(1088, 73, '23', 'Creuse', 'english');
 INSERT INTO emkt_regions VALUES(1089, 73, '24', 'Dordogne', 'english');
 INSERT INTO emkt_regions VALUES(1090, 73, '25', 'Doubs', 'english');
@@ -6748,7 +6739,7 @@ INSERT INTO emkt_regions VALUES(1158, 73, '91', 'Essonne', 'english');
 INSERT INTO emkt_regions VALUES(1159, 73, '92', 'Hauts-de-Seine', 'english');
 INSERT INTO emkt_regions VALUES(1160, 73, '93', 'Seine-Saint-Denis', 'english');
 INSERT INTO emkt_regions VALUES(1161, 73, '94', 'Val-de-Marne', 'english');
-INSERT INTO emkt_regions VALUES(1162, 73, '95', 'Val-d\'Oise', 'english');
+INSERT INTO emkt_regions VALUES(1162, 73, '95', 'Val-d''Oise', 'english');
 INSERT INTO emkt_regions VALUES(1163, 73, 'NC', 'Territoire des Nouvelle-Calédonie et Dependances', 'english');
 INSERT INTO emkt_regions VALUES(1164, 73, 'PF', 'Polynésie Française', 'english');
 INSERT INTO emkt_regions VALUES(1165, 73, 'PM', 'Saint-Pierre et Miquelon', 'english');
@@ -7020,7 +7011,7 @@ INSERT INTO emkt_countries VALUES (92,'Haiti','english','HT','HTI','');
 
 INSERT INTO emkt_regions VALUES(1371, 92, 'AR', 'Artibonite', 'english');
 INSERT INTO emkt_regions VALUES(1372, 92, 'CE', 'Centre', 'english');
-INSERT INTO emkt_regions VALUES(1373, 92, 'GA', 'Grand\'Anse', 'english');
+INSERT INTO emkt_regions VALUES(1373, 92, 'GA', 'Grand''Anse', 'english');
 INSERT INTO emkt_regions VALUES(1374, 92, 'NI', 'Nippes', 'english');
 INSERT INTO emkt_regions VALUES(1375, 92, 'ND', 'Nord', 'english');
 INSERT INTO emkt_regions VALUES(1376, 92, 'NE', 'Nord-Est', 'english');
@@ -7300,9 +7291,9 @@ INSERT INTO emkt_countries VALUES (104,'Italy','english','IT','ITA','');
 INSERT INTO emkt_regions VALUES(1614, 104, 'AG', 'Agrigento', 'english');
 INSERT INTO emkt_regions VALUES(1615, 104, 'AL', 'Alessandria', 'english');
 INSERT INTO emkt_regions VALUES(1616, 104, 'AN', 'Ancona', 'english');
-INSERT INTO emkt_regions VALUES(1617, 104, 'AO', 'Valle d\'Aosta', 'english');
+INSERT INTO emkt_regions VALUES(1617, 104, 'AO', 'Valle d''Aosta', 'english');
 INSERT INTO emkt_regions VALUES(1618, 104, 'AP', 'Ascoli Piceno', 'english');
-INSERT INTO emkt_regions VALUES(1619, 104, 'AQ', 'L\'Aquila', 'english');
+INSERT INTO emkt_regions VALUES(1619, 104, 'AQ', 'L''Aquila', 'english');
 INSERT INTO emkt_regions VALUES(1620, 104, 'AR', 'Arezzo', 'english');
 INSERT INTO emkt_regions VALUES(1621, 104, 'AT', 'Asti', 'english');
 INSERT INTO emkt_regions VALUES(1622, 104, 'AV', 'Avellino', 'english');
@@ -7415,7 +7406,7 @@ INSERT INTO emkt_regions VALUES(1725, 105, '02', 'Half Way Tree', 'english');
 INSERT INTO emkt_regions VALUES(1726, 105, '03', 'Morant Bay', 'english');
 INSERT INTO emkt_regions VALUES(1727, 105, '04', 'Port Antonio', 'english');
 INSERT INTO emkt_regions VALUES(1728, 105, '05', 'Port Maria', 'english');
-INSERT INTO emkt_regions VALUES(1729, 105, '06', 'Saint Ann\'s Bay', 'english');
+INSERT INTO emkt_regions VALUES(1729, 105, '06', 'Saint Ann''s Bay', 'english');
 INSERT INTO emkt_regions VALUES(1730, 105, '07', 'Falmouth', 'english');
 INSERT INTO emkt_regions VALUES(1731, 105, '08', 'Montego Bay', 'english');
 INSERT INTO emkt_regions VALUES(1732, 105, '09', 'Lucea', 'english');
@@ -7650,9 +7641,9 @@ INSERT INTO emkt_regions VALUES(1920, 118, 'B', 'Butha-Buthe', 'english');
 INSERT INTO emkt_regions VALUES(1921, 118, 'C', 'Leribe', 'english');
 INSERT INTO emkt_regions VALUES(1922, 118, 'D', 'Berea', 'english');
 INSERT INTO emkt_regions VALUES(1923, 118, 'E', 'Mafeteng', 'english');
-INSERT INTO emkt_regions VALUES(1924, 118, 'F', 'Mohale\'s Hoek', 'english');
+INSERT INTO emkt_regions VALUES(1924, 118, 'F', 'Mohale''s Hoek', 'english');
 INSERT INTO emkt_regions VALUES(1925, 118, 'G', 'Quthing', 'english');
-INSERT INTO emkt_regions VALUES(1926, 118, 'H', 'Qacha\'s Nek', 'english');
+INSERT INTO emkt_regions VALUES(1926, 118, 'H', 'Qacha''s Nek', 'english');
 INSERT INTO emkt_regions VALUES(1927, 118, 'J', 'Mokhotlong', 'english');
 INSERT INTO emkt_regions VALUES(1928, 118, 'K', 'Thaba-Tseka', 'english');
 
@@ -8291,7 +8282,7 @@ INSERT INTO emkt_regions VALUES(2455, 152, 'AUK', 'Auckland', 'english');
 INSERT INTO emkt_regions VALUES(2456, 152, 'BOP', 'Bay of Plenty', 'english');
 INSERT INTO emkt_regions VALUES(2457, 152, 'CAN', 'Canterbury', 'english');
 INSERT INTO emkt_regions VALUES(2458, 152, 'GIS', 'Gisborne', 'english');
-INSERT INTO emkt_regions VALUES(2459, 152, 'HKB', 'Hawke\'s Bay', 'english');
+INSERT INTO emkt_regions VALUES(2459, 152, 'HKB', 'Hawke''s Bay', 'english');
 INSERT INTO emkt_regions VALUES(2460, 152, 'MBH', 'Marlborough', 'english');
 INSERT INTO emkt_regions VALUES(2461, 152, 'MWT', 'Manawatu-Wanganui', 'english');
 INSERT INTO emkt_regions VALUES(2462, 152, 'NSN', 'Nelson', 'english');
@@ -8854,16 +8845,16 @@ INSERT INTO emkt_regions VALUES(2932, 179, 'P', 'Saint Patrick', 'english');
 
 INSERT INTO emkt_countries VALUES (180,'Samoa','english','WS','WSM','');
 
-INSERT INTO emkt_regions VALUES(2933, 180, 'AA', 'A\'ana', 'english');
+INSERT INTO emkt_regions VALUES(2933, 180, 'AA', 'A''ana', 'english');
 INSERT INTO emkt_regions VALUES(2934, 180, 'AL', 'Aiga-i-le-Tai', 'english');
 INSERT INTO emkt_regions VALUES(2935, 180, 'AT', 'Atua', 'english');
-INSERT INTO emkt_regions VALUES(2936, 180, 'FA', 'Fa\'asaleleaga', 'english');
-INSERT INTO emkt_regions VALUES(2937, 180, 'GE', 'Gaga\'emauga', 'english');
-INSERT INTO emkt_regions VALUES(2938, 180, 'GI', 'Gaga\'ifomauga', 'english');
+INSERT INTO emkt_regions VALUES(2936, 180, 'FA', 'Fa''asaleleaga', 'english');
+INSERT INTO emkt_regions VALUES(2937, 180, 'GE', 'Gaga''emauga', 'english');
+INSERT INTO emkt_regions VALUES(2938, 180, 'GI', 'Gaga''ifomauga', 'english');
 INSERT INTO emkt_regions VALUES(2939, 180, 'PA', 'Palauli', 'english');
-INSERT INTO emkt_regions VALUES(2940, 180, 'SA', 'Satupa\'itea', 'english');
+INSERT INTO emkt_regions VALUES(2940, 180, 'SA', 'Satupa''itea', 'english');
 INSERT INTO emkt_regions VALUES(2941, 180, 'TU', 'Tuamasaga', 'english');
-INSERT INTO emkt_regions VALUES(2942, 180, 'VF', 'Va\'a-o-Fonoti', 'english');
+INSERT INTO emkt_regions VALUES(2942, 180, 'VF', 'Va''a-o-Fonoti', 'english');
 INSERT INTO emkt_regions VALUES(2943, 180, 'VS', 'Vaisigano', 'english');
 
 INSERT INTO emkt_countries VALUES (181,'San Marino','english','SM','SMR','');
@@ -8927,8 +8918,8 @@ INSERT INTO emkt_regions VALUES(2987, 185, 'BA', 'Bel Air', 'english');
 INSERT INTO emkt_regions VALUES(2988, 185, 'BO', 'Bel Ombre', 'english');
 INSERT INTO emkt_regions VALUES(2989, 185, 'CA', 'Cascade', 'english');
 INSERT INTO emkt_regions VALUES(2990, 185, 'GL', 'Glacis', 'english');
-INSERT INTO emkt_regions VALUES(2991, 185, 'GM', 'Grand\' Anse (on Mahe)', 'english');
-INSERT INTO emkt_regions VALUES(2992, 185, 'GP', 'Grand\' Anse (on Praslin)', 'english');
+INSERT INTO emkt_regions VALUES(2991, 185, 'GM', 'Grand'' Anse (on Mahe)', 'english');
+INSERT INTO emkt_regions VALUES(2992, 185, 'GP', 'Grand'' Anse (on Praslin)', 'english');
 INSERT INTO emkt_regions VALUES(2993, 185, 'DG', 'La Digue', 'english');
 INSERT INTO emkt_regions VALUES(2994, 185, 'RA', 'La Riviere Anglaise', 'english');
 INSERT INTO emkt_regions VALUES(2995, 185, 'MB', 'Mont Buxton', 'english');
@@ -9570,9 +9561,9 @@ INSERT INTO emkt_regions VALUES(3550, 210, 'N', 'Nukunonu', 'english');
 
 INSERT INTO emkt_countries VALUES (211,'Tonga','english','TO','TON','');
 
-INSERT INTO emkt_regions VALUES(3551, 211, 'H', 'Ha\'apai', 'english');
+INSERT INTO emkt_regions VALUES(3551, 211, 'H', 'Ha''apai', 'english');
 INSERT INTO emkt_regions VALUES(3552, 211, 'T', 'Tongatapu', 'english');
-INSERT INTO emkt_regions VALUES(3553, 211, 'V', 'Vava\'u', 'english');
+INSERT INTO emkt_regions VALUES(3553, 211, 'V', 'Vava''u', 'english');
 
 INSERT INTO emkt_countries VALUES (212,'Trinidad and Tobago','english','TT','TTO','');
 
@@ -10163,12 +10154,12 @@ INSERT INTO emkt_countries VALUES (225,'Uzbekistan','english','UZ','UZB','');
 
 INSERT INTO emkt_regions VALUES(4099, 225, 'AN', 'Andijon viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4100, 225, 'BU', 'Buxoro viloyati', 'english');
-INSERT INTO emkt_regions VALUES(4101, 225, 'FA', 'Farg\'ona viloyati', 'english');
+INSERT INTO emkt_regions VALUES(4101, 225, 'FA', 'Farg''ona viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4102, 225, 'JI', 'Jizzax viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4103, 225, 'NG', 'Namangan viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4104, 225, 'NW', 'Navoiy viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4105, 225, 'QA', 'Qashqadaryo viloyati', 'english');
-INSERT INTO emkt_regions VALUES(4106, 225, 'QR', 'Qoraqalpog\'iston Respublikasi', 'english');
+INSERT INTO emkt_regions VALUES(4106, 225, 'QR', 'Qoraqalpog''iston Respublikasi', 'english');
 INSERT INTO emkt_regions VALUES(4107, 225, 'SA', 'Samarqand viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4108, 225, 'SI', 'Sirdaryo viloyati', 'english');
 INSERT INTO emkt_regions VALUES(4109, 225, 'SU', 'Surxondaryo viloyati', 'english');

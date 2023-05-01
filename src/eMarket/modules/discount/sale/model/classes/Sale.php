@@ -193,15 +193,15 @@ class Sale implements DiscountModulesInterface {
 
                 $data = Db::connect()
                                 ->read(DB_PREFIX . 'modules_discount_sale')
-                                ->selectAssoc('sale_value, name, {{UNIX_TIMESTAMP->date_start}}, {{UNIX_TIMESTAMP->date_end}}')
+                                ->selectAssoc('sale_value, name, date_start, date_end')
                                 ->where('language=', $language)
                                 ->and('id=', $val)
                                 ->save()[0];
 
                 if (count($data) > 0) {
                     $this_time = SystemClock::nowUnixTime();
-                    $date_start = $data[Db::functions('UNIX_TIMESTAMP', 'date_start')];
-                    $date_end = $data[Db::functions('UNIX_TIMESTAMP', 'date_end')];
+                    $date_start = SystemClock::getUnixTime($data['date_start']);
+                    $date_end = SystemClock::getUnixTime($data['date_end']);
 
                     if ($this_time > $date_start && $this_time < $date_end) {
                         array_push($discount_out, $data['sale_value']);
@@ -634,7 +634,7 @@ class Sale implements DiscountModulesInterface {
 
         self::$sql_data = Db::connect()
                 ->read($MODULE_DB)
-                ->selectAssoc('*, {{UNIX_TIMESTAMP->date_end}}')
+                ->selectAssoc('*')
                 ->orderByDesc('id')
                 ->save();
 

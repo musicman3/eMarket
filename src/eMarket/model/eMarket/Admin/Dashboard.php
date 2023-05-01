@@ -124,7 +124,7 @@ class Dashboard {
 
         $orders = Db::connect()
                 ->read(TABLE_ORDERS)
-                ->selectAssoc('email, order_total, {{DAYOFWEEK->date_purchased}}, {{MONTH->date_purchased}}, {{YEAR->date_purchased}}')
+                ->selectIndex('email, order_total, {{DAYOFWEEK->date_purchased}}, {{MONTH->date_purchased}}')
                 ->where('{{YEAR->date_purchased}}=', $year)
                 ->save();
 
@@ -134,27 +134,27 @@ class Dashboard {
         $emails = [];
         $emails_doubles = [];
         foreach ($orders as $orders_value) {
-            $json_decode_month_amount = json_decode($orders_value['order_total'], true);
+            $json_decode_month_amount = json_decode($orders_value[1], true);
             $total_to_pay = $json_decode_month_amount['data']['total_to_pay'];
             $order_currency = $json_decode_month_amount['data']['currency'];
 
             for ($x = 0; $x < 7; $x++) {
-                if ($orders_value[Db::functions('DAYOFWEEK', 'date_purchased')] == $x + 1) {
+                if ($orders_value[2] == $x + 1) {
                     $day_count[$x]++;
                 }
             }
 
             for ($x = 0; $x < 12; $x++) {
-                if ($orders_value[Db::functions('MONTH', 'date_purchased')] == $x + 1) {
+                if ($orders_value[3] == $x + 1) {
                     $month_count[$x]++;
                     $month_amount[$x] = $month_amount[$x] + Ecb::currencyPrice($total_to_pay, $order_currency);
                 }
             }
 
-            if (!in_array($orders_value['email'], $emails)) {
-                array_push($emails, $orders_value['email']);
-            } elseif (!in_array($orders_value['email'], $emails_doubles)) {
-                array_push($emails_doubles, $orders_value['email']);
+            if (!in_array($orders_value[0], $emails)) {
+                array_push($emails, $orders_value[0]);
+            } elseif (!in_array($orders_value[0], $emails_doubles)) {
+                array_push($emails_doubles, $orders_value[0]);
             }
         }
 
