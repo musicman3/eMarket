@@ -163,44 +163,47 @@ class Messages {
      * @param string $subject E-mail subject text
      * @param string $message Html message
      */
-    public static function sendMail(string $email_to, ?string $subject, ?string $message): void {
+    public static function sendMail(?string $email_to, ?string $subject, ?string $message): void {
 
-        $mail = new \PHPMailer\PHPMailer\PHPMailer();
-        $mail->CharSet = 'UTF-8';
+        if ($email_to !== null) {
 
-        $basic_settings = Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectAssoc('*')
-                        ->save()[0];
+            $mail = new \PHPMailer\PHPMailer\PHPMailer();
+            $mail->CharSet = 'UTF-8';
 
-        if ($basic_settings['smtp_status'] == 0) {
-            $mail->isSendmail();
-            $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
-            $mail->addAddress($email_to);
-            $mail->Subject = $subject;
-            $mail->msgHTML($message);
-            $mail->send();
-        }
+            $basic_settings = Db::connect()
+                            ->read(TABLE_BASIC_SETTINGS)
+                            ->selectAssoc('*')
+                            ->save()[0];
 
-        if ($basic_settings['smtp_status'] == 1) {
-
-            $smtp_auth = true;
-            if ($basic_settings['smtp_auth'] == 0) {
-                $smtp_auth = false;
+            if ($basic_settings['smtp_status'] == 0) {
+                $mail->isSendmail();
+                $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
+                $mail->addAddress($email_to);
+                $mail->Subject = $subject;
+                $mail->msgHTML($message);
+                $mail->send();
             }
 
-            $mail->isSMTP();
-            $mail->Host = $basic_settings['host_email'];
-            $mail->SMTPAuth = $smtp_auth;
-            $mail->Username = $basic_settings['username_email'];
-            $mail->Password = $basic_settings['password_email'];
-            $mail->SMTPSecure = $basic_settings['smtp_secure'];
-            $mail->Port = $basic_settings['smtp_port'];
-            $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
-            $mail->addAddress($email_to);
-            $mail->Subject = $subject;
-            $mail->msgHTML($message);
-            $mail->send();
+            if ($basic_settings['smtp_status'] == 1) {
+
+                $smtp_auth = true;
+                if ($basic_settings['smtp_auth'] == 0) {
+                    $smtp_auth = false;
+                }
+
+                $mail->isSMTP();
+                $mail->Host = $basic_settings['host_email'];
+                $mail->SMTPAuth = $smtp_auth;
+                $mail->Username = $basic_settings['username_email'];
+                $mail->Password = $basic_settings['password_email'];
+                $mail->SMTPSecure = $basic_settings['smtp_secure'];
+                $mail->Port = $basic_settings['smtp_port'];
+                $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
+                $mail->addAddress($email_to);
+                $mail->Subject = $subject;
+                $mail->msgHTML($message);
+                $mail->send();
+            }
         }
     }
 

@@ -71,7 +71,7 @@ class Success {
                 'fax' => '',
                 'telephone' => $without_registration_user['telephone']
             ];
-            self::$customer_email = '';
+            self::$customer_email = ' ';
         } else {
             self::$customer_email = $_SESSION['customer_email'];
 
