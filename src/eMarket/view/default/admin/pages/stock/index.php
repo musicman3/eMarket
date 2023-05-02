@@ -8,7 +8,7 @@ use eMarket\Core\{
     Ecb,
     Messages,
     Modules,
-    Files,
+    Images,
     Pages,
     Settings,
     Valid
@@ -45,8 +45,8 @@ require_once('modal/add_values_attribute.php');
              data-attributescategory='<?php echo json_encode(Stock::$attributes_category) ?>'
              data-discounts='<?php echo json_encode(Modules::$discounts) ?>'
              data-discountdefault='<?php echo json_encode(Modules::$discount_default) ?>'
-             data-resizemax='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param)) ?>'
-             data-resizemaxprod='<?php echo json_encode(Files::imgResizeMax(Stock::$resize_param_product)) ?>'
+             data-resizemax='<?php echo json_encode(Images::imgResizeMax(Stock::$resize_param)) ?>'
+             data-resizemaxprod='<?php echo json_encode(Images::imgResizeMax(Stock::$resize_param_product)) ?>'
              data-lang='<?php echo json_encode(lang()) ?>'
              data-jsondataproduct='<?php echo Stock::$json_data_product ?>'
              data-jsondatacategory='<?php echo Stock::$json_data_category ?>'>
@@ -145,8 +145,8 @@ require_once('modal/add_values_attribute.php');
                                         <?php } ?>    
 
                                         <td><?php echo Stock::categoriesText('transfer', 'context-one')[2] ?></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
+                                        <td></td>
+                                        <td></td>
                                         <td class="sortleft-m"></td>
                                     </tr>
 
@@ -158,8 +158,8 @@ require_once('modal/add_values_attribute.php');
                                     <tr id="products_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>" class="context-one align-middle">
                                         <td class="sortleft-m"></td>    
                                         <td class="sortleft text-center"><i class="<?php echo Stock::statusProdClass('text-success', 'text-danger', 'text-opacity-50') ?> bi-circle-fill"></i></td>
-                                        <td class=""><img class="rounded" src="/uploads/images/products/resize_0/<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['logo_general'] ?>"></td>
-                                        <td class="" id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>">
+                                        <td><img class="rounded" src="/uploads/images/products/resize_0/<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['logo_general'] ?>" onError="this.style.display='none'"></td>
+                                        <td id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>">
                                             <div class="float-start"><?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['name'] ?></div>
                                             <div class="float-end"><?php echo Ecb::priceInterface(Stock::$arr_merge['prod'][Stock::$start . 'a'], 1) ?></div>
                                         </td>

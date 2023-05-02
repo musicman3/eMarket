@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Files,
+    Images,
     Func,
     Lang,
     Messages,
@@ -125,7 +125,7 @@ class Manufacturers {
         //array_push($resize_param, ['325','244']);
         //array_push($resize_param, ['525','394']);
         //array_push($resize_param, ['850','638']);
-        Files::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
+        Images::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
     }
 
     /**

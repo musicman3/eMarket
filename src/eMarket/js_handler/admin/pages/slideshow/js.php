@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-$resize_max = json_encode(\eMarket\Core\Files::imgResizeMax(\eMarket\Admin\Slideshow::$resize_param));
+$resize_max = json_encode(\eMarket\Core\Images::imgResizeMax(\eMarket\Admin\Slideshow::$resize_param));
 ?>
 
 <!-- Datepicker" -->

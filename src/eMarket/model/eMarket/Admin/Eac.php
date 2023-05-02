@@ -12,7 +12,7 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Cache,
     Clock\SystemClock,
-    Files,
+    Images,
     Func,
     Lang,
     Messages,
@@ -75,9 +75,9 @@ final class Eac {
         $this->resize_param_product = $resize_param_product;
 
         //Image loader for categories (INSERT BEFORE DELETING)
-        Files::imgUpload(TABLE_CATEGORIES, 'categories', $this->resize_param);
+        Images::imgUpload(TABLE_CATEGORIES, 'categories', $this->resize_param);
         //Image loader for products (INSERT BEFORE DELETING)
-        Files::imgUploadProduct(TABLE_PRODUCTS, 'products', $this->resize_param_product);
+        Images::imgUploadProduct(TABLE_PRODUCTS, 'products', $this->resize_param_product);
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 

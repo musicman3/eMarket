@@ -12,7 +12,7 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Clock\SystemClock,
     Cache,
-    Files,
+    Images,
     Func,
     Messages,
     Pages,
@@ -247,7 +247,7 @@ class Slideshow {
         array_push(self::$resize_param, ['1600', '800']);
         array_push(self::$resize_param, ['1920', '960']);
 
-        Files::imgUpload(TABLE_SLIDESHOW, 'slideshow', self::$resize_param);
+        Images::imgUpload(TABLE_SLIDESHOW, 'slideshow', self::$resize_param);
     }
 
     /**

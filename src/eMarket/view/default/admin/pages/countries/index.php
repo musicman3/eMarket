@@ -76,7 +76,7 @@ require_once('modal/index.php')
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['alpha_2'] ?></td>
                                 <td class="text-center"><?php echo Pages::$table['line']['alpha_3'] ?></td>
-                                <td class="text-center"><img src='/view/<?php echo Settings::template() ?>/admin/images/worldflags/<?php echo strtolower(Pages::$table['line']['alpha_2']) ?>.png'></td>
+                                <td class="text-center"><img src='/view/<?php echo Settings::template() ?>/admin/images/worldflags/<?php echo strtolower(Pages::$table['line']['alpha_2']) ?>.png' onError="this.style.display='none'"></td>
                                 <td>
                                     <div class="gap-2 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm bi-pencil-square" data-bs-toggle="modal" data-bs-target="#index" data-edit="<?php echo Pages::$table['line']['id'] ?>"></button>

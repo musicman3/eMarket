@@ -88,7 +88,7 @@ require_once('modal/index.php')
                                 <tbody>
                                     <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                                         <tr class="<?php echo Pages::statusSwitchClass(Pages::$table['line']['status'], [Slideshow::$this_time, SystemClock::getUnixTime(Pages::$table['line']['date_start'])], [SystemClock::getUnixTime(Pages::$table['line']['date_finish']), Slideshow::$this_time]) ?> align-middle">
-                                            <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" /></td>
+                                            <td><img src="/uploads/images/slideshow/resize_0/<?php echo Pages::$table['line']['logo_general'] ?>" onError="this.style.display='none'" /></td>
                                             <td class="text-center"><?php echo count(json_decode(Pages::$table['line']['logo'])) ?></td>
                                             <td class="text-center"><?php echo Pages::$table['line']['name'] ?></td>
                                             <td class="text-center"><?php echo SystemClock::getDate(Pages::$table['line']['date_start']); ?></td>

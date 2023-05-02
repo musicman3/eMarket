@@ -18,7 +18,7 @@ use eMarket\Core\{
 use Cruder\Db;
 
 /**
- * Class for working with files
+ * Class for working with images
  *
  * @package Core
  * @author eMarket Team
@@ -26,7 +26,7 @@ use Cruder\Db;
  * @license GNU GPL v.3.0
  * 
  */
-class Files {
+class Images {
 
     /**
      * Images uploader

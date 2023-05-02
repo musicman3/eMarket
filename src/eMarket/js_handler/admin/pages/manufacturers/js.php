@@ -3,7 +3,7 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-$resize_max = json_encode(\eMarket\Core\Files::imgResizeMax(eMarket\Admin\Manufacturers::$resize_param));
+$resize_max = json_encode(\eMarket\Core\Images::imgResizeMax(eMarket\Admin\Manufacturers::$resize_param));
 ?>
 <script type="text/javascript" src="/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
