@@ -99,7 +99,7 @@ class Sale implements DiscountModulesInterface {
 
             Db::connect()
                     ->update(TABLE_PRODUCTS)
-                    ->set('discount=', json_encode($discounts))
+                    ->set('discount', json_encode($discounts))
                     ->where('id=', $data['id'])
                     ->save();
         }
@@ -514,7 +514,8 @@ class Sale implements DiscountModulesInterface {
 
             $MODULE_DB = Modules::moduleDatabase();
 
-            $id_max = Db::connect()->read($MODULE_DB)
+            $id_max = Db::connect()
+                    ->read($MODULE_DB)
                     ->selectValue('id')
                     ->where('language=', lang('#lang_all')[0])
                     ->orderByDesc('id')
