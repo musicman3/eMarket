@@ -105,12 +105,9 @@ class Fileupload {
             }, false).then((data) => {
             });
         });
-        // Fix display:none
-        document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
-            document.getElementsByName('uploadfile')[0].parentElement.style.display = 'none';
-        });
 
         document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
+            document.getElementsByName('uploadfile')[0].parentElement.style.display = 'none'; // Fix display:none
             document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
             document.querySelectorAll('.file-upload').forEach(e => e.remove());
             document.querySelector('#delete_image').value = '';
