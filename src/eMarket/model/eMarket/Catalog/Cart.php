@@ -324,7 +324,7 @@ class Cart {
     /**
      * Counting product price in cart
      *
-     * @return float Quantity product
+     * @return float Product price
      */
     public static function totalPrice(): float {
 

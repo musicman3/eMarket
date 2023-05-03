@@ -191,7 +191,7 @@ class Images {
                         }
                     }
                 }
-                if (isset($logo_general_update) && count($image_list_new) > 0) {
+                if (isset($logo_general_update, $image_list_new[0]) && count($image_list_new) > 0) {
 
                     Db::connect()
                             ->update($TABLE)
@@ -414,7 +414,7 @@ class Images {
                         }
                     }
                 }
-                if (isset($logo_general_update) && is_array($image_list_new)) {
+                if (isset($logo_general_update, $image_list_new[0]) && is_array($image_list_new)) {
 
                     Db::connect()
                             ->update($TABLE)
