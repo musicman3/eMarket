@@ -38,25 +38,22 @@ class Images {
     /**
      * Constructor
      *
+     * @param string $table Image table name
+     * @param string $dir Image directory name (Example: uploads/images/products, name is: products)
+     * @param array $resize_param Resize parameters
+     * @param string $marker Value after separator in POST if multiple incoming image requests (example: add_products, value is: _products)
+     * 
      */
-    function __construct(string $table, string $dir, array $resize_param) {
+    function __construct(string $table, string $dir, array $resize_param, string $marker = '') {
 
         $this->table = $table;
         $this->dir = $dir;
         $this->resize_param = $resize_param;
 
         $this->init();
-
-        if ($dir == 'categories') {
-            $this->add();
-            $this->edit();
-            $this->delete();
-        }
-        if ($dir == 'products') {
-            $this->add('_product');
-            $this->edit('_product');
-            $this->delete('_product');
-        }
+        $this->add($marker);
+        $this->edit($marker);
+        $this->delete($marker);
     }
 
     /**
@@ -363,7 +360,7 @@ class Images {
     /**
      * Thumbnail slicing and image resizing function on Ajax request
      *
-     * @param array $resize_param Resize param
+     * @param array $resize_param Resize parameters
      */
     private function imgThumbAndSize(array $resize_param): void {
 
@@ -407,7 +404,7 @@ class Images {
     /**
      * Array of maximum image sizes after resize
      *
-     * @param array $resize_param Resize param
+     * @param array $resize_param Resize parameters
      * @return array Resize parameters for maximum quality
      */
     public static function imgResizeMax(array $resize_param): array {

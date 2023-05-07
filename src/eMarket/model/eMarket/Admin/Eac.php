@@ -65,6 +65,7 @@ final class Eac {
 
     /**
      * Init EAC
+     * 
      * @param array $resize_param Resize param for categories
      * @param array $resize_param_product Resize param for products
      * @return array [$idsx_real_parent_id, self::$parent_id]
@@ -77,7 +78,7 @@ final class Eac {
         //Image loader for categories (INSERT BEFORE $this->delete())
         new Images(TABLE_CATEGORIES, 'categories', $this->resize_param);
         //Image loader for products (INSERT BEFORE $this->delete())
-        new Images(TABLE_PRODUCTS, 'products', $this->resize_param_product);
+        new Images(TABLE_PRODUCTS, 'products', $this->resize_param_product, '_product');
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 
@@ -559,6 +560,7 @@ final class Eac {
 
     /**
      * Parent_id for navigation
+     * 
      * @param string|int $idx Identifier
      */
     public static function dataParentId(string|int $idx): void {
@@ -588,6 +590,7 @@ final class Eac {
 
     /**
      * Categories key
+     * 
      * @param string|int $category Identifier $idx
      * @return array $keys
      */
@@ -614,6 +617,7 @@ final class Eac {
 
     /**
      * Delete images
+     * 
      * @param string $TABLE Table name
      * @param string|int $keys Keys
      * @param string $path Path

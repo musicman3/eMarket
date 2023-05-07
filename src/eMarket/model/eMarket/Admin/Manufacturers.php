@@ -125,7 +125,8 @@ class Manufacturers {
         //array_push($resize_param, ['325','244']);
         //array_push($resize_param, ['525','394']);
         //array_push($resize_param, ['850','638']);
-        Images::imgUpload(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
+
+        new Images(TABLE_MANUFACTURERS, 'manufacturers', self::$resize_param);
     }
 
     /**

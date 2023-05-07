@@ -23,7 +23,7 @@ use eMarket\Core\{
     Settings,
     Tree
 };
-use \Cruder\Db;
+use Cruder\Db;
 
 // Load Debug stopwatch
 Debug::$debug_stopwatch = $eMarketDebugStopwatch;
