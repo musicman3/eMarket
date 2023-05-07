@@ -271,11 +271,11 @@ class Images {
             }
             if (is_countable($idx)) {
                 for ($i = 0; $i < count($idx); $i++) {
-                    if (strstr($idx[$i], '_', true) != 'product') {
+                    if (strstr($idx[$i], '_', true) != substr($marker, 1)) {
                         $id = $idx[$i];
                         $id_read = $id;
                     } else {
-                        $id = explode('product_', $idx[$i]);
+                        $id = explode($marker, $idx[$i]);
                         $id_read = $id[1];
                     }
 
