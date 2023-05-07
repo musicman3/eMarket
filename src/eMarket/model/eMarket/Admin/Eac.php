@@ -74,10 +74,10 @@ final class Eac {
         $this->resize_param = $resize_param;
         $this->resize_param_product = $resize_param_product;
 
-        //Image loader for categories (INSERT BEFORE DELETING)
-        Images::imgUpload(TABLE_CATEGORIES, 'categories', $this->resize_param);
-        //Image loader for products (INSERT BEFORE DELETING)
-        Images::imgUploadProduct(TABLE_PRODUCTS, 'products', $this->resize_param_product);
+        //Image loader for categories (INSERT BEFORE $this->delete())
+        new Images(TABLE_CATEGORIES, 'categories', $this->resize_param);
+        //Image loader for products (INSERT BEFORE $this->delete())
+        new Images(TABLE_PRODUCTS, 'products', $this->resize_param_product);
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 
