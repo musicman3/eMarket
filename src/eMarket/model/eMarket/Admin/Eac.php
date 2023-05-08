@@ -32,6 +32,8 @@ use Cruder\Db;
  */
 final class Eac {
 
+    private $cat_images = FALSE;
+    private $prod_images = FALSE;
     private $resize_param = FALSE;
     private $resize_param_product = FALSE;
     private $date_available = NULL;
@@ -76,9 +78,9 @@ final class Eac {
         $this->resize_param_product = $resize_param_product;
 
         //Image loader for categories (INSERT BEFORE $this->delete())
-        new Images(TABLE_CATEGORIES, 'categories', $this->resize_param);
+        $this->cat_images = new Images(TABLE_CATEGORIES, 'categories', $this->resize_param);
         //Image loader for products (INSERT BEFORE $this->delete())
-        new Images(TABLE_PRODUCTS, 'products', $this->resize_param_product, '_product');
+        $this->prod_images = new Images(TABLE_PRODUCTS, 'products', $this->resize_param_product, '_product');
 
         $idsx_real_parent_id = self::$parent_id; //for sent to JS
 
@@ -279,21 +281,23 @@ final class Eac {
 
                     $count_keys = count($keys);
                     for ($x = 0; $x < $count_keys; $x++) {
-                        // Removing product and images
-                        $this->deleteImages(TABLE_PRODUCTS, $keys[$x], 'products');
+                        // Removing products and images for subcategories
+                        $this->prod_images->deleteByParentId($keys[$x]);
                         Db::connect()
                                 ->delete(TABLE_PRODUCTS)
                                 ->where('parent_id=', $keys[$x])
                                 ->save();
 
                         // Removing subcategories and images
-                        $this->deleteImages(TABLE_CATEGORIES, $keys[$x], 'categories');
+                        $this->cat_images->deleteByParentId($keys[$x]);
                         Db::connect()
                                 ->delete(TABLE_CATEGORIES)
                                 ->where('parent_id=', $keys[$x])
                                 ->save();
                     }
 
+                    // Removing images for general category
+                    $this->cat_images->deleteById($id_cat);
                     // Removing general category
                     Db::connect()
                             ->delete(TABLE_CATEGORIES)
@@ -313,6 +317,9 @@ final class Eac {
                 } else {
                     // This is product
                     $id_prod = explode('products_', $idx[$i])[1];
+
+                    $this->prod_images->deleteById($id_prod);
+
                     //Removing general product
                     Db::connect()
                             ->delete(TABLE_PRODUCTS)
@@ -331,9 +338,8 @@ final class Eac {
                     $Cache->deleteItem('core.new_products');
                     $Cache->deleteItem('core.products_' . $id_prod);
                 }
-
-                Messages::alert('delete', 'success', lang('action_completed_successfully'), 0, true);
             }
+            Messages::alert('delete', 'success', lang('action_completed_successfully'), 0, true);
         }
 
         if (is_array(self::$parent_id) == TRUE) {
@@ -613,43 +619,6 @@ final class Eac {
         }
 
         return $keys;
-    }
-
-    /**
-     * Delete images
-     * 
-     * @param string $TABLE Table name
-     * @param string|int $keys Keys
-     * @param string $path Path
-     */
-    private function deleteImages(string $TABLE, string|int $keys, string $path): void {
-
-        if ($path == 'categories') {
-            $resize = $this->resize_param;
-        }
-        if ($path == 'products') {
-            $resize = $this->resize_param_product;
-        }
-
-        $data = Db::connect()
-                ->read($TABLE)
-                ->selectValue('logo')
-                ->where('parent_id=', $keys)
-                ->save();
-
-        $logo_delete = true;
-        if ($data) {
-            $logo_delete = json_decode($data, true);
-        }
-        if (is_countable($logo_delete)) {
-            foreach ($logo_delete as $file) {
-                // Delete
-                foreach ($resize as $key => $value) {
-                    Func::deleteFile(ROOT . '/uploads/images/' . $path . '/resize_' . $key . '/' . $file);
-                }
-                Func::deleteFile(ROOT . '/uploads/images/' . $path . '/originals/' . $file);
-            }
-        }
     }
 
     /**

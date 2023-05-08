@@ -54,6 +54,7 @@ class Images {
         $this->add($marker);
         $this->edit($marker);
         $this->delete($marker);
+        $this->deleteNewImages($marker);
     }
 
     /**
@@ -261,46 +262,83 @@ class Images {
      */
     private function delete(string $marker = ''): void {
         if (Valid::inPOST('delete')) {
+
             if (!is_array(Valid::inPOST('delete'))) {
                 $idx = [Valid::inPOST('delete')];
             } else {
                 $idx = Func::deleteEmptyInArray(Valid::inPOST('delete'));
             }
+
             if (is_countable($idx)) {
                 for ($i = 0; $i < count($idx); $i++) {
-                    if (strstr($idx[$i], '_', true) != substr($marker, 1)) {
+                    if (strstr($idx[$i], '_', true) != substr($this->dir, 1)) {
                         $id = $idx[$i];
                         $id_read = $id;
                     } else {
-                        $id = explode($marker, $idx[$i]);
+                        $id = explode($this->dir, $idx[$i]);
                         $id_read = $id[1];
                     }
 
-                    $logo_delete_prepare = Db::connect()
-                            ->read($this->table)
-                            ->selectValue('logo')
-                            ->where('id=', $id_read)
-                            ->save();
-
-                    $logo_delete = json_decode($logo_delete_prepare, true);
-
-                    if (is_countable($logo_delete)) {
-                        foreach ($logo_delete as $file) {
-                            foreach ($this->resize_param as $key => $value) {
-                                Func::deleteFile(ROOT . '/uploads/images/' . $this->dir . '/resize_' . $key . '/' . $file);
-                            }
-                            unset($value);
-                            Func::deleteFile(ROOT . '/uploads/images/' . $this->dir . '/originals/' . $file);
-                        }
-                    }
+                    $this->deleteById($id_read);
                 }
             }
         }
+    }
 
+    /**
+     * Delete by ID
+     * 
+     * @param string|int $id ID
+     */
+    public function deleteById(string|int $id): void {
+
+        $logo_delete_prepare = Db::connect()
+                ->read($this->table)
+                ->selectValue('logo')
+                ->where('id=', $id)
+                ->save();
+
+        $logo_delete = json_decode($logo_delete_prepare, true);
+
+        if (is_countable($logo_delete)) {
+            foreach ($logo_delete as $file) {
+                foreach ($this->resize_param as $key => $value) {
+                    Func::deleteFile(ROOT . '/uploads/images/' . $this->dir . '/resize_' . $key . '/' . $file);
+                }
+                unset($value);
+                Func::deleteFile(ROOT . '/uploads/images/' . $this->dir . '/originals/' . $file);
+            }
+        }
+    }
+
+    /**
+     * Deleting images by parent id
+     * 
+     * @param string|int $parent_id parent id
+     */
+    public function deleteByParentId(string|int $parent_id): void {
+
+        $data = Db::connect()
+                ->read($this->table)
+                ->selectAssoc('id')
+                ->where('parent_id=', $parent_id)
+                ->save();
+
+        foreach ($data as $value) {
+            $this->deleteById($value['id']);
+        }
+    }
+
+    /**
+     * Delete new images
+     * 
+     * @param string $marker marker
+     */
+    private function deleteNewImages(string $marker = ''): void {
         if (Valid::inPostJson('delete_new_image' . $marker) == 'ok' && Valid::inPostJson('delete_image' . $marker)) {
-            $id = Valid::inPostJson('delete_image' . $marker);
-            Func::deleteFile(ROOT . '/uploads/temp/files/' . $id);
-            Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $id);
+            $file = Valid::inPostJson('delete_image' . $marker);
+            Func::deleteFile(ROOT . '/uploads/temp/files/' . $file);
+            Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $file);
         }
     }
 
