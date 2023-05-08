@@ -34,6 +34,7 @@ class Images {
     private $table = FALSE;
     private $dir = FALSE;
     private $resize_param = FALSE;
+    private $marker = '';
 
     /**
      * Constructor
@@ -49,12 +50,13 @@ class Images {
         $this->table = $table;
         $this->dir = $dir;
         $this->resize_param = $resize_param;
+        $this->marker = $marker;
 
         $this->init();
-        $this->add($marker);
-        $this->edit($marker);
+        $this->add();
+        $this->edit();
         $this->delete();
-        $this->deleteNewImages($marker);
+        $this->deleteNewImages();
     }
 
     /**
@@ -78,10 +80,9 @@ class Images {
     /**
      * Add images
      * 
-     * @param string $marker marker
      */
-    private function add(string $marker = ''): void {
-        if (Valid::inPOST('add' . $marker)) {
+    private function add(): void {
+        if (Valid::inPOST('add' . $this->marker)) {
             if ($this->count_files > 0) {
                 $this->imgResize($this->dir, $this->files, $this->prefix, $this->resize_param);
             }
@@ -116,8 +117,8 @@ class Images {
                     $general_image_add = $image_list[0];
                 }
 
-                if (Valid::inPOST('general_image_add' . $marker)) {
-                    $general_image_add = $this->prefix . Valid::inPOST('general_image_add' . $marker);
+                if (Valid::inPOST('general_image_add' . $this->marker)) {
+                    $general_image_add = $this->prefix . Valid::inPOST('general_image_add' . $this->marker);
                 }
 
                 Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $this->dir . '/originals/');
@@ -135,13 +136,12 @@ class Images {
     /**
      * Edit images
      * 
-     * @param string $marker marker
      */
-    private function edit(string $marker = ''): void {
+    private function edit(): void {
 
-        if (Valid::inPOST('edit' . $marker)) {
+        if (Valid::inPOST('edit' . $this->marker)) {
 
-            $id = Valid::inPOST('edit' . $marker);
+            $id = Valid::inPOST('edit' . $this->marker);
 
             $this->imgResize($this->dir, $this->files, $this->prefix, $this->resize_param);
 
@@ -165,12 +165,12 @@ class Images {
                 $general_image_edit = $image_list[0];
             }
 
-            if (Valid::inPOST('general_image_edit' . $marker)) {
-                $general_image_edit = Valid::inPOST('general_image_edit' . $marker);
+            if (Valid::inPOST('general_image_edit' . $this->marker)) {
+                $general_image_edit = Valid::inPOST('general_image_edit' . $this->marker);
             }
 
-            if (Valid::inPOST('general_image_edit_new' . $marker)) {
-                $general_image_edit = $this->prefix . Valid::inPOST('general_image_edit_new' . $marker);
+            if (Valid::inPOST('general_image_edit_new' . $this->marker)) {
+                $general_image_edit = $this->prefix . Valid::inPOST('general_image_edit_new' . $this->marker);
             }
 
             Tree::filesDirAction(ROOT . '/uploads/temp/originals/', ROOT . '/uploads/images/' . $this->dir . '/originals/');
@@ -192,9 +192,9 @@ class Images {
                         ->save();
             }
 
-            if (Valid::inPOST('delete_image') . $marker) {
+            if (Valid::inPOST('delete_image') . $this->marker) {
 
-                $delete_image_arr = explode(',', Valid::inPOST('delete_image' . $marker), -1);
+                $delete_image_arr = explode(',', Valid::inPOST('delete_image' . $this->marker), -1);
 
                 $image_list_arr_prepare = Db::connect()
                         ->read($this->table)
@@ -312,11 +312,10 @@ class Images {
     /**
      * Delete new images
      * 
-     * @param string $marker marker
      */
-    private function deleteNewImages(string $marker = ''): void {
-        if (Valid::inPostJson('delete_new_image' . $marker) == 'ok' && Valid::inPostJson('delete_image' . $marker)) {
-            $file = Valid::inPostJson('delete_image' . $marker);
+    private function deleteNewImages(): void {
+        if (Valid::inPostJson('delete_new_image' . $this->marker) == 'ok' && Valid::inPostJson('delete_image' . $this->marker)) {
+            $file = Valid::inPostJson('delete_image' . $this->marker);
             Func::deleteFile(ROOT . '/uploads/temp/files/' . $file);
             Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $file);
         }
