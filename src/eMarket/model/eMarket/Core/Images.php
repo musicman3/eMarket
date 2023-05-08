@@ -53,7 +53,7 @@ class Images {
         $this->init();
         $this->add($marker);
         $this->edit($marker);
-        $this->delete($marker);
+        $this->delete();
         $this->deleteNewImages($marker);
     }
 
@@ -258,30 +258,10 @@ class Images {
     /**
      * Delete images
      * 
-     * @param string $marker marker
      */
-    private function delete(string $marker = ''): void {
+    private function delete(): void {
         if (Valid::inPOST('delete')) {
-
-            if (!is_array(Valid::inPOST('delete'))) {
-                $idx = [Valid::inPOST('delete')];
-            } else {
-                $idx = Func::deleteEmptyInArray(Valid::inPOST('delete'));
-            }
-
-            if (is_countable($idx)) {
-                for ($i = 0; $i < count($idx); $i++) {
-                    if (strstr($idx[$i], '_', true) != substr($this->dir, 1)) {
-                        $id = $idx[$i];
-                        $id_read = $id;
-                    } else {
-                        $id = explode($this->dir, $idx[$i]);
-                        $id_read = $id[1];
-                    }
-
-                    $this->deleteById($id_read);
-                }
-            }
+            $this->deleteById(Valid::inPOST('delete'));
         }
     }
 
