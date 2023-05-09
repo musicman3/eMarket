@@ -13,7 +13,7 @@ CREATE TABLE emkt_administrators (
 	permission varchar(20) NOT NULL,
 	note varchar(256),
 	status int DEFAULT '0' NOT NULL,
-        my_data json,
+        my_data jsonb,
 PRIMARY KEY (login));
 
 DROP TABLE IF EXISTS emkt_basic_settings;
@@ -44,13 +44,13 @@ CREATE TABLE emkt_categories (
 	name varchar(256),
 	language varchar(64),
 	parent_id int DEFAULT '0' NOT NULL,
-        logo json,
+        logo jsonb,
 	date_added timestamp(0),
 	last_modified timestamp(0),
 	sort_category int DEFAULT '0' NOT NULL,
 	status int,
         logo_general varchar(128),
-        attributes json,
+        attributes jsonb,
 PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_countries;
@@ -83,7 +83,7 @@ DROP SEQUENCE IF EXISTS emkt_customers_seq;
 CREATE SEQUENCE emkt_customers_seq;
 CREATE TABLE emkt_customers (
         id int NOT NULL default nextval ('emkt_customers_seq'),
-        address_book json,
+        address_book jsonb,
         gender char(1),
         firstname varchar(32) NOT NULL,
         lastname varchar(32) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE emkt_manufacturers (
 	id int NOT NULL,
 	name varchar(256),
 	language varchar(64),
-        logo json,
+        logo jsonb,
         logo_general varchar(128),
         site varchar(256),
 PRIMARY KEY (id, language));
@@ -158,15 +158,15 @@ CREATE TABLE emkt_orders (
         lastname varchar(32),
         firstname varchar(32),
         telephone varchar(32),
-        customer_data json,
-        orders_status_history json,
-        products_order json,
-        order_total json,
-        invoice json,
-        orders_transactions_history json,
+        customer_data jsonb,
+        orders_status_history jsonb,
+        products_order jsonb,
+        order_total jsonb,
+        invoice jsonb,
+        orders_transactions_history jsonb,
         customer_ip_address varchar(30),
-        payment_method json,
-        shipping_method json,
+        payment_method jsonb,
+        shipping_method jsonb,
         last_modified timestamp(0),
         date_purchased timestamp(0),
         uid varchar(64),
@@ -190,7 +190,7 @@ CREATE TABLE emkt_products (
         language varchar(64),
         status int DEFAULT '1' NOT NULL,
 	parent_id int DEFAULT '0' NOT NULL,
-	logo json,
+	logo jsonb,
         logo_general varchar(128),
 	date_added timestamp(0),
 	last_modified timestamp(0),
@@ -220,8 +220,8 @@ CREATE TABLE emkt_products (
         viewed int default '0',
         download_file varchar(256),
         downloads_stat int default '0',
-        discount json,
-        attributes json,
+        discount jsonb,
+        attributes jsonb,
         sticker varchar(64),
 PRIMARY KEY (id, language));
 
@@ -248,7 +248,7 @@ CREATE SEQUENCE emkt_slideshow_seq;
 CREATE TABLE emkt_slideshow (
 	id int NOT NULL default nextval ('emkt_slideshow_seq'),
 	language varchar(64),
-	logo json,
+	logo jsonb,
         logo_general varchar(128),
         animation int DEFAULT '1' NOT NULL,
         color text,
@@ -279,7 +279,7 @@ CREATE TABLE emkt_staff_manager (
         language varchar(64),
 	name varchar(256),
         note varchar(256),
-        permissions json,
+        permissions jsonb,
         mode varchar(256),
 PRIMARY KEY (id, language));
 
