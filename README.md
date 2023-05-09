@@ -10,7 +10,7 @@
   - OS Unix, Linux or Windows
   - Apache Web Server >= 2.4 or Nginx >= 1.17
   - PHP >= 8.2 for Master || PHP == 8.0 for Latest Release
-  - MySQL >= 5.7.8 || MariaDB >= 10.2.3 || PostgreSQL >= 15.0 || SQLite >= 3.0
+  - MySQL >= 5.7.8 || MariaDB >= 10.2.3 || PostgreSQL >= 15.0 || SQLite >= 3.0 (pdo_sqlite PHP extension)
   - Javascript >= ES7
   - HTML 5
 
