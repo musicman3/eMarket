@@ -202,7 +202,7 @@ CREATE TABLE emkt_products (
         quantity int,
         unit int,
         model varchar(64), 
-        date_available date,
+        date_available timestamp(0),
         manufacturer int,
         barcode varchar(256),
         barcode_value varchar(256),
