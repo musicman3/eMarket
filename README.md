@@ -14,7 +14,7 @@
   - Javascript >= ES7
   - HTML 5
 
-### PHP extension: 
+### PHP extensions and settings: 
   - curl 
   - gd
   - json
