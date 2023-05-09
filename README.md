@@ -11,7 +11,7 @@
   - Apache Web Server >= 2.4 or Nginx >= 1.17
   - PHP >= 8.2 for Master || PHP == 8.0 for Latest Release
   - MySQL >= 5.7.8 || MariaDB >= 10.2.3 || PostgreSQL >= 15.0 || SQLite >= 3.0
-  - PHP extension: curl, gd, json, SPL, max_input_vars >=5000, pdo_mysql || or pdo_pgsql || pdo_sqlite
+  - PHP extension: curl, gd, json, SPL, max_input_vars >=5000, pdo_mysql (or pdo_pgsql, pdo_sqlite)
   - Javascript >= ES7
   - HTML 5
 
