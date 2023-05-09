@@ -20,9 +20,9 @@
   - json
   - SPL
   - max_input_vars >=5000
-  - pdo_mysql (with MySQL or MariaDB)
-  - pdo_pgsql (with PostgreSQL)
-  - pdo_sqlite (with SQLite)
+  - pdo_mysql (for MySQL or MariaDB)
+  - pdo_pgsql (for PostgreSQL)
+  - pdo_sqlite (for SQLite)
 
 ### Features: 
   - Vanilla JS
