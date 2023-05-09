@@ -59,7 +59,8 @@ if (Settings::path() != 'install') {
         'db_port' => DB_PORT,
         'db_family' => DB_FAMILY,
         'db_charset' => 'utf8mb4',
-        'db_collate' => 'utf8mb4_unicode_ci'
+        'db_collate' => 'utf8mb4_unicode_ci',
+        'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
 }
 

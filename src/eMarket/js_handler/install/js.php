@@ -17,10 +17,26 @@
     document.querySelector('#database_type').addEventListener('change', function (event) {
         if (document.querySelector('#database_type').options.selectedIndex === 0) {
             document.querySelector('#database_family').removeAttribute('disabled');
+            document.querySelector('#database_port').removeAttribute('disabled');
             document.querySelector('#database_port').value = '3306';
-        } else {
+            document.querySelector('#server_db').removeAttribute('disabled');
+            document.querySelector('#login_db').removeAttribute('disabled');
+            document.querySelector('#password_db').removeAttribute('disabled');
+        }
+        if (document.querySelector('#database_type').options.selectedIndex === 1) {
             document.querySelector('#database_family').setAttribute('disabled', 'disabled');
+            document.querySelector('#database_port').removeAttribute('disabled');
             document.querySelector('#database_port').value = '5432';
+            document.querySelector('#server_db').removeAttribute('disabled');
+            document.querySelector('#login_db').removeAttribute('disabled');
+            document.querySelector('#password_db').removeAttribute('disabled');
+        }
+        if (document.querySelector('#database_type').options.selectedIndex === 2) {
+            document.querySelector('#database_family').setAttribute('disabled', 'disabled');
+            document.querySelector('#database_port').setAttribute('disabled', 'disabled');
+            document.querySelector('#server_db').setAttribute('disabled', 'disabled');
+            document.querySelector('#login_db').setAttribute('disabled', 'disabled');
+            document.querySelector('#password_db').setAttribute('disabled', 'disabled');
         }
     });
 </script>

@@ -6,10 +6,10 @@
 DROP TABLE IF EXISTS emkt_modules_discount_sale;
 CREATE TABLE emkt_modules_discount_sale (
 	id int NOT NULL,
-        name varchar(256),
-        language varchar(64),
-        sale_value decimal(4,2),
-	date_start date,
-        date_end date,
+        name text(256),
+        language text(64),
+        sale_value numeric(4,2),
+	date_start datetime,
+        date_end datetime,
         default_set int,
-	PRIMARY KEY (id, language));
+        PRIMARY KEY (id, language));

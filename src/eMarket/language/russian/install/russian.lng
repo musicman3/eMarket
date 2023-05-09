@@ -14,6 +14,7 @@ crypt_method = Метод шифрования
 database_family = Семейство БД
 database_family_mysql = MySQL/MariaDB
 database_family_pgsql = PostgreSQL
+database_family_sqlite = SQLite
 database_innodb = InnoDB (защищ.)
 database_myisam = MyISAM (станд.)
 database_name = Имя базы данных

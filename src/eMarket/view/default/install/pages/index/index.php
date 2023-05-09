@@ -50,6 +50,7 @@ use eMarket\Core\{
                                         <select id="database_type" name="database_type" class="form-select">
                                             <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
                                             <option value='pgsql'><?php echo lang('database_family_pgsql') ?></option>
+                                            <option value='sqlite'><?php echo lang('database_family_sqlite') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -192,6 +193,10 @@ use eMarket\Core\{
                                     <div class="row">
                                         <div class="col">pdo_pgsql:</div>
                                         <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_pgsql') ?>"></span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">pdo_sqlite:</div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_sqlite') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">SPL:</div>

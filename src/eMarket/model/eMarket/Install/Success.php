@@ -137,7 +137,8 @@ class Success {
             'db_family' => DB_FAMILY,
             'db_charset' => 'utf8mb4',
             'db_collate' => 'utf8mb4_unicode_ci',
-            'db_error_url' => '/controller/install/error.php?server_db_error=true&error_message='
+            'db_error_url' => '/controller/install/error.php?server_db_error=true&error_message=',
+            'db_path' => ROOT . '/storage/databases/sqlite.db3'
         ]);
 
         if (DB_TYPE == 'mysql') {

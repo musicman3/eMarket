@@ -14,6 +14,7 @@ crypt_method = Encryption Method
 database_family = DB Family
 database_family_mysql = MySQL/MariaDB
 database_family_pgsql = PostgreSQL
+database_family_sqlite = SQLite
 database_innodb = InnoDB (protected)
 database_myisam = MyISAM (default)
 database_name = Database Name
