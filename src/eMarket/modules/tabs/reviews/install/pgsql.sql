@@ -15,5 +15,5 @@ CREATE TABLE emkt_modules_tabs_reviews (
         likes int,
         date_add date,
         date_edit date,
-        reviews json,
+        reviews jsonb,
 PRIMARY KEY (id));
