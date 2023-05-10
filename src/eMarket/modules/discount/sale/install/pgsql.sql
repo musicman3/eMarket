@@ -9,7 +9,7 @@ CREATE TABLE emkt_modules_discount_sale (
         name varchar(256),
         language varchar(64),
         sale_value decimal(4,2),
-	date_start date,
-        date_end date,
+	date_start timestamp(0),
+        date_end timestamp(0),
         default_set int,
 	PRIMARY KEY (id, language));

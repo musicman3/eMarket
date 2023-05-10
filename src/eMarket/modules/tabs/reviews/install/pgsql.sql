@@ -13,7 +13,7 @@ CREATE TABLE emkt_modules_tabs_reviews (
         stars int,
         status int,
         likes int,
-        date_add date,
-        date_edit date,
+        date_add timestamp(0),
+        date_edit timestamp(0),
         reviews jsonb,
 PRIMARY KEY (id));
