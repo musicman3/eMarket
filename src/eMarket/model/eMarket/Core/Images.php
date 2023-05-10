@@ -11,6 +11,7 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Clock\SystemClock,
+    Cryptography,
     Func,
     Tree,
     Valid
@@ -346,10 +347,13 @@ class Images {
                     $quality_height = $resize_max[1];
 
                     if ($width >= $quality_width OR $height >= $quality_height) {
+
+                        $new_name = $prefix . Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
+
                         if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
-                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $prefix . basename($file));
+                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $new_name);
                         }
-                        $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))
+                        $IMAGE->fromFile(ROOT . '/uploads/temp/originals/' . $new_name)
                                 ->autoOrient()
                                 ->bestFit((int) $value[0], (int) $value[1]);
                         if (Valid::inPOST('effect-product') == 'effect-sepia') {
@@ -364,7 +368,7 @@ class Images {
                         if (Valid::inPOST('effect-product') == 'effect-blur-2') {
                             $IMAGE->blur('selective', 2);
                         }
-                        $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $prefix . basename($file));
+                        $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $new_name);
                     }
                 }
 
