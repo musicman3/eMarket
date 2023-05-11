@@ -88,7 +88,7 @@ class Messages {
     public static function alert(?string $action = null, ?string $class = null, mixed $message = null, ?int $time = 3000, bool $start = false): bool {
 
         if ($message != null && $class != null) {
-            $_SESSION['message_marker'] = 'ok';
+            $_SESSION['message_step'] = '1';
 
             $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
             self::logging($class, '?route=' . Valid::inGET('route'), $action);
@@ -99,11 +99,11 @@ class Messages {
             return true;
         }
 
-        if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_3') {
+        if (isset($_SESSION['message_step']) && $_SESSION['message_step'] == '3') {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             }
-            unset($_SESSION['message_marker']);
+            unset($_SESSION['message_step']);
             unset($_SESSION['message']);
         }
 
@@ -111,16 +111,16 @@ class Messages {
             if (isset($_SESSION['message'])) {
                 require_once (ROOT . '/view/' . Settings::template() . '/layouts/alert.php');
             }
-            unset($_SESSION['message_marker']);
+            unset($_SESSION['message_step']);
             unset($_SESSION['message']);
         }
 
-        if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok_2') {
-            $_SESSION['message_marker'] = 'ok_3';
+        if (isset($_SESSION['message_step']) && $_SESSION['message_step'] == '2') {
+            $_SESSION['message_step'] = '3';
         }
 
-        if (isset($_SESSION['message_marker']) && $_SESSION['message_marker'] == 'ok') {
-            $_SESSION['message_marker'] = 'ok_2';
+        if (isset($_SESSION['message_step']) && $_SESSION['message_step'] == '1') {
+            $_SESSION['message_step'] = '2';
         }
 
         if (isset($_SESSION['message'][3]) && $_SESSION['message'][3] == TRUE) {
