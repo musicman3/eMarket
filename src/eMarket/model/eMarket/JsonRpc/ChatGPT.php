@@ -36,6 +36,7 @@ class ChatGPT extends JsonRpc {
      */
     public function __construct() {
         $this->request();
+        $this->apiKey();
     }
 
     /**
@@ -78,6 +79,26 @@ class ChatGPT extends JsonRpc {
                         'Accept: application/json',
                         'User-Agent: eMarket',
                         'Authorization: Bearer ' . $this->token]);
+        }
+    }
+
+    /**
+     * Api Key
+     *
+     */
+    private function apiKey(): void {
+        if (Valid::inPostJson('api_key')) {
+            $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
+
+            $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPostJson('api_key')]);
+
+            Db::connect()
+                    ->update(TABLE_ADMINISTRATORS)
+                    ->set('my_data', $chatgpt_token)
+                    ->where('login=', $decrypt_login)
+                    ->save();
+
+            echo json_encode([lang('chatgpt_api_key_saved')]);
         }
     }
 

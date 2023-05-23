@@ -21,5 +21,9 @@
             <label for="chat_bot" class="form-label"><?php echo lang('chatgpt_response') ?></label>
             <textarea class="form-control" id="chat_bot" rows="10"></textarea>
         </div>
+        <div class="input-group mb-3">
+            <input type="password" id="chatgpt_key" class="form-control" placeholder="<?php echo lang('chatgpt_api_key') ?>" aria-describedby="api_key">
+            <button class="btn btn-outline-dark" type="button" id="api_key"><?php echo lang('save') ?></button>
+        </div>
     </div>
 </div>

@@ -47,12 +47,49 @@ class ChatGPT {
     }
 
     /**
+     * API Key request
+     *
+     * @param content {String} (API key)
+     */
+    static apiKey(content = '') {
+
+        var randomizer = new Randomizer();
+
+        var param = encodeURI(JSON.stringify({
+            'jsonrpc': '2.0',
+            'method': 'ChatGPT',
+            'param': [],
+            'id': randomizer.uid(32)}));
+
+        Ajax.postData('/services/jsonrpc/?request=' + param,
+                {'api_key': content,
+                    'login': document.querySelector('#user_login').dataset.login},
+                null, null, ChatGPT.save).then((data) => {
+        });
+    }
+
+    /**
+     * Save
+     *
+     * @param data {String} (data)
+     */
+    static save(data) {
+        var input = JSON.parse(data);
+        document.querySelector('#chat_bot').value = input[0];
+        document.querySelector('#chatgpt_key').value = '';
+    }
+
+    /**
      * Init
      *
      */
     static init() {
         document.querySelector('#chatgptsend').onclick = function () {
             ChatGPT.request(document.querySelector('#chat_user').value);
+        };
+
+        document.querySelector('#api_key').onclick = function () {
+            ChatGPT.apiKey(document.querySelector('#chatgpt_key').value);
         };
 
         document.querySelector('#chat_user')

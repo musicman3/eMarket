@@ -396,6 +396,8 @@ chatgpt_open_button = Спросить у ChatGPT
 chatgpt_send_button = Отправить
 chatgpt_user_placeholder = Спросить у ChatGPT...
 chatgpt_response = Ответ:
+chatgpt_api_key_saved = API ключ сохранен!
+chatgpt_api_key = ChatGPT API key
 
 ;PAGE NOT FOUND
 page_not_found_header = Внимание!

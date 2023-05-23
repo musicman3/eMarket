@@ -398,6 +398,8 @@ chatgpt_open_button = Ask ChatGPT
 chatgpt_send_button = Send
 chatgpt_user_placeholder = Ask ChatGPT...
 chatgpt_response = Reply:
+chatgpt_api_key_saved = API key saved!
+chatgpt_api_key = ChatGPT API key
 
 ;PAGE NOT FOUND
 page_not_found_header = Attention!
