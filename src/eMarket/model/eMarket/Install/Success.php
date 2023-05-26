@@ -57,9 +57,13 @@ class Success {
         self::$lng = strtolower(Valid::inPOST('language'));
         self::$login_admin = Valid::inPOST('login_admin');
         self::$password_admin = Valid::inPOST('password_admin');
+        $protocol = 'http://';
+        if (Valid::inSERVER('HTTPS') && !empty(Valid::inSERVER('HTTPS'))) {
+            $protocol = 'https://';
+        }
 
         self::$config = '<?php' . "\n" .
-                '  define(\'HTTP_SERVER\', \'' . 'http://' . Valid::inSERVER('HTTP_HOST') . '/' . '\');' . "\n" .
+                '  define(\'HTTP_SERVER\', \'' . $protocol . Valid::inSERVER('HTTP_HOST') . '/' . '\');' . "\n" .
                 '  define(\'ROOT\', \'' . self::$root . '\');' . "\n" .
                 '  define(\'DB_SERVER\', \'' . Valid::inPOST('server_db') . '\');' . "\n" .
                 '  define(\'DB_USERNAME\', \'' . Valid::inPOST('login_db') . '\');' . "\n" .
