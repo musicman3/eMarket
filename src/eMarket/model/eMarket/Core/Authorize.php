@@ -45,13 +45,14 @@ class Authorize {
         }
 
         session_start();
-        $this->csrfVerification();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
+            $this->csrfVerification();
             $this->admin();
         }
 
         if (Settings::path() == 'catalog') {
+            $this->csrfVerification();
             $this->catalog();
             new Cart();
         }
