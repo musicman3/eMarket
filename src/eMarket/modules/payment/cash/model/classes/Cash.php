@@ -80,7 +80,7 @@ class Cash implements PaymentModulesInterface {
             'chanel_name' => lang('modules_payment_cash_name'),
             'chanel_payment_price' => 0,
             'chanel_payment_currency' => '',
-            'chanel_callback_url' => '', // example: https://w3s.webmoney.ru/asp/XMLInvoice.asp
+            'chanel_callback_url' => HTTP_SERVER, // example: https://w3s.webmoney.ru/asp/XMLInvoice.asp
             'chanel_callback_type' => 'get', // post/get
             'chanel_callback_data' => json_encode(['route' => 'success']), // example: ['route' => 'success', 'id' => '', 'price' => '']
             'chanel_image' => ''
