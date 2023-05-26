@@ -254,7 +254,7 @@ class Reviews implements TabsModulesInterface {
                     ->where('product_id=', Valid::inGET('id'))
                     ->and('status=', 1)
                     ->orderByDesc('date_add')
-                    ->limit(1, Settings::linesOnPage())
+                    ->limit(Settings::linesOnPage())
                     ->save();
         } else {
 
@@ -264,7 +264,7 @@ class Reviews implements TabsModulesInterface {
                     ->where('product_id=', Valid::inGET('id'))
                     ->and('status=', 1)
                     ->orderByDesc('date_add')
-                    ->limit(Valid::inPostJson('start_review'), Settings::linesOnPage())
+                    ->limit(Settings::linesOnPage(), Valid::inPostJson('start_review'))
                     ->save();
         }
         self::$count_to_page = count(self::$reviews);
