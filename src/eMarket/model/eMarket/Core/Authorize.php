@@ -45,14 +45,13 @@ class Authorize {
         }
 
         session_start();
+        $this->csrfVerification();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
-            $this->csrfVerification();
             $this->admin();
         }
 
         if (Settings::path() == 'catalog') {
-            $this->csrfVerification();
             $this->catalog();
             new Cart();
         }
@@ -96,16 +95,14 @@ class Authorize {
      */
     private function csrfVerification(): void {
 
-        $csrf_session_token = $_SESSION[Settings::$csrf[Settings::path()]];
-
         if (Valid::isPOST()) {
-            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $csrf_session_token) {
+            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION[Settings::$csrf[Settings::path()]]) {
                 echo 'CSRF Token Error!';
                 exit;
             }
         }
         if (Valid::isPostJson()) {
-            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $csrf_session_token) {
+            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION[Settings::$csrf[Settings::path()]]) {
                 echo 'CSRF Token Error!';
                 exit;
             }
