@@ -95,14 +95,20 @@ class Authorize {
      */
     private function csrfVerification(): void {
 
+        if (!isset($_SESSION[Settings::$csrf[Settings::path()]])) {
+            $csrf_session_token = self::csrfToken();
+        } else {
+            $csrf_session_token = $_SESSION[Settings::$csrf[Settings::path()]];
+        }
+
         if (Valid::isPOST()) {
-            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $_SESSION[Settings::$csrf[Settings::path()]]) {
+            if (!Valid::inPOST('csrf_token') || Valid::inPOST('csrf_token') != $csrf_session_token) {
                 echo 'CSRF Token Error!';
                 exit;
             }
         }
         if (Valid::isPostJson()) {
-            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $_SESSION[Settings::$csrf[Settings::path()]]) {
+            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $csrf_session_token) {
                 echo 'CSRF Token Error!';
                 exit;
             }
