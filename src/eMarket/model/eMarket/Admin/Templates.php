@@ -288,7 +288,6 @@ class Templates {
             } else {
                 file_put_contents(ROOT . '/storage/tpl_cfg/' . SystemClock::nowFormatDate('Y-m-d_H-i-s') . '.tcg', json_encode($data));
             }
-            Messages::alert('save', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -299,7 +298,6 @@ class Templates {
     private function deleteConfig(): void {
         if (Valid::inPostJson('delete_config') == 'ok') {
             unlink(ROOT . '/storage/tpl_cfg/' . Valid::inPostJson('config_name') . '.tcg');
-            Messages::alert('delete', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -329,7 +327,6 @@ class Templates {
                         ->set('sort', $value['sort'])
                         ->save();
             }
-            Messages::alert('set', 'success', lang('action_completed_successfully'));
         }
     }
 
