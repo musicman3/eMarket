@@ -241,7 +241,12 @@ add_category = Добавить категорию
 add_product = Добавить товар
 
 ;TEMPLATES
-all_pages_template = Все страницы
+templates_all_pages = Все страницы
+templates_set = Установить
+templates_delete = Удалить
+templates_save = Сохранить
+templates_name = Имя
+templates_set_config_name = Укажите имя конфигурации
 
 ;ORDERS
 orders_total = Итого

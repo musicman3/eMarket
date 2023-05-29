@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax */
+/* global Ajax, bootstrap, config_confirm, confirmation */
 
 /**
  * Templates
@@ -41,6 +41,68 @@ class Templates {
         document.querySelector('#layout_pages_templates').addEventListener('change', (e) => {
             document.forms['select_page'].submit();
         });
+        document.querySelector('#save_config').addEventListener('click', (e) => {
+            this.saveConfig();
+        });
+        document.querySelector('#delete_config').addEventListener('click', (e) => {
+            this.deleteConfig();
+        });
+        document.querySelector('#set_config').addEventListener('click', (e) => {
+            this.setConfig();
+        });
+    }
+
+    /**
+     * Save config
+     * 
+     */
+    saveConfig() {
+        new bootstrap.Modal(document.querySelector('#config_name')).show();
+        config_confirm.onclick = function () {
+            bootstrap.Modal.getInstance(document.querySelector('#config_name')).hide();
+            Ajax.postData(window.location.href, {
+                save_config: 'ok',
+                template_name: document.querySelector('#name_templates').value,
+                config_input: document.querySelector('#config_input').value
+            }, null, null, Templates.AjaxSuccess);
+        };
+    }
+
+    /**
+     * Delete config
+     * 
+     */
+    deleteConfig() {
+        new bootstrap.Modal(document.querySelector('#confirm')).show();
+        confirmation.onclick = function () {
+            bootstrap.Modal.getInstance(document.querySelector('#confirm')).hide();
+            Ajax.postData(window.location.href, {
+                delete_config: 'ok',
+                config_name: document.querySelector('#config_list').value
+            }, null, null, Templates.AjaxSuccess);
+        };
+    }
+
+    /**
+     * Set config
+     * 
+     */
+    setConfig() {
+        Ajax.postData(window.location.href, {
+            set_config: 'ok',
+            config_name: document.querySelector('#config_list').value
+        }, null, null, Templates.AjaxSuccess);
+    }
+
+    /**
+     * Ajax Success
+     *
+     *@param data {Object} (ajax data)
+     */
+    static AjaxSuccess(data) {
+        setTimeout(function () {
+            location.reload();
+        }, 100);
     }
 
     /**

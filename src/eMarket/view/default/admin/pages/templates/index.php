@@ -8,18 +8,19 @@ use eMarket\Core\{
     Settings,
 };
 use eMarket\Admin\Templates;
+
+require_once('modal/name.php')
 ?>
 
 <div id="settings_templates">
     <div class="card">
-        <div class="card-header"></div>
         <div class="card-body">
 
             <div class="row">
-                <div class="col-auto">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text bi-grid-fill"></span>
-                        <form method="get" class="was-validated" name="select_template" action="index.php">
+                <div class="col mb-3">
+                    <form method="get" name="select_template" action="index.php">
+                        <div class="input-group">
+                            <span class="input-group-text bi-grid-fill"></span>
                             <input hidden name="route" value="templates">
                             <select name="name_templates" id="name_templates" class="form-select">
                                 <option><?php echo Settings::template() ?></option>
@@ -38,17 +39,39 @@ use eMarket\Admin\Templates;
                                 }
                                 ?>
                             </select>
-                        </form>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col mb-3">
+                    <div class="input-group">
+                        <select class="form-select" id="config_list">
+                            <?php
+                            foreach (Templates::$tpl_cfg as $file) {
+                                if ($file != '.' && $file != '..' && $file != '.gitkeep') {
+                                    ?>
+                                    <option selected><?php echo basename($file, '.tcg') ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                        <button class="btn btn-warning" id="save_config" type="button"><?php echo lang('templates_save') ?></button>
+                        <button class="btn btn-danger" id="delete_config" type="button"><?php echo lang('templates_delete') ?></button>
+                        <button class="btn btn-success" id="set_config" type="button"><?php echo lang('templates_set') ?></button>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text bi-file-text"></span>
-                        <form method="get" class="was-validated" name="select_page">
+            </div>
+
+            <div class="row">
+                <div class="col mb-3">
+                    <form method="get" name="select_page">
+                        <div class="input-group">
+                            <span class="input-group-text bi-file-text" for="layout_pages_templates"></span>
                             <input hidden name="route" value="templates">
                             <input type="hidden" name="name_templates" value="<?php echo Templates::$select_template ?>" />
                             <select name="layout_pages_templates" id="layout_pages_templates" class="form-select">
-                                <option value="all"><?php echo lang('all_pages_template') ?></option>
+                                <option value="all"><?php echo lang('templates_all_pages') ?></option>
                                 <?php
                                 foreach (Templates::$layout_pages as $path) {
                                     if ($path != '.' && $path != '..') {
@@ -64,9 +87,12 @@ use eMarket\Admin\Templates;
                                 }
                                 ?>
                             </select>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
+
+                <div class="col mb-3"></div>
+
             </div>
 
             <div class="clearfix"></br></div>

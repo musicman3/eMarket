@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Clock\SystemClock,
+    Messages,
     Func,
     Settings,
     Valid
@@ -31,6 +33,7 @@ class Templates {
     public $title = 'title_templates_index';
     public static $layout_pages;
     public static $name_template;
+    public static $tpl_cfg;
     public static $select_page;
     public static $select_template;
     public static $layout_header;
@@ -53,6 +56,9 @@ class Templates {
         $this->selectTemplate();
         $this->loadData();
         $this->handler();
+        $this->saveConfig();
+        $this->deleteConfig();
+        $this->setConfig();
     }
 
     /**
@@ -71,6 +77,7 @@ class Templates {
     private function data(): void {
         self::$layout_pages = scandir(ROOT . '/view/' . Settings::template() . '/catalog/pages/');
         self::$name_template = scandir(ROOT . '/view/');
+        self::$tpl_cfg = scandir(ROOT . '/storage/tpl_cfg/');
     }
 
     /**
@@ -260,6 +267,70 @@ class Templates {
         $this->clear('footer-basket');
         $this->builder('layout_footer', 'footer');
         $this->builder('layout_footer_basket', 'footer-basket');
+    }
+
+    /**
+     * Save config
+     *
+     */
+    private function saveConfig(): void {
+        if (Valid::inPostJson('save_config') == 'ok') {
+
+            $data = Db::connect()
+                    ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->selectAssoc('*')
+                    ->where('group_id=', 'catalog')
+                    ->and('template_name=', Valid::inPostJson('template_name'))
+                    ->save();
+
+            if (Valid::inPostJson('config_input')) {
+                file_put_contents(ROOT . '/storage/tpl_cfg/' . Valid::inPostJson('config_input') . '.tcg', json_encode($data));
+            } else {
+                file_put_contents(ROOT . '/storage/tpl_cfg/' . SystemClock::nowFormatDate('Y-m-d_H-i-s') . '.tcg', json_encode($data));
+            }
+            Messages::alert('save', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Delete config
+     *
+     */
+    private function deleteConfig(): void {
+        if (Valid::inPostJson('delete_config') == 'ok') {
+            unlink(ROOT . '/storage/tpl_cfg/' . Valid::inPostJson('config_name') . '.tcg');
+            Messages::alert('delete', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Set config
+     *
+     */
+    private function setConfig(): void {
+        if (Valid::inPostJson('set_config') == 'ok') {
+
+            $data = json_decode(file(ROOT . '/storage/tpl_cfg/' . Valid::inPostJson('config_name') . '.tcg')[0], true);
+
+            Db::connect()
+                    ->delete(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->where('group_id=', 'catalog')
+                    ->and('template_name=', $data[0]['template_name'])
+                    ->save();
+
+            foreach ($data as $value) {
+                Db::connect()
+                        ->create(TABLE_TEMPLATE_CONSTRUCTOR)
+                        ->set('url', $value['url'])
+                        ->set('group_id', $value['group_id'])
+                        ->set('value', $value['value'])
+                        ->set('page', $value['page'])
+                        ->set('template_name', $value['template_name'])
+                        ->set('sort', $value['sort'])
+                        ->save();
+            }
+            Messages::alert('set', 'success', lang('action_completed_successfully'));
+        }
     }
 
 }

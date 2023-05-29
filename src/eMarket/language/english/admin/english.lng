@@ -243,7 +243,12 @@ add_category = Add category
 add_product = Add product
 
 ;TEMPLATES
-all_pages_template = All pages
+templates_all_pages = All pages
+templates_set = Set
+templates_delete = Delete
+templates_save = Save
+templates_name = Name
+templates_set_config_name = Set config name
 
 ;ORDERS
 orders_total = Total
