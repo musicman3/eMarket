@@ -50,7 +50,7 @@ require_once('modal/name.php')
                             foreach (Templates::$tpl_cfg as $file) {
                                 if ($file != '.' && $file != '..' && $file != '.gitkeep') {
                                     ?>
-                                    <option selected><?php echo basename($file, '.tcg') ?></option>
+                                    <option><?php echo basename($file, '.tcg') ?></option>
                                     <?php
                                 }
                             }
