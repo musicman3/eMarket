@@ -37,15 +37,15 @@ class FileUploadProduct {
     private function init(): void {
 
         $upload_dir = ROOT . '/uploads/temp/files/';
-        $valid_extensions = array('gif', 'png', 'jpeg', 'jpg');
+        $valid_extensions = ['gif', 'png', 'jpeg', 'jpg'];
 
         $Upload = new \FileUpload('uploadfile-product');
         $result = $Upload->handleUpload($upload_dir, $valid_extensions);
 
         if (!$result) {
-            echo json_encode(array('success' => false, 'msg3' => $Upload->getErrorMsg()));
+            echo json_encode(['success' => false, 'msg3' => $Upload->getErrorMsg()]);
         } else {
-            echo json_encode(array('success' => true, 'file' => $Upload->getFileName()));
+            echo json_encode(['success' => true, 'file' => $Upload->getFileName()]);
         }
     }
 
