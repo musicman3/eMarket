@@ -7,12 +7,13 @@
 use eMarket\Core\{
     Ecb,
     Pages,
-    Valid
+    Valid,
+    Routing
 };
 use eMarket\Core\Modules\Shipping\Free;
 
-$eMarketShippingFree = new \eMarket\Core\Modules\Shipping\Free();
-\eMarket\Core\Routing::jsModulesHandler();
+$eMarketShippingFree = new Free();
+Routing::jsModulesHandler();
 
 require_once('modal/index.php')
 ?>

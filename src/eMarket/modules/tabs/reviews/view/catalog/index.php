@@ -7,12 +7,13 @@
 use eMarket\Core\{
     Authorize,
     Clock\SystemClock,
-    Settings
+    Settings,
+    Routing
 };
 use eMarket\Core\Modules\Tabs\Reviews;
 
-$eMarketTabsReviews = new \eMarket\Core\Modules\Tabs\Reviews();
-\eMarket\Core\Routing::jsModulesHandler('tabs/reviews');
+$eMarketTabsReviews = new Reviews();
+Routing::jsModulesHandler('tabs/reviews');
 ?>
 <div id="panel_reviews" class="tab-pane fade show">
     <div id="reviews_block" class="item-text border border-top-0 rounded-bottom p-2">

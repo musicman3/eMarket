@@ -6,7 +6,7 @@
 
 use eMarket\Core\Modules\Providers\Bulksms;
 
-$eMarketHandlerBulksms = new \eMarket\Core\Modules\Providers\Bulksms();
+$eMarketHandlerBulksms = new Bulksms();
 \eMarket\Core\Routing::jsModulesHandler();
 ?>
 

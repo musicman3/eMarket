@@ -7,12 +7,13 @@
 use eMarket\Core\{
     Clock\SystemClock,
     Pages,
-    Valid
+    Valid,
+    Routing
 };
 use eMarket\Core\Modules\Tabs\Reviews;
 
-$eMarketTabsReviews = new \eMarket\Core\Modules\Tabs\Reviews();
-\eMarket\Core\Routing::jsModulesHandler();
+$eMarketTabsReviews = new Reviews();
+Routing::jsModulesHandler();
 
 require_once('modal/index.php')
 ?>

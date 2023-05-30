@@ -6,7 +6,7 @@
 
 use eMarket\Core\Modules\Providers\Smsc;
 
-$eMarketHandlerSmsc = new \eMarket\Core\Modules\Providers\Smsc();
+$eMarketHandlerSmsc = new Smsc();
 \eMarket\Core\Routing::jsModulesHandler();
 ?>
 

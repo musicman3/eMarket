@@ -7,12 +7,13 @@
 use eMarket\Core\{
     Clock\SystemClock,
     Pages,
-    Valid
+    Valid,
+    Routing
 };
 use eMarket\Core\Modules\Discount\Sale;
 
-$eMarketDiscountSale = new \eMarket\Core\Modules\Discount\Sale();
-\eMarket\Core\Routing::jsModulesHandler();
+$eMarketDiscountSale = new Sale();
+Routing::jsModulesHandler();
 
 require_once('modal/index.php')
 ?>
