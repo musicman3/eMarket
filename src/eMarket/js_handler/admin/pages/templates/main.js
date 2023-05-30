@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax, bootstrap, config_confirm, confirmation */
+/* global Ajax, bootstrap, config_confirm, confirmation, config_input */
 
 /**
  * Templates
@@ -57,6 +57,38 @@ class Templates {
      * 
      */
     saveConfig() {
+        config_input.oninput = function () {
+            let str = document.querySelector('#config_input').value;
+
+            let res = str.replace(' ', "_");
+            res = res.replace('{', "_");
+            res = res.replace('}', "_");
+            res = res.replace('$', "_");
+            res = res.replace('*', "_");
+            res = res.replace('#', "_");
+            res = res.replace('`', "_");
+            res = res.replace('[', "_");
+            res = res.replace(']', "_");
+            res = res.replace('/', "_");
+            res = res.replace('.', "_");
+            res = res.replace(',', "_");
+            res = res.replace(':', "_");
+            res = res.replace(';', "_");
+            res = res.replace('^', "_");
+            res = res.replace('%', "_");
+            res = res.replace('(', "_");
+            res = res.replace(')', "_");
+            res = res.replace('&', "_");
+            res = res.replace('@', "_");
+            res = res.replace('!', "_");
+            res = res.replace('=', "_");
+            res = res.replace('+', "_");
+            res = res.replace('?', "_");
+            res = res.replace('№', "_");
+
+            document.querySelector('#config_input').value = res;
+        };
+
         new bootstrap.Modal(document.querySelector('#config_name')).show();
         config_confirm.onclick = function () {
             bootstrap.Modal.getInstance(document.querySelector('#config_name')).hide();
