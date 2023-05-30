@@ -37,4 +37,5 @@ foreach (Routing::tlpc('content') as $path) {
 <div id="alert_block"><?php Messages::alert(); ?></div>
 <h1><?php echo lang('checkout_text') ?></h1>
 
-<?php require_once (ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/controller/catalog/index.php');
+<?php
+require_once (ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/view/catalog/index.php');

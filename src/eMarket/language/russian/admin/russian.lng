@@ -44,6 +44,7 @@ menu_dashboard = Мониторинг
 menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sales = Продажи
+menu_production = Производство
 menu_customers = Клиенты
 menu_marketing = Маркетинг
 menu_error_log = Лог ошибок

@@ -5,6 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\Modules\Providers\Smsc;
+
+$eMarketHandlerSmsc = new \eMarket\Core\Modules\Providers\Smsc();
+\eMarket\Core\Routing::jsModulesHandler();
 ?>
 
 <form class="was-validated" id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
@@ -17,7 +20,7 @@ use eMarket\Core\Modules\Providers\Smsc;
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="sender" id="sender" value="<?php echo Smsc::$data['sender'] ?>" required />
         </div>
-        
+
         <small class="form-text text-muted"><?php echo lang('modules_providers_smsc_admin_login') ?></small>
         <div class="input-group login">
             <span class="input-group-text bi-pencil"></span>

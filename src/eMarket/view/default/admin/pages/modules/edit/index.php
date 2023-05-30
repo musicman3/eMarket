@@ -43,7 +43,7 @@ use eMarket\Admin\ModulesEdit;
             </div>
             <div class="clearfix"></div></br>
 
-            <?php require_once (Routing::modules('controller') . '/index.php'); ?>
+            <?php require_once (Routing::modules('view') . '/index.php'); ?>
 
         </div>
 

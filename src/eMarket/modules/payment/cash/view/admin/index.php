@@ -5,6 +5,8 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\Modules\Payment\Cash;
+
+$eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
 ?>
 
 <form id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">

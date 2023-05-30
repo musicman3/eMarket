@@ -11,6 +11,9 @@ use eMarket\Core\{
 };
 use eMarket\Core\Modules\Discount\Sale;
 
+$eMarketDiscountSale = new \eMarket\Core\Modules\Discount\Sale();
+\eMarket\Core\Routing::jsModulesHandler();
+
 require_once('modal/index.php')
 ?>
 

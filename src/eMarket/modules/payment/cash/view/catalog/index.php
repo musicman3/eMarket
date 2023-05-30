@@ -8,6 +8,8 @@ use eMarket\Core\{
     Ecb,
     Valid
 };
+
+$eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
 ?>
 
 <div id="checkout" class="contentText">

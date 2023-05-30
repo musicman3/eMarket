@@ -114,7 +114,7 @@ if (Products::$products != FALSE) {
                     </div>
                     <?php
                     foreach (Products::$tabs_data as $tabs) {
-                        require_once(ROOT . '/modules/tabs/' . $tabs['chanel_module_name'] . '/controller/catalog/index.php');
+                        require_once(ROOT . '/modules/tabs/' . $tabs['chanel_module_name'] . '/view/catalog/index.php');
                     }
                     ?>
                 </div>

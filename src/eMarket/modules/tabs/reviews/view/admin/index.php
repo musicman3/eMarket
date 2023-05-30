@@ -11,6 +11,9 @@ use eMarket\Core\{
 };
 use eMarket\Core\Modules\Tabs\Reviews;
 
+$eMarketTabsReviews = new \eMarket\Core\Modules\Tabs\Reviews();
+\eMarket\Core\Routing::jsModulesHandler();
+
 require_once('modal/index.php')
 ?>
 

@@ -5,6 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\Modules\Providers\Bulksms;
+
+$eMarketHandlerBulksms = new \eMarket\Core\Modules\Providers\Bulksms();
+\eMarket\Core\Routing::jsModulesHandler();
 ?>
 
 <form class="was-validated" id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">
@@ -17,7 +20,7 @@ use eMarket\Core\Modules\Providers\Bulksms;
             <span class="input-group-text bi-pencil"></span>
             <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="sender" id="sender" value="<?php echo Bulksms::$data['sender'] ?>" required />
         </div>
-        
+
         <small class="form-text text-muted"><?php echo lang('modules_providers_bulksms_admin_login') ?></small>
         <div class="input-group login">
             <span class="input-group-text bi-pencil"></span>

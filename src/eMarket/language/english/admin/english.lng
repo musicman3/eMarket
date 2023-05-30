@@ -44,6 +44,7 @@ menu_dashboard = Dashboard
 menu_catalog = Catalog
 menu_market = Market
 menu_sales = Sales
+menu_production = Production
 menu_customers = Customers
 menu_marketing = Marketing
 menu_error_log = Error log

@@ -11,6 +11,9 @@ use eMarket\Core\{
 };
 use eMarket\Core\Modules\Shipping\Free;
 
+$eMarketShippingFree = new \eMarket\Core\Modules\Shipping\Free();
+\eMarket\Core\Routing::jsModulesHandler();
+
 require_once('modal/index.php')
 ?>
 

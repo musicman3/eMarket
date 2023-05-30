@@ -49,7 +49,7 @@ class Customers {
      * 
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_customers][] = ['?route=customers', 'bi-people-fill', lang('menu_customers'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=customers', 'bi-people-fill', lang('menu_customers'), '', 'false'];
     }
 
     /**
