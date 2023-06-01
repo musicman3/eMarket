@@ -92,12 +92,21 @@ class HeaderMenu {
      *
      */
     private function levelOne(): void {
-        self::$level[self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
-        self::$level[self::$menu_settings] = ['#', lang('menu_settings'), 'true', 'bi-sliders2-vertical'];
-        self::$level[self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
-        self::$level[self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
-        //self::$level[self::$menu_production] = ['#', lang('menu_production'), 'true', 'bi-nut'];
-        self::$level[self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
+        self::$level['0'][self::$menu_market] = ['#', lang('menu_market'), 'true', 'bi-cart4'];
+        self::$level['1'][self::$menu_settings] = ['#', lang('menu_settings'), 'true', 'bi-sliders2-vertical'];
+        self::$level['2'][self::$menu_sales] = ['#', lang('menu_sales'), 'true', 'bi-calculator'];
+        self::$level['3'][self::$menu_marketing] = ['#', lang('menu_marketing'), 'true', 'bi-graph-up'];
+        //self::$level['0.01'][self::$menu_production] = ['#', lang('menu_production'), 'true', 'bi-nut'];
+        self::$level['4'][self::$menu_tools] = ['#', lang('menu_tools'), 'true', 'bi-tools'];
+
+        $sort_level = [];
+        ksort(self::$level);
+
+        foreach (self::$level as $val) {
+            $sort_level[key($val)] = $val[key($val)];
+        }
+
+        self::$level = $sort_level;
     }
 
     /**
