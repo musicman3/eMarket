@@ -152,6 +152,7 @@ shipping_modules = Shipping
 discount_modules = Discount
 providers_modules = Providers
 tabs_modules = Product tabs
+extra_modules = Extra
 cart_modules = Cart
 other_modules = Other
 installed_modules = Installed modules
