@@ -56,14 +56,14 @@ Wiki page: https://github.com/musicman3/eMarket/wiki
 ---
 ### Catalog Demo
 
-URL: http://demo.emarketforum.com  
+URL: http://demo.emarkets.su  
 Login: user@mail.loc  
 Password: 1234567
 
 ---
 ### Admin Panel Demo
 
-URL: http://demo.emarketforum.com/controller/admin/  
+URL: http://demo.emarkets.su/controller/admin/  
 Login: demo@mail.loc  
 Password: 1234567
 
