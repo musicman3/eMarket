@@ -45,6 +45,7 @@ class Dashboard {
      *
      */
     function __construct() {
+        Valid::$demo_mode = FALSE;
         $this->cardOrdersData();
         $this->jsonData();
         $this->customersData();
@@ -251,5 +252,4 @@ class Dashboard {
             'cardNewOldOrders' => $this->repeat_orders
         ]);
     }
-
 }
