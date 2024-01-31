@@ -73,8 +73,9 @@ class Settings {
      */
     public static function path(): string {
 
+        $path = pathinfo(Valid::inSERVER('REQUEST_URI'));
         foreach (self::$path as $key => $value) {
-            if (strrpos(Valid::inSERVER('REQUEST_URI'), $key)) {
+            if (strrpos($path['dirname'], $key)) {
                 return $value;
             }
         }
@@ -389,5 +390,4 @@ class Settings {
         }
         return $ipaddress;
     }
-
 }
