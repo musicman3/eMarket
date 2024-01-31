@@ -338,6 +338,13 @@ class Images {
 
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
+
+                $new_name = $prefix . Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
+
+                if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
+                    copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $new_name);
+                }
+
                 foreach ($resize_param as $key => $value) {
 
                     $width = $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . basename($file))->getWidth();
@@ -348,11 +355,7 @@ class Images {
 
                     if ($width >= $quality_width OR $height >= $quality_height) {
 
-                        $new_name = $prefix . Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
 
-                        if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
-                            copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $new_name);
-                        }
                         $IMAGE->fromFile(ROOT . '/uploads/temp/originals/' . $new_name)
                                 ->autoOrient()
                                 ->bestFit((int) $value[0], (int) $value[1]);
@@ -435,5 +438,4 @@ class Images {
         array_push($resize_max, [$resize_param[$count_image_max - 1][0], $resize_param[$count_image_max - 1][1]]);
         return $resize_max[0];
     }
-
 }
