@@ -122,7 +122,7 @@ class Update extends JsonRpc {
     private function eMarketData(): mixed {
 
         $get_string = self::encodeGetData(Cryptography::getToken(32), 'UpdateChecker');
-        $response = $this->curlFromGet('https://data.emarketforum.com' . $get_string);
+        $response = $this->curlFromGet('https://data.emarkets.su' . $get_string);
 
         if (empty($response)) {
             return false;
@@ -140,5 +140,4 @@ class Update extends JsonRpc {
 
         return false;
     }
-
 }
