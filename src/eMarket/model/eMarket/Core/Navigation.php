@@ -32,7 +32,7 @@ class Navigation {
      * @param int $transfer Transfer
      * @return array Start & finish pages
      */
-    public static function data(int $count_lines, int $lines_on_page, int $transfer = null): array {
+    public static function data(int $count_lines, int $lines_on_page, ?int $transfer = null): array {
 
         $start = 0;
         $finish = $lines_on_page;
@@ -75,5 +75,4 @@ class Navigation {
 
         return [$start, $finish];
     }
-
 }

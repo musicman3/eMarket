@@ -32,7 +32,7 @@ final class SystemClock implements ClockInterface {
      *
      * @param string $timezone DateTimeZone argument ($timezone)
      */
-    public function __construct(string $timezone = null) {
+    public function __construct(?string $timezone = null) {
 
         if ($timezone) {
             $this->timezone = new DateTimeZone($timezone);
@@ -193,5 +193,4 @@ final class SystemClock implements ClockInterface {
         $clock = new SystemClock();
         return $clock->get($date)->format('U');
     }
-
 }
