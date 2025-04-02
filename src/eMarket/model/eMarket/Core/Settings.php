@@ -73,6 +73,10 @@ class Settings {
      */
     public static function path(): string {
 
+        if (!file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
+            return 'install';
+        }
+
         $path = pathinfo(Valid::inSERVER('REQUEST_URI'));
         foreach (self::$path as $key => $value) {
             if (strrpos($path['dirname'], $key)) {
