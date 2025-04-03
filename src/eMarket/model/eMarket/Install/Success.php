@@ -178,6 +178,8 @@ class Success {
                 ->update(TABLE_BASIC_SETTINGS)
                 ->set('primary_language', self::$lng)
                 ->save();
+        
+        $_SESSION = [];
     }
 
 }
