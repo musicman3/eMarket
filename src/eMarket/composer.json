@@ -11,7 +11,7 @@
         "classmap": ["model/library/php/packages/lpology/"]
     },
     "require": {
-        "claviska/simpleimage": "4.0.6",
+        "claviska/simpleimage": "4.2.1",
         "phpmailer/phpmailer": "6.9.1",
         "monolog/monolog": "3.5.0",
         "mpdf/mpdf": "8.2.1",
