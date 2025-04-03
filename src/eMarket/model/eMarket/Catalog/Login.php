@@ -57,7 +57,7 @@ class Login {
 
             if ($id_actvation != NULL) {
 
-                $id_actvation = Db::connect()
+                $account_date = Db::connect()
                         ->read(TABLE_CUSTOMERS)
                         ->selectValue('{{UNIX_TIMESTAMP->date_account_created}}')
                         ->where('id=', $id_actvation)
