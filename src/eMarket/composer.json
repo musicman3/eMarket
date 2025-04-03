@@ -12,7 +12,7 @@
     },
     "require": {
         "claviska/simpleimage": "4.2.1",
-        "phpmailer/phpmailer": "6.9.1",
+        "phpmailer/phpmailer": "6.9.3",
         "monolog/monolog": "3.9.0",
         "mpdf/mpdf": "8.2.5",
         "symfony/cache": "7.2.5",

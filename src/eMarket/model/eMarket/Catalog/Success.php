@@ -367,7 +367,7 @@ class Success {
                         ->save()[0];
 
         $email_subject = sprintf(lang('email_order_success_subject'), $customer_order_data['id'], self::$customer_orders_status_history);
-        $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=success', HTTP_SERVER . '?route=success');
+        $email_message = sprintf(lang('email_order_success_message'), $customer_order_data['id'], mb_strtolower(self::$customer_orders_status_history), HTTP_SERVER . '?route=orders', HTTP_SERVER . '?route=orders');
         $providers_message = sprintf(lang('providers_order_success'), $customer_order_data['id'], self::$customer_orders_status_history);
         Messages::sendMail(self::$customer_email, $email_subject, $email_message);
         Messages::sendProviders(json_decode($customer_order_data['customer_data'], true)['telephone'], $providers_message);
