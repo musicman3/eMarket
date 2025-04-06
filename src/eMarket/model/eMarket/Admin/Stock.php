@@ -98,6 +98,8 @@ class Stock {
     private function imgUploadCategories(): void {
         self::$resize_param = [];
         array_push(self::$resize_param, ['125', '94']); // width, height
+        array_push(self::$resize_param, ['200', '150']);
+        array_push(self::$resize_param, ['325', '244']);
     }
 
     /**
@@ -465,6 +467,22 @@ class Stock {
             return $class2;
         }
         return '';
+    }
+
+    /**
+     * Image for categories button
+     *
+     * @param string $button_1 bootstrap button
+     * @param string $button_2 bootstrap button
+     * @return string
+     */
+    public static function catButtonImg(string $button_1, string $button_2): string {
+
+        if (self::$arr_merge['cat'][self::$start]['logo_general'] == null) {
+            return $button_1;
+        }
+
+        return $button_2;
     }
 
     /**

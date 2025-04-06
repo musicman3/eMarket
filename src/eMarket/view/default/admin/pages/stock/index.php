@@ -137,7 +137,7 @@ require_once('modal/add_values_attribute.php');
                                                 <form>
                                                     <div>
                                                         <input hidden name="route" value="<?php echo Valid::inGET('route') ?>">
-                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn bi-folder2-open" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"></button>
+                                                        <button name="parent_down" value="<?php echo Stock::$arr_merge['cat'][Stock::$start]['id'] ?>" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn <?php echo Stock::catButtonImg('bi-folder2-open', 'bi-folder-check') ?>" title="<?php echo Stock::$arr_merge['cat'][Stock::$start]['name'] ?>" action="index.php" formmethod="get"></button>
                                                     </div>
                                                 </form>
 
