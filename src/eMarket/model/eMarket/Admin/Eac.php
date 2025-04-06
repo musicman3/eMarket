@@ -229,6 +229,7 @@ final class Eac {
                         ->set('status', 1)
                         ->set('logo', json_encode([]))
                         ->set('attributes', $attributes)
+                        ->set('description', Valid::inPOST('description_categories_stock_' . $x))
                         ->save();
             }
 
@@ -250,6 +251,7 @@ final class Eac {
                         ->set('name', Valid::inPOST('name_categories_stock_' . $x))
                         ->set('last_modified', SystemClock::nowSqlDateTime())
                         ->set('attributes', Valid::inPOST('attributes'))
+                        ->set('description', Valid::inPOST('description_categories_stock_' . $x))
                         ->where('id=', Valid::inPOST('edit'))
                         ->and('language=', lang('#lang_all')[$x])
                         ->save();
@@ -781,5 +783,4 @@ final class Eac {
             Messages::alert('edit_product', 'success', lang('action_completed_successfully'));
         }
     }
-
 }

@@ -11,7 +11,6 @@ Categories::listingData();
 
 <?php if (Categories::$listing_data == true) { ?>
     <div id="categories_listing" class="contentText">
-        <h3><?php echo lang('categories_name') ?></h3>
         <div class="row">
             <?php foreach (Categories::$listing_data as $value) { ?>
                 <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
@@ -25,4 +24,5 @@ Categories::listingData();
             <?php } ?>  
         </div>
     </div>
-<?php }
+    <?php
+}

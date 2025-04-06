@@ -35,6 +35,7 @@ class Listing {
     public static $sort_name;
     public static $sort_flag;
     public static $categories_name;
+    public static $categories_description;
     public static $product_edit;
     public static $sql_data;
 
@@ -166,6 +167,7 @@ class Listing {
 
         if (Valid::inGET('category_id')) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
+            self::$categories_description = Products::categoryData(Valid::inGET('category_id'))['description'];
         }
     }
 
@@ -194,5 +196,4 @@ class Listing {
             }
         }
     }
-
 }

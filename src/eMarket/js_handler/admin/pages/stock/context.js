@@ -86,6 +86,7 @@ class ContextMenu {
                             document.querySelector('#edit').value = '';
                             document.querySelector('#add').value = 'ok';
                             document.querySelectorAll('form').forEach(e => e.reset());
+                            document.querySelector('.wysiwyg').value = '';
                             new bootstrap.Modal(document.querySelector('#index')).show();
                         },
                         disabled: (new URL(document.location)).searchParams.get('search') !== null
@@ -154,8 +155,14 @@ class ContextMenu {
                             } else {
                                 var modal_id = modal_edit.split('category_')[1];
 
-                                for (var x = 0; x < json_data_category['name'].length; x++) {
+                                for (var x = 0; x < json_data_category.name.length; x++) {
                                     document.querySelector('#name_categories_stock_' + x).value = json_data_category.name[x][modal_id];
+  
+                                    var description_cat = '';
+                                    if (json_data_category.description[x][modal_id] !== null){
+                                        description_cat = json_data_category.description[x][modal_id];
+                                    }
+                                    tinymce.get('description_categories_stock_' + x).setContent(description_cat);
                                 }
                                 document.querySelector('#attributes').value = json_data_category.attributes;
 

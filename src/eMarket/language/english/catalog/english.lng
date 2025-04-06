@@ -128,7 +128,6 @@ product_not_found = Product not found
 product_not_found_message = Sorry. Product not found.
 
 ;LISTING
-listing_no = There are no products in this category.
 listing_no_search = Products not found
 listing_search = Search results
 listing_sort_by_default = By default

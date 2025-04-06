@@ -336,5 +336,4 @@ class Routing {
             return current($constructor_data);
         }
     }
-
 }

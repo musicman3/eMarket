@@ -13,7 +13,7 @@ use eMarket\Admin\Stock;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-light py-2 px-3">
                 <h5 class="modal-title"><?php echo Settings::titlePageGenerator() ?></h5>
@@ -52,6 +52,10 @@ use eMarket\Admin\Stock;
                                             <div class="input-group input-group-sm">
                                                 <span class="input-group-text bi-file-text"></span>
                                                 <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
+                                            </div>
+                                            <div class="mb-3">
+                                                <div><small class="form-text text-muted"><?php echo lang('stock_product_description') ?></small></div>
+                                                <textarea rows="3" class="input-sm form-control wysiwyg" name="description_categories_stock_<?php echo $x ?>" id="description_categories_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                         </div>
                                     </div>

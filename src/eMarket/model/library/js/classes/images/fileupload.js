@@ -31,7 +31,7 @@ class Fileupload {
      */
     static process(resize_max, lang) {
         'use strict';
-        var url = '/uploads/temp/';
+        var url = '/uploads/temp/?route=uploads';
 
         var uploader = new ss.SimpleUpload({
             button: 'fileupload',

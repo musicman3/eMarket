@@ -128,7 +128,6 @@ product_not_found = Товар не найден
 product_not_found_message = Извините. Товар не найден.
 
 ;LISTING
-listing_no = В этой категории нет товаров
 listing_no_search = Подходящих товаров не найдено
 listing_search = Результаты поиска
 listing_sort_by_default = По умолчанию

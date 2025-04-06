@@ -48,6 +48,7 @@ CREATE TABLE emkt_categories (
 	status int,
         logo_general text(128),
         attributes text,
+        description text,
 PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_countries;
@@ -10438,8 +10439,8 @@ INSERT INTO emkt_template_constructor (url, group_id, value, page, template_name
 /* SLIDESHOW PREF */
 INSERT INTO emkt_slideshow_pref (id, show_interval, mouse_stop, autostart, cicles, indicators, navigation) VALUES ('1', '2000', '0', '1', '0', '0', '0');
 /* SAMPLES */
-INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general, attributes) VALUES (2, 'Notebooks', 'english', 0, '[]', '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, '[]', '[]');
-INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general, attributes) VALUES (2, 'Ноутбуки', 'russian', 0, '[]', '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, '[]', '[]');
+INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general, attributes, description) VALUES (2, 'Notebooks', 'english', 0, '[]', '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, '[]', '[]', '');
+INSERT INTO emkt_categories (id, name, language, parent_id, logo, date_added, last_modified, sort_category, status, logo_general, attributes, description) VALUES (2, 'Ноутбуки', 'russian', 0, '[]', '2019-10-08 23:22:18', '2019-10-09 00:04:05', 2, 1, '[]', '[]', '');
 
 INSERT INTO emkt_manufacturers (id, name, language, logo, logo_general, site) VALUES (1, 'HP', 'english', '["1570567320_HP_New_Logo_2D-svg.png"]', '1570567320_HP_New_Logo_2D-svg.png', 'http://www.hp.com');
 INSERT INTO emkt_manufacturers (id, name, language, logo, logo_general, site) VALUES (1, 'HP', 'russian', '["1570567320_HP_New_Logo_2D-svg.png"]', '1570567320_HP_New_Logo_2D-svg.png', 'http://www.hp.com');
