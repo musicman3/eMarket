@@ -54,7 +54,7 @@ use eMarket\Admin\Stock;
                                                 <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_categories_stock_<?php echo $x ?>" id="name_categories_stock_<?php echo $x ?>" required />
                                             </div>
                                             <div class="mb-3">
-                                                <div><small class="form-text text-muted"><?php echo lang('stock_product_description') ?></small></div>
+                                                <div><small class="form-text text-muted"><?php echo lang('stock_category_description') ?></small></div>
                                                 <textarea rows="3" class="input-sm form-control wysiwyg" name="description_categories_stock_<?php echo $x ?>" id="description_categories_stock_<?php echo $x ?>" /></textarea>
                                             </div>
                                         </div>

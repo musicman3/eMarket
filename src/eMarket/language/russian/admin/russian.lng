@@ -292,6 +292,7 @@ stock_product_specification = Характеристики
 stock_product_images = Изображения
 stock_product_name = Название товара
 stock_product_description = Описание товара
+stock_category_description = Описание категории
 stock_product_keywords = Keywords для поисковой оптимизации
 stock_product_tags = Tags для поисковой оптимизации
 stock_product_price = Цена товара
