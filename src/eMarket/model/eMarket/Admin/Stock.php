@@ -310,6 +310,8 @@ class Stock {
         self::$json_data_category = json_encode(json_encode([]));
         $name = [];
         $description = [];
+        $keyword = [];
+        $tags = [];
         for ($i = self::$start; $i < self::$finish; $i++) {
             if (isset(self::$lines_cat[$i]['id']) == TRUE) {
 
@@ -319,6 +321,8 @@ class Stock {
                     if ($sql_modal_cat['id'] == $modal_id) {
                         $name[array_search($sql_modal_cat['language'], lang('#lang_all'))][$modal_id] = $sql_modal_cat['name'];
                         $description[array_search($sql_modal_cat['language'], lang('#lang_all'))][$modal_id] = $sql_modal_cat['description'];
+                        $keyword[array_search($sql_modal_cat['language'], lang('#lang_all'))][$modal_id] = $sql_modal_cat['keyword'];
+                        $tags[array_search($sql_modal_cat['language'], lang('#lang_all'))][$modal_id] = $sql_modal_cat['tags'];
                     }
                     if ($sql_modal_cat['language'] == lang('#lang_all')[0] && $sql_modal_cat['id'] == $modal_id) {
                         $logo[$modal_id] = json_decode($sql_modal_cat['logo'], true);
@@ -334,7 +338,9 @@ class Stock {
                     'logo' => $logo,
                     'logo_general' => $logo_general,
                     'attributes' => $attributes,
-                    'description' => $description
+                    'description' => $description,
+                    'keyword' => $keyword,
+                    'tags' => $tags
                 ]);
             }
         }

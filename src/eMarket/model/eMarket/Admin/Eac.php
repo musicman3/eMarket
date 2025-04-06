@@ -230,6 +230,8 @@ final class Eac {
                         ->set('logo', json_encode([]))
                         ->set('attributes', $attributes)
                         ->set('description', Valid::inPOST('description_categories_stock_' . $x))
+                        ->set('keyword', Valid::inPOST('keyword_categories_stock_' . $x))
+                        ->set('tags', Valid::inPOST('tags_categories_stock_' . $x))
                         ->save();
             }
 
@@ -252,6 +254,8 @@ final class Eac {
                         ->set('last_modified', SystemClock::nowSqlDateTime())
                         ->set('attributes', Valid::inPOST('attributes'))
                         ->set('description', Valid::inPOST('description_categories_stock_' . $x))
+                        ->set('keyword', Valid::inPOST('keyword_categories_stock_' . $x))
+                        ->set('tags', Valid::inPOST('tags_categories_stock_' . $x))
                         ->where('id=', Valid::inPOST('edit'))
                         ->and('language=', lang('#lang_all')[$x])
                         ->save();

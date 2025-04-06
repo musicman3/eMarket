@@ -163,6 +163,9 @@ class ContextMenu {
                                         description_cat = json_data_category.description[x][modal_id];
                                     }
                                     tinymce.get('description_categories_stock_' + x).setContent(description_cat);
+                                    
+                                    document.querySelector('#keyword_categories_stock_' + x).value = json_data_category.keyword[x][modal_id];
+                                    document.querySelector('#tags_categories_stock_' + x).value = json_data_category.tags[x][modal_id];
                                 }
                                 document.querySelector('#attributes').value = json_data_category.attributes;
 

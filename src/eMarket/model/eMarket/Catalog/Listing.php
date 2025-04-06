@@ -36,6 +36,8 @@ class Listing {
     public static $sort_flag;
     public static $categories_name;
     public static $categories_description;
+    public static $categories_keyword;
+    public static $categories_tags;
     public static $categories_logo;
     public static $product_edit;
     public static $sql_data;
@@ -56,13 +58,17 @@ class Listing {
      */
     private function title(): void {
         $title = Db::connect()
-                ->read(TABLE_CATEGORIES)
-                ->selectValue('name')
-                ->where('language=', lang('#lang_all')[0])
-                ->and('id=', Valid::inGET('category_id'))
-                ->save();
+                        ->read(TABLE_CATEGORIES)
+                        ->selectAssoc('*')
+                        ->where('language=', lang('#lang_all')[0])
+                        ->and('id=', Valid::inGET('category_id'))
+                        ->save()[0];
 
-        $this->title = lang('title_listing_index') . ': ' . $title;
+        if ($title['tags'] != null && $title['tags'] != '') {
+            $this->title = lang('title_listing_index') . ': ' . $title['tags'];
+        } else {
+            $this->title = lang('title_listing_index') . ': ' . $title['name'];
+        }
     }
 
     /**
@@ -169,6 +175,8 @@ class Listing {
         if (Valid::inGET('category_id')) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
             self::$categories_description = Products::categoryData(Valid::inGET('category_id'))['description'];
+            self::$categories_keyword = Products::categoryData(Valid::inGET('category_id'))['keyword'];
+            self::$categories_tags = Products::categoryData(Valid::inGET('category_id'))['tags'];
             self::$categories_logo = Products::categoryData(Valid::inGET('category_id'))['logo_general'];
         }
     }

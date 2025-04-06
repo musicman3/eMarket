@@ -57,6 +57,22 @@ use eMarket\Admin\Stock;
                                                 <div><small class="form-text text-muted"><?php echo lang('stock_category_description') ?></small></div>
                                                 <textarea rows="3" class="input-sm form-control wysiwyg" name="description_categories_stock_<?php echo $x ?>" id="description_categories_stock_<?php echo $x ?>" /></textarea>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div><small class="form-text text-muted"><?php echo lang('stock_category_keywords') ?></small></div>
+                                                    <div class="input-group input-group-sm">
+                                                        <span class="input-group-text bi-file-text"></span>
+                                                        <input class="form-control" placeholder="Keywords" type="text" name="keyword_categories_stock_<?php echo $x ?>" id="keyword_categories_stock_<?php echo $x ?>" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div><small class="form-text text-muted"><?php echo lang('stock_category_tags') ?></small></div>
+                                                    <div class="input-group input-group-sm">
+                                                        <span class="input-group-text bi-file-text"></span>
+                                                        <input class="form-control" placeholder="Tags" type="text" name="tags_categories_stock_<?php echo $x ?>" id="tags_categories_stock_<?php echo $x ?>" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

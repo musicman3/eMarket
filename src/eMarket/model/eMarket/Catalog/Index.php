@@ -14,6 +14,9 @@ use eMarket\Core\{
     Valid,
     Settings as SettingsCore
 };
+use eMarket\Catalog\{
+    Listing
+};
 
 /**
  * Index
@@ -52,7 +55,15 @@ class Index {
             }
         }
 
+        if (basename($route) == 'listing' && SettingsCore::path() == 'catalog') {
+            $catalog_keyword = Listing::$categories_keyword;
+            if ($catalog_keyword != NULL && $catalog_keyword != '') {
+                $keywords = $catalog_keyword;
+            } else {
+                $keywords = '';
+            }
+        }
+
         return $keywords;
     }
-
 }
