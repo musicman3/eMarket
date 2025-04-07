@@ -20,8 +20,6 @@ use eMarket\Admin\Stock;
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <?php require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php'); ?>
-
             <form id="form_add_product" class="was-validated" name="form_add_product" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_product')">
                 <div class="modal-body">
                     <input type="hidden" name="parent_id" value="<?php echo Stock::$parent_id ?>" />
@@ -55,10 +53,7 @@ use eMarket\Admin\Stock;
                                             <div><small class="form-text text-muted"><?php echo lang('stock_product_name') ?></small></div>
                                             <div class="input-group input-group-sm">
                                                 <span class="input-group-text bi-file-text"></span>
-                                                <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" required />&nbsp;&nbsp;
-                                                <div>
-                                                    <button class="btn btn-sm btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <?php echo lang('chatgpt_open_button') ?></button>
-                                                </div>
+                                                <input class="form-control" placeholder="<?php echo lang('name') ?>" type="text" name="name_product_stock_<?php echo $x ?>" id="name_product_stock_<?php echo $x ?>" required />
                                             </div>
                                         </div>
                                         <div class="mb-3">

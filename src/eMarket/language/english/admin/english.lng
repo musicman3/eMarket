@@ -404,7 +404,7 @@ dashboard_sat = Sat
 
 ;CHATGPT
 chatgpt_name = ChatGPT
-chatgpt_open_button = Ask ChatGPT
+chatgpt_open_button = ChatGPT
 chatgpt_send_button = Send
 chatgpt_user_placeholder = Ask ChatGPT...
 chatgpt_response = Reply:

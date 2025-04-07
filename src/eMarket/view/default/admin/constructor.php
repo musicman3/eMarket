@@ -61,6 +61,7 @@ use eMarket\Core\{
         <div id="user_login" class='hidden' data-login='<?php echo Authorize::encryptedLogin() ?>'></div>
 
         <?php
+        require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php');
         foreach (Routing::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
