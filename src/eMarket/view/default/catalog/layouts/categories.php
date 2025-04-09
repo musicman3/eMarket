@@ -5,7 +5,9 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Catalog\Categories;
+use eMarket\Core\Products;
 use eMarket\Core\Settings;
+use eMarket\Core\Valid;
 ?>
 
 <div id="layouts-categories" class="card mb-2">
@@ -15,7 +17,8 @@ use eMarket\Core\Settings;
 <?php if (Categories::$categories_and_breadcrumb != 0) { ?>
     <div id="data_breadcrumb" class="hidden"
          data-breadcrumbid='<?php echo json_encode(array_reverse(Categories::$categories_and_breadcrumb)) ?>'
+         data-parentid='<?php echo json_encode(Products::productData(Valid::inGET('id'))['parent_id']) ?>'
          data-breadcrumbname='<?php echo json_encode(Settings::breadcrumbName(array_reverse(Categories::$categories_and_breadcrumb))) ?>'>
     </div>
-<?php
+    <?php
 }
