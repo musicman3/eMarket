@@ -36,6 +36,7 @@ class Routing {
 
     public static $js_handler = FALSE;
     public static $js_modules_handler = FALSE;
+    public static $page_not_found = FALSE;
 
     /**
      * Constructor
@@ -52,6 +53,10 @@ class Routing {
      * @return string (output path)
      */
     public static function pageProcessor(string $path): string {
+        
+        if (self::$page_not_found != false){
+            return 'page_not_found';
+        }
 
         $output = self::pageNotFound($path); // "Page not found" check
         return $output;

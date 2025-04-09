@@ -69,9 +69,9 @@ class Products {
      *
      * @param string|int $id Product id
      * @param string $language Language
-     * @return array
+     * @return array|bool
      */
-    public static function productData(string|int $id, ?string $language = null): array {
+    public static function productData(string|int $id, ?string $language = null): array|bool {
 
         if ($language == null) {
             $language = lang('#lang_all')[0];
@@ -88,10 +88,14 @@ class Products {
                             ->where('id=', $id)
                             ->and('language=', $language)
                             ->and('status=', 1)
-                            ->save()[0];
+                            ->save();
+            
+            if (!isset($Cache->data[0])){
+                return false;
+            }
 
-            self::$product_data = $Cache->data;
-            return $Cache->save($Cache->data);
+            self::$product_data = $Cache->data[0];
+            return $Cache->save($Cache->data[0]);
         }
 
         self::$product_data = $Cache->cache_item->get();
@@ -103,9 +107,9 @@ class Products {
      *
      * @param string|int $id Category id
      * @param string $language Language
-     * @return array
+     * @return array|bool
      */
-    public static function categoryData(string|int $id, ?string $language = null): array {
+    public static function categoryData(string|int $id, ?string $language = null): array|bool {
 
         if (count(self::$category_data) == 0) {
             if ($language == null) {
@@ -117,12 +121,16 @@ class Products {
                             ->selectAssoc('*')
                             ->where('language=', $language)
                             ->and('id=', $id)
-                            ->save()[0];
+                            ->save();
+            
+            if (!isset(self::$category_data[0])){
+                return false;
+            }
 
-            return self::$category_data;
+            return self::$category_data[0];
         }
 
-        return self::$category_data;
+        return self::$category_data[0];
     }
 
     /**

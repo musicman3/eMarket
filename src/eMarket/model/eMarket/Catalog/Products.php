@@ -47,15 +47,18 @@ class Products {
      *
      */
     function __construct() {
-        $this->title();
         $this->data();
-        $this->dimensions();
-        $this->manufacturer();
-        $this->vendorCode();
-        $this->weight();
-        $this->images();
-        $this->attributes();
-        $this->tabs();
+
+        if (self::$products != false) {
+            $this->title();
+            $this->dimensions();
+            $this->manufacturer();
+            $this->vendorCode();
+            $this->weight();
+            $this->images();
+            $this->attributes();
+            $this->tabs();
+        }
     }
 
     /**
@@ -63,7 +66,7 @@ class Products {
      *
      */
     private function title(): void {
-        $product_data = ProductsCore::productData(Valid::inGET('id'));
+        $product_data = self::$products;
         if ($product_data['tags'] != NULL && $product_data['tags'] != '') {
             $title = $product_data['tags'];
         } else {
@@ -195,5 +198,4 @@ class Products {
         }
         self::$tabs_data = $interface_data;
     }
-
 }

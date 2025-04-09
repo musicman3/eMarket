@@ -13,7 +13,8 @@ use eMarket\Core\{
     Ecb,
     Pages,
     Products,
-    Valid
+    Valid,
+    Routing
 };
 use Cruder\Db;
 
@@ -173,12 +174,15 @@ class Listing {
 
         Pages::data(self::$sql_data);
 
-        if (Valid::inGET('category_id')) {
+        if (Valid::inGET('category_id') && Products::categoryData(Valid::inGET('category_id')) != false) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
             self::$categories_description = Products::categoryData(Valid::inGET('category_id'))['description'];
             self::$categories_keyword = Products::categoryData(Valid::inGET('category_id'))['keyword'];
             self::$categories_tags = Products::categoryData(Valid::inGET('category_id'))['tags'];
             self::$categories_logo = Products::categoryData(Valid::inGET('category_id'))['logo_general'];
+        }
+        if (Products::categoryData(Valid::inGET('category_id')) == false){
+            Routing::$page_not_found = true;
         }
     }
 
