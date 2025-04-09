@@ -17,7 +17,9 @@ class ProductsListing {
      *
      */
     constructor() {
-        ProductsListing.init();
+        if (document.querySelector('#nav_data') !== null) {
+            ProductsListing.init();
+        }
     }
     /**
      * Init
