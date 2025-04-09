@@ -15,13 +15,18 @@ use eMarket\Catalog\Products;
 <link rel="stylesheet" type="text/css" href="/ext/baguettebox/baguetteBox.min.css" />
 <script type="text/javascript" src="/ext/baguettebox/baguetteBox.min.js"></script>
 
-<script type="text/javascript">
-    new Ajax();
-    document.querySelector('#selected_attributes').value = '<?php echo Products::$products['attributes'] ?>';
-    new Products();
-    new AttributesProcessing();
-    AttributesProcessing.add('catalog', <?php echo json_encode(Products::$attributes_data) ?>, '<?php echo lang('#lang_all')[0] ?>');
+<?php if (Products::$products != false) { ?>
 
-    // Litebox
-    baguetteBox.run('.gallery');
-</script>
+    <script type="text/javascript">
+        new Ajax();
+        document.querySelector('#selected_attributes').value = '<?php echo Products::$products['attributes'] ?>';
+        new Products();
+        new AttributesProcessing();
+        AttributesProcessing.add('catalog', <?php echo json_encode(Products::$attributes_data) ?>, '<?php echo lang('#lang_all')[0] ?>');
+
+        // Litebox
+        baguetteBox.run('.gallery');
+    </script>
+
+<?php
+}

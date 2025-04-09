@@ -58,6 +58,8 @@ class Products {
             $this->images();
             $this->attributes();
             $this->tabs();
+        }else{
+            $this->title = lang('title_products_index') . ': ' . lang('product_not_found');
         }
     }
 

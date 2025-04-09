@@ -17,7 +17,7 @@ if (Valid::inGET('search')) {
 <script type="text/javascript" language="javascript">
     document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>');
 
-<?php if (Valid::inGET('route') == 'products') { ?>
+<?php if (Valid::inGET('route') == 'products' && Products::$product_data != false) { ?>
         function breadcrumb() {
             var breadcrumbid = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);
             var breadcrumbname = JSON.parse(document.querySelector('div#data_breadcrumb').dataset.breadcrumbname);
@@ -35,7 +35,7 @@ if (Valid::inGET('search')) {
             breadcrumb();
         });
 
-<?php } elseif (Valid::inGET('route') == 'listing') {
+<?php } elseif (Valid::inGET('route') == 'listing' && Products::$category_data != false) {
     ?>
         function breadcrumb() {
             var breadcrumbid = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);

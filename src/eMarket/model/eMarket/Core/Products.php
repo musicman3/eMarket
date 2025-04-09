@@ -83,14 +83,14 @@ class Products {
         if (!$Cache->isHit()) {
 
             $Cache->data = Db::connect()
-                            ->read(TABLE_PRODUCTS)
-                            ->selectAssoc('*')
-                            ->where('id=', $id)
-                            ->and('language=', $language)
-                            ->and('status=', 1)
-                            ->save();
-            
-            if (!isset($Cache->data[0])){
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('id=', $id)
+                    ->and('language=', $language)
+                    ->and('status=', 1)
+                    ->save();
+
+            if (!isset($Cache->data[0])) {
                 return false;
             }
 
@@ -116,21 +116,22 @@ class Products {
                 $language = lang('#lang_all')[0];
             }
 
-            self::$category_data = Db::connect()
-                            ->read(TABLE_CATEGORIES)
-                            ->selectAssoc('*')
-                            ->where('language=', $language)
-                            ->and('id=', $id)
-                            ->save();
-            
-            if (!isset(self::$category_data[0])){
+            $category_data = Db::connect()
+                    ->read(TABLE_CATEGORIES)
+                    ->selectAssoc('*')
+                    ->where('language=', $language)
+                    ->and('id=', $id)
+                    ->save();
+
+            if (!isset($category_data[0])) {
                 return false;
             }
+            self::$category_data = $category_data[0];
 
-            return self::$category_data[0];
+            return self::$category_data;
         }
 
-        return self::$category_data[0];
+        return self::$category_data;
     }
 
     /**
@@ -334,5 +335,4 @@ class Products {
         }
         return [];
     }
-
 }

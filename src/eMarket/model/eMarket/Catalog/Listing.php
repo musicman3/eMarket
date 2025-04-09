@@ -59,17 +59,19 @@ class Listing {
      */
     private function title(): void {
         $title = Db::connect()
-                        ->read(TABLE_CATEGORIES)
-                        ->selectAssoc('*')
-                        ->where('language=', lang('#lang_all')[0])
-                        ->and('id=', Valid::inGET('category_id'))
-                        ->save();
+                ->read(TABLE_CATEGORIES)
+                ->selectAssoc('*')
+                ->where('language=', lang('#lang_all')[0])
+                ->and('id=', Valid::inGET('category_id'))
+                ->save();
         if (isset($title[0])) {
             if ($title[0]['tags'] != null && $title[0]['tags'] != '') {
                 $this->title = lang('title_listing_index') . ': ' . $title[0]['tags'];
             } else {
                 $this->title = lang('title_listing_index') . ': ' . $title[0]['name'];
             }
+        } else {
+            $this->title = lang('title_listing_index') . ': ' . lang('page_not_found_title');
         }
     }
 
@@ -181,7 +183,7 @@ class Listing {
             self::$categories_tags = Products::categoryData(Valid::inGET('category_id'))['tags'];
             self::$categories_logo = Products::categoryData(Valid::inGET('category_id'))['logo_general'];
         }
-        if (Products::categoryData(Valid::inGET('category_id')) == false){
+        if (Products::categoryData(Valid::inGET('category_id')) == false) {
             Routing::$page_not_found = true;
         }
     }
