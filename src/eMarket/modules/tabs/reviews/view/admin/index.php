@@ -66,7 +66,7 @@ require_once('modal/index.php')
                 ?>
                 <tr>
                     <td><?php echo SystemClock::getDateTime(Pages::$table['line']['date_add']) ?></td>
-                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm bi-box-arrow-up-right" onClick="window.open('/?route=products&category_id=2&id=<?php echo Pages::$table['line']['product_id'] ?>')"></button></td>
+                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm bi-box-arrow-up-right" onClick="window.open('/?route=products&id=<?php echo Pages::$table['line']['product_id'] ?>')"></button></td>
                     <td class="text-center"><?php echo Pages::$table['line']['author'] ?></td>
                     <td class="text-center">
                         <?php

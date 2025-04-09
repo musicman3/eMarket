@@ -161,8 +161,9 @@ class Products {
      *
      */
     private function attributes(): void {
-        $categories_data = ProductsCore::categoryData(Valid::inGET('category_id'));
-        if (Valid::inGET('category_id') == 0) {
+        $category_id = ProductsCore::productData(Valid::inGET('id'))['parent_id'];
+        $categories_data = ProductsCore::categoryData($category_id);
+        if ($category_id == 0) {
             self::$attributes_data = json_encode([]);
         } else {
             self::$attributes_data = json_encode($categories_data['attributes']);

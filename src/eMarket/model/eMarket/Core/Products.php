@@ -99,7 +99,7 @@ class Products {
     }
 
     /**
-     * Categury data
+     * Category data
      *
      * @param string|int $id Category id
      * @param string $language Language

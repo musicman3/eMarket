@@ -62,12 +62,13 @@ class Listing {
                         ->selectAssoc('*')
                         ->where('language=', lang('#lang_all')[0])
                         ->and('id=', Valid::inGET('category_id'))
-                        ->save()[0];
-
-        if ($title['tags'] != null && $title['tags'] != '') {
-            $this->title = lang('title_listing_index') . ': ' . $title['tags'];
-        } else {
-            $this->title = lang('title_listing_index') . ': ' . $title['name'];
+                        ->save();
+        if (isset($title[0])) {
+            if ($title[0]['tags'] != null && $title[0]['tags'] != '') {
+                $this->title = lang('title_listing_index') . ': ' . $title[0]['tags'];
+            } else {
+                $this->title = lang('title_listing_index') . ': ' . $title[0]['name'];
+            }
         }
     }
 

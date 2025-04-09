@@ -9,7 +9,7 @@ use eMarket\Core\{
     Valid
 };
 
-if (Valid::inGET('search') OR !Valid::inGET('category_id')) {
+if (Valid::inGET('search')) {
     Products::$category_data['name'] = lang('breadcrumb_search');
 }
 ?>
