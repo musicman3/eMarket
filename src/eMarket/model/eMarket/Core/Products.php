@@ -73,33 +73,37 @@ class Products {
      */
     public static function productData(string|int $id, ?string $language = null): array|bool {
 
-        if ($language == null) {
-            $language = lang('#lang_all')[0];
-        }
-
-        $Cache = new Cache();
-        $Cache->cache_name = 'core.products_' . $id;
-
-        if (!$Cache->isHit()) {
-
-            $Cache->data = Db::connect()
-                    ->read(TABLE_PRODUCTS)
-                    ->selectAssoc('*')
-                    ->where('id=', $id)
-                    ->and('language=', $language)
-                    ->and('status=', 1)
-                    ->save();
-
-            if (!isset($Cache->data[0])) {
-                return false;
+        if ($id != null) {
+            if ($language == null) {
+                $language = lang('#lang_all')[0];
             }
 
-            self::$product_data = $Cache->data[0];
-            return $Cache->save($Cache->data[0]);
-        }
+            $Cache = new Cache();
+            $Cache->cache_name = 'core.products_' . $id;
 
-        self::$product_data = $Cache->cache_item->get();
-        return $Cache->cache_item->get();
+            if (!$Cache->isHit()) {
+
+                $Cache->data = Db::connect()
+                        ->read(TABLE_PRODUCTS)
+                        ->selectAssoc('*')
+                        ->where('id=', $id)
+                        ->and('language=', $language)
+                        ->and('status=', 1)
+                        ->save();
+
+                if (!isset($Cache->data[0])) {
+                    return false;
+                }
+
+                self::$product_data = $Cache->data[0];
+                return $Cache->save($Cache->data[0]);
+            }
+
+            self::$product_data = $Cache->cache_item->get();
+            return $Cache->cache_item->get();
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -182,9 +182,10 @@ class Listing {
             self::$categories_keyword = Products::categoryData(Valid::inGET('category_id'))['keyword'];
             self::$categories_tags = Products::categoryData(Valid::inGET('category_id'))['tags'];
             self::$categories_logo = Products::categoryData(Valid::inGET('category_id'))['logo_general'];
-        }
-        if (Products::categoryData(Valid::inGET('category_id')) == false) {
-            Routing::$page_not_found = true;
+
+            if (Products::categoryData(Valid::inGET('category_id')) == false) {
+                Routing::$page_not_found = true;
+            }
         }
     }
 

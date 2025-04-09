@@ -6,17 +6,20 @@
 ?>
 <script type="text/javascript" language="javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        let params = (new URL(document.location)).searchParams;
 
+        let params = (new URL(document.location)).searchParams;
         var route = params.get('route');
-        if (route === 'listing') {
+
+        if (params.get('category_id') !== null && route === 'listing') {
             var cat_id = params.get('category_id');
+            document.querySelector('#cat_' + cat_id).closest('ul').setAttribute('aria-expand', 'true');
+            document.querySelector('#namecat_' + cat_id).classList.add('menu-bold');
+            var json_data = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);
+            json_data.forEach(e => document.querySelector('#cat_' + e).closest('ul').setAttribute('aria-expand', 'true'));
         }
+
         if (route === 'products') {
             var cat_id = JSON.parse(document.querySelector('#data_breadcrumb').dataset.parentid);
-        }
-
-        if (route === 'listing' || route === 'products') {
             document.querySelector('#cat_' + cat_id).closest('ul').setAttribute('aria-expand', 'true');
             document.querySelector('#namecat_' + cat_id).classList.add('menu-bold');
             var json_data = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);
@@ -30,5 +33,6 @@
             singleSibling: true,
             targetSelector: '.menu ul ul'
         });
+
     });
 </script>
