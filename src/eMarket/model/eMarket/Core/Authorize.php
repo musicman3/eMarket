@@ -40,11 +40,14 @@ class Authorize {
      */
     public function __construct() {
 
+        $this->currencyCheck();
+
         if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
         }
 
         session_start();
+
         $this->csrfVerification();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
@@ -60,6 +63,27 @@ class Authorize {
             echo 'Error! Installation already completed!';
             exit;
         }
+    }
+
+    /**
+     * Checking the availability of currency
+     *
+     * @return bool FALSE
+     */
+    private function currencyCheck(): bool {
+
+        if (Valid::inGET('currency_default')) {
+            $currency = Db::connect()
+                    ->read(TABLE_CURRENCIES)
+                    ->selectValue('name')
+                    ->where('id=', Valid::inGET('currency_default'))
+                    ->save();
+            if ($currency == false) {
+                header('Location: /');
+                exit;
+            }
+        }
+        return false;
     }
 
     /**
@@ -273,5 +297,4 @@ class Authorize {
         }
         return 'false';
     }
-
 }
