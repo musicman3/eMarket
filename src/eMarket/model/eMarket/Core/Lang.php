@@ -44,6 +44,11 @@ final class Lang {
      */
     private function init(): void {
 
+        if (Valid::inGET('language') && !file_exists(getenv('DOCUMENT_ROOT') . '/language/' . Valid::inGET('language'))) {
+            header('Location: /');
+            exit;
+        }
+
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
             Db::connect()
@@ -113,7 +118,7 @@ final class Lang {
             $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
 
             foreach ($lang_dir as $lang_name) {
-                if (!in_array($lang_name, array('.', '..', $default_language))) {
+                if (!in_array($lang_name, ['.', '..', $default_language])) {
                     array_push($lang_all, $lang_name);
                     $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
                     $lang_trans = array_merge($lang_trans, $ini_lang);
@@ -152,5 +157,4 @@ final class Lang {
             $_SESSION['DEFAULT_LANGUAGE'] = Valid::inGET('language');
         }
     }
-
 }

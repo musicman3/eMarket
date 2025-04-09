@@ -63,7 +63,7 @@ class Stickers {
      * 
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stickers', 'bi-bookmark-star-fill', lang('title_stickers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=stickers', 'bi-stickies', lang('title_stickers_index'), '', 'false'];
     }
 
     /**
@@ -340,5 +340,4 @@ class Stickers {
         }
         return $output;
     }
-
 }
