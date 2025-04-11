@@ -100,7 +100,7 @@ final class Lang {
                 }
             }
 
-            $files_path = array_merge(array_reverse($engine_path_array), array_reverse($modules_path_array));
+            $files_path = array_reverse(array_merge($engine_path_array, $modules_path_array));
 
             $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
             foreach ($files_path as $files) {
