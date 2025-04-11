@@ -41,6 +41,7 @@ class Authorize {
     public function __construct() {
 
         $this->currencyCheck();
+        $this->langCheck();
 
         if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
@@ -83,6 +84,21 @@ class Authorize {
                 exit;
             }
         }
+        return false;
+    }
+
+    /**
+     * Checking the availability of language
+     *
+     * @return bool FALSE
+     */
+    private function langCheck(): bool {
+
+        if (Valid::inGET('language') && !file_exists(getenv('DOCUMENT_ROOT') . '/language/' . Valid::inGET('language'))) {
+            header('Location: /');
+            exit;
+        }
+
         return false;
     }
 

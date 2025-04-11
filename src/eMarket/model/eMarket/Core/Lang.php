@@ -44,11 +44,6 @@ final class Lang {
      */
     private function init(): void {
 
-        if (Valid::inGET('language') && !file_exists(getenv('DOCUMENT_ROOT') . '/language/' . Valid::inGET('language'))) {
-            header('Location: /');
-            exit;
-        }
-
         if (Valid::inGET('language') && Settings::path() == 'admin' && isset($_SESSION['login']) && isset($_SESSION['pass'])) {
 
             Db::connect()
