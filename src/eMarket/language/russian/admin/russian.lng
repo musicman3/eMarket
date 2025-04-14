@@ -181,6 +181,7 @@ basic_settings_primary_language = Основной язык
 basic_settings_caching = Кэширование
 basic_settings_use_caching = Использовать кэширование
 basic_settings_caching_time = Время кэширования (сек.)
+basic_settings_default_template = Шаблон
 
 ;MANUFACTURERS
 manufacturer = Производитель

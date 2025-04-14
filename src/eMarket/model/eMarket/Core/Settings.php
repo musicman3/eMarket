@@ -93,7 +93,11 @@ class Settings {
      * @return string $template
      */
     public static function template(): string {
-        $template = 'default';
+
+        if (self::path() == 'install') {
+            return 'default';
+        }
+        $template = self::basicSettings('template');
         return $template;
     }
 

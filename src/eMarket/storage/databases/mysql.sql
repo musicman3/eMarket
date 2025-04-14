@@ -35,6 +35,8 @@ CREATE TABLE emkt_basic_settings (
         primary_language varchar(128) DEFAULT '' NOT NULL,
         cache_status int DEFAULT '0' NOT NULL,
         caching_time int DEFAULT '7200' NOT NULL,
+        template varchar(128) DEFAULT 'default' NOT NULL,
+        other json,
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -10364,7 +10366,7 @@ INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'english');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'english');
 
 /* Basic Settings */
-INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.mail.ru', 'login', 'password', 'ssl', 465, 0, 0, 'sale@localhost.ru', 'eMarket', '', 0, 7200);
+INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.mail.ru', 'login', 'password', 'ssl', 465, 0, 0, 'sale@localhost.ru', 'eMarket', '', 0, 7200, 'default', '[]');
 
 /* Zones */
 INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');

@@ -43,6 +43,18 @@ use eMarket\Admin\BasicSettings;
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_default_template') ?></label>
+                            <div class="col-md-9">
+                                <select name="default_template" id="default_template" class="input-sm form-select">
+                                    <?php foreach (BasicSettings::$templates as $name) { ?>
+                                        <option value="<?php echo $name ?>" <?php echo Pages::selectedAttr($name, BasicSettings::$template) ?>><?php echo $name ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-form-label col-md-3"><?php echo lang('lines_on_page') ?></label>
                             <div class="col-md-9">
                                 <input type="text" name="lines_on_page" class="input-sm form-control" value="<?php echo Settings::linesOnPage() ?>" required />

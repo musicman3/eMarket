@@ -35,6 +35,8 @@ class BasicSettings {
     public static $session_expr_time = FALSE;
     public static $debug = FALSE;
     public static $primary_language = FALSE;
+    public static $template = FALSE;
+    public static $templates = FALSE;
     public static $email = FALSE;
     public static $email_name = FALSE;
     public static $smtp_status = FALSE;
@@ -56,6 +58,8 @@ class BasicSettings {
         $this->sessionExprTime();
         $this->debug();
         $this->primaryLanguage();
+        $this->templatesList();
+        $this->template();
         $this->email();
         $this->emailName();
         $this->smtpStatus();
@@ -157,6 +161,43 @@ class BasicSettings {
                     ->save();
 
             self::$primary_language = Settings::primaryLanguage();
+        }
+    }
+
+    /**
+     * Templates list
+     *
+     * @return array
+     */
+    private function templatesList(): array {
+        self::$templates = scandir(getenv('DOCUMENT_ROOT') . '/view/');
+        unset(self::$templates[0]);
+        unset(self::$templates[1]);
+
+        return self::$templates;
+    }
+
+    /**
+     * Default Template
+     *
+     */
+    private function template(): void {
+        self::$template = Db::connect()
+                ->read(TABLE_BASIC_SETTINGS)
+                ->selectValue('template')
+                ->save();
+
+        if (Valid::inPOST('default_template')) {
+
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('template', Valid::inPOST('default_template'))
+                    ->save();
+
+            self::$template = Db::connect()
+                    ->read(TABLE_BASIC_SETTINGS)
+                    ->selectValue('template')
+                    ->save();
         }
     }
 
@@ -396,5 +437,4 @@ class BasicSettings {
                     ->save();
         }
     }
-
 }

@@ -33,7 +33,9 @@ CREATE TABLE emkt_basic_settings (
         email_name text(128) DEFAULT 'eMarket' NOT NULL,
         primary_language text(128) DEFAULT '' NOT NULL,
         cache_status int DEFAULT '0' NOT NULL,
-        caching_time int DEFAULT '7200' NOT NULL);
+        caching_time int DEFAULT '7200' NOT NULL,
+        template varchar(128) DEFAULT 'default' NOT NULL,
+        other text);
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
@@ -49,8 +51,8 @@ CREATE TABLE emkt_categories (
         logo_general text(128),
         attributes text,
         description text,
-        keyword varchar(256),
-        tags varchar(256),
+        keyword text(256),
+        tags text(256),
 PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_countries;
@@ -10328,7 +10330,7 @@ INSERT INTO emkt_regions VALUES(4248, 238, 'MV', 'Masvingo', 'english');
 INSERT INTO emkt_regions VALUES(4249, 238, 'MW', 'Mashonaland West', 'english');
 
 /* Basic Settings */
-INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.mail.ru', 'login', 'password', 'ssl', 465, 0, 0, 'sale@localhost.ru', 'eMarket', '', 0, 7200);
+INSERT INTO emkt_basic_settings VALUES (1, 20, 60, 0, 'smtp.mail.ru', 'login', 'password', 'ssl', 465, 0, 0, 'sale@localhost.ru', 'eMarket', '', 0, 7200, 'default', '[]');
 
 /* Zones */
 INSERT INTO emkt_zones VALUES (1, 'Moskow', null, 'english');
