@@ -97,8 +97,8 @@ class Settings {
         if (self::path() == 'install') {
             return 'default';
         }
-        $template = self::basicSettings('template');
-        return $template;
+
+        return self::basicSettings('template');
     }
 
     /**

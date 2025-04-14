@@ -44,7 +44,6 @@ class Stock {
         new GroupAttributes(lang);
         new Attributes(lang);
         new ValuesAttribute(lang);
-        new ChatGPT();
         new Update();
 
         if (action === 'update') {

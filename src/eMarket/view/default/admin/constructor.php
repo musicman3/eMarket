@@ -99,6 +99,7 @@ use eMarket\Core\{
         <script type="text/javascript">
             new Ajax();
             new Update();
+            new ChatGPT();
         </script>
     </body>
 </html>
