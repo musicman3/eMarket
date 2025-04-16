@@ -3,6 +3,10 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+
+use eMarket\Core\{
+    Authorize
+};
 ?>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -21,9 +25,11 @@
             <label for="chat_bot" class="form-label"><?php echo lang('chatgpt_response') ?></label>
             <textarea class="form-control" id="chat_bot" rows="10"></textarea>
         </div>
-        <div class="input-group mb-3">
-            <input type="password" id="chatgpt_key" class="form-control" placeholder="<?php echo lang('chatgpt_api_key') ?>" aria-describedby="api_key">
-            <button class="btn btn-outline-dark" type="button" id="api_key"><?php echo lang('save') ?></button>
-        </div>
+        <?php if (Authorize::$permission == 'admin') { ?>
+            <div class="input-group mb-3">
+                <input type="password" id="chatgpt_key" class="form-control" placeholder="<?php echo lang('chatgpt_api_key') ?>" aria-describedby="api_key">
+                <button class="btn btn-outline-dark" type="button" id="api_key"><?php echo lang('save') ?></button>
+            </div>
+        <?php } ?>
     </div>
 </div>

@@ -33,6 +33,7 @@ class Authorize {
 
     public static $customer;
     public static $csrf_token = FALSE;
+    public static $permission = FALSE;
 
     /**
      * Constructor
@@ -190,18 +191,18 @@ class Authorize {
     private function dashboardCheck(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = Db::connect()
+            self::$permission = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
                     ->selectValue('permission')
                     ->where('login=', $_SESSION['login'])
                     ->save();
 
-            if ($staff_permission != 'admin') {
+            if (self::$permission != 'admin') {
 
                 $staff_data_prepare = Db::connect()
                         ->read(TABLE_STAFF_MANAGER)
                         ->selectValue('permissions')
-                        ->where('id=', $staff_permission)
+                        ->where('id=', self::$permission)
                         ->save();
 
                 $staff_data = json_decode($staff_data_prepare, true);
