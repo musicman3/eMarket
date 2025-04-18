@@ -43,7 +43,9 @@ final class Modules {
                 ->set('active', 1)
                 ->save();
 
-        Db::connect()->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql');
+        if (file_exists(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql')) {
+            Db::connect()->dbInstall(ROOT . '/modules/' . $module[0] . '/' . $module[1] . '/install/' . DB_TYPE . '.sql');
+        }
     }
 
     /**
@@ -58,7 +60,9 @@ final class Modules {
                 ->and('type=', $module[0])
                 ->save();
 
-        Db::connect()->drop(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save();
+        if (Db::connect()->read(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save()) {
+            Db::connect()->drop(DB_PREFIX . 'modules_' . $module[0] . '_' . $module[1])->save();
+        }
     }
 
     /**
@@ -200,5 +204,4 @@ final class Modules {
 
         return ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
     }
-
 }
