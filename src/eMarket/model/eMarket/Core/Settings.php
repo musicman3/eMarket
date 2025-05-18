@@ -77,9 +77,9 @@ class Settings {
             return 'install';
         }
 
-        $path = pathinfo(Valid::inSERVER('REQUEST_URI'));
+        $pathinfo = pathinfo(Valid::inSERVER('REQUEST_URI'));
         foreach (self::$path as $key => $value) {
-            if (strrpos($path['dirname'], $key)) {
+            if (strrpos($pathinfo['dirname'], $key) !== false || strrpos($pathinfo['basename'], $key) !== false) {
                 return $value;
             }
         }
