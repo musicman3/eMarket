@@ -123,9 +123,10 @@ class Success {
 
         require_once(self::$root . '/storage/configure/configure.php');
 
-        $file_name = ROOT . '/storage/databases/' . DB_TYPE . '.sql';
+        $file_stucture = ROOT . '/storage/databases/' . DB_TYPE . '.sql';
+        $file_example = ROOT . '/storage/databases/' . DB_TYPE . '_example.sql';
 
-        if (!file_exists($file_name)) {
+        if (!file_exists($file_stucture) || !file_exists($file_example)) {
             header('Location: /controller/install/?route=error&file_not_found=true');
             exit;
         }
@@ -149,7 +150,8 @@ class Success {
             Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
         }
 
-        Db::connect()->dbInstall($file_name);
+        Db::connect()->dbInstall($file_stucture);
+        Db::connect()->dbInstall($file_example);
 
         $password_admin_hash = Cryptography::passwordHash(self::$password_admin);
 
@@ -178,8 +180,7 @@ class Success {
                 ->update(TABLE_BASIC_SETTINGS)
                 ->set('primary_language', self::$lng)
                 ->save();
-        
+
         $_SESSION = [];
     }
-
 }
