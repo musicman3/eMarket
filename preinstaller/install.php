@@ -58,7 +58,7 @@ function init(array $repo_init): void {
         }
     }
     if (inGET('step') == '2') {
-        UnzipArchive(inGET('param'), $repo);
+        unzipArchive(inGET('param'), $repo);
     }
     if (inGET('step') == '3') {
         copyingFiles($repo, $target_folder);
@@ -112,7 +112,7 @@ function downloadArchive(string $repo_name, string $download, string $mode): voi
  * @param string $file_name GutHub archive name
  * @param string $repo GitHub repo name
  */
-function UnzipArchive(string $file_name, string $repo): void {
+function unzipArchive(string $file_name, string $repo): void {
 
     // ungz
     $gz = new PharData(getenv('DOCUMENT_ROOT') . '/' . $file_name);

@@ -81,7 +81,7 @@ class Updater {
             }
         }
         if (Valid::inGET('step') == '2') {
-            $this->UnzipArchive(inGET('param'), $repo);
+            $this->unzipArchive(inGET('param'), $repo);
         }
         if (Valid::inGET('step') == '3') {
             $this->copyingFiles($repo, $target_folder);
@@ -120,7 +120,7 @@ class Updater {
      * @param string $file_name GutHub archive name
      * @param string $repo GitHub repo name
      */
-    public function UnzipArchive(string $file_name, string $repo): void {
+    public function unzipArchive(string $file_name, string $repo): void {
 
         $gz = new PharData(getenv('DOCUMENT_ROOT') . '/' . $file_name);
         $gz->decompress();
@@ -250,7 +250,7 @@ class Updater {
         curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name . '/releases/latest');
         $response_string = curl_exec($connect);
         curl_close($connect);
-        
+
         if (!empty($response_string)) {
             $response = json_decode($response_string, 1);
             if (isset($response['tag_name'])) {
