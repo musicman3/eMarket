@@ -24,7 +24,7 @@ $removing_list = [
     '/storage/configure/settings.cfg',
     '/storage/databases/',
     '/vendor/',
-    '/view/default/',
+    '/view/',
     '/composer.lock'
 ];
 
