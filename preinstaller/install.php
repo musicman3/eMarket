@@ -330,7 +330,7 @@ function gitHubData(string $repo_name): mixed {
             <div class="card w-25 text-center mx-auto p-2 bd-highlight">
                 <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
-                    <label class="btn btn-outline-dark" for="release">GitHub Release</label>
+                    <label class="btn btn-outline-dark" for="release">GitHub Latest Release</label>
                     <input type="radio" class="btn-check" name="install_type" id="master" autocomplete="off">
                     <label class="btn btn-outline-dark" for="master">GitHub Master</label>
                 </div>

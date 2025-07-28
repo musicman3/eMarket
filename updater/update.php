@@ -10,34 +10,42 @@ $repo_init = [
     'target_folder' => '/src', // Target folder from which files are copied
     'release_php_version' => '8.0', // Release php version
     'master_php_version' => '8.2', // Master php version
-    'redirect' => 'controller/install/' // Redirect after installation completed
+    'redirect' => 'controller/admin/' // Redirect after update completed
 ];
+/* ++++++++++++++++++++++++++++++++++++++++ */
+
+$removing_list = [
+    '/ext/',
+    '/controller/',
+    '/js_handler/',
+    '/language/',
+    '/model/',
+    '/modules/',
+    '/storage/configure/settings.cfg',
+    '/storage/databases/',
+    '/vendor/',
+    '/view/default/',
+    '/composer.lock'
+];
+
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
 // php.ini set
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
 // Init
-init($repo_init);
+init($repo_init, $removing_list);
 
-/* ++++++++++++++++++++++++++++++++++++++++ */
-$removing_list = [
-    '/ext/',
-    '/js_handler/',
-    '/model/',
-    '/vendor/',
-    '/view/default/',
-    '/composer.lock'
-];
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
 /**
  * Init
  * 
  * @param array $repo_init Init data
+ * @param array $removing_list removing_list
 
  */
-function init(array $repo_init): void {
+function init(array $repo_init, array $removing_list): void {
 
     $repo_name = $repo_init['name'];
     $target_folder = $repo_init['target_folder'];
@@ -72,7 +80,7 @@ function init(array $repo_init): void {
         unzipArchive(inGET('param'), $repo);
     }
     if (inGET('step') == '3') {
-        oldFilesRemoving($path);
+        oldFilesRemoving($removing_list);
         copyingFiles($repo, $target_folder);
     }
     if (inGET('step') == '4') {
@@ -163,7 +171,9 @@ function copyingFiles(string $repo, string $target_folder): void {
     $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
     foreach ($iterator as $object) {
         $dest_path = $dest_dir . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
-        ($object->isDir()) ? mkdir($dest_path) : copy($object, $dest_path);
+        if (!file_exists($dest_path)) {
+            ($object->isDir()) ? mkdir($dest_path) : copy($object, $dest_path);
+        }
     }
 
     filesRemoving($source_dir);
@@ -211,7 +221,7 @@ function composerInstall(): void {
     $application->run($input, $output);
 
     filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
-    filesRemoving(getenv('DOCUMENT_ROOT') . '/install.php');
+    filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
     filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
 
     echo json_encode(['Done']);
@@ -244,7 +254,7 @@ function filesRemoving($path): mixed {
  * 
  * @param array $path Path
  */
-function oldFilesRemoving($path): array {
+function oldFilesRemoving(array $path): void {
 
     foreach ($path as $file) {
         filesRemoving(getenv('DOCUMENT_ROOT') . '/' . $file);
@@ -286,7 +296,7 @@ function gitHubData(string $repo_name): mixed {
         <meta name="author" content="eMarket" />
         <meta name="owner" content="eMarket" />
         <meta name="copyright" content="Copyright © 2018 by eMarket Team. All right reserved." />
-        <title>Preparing to install</title>
+        <title>Preparing to update</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script>
@@ -354,21 +364,21 @@ function gitHubData(string $repo_name): mixed {
             <div class="card w-25 text-center mx-auto p-2 bd-highlight">
                 <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
-                    <label class="btn btn-outline-dark" for="release">GitHub Release</label>
+                    <label class="btn btn-outline-dark" for="release">GitHub Latest Release</label>
                     <input type="radio" class="btn-check" name="install_type" id="master" autocomplete="off">
                     <label class="btn btn-outline-dark" for="master">GitHub Master</label>
                 </div>
 
-                <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Install</button></div>
+                <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Update</button></div>
 
                 <div class="card-body p-1">
-                    <div id="attention" class="text-bg-warning p-1">Attention! The Installation is being prepared. Please do not refresh the page.
+                    <div id="attention" class="text-bg-warning p-1">Attention! The Update is being prepared. Please do not refresh the page.
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                         </div>
                     </div>
                     <div id="parts" class="card-body p-1">
-                        <div><span id="step_data" class="badge bg-success">Preparing for installation</span>&nbsp;</div>
+                        <div><span id="step_data" class="badge bg-success">Preparing to update</span>&nbsp;</div>
                     </div>
                 </div>
                 <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
