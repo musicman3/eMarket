@@ -23,6 +23,7 @@ use eMarket\Admin\BasicSettings;
                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cache"><?php echo lang('basic_settings_caching') ?></a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#update"><?php echo lang('basic_settings_update') ?> <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="top"></span></a></li>
             </ul>
 
             <div class="tab-content pt-2">
@@ -178,6 +179,15 @@ use eMarket\Admin\BasicSettings;
                         <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                     </form>
                 </div>
+
+                <div id="update" class="tab-pane fade">
+                    <div class="mb-3 row">
+                        <p><?php echo lang('basic_settings_update_attention') ?></p>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm bi-check-circle" id="update_button" type="submit"> <?php echo lang('basic_settings_update_button') ?></button>
+                </div>
+
             </div>    
 
         </div>

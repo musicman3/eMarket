@@ -22,5 +22,5 @@ use eMarket\Core\{
         </div>
     </div>
 
-<?php
+    <?php
 }

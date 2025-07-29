@@ -46,6 +46,29 @@ class Update {
     }
 
     /**
+     * Update button click
+     *
+     */
+    static updateClick() {
+
+        document.querySelector('#update_button').onclick = function () {
+            var randomizer = new Randomizer();
+
+            var param = encodeURI(JSON.stringify({
+                'jsonrpc': '2.0',
+                'method': 'Update',
+                'param': [],
+                'id': randomizer.uid(32)}));
+
+            Ajax.postData('/services/jsonrpc/?request=' + param,
+                    {'message': 'update',
+                        'login': document.querySelector('#user_login').dataset.login},
+                    null, null, Update.Redirect).then((data) => {
+            });
+        };
+    }
+
+    /**
      * Time for request
      *
      */
@@ -71,6 +94,7 @@ class Update {
      */
     static init() {
         Update.request();
+        Update.updateClick();
     }
 
     /**
@@ -91,5 +115,18 @@ class Update {
             text_class = 'text-warning';
         }
         document.querySelector('#update_box').classList.replace('text-secondary', text_class);
+    }
+
+    /**
+     * Redirect
+     *
+     * @param data {Object} (response)
+     */
+    static Redirect(data) {
+        var input = JSON.parse(data);
+
+        if (input.status === 'update') {
+            document.location.href = '/update.php';
+        }
     }
 }

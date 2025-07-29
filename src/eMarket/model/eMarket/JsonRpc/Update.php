@@ -11,7 +11,8 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Cryptography,
-    JsonRpc
+    JsonRpc,
+    Valid
 };
 
 /**
@@ -32,7 +33,12 @@ class Update extends JsonRpc {
      *
      */
     public function __construct() {
-        echo json_encode($this->responseVersion());
+        if (Valid::inPostJson('message') == 'update') {
+            copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php');
+            echo json_encode(['status' => 'update']);
+        } else {
+            echo json_encode($this->responseVersion());
+        }
     }
 
     /**
@@ -41,7 +47,7 @@ class Update extends JsonRpc {
      * @return string Version
      */
     private function thisVersion(): string {
-        return 'v 1.0 RC1';
+        return 'v 1.0 RC2';
     }
 
     /**

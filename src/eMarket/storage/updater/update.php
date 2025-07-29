@@ -8,8 +8,8 @@
 $repo_init = [
     'name' => 'musicman3/eMarket', // GitHub name & repo
     'target_folder' => '/src', // Target folder from which files are copied
-    'release_php_version' => '8.0', // Release php version
-    'master_php_version' => '8.2', // Master php version
+    'release_php_version' => '8.2', // Min Release php version
+    'master_php_version' => '8.2', // Min Master php version
     'redirect' => 'controller/admin/' // Redirect after update completed
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */
@@ -23,9 +23,11 @@ $removing_list = [
     '/modules/',
     '/storage/configure/settings.cfg',
     '/storage/databases/',
+    '/storage/updater/',
     '/vendor/',
     '/view/',
-    '/composer.lock'
+    '/composer.lock',
+    '/composer.json'
 ];
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
@@ -42,7 +44,7 @@ init($repo_init, $removing_list);
  * Init
  * 
  * @param array $repo_init Init data
- * @param array $removing_list removing_list
+ * @param array $removing_list removing list
 
  */
 function init(array $repo_init, array $removing_list): void {
@@ -72,7 +74,7 @@ function init(array $repo_init, array $removing_list): void {
         if ($download !== FALSE) {
             downloadArchive($repo_name, $download, $mode);
         } else {
-            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the installation procedure.']);
+            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the update procedure.']);
             exit;
         }
     }
@@ -270,7 +272,7 @@ function oldFilesRemoving(array $path): void {
 function gitHubData(string $repo_name): mixed {
     $connect = curl_init();
     curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Installer']);
+    curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Updater']);
     curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name . '/releases/latest');
     $response_string = curl_exec($connect);
     curl_close($connect);
@@ -343,7 +345,7 @@ function gitHubData(string $repo_name): mixed {
 
                 if (parse[0] === 'Error') {
                     document.querySelector('#attention').innerHTML = parse[1];
-                    document.querySelector('#step_data').innerHTML = 'Installation problem!';
+                    document.querySelector('#step_data').innerHTML = 'Update problem!';
                     document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
                 }
 

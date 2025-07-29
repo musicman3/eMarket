@@ -41,7 +41,6 @@ use eMarket\Core\{
         <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/chatgpt/chatgpt.js"></script>
-        <script type="text/javascript" src="/model/library/js/classes/update/update.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
 
@@ -98,7 +97,6 @@ use eMarket\Core\{
 
         <script type="text/javascript">
             new Ajax();
-            new Update();
             new ChatGPT();
         </script>
     </body>

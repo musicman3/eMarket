@@ -3,7 +3,7 @@
 # https://github.com/musicman3/eMarket #
 #**************************************#
 
-<FilesMatch ".(htaccess|log|sql|db3|cfg|tcg)$">
+<FilesMatch ".(htaccess|log|sql|db3|cfg|tcg|php)$">
  Order Allow,Deny
  Deny from all
  </FilesMatch>
