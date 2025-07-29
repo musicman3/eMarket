@@ -69,6 +69,7 @@ class BasicSettings {
         $this->passwordEmail();
         $this->smtpSecure();
         $this->smtpPort();
+        $this->update();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
         self::$caching_time = $Cache->caching_time;
@@ -435,6 +436,16 @@ class BasicSettings {
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_port')
                     ->save();
+        }
+    }
+
+    /**
+     * Update
+     *
+     */
+    private function update(): void {
+        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
+            unlink(getenv('DOCUMENT_ROOT') . '/update.php');
         }
     }
 }
