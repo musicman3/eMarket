@@ -3,7 +3,14 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+session_start();
 
+if (!isset($_SESSION['login']) || !isset($_SESSION['pass'])) {
+    if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
+        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
+    }
+    exit;
+}
 /* ++++++++++++++++++++++++++++++++++++++++ */
 $repo_init = [
     'name' => 'musicman3/eMarket', // GitHub name & repo
