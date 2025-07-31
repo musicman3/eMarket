@@ -5,12 +5,6 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 session_start();
 
-if (!isset($_SESSION['login']) || !isset($_SESSION['pass'])) {
-    if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
-        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
-    }
-    exit;
-}
 /* ++++++++++++++++++++++++++++++++++++++++ */
 $repo_init = [
     'name' => 'musicman3/eMarket', // GitHub name & repo
@@ -46,6 +40,13 @@ ini_set('max_execution_time', 0);
 init($repo_init, $removing_list);
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
+
+if (!isset($_SESSION['login']) || !isset($_SESSION['pass'])) {
+    if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
+        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
+    }
+    exit;
+}
 
 /**
  * Init
