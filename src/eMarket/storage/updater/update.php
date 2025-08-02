@@ -378,7 +378,15 @@ function gitHubData(string $repo_name): mixed {
              */
             function success(xhr) {
                 var data = xhr.response;
-                var parse = JSON.parse(data);
+
+                try {
+                    var parse = JSON.parse(data);
+                } catch (e) {
+                    document.querySelector('#attention').innerHTML = data;
+                    document.querySelector('#step_data').innerHTML = 'Update problem!';
+                    document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
+                }
+
                 var progress_bar = document.querySelectorAll('.progress-bar');
 
                 if (parse[0] === 'Install' && Number(parse[2]) < 7) {
