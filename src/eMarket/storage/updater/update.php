@@ -330,9 +330,7 @@ function oldFilesRemoving(array $path): void {
  */
 function versionWrite(string $version): void {
 
-    $fpd = fopen(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', 'w+');
-    fputs($fpd, $version);
-    fclose($fpd);
+    file_put_contents(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', $version);
 
     if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg')) {
         chmod(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', 0644);
