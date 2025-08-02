@@ -357,7 +357,7 @@ function gitHubData(string $repo_name): mixed {
     curl_close($connect);
     if (!empty($response_string)) {
         $response = json_decode($response_string, 1);
-        return $response['tag_name'];
+        return $response;
     } else {
         return FALSE;
     }
