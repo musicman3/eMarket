@@ -88,8 +88,10 @@ function init(array $repo_init, array $removing_list): void {
 
         $download = gitHubData($repo_name . '/releases/latest');
         if ($download['tag_name'] !== FALSE) {
-            downloadArchive($repo_name, $download['tag_name'], $mode);
-            $version = $download['tag_name'];
+            if ($version == '') {
+                $version = $download['tag_name'];
+            }
+            downloadArchive($repo_name, $download['tag_name'], $mode, $version);
         } else {
             echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the update procedure.']);
             exit;
@@ -101,9 +103,9 @@ function init(array $repo_init, array $removing_list): void {
     if (inGET('step') == '3') {
         oldFilesRemoving($removing_list);
         copyingFiles($repo, $target_folder);
-        versionWrite($version);
     }
     if (inGET('step') == '4') {
+        versionWrite(inGET('version'));
         downloadComposer();
     }
     if (inGET('step') == '5') {
@@ -135,8 +137,9 @@ function inGET(string $input): mixed {
  * @param string $repo_name GitHub repo name
  * @param string $download file name
  * @param string $mode Mode
+ * @param string $version Version
  */
-function downloadArchive(string $repo_name, string $download, string $mode): void {
+function downloadArchive(string $repo_name, string $download, string $mode, string $version): void {
     $download_path = 'heads/master';
     if ($mode == 'release') {
         $download_path = 'tags/' . $download;
@@ -145,7 +148,7 @@ function downloadArchive(string $repo_name, string $download, string $mode): voi
     $file_name = basename($file);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name, file_get_contents($file));
 
-    echo json_encode(['Install', 'Unzipping archive', '2', $file_name]);
+    echo json_encode(['Install', 'Unzipping archive', '2', $file_name, $version]);
     exit;
 }
 
@@ -173,7 +176,7 @@ function unzipArchive(string $file_name, string $repo): void {
     filesRemoving($file_name);
     filesRemoving($tarname);
 
-    echo json_encode(['Install', 'Copying ' . $repo . ' files', '3', '0']);
+    echo json_encode(['Install', 'Copying ' . $repo . ' files', '3', '0', inGET('version')]);
     exit;
 }
 
@@ -201,7 +204,7 @@ function copyingFiles(string $repo, string $target_folder): void {
 
     filesRemoving($source_dir);
 
-    echo json_encode(['Install', 'Downloading composer.phar', '4', '0']);
+    echo json_encode(['Install', 'Downloading composer.phar', '4', '0', inGET('version')]);
     exit;
 }
 
@@ -214,7 +217,7 @@ function downloadComposer(): void {
     $file_name_composer = basename($file_composer);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name_composer, file_get_contents($file_composer));
 
-    echo json_encode(['Install', 'Installing vendor packages', '5', '0']);
+    echo json_encode(['Install', 'Installing vendor packages', '5', '0', inGET('version')]);
     exit;
 }
 
@@ -246,7 +249,7 @@ function composerInstall(): void {
     filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
     filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
 
-    echo json_encode(['Install', 'Database update', '6', '0']);
+    echo json_encode(['Install', 'Database update', '6', '0', inGET('version')]);
     exit;
 }
 
@@ -422,7 +425,7 @@ function gitHubData(string $repo_name): mixed {
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
 
                     setTimeout(() => {
-                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3]);
+                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3] + '&version=' + parse[4]);
                     }, 1250);
                 }
 
