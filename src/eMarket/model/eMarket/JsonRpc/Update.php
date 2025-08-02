@@ -46,7 +46,7 @@ class Update extends JsonRpc {
      * @return string Version
      */
     private function thisVersion(): string {
-        return 'v 1.0 RC2';
+        return 'v 1.0 RC2-master';
     }
 
     /**
