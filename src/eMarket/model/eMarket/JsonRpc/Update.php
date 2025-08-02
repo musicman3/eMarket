@@ -46,7 +46,11 @@ class Update extends JsonRpc {
      * @return string Version
      */
     private function thisVersion(): string {
-        return 'v 1.0 RC2-master';
+
+        if (file_get_contents(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg')) {
+            return file_get_contents(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg');
+        }
+        return '';
     }
 
     /**

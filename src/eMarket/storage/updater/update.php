@@ -62,10 +62,18 @@ function init(array $repo_init, array $removing_list): void {
 
     $php_version = $repo_init['release_php_version'];
     $mode = 'release';
+    $version = '';
 
     if (inGET('install_type') == 'master') {
         $php_version = $repo_init['master_php_version'];
         $mode = 'master';
+        $download = gitHubData($repo_name . '/commits/master');
+        if ($download['sha'] !== FALSE) {
+            $version = 'Master-' . $download['commit']['author']['date'] . '-' . $download['sha'];
+        } else {
+            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the update procedure.']);
+            exit;
+        }
     }
 
     // Repo name
@@ -78,9 +86,10 @@ function init(array $repo_init, array $removing_list): void {
             exit;
         }
 
-        $download = gitHubData($repo_name);
-        if ($download !== FALSE) {
-            downloadArchive($repo_name, $download, $mode);
+        $download = gitHubData($repo_name . '/releases/latest');
+        if ($download['tag_name'] !== FALSE) {
+            downloadArchive($repo_name, $download['tag_name'], $mode);
+            $version = $download['tag_name'];
         } else {
             echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the update procedure.']);
             exit;
@@ -92,6 +101,7 @@ function init(array $repo_init, array $removing_list): void {
     if (inGET('step') == '3') {
         oldFilesRemoving($removing_list);
         copyingFiles($repo, $target_folder);
+        versionWrite($version);
     }
     if (inGET('step') == '4') {
         downloadComposer();
@@ -314,6 +324,25 @@ function oldFilesRemoving(array $path): void {
 }
 
 /**
+ * Version write
+ * 
+ * @param string $version Version name
+ */
+function versionWrite(string $version): void {
+
+    $fpd = fopen(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', 'w+');
+    fputs($fpd, $version);
+    fclose($fpd);
+
+    if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg')) {
+        chmod(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', 0644);
+    } else {
+        echo json_encode(['Error', 'Version file (version.cfg) not available!']);
+        exit;
+    }
+}
+
+/**
  * GitHub Data
  * 
  * @param string $repo_name GitHub repo name
@@ -323,14 +352,12 @@ function gitHubData(string $repo_name): mixed {
     $connect = curl_init();
     curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Updater']);
-    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name . '/releases/latest');
+    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name);
     $response_string = curl_exec($connect);
     curl_close($connect);
     if (!empty($response_string)) {
         $response = json_decode($response_string, 1);
-        if (isset($response['tag_name'])) {
-            return $response['tag_name'];
-        }
+        return $response['tag_name'];
     } else {
         return FALSE;
     }
