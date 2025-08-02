@@ -99,6 +99,9 @@ function init(array $repo_init, array $removing_list): void {
     if (inGET('step') == '5') {
         composerInstall();
     }
+    if (inGET('step') == '6') {
+        sqlUpdate();
+    }
 }
 
 /**
@@ -231,8 +234,47 @@ function composerInstall(): void {
     $application->run($input, $output);
 
     filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
-    filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
     filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
+
+    echo json_encode(['Install', 'Database update', '6', '0']);
+    exit;
+}
+
+/**
+ * SQL Update
+ *
+ */
+function sqlUpdate(): void {
+
+    if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
+        require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
+    } else {
+        echo json_encode(['Error', 'Configuration file (configure.php) not available!']);
+        exit;
+    }
+
+    // PSR-4 Autoload
+    require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
+
+    $sql = ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql';
+    Cruder\Db::set([
+        'db_type' => DB_TYPE,
+        'db_server' => DB_SERVER,
+        'db_name' => DB_NAME,
+        'db_username' => DB_USERNAME,
+        'db_password' => DB_PASSWORD,
+        'db_prefix' => DB_PREFIX,
+        'db_port' => DB_PORT,
+        'db_family' => DB_FAMILY,
+        'db_charset' => 'utf8mb4',
+        'db_collate' => 'utf8mb4_unicode_ci',
+        'db_error_url' => '/controller/install/error.php?server_db_error=true&error_message=',
+        'db_path' => ROOT . '/storage/databases/sqlite.db3'
+    ]);
+
+    Cruder\Db::connect()->dbInstall($sql);
+
+    filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
 
     echo json_encode(['Done']);
     exit;
@@ -339,11 +381,11 @@ function gitHubData(string $repo_name): mixed {
                 var parse = JSON.parse(data);
                 var progress_bar = document.querySelectorAll('.progress-bar');
 
-                if (parse[0] === 'Install' && Number(parse[2]) < 6) {
+                if (parse[0] === 'Install' && Number(parse[2]) < 7) {
                     document.querySelector('#step_data').innerHTML = parse[1];
-                    document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 5';
+                    document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 6';
 
-                    progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 20 + '%');
+                    progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 17 + '%');
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
 
                     setTimeout(() => {
@@ -391,7 +433,7 @@ function gitHubData(string $repo_name): mixed {
                         <div><span id="step_data" class="badge bg-success">Preparing to update</span>&nbsp;</div>
                     </div>
                 </div>
-                <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 5</span>&nbsp;</div></div>
+                <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 6</span>&nbsp;</div></div>
             </div>
         </div>
         <script>
