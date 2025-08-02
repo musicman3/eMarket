@@ -408,6 +408,8 @@ function gitHubData(string $repo_name): mixed {
                 }
 
                 if (parse[0] === 'Done') {
+                    sessionStorage.removeItem('update_response');
+                    sessionStorage.removeItem('update_time');
                     progress_bar.forEach(e => e.style.width = '100%');
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                     setTimeout(() => {
