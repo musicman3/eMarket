@@ -297,7 +297,7 @@ function gitHubData(string $repo_name): mixed {
                     var parse = JSON.parse(data);
                 } catch (e) {
                     document.querySelector('#attention').innerHTML = data;
-                    document.querySelector('#step_data').innerHTML = 'Install problem!';
+                    document.querySelector('#step_data').innerHTML = 'Installation problem!';
                     document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
                 }
 
