@@ -4,5 +4,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ALTER TABLE emkt_basic_settings
-ADD logo json,
-ADD logo_general varchar(128);
+ADD COLUMN logo json,
+ADD COLUMN logo_general varchar(128);
