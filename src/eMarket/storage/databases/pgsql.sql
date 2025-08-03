@@ -38,6 +38,8 @@ CREATE TABLE emkt_basic_settings (
         caching_time int DEFAULT '7200' NOT NULL,
         template varchar(128) DEFAULT 'default' NOT NULL,
         other jsonb,
+        logo jsonb,
+        logo_general varchar(128),
 PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS emkt_categories;

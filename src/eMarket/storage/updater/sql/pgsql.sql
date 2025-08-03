@@ -3,3 +3,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+ALTER TABLE emkt_basic_settings
+ADD logo jsonb,
+ADD logo_general varchar(128);

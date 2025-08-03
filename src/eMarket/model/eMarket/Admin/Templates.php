@@ -11,7 +11,6 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Messages,
     Func,
     Settings,
     Valid
@@ -329,5 +328,4 @@ class Templates {
             }
         }
     }
-
 }

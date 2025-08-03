@@ -3,3 +3,6 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
+ALTER TABLE emkt_basic_settings
+ADD COLUMN logo text,
+ADD COLUMN logo_general text(128);

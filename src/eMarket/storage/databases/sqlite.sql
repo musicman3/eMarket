@@ -35,7 +35,9 @@ CREATE TABLE emkt_basic_settings (
         cache_status int DEFAULT '0' NOT NULL,
         caching_time int DEFAULT '7200' NOT NULL,
         template varchar(128) DEFAULT 'default' NOT NULL,
-        other text);
+        other text,
+        logo text,
+        logo_general text(128));
 
 DROP TABLE IF EXISTS emkt_categories;
 CREATE TABLE emkt_categories (
