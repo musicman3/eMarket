@@ -268,7 +268,6 @@ function sqlUpdate(): void {
     // PSR-4 Autoload
     require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
-    $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     Cruder\Db::set([
         'db_type' => DB_TYPE,
         'db_server' => DB_SERVER,
@@ -283,10 +282,13 @@ function sqlUpdate(): void {
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
 
-    $sql_array = array_map('trim', explode('\n', $sql_file));
+    $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
+    $sql_array = explode("\n", $sql_file);
 
     foreach ($sql_array as $sql) {
-        Cruder\Db::connect()->exec($sql);
+        if ($sql != '' && $sql != false && $sql != ' ') {
+            Cruder\Db::connect()->exec($sql);
+        }
     }
 
     filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
@@ -408,16 +410,10 @@ function gitHubData(string $repo_name): mixed {
              */
             function success(xhr) {
                 var data = xhr.response;
+                 var progress_bar = document.querySelectorAll('.progress-bar');
 
                 try {
                     var parse = JSON.parse(data);
-                } catch (e) {
-                    document.querySelector('#attention').innerHTML = data;
-                    document.querySelector('#step_data').innerHTML = 'Update problem!';
-                    document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
-                }
-
-                var progress_bar = document.querySelectorAll('.progress-bar');
 
                 if (parse[0] === 'Install' && Number(parse[2]) < 7) {
                     document.querySelector('#step_data').innerHTML = parse[1];
@@ -444,9 +440,28 @@ function gitHubData(string $repo_name): mixed {
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                     setTimeout(() => {
                         window.location.href = document.querySelector('#redirect').dataset.redirect;
-                        ;
                     }, 2500);
                 }
+                    } catch (e) {
+                        if (data.indexOf('1060 Duplicate column') > 0){
+                            document.querySelector('#step_data').innerHTML = 'Skip duplicate columns and done';
+                            
+                            sessionStorage.removeItem('update_response');
+                            sessionStorage.removeItem('update_time');
+                            progress_bar.forEach(e => e.style.width = '100%');
+                            progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+                            
+                            setTimeout(() => {
+                                window.location.href = document.querySelector('#redirect').dataset.redirect;
+                            }, 2500);
+                    
+                        } else {
+                        
+                            document.querySelector('#attention').innerHTML = data;
+                            document.querySelector('#step_data').innerHTML = 'Update problem!';
+                            document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
+                        }
+                    }
             }
         </script>
     </head>
