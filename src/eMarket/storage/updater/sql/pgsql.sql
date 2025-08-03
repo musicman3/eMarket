@@ -4,5 +4,5 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 ALTER TABLE emkt_basic_settings
-ADD COLUMN logo jsonb,
-ADD COLUMN logo_general varchar(128);
+ADD COLUMN IF NOT EXISTS logo jsonb,
+ADD COLUMN IF NOT EXISTS logo_general varchar(128);

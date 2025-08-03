@@ -1,8 +1,11 @@
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
-  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
-  |  https://github.com/musicman3/eMarket  |
-  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
+delimiter $$ DROP
+    PROCEDURE IF EXISTS foo $$ CREATE
+        PROCEDURE foo() BEGIN DECLARE CONTINUE handler FOR 1060 BEGIN
+    END;
 
-ALTER TABLE emkt_basic_settings
-ADD COLUMN logo json,
-ADD COLUMN logo_general varchar(128);
+ALTER TABLE
+    emkt_basic_settings ADD logo_general VARCHAR(128);
+
+ALTER TABLE
+    emkt_basic_settings ADD logo json;
+END $$ CALL foo() $$
