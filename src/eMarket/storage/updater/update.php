@@ -23,7 +23,6 @@ $removing_list = [
     '/model/',
     '/modules/',
     '/storage/configure/settings.cfg',
-    '/storage/databases/',
     '/storage/updater/',
     '/vendor/',
     '/view/',
@@ -363,6 +362,7 @@ function gitHubData(string $repo_name): mixed {
         return FALSE;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
