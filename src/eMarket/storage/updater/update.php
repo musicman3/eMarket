@@ -268,7 +268,7 @@ function sqlUpdate(): void {
     // PSR-4 Autoload
     require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
-    $sql = ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql';
+    $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     Cruder\Db::set([
         'db_type' => DB_TYPE,
         'db_server' => DB_SERVER,
@@ -280,11 +280,14 @@ function sqlUpdate(): void {
         'db_family' => DB_FAMILY,
         'db_charset' => 'utf8mb4',
         'db_collate' => 'utf8mb4_unicode_ci',
-        'db_error_url' => '/controller/install/error.php?server_db_error=true&error_message=',
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
 
-    Cruder\Db::connect()->dbInstall($sql);
+    $sql_array = array_map('trim', explode('\n', $sql_file));
+
+    foreach ($sql_array as $sql) {
+        Cruder\Db::connect()->exec($sql);
+    }
 
     filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
 
@@ -362,7 +365,6 @@ function gitHubData(string $repo_name): mixed {
         return FALSE;
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
