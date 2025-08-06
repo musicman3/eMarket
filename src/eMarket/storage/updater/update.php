@@ -175,7 +175,7 @@ function unzipArchive(string $file_name, string $repo): void {
     filesRemoving($file_name);
     filesRemoving($tarname);
 
-    echo json_encode(['Install', 'Copying ' . $repo . ' files', '3', '0', inGET('version')]);
+    echo json_encode(['Install', 'Updating ' . $repo . ' files', '3', '0', inGET('version')]);
     exit;
 }
 
@@ -248,7 +248,7 @@ function composerInstall(): void {
     filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
     filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
 
-    echo json_encode(['Install', 'Database update', '6', '0', inGET('version')]);
+    echo json_encode(['Install', 'Database updating', '6', '0', inGET('version')]);
     exit;
 }
 
