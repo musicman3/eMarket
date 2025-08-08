@@ -16,7 +16,7 @@ use eMarket\Core\{
 
         <div class="container-fluid">
             <div class="row">
-                <div class="p-2"><img src="/view/<?php echo eMarket\Core\Settings::template() ?>/admin/images/emarket.png" width="57" alt="" class="img-fluid"></div>
+                <div class="p-2"><img src="/uploads/images/emarket_logo/admin_logo.png" width="57" alt="" class="img-fluid"></div>
                 <p>Copyright © 2018-<?php echo SystemClock::nowFormatDate('Y') ?>, <a target=_blank href="https://github.com/musicman3/eMarket">eMarket Team</a>. All rights reserved.</p>
             </div>
         </div>
