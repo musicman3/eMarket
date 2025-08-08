@@ -17,7 +17,7 @@
         "mpdf/mpdf": "8.2.5",
         "symfony/cache": "7.2.5",
         "psr/clock": "1.0.0",
-        "twbs/bootstrap": "5.3.3",
+        "twbs/bootstrap": "5.3.7",
         "musicman3/cruder": "1.0.8"
     },
     "config": {
