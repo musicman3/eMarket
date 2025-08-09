@@ -37,8 +37,6 @@ CREATE TABLE emkt_basic_settings (
         caching_time int DEFAULT '7200' NOT NULL,
         template varchar(128) DEFAULT 'default' NOT NULL,
         other json,
-        logo json,
-        logo_general varchar(128),
 PRIMARY KEY (id))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
