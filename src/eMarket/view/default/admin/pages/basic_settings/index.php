@@ -23,6 +23,7 @@ use eMarket\Admin\BasicSettings;
                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#general"><?php echo lang('basic_settigs_general') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#email"><?php echo lang('basic_settigs_email') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cache"><?php echo lang('basic_settings_caching') ?></a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#logo"><?php echo lang('basic_settings_logo') ?></a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#update"><?php echo lang('basic_settings_update') ?> <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="top"></span></a></li>
             </ul>
 
@@ -178,6 +179,38 @@ use eMarket\Admin\BasicSettings;
 
                         <button class="btn btn-primary btn-sm bi-check-circle" type="submit"> <?php echo lang('save') ?></button>
                     </form>
+                </div>
+
+                <div id="logo" class="tab-pane fade">
+
+                    <div id="alert_messages"></div>
+
+                    <div class="mb-3 row">
+                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" alt="" class="logo img-fluid float-start"></label>
+                        <div class="mb-3">
+                            <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+                                <span><?php echo lang('basic_settings_update_button') ?></span>
+                                <input class="form-control form-control-sm" id="fileupload">
+                            </span>
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_admin_logo') ?></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-form-label col-md-3"><img id="logoC" src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="logo img-fluid float-start"></label>
+                        <div class="mb-3">
+                            <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+                                <span><?php echo lang('basic_settings_update_button') ?></span>
+                                <input class="form-control form-control-sm" id="fileupload-product">
+                            </span>
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_catalog_logo') ?></label>
+                            <br>
+                            <div id="progress" class="progress mb-3" style="height: 1.5rem;">
+                                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div id="update" class="tab-pane fade">

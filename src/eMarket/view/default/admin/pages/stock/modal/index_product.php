@@ -268,7 +268,7 @@ use eMarket\Admin\Stock;
                                 <div><small class="form-text text-muted"><?php echo lang('button_add_image') ?> (<?php echo lang('max') ?>: <?php echo get_cfg_var('upload_max_filesize'); ?>)</small></div>
                                 <span class="btn btn-primary btn-sm bi-card-image fileinput-button">
                                     <span> <?php echo lang('button_add_image') ?></span>
-                                    <input class="form-control form-control-sm" id="fileupload-product" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                    <input class="form-control form-control-sm" id="fileupload-product">
                                 </span>
                                 <br>
                                 <div><small class="form-text text-muted"><?php echo lang('stock_product_effects_for_image_processing') ?></small></div>

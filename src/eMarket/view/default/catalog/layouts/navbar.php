@@ -22,7 +22,6 @@ use eMarket\Catalog\{
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="/" class="nav-link bi-house-door"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('breadcrumb_home') ?></span></a></li>
                 <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline">  <?php echo lang('sale') ?></span></a></li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->

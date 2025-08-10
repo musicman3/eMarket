@@ -15,7 +15,7 @@ if (Valid::inGET('search')) {
 ?>
 
 <script type="text/javascript" language="javascript">
-    document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/"><?php echo lang('breadcrumb_home') ?></a></li>');
+    document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/" class="bi-house-door"> <?php echo lang('breadcrumb_home') ?></a></li>');
 
 <?php if (Valid::inGET('route') == 'products' && Products::$product_data != false) { ?>
         function breadcrumb() {

@@ -56,7 +56,7 @@ use eMarket\Core\{
                         <div class="mb-3">
                             <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
                                 <span><?php echo lang('button_add_image') ?></span>
-                                <input class="form-control form-control-sm" id="fileupload" type="file" name="files[]" accept="image/jpeg,image/png,image/gif" multiple>
+                                <input class="form-control form-control-sm" id="fileupload">
                             </span>
                             <br>
                             <div id="progress" class="progress mb-3" style="height: 1.5rem;">

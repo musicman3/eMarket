@@ -70,6 +70,7 @@ class BasicSettings {
         $this->smtpSecure();
         $this->smtpPort();
         $this->update();
+        $this->logo();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
         self::$caching_time = $Cache->caching_time;
@@ -436,6 +437,26 @@ class BasicSettings {
                     ->read(TABLE_BASIC_SETTINGS)
                     ->selectValue('smtp_port')
                     ->save();
+        }
+    }
+
+    /**
+     * Logo update
+     *
+     */
+    private function logo(): void {
+        if (Valid::inPostJson('image_data')) {
+            if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/' . Valid::inPostJson('image_data'))) {
+
+                if (Valid::inPostJson('logo_for') == 'fileupload') {
+                    $file = 'admin_logo.png';
+                }
+                if (Valid::inPostJson('logo_for') == 'fileupload-product') {
+                    $file = 'catalog_logo.png';
+                }
+                copy(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/' . Valid::inPostJson('image_data'), getenv('DOCUMENT_ROOT') . '/uploads/images/emarket_logo/' . $file);
+                unlink(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/' . Valid::inPostJson('image_data'));
+            }
         }
     }
 

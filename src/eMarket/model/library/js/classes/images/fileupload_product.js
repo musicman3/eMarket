@@ -41,6 +41,7 @@ class FileuploadProduct {
             multiple: true,
             multipleSelect: true,
             allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+            accept: 'image/jpeg, image/jpeg, image/png, image/gif',
             onSubmit: function (filename, extension) {
                 document.querySelector('#alert_messages_product').innerHTML = '';
             },
