@@ -185,7 +185,8 @@ use eMarket\Admin\BasicSettings;
 
                     <div id="alert_messages"></div>
 
-                    <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_admin_logo') ?></label>
+
+                    <span class="badge rounded-pill text-bg-primary"><?php echo lang('basic_settings_update_admin_logo') ?></span>
                     <div class="mb-3">
                         <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
@@ -196,7 +197,7 @@ use eMarket\Admin\BasicSettings;
                         </div>
                     </div>
 
-                    <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_catalog_logo') ?></label>
+                    <span class="badge rounded-pill text-bg-primary"><?php echo lang('basic_settings_update_catalog_logo') ?></span>
                     <div class="mb-3">
                         <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
