@@ -73,8 +73,8 @@ class BasicSettings {
             url: url,
             responseType: 'json',
             name: 'uploadfile',
-            multiple: true,
-            multipleSelect: true,
+            multiple: false,
+            multipleSelect: false,
             allowedExtensions: ['png'],
             accept: 'image/png',
             onSubmit: function (filename, extension) {
