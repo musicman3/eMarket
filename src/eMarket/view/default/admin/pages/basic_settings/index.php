@@ -222,7 +222,7 @@ use eMarket\Admin\BasicSettings;
                         <p><?php echo lang('basic_settings_update_attention') ?></p>
                     </div>
 
-                    <button class="btn btn-primary btn-sm bi-check-circle" id="update_button" type="submit"> <?php echo lang('basic_settings_update_button') ?></button>
+                    <button class="btn btn-primary btn-sm bi-check-circle" id="update_button" type="button"> <?php echo lang('basic_settings_update_button') ?></button>
                 </div>
 
             </div>    
