@@ -186,26 +186,21 @@ use eMarket\Admin\BasicSettings;
                     <div id="alert_messages"></div>
 
 
-                    <span class="badge rounded-pill text-bg-primary"><?php echo lang('basic_settings_update_admin_logo') ?></span>
+                    <span class="badge rounded-pill text-bg-success"><?php echo lang('basic_settings_update_admin_logo') ?></span>
                     <div class="mb-3">
                         <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
-                            <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-                                <span><?php echo lang('basic_settings_update_button_logo') ?></span>
-                                <input class="form-control form-control-sm" id="fileupload">
-                            </span>
+                            <div class="mb-3">
+                                <button class="btn btn-primary btn-sm bi-card-image" id="fileupload" type="button"> <?php echo lang('basic_settings_update_button_logo') ?></button>
+                            </div>
                         </div>
                     </div>
 
-                    <span class="badge rounded-pill text-bg-primary"><?php echo lang('basic_settings_update_catalog_logo') ?></span>
+                    <span class="badge rounded-pill text-bg-success"><?php echo lang('basic_settings_update_catalog_logo') ?></span>
                     <div class="mb-3">
                         <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
-                            <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-                                <span><?php echo lang('basic_settings_update_button_logo') ?></span>
-                                <input class="form-control form-control-sm" id="fileupload-product">
-                            </span>
-
+                            <button class="btn btn-primary btn-sm bi-card-image" id="fileupload-product" type="button"> <?php echo lang('basic_settings_update_button_logo') ?></button>
                         </div>
                     </div>
                     <div id="mb-3 progress" class="progress mb-3" style="height: 1.5rem;">
