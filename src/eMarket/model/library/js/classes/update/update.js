@@ -112,9 +112,9 @@ class Update {
         var text_class = 'text-success';
 
         if (input.status === 'false') {
-            text_class = 'text-warning';
+            text_class = 'text-danger';
         }
-        document.querySelector('#update_box').classList.replace('text-secondary', text_class);
+        document.querySelector('#update_box').classList.replace('text-warning', text_class);
     }
 
     /**

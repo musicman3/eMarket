@@ -215,7 +215,7 @@ use eMarket\Admin\BasicSettings;
 
                 <div id="update" class="tab-pane fade">
                     <div class="d-flex flex-row-reverse">
-                        <span id="update_box" class="text-secondary bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left"></span>
+                        <span id="update_box" class="text-warning bi-broadcast" data-bs-toggle="tooltip" data-bs-placement="left"></span>
                     </div>
 
                     <div class="mb-3 row">
