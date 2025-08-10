@@ -185,30 +185,30 @@ use eMarket\Admin\BasicSettings;
 
                     <div id="alert_messages"></div>
 
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" alt="" class="img-fluid float-start" /></label>
+                    <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_admin_logo') ?></label>
+                    <div class="mb-3">
+                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
                             <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-                                <span><?php echo lang('basic_settings_update_button') ?></span>
+                                <span><?php echo lang('basic_settings_update_button_logo') ?></span>
                                 <input class="form-control form-control-sm" id="fileupload">
                             </span>
-                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_admin_logo') ?></label>
                         </div>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="img-fluid float-start" /></label>
+                    <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_catalog_logo') ?></label>
+                    <div class="mb-3">
+                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
                             <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
-                                <span><?php echo lang('basic_settings_update_button') ?></span>
+                                <span><?php echo lang('basic_settings_update_button_logo') ?></span>
                                 <input class="form-control form-control-sm" id="fileupload-product">
                             </span>
-                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_update_catalog_logo') ?></label>
-                            <br>
-                            <div id="progress" class="progress mb-3" style="height: 1.5rem;">
-                                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
-                            </div>
+
                         </div>
+                    </div>
+                    <div id="mb-3 progress" class="progress mb-3" style="height: 1.5rem;">
+                        <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
                     </div>
 
                 </div>

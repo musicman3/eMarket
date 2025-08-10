@@ -186,6 +186,7 @@ basic_settings_caching_time = Caching time (sec.)
 basic_settings_default_template = Template
 basic_settings_update = Update
 basic_settings_update_button = Update
+basic_settings_update_button_logo = Update (PNG)
 basic_settings_update_admin_logo = Admin Panel Logo
 basic_settings_update_catalog_logo = Catalog logo
 basic_settings_logo = Logo

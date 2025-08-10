@@ -106,7 +106,7 @@ class BasicSettings {
                     logo_for: button
                 }).then((data) => {
                     setTimeout(function () {
-                        document.location.href = window.location.href;
+                        location.reload(true);
                     }, 1500);
                 });
             }

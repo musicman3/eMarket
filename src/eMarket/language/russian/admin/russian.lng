@@ -184,6 +184,7 @@ basic_settings_caching_time = Время кэширования (сек.)
 basic_settings_default_template = Шаблон
 basic_settings_update = Обновление
 basic_settings_update_button = Обновить
+basic_settings_update_button_logo = Обновить (PNG)
 basic_settings_update_admin_logo = Логотип административной панели
 basic_settings_update_catalog_logo = Логотип каталога
 basic_settings_logo = Логотип
