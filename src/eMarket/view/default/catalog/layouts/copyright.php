@@ -7,9 +7,14 @@
 use eMarket\Core\{
     Clock\SystemClock
 };
+use eMarket\Admin\{
+    BasicSettings
+};
+
+new BasicSettings();
 ?>
 
 <div class="container-fluid footerwrap">
     <hr>
-    <p class="footer text-center">Copyright © 2018-<?php echo SystemClock::nowFormatDate('Y') ?>, <a target=_blank href="https://github.com/musicman3/eMarket">eMarket Team</a>. All rights reserved.</p>
+    <p class="footer text-center">Copyright © <?php echo BasicSettings::$year_of_foundation ?>-<?php echo SystemClock::nowFormatDate('Y') ?>, <?php echo BasicSettings::$store_name ?></p>
 </div>

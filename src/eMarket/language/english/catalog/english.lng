@@ -6,7 +6,7 @@
 [catalog]
 
 ;TITLE
-title_catalog_index =  eMarket Online Store
+title_catalog_index =  Online Store
 title_login_index = Authorization
 title_register_index = Registration
 title_cart_index = Cart

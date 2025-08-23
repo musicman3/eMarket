@@ -191,6 +191,8 @@ basic_settings_update_admin_logo = Admin Panel Logo
 basic_settings_update_catalog_logo = Catalog logo
 basic_settings_logo = Logo
 basic_settings_update_attention = Attention!<br><br>Before updating the software, be sure to perform a full Backup of all files and databases. Please start the update only if you are sure that you will be able to fully restore the current state in case of any problems that occur during or after the update.<br><br>Using the updater, you can update to a new release or to a new master version.
+basic_settings_store_name = Store name
+basic_settings_year_of_foundation = Year of foundation
 
 ;MANUFACTURERS
 manufacturer = Manufacturer

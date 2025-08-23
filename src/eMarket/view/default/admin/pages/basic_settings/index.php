@@ -33,6 +33,18 @@ use eMarket\Admin\BasicSettings;
                         <input hidden name="add" value="ok">
 
                         <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_store_name') ?></label>
+                            <div class="col-md-9">
+                                <input type="text" name="store_name" class="input-sm form-control" value="<?php echo htmlspecialchars(BasicSettings::$store_name) ?>" required />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3"><?php echo lang('basic_settings_year_of_foundation') ?></label>
+                            <div class="col-md-9">
+                                <input type="text" name="year_of_foundation" class="input-sm form-control" value="<?php echo BasicSettings::$year_of_foundation ?>" required />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_primary_language') ?></label>
                             <div class="col-md-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-select">

@@ -48,6 +48,8 @@ class BasicSettings {
     public static $smtp_port = FALSE;
     public static $cache_status = FALSE;
     public static $caching_time = FALSE;
+    public static $store_name = 'eMarket Online Store';
+    public static $year_of_foundation = '2018';
 
     /**
      * Constructor
@@ -71,6 +73,8 @@ class BasicSettings {
         $this->smtpPort();
         $this->update();
         $this->logo();
+        $this->storeName();
+        $this->yearOfFoundation();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
         self::$caching_time = $Cache->caching_time;
@@ -467,6 +471,64 @@ class BasicSettings {
     private function update(): void {
         if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
             unlink(getenv('DOCUMENT_ROOT') . '/update.php');
+        }
+    }
+
+    /**
+     * Store Name
+     *
+     */
+    private function storeName(): void {
+
+        $other = json_decode(Db::connect()
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectValue('other')
+                        ->save(), true);
+
+        if (isset($other['store_name'])) {
+            self::$store_name = $other['store_name'];
+        }
+
+        if (Valid::inPOST('store_name')) {
+
+            $other['store_name'] = Valid::inPOST('store_name');
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('other', json_encode($other))
+                    ->save();
+
+            self::$store_name = Valid::inPOST('store_name');
+
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Year of foundation
+     *
+     */
+    private function yearOfFoundation(): void {
+
+        $other = json_decode(Db::connect()
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectValue('other')
+                        ->save(), true);
+
+        if (isset($other['year_of_foundation'])) {
+            self::$year_of_foundation = $other['year_of_foundation'];
+        }
+
+        if (Valid::inPOST('year_of_foundation')) {
+
+            $other['year_of_foundation'] = Valid::inPOST('year_of_foundation');
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('other', json_encode($other))
+                    ->save();
+
+            self::$year_of_foundation = Valid::inPOST('year_of_foundation');
+
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 }
