@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax, ss */
+/* global Ajax, ss, bootstrap */
 /**
  * Basic Settings
  *
@@ -18,8 +18,17 @@ class BasicSettings {
      */
     constructor() {
         this.change();
-        this.process('fileupload');
-        this.process('fileupload-product');
+
+        document.querySelector('#fileupload').onmouseover = function (event) {
+            BasicSettings.process('fileupload', 'uploadfile', '/uploads/temp/?route=uploads');
+            document.getElementsByName('uploadfile').forEach(e => e.parentElement.remove());
+        };
+
+        document.querySelector('#fileupload-product').onmouseover = function (event) {
+            BasicSettings.process('fileupload-product', 'uploadfile-product', '/uploads/temp/?route=product');
+            document.getElementsByName('uploadfile-product').forEach(e => e.parentElement.remove());
+        };
+
     }
 
     /**
@@ -63,16 +72,17 @@ class BasicSettings {
      * Loading new images into "Edit & Add" modal
      *
      *@param button {String} (button id)
+     *@param name {String} (name)
+     *@param url {String} (url)
      */
-    process(button) {
+    static process(button, name, url) {
         'use strict';
-        var url = '/uploads/temp/?route=uploads';
 
         var uploader = new ss.SimpleUpload({
             button: button,
             url: url,
             responseType: 'json',
-            name: 'uploadfile',
+            name: name,
             multiple: false,
             multipleSelect: false,
             allowedExtensions: ['png'],

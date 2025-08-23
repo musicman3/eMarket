@@ -185,20 +185,17 @@ use eMarket\Admin\BasicSettings;
 
                     <div id="alert_messages"></div>
 
-
                     <span class="badge rounded-pill text-bg-success"><?php echo lang('basic_settings_update_admin_logo') ?></span>
                     <div class="mb-3">
-                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" class="img-thumbnail img-fluid float-start" /></label>
+                        <label class="col-md-3"><img src="/uploads/images/emarket_logo/admin_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
-                            <div class="mb-3">
-                                <button class="btn btn-primary btn-sm bi-card-image" id="fileupload" type="button"> <?php echo lang('basic_settings_update_button_logo') ?></button>
-                            </div>
+                            <button class="btn btn-primary btn-sm bi-card-image" id="fileupload" type="button"> <?php echo lang('basic_settings_update_button_logo') ?></button>
                         </div>
                     </div>
 
                     <span class="badge rounded-pill text-bg-success"><?php echo lang('basic_settings_update_catalog_logo') ?></span>
                     <div class="mb-3">
-                        <label class="col-form-label col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" class="img-thumbnail img-fluid float-start" /></label>
+                        <label class="col-md-3"><img src="/uploads/images/emarket_logo/catalog_logo.png" class="img-thumbnail img-fluid float-start" /></label>
                         <div class="mb-3">
                             <button class="btn btn-primary btn-sm bi-card-image" id="fileupload-product" type="button"> <?php echo lang('basic_settings_update_button_logo') ?></button>
                         </div>
