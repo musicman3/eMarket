@@ -37,6 +37,7 @@ title_customers_index = Customers
 title_staff_manager_index = Staff manager
 title_staff_manager_staff_index = Staff
 title_page_not_found_index = Page Not Found
+title_language_variables_index = Language variables
 
 ;MENU_BUTTONS
 menu_name = Main menu
@@ -218,6 +219,10 @@ units_name_full = Full name
 ;VENDOR CODES
 vendor_codes_name = Vendor code
 vendor_codes_description = Description
+
+;LANGUAGE VARIABLES
+language_variables_admin = Admin Panel
+language_variables_catalog = Catalog
 
 ;CURRENCIES
 currencies_currency_symbol = Currency symbol

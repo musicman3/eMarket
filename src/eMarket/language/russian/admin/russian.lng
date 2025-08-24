@@ -37,6 +37,7 @@ title_customers_index = Клиенты
 title_staff_manager_index = Менеджер персонала
 title_staff_manager_staff_index = Персонал
 title_page_not_found_index = Страница не найдена
+title_language_variables_index = Языковые переменные
 
 ;КНОПКИ МЕНЮ
 menu_name = Главное меню
@@ -216,6 +217,10 @@ units_name_full = Полное наименование
 ;VENDOR CODES
 vendor_codes_name = Идентификатор товара
 vendor_codes_description = Описание
+
+;LANGUAGE VARIABLES
+language_variables_admin = Административная панель
+language_variables_catalog = Каталог
 
 ;CURRENCIES
 currencies_currency_symbol = Символ валюты

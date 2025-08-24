@@ -3,3 +3,5 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
+; Specify a new value for the base language variable. The new value will overwrite the base value. You can always revert to the base variable by deleting the new variable's value from this list.
+
