@@ -102,6 +102,11 @@ final class Lang {
                 $ini = parse_ini_file($files, FALSE, INI_SCANNER_RAW);
                 $lang = array_merge($lang, $ini);
             }
+
+            if (is_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng')) {
+                $custom_ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng', TRUE, INI_SCANNER_RAW);
+                $lang = array_merge($lang, $custom_ini);
+            }
         }
 
         if ($marker == 'all' OR $marker == 'translate') {
