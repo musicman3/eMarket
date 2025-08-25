@@ -53,6 +53,7 @@ class BasicSettings {
     public static $available_languages = [];
     public static $languages_list = [];
     public static $checked_lang = [];
+    public static $primary_lang_selected = [];
 
     /**
      * Constructor
@@ -81,6 +82,7 @@ class BasicSettings {
         $this->languageList();
         $this->availableLanguages();
         $this->checkedLang();
+        $this->primaryLangSelected();
         $this->languagesSave();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
@@ -267,6 +269,21 @@ class BasicSettings {
                     ->save();
 
             self::$primary_language = Settings::primaryLanguage();
+        }
+    }
+
+    /**
+     * Checked languages
+     *
+     */
+    private function primaryLangSelected(): void {
+        self::$primary_lang_selected = [];
+        foreach (lang('#lang_all') as $langs) {
+            if ($langs == self::$primary_language) {
+                self::$primary_lang_selected[$langs] = ' selected';
+            } else {
+                self::$primary_lang_selected[$langs] = '';
+            }
         }
     }
 

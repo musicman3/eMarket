@@ -49,7 +49,7 @@ use eMarket\Admin\BasicSettings;
                             <div class="col-md-9">
                                 <select name="primary_language" id="primary_language" class="input-sm form-select">
                                     <?php foreach (lang('#lang_all') as $langs) { ?>
-                                        <option value="<?php echo $langs ?>"><?php echo lang('language_name', $langs) ?></option>
+                                        <option value="<?php echo $langs ?>" <?php echo BasicSettings::$primary_lang_selected[$langs] ?>><?php echo lang('language_name', $langs) ?></option>
                                         <?php
                                     }
                                     ?>
@@ -60,8 +60,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('Доступные языки') ?></label>
                             <div class="col-md-9">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" name="available" id="available" checked disabled>
-                                    <label class="form-check-label" for="available"><?php echo lang('language_name', lang('#lang_all')[0]) ?></label>
+                                    <input class="form-check-input" type="checkbox" role="switch" name="<?php echo lang('#lang_all')[0] ?>" id="<?php echo lang('#lang_all')[0] ?>" checked>
+                                    <label class="form-check-label" for="<?php echo lang('#lang_all')[0] ?>"><?php echo lang('language_name', lang('#lang_all')[0]) ?></label>
                                 </div>
                                 <?php foreach (BasicSettings::$checked_lang as $langs => $checked) { ?>
                                     <div class="form-check form-switch">
