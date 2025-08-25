@@ -50,6 +50,9 @@ class BasicSettings {
     public static $caching_time = FALSE;
     public static $store_name = 'eMarket Online Store';
     public static $year_of_foundation = '2018';
+    public static $available_languages = [];
+    public static $languages_list = [];
+    public static $checked_lang = [];
 
     /**
      * Constructor
@@ -75,6 +78,10 @@ class BasicSettings {
         $this->logo();
         $this->storeName();
         $this->yearOfFoundation();
+        $this->languageList();
+        $this->availableLanguages();
+        $this->checkedLang();
+        $this->languagesSave();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
         self::$caching_time = $Cache->caching_time;
@@ -87,6 +94,99 @@ class BasicSettings {
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=basic_settings', 'bi-gear-fill', lang('title_basic_settings_index'), '', 'false'];
+    }
+
+    /**
+     * Language list
+     *
+     * @return array Languages array
+     */
+    private function languageList(): array {
+        $default_language = Settings::basicSettings('primary_language');
+        $lang_all = [];
+        array_push($lang_all, $default_language);
+        $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
+
+        foreach ($lang_dir as $lang_name) {
+            if (!in_array($lang_name, ['.', '..', $default_language])) {
+                array_push($lang_all, $lang_name);
+            }
+        }
+        self::$languages_list = $lang_all;
+        return $lang_all;
+    }
+
+    /**
+     * Available languages
+     *
+     * @return array Available Languages array
+     */
+    private function availableLanguages(): array {
+
+        $other = json_decode(Db::connect()
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectValue('other')
+                        ->save(), true);
+
+        self::$available_languages = self::$languages_list;
+
+        if (isset($other['hidden_languages'])) {
+            self::$available_languages = array_diff(self::$languages_list, $other['hidden_languages']);
+        }
+
+        return self::$available_languages;
+    }
+
+    /**
+     * Checked languages
+     *
+     * @return array Checked Languages array
+     */
+    private function checkedLang(): array {
+        self::$checked_lang = [];
+        foreach (BasicSettings::$languages_list as $langs) {
+            if ($langs != lang('#lang_all')[0]) {
+                if (in_array($langs, self::$available_languages)) {
+                    self::$checked_lang[$langs] = 'checked';
+                } else {
+                    self::$checked_lang[$langs] = '';
+                }
+            }
+        }
+        return self::$checked_lang;
+    }
+
+    /**
+     * Languages save
+     *
+     */
+    private function languagesSave(): void {
+
+        if (Valid::inPOST('add') == 'ok') {
+
+            $other = json_decode(Db::connect()
+                            ->read(TABLE_BASIC_SETTINGS)
+                            ->selectValue('other')
+                            ->save(), true);
+
+            if (isset($other['hidden_languages'])) {
+                unset($other['hidden_languages']);
+            }
+
+            $selected_lang = [];
+            $selected_lang[] = Settings::basicSettings('primary_language');
+            foreach (self::$languages_list as $value) {
+                if (Valid::inPOST($value)) {
+                    $selected_lang[] = $value;
+                }
+            }
+            $other['hidden_languages'] = array_diff(self::$languages_list, $selected_lang);
+
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('other', json_encode($other))
+                    ->save();
+        }
     }
 
     /**

@@ -27,21 +27,29 @@ use eMarket\Catalog\{
                 <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-translate" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                        <?php foreach (lang('#lang_all') as $value) { ?>
-                            <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
-                        <?php } ?>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-currency-exchange" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                        <?php foreach (Settings::currenciesData() as $value) { ?>
-                            <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><?php echo $value['name'] ?></a></li>
-                        <?php } ?>
-                    </ul>
-                </li>
-                <?php if (Authorize::$customer == FALSE) { ?>
+                <?php if (count(lang('#lang_all')) > 1) { ?>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-translate" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                            <?php foreach (lang('#lang_all') as $value) { ?>
+                                <li><a href="<?php echo Settings::langCurrencyPath() . '&language=' . $value ?>" class="dropdown-item"><img src="/view/<?php echo Settings::template() ?>/admin/images/langflags/<?php echo $value ?>.png"> <?php echo lang('language_name', $value) ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                if (count(Settings::currenciesData()) > 1) {
+                    ?>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-currency-exchange" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                            <?php foreach (Settings::currenciesData() as $value) { ?>
+                                <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><?php echo $value['name'] ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                if (Authorize::$customer == FALSE) {
+                    ?>
                     <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>

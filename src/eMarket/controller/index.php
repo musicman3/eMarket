@@ -67,6 +67,9 @@ if (Settings::path() != 'install') {
 // Load Autorize
 new Authorize();
 
+// Load BasicSettings
+new \eMarket\Admin\BasicSettings();
+
 // Load Languages
 new Lang();
 

@@ -15,6 +15,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\BasicSettings;
 
 /**
  * Languages
@@ -127,8 +128,16 @@ final class Lang {
         }
 
         if ($marker == 'all') {
-            return $lang_all;
+            $lang_list = [];
+            $lang_available = BasicSettings::$available_languages;
+            foreach ($lang_all as $value) {
+                if (in_array($value, $lang_available)) {
+                    array_push($lang_list, $value);
+                }
+            }
+            return $lang_list;
         }
+
         if ($marker == 'translate') {
             return $lang_trans;
         }
