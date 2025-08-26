@@ -23,6 +23,9 @@ use eMarket\Core\{
     Settings,
     Tree
 };
+use eMarket\Admin\{
+    BasicSettings
+};
 use Cruder\Db;
 
 // Load Debug stopwatch
@@ -68,7 +71,7 @@ if (Settings::path() != 'install') {
 new Authorize();
 
 // Load BasicSettings
-new \eMarket\Admin\BasicSettings();
+new BasicSettings();
 
 // Load Languages
 new Lang();
