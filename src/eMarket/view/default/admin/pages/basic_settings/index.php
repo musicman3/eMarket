@@ -50,9 +50,7 @@ use eMarket\Admin\BasicSettings;
                                 <select name="primary_language" id="primary_language" class="input-sm form-select">
                                     <?php foreach (lang('#lang_all') as $langs) { ?>
                                         <option value="<?php echo $langs ?>" <?php echo BasicSettings::$primary_lang_selected[$langs] ?>><?php echo lang('language_name', $langs) ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -77,9 +75,7 @@ use eMarket\Admin\BasicSettings;
                                 <select name="default_template" id="default_template" class="input-sm form-select">
                                     <?php foreach (BasicSettings::$templates as $name) { ?>
                                         <option value="<?php echo $name ?>" <?php echo Pages::selectedAttr($name, BasicSettings::$template) ?>><?php echo $name ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
