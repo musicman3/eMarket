@@ -127,6 +127,10 @@ final class Lang {
             }
         }
 
+        if (Settings::path() == 'install' && $marker == 'all') {
+            return $lang_all;
+        }
+
         if ($marker == 'all') {
             $lang_list = [];
             $lang_available = BasicSettings::$available_languages;

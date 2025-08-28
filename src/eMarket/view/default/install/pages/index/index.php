@@ -3,10 +3,6 @@
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-
-use eMarket\Core\{
-    Authorize
-};
 ?>
 
 <div class="container-fluid">
@@ -17,10 +13,9 @@ use eMarket\Core\{
                 <h5 class="col"><?php echo lang('install_panel') ?></h5>
                 <div class="col-xl-3 col-md-4 col-5 float-end">
                     <form action="/controller/install/" method="post" accept-charset="utf-8">
-                        <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-globe"></span>
-                            <select name='language' class="input-sm form-select" onchange="submit();">
+                            <select name="language" class="input-sm form-select" onchange="submit();">
                                 <option><?php echo lang('select_language') ?></option>
                                 <?php for ($x = 0; $x < eMarket\Core\Lang::$count; $x++) { ?>
                                     <option value='<?php echo lang('#lang_all')[$x] ?>'><?php echo lang('language_name', lang('#lang_all')[$x]) ?></option>
@@ -35,8 +30,7 @@ use eMarket\Core\{
         <div class="card-body">
 
             <form class="was-validated" action="?route=success" method="post" accept-charset="utf-8" oninput="validate()">
-                <input type='hidden' name='language' value='<?php echo eMarket\Install\Index::$default_language ?>' />
-                <input hidden name="csrf_token" value="<?php echo Authorize::csrfToken() ?>">
+                <input type="hidden" name="language" value='<?php echo eMarket\Install\Index::$default_language ?>' />
 
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
@@ -48,9 +42,9 @@ use eMarket\Core\{
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
                                         <select id="database_type" name="database_type" class="form-select">
-                                            <option value='mysql'><?php echo lang('database_family_mysql') ?></option>
-                                            <option value='pgsql'><?php echo lang('database_family_pgsql') ?></option>
-                                            <option value='sqlite'><?php echo lang('database_family_sqlite') ?></option>
+                                            <option value="mysql"><?php echo lang('database_family_mysql') ?></option>
+                                            <option value="pgsql"><?php echo lang('database_family_pgsql') ?></option>
+                                            <option value="sqlite"><?php echo lang('database_family_sqlite') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -59,8 +53,8 @@ use eMarket\Core\{
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-hdd"></span>
                                         <select id="database_family" name="database_family" class="form-select">
-                                            <option value='innodb'><?php echo lang('database_innodb') ?></option>
-                                            <option value='myisam'><?php echo lang('database_myisam') ?></option>
+                                            <option value="innodb"><?php echo lang('database_innodb') ?></option>
+                                            <option value="myisam"><?php echo lang('database_myisam') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -119,9 +113,9 @@ use eMarket\Core\{
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-shield-lock"></span>
                                         <select name="hash_method" class="form-select">
-                                            <option value='PASSWORD_DEFAULT'><?php echo lang('hash_recommended') ?></option>
-                                            <option value='PASSWORD_BCRYPT'><?php echo lang('hash_blowfish') ?></option>
-                                            <option value='PASSWORD_ARGON2I'><?php echo lang('hash_argon2i') ?></option>
+                                            <option value="PASSWORD_DEFAULT"><?php echo lang('hash_recommended') ?></option>
+                                            <option value="PASSWORD_BCRYPT"><?php echo lang('hash_blowfish') ?></option>
+                                            <option value="PASSWORD_ARGON2I"><?php echo lang('hash_argon2i') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,8 +124,8 @@ use eMarket\Core\{
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text bi-shield-lock"></span>
                                         <select name="crypt_method" class="form-select">
-                                            <option value='aes-256-gcm'>aes-256-gcm</option>
-                                            <option value='chacha20-poly1305'>chacha20-poly1305</option>
+                                            <option value="aes-256-gcm">aes-256-gcm</option>
+                                            <option value="chacha20-poly1305">chacha20-poly1305</option>
                                         </select>
                                     </div>
                                 </div>

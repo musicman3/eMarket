@@ -47,7 +47,7 @@ foreach (Tree::modulesClasses() as $path) {
 // Load Monolog logging
 Messages::monologErrorHandler();
 
-// Add Config file, DB Settings
+// Add Config file, DB Settings, BasicSettings
 if (Settings::path() != 'install') {
 
     require_once(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
@@ -65,15 +65,12 @@ if (Settings::path() != 'install') {
         'db_collate' => 'utf8mb4_unicode_ci',
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
+    // Load BasicSettings
+    new BasicSettings();
 }
 
 // Load Autorize
 new Authorize();
-
-if (Settings::path() != 'install') {
-    // Load BasicSettings
-    new BasicSettings();
-}
 
 // Load Languages
 new Lang();

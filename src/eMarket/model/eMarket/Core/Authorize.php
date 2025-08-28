@@ -49,8 +49,9 @@ class Authorize {
         }
 
         session_start();
-
-        $this->csrfVerification();
+        if (Settings::path() != 'install') {
+            $this->csrfVerification();
+        }
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
             $this->admin();
