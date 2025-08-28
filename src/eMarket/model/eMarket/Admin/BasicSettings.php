@@ -566,7 +566,7 @@ class BasicSettings {
      *
      */
     private function logo(): void {
-        if (Valid::inPostJson('image_data')) {
+        if (Valid::inPostJson('image_data') && Valid::inGET('route') == 'basic_settings') {
             if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/' . Valid::inPostJson('image_data'))) {
 
                 if (Valid::inPostJson('logo_for') == 'fileupload') {
