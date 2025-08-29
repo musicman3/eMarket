@@ -303,7 +303,7 @@ class Slideshow {
                 $modal_id = Pages::$table['lines'][$i]['id'];
 
                 foreach (self::$sql_data as $sql_modal) {
-                    if ($sql_modal['id'] == $modal_id) {
+                    if ($sql_modal['id'] == $modal_id && in_array($sql_modal['language'], lang('#lang_all'))) {
                         $name[$modal_id] = $sql_modal['name'];
                         $url[$modal_id] = $sql_modal['url'];
                         $heading[$modal_id] = $sql_modal['heading'];

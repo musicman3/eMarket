@@ -243,7 +243,7 @@ class Currencies {
 
                 foreach (self::$sql_data as $sql_modal) {
 
-                    if ($sql_modal['id'] == $modal_id) {
+                    if ($sql_modal['id'] == $modal_id && in_array($sql_modal['language'], lang('#lang_all'))) {
                         $name[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['name'];
                         $code[array_search($sql_modal['language'], lang('#lang_all'))][$modal_id] = $sql_modal['code'];
                     }

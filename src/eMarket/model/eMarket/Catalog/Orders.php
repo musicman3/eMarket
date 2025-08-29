@@ -80,7 +80,7 @@ class Orders {
                 $modal_id = self::$lines[$i]['id'];
 
                 foreach (self::$lines as $sql_modal) {
-                    if ($sql_modal['id'] == $modal_id) {
+                    if ($sql_modal['id'] == $modal_id && in_array($sql_modal['language'], lang('#lang_all'))) {
                         $orders[$modal_id] = $sql_modal;
                     }
                 }
