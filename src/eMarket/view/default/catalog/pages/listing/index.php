@@ -25,7 +25,14 @@ require_once('modal/cart_message.php')
 
 <?php if (Listing::$categories_description != null) { ?>
 
-    <div id="listing-block" class="mb-3 p-4 border rounded"><img src="/uploads/images/categories/resize_2/<?php echo Listing::$categories_logo ?>" class="float-md-end mb-3 ms-md-3" alt="<?php echo Listing::$categories_name ?>"><?php echo Listing::$categories_description ?></div>
+    <div id="listing-block" class="mb-3 p-4 border rounded">
+        <?php if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/images/categories/resize_2/' . Listing::$categories_logo)) { ?>
+            <img src="/uploads/images/categories/resize_2/<?php echo Listing::$categories_logo ?>" class="float-md-end mb-3 ms-md-3" alt="<?php echo Listing::$categories_name ?>">
+            <?php
+        }
+        echo Listing::$categories_description
+        ?>
+    </div>
 
     <?php
 }
