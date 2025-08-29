@@ -32,6 +32,7 @@
             buttonClassExpanded: 'menu-btn-active',
             buttonSelector: 'span',
             parentClass: 'menu-parent',
+            targetClassExpanded: 'small',
             singleSibling: true,
             targetSelector: '.menu ul ul'
         });
