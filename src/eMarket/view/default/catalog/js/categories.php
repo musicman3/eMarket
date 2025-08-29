@@ -31,6 +31,7 @@
         var toggle = new Toggle({
             buttonClassExpanded: 'menu-btn-active',
             buttonSelector: 'span',
+            parentClassExpanded: 'h6',
             parentClass: 'menu-parent',
             targetClassExpanded: 'small',
             singleSibling: true,
