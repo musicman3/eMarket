@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 
-<div class="contentText">
+<div class="contentText mb-2 p-3 border rounded">
     <?php if (\eMarket\Core\Authorize::$customer == FALSE) { ?>
         <h3><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h3>
         <p><?php echo sprintf(lang('welcome_text')) ?></p>
