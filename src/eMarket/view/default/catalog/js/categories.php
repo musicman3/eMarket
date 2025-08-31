@@ -25,6 +25,9 @@
             var cat_id = JSON.parse(document.querySelector('#data_breadcrumb').dataset.parentid);
             if (cat_id !== '') {
                 document.querySelector('#cat_' + cat_id).closest('ul').setAttribute('aria-expand', 'true');
+                if (document.querySelector('#cat_' + cat_id).getElementsByTagName('ul')[0] !== undefined) {
+                    document.querySelector('#cat_' + cat_id).getElementsByTagName('ul')[0].setAttribute('aria-expand', 'true');
+                }
                 document.querySelector('#namecat_' + cat_id).classList.add('menu-bold');
                 var json_data = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);
                 json_data.forEach(e => document.querySelector('#cat_' + e).closest('ul').setAttribute('aria-expand', 'true'));
