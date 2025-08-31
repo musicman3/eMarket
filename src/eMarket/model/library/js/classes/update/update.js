@@ -103,14 +103,13 @@ class Update {
      * @param data {Object} (response)
      */
     static Response(data) {
+
         var input = JSON.parse(data);
-        sessionStorage.setItem('update_response', data);
-
-        const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
         if (input !== null) {
+            sessionStorage.setItem('update_response', data);
+            const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
+
             document.querySelector('#update_box').setAttribute('data-bs-original-title', input.message);
-
-
             var text_class = 'text-success';
 
             if (input.status === 'false') {
