@@ -588,7 +588,7 @@ class BasicSettings {
      *
      */
     private function update(): void {
-        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
+        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php') && Valid::inGET('route') == 'basic_settings') {
             unlink(getenv('DOCUMENT_ROOT') . '/update.php');
         }
     }
