@@ -40,7 +40,7 @@
             parentClassExpanded: 'h6',
             parentClass: 'menu-parent',
             targetClassExpanded: 'small',
-            singleSibling: true,
+            //singleSibling: true,
             targetSelector: '.menu ul ul'
         });
 
