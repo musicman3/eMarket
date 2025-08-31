@@ -35,16 +35,12 @@ $removing_list = [
 // php.ini set
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
-// Init
-init($repo_init, $removing_list);
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
-if (!isset($_SESSION['login']) || !isset($_SESSION['pass'])) {
-    if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
-        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
-    }
-    exit;
+if (isset($_SESSION['login']) || isset($_SESSION['pass'])) {
+    // Init
+    init($repo_init, $removing_list);
 }
 
 /**
@@ -410,58 +406,58 @@ function gitHubData(string $repo_name): mixed {
              */
             function success(xhr) {
                 var data = xhr.response;
-                 var progress_bar = document.querySelectorAll('.progress-bar');
+                var progress_bar = document.querySelectorAll('.progress-bar');
 
                 try {
                     var parse = JSON.parse(data);
 
-                if (parse[0] === 'Install' && Number(parse[2]) < 7) {
-                    document.querySelector('#step_data').innerHTML = parse[1];
-                    document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 6';
+                    if (parse[0] === 'Install' && Number(parse[2]) < 7) {
+                        document.querySelector('#step_data').innerHTML = parse[1];
+                        document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 6';
 
-                    progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 17 + '%');
-                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+                        progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 17 + '%');
+                        progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
 
-                    setTimeout(() => {
-                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3] + '&version=' + parse[4]);
-                    }, 1250);
-                }
-
-                if (parse[0] === 'Error') {
-                    document.querySelector('#attention').innerHTML = parse[1];
-                    document.querySelector('#step_data').innerHTML = 'Update problem!';
-                    document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
-                }
-
-                if (parse[0] === 'Done') {
-                    sessionStorage.removeItem('update_response');
-                    sessionStorage.removeItem('update_time');
-                    progress_bar.forEach(e => e.style.width = '100%');
-                    progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
-                    setTimeout(() => {
-                        window.location.href = document.querySelector('#redirect').dataset.redirect;
-                    }, 2500);
-                }
-                    } catch (e) {
-                        if (data.indexOf('1060 Duplicate column') > 0){
-                            document.querySelector('#step_data').innerHTML = 'Skip duplicate columns and done';
-                            
-                            sessionStorage.removeItem('update_response');
-                            sessionStorage.removeItem('update_time');
-                            progress_bar.forEach(e => e.style.width = '100%');
-                            progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
-                            
-                            setTimeout(() => {
-                                window.location.href = document.querySelector('#redirect').dataset.redirect;
-                            }, 2500);
-                    
-                        } else {
-                        
-                            document.querySelector('#attention').innerHTML = data;
-                            document.querySelector('#step_data').innerHTML = 'Update problem!';
-                            document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
-                        }
+                        setTimeout(() => {
+                            getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3] + '&version=' + parse[4]);
+                        }, 1250);
                     }
+
+                    if (parse[0] === 'Error') {
+                        document.querySelector('#attention').innerHTML = parse[1];
+                        document.querySelector('#step_data').innerHTML = 'Update problem!';
+                        document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
+                    }
+
+                    if (parse[0] === 'Done') {
+                        sessionStorage.removeItem('update_response');
+                        sessionStorage.removeItem('update_time');
+                        progress_bar.forEach(e => e.style.width = '100%');
+                        progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+                        setTimeout(() => {
+                            window.location.href = document.querySelector('#redirect').dataset.redirect;
+                        }, 2500);
+                    }
+                } catch (e) {
+                    if (data.indexOf('1060 Duplicate column') > 0) {
+                        document.querySelector('#step_data').innerHTML = 'Skip duplicate columns and done';
+
+                        sessionStorage.removeItem('update_response');
+                        sessionStorage.removeItem('update_time');
+                        progress_bar.forEach(e => e.style.width = '100%');
+                        progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
+
+                        setTimeout(() => {
+                            window.location.href = document.querySelector('#redirect').dataset.redirect;
+                        }, 2500);
+
+                    } else {
+
+                        document.querySelector('#attention').innerHTML = data;
+                        document.querySelector('#step_data').innerHTML = 'Update problem!';
+                        document.querySelector('#step_data').classList.replace('bg-success', 'bg-danger');
+                    }
+                }
             }
         </script>
     </head>
