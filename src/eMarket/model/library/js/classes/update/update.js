@@ -107,14 +107,17 @@ class Update {
         sessionStorage.setItem('update_response', data);
 
         const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
-        document.querySelector('#update_box').setAttribute('data-bs-original-title', input.message);
+        if (input !== null) {
+            document.querySelector('#update_box').setAttribute('data-bs-original-title', input.message);
 
-        var text_class = 'text-success';
 
-        if (input.status === 'false') {
-            text_class = 'text-danger';
+            var text_class = 'text-success';
+
+            if (input.status === 'false') {
+                text_class = 'text-danger';
+            }
+            document.querySelector('#update_box').classList.replace('text-warning', text_class);
         }
-        document.querySelector('#update_box').classList.replace('text-warning', text_class);
     }
 
     /**

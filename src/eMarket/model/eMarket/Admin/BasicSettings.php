@@ -61,25 +61,27 @@ class BasicSettings {
      *
      */
     function __construct() {
-        $this->linesOnPage();
-        $this->sessionExprTime();
-        $this->debug();
-        $this->primaryLanguage();
-        $this->templatesList();
-        $this->template();
-        $this->email();
-        $this->emailName();
-        $this->smtpStatus();
-        $this->smtpAuth();
-        $this->hostEmail();
-        $this->usernameEmail();
-        $this->passwordEmail();
-        $this->smtpSecure();
-        $this->smtpPort();
-        $this->update();
-        $this->logo();
-        $this->storeName();
-        $this->yearOfFoundation();
+        if (Valid::inGET('route') == 'basic_settings') {
+            $this->linesOnPage();
+            $this->sessionExprTime();
+            $this->debug();
+            $this->primaryLanguage();
+            $this->templatesList();
+            $this->template();
+            $this->email();
+            $this->emailName();
+            $this->smtpStatus();
+            $this->smtpAuth();
+            $this->hostEmail();
+            $this->usernameEmail();
+            $this->passwordEmail();
+            $this->smtpSecure();
+            $this->smtpPort();
+            $this->update();
+            $this->logo();
+            $this->storeName();
+            $this->yearOfFoundation();
+        }
         $this->languageList();
         $this->availableLanguages();
         $this->checkedLang();
@@ -568,7 +570,7 @@ class BasicSettings {
      *
      */
     private function logo(): void {
-        if (Valid::inPostJson('image_data') && Valid::inGET('route') == 'basic_settings') {
+        if (Valid::inPostJson('image_data')) {
             if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/' . Valid::inPostJson('image_data'))) {
 
                 if (Valid::inPostJson('logo_for') == 'fileupload') {
@@ -588,7 +590,7 @@ class BasicSettings {
      *
      */
     private function update(): void {
-        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php') && Valid::inGET('route') == 'basic_settings') {
+        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
             unlink(getenv('DOCUMENT_ROOT') . '/update.php');
         }
     }
