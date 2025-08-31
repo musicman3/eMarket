@@ -35,16 +35,12 @@ $removing_list = [
 // php.ini set
 ini_set('memory_limit', -1);
 ini_set('max_execution_time', 0);
-// Init
-init($repo_init, $removing_list);
 
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
-if (!isset($_SESSION['login']) || !isset($_SESSION['pass'])) {
-    if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
-        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
-    }
-    exit;
+if (isset($_SESSION['login']) || isset($_SESSION['pass'])) {
+    // Init
+    init($repo_init, $removing_list);
 }
 
 /**

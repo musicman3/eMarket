@@ -54,6 +54,7 @@ class BasicSettings {
     public static $languages_list = [];
     public static $checked_lang = [];
     public static $primary_lang_selected = [];
+    public static $button_update_status = '';
 
     /**
      * Constructor
@@ -84,6 +85,7 @@ class BasicSettings {
         $this->checkedLang();
         $this->primaryLangSelected();
         $this->languagesSave();
+        $this->buttonUpdateStatus();
         $Cache = new Cache();
         self::$cache_status = $Cache->cache_status;
         self::$caching_time = $Cache->caching_time;
@@ -646,6 +648,16 @@ class BasicSettings {
             self::$year_of_foundation = Valid::inPOST('year_of_foundation');
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Update
+     *
+     */
+    private function buttonUpdateStatus(): void {
+        if (Valid::$demo_mode == TRUE) {
+            self::$button_update_status = 'disabled';
         }
     }
 }
