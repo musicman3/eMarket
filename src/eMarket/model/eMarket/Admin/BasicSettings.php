@@ -81,16 +81,16 @@ class BasicSettings {
             $this->logo();
             $this->storeName();
             $this->yearOfFoundation();
+            $this->buttonUpdateStatus();
+            $Cache = new Cache();
+            self::$cache_status = $Cache->cache_status;
+            self::$caching_time = $Cache->caching_time;
         }
         $this->languageList();
         $this->availableLanguages();
         $this->checkedLang();
         $this->primaryLangSelected();
         $this->languagesSave();
-        $this->buttonUpdateStatus();
-        $Cache = new Cache();
-        self::$cache_status = $Cache->cache_status;
-        self::$caching_time = $Cache->caching_time;
     }
 
     /**
