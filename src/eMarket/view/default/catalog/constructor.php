@@ -68,7 +68,7 @@ use eMarket\Catalog\{
                 <?php
                 if (Routing::tlpc('boxes-left', 'count') > 0) {
                     ?>
-                    <div id="columnLeft" class="col-xl-2 col-lg-3">
+                    <div id="columnLeft" class="col-xl-3 col-lg-3">
                         <?php
                         foreach (Routing::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
@@ -80,7 +80,7 @@ use eMarket\Catalog\{
                 <?php
                 if (Routing::tlpc('boxes-left', 'count') > 0) {
                     ?>
-                    <div id="bodyContent" class="col-xl-10 col-lg-9">
+                    <div id="bodyContent" class="col-xl-9 col-lg-9">
                         <?php
                         require_once(Routing::template());
                         ?>
@@ -96,7 +96,7 @@ use eMarket\Catalog\{
                 <?php
                 if (Routing::tlpc('boxes-right', 'count') > 0) {
                     ?>
-                    <div id="bodyContent" class="col-xl-10 col-lg-9 order-2 order-lg-1">
+                    <div id="bodyContent" class="col-xl-9 col-lg-9 order-2 order-lg-1">
                         <?php
                         require_once(Routing::template());
                         ?>
@@ -112,7 +112,7 @@ use eMarket\Catalog\{
                 <?php
                 if (Routing::tlpc('boxes-right', 'count') > 0) {
                     ?>
-                    <div id="columnRight" class="col-xl-2 col-lg-3 order-1 order-lg-2">
+                    <div id="columnRight" class="col-xl-3 col-lg-3 order-1 order-lg-2">
                         <?php
                         foreach (Routing::tlpc('boxes-right') as $path) {
                             require_once (ROOT . $path);

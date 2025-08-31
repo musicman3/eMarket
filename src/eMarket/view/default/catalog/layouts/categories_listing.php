@@ -17,15 +17,19 @@ Categories::listingData();
                 if ($value[2] == true) {
                     ?>
                     <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
-                        <div class="border rounded p-2">
+                        <div class="card border rounded p-2 h-100">
 
-                            <a href="/?route=listing&category_id=<?php echo $value[0] ?>"><img src="/uploads/images/categories/resize_0/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-fluid rounded mx-auto d-block"></a>
+                            <div id="image" class="h-100">
+                                <a href="/?route=listing&category_id=<?php echo $value[0] ?>"><img src="/uploads/images/categories/resize_0/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-fluid rounded mx-auto d-block"></a>
+                            </div>
 
                             <h5 class="text-center"><a href="/?route=listing&category_id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
                         </div>
                     </div>
-        <?php }
-    } ?>  
+                <?php
+                }
+            }
+            ?>  
         </div>
     </div>
     <?php
