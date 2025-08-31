@@ -59,7 +59,7 @@ function init(array $repo_init, array $removing_list): void {
     $mode = 'release';
     $version = '';
 
-    if (inGET('install_type') == 'master') {
+    if (inGET('update_type') == 'master') {
         $php_version = $repo_init['master_php_version'];
         $mode = 'master';
         $download = gitHubData($repo_name . '/commits/master');
@@ -466,9 +466,9 @@ function gitHubData(string $repo_name): mixed {
         <div class="bd-highlight d-flex align-items-center min-vh-100">
             <div class="card w-25 text-center mx-auto p-2 bd-highlight">
                 <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
+                    <input type="radio" class="btn-check" name="update_type" id="release" autocomplete="off" checked>
                     <label class="btn btn-outline-dark" for="release">GitHub Latest Release</label>
-                    <input type="radio" class="btn-check" name="install_type" id="master" autocomplete="off">
+                    <input type="radio" class="btn-check" name="update_type" id="master" autocomplete="off">
                     <label class="btn btn-outline-dark" for="master">GitHub Master</label>
                 </div>
 
@@ -494,11 +494,11 @@ function gitHubData(string $repo_name): mixed {
                     document.querySelector('#step_data').innerHTML = 'Requirements check';
                     setTimeout(() => {
                         setTimeout(() => {
-                            var install_type = 'release';
+                            var update_type = 'release';
                             if (document.querySelector('#master').checked) {
-                                install_type = 'master';
+                                update_type = 'master';
                             }
-                            getUpdate(window.location.href + '?step=1' + '&install_type=' + install_type);
+                            getUpdate(window.location.href + '?step=1' + '&update_type=' + update_type);
                         }, 1500);
                         document.querySelector('#step_data').innerHTML = 'Downloading archive';
                         var progress_bar = document.querySelectorAll('.progress-bar');
