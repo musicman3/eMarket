@@ -12,6 +12,7 @@
 
         if (params.get('category_id') !== null && route === 'listing') {
             var cat_id = params.get('category_id');
+            document.querySelector('#cat_' + cat_id).closest('ul').setAttribute('aria-expand', 'true');
             if (document.querySelector('#cat_' + cat_id).getElementsByTagName('ul')[0] !== undefined) {
                 document.querySelector('#cat_' + cat_id).getElementsByTagName('ul')[0].setAttribute('aria-expand', 'true');
             }
