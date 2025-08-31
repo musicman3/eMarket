@@ -149,7 +149,7 @@ class BasicSettings {
     private function checkedLang(): array {
         self::$checked_lang = [];
         foreach (BasicSettings::$languages_list as $langs) {
-            if ($langs != lang('#lang_all')[0]) {
+            if ($langs != self::$languages_list[0]) {
                 if (in_array($langs, self::$available_languages)) {
                     self::$checked_lang[$langs] = 'checked';
                 } else {
@@ -280,7 +280,7 @@ class BasicSettings {
      */
     private function primaryLangSelected(): void {
         self::$primary_lang_selected = [];
-        foreach (lang('#lang_all') as $langs) {
+        foreach (self::$languages_list as $langs) {
             if ($langs == self::$primary_language) {
                 self::$primary_lang_selected[$langs] = ' selected';
             } else {
