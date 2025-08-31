@@ -83,10 +83,6 @@ class Update extends JsonRpc {
      */
     private function responseVersion(): bool|array {
 
-        if (is_file(getenv('DOCUMENT_ROOT') . '/update.php')) {
-            unlink(getenv('DOCUMENT_ROOT') . '/update.php');
-        }
-
         $version = $this->checkVersion();
 
         if ($version && version_compare($version['this_version'], $version['new_version'], '>=')) {
