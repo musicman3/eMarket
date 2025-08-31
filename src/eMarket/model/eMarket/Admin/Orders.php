@@ -185,9 +185,9 @@ class Orders {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
                 $modal_id = Pages::$table['lines'][$i]['id'];
-
+                $orders = [];
                 foreach (self::$sql_data as $sql_modal) {
-                    if ($sql_modal['id'] == $modal_id && in_array($sql_modal['language'], lang('#lang_all'))) {
+                    if ($sql_modal['id'] == $modal_id) {
                         $sql_modal['date_purchased'] = SystemClock::getDateTime($sql_modal['date_purchased']);
                         $orders[$modal_id] = $sql_modal;
                     }
@@ -197,5 +197,4 @@ class Orders {
             }
         }
     }
-
 }
