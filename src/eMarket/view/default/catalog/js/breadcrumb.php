@@ -21,13 +21,14 @@ if (Valid::inGET('search')) {
         function breadcrumb() {
             var breadcrumbid = JSON.parse(document.querySelector('#data_breadcrumb').dataset.breadcrumbid);
             var breadcrumbname = JSON.parse(document.querySelector('div#data_breadcrumb').dataset.breadcrumbname);
+            var parentid = JSON.parse(document.querySelector('div#data_breadcrumb').dataset.parentid);
 
             if (breadcrumbid.length > 0) {
                 for (var x = 0; x < breadcrumbname.length; x++) {
                     document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/?route=listing&category_id=' + breadcrumbid[x] + '">' + breadcrumbname[x] + '</a></li>');
                 }
             }
-            document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/?route=listing&category_id=<?php echo Valid::inGET('category_id') ?>"><?php echo Products::$category_data['name'] ?></a></li>');
+            document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><a href="/?route=listing&category_id=' + parentid + '"><?php echo Products::$category_data['name'] ?></a></li>');
             document.querySelector('#breadcrumb').insertAdjacentHTML('beforeend', '<li class="breadcrumb-item"><?php echo Products::$product_data['name'] ?></li>');
         }
 
