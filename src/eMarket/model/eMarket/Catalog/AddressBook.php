@@ -197,16 +197,16 @@ class AddressBook {
             $number = (int) Valid::inPOST('delete') - 1;
             if (self::$address_data[$number]['default'] == 1 && count(self::$address_data) > 1) {
                 unset(self::$address_data[$number]);
-                $address_data_out = array_values(self::$address_data);
-                $address_data_out[0]['default'] = 1;
+                self::$address_data = array_values(self::$address_data);
+                self::$address_data[0]['default'] = 1;
             } else {
                 unset(self::$address_data[$number]);
-                $address_data_out = array_values(self::$address_data);
+                self::$address_data = array_values(self::$address_data);
             }
 
             $address_data_out_table = NULL;
-            if (count($address_data_out) > 0) {
-                $address_data_out_table = json_encode($address_data_out);
+            if (count(self::$address_data) > 0) {
+                $address_data_out_table = json_encode(self::$address_data);
             }
 
             Db::connect()
