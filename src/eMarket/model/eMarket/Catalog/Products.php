@@ -16,7 +16,7 @@ use eMarket\Core\{
     Valid,
     Tabs
 };
-
+use Cruder\Db;
 /**
  * Products
  *
@@ -40,6 +40,7 @@ class Products {
     public static $weight_value = FALSE;
     public static $images = FALSE;
     public static $attributes_data = FALSE;
+    public static $attributes_status = FALSE;
     public static $tabs_data = [];
 
     /**
@@ -57,8 +58,9 @@ class Products {
             $this->weight();
             $this->images();
             $this->attributes();
+            $this->attributesStatus();
             $this->tabs();
-        }else{
+        } else {
             $this->title = lang('title_products_index') . ': ' . lang('product_not_found');
         }
     }
@@ -172,6 +174,28 @@ class Products {
             self::$attributes_data = json_encode([]);
         } else {
             self::$attributes_data = json_encode($categories_data['attributes']);
+        }
+    }
+
+    /**
+     * Attributes Status
+     *
+     */
+    private function attributesStatus(): void {
+
+        $categories_data = false;
+        if (Valid::inGET('id')) {
+            $categories_data = Db::connect()
+                    ->read(TABLE_CATEGORIES)
+                    ->selectValue('attributes')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('id=', ProductsCore::productData(Valid::inGET('id'))['parent_id'])
+                    ->and('status=', 1)
+                    ->save();
+        }
+
+        if (count(json_decode(self::$products['attributes'])) > 0 && $categories_data != FALSE && count(json_decode($categories_data)) > 0) {
+            self::$attributes_status = TRUE;
         }
     }
 
