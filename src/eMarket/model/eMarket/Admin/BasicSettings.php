@@ -79,13 +79,13 @@ class BasicSettings {
             $this->smtpPort();
             $this->update();
             $this->logo();
-            $this->storeName();
-            $this->yearOfFoundation();
             $this->buttonUpdateStatus();
             $Cache = new Cache();
             self::$cache_status = $Cache->cache_status;
             self::$caching_time = $Cache->caching_time;
         }
+        $this->storeName();
+        $this->yearOfFoundation();
         $this->languageList();
         $this->availableLanguages();
         $this->checkedLang();
