@@ -137,7 +137,7 @@ class AddressBook {
             $x = 0;
             foreach (self::$address_data as $data) {
                 if ($data['default'] == 1 && $this->default == 1) {
-                    $address_data[$x]['default'] = 0;
+                    self::$address_data[$x]['default'] = 0;
                 }
                 $x++;
             }
@@ -255,15 +255,14 @@ class AddressBook {
     /**
      * Default text
      *
-     * @param int|string $value Default value
+     * @param int|string|null $value Default value
      * @return string Output text
      */
-    public static function defaultText(int|string $value): string {
+    public static function defaultText(int|string|null $value): string {
         $output = lang('confirm-no');
         if ($value == 1) {
             $output = lang('confirm-yes');
         }
         return $output;
     }
-
 }
