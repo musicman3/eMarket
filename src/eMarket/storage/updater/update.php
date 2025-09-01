@@ -11,7 +11,7 @@ $repo_init = [
     'target_folder' => '/src', // Target folder from which files are copied
     'release_php_version' => '8.2', // Min Release php version
     'master_php_version' => '8.2', // Min Master php version
-    'redirect' => 'controller/admin/' // Redirect after update completed
+    'redirect' => 'admin/' // Redirect after update completed
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
