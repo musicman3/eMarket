@@ -41,17 +41,13 @@ class JsonRpc {
     public function loadData(): void {
         if (Valid::inPostJson('jsonrpc') == '2.0' && Valid::inPostJson('method') && Valid::inPostJson('id')) {
             $namespace = '\eMarket\JsonRpc\\' . Valid::inPostJson('method');
-            if (class_exists($namespace)) {
-                new $namespace;
-            } else {
+            if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', Valid::inPostJson('id'));
             }
         }
         if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') == '2.0' && $this->decodeGetData('method') && $this->decodeGetData('id')) {
             $namespace = '\eMarket\JsonRpc\\' . $this->decodeGetData('method');
-            if (class_exists($namespace)) {
-                new $namespace;
-            } else {
+            if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
             }
         }

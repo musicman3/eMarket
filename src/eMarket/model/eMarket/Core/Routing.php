@@ -53,8 +53,8 @@ class Routing {
      * @return string (output path)
      */
     public static function pageProcessor(string $path): string {
-        
-        if (self::$page_not_found != false){
+
+        if (self::$page_not_found != false) {
             return 'page_not_found';
         }
 
