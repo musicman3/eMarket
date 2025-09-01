@@ -27,6 +27,14 @@ class JsonRpc {
     private $decode_data = FALSE;
 
     /**
+     * Constructor
+     *
+     */
+    public function __construct() {
+        $this->loadData();
+    }
+
+    /**
      * Loading data from Services
      * 
      */
@@ -153,5 +161,4 @@ class JsonRpc {
         curl_close($curl);
         return $response;
     }
-
 }
