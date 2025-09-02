@@ -35,6 +35,7 @@ class ChatGPT extends JsonRpc {
      *
      */
     public function __construct() {
+        $this->jsonRpcVerification();
         $this->request();
         $this->apiKey();
     }
@@ -101,5 +102,4 @@ class ChatGPT extends JsonRpc {
             echo json_encode([lang('chatgpt_api_key_saved')]);
         }
     }
-
 }

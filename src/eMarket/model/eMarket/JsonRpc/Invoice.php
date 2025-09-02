@@ -37,6 +37,7 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
+        $this->jsonRpcVerification(['?route=orders']);
         $this->createBlank();
     }
 
@@ -134,5 +135,4 @@ class Invoice extends JsonRpc {
         $this->mpdf()->WriteHTML($this->html());
         $this->mpdf()->Output('invoice.pdf', 'D');
     }
-
 }

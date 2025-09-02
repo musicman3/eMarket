@@ -32,6 +32,7 @@ class JsonRpc {
      *
      */
     public function __construct() {
+        header('Content-Type: application/json');
         $this->verifyMethod();
     }
 
@@ -59,7 +60,7 @@ class JsonRpc {
      *
      * @param array $available_pages List of available pages ['?route=basic_settings']
      */
-    public function verification(array $available_pages = []): void {
+    public function jsonRpcVerification(array $available_pages = []): void {
 
         if (!Valid::inPostJson('login')) {
             $this->error('-32602', 'Access denied', '0');
@@ -148,7 +149,6 @@ class JsonRpc {
             'error' => ['code' => $code, 'message' => $message],
             'id' => $id
         ]);
-        header('Content-Type: application/json');
         echo $data;
         exit;
     }

@@ -33,11 +33,15 @@ class Update extends JsonRpc {
      *
      */
     public function __construct() {
+        $this->jsonRpcVerification(['?route=basic_settings']);
+        $this->init();
+    }
 
-        header('Content-Type: application/json');
-
-        $this->verification(['?route=basic_settings']);
-
+    /**
+     * Init
+     * 
+     */
+    public function init(): void {
         if (Valid::inPostJson('message') == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {
             echo json_encode(['status' => 'update']);
         } else {
