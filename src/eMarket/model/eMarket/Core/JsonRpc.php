@@ -126,9 +126,17 @@ class JsonRpc {
      * @return array|string jsonRPC data
      */
     public function decodeGetData(?string $name): array|string {
+
+        if (!Valid::inGET('request')) {
+            $this->error('-32602', 'Bad request', '0');
+        }
         if (!$this->decode_data) {
             $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
+        if (!isset($this->decode_data[$name]) || $this->decode_data[$name] == null) {
+            $this->error('-32602', 'Bad request', '0');
+        }
+
         if ($name == null) {
             return $this->decode_data;
         } else {
