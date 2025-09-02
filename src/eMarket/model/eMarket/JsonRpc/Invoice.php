@@ -37,7 +37,6 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->createBlank();
     }
 

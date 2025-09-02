@@ -33,7 +33,6 @@ class Update extends JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->jsonRpcVerification(['?route=basic_settings']);
         $this->init();
     }

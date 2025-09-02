@@ -32,6 +32,7 @@ class JsonRpc {
      *
      */
     public function __construct() {
+        header('Content-Type: application/json');
         $this->verifyMethod();
     }
 

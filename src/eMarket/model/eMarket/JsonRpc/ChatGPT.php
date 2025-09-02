@@ -35,7 +35,6 @@ class ChatGPT extends JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->jsonRpcVerification();
         $this->request();
         $this->apiKey();
