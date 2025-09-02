@@ -32,7 +32,6 @@ class JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->verifyMethod();
     }
 
@@ -168,6 +167,7 @@ class JsonRpc {
      * @param string $id ID
      */
     public function error(?string $code, ?string $message, ?string $id): void {
+        header('Content-Type: application/json');
         $data = json_encode([
             'jsonrpc' => '2.0',
             'error' => ['code' => $code, 'message' => $message],
