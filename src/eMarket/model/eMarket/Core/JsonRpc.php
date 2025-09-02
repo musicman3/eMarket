@@ -57,7 +57,7 @@ class JsonRpc {
     public function jsonRpcVerification(array $available_pages = []): void {
 
         if (!Valid::inPostJson('login')) {
-            $this->error('-32601', 'Access denied', '0');
+            $this->error('-32601', 'Access denied', '');
         } else {
 
             $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
@@ -122,19 +122,19 @@ class JsonRpc {
     public function decodeGetData(?string $name): array|string {
 
         if (!Valid::inGET('request')) {
-            $this->error('-32600', 'Invalid Request', '0');
+            $this->error('-32600', 'Invalid Request', '');
         }
         if (!$this->decode_data) {
             $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
         if ($this->decode_data == null) {
-            $this->error('-32700', 'Parse error', '0');
+            $this->error('-32700', 'Parse error', '');
         }
         if (!isset($this->decode_data[$name])) {
-            $this->error('-32602', 'Invalid name', '0');
+            $this->error('-32602', 'Invalid name', '');
         }
         if ($this->decode_data['jsonrpc'] !== '2.0') {
-            $this->error('-32602', 'Invalid jsonrpc version', '0');
+            $this->error('-32602', 'Invalid jsonrpc version', '');
         }
 
         if ($name == null) {
