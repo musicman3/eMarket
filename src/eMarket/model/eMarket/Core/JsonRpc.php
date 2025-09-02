@@ -63,7 +63,7 @@ class JsonRpc {
     public function jsonRpcVerification(array $available_pages = []): void {
 
         if (!Valid::inPostJson('login')) {
-            $this->error('-32602', 'Access denied', '0');
+            $this->error('-32601', 'Access denied', '0');
         } else {
 
             $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
@@ -95,7 +95,7 @@ class JsonRpc {
                     }
                 }
                 if ($count == 0) {
-                    $this->error('-32602', 'Access denied', Valid::inPostJson('id'));
+                    $this->error('-32601', 'Access denied', Valid::inPostJson('id'));
                 }
             }
         }
@@ -128,13 +128,13 @@ class JsonRpc {
     public function decodeGetData(?string $name): array|string {
 
         if (!Valid::inGET('request')) {
-            $this->error('-32602', 'Bad request', '0');
+            $this->error('-32601', 'Bad request', '0');
         }
         if (!$this->decode_data) {
             $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
         if (!isset($this->decode_data[$name]) || $this->decode_data[$name] == null) {
-            $this->error('-32602', 'Bad request', '0');
+            $this->error('-32601', 'Bad request', '0');
         }
 
         if ($name == null) {
