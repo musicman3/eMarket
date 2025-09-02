@@ -41,13 +41,7 @@ class JsonRpc {
      * 
      */
     public function verifyMethod(): void {
-        if (Valid::inPostJson('jsonrpc') == '2.0' && Valid::inPostJson('method') && Valid::inPostJson('id')) {
-            $namespace = '\eMarket\JsonRpc\\' . Valid::inPostJson('method');
-            if (!class_exists($namespace)) {
-                $this->error('-32601', 'Method not found', Valid::inPostJson('id'));
-            }
-        }
-        if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') == '2.0' && $this->decodeGetData('method') && $this->decodeGetData('id')) {
+        if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') && $this->decodeGetData('method') && $this->decodeGetData('id')) {
             $namespace = '\eMarket\JsonRpc\\' . $this->decodeGetData('method');
             if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
@@ -137,7 +131,10 @@ class JsonRpc {
             $this->error('-32700', 'Parse error', '0');
         }
         if (!isset($this->decode_data[$name])) {
-            $this->error('-32602', 'Invalid params', '0');
+            $this->error('-32602', 'Invalid name', '0');
+        }
+        if ($this->decode_data['jsonrpc'] !== '2.0') {
+            $this->error('-32602', 'Invalid jsonrpc version', '0');
         }
 
         if ($name == null) {
