@@ -31,14 +31,14 @@ class JsonRpc {
      *
      */
     public function __construct() {
-        $this->loadData();
+        $this->verifyMethod();
     }
 
     /**
-     * Loading data from Services
+     * Verify method
      * 
      */
-    public function loadData(): void {
+    public function verifyMethod(): void {
         if (Valid::inPostJson('jsonrpc') == '2.0' && Valid::inPostJson('method') && Valid::inPostJson('id')) {
             $namespace = '\eMarket\JsonRpc\\' . Valid::inPostJson('method');
             if (!class_exists($namespace)) {
