@@ -43,9 +43,9 @@ class Update extends JsonRpc {
      */
     public function init(): void {
         if (Valid::inPostJson('message') == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {
-            echo json_encode(['status' => 'update']);
+            $this->response(['status' => 'update']);
         } else {
-            echo json_encode($this->responseVersion());
+            $this->response($this->responseVersion());
         }
     }
 

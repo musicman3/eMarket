@@ -109,10 +109,10 @@ class Update {
             sessionStorage.setItem('update_response', data);
             const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
 
-            document.querySelector('#update_box').setAttribute('data-bs-original-title', input.message);
+            document.querySelector('#update_box').setAttribute('data-bs-original-title', input.result.message);
             var text_class = 'text-success';
 
-            if (input.status === 'false') {
+            if (input.result.status === 'false') {
                 text_class = 'text-danger';
             }
             document.querySelector('#update_box').classList.replace('text-warning', text_class);
@@ -127,7 +127,7 @@ class Update {
     static Redirect(data) {
         var input = JSON.parse(data);
 
-        if (input.status === 'update') {
+        if (input.result.status === 'update') {
             document.location.href = '/update.php';
         }
     }

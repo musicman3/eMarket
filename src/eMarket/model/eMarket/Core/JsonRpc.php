@@ -96,6 +96,22 @@ class JsonRpc {
     }
 
     /**
+     * Responce
+     *
+     * @param array $result Result data
+     */
+    public function response(array $result = []): void {
+
+        $data = json_encode([
+            'jsonrpc' => '2.0',
+            'result' => $result,
+            'id' => $this->decodeGetData('id'),
+        ]);
+        echo $data;
+        exit;
+    }
+
+    /**
      * jsonRPC data for GET request
      *
      * @param string $id ID
