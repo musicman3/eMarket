@@ -133,7 +133,10 @@ class JsonRpc {
         if (!$this->decode_data) {
             $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
-        if (!isset($this->decode_data[$name]) || $this->decode_data[$name] == null) {
+        if ($this->decode_data == null) {
+            $this->error('-32700', 'Parse error', '0');
+        }
+        if (!isset($this->decode_data[$name])) {
             $this->error('-32602', 'Invalid params', '0');
         }
 
