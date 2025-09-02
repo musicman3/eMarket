@@ -12,6 +12,7 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Valid
 };
+use Cruder\Db;
 
 /**
  * jsonRPC
@@ -49,6 +50,52 @@ class JsonRpc {
             $namespace = '\eMarket\JsonRpc\\' . $this->decodeGetData('method');
             if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
+            }
+        }
+    }
+
+    /**
+     * Verify Admin & permission
+     *
+     * @param array $available_pages List of available pages ['?route=basic_settings']
+     */
+    public function verification(array $available_pages = []): void {
+
+        if (!Valid::inPostJson('login')) {
+            $this->error('-32602', 'Access denied', '0');
+        } else {
+
+            $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
+
+            $permission = Db::connect()
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('permission')
+                    ->where('login=', $login)
+                    ->save();
+
+            if ($permission != 'admin') {
+
+                $staff_data_prepare = Db::connect()
+                        ->read(TABLE_STAFF_MANAGER)
+                        ->selectValue('permissions')
+                        ->where('id=', $permission)
+                        ->save();
+
+                $staff_data = json_decode($staff_data_prepare, true);
+
+                $count = 0;
+                if (count($available_pages) == 0) {
+                    $count = 1;
+                } else {
+                    foreach ($staff_data as $value) {
+                        if (in_array($value, $available_pages)) {
+                            $count++;
+                        }
+                    }
+                }
+                if ($count == 0) {
+                    $this->error('-32602', 'Access denied', Valid::inPostJson('id'));
+                }
             }
         }
     }
