@@ -31,7 +31,7 @@ class Update {
 
         var param = encodeURI(JSON.stringify({
             'jsonrpc': '2.0',
-            'method': 'Update',
+            'method': 'eMarket\\JsonRpc\\Update',
             'param': [],
             'id': randomizer.uid(32)}));
 
@@ -56,7 +56,7 @@ class Update {
 
             var param = encodeURI(JSON.stringify({
                 'jsonrpc': '2.0',
-                'method': 'Update',
+                'method': 'eMarket\\JsonRpc\\Update',
                 'param': [],
                 'id': randomizer.uid(32)}));
 

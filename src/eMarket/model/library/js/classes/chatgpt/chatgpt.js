@@ -32,7 +32,7 @@ class ChatGPT {
 
         var param = encodeURI(JSON.stringify({
             'jsonrpc': '2.0',
-            'method': 'ChatGPT',
+            'method': 'eMarket\\JsonRpc\\ChatGPT',
             'param': [],
             'id': randomizer.uid(32)}));
 
@@ -57,7 +57,7 @@ class ChatGPT {
 
         var param = encodeURI(JSON.stringify({
             'jsonrpc': '2.0',
-            'method': 'ChatGPT',
+            'method': 'eMarket\\JsonRpc\\ChatGPT',
             'param': [],
             'id': randomizer.uid(32)}));
 

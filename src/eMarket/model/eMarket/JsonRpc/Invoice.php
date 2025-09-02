@@ -37,7 +37,7 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
-        $this->jsonRpcVerification(['?route=orders']);
+        header('Content-Type: application/json');
         $this->createBlank();
     }
 

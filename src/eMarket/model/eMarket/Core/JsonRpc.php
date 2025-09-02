@@ -32,7 +32,6 @@ class JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->verifyMethod();
     }
 
@@ -42,7 +41,7 @@ class JsonRpc {
      */
     public function verifyMethod(): void {
         if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') && $this->decodeGetData('method') && $this->decodeGetData('id')) {
-            $namespace = '\eMarket\JsonRpc\\' . $this->decodeGetData('method');
+            $namespace = $this->decodeGetData('method');
             if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
             }

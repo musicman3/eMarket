@@ -147,7 +147,8 @@ class Routing {
         if (Settings::path() == 'JsonRpc') {
             $jsonrpc = new JsonRpc();
             $default_routing_parameter = $jsonrpc->decodeGetData('method');
-            $class_path = 'eMarket\JsonRpc';
+            $class_path = '';
+            return Func::outputDataFiltering($class_path . '\\' . $default_routing_parameter);
         }
 
         if (Valid::inGET('route') != '') {
