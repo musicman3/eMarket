@@ -128,13 +128,13 @@ class JsonRpc {
     public function decodeGetData(?string $name): array|string {
 
         if (!Valid::inGET('request')) {
-            $this->error('-32601', 'Bad request', '0');
+            $this->error('-32600', 'Invalid Request', '0');
         }
         if (!$this->decode_data) {
             $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
         }
         if (!isset($this->decode_data[$name]) || $this->decode_data[$name] == null) {
-            $this->error('-32601', 'Bad request', '0');
+            $this->error('-32602', 'Invalid params', '0');
         }
 
         if ($name == null) {
