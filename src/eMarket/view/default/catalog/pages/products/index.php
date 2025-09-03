@@ -54,8 +54,8 @@ if (Products::$products != FALSE) {
                     </li>
                 </ul>
                 <hr>
-                <?php if (Products::$manufacturer_logo != '' && Products::$manufacturer_logo != null) { ?>
-                    <div class="mb-3 p-1">
+                <div class="mb-3 p-1">
+                    <?php if (Products::$manufacturer_logo != '' && Products::$manufacturer_logo != null) { ?>
                         <a href="<?php echo Products::$manufacturer_site ?>" target="_blank">
                             <img src="/uploads/images/manufacturers/resize_0/<?php echo Products::$manufacturer_logo ?>" alt="<?php echo Products::$manufacturer ?>" class="float-md-end mb-3 ms-md-3" width="10%">
                         </a>
