@@ -25,7 +25,9 @@ class Ajax {
      */
     static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
 
-        data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
+        if (document.querySelector('#csrf_token').dataset.csrf !== undefined) {
+            data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
+        }
 
         var pref = {
             method: 'POST',
