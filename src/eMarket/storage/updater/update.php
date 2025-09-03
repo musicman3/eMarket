@@ -27,7 +27,7 @@ $removing_list = [
     '/storage/.htaccess',
     '/storage/updater/',
     '/vendor/',
-    '/view/',
+    '/view/default/',
     '/composer.lock',
     '/composer.json'
 ];
