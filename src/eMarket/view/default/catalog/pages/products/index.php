@@ -54,40 +54,48 @@ if (Products::$products != FALSE) {
                     </li>
                 </ul>
                 <hr>
-                <ul>
-                    <?php if (Products::$vendor_code_value != NULL && Products::$vendor_code_value != '') { ?>
-                        <li>
-                            <label><?php echo Products::$vendor_code ?>:</label>
-                            <span> <?php echo Products::$vendor_code_value ?></span>
-                        </li>
-                    <?php } if (Products::$manufacturer != NULL && Products::$manufacturer != FALSE) { ?>
-                        <li>
-                            <label><?php echo lang('product_manufacturer') ?></label>
-                            <span> <?php echo Products::$manufacturer ?></span>
-                        </li>
-                    <?php } if (Products::$products['model'] != NULL && Products::$products['model'] != FALSE) { ?>
-                        <li>
-                            <label><?php echo lang('product_model') ?></label>
-                            <span> <?php echo Products::$products['model'] ?></span>
-                        </li>
-                    <?php } if (Products::$weight_value != NULL && Products::$weight_value != '') { ?>
-                        <li>
-                            <label><?php echo lang('product_weight') ?></label>
-                            <span> <?php echo Products::$weight_value . ' ' . Products::$weight ?> </span>
-                        </li>
-                    <?php } if (Products::$dimensions != '') { ?>
-                        <li>
-                            <label><?php echo sprintf(lang('product_dimension'), Products::$dimension_name) ?></label>
-                            <span> <?php echo Products::$dimensions ?></span>
-                        </li>
+                <?php if (Products::$manufacturer_logo != '' && Products::$manufacturer_logo != null) { ?>
+                    <div class="mb-3 p-1">
+                        <a href="<?php echo Products::$manufacturer_site ?>" target="_blank">
+                            <img src="/uploads/images/manufacturers/resize_0/<?php echo Products::$manufacturer_logo ?>" alt="<?php echo Products::$manufacturer ?>" class="float-md-end mb-3 ms-md-3" width="10%">
+                        </a>
+
                     <?php } ?>
-                    <li>
-                        <label><?php echo lang('product_availability') ?></label>
-                        <?php foreach (ProductsCore::inStock(Products::$products['date_available'], Products::$products['quantity']) as $in_stock) { ?>
-                            <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                    <ul>
+                        <?php if (Products::$vendor_code_value != NULL && Products::$vendor_code_value != '') { ?>
+                            <li>
+                                <label><?php echo Products::$vendor_code ?>:</label>
+                                <span> <?php echo Products::$vendor_code_value ?></span>
+                            </li>
+                        <?php } if (Products::$manufacturer != NULL && Products::$manufacturer != FALSE) { ?>
+                            <li>
+                                <label><?php echo lang('product_manufacturer') ?></label>
+                                <span> <?php echo Products::$manufacturer ?></span>
+                            </li>
+                        <?php } if (Products::$products['model'] != NULL && Products::$products['model'] != FALSE) { ?>
+                            <li>
+                                <label><?php echo lang('product_model') ?></label>
+                                <span> <?php echo Products::$products['model'] ?></span>
+                            </li>
+                        <?php } if (Products::$weight_value != NULL && Products::$weight_value != '') { ?>
+                            <li>
+                                <label><?php echo lang('product_weight') ?></label>
+                                <span> <?php echo Products::$weight_value . ' ' . Products::$weight ?> </span>
+                            </li>
+                        <?php } if (Products::$dimensions != '') { ?>
+                            <li>
+                                <label><?php echo sprintf(lang('product_dimension'), Products::$dimension_name) ?></label>
+                                <span> <?php echo Products::$dimensions ?></span>
+                            </li>
                         <?php } ?>
-                    </li>
-                </ul>
+                        <li>
+                            <label><?php echo lang('product_availability') ?></label>
+                            <?php foreach (ProductsCore::inStock(Products::$products['date_available'], Products::$products['quantity']) as $in_stock) { ?>
+                                <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                            <?php } ?>
+                        </li>
+                    </ul>
+                </div>
                 <hr>
                 <button class="btn btn-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
                 <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>

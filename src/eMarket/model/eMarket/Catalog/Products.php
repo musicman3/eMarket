@@ -34,6 +34,8 @@ class Products {
     public static $dimensions = FALSE;
     public static $products = FALSE;
     public static $manufacturer = FALSE;
+    public static $manufacturer_logo = '';
+    public static $manufacturer_site = '';
     public static $vendor_code = FALSE;
     public static $vendor_code_value = FALSE;
     public static $weight = FALSE;
@@ -129,6 +131,8 @@ class Products {
      */
     public function manufacturer(): void {
         self::$manufacturer = ProductsCore::manufacturer(self::$products['manufacturer'])['name'];
+        self::$manufacturer_logo = ProductsCore::manufacturer(self::$products['manufacturer'])['logo_general'];
+        self::$manufacturer_site = ProductsCore::manufacturer(self::$products['manufacturer'])['site'];
     }
 
     /**
