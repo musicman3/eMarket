@@ -140,8 +140,7 @@ class Update extends JsonRpc {
      */
     private function eMarketData(): mixed {
 
-        $get_string = self::encodeGetData(Cryptography::getToken(32), 'UpdateChecker');
-        $response = $this->curlFromGet('https://data.emarkets.su' . $get_string);
+        $response = $this->curlFromGet('https://data.emarkets.su/services/jsonrpc/request/');
 
         if (empty($response)) {
             return false;
@@ -158,5 +157,26 @@ class Update extends JsonRpc {
         }
 
         return false;
+    }
+
+    /**
+     * Curl from GET-request
+     *
+     * @param string $host (request host)
+     * @param array $header (CURLOPT_HTTPHEADER parameters)
+     * @return mixed $response_string|bool (request string)
+     */
+    public function curlFromGet(string $host, $header = ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']): mixed {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $host);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
+        $response = curl_exec($curl);
+        if (curl_errno($curl)) {
+            return FALSE;
+        }
+        curl_close($curl);
+        return $response;
     }
 }

@@ -40,10 +40,10 @@ class JsonRpc {
      * 
      */
     public function verifyMethod(): void {
-        if ($this->decodeGetData('jsonrpc') && $this->decodeGetData('method') && $this->decodeGetData('id')) {
-            $namespace = $this->decodeGetData('method');
+        if ($this->routing('jsonrpc') && $this->routing('method') && $this->routing('id')) {
+            $namespace = $this->routing('method');
             if (!class_exists($namespace)) {
-                $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
+                $this->error('-32601', 'Method not found', $this->routing('id'));
             }
         }
     }
@@ -105,7 +105,7 @@ class JsonRpc {
             $data = json_encode([
                 'jsonrpc' => '2.0',
                 'result' => $result,
-                'id' => $this->decodeGetData('id'),
+                'id' => $this->routing('id'),
             ]);
             echo $data;
         }
@@ -113,30 +113,12 @@ class JsonRpc {
     }
 
     /**
-     * jsonRPC data for GET request
-     *
-     * @param string $id ID
-     * @param string $method Method
-     * @param array $param param data
-     * @return string jsonRPC URL
-     */
-    public static function encodeGetData(?string $id, string $method, array $param = []): string {
-        $data = urlencode(json_encode([
-            'jsonrpc' => '2.0',
-            'method' => $method,
-            'param' => $param,
-            'id' => $id,
-        ]));
-        return '/services/jsonrpc/?request=' . $data;
-    }
-
-    /**
-     * jsonRPC data from GET request
+     * jsonRPC routind
      * 
      * @param string $name Name
      * @return array|string jsonRPC data
      */
-    public function decodeGetData(?string $name): array|string {
+    public function routing(?string $name): array|string {
 
         if (!Valid::inPostJson('jsonrpc') || !Valid::inPostJson('method') || !Valid::inPostJson('id')) {
             $this->error('-32600', 'Invalid Request', '');
@@ -217,26 +199,5 @@ class JsonRpc {
         } else {
             return FALSE;
         }
-    }
-
-    /**
-     * Curl from GET-request
-     *
-     * @param string $host (request host)
-     * @param array $header (CURLOPT_HTTPHEADER parameters)
-     * @return mixed $response_string|bool (request string)
-     */
-    public function curlFromGet(string $host, $header = ['Content-Type: application/json', 'Accept: application/json', 'User-Agent: eMarket']): mixed {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($curl, CURLOPT_URL, $host);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
-        $response = curl_exec($curl);
-        if (curl_errno($curl)) {
-            return FALSE;
-        }
-        curl_close($curl);
-        return $response;
     }
 }
