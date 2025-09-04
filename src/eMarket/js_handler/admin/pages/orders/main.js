@@ -27,11 +27,14 @@ class Orders {
      */
     static request(uid) {
 
-        var jsonRpcRequest = {
-            'jsonrpc': '2.0',
-            'method': 'eMarket\\JsonRpc\\Invoice',
-            'param': {},
-            'id': uid};
+        var jsonRpcRequest = [
+            {
+                'jsonrpc': '2.0',
+                'method': 'eMarket\\JsonRpc\\Invoice',
+                'param': {},
+                'id': uid
+            }
+        ];
 
         Ajax.jsonRpcSend('/services/jsonrpc/request/',
                 jsonRpcRequest).then((data) => {

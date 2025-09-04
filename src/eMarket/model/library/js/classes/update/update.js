@@ -29,11 +29,14 @@ class Update {
 
         var randomizer = new Randomizer();
 
-        var jsonRpcRequest = {
-            'jsonrpc': '2.0',
-            'method': 'eMarket\\JsonRpc\\Update',
-            'param': {'login': document.querySelector('#user_login').dataset.login},
-            'id': randomizer.uid(32)};
+        var jsonRpcRequest = [
+            {
+                'jsonrpc': '2.0',
+                'method': 'eMarket\\JsonRpc\\Update',
+                'param': {'login': document.querySelector('#user_login').dataset.login},
+                'id': randomizer.uid(32)
+            }
+        ];
 
         if (document.querySelector('#user_login').dataset.login !== 'false' && Update.requestTime() === true) {
             Ajax.jsonRpcSend('/services/jsonrpc/request/',
@@ -54,14 +57,17 @@ class Update {
         document.querySelector('#update_button').onclick = function () {
             var randomizer = new Randomizer();
 
-            var jsonRpcRequest = {
-                'jsonrpc': '2.0',
-                'method': 'eMarket\\JsonRpc\\Update',
-                'param': {
-                    'message': 'update',
-                    'login': document.querySelector('#user_login').dataset.login
-                },
-                'id': randomizer.uid(32)};
+            var jsonRpcRequest = [
+                {
+                    'jsonrpc': '2.0',
+                    'method': 'eMarket\\JsonRpc\\Update',
+                    'param': {
+                        'message': 'update',
+                        'login': document.querySelector('#user_login').dataset.login
+                    },
+                    'id': randomizer.uid(32)
+                }
+            ];
 
             Ajax.jsonRpcSend('/services/jsonrpc/request/',
                     jsonRpcRequest,
@@ -107,7 +113,7 @@ class Update {
     static Response(data) {
 
         var input = JSON.parse(data);
-        if (input.result !== undefined && input.result !== null) {
+        if (data !== undefined && input.result !== null) {
             sessionStorage.setItem('update_response', data);
             const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
 

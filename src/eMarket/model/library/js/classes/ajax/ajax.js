@@ -48,8 +48,9 @@ class Ajax {
      * @returns {Object|Void} (return data)
      */
     static async jsonRpcSend(url = '', data = {}, func = null) {
-
-        var pref = Ajax.jsonPref(data);
+        
+        var request = {'jsonrpc': data};
+        var pref = Ajax.jsonPref(request);
 
         const response = await fetch(url, pref).then(
                 data => {

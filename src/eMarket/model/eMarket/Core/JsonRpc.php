@@ -26,26 +26,14 @@ use Cruder\Db;
 class JsonRpc {
 
     private $decode_data = FALSE;
+    private $error_messages = [];
 
     /**
      * Constructor
      *
      */
     public function __construct() {
-        $this->verifyMethod();
-    }
-
-    /**
-     * Verify method
-     * 
-     */
-    public function verifyMethod(): void {
-        if ($this->routing('jsonrpc') && $this->routing('method') && $this->routing('id')) {
-            $namespace = $this->routing('method');
-            if (!class_exists($namespace)) {
-                $this->error('-32601', 'Method not found', $this->routing('id'));
-            }
-        }
+        
     }
 
     /**
@@ -55,40 +43,45 @@ class JsonRpc {
      */
     public function jsonRpcVerification(array $available_pages = []): void {
 
-        if (!Valid::inPostJson('param')['login'] && Valid::inPostJson('id')) {
-            $this->error('-32601', 'Access denied', '');
-        } else {
+        if (Valid::inPostJson('jsonrpc')) {
 
-            $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('param')['login'], CRYPT_METHOD);
-
-            $permission = Db::connect()
-                    ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('permission')
-                    ->where('login=', $login)
-                    ->save();
-
-            if ($permission != 'admin') {
-
-                $staff_data_prepare = Db::connect()
-                        ->read(TABLE_STAFF_MANAGER)
-                        ->selectValue('permissions')
-                        ->where('id=', $permission)
-                        ->save();
-
-                $staff_data = json_decode($staff_data_prepare, true);
-
-                $count = 0;
-                if (count($available_pages) == 0) {
-                    $count = 1;
+            foreach (Valid::inPostJson('jsonrpc') as $jsonrpc) {
+                if (!$jsonrpc['param']['login'] && $jsonrpc['id']) {
+                    $this->error('-32601', 'Access denied', '');
                 } else {
-                    foreach ($staff_data as $value) {
-                        if (in_array($value, $available_pages)) {
-                            $count++;
+
+                    $login = Cryptography::decryption(DB_PASSWORD, $jsonrpc['param']['login'], CRYPT_METHOD);
+
+                    $permission = Db::connect()
+                            ->read(TABLE_ADMINISTRATORS)
+                            ->selectValue('permission')
+                            ->where('login=', $login)
+                            ->save();
+
+                    if ($permission != 'admin') {
+
+                        $staff_data_prepare = Db::connect()
+                                ->read(TABLE_STAFF_MANAGER)
+                                ->selectValue('permissions')
+                                ->where('id=', $permission)
+                                ->save();
+
+                        $staff_data = json_decode($staff_data_prepare, true);
+
+                        $count = 0;
+                        if (count($available_pages) == 0) {
+                            $count = 1;
+                        } else {
+                            foreach ($staff_data as $value) {
+                                if (in_array($value, $available_pages)) {
+                                    $count++;
+                                }
+                            }
+                        }
+                        if ($count == 0) {
+                            $this->error('-32601', 'Access denied', $jsonrpc['id']);
                         }
                     }
-                }
-                if ($count == 0) {
-                    $this->error('-32601', 'Access denied', Valid::inPostJson('id'));
                 }
             }
         }
@@ -113,43 +106,56 @@ class JsonRpc {
     }
 
     /**
-     * jsonRPC routind
+     * jsonRPC routing
      * 
      * @param string $name Name
      * @return array|string jsonRPC data
      */
     public function routing(?string $name): array|string {
 
-        if (!Valid::inPostJson('jsonrpc') || !Valid::inPostJson('method') || !Valid::inPostJson('id')) {
+        if (Valid::inPostJson('jsonrpc')) {
+
+            foreach (Valid::inPostJson('jsonrpc') as $jsonrpc) {
+                if (!isset($jsonrpc['jsonrpc']) || !isset($jsonrpc['method']) || !isset($jsonrpc['id'])) {
+                    $this->error('-32600', 'Invalid Request', null);
+                } else {
+                    if (!class_exists($jsonrpc['method'])) {
+                        $this->error('-32601', 'Method not found', $jsonrpc['id']);
+                    }
+
+                    if (!$this->decode_data) {
+                        $param = [];
+                        if ($jsonrpc['param']) {
+                            $param = $jsonrpc['param'];
+                        }
+                        $this->decode_data = [
+                            'jsonrpc' => $jsonrpc['jsonrpc'],
+                            'method' => $jsonrpc['method'],
+                            'param' => $param,
+                            'id' => $jsonrpc['id'],
+                        ];
+                    }
+                    if ($this->decode_data == null) {
+                        $this->error('-32700', 'Parse error', $jsonrpc['id']);
+                    }
+                    if (!isset($this->decode_data[$name])) {
+                        $this->error('-32602', 'Invalid name', $jsonrpc['id']);
+                    }
+                    if ($this->decode_data['jsonrpc'] !== '2.0') {
+                        $this->error('-32602', 'Invalid jsonrpc version', $jsonrpc['id']);
+                    }
+
+                    if ($name == null) {
+                        return $this->decode_data;
+                    } else {
+                        return $this->decode_data[$name];
+                    }
+                }
+            }
+        } else {
             $this->error('-32600', 'Invalid Request', null);
         }
-        if (!$this->decode_data) {
-            $param = [];
-            if (Valid::inPostJson('param')) {
-                $param = Valid::inPostJson('param');
-            }
-            $this->decode_data = [
-                'jsonrpc' => Valid::inPostJson('jsonrpc'),
-                'method' => Valid::inPostJson('method'),
-                'param' => $param,
-                'id' => Valid::inPostJson('id'),
-            ];
-        }
-        if ($this->decode_data == null) {
-            $this->error('-32700', 'Parse error', Valid::inPostJson('id'));
-        }
-        if (!isset($this->decode_data[$name])) {
-            $this->error('-32602', 'Invalid name', Valid::inPostJson('id'));
-        }
-        if ($this->decode_data['jsonrpc'] !== '2.0') {
-            $this->error('-32602', 'Invalid jsonrpc version', Valid::inPostJson('id'));
-        }
-
-        if ($name == null) {
-            return $this->decode_data;
-        } else {
-            return $this->decode_data[$name];
-        }
+        $this->errorHandler();
     }
 
     /**
@@ -160,14 +166,28 @@ class JsonRpc {
      * @param string $id ID
      */
     public function error(?string $code, ?string $message, ?string $id): void {
-        header('Content-Type: application/json');
-        $data = json_encode([
+
+        $data = [
             'jsonrpc' => '2.0',
             'error' => ['code' => $code, 'message' => $message],
             'id' => $id
-        ]);
-        echo $data;
-        exit;
+        ];
+        $this->error_messages;
+        array_push($this->error_messages, $data);
+    }
+
+    /**
+     * Error message Handler
+     * 
+     */
+    public function errorHandler(): void {
+
+        if (count($this->error_messages) > 0) {
+            header('Content-Type: application/json');
+            $error = json_encode($this->error_messages);
+            echo $error;
+            exit;
+        }
     }
 
     /**

@@ -30,14 +30,17 @@ class ChatGPT {
 
         var randomizer = new Randomizer();
 
-        var jsonRpcRequest = {
-            'jsonrpc': '2.0',
-            'method': 'eMarket\\JsonRpc\\ChatGPT',
-            'param': {
-                'message': content,
-                'login': document.querySelector('#user_login').dataset.login
-            },
-            'id': randomizer.uid(32)};
+        var jsonRpcRequest = [
+            {
+                'jsonrpc': '2.0',
+                'method': 'eMarket\\JsonRpc\\ChatGPT',
+                'param': {
+                    'message': content,
+                    'login': document.querySelector('#user_login').dataset.login
+                },
+                'id': randomizer.uid(32)
+            }
+        ];
 
         Ajax.jsonRpcSend('/services/jsonrpc/request/',
                 jsonRpcRequest,
@@ -57,14 +60,17 @@ class ChatGPT {
 
         var randomizer = new Randomizer();
 
-        var jsonRpcRequest = {
-            'jsonrpc': '2.0',
-            'method': 'eMarket\\JsonRpc\\ChatGPT',
-            'param': {
-                'api_key': content,
-                'login': document.querySelector('#user_login').dataset.login
-            },
-            'id': randomizer.uid(32)};
+        var jsonRpcRequest = [
+            {
+                'jsonrpc': '2.0',
+                'method': 'eMarket\\JsonRpc\\ChatGPT',
+                'param': {
+                    'api_key': content,
+                    'login': document.querySelector('#user_login').dataset.login
+                },
+                'id': randomizer.uid(32)
+            }
+        ];
 
         Ajax.jsonRpcSend('/services/jsonrpc/request/',
                 jsonRpcRequest,
