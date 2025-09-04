@@ -95,7 +95,7 @@ class JsonRpc {
     }
 
     /**
-     * Responce
+     * Response
      *
      * @param array $result Result data
      */
