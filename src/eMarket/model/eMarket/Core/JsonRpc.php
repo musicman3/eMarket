@@ -27,6 +27,7 @@ class JsonRpc {
 
     private $decode_data = FALSE;
     private $error_messages = [];
+    private $methods_available = [];
 
     /**
      * Constructor
@@ -34,6 +35,16 @@ class JsonRpc {
      */
     public function __construct() {
         
+    }
+
+    /**
+     * Return jsonRpc data from key name
+     * 
+     * @param array $key Key name
+     * @return array jsonRPC key-data
+     */
+    public function thisJsonRpcData($key): array {
+        return Valid::inPostJson('jsonrpc')[array_search($key, Valid::inPostJson('jsonrpc'))];
     }
 
     /**
@@ -111,7 +122,7 @@ class JsonRpc {
      * @param string $name Name
      * @return array|string jsonRPC data
      */
-    public function routing(?string $name): array|string {
+    public function routing(): array|string {
 
         if (Valid::inPostJson('jsonrpc')) {
 
@@ -121,6 +132,8 @@ class JsonRpc {
                 } else {
                     if (!class_exists($jsonrpc['method'])) {
                         $this->error('-32601', 'Method not found', $jsonrpc['id']);
+                    } else {
+                        array_push($this->methods_available, $jsonrpc);
                     }
 
                     if (!$this->decode_data) {
@@ -138,24 +151,16 @@ class JsonRpc {
                     if ($this->decode_data == null) {
                         $this->error('-32700', 'Parse error', $jsonrpc['id']);
                     }
-                    if (!isset($this->decode_data[$name])) {
-                        $this->error('-32602', 'Invalid name', $jsonrpc['id']);
-                    }
                     if ($this->decode_data['jsonrpc'] !== '2.0') {
                         $this->error('-32602', 'Invalid jsonrpc version', $jsonrpc['id']);
-                    }
-
-                    if ($name == null) {
-                        return $this->decode_data;
-                    } else {
-                        return $this->decode_data[$name];
                     }
                 }
             }
         } else {
             $this->error('-32600', 'Invalid Request', null);
         }
-        $this->errorHandler();
+
+        return $this->methods_available;
     }
 
     /**

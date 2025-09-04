@@ -29,6 +29,7 @@ use Cruder\Db;
 class Invoice extends JsonRpc {
 
     public static $routing_parameter = 'Invoice';
+    private $jsonrpc = FALSE;
     private $mpdf = FALSE;
     private $order_data = FALSE;
     private $uid = FALSE;
@@ -38,6 +39,7 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
+        $this->jsonrpc = $this->thisJsonRpcData('eMarket\\JsonRpc\\ChatGPT');
         $this->createBlank();
     }
 
@@ -128,12 +130,11 @@ class Invoice extends JsonRpc {
      *
      */
     private function createBlank(): void {
-        $this->uid = Valid::inPostJson('id');
+        $this->uid = $this->jsonrpc['id'];
         if (!$this->html()) {
             $this->error('-32000', 'Incorrect ID', $this->uid);
         }
         $this->mpdf()->WriteHTML($this->html());
-        //$this->mpdf()->OutputHttpDownload('invoice.pdf', 'D');
         $this->mpdf()->OutputFile(getenv('DOCUMENT_ROOT') . '/uploads/temp/file/invoice.pdf');
     }
 }

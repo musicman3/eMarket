@@ -11,8 +11,7 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Cryptography,
-    JsonRpc,
-    Valid
+    JsonRpc
 };
 use Cruder\Db;
 
@@ -28,6 +27,7 @@ use Cruder\Db;
 class ChatGPT extends JsonRpc {
 
     public static $routing_parameter = 'ChatGPT';
+    private $jsonrpc = FALSE;
     private $token = '';
 
     /**
@@ -36,6 +36,7 @@ class ChatGPT extends JsonRpc {
      */
     public function __construct() {
         header('Content-Type: application/json');
+        $this->jsonrpc = $this->thisJsonRpcData('eMarket\\JsonRpc\\ChatGPT');
         $this->jsonRpcVerification();
         $this->request();
         $this->apiKey();
@@ -46,7 +47,7 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function getToken(): void {
-        $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('jsonrpc')[0]['param']['login'], CRYPT_METHOD);
+        $decrypt_login = Cryptography::decryption(DB_PASSWORD, $this->jsonrpc['param']['login'], CRYPT_METHOD);
 
         $token = Db::connect()
                 ->read(TABLE_ADMINISTRATORS)
@@ -64,13 +65,13 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function request(): void {
-        if (isset(Valid::inPostJson('jsonrpc')[0]['param']['message'])) {
+        if (isset($this->jsonrpc['param']['message'])) {
             $this->getToken();
 
             $request = (object) ['model' => 'gpt-3.5-turbo',
                         'messages' => [(object) [
                                 'role' => 'user',
-                                'content' => Valid::inPostJson('jsonrpc')[0]['param']['message']
+                                'content' => $this->jsonrpc['param']['message']
                             ]],
                         'temperature' => 0.7
             ];
@@ -89,10 +90,10 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function apiKey(): void {
-        if (isset(Valid::inPostJson('jsonrpc')[0]['param']['api_key'])) {
-            $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('jsonrpc')[0]['param']['login'], CRYPT_METHOD);
+        if (isset($this->jsonrpc['param']['api_key'])) {
+            $decrypt_login = Cryptography::decryption(DB_PASSWORD, $this->jsonrpc['param']['login'], CRYPT_METHOD);
 
-            $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPostJson('jsonrpc')[0]['param']['api_key']]);
+            $chatgpt_token = json_encode(['chatgpt_token' => $this->jsonrpc['param']['api_key']]);
 
             Db::connect()
                     ->update(TABLE_ADMINISTRATORS)
