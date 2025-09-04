@@ -27,8 +27,6 @@ class Orders {
      */
     static request(uid) {
 
-        var randomizer = new Randomizer();
-
         var jsonRpcRequest = {
             'jsonrpc': '2.0',
             'method': 'eMarket\\JsonRpc\\Invoice',
