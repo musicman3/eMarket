@@ -44,9 +44,9 @@ class Update extends JsonRpc {
      */
     public function init(): void {
         if (isset($this->jsonrpc['param']['message']) && $this->jsonrpc['param']['message'] == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {
-            $this->response(['status' => 'update']);
+            $this->responseBuilder(['status' => 'update'], $this->jsonrpc['id']);
         } else {
-            $this->response($this->responseVersion());
+            $this->responseBuilder($this->responseVersion(), $this->jsonrpc['id']);
         }
     }
 

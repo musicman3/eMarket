@@ -28,6 +28,7 @@ class JsonRpc {
     private $decode_data = FALSE;
     private $error_messages = [];
     private $methods_available = [];
+    public static $response = [];
 
     /**
      * Constructor
@@ -99,21 +100,36 @@ class JsonRpc {
     }
 
     /**
-     * Response
+     * Response Builder
      *
      * @param array $result Result data
+     * @param  string|null $id Response id
      */
-    public function response(array|bool $result = []): void {
+    public function responseBuilder(array|bool $result = [], string|null $id = null): void {
 
         if ($result) {
-            $data = json_encode([
+            $data = [
                 'jsonrpc' => '2.0',
                 'result' => $result,
-                'id' => $this->routing('id'),
-            ]);
-            echo $data;
+                'id' => $id,
+            ];
+            array_push(self::$response, $data);
         }
-        exit;
+    }
+
+    /**
+     * Response Builder
+     *
+     */
+    public function response(): void {
+
+        if (count($this->error_messages) > 0) {
+            array_push(self::$response, $this->error_messages);
+        }
+        if (count(self::$response) > 0) {
+            echo json_encode(self::$response);
+            exit;
+        }
     }
 
     /**

@@ -152,7 +152,7 @@ class Routing {
                 new $method['method']();
             }
 
-            $jsonrpc->errorHandler();
+            $jsonrpc->response();
 
             $default_routing_parameter = 'eMarket\\JsonRpc\\Rpc';
             $class_path = '';

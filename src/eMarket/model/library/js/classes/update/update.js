@@ -112,7 +112,7 @@ class Update {
      */
     static Response(data) {
 
-        var input = JSON.parse(data);
+        var input = JSON.parse(data)[0];
         if (data !== undefined && input.result !== null) {
             sessionStorage.setItem('update_response', data);
             const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
@@ -133,7 +133,7 @@ class Update {
      * @param data {Object} (response)
      */
     static Redirect(data) {
-        var input = JSON.parse(data);
+        var input = JSON.parse(data)[0];
         if (input.result.status === 'update') {
             document.location.href = '/update.php';
         }
