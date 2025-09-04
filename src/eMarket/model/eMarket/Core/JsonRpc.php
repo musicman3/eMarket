@@ -55,7 +55,7 @@ class JsonRpc {
      */
     public function jsonRpcVerification(array $available_pages = []): void {
 
-        if (!Valid::inPostJson('param')['login']) {
+        if (!Valid::inPostJson('param')['login'] && Valid::inPostJson('id')) {
             $this->error('-32601', 'Access denied', '');
         } else {
 
@@ -136,13 +136,13 @@ class JsonRpc {
             ];
         }
         if ($this->decode_data == null) {
-            $this->error('-32700', 'Parse error', '');
+            $this->error('-32700', 'Parse error', Valid::inPostJson('id'));
         }
         if (!isset($this->decode_data[$name])) {
-            $this->error('-32602', 'Invalid name', '');
+            $this->error('-32602', 'Invalid name', Valid::inPostJson('id'));
         }
         if ($this->decode_data['jsonrpc'] !== '2.0') {
-            $this->error('-32602', 'Invalid jsonrpc version', '');
+            $this->error('-32602', 'Invalid jsonrpc version', Valid::inPostJson('id'));
         }
 
         if ($name == null) {
