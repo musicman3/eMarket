@@ -107,7 +107,7 @@ class Update {
     static Response(data) {
 
         var input = JSON.parse(data);
-        if (input !== null) {
+        if (input.result !== undefined && input.result !== null) {
             sessionStorage.setItem('update_response', data);
             const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
 

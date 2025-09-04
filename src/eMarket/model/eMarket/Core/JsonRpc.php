@@ -121,7 +121,7 @@ class JsonRpc {
     public function routing(?string $name): array|string {
 
         if (!Valid::inPostJson('jsonrpc') || !Valid::inPostJson('method') || !Valid::inPostJson('id')) {
-            $this->error('-32600', 'Invalid Request', '');
+            $this->error('-32600', 'Invalid Request', null);
         }
         if (!$this->decode_data) {
             $param = [];
