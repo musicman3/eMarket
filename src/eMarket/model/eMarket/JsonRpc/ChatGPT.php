@@ -46,7 +46,7 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function getToken(): void {
-        $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
+        $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('param')['login'], CRYPT_METHOD);
 
         $token = Db::connect()
                 ->read(TABLE_ADMINISTRATORS)
@@ -64,13 +64,13 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function request(): void {
-        if (Valid::inPostJson('message')) {
+        if (isset(Valid::inPostJson('param')['message'])) {
             $this->getToken();
 
             $request = (object) ['model' => 'gpt-3.5-turbo',
                         'messages' => [(object) [
                                 'role' => 'user',
-                                'content' => Valid::inPostJson('message')
+                                'content' => Valid::inPostJson('param')['message']
                             ]],
                         'temperature' => 0.7
             ];
@@ -89,10 +89,10 @@ class ChatGPT extends JsonRpc {
      *
      */
     private function apiKey(): void {
-        if (Valid::inPostJson('api_key')) {
-            $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
+        if (isset(Valid::inPostJson('param')['api_key'])) {
+            $decrypt_login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('param')['login'], CRYPT_METHOD);
 
-            $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPostJson('api_key')]);
+            $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPostJson('param')['api_key']]);
 
             Db::connect()
                     ->update(TABLE_ADMINISTRATORS)

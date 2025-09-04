@@ -30,16 +30,18 @@ class ChatGPT {
 
         var randomizer = new Randomizer();
 
-        var param = encodeURI(JSON.stringify({
+        var jsonRpcRequest = {
             'jsonrpc': '2.0',
             'method': 'eMarket\\JsonRpc\\ChatGPT',
-            'param': [],
-            'id': randomizer.uid(32)}));
+            'param': {
+                'message': content,
+                'login': document.querySelector('#user_login').dataset.login
+            },
+            'id': randomizer.uid(32)};
 
-        Ajax.postData('/services/jsonrpc/?request=' + param,
-                {'message': content,
-                    'login': document.querySelector('#user_login').dataset.login},
-                null, null, ChatGPT.Response).then((data) => {
+        Ajax.jsonRpcSend('/services/jsonrpc/request/',
+                jsonRpcRequest,
+                ChatGPT.Response).then((data) => {
         });
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
@@ -55,16 +57,18 @@ class ChatGPT {
 
         var randomizer = new Randomizer();
 
-        var param = encodeURI(JSON.stringify({
+        var jsonRpcRequest = {
             'jsonrpc': '2.0',
             'method': 'eMarket\\JsonRpc\\ChatGPT',
-            'param': [],
-            'id': randomizer.uid(32)}));
+            'param': {
+                'api_key': content,
+                'login': document.querySelector('#user_login').dataset.login
+            },
+            'id': randomizer.uid(32)};
 
-        Ajax.postData('/services/jsonrpc/?request=' + param,
-                {'api_key': content,
-                    'login': document.querySelector('#user_login').dataset.login},
-                null, null, ChatGPT.save).then((data) => {
+        Ajax.jsonRpcSend('/services/jsonrpc/request/',
+                jsonRpcRequest,
+                ChatGPT.save).then((data) => {
         });
     }
 

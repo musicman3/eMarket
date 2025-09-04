@@ -21,6 +21,42 @@ class Orders {
     }
 
     /**
+     * Request
+     *
+     * @param uid {String} (uid)
+     */
+    static request(uid) {
+
+        var randomizer = new Randomizer();
+
+        var jsonRpcRequest = {
+            'jsonrpc': '2.0',
+            'method': 'eMarket\\JsonRpc\\Invoice',
+            'param': {},
+            'id': uid};
+
+        Ajax.jsonRpcSend('/services/jsonrpc/request/',
+                jsonRpcRequest).then((data) => {
+            Orders.saveFile('/uploads/temp/invoice.pdf', 'invoice.pdf');
+        });
+    }
+
+    /**
+     * Save file
+     * 
+     * @param url {String} (url)
+     * @param filename {String} (filename)
+     */
+    static saveFile(url, filename) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename || 'file-name';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    /**
      * Modal show
      * 
      * @param lang {Object} (lang)

@@ -29,16 +29,16 @@ class Update {
 
         var randomizer = new Randomizer();
 
-        var param = encodeURI(JSON.stringify({
+        var jsonRpcRequest = {
             'jsonrpc': '2.0',
             'method': 'eMarket\\JsonRpc\\Update',
-            'param': [],
-            'id': randomizer.uid(32)}));
+            'param': {'login': document.querySelector('#user_login').dataset.login},
+            'id': randomizer.uid(32)};
 
         if (document.querySelector('#user_login').dataset.login !== 'false' && Update.requestTime() === true) {
-            Ajax.postData('/services/jsonrpc/?request=' + param,
-                    {'login': document.querySelector('#user_login').dataset.login},
-                    null, null, Update.Response).then((data) => {
+            Ajax.jsonRpcSend('/services/jsonrpc/request/',
+                    jsonRpcRequest,
+                    Update.Response).then((data) => {
             });
         } else {
             Update.Response(sessionStorage.getItem('update_response'));
@@ -54,16 +54,18 @@ class Update {
         document.querySelector('#update_button').onclick = function () {
             var randomizer = new Randomizer();
 
-            var param = encodeURI(JSON.stringify({
+            var jsonRpcRequest = {
                 'jsonrpc': '2.0',
                 'method': 'eMarket\\JsonRpc\\Update',
-                'param': [],
-                'id': randomizer.uid(32)}));
+                'param': {
+                    'message': 'update',
+                    'login': document.querySelector('#user_login').dataset.login
+                },
+                'id': randomizer.uid(32)};
 
-            Ajax.postData('/services/jsonrpc/?request=' + param,
-                    {'message': 'update',
-                        'login': document.querySelector('#user_login').dataset.login},
-                    null, null, Update.Redirect).then((data) => {
+            Ajax.jsonRpcSend('/services/jsonrpc/request/',
+                    jsonRpcRequest,
+                    Update.Redirect).then((data) => {
             });
         };
     }
@@ -126,7 +128,6 @@ class Update {
      */
     static Redirect(data) {
         var input = JSON.parse(data);
-
         if (input.result.status === 'update') {
             document.location.href = '/update.php';
         }

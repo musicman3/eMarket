@@ -14,20 +14,12 @@
 class Ajax {
 
     /**
-     * Ajax POST
+     * Json pref
      *
-     * @param url {String} (url)
-     * @param data {Object} (data)
-     * @param reload {String} (reload marker)
-     * @param relay {String} (relay marker)
-     * @param func {Object} (function)
-     * @returns {Object|Void} (return data)
+     *@param data {Object} (ajax data)
+     *@returns {Object} (return pref)
      */
-    static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
-
-        if (document.querySelector('#csrf_token').dataset.csrf !== undefined) {
-            data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
-        }
+    static jsonPref(data) {
 
         var pref = {
             method: 'POST',
@@ -43,6 +35,52 @@ class Ajax {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data)
         };
+
+        return pref;
+    }
+
+    /**
+     * JsonRpc Send
+     *
+     * @param url {String} (url)
+     * @param data {Object} (data)
+     * @param func {Object} (function)
+     * @returns {Object|Void} (return data)
+     */
+    static async jsonRpcSend(url = '', data = {}, func = null) {
+
+        var pref = Ajax.jsonPref(data);
+
+        const response = await fetch(url, pref).then(
+                data => {
+                    return data.text();
+                }
+        ).then(
+                text => {
+                    if (func !== null && func !== false && typeof func === 'function') {
+                        func(text);
+                    }
+                }
+        );
+    }
+
+    /**
+     * Ajax POST
+     *
+     * @param url {String} (url)
+     * @param data {Object} (data)
+     * @param reload {String} (reload marker)
+     * @param relay {String} (relay marker)
+     * @param func {Object} (function)
+     * @returns {Object|Void} (return data)
+     */
+    static async postData(url = '', data = {}, reload = null, relay = null, func = null) {
+
+        if (document.querySelector('#csrf_token').dataset.csrf !== undefined) {
+            data.csrf_token = document.querySelector('#csrf_token').dataset.csrf;
+        }
+
+        var pref = Ajax.jsonPref(data);
 
         if (relay === null) {
             const response = await fetch(url, pref).then(

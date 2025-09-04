@@ -40,7 +40,7 @@ class JsonRpc {
      * 
      */
     public function verifyMethod(): void {
-        if (Valid::inGET('request') && $this->decodeGetData('jsonrpc') && $this->decodeGetData('method') && $this->decodeGetData('id')) {
+        if ($this->decodeGetData('jsonrpc') && $this->decodeGetData('method') && $this->decodeGetData('id')) {
             $namespace = $this->decodeGetData('method');
             if (!class_exists($namespace)) {
                 $this->error('-32601', 'Method not found', $this->decodeGetData('id'));
@@ -55,11 +55,11 @@ class JsonRpc {
      */
     public function jsonRpcVerification(array $available_pages = []): void {
 
-        if (!Valid::inPostJson('login')) {
+        if (!Valid::inPostJson('param')['login']) {
             $this->error('-32601', 'Access denied', '');
         } else {
 
-            $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('login'), CRYPT_METHOD);
+            $login = Cryptography::decryption(DB_PASSWORD, Valid::inPostJson('param')['login'], CRYPT_METHOD);
 
             $permission = Db::connect()
                     ->read(TABLE_ADMINISTRATORS)
@@ -99,14 +99,16 @@ class JsonRpc {
      *
      * @param array $result Result data
      */
-    public function response(array $result = []): void {
+    public function response(array|bool $result = []): void {
 
-        $data = json_encode([
-            'jsonrpc' => '2.0',
-            'result' => $result,
-            'id' => $this->decodeGetData('id'),
-        ]);
-        echo $data;
+        if ($result) {
+            $data = json_encode([
+                'jsonrpc' => '2.0',
+                'result' => $result,
+                'id' => $this->decodeGetData('id'),
+            ]);
+            echo $data;
+        }
         exit;
     }
 
@@ -136,11 +138,20 @@ class JsonRpc {
      */
     public function decodeGetData(?string $name): array|string {
 
-        if (!Valid::inGET('request')) {
+        if (!Valid::inPostJson('jsonrpc') || !Valid::inPostJson('method') || !Valid::inPostJson('id')) {
             $this->error('-32600', 'Invalid Request', '');
         }
         if (!$this->decode_data) {
-            $this->decode_data = json_decode(urldecode(Valid::inGET('request')), true);
+            $param = [];
+            if (Valid::inPostJson('param')) {
+                $param = Valid::inPostJson('param');
+            }
+            $this->decode_data = [
+                'jsonrpc' => Valid::inPostJson('jsonrpc'),
+                'method' => Valid::inPostJson('method'),
+                'param' => $param,
+                'id' => Valid::inPostJson('id'),
+            ];
         }
         if ($this->decode_data == null) {
             $this->error('-32700', 'Parse error', '');

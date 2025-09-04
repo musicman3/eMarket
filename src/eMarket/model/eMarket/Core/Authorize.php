@@ -149,10 +149,13 @@ class Authorize {
                 exit;
             }
         }
+
         if (Valid::isPostJson()) {
-            if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $csrf_session_token) {
-                echo 'CSRF Token Error!';
-                exit;
+            if (Settings::path() != 'JsonRpc') {
+                if (!Valid::inPostJson('csrf_token') || Valid::inPostJson('csrf_token') != $csrf_session_token) {
+                    echo 'CSRF Token Error!';
+                    exit;
+                }
             }
         }
     }

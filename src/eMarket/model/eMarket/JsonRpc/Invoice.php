@@ -11,7 +11,8 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    JsonRpc
+    JsonRpc,
+    Valid
 };
 use \Mpdf\Mpdf;
 use Cruder\Db;
@@ -37,7 +38,6 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->createBlank();
     }
 
@@ -128,11 +128,12 @@ class Invoice extends JsonRpc {
      *
      */
     private function createBlank(): void {
-        $this->uid = $this->decodeGetData('id');
+        $this->uid = Valid::inPostJson('id');
         if (!$this->html()) {
             $this->error('-32000', 'Incorrect ID', $this->uid);
         }
         $this->mpdf()->WriteHTML($this->html());
-        $this->mpdf()->Output('invoice.pdf', 'D');
+        //$this->mpdf()->OutputHttpDownload('invoice.pdf', 'D');
+        $this->mpdf()->OutputFile(getenv('DOCUMENT_ROOT') . '/uploads/temp/file/invoice.pdf');
     }
 }
