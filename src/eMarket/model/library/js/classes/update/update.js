@@ -119,11 +119,7 @@ class Update {
         if (data !== null && data !== undefined) {
             var input = JSON.parse(data);
 
-            for (var x = 0; x < input.length; x++) {
-                if (input[x]['id'] === sessionStorage.getItem('Update.request.id')) {
-                    var input = input[x];
-                }
-            }
+            input = Update.jsonRpcSelect(input, sessionStorage.getItem('Update.request.id'));
 
             if (input.result !== null && input.result !== undefined) {
                 sessionStorage.setItem('update_response', data);
@@ -149,14 +145,27 @@ class Update {
         if (data !== null && data !== undefined) {
             var input = JSON.parse(data);
 
-            for (var x = 0; x < input.length; x++) {
-                if (input[x]['id'] === sessionStorage.getItem('Update.updateClick.id')) {
-                    var input = input[x];
-                }
-            }
+            input = Update.jsonRpcSelect(input, sessionStorage.getItem('Update.updateClick.id'));
+
             if (input.result.status === 'update') {
                 document.location.href = '/update.php';
             }
         }
+    }
+
+    /**
+     * jsonRpc select
+     *
+     * @param input {Object} (input data)
+     * @param id {String} (id)
+     * @returns {Object}
+     */
+    static jsonRpcSelect(input, id) {
+        for (var x = 0; x < input.length; x++) {
+            if (input[x]['id'] === id) {
+                var input = input[x];
+            }
+        }
+        return input;
     }
 }
