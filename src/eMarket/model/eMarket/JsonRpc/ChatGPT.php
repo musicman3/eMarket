@@ -76,12 +76,14 @@ class ChatGPT extends JsonRpc {
                         'temperature' => 0.7
             ];
 
-            echo $this->curl($request,
+            $output = json_decode($this->curl($request,
                     'https://api.openai.com/v1/chat/completions',
                     ['Content-Type: application/json',
                         'Accept: application/json',
                         'User-Agent: eMarket',
-                        'Authorization: Bearer ' . $this->token]);
+                        'Authorization: Bearer ' . $this->token]));
+            
+            $this->responseBuilder([$output], $this->jsonrpc['id']);
         }
     }
 
@@ -100,8 +102,8 @@ class ChatGPT extends JsonRpc {
                     ->set('my_data', $chatgpt_token)
                     ->where('login=', $decrypt_login)
                     ->save();
-
-            echo json_encode([lang('chatgpt_api_key_saved')]);
+            
+            $this->responseBuilder([lang('chatgpt_api_key_saved')], $this->jsonrpc['id']);
         }
     }
 }

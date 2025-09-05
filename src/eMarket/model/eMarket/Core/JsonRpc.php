@@ -31,14 +31,6 @@ class JsonRpc {
     public static $response = [];
 
     /**
-     * Constructor
-     *
-     */
-    public function __construct() {
-        
-    }
-
-    /**
      * Return jsonRpc data from key name
      * 
      * @param array $key Key name

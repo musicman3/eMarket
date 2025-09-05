@@ -2,7 +2,7 @@
  |    GNU GENERAL PUBLIC LICENSE v.3.0    |
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-/* global Ajax, Randomizer */
+/* global Ajax, Randomizer, JsonRpc */
 
 /**
  * ChatGPT
@@ -29,6 +29,7 @@ class ChatGPT {
     static request(content = 'Say this is a test!') {
 
         var randomizer = new Randomizer();
+        sessionStorage.setItem('ChatGPT.request.id', randomizer.uid(32));
 
         var jsonRpcRequest = [
             {
@@ -38,7 +39,7 @@ class ChatGPT {
                     'message': content,
                     'login': document.querySelector('#user_login').dataset.login
                 },
-                'id': randomizer.uid(32)
+                'id': sessionStorage.getItem('ChatGPT.request.id')
             }
         ];
 
@@ -59,6 +60,7 @@ class ChatGPT {
     static apiKey(content = '') {
 
         var randomizer = new Randomizer();
+        sessionStorage.setItem('ChatGPT.apiKey.id', randomizer.uid(32));
 
         var jsonRpcRequest = [
             {
@@ -68,7 +70,7 @@ class ChatGPT {
                     'api_key': content,
                     'login': document.querySelector('#user_login').dataset.login
                 },
-                'id': randomizer.uid(32)
+                'id': sessionStorage.getItem('ChatGPT.apiKey.id')
             }
         ];
 
@@ -84,9 +86,14 @@ class ChatGPT {
      * @param data {String} (data)
      */
     static save(data) {
-        var input = JSON.parse(data);
-        document.querySelector('#chat_bot').value = input[0];
-        document.querySelector('#chatgpt_key').value = '';
+        if (data !== null && data !== undefined) {
+
+            var input = JSON.parse(data);
+            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.apiKey.id'));
+
+            document.querySelector('#chat_bot').value = input.result[0];
+            document.querySelector('#chatgpt_key').value = '';
+        }
     }
 
     /**
@@ -138,15 +145,20 @@ class ChatGPT {
      * @param data {Object} (ChatGPT response)
      */
     static Response(data) {
-        var input = JSON.parse(data);
-        if (input !== undefined && input.choices !== undefined) {
-            document.querySelector('#chat_bot').value = input.choices[0].message.content;
-            document.querySelector('#chat_user').disabled = false;
-            document.querySelector('#chat_user').value = '';
-            document.querySelector('#chat_user').focus();
-        } else {
-            document.querySelector('#chat_bot').value = input.error.message;
+        if (data !== null && data !== undefined) {
+
+            var input = JSON.parse(data);
+            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.request.id'));
+            
+            if (input !== undefined && input.choices !== undefined) {
+                document.querySelector('#chat_bot').value = input.result.choices[0].message.content;
+                document.querySelector('#chat_user').disabled = false;
+                document.querySelector('#chat_user').value = '';
+                document.querySelector('#chat_user').focus();
+            } else {
+                document.querySelector('#chat_bot').value = input.result[0].error.message;
+            }
+            ChatGPT.removeClass();
         }
-        ChatGPT.removeClass();
     }
 }
