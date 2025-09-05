@@ -89,8 +89,7 @@ final class Eac {
         $this->paste();
         $this->status();
         $this->initDiscount();
-        $stickers = new Stickers();
-        $stickers->initEac();
+        Stickers::initEac();
 
         return [$idsx_real_parent_id, self::$parent_id];
     }

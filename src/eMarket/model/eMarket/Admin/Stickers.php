@@ -259,7 +259,7 @@ class Stickers {
     /**
      * Init Eac
      */
-    public function initEac(): void {
+    public static function initEac(): void {
 
         if ((Valid::inPostJson('idsx_stickerOn_key') == 'On')
                 or (Valid::inPostJson('idsx_stickerOff_key') == 'Off')) {
