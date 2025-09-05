@@ -33,7 +33,7 @@ class Update extends JsonRpc {
      */
     public function __construct() {
         header('Content-Type: application/json');
-        $this->jsonrpc = $this->thisJsonRpcData('eMarket\\JsonRpc\\Update');
+        $this->jsonrpc = $this->jsonRpcData('eMarket\\JsonRpc\\Update');
         $this->jsonRpcVerification(['?route=basic_settings']);
         $this->init();
     }

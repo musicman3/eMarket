@@ -31,12 +31,12 @@ class JsonRpc {
     public static $response = [];
 
     /**
-     * Return jsonRpc data from key name
+     * Return jsonRpc data from method key name
      * 
      * @param array $key Key name
      * @return array jsonRPC key-data
      */
-    public function thisJsonRpcData($key): array {
+    public function jsonRpcData($key): array {
         return Valid::inPostJson('jsonrpc')[array_search($key, Valid::inPostJson('jsonrpc'))];
     }
 
@@ -116,8 +116,8 @@ class JsonRpc {
     public function response(): void {
 
         if (count($this->error_messages) > 0) {
-            foreach ($this->error_messages as $error){
-            array_push(self::$response, $error);
+            foreach ($this->error_messages as $error) {
+                array_push(self::$response, $error);
             }
         }
         if (count(self::$response) > 0) {

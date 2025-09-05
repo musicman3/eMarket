@@ -39,7 +39,7 @@ class Invoice extends JsonRpc {
      *
      */
     public function __construct() {
-        $this->jsonrpc = $this->thisJsonRpcData('eMarket\\JsonRpc\\ChatGPT');
+        $this->jsonrpc = $this->jsonRpcData('eMarket\\JsonRpc\\ChatGPT');
         $this->createBlank();
     }
 
