@@ -43,6 +43,7 @@ use eMarket\Core\{
         <script type="text/javascript" src="/model/library/js/classes/chatgpt/chatgpt.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
+        <script type="text/javascript" src="/model/library/js/classes/jsonrpc/jsonrpc.js"></script>
 
         <script type="text/javascript">
             var Confirmation = new Confirm();
