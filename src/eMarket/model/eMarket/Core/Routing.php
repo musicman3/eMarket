@@ -145,18 +145,7 @@ class Routing {
         }
 
         if (Settings::path() == 'JsonRpc') {
-            $jsonrpc = new JsonRpc();
-            $methods_available = $jsonrpc->routing();
-
-            foreach ($methods_available as $method) {
-                new $method['method']();
-            }
-
-            $jsonrpc->response();
-
-            $default_routing_parameter = 'eMarket\\JsonRpc\\Rpc';
-            $class_path = '';
-            return Func::outputDataFiltering($class_path . '\\' . $default_routing_parameter);
+            return Func::outputDataFiltering('\\eMarket\\JsonRpc\\Rpc');
         }
 
         if (Valid::inGET('route') != '') {
