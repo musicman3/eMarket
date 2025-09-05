@@ -145,7 +145,7 @@ class Routing {
         }
 
         if (Settings::path() == 'JsonRpc') {
-            return Func::outputDataFiltering('\\eMarket\\JsonRpc\\Rpc');
+            return Func::outputDataFiltering('\\eMarket\\JsonRpc\\JsonRpcController');
         }
 
         if (Valid::inGET('route') != '') {
