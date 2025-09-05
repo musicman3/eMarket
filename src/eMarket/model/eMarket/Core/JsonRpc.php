@@ -124,7 +124,9 @@ class JsonRpc {
     public function response(): void {
 
         if (count($this->error_messages) > 0) {
-            array_push(self::$response, $this->error_messages);
+            foreach ($this->error_messages as $error){
+            array_push(self::$response, $error);
+            }
         }
         if (count(self::$response) > 0) {
             echo json_encode(self::$response);
