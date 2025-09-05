@@ -31,14 +31,14 @@ class Rpc {
      *
      */
     public function __construct() {
-        $this->routing();
+        $this->route();
     }
 
     /**
-     * Init
+     * Route
      * 
      */
-    public function routing(): void {
+    public function route(): void {
         
         $jsonRpc = new JsonRpc();
         $methods_available = $jsonRpc->routing();
