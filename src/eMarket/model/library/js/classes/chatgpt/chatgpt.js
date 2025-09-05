@@ -43,8 +43,7 @@ class ChatGPT {
             }
         ];
 
-        Ajax.jsonRpcSend('/services/jsonrpc/request/',
-                jsonRpcRequest,
+        Ajax.jsonRpcSend(jsonRpcRequest,
                 ChatGPT.Response).then((data) => {
         });
         document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
@@ -74,8 +73,7 @@ class ChatGPT {
             }
         ];
 
-        Ajax.jsonRpcSend('/services/jsonrpc/request/',
-                jsonRpcRequest,
+        Ajax.jsonRpcSend(jsonRpcRequest,
                 ChatGPT.save).then((data) => {
         });
     }
@@ -149,7 +147,7 @@ class ChatGPT {
 
             var input = JSON.parse(data);
             input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.request.id'));
-            
+
             if (input !== undefined && input.choices !== undefined) {
                 document.querySelector('#chat_bot').value = input.result.choices[0].message.content;
                 document.querySelector('#chat_user').disabled = false;

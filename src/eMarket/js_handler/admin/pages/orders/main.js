@@ -36,8 +36,7 @@ class Orders {
             }
         ];
 
-        Ajax.jsonRpcSend('/services/jsonrpc/request/',
-                jsonRpcRequest).then((data) => {
+        Ajax.jsonRpcSend(jsonRpcRequest).then((data) => {
             Orders.saveFile('/uploads/temp/invoice.pdf', 'invoice.pdf');
         });
     }

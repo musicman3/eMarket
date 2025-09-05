@@ -40,8 +40,7 @@ class Update {
                 }
             ];
 
-            Ajax.jsonRpcSend('/services/jsonrpc/request/',
-                    jsonRpcRequest,
+            Ajax.jsonRpcSend(jsonRpcRequest,
                     Update.Response).then((data) => {
             });
         } else {
@@ -71,8 +70,7 @@ class Update {
                 }
             ];
 
-            Ajax.jsonRpcSend('/services/jsonrpc/request/',
-                    jsonRpcRequest,
+            Ajax.jsonRpcSend(jsonRpcRequest,
                     Update.Redirect).then((data) => {
             });
         };
