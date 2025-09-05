@@ -27,18 +27,19 @@ class Update {
      */
     static request() {
 
-        var randomizer = new Randomizer();
-
-        var jsonRpcRequest = [
-            {
-                'jsonrpc': '2.0',
-                'method': 'eMarket\\JsonRpc\\Update',
-                'param': {'login': document.querySelector('#user_login').dataset.login},
-                'id': randomizer.uid(32)
-            }
-        ];
-
         if (document.querySelector('#user_login').dataset.login !== 'false' && Update.requestTime() === true) {
+            var randomizer = new Randomizer();
+            sessionStorage.setItem('Update.request.id', randomizer.uid(32));
+
+            var jsonRpcRequest = [
+                {
+                    'jsonrpc': '2.0',
+                    'method': 'eMarket\\JsonRpc\\Update',
+                    'param': {'login': document.querySelector('#user_login').dataset.login},
+                    'id': sessionStorage.getItem('Update.request.id')
+                }
+            ];
+
             Ajax.jsonRpcSend('/services/jsonrpc/request/',
                     jsonRpcRequest,
                     Update.Response).then((data) => {
@@ -56,6 +57,7 @@ class Update {
 
         document.querySelector('#update_button').onclick = function () {
             var randomizer = new Randomizer();
+            sessionStorage.setItem('Update.updateClick.id', randomizer.uid(32));
 
             var jsonRpcRequest = [
                 {
@@ -65,7 +67,7 @@ class Update {
                         'message': 'update',
                         'login': document.querySelector('#user_login').dataset.login
                     },
-                    'id': randomizer.uid(32)
+                    'id': sessionStorage.getItem('Update.updateClick.id')
                 }
             ];
 
@@ -88,12 +90,14 @@ class Update {
             sessionStorage.setItem('update_time', time_second);
             return true;
         }
-        if (sessionStorage.getItem('update_time') < (time_second - 3600)) {
+        if (sessionStorage.getItem('update_time') > (time_second - 3600)) {
+            return false;
+        } else {
             sessionStorage.setItem('update_time', time_second);
             return true;
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -110,21 +114,30 @@ class Update {
      *
      * @param data {Object} (response)
      */
-    static Response(data) {
+    static Response(data = null) {
 
-        var input = JSON.parse(data)[0];
-        if (data !== undefined && input.result !== null) {
-            sessionStorage.setItem('update_response', data);
-            const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
+        if (data !== null && data !== undefined) {
+            var input = JSON.parse(data);
 
-            document.querySelector('#update_box').setAttribute('data-bs-original-title', input.result.message);
-            var text_class = 'text-success';
-
-            if (input.result.status === 'false') {
-                text_class = 'text-danger';
+            for (var x = 0; x < input.length; x++) {
+                if (input[x]['id'] === sessionStorage.getItem('Update.request.id')) {
+                    var input = input[x];
+                }
             }
-            document.querySelector('#update_box').classList.replace('text-warning', text_class);
-        }
+
+            if (input.result !== null && input.result !== undefined) {
+                sessionStorage.setItem('update_response', data);
+                const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
+
+                document.querySelector('#update_box').setAttribute('data-bs-original-title', input.result.message);
+                var text_class = 'text-success';
+
+                if (input.result.status === 'false') {
+                    text_class = 'text-danger';
+                }
+                document.querySelector('#update_box').classList.replace('text-warning', text_class);
+            }
+    }
     }
 
     /**
@@ -133,9 +146,17 @@ class Update {
      * @param data {Object} (response)
      */
     static Redirect(data) {
-        var input = JSON.parse(data)[0];
-        if (input.result.status === 'update') {
-            document.location.href = '/update.php';
+        if (data !== null && data !== undefined) {
+            var input = JSON.parse(data);
+
+            for (var x = 0; x < input.length; x++) {
+                if (input[x]['id'] === sessionStorage.getItem('Update.updateClick.id')) {
+                    var input = input[x];
+                }
+            }
+            if (input.result.status === 'update') {
+                document.location.href = '/update.php';
+            }
         }
     }
 }
