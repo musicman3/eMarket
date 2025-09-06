@@ -13,7 +13,6 @@ use eMarket\Core\{
     Debug,
     Settings,
     Func,
-    JsonRpc,
     Modules,
     Tree,
     Valid
