@@ -7,10 +7,10 @@
 use eMarket\Catalog\Products;
 ?>
 
-<script type="text/javascript" src="/model/library/javascript/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/model/library/javascript/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/javascript/library/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/javascript/library/classes/jsdata/jsdata.js"></script>
 <script type="text/javascript" src="/javascript/structure/catalog/pages/products/main.js"></script>
-<script type="text/javascript" src="/model/library/javascript/classes/ajax/ajax.js"></script>
+<script type="text/javascript" src="/javascript/library/classes/ajax/ajax.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/javascript/ext/baguettebox/baguetteBox.min.css" />
 <script type="text/javascript" src="/javascript/ext/baguettebox/baguetteBox.min.js"></script>

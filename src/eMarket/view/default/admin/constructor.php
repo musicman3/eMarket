@@ -39,11 +39,11 @@ use eMarket\Core\{
 
         <script type="text/javascript" src="/javascript/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/javascript/ext/randomizer/randomizer.js"></script>
-        <script type="text/javascript" src="/model/library/javascript/classes/ajax/ajax.js"></script>
-        <script type="text/javascript" src="/model/library/javascript/classes/chatgpt/chatgpt.js"></script>
-        <script type="text/javascript" src="/model/library/javascript/classes/helpers/helpers.js"></script>
-        <script type="text/javascript" src="/model/library/javascript/classes/confirm/confirm.js"></script>
-        <script type="text/javascript" src="/model/library/javascript/classes/jsonrpc/jsonrpc.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/ajax/ajax.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/chatgpt/chatgpt.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/confirm/confirm.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/jsonrpc/jsonrpc.js"></script>
 
         <script type="text/javascript">
             var Confirmation = new Confirm();

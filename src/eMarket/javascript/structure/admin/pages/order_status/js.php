@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 ?>
 <script src="/javascript/ext/sortablejs/sortable.min.js"></script>
-<script type="text/javascript" src="/model/library/javascript/classes/mouse/mouse.js"></script>
+<script type="text/javascript" src="/javascript/library/classes/mouse/mouse.js"></script>
 <script type="text/javascript" src="/javascript/structure/admin/pages/order_status/main.js"></script>
 <script type="text/javascript">
     new OrderStatus();

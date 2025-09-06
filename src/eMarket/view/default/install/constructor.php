@@ -28,7 +28,7 @@ use eMarket\Core\{
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="/javascript/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/install/style.css" media="screen" />
-        <script type="text/javascript" src="/model/library/javascript/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/javascript/library/classes/helpers/helpers.js"></script>
     </head>
     <body>
         <?php
