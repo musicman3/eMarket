@@ -99,7 +99,7 @@ class JsonRpc {
      */
     public function responseBuilder(array|bool $result = [], string|null $id = null): void {
 
-        if ($result) {
+        if ($result && $id != null) {
             $data = [
                 'jsonrpc' => '2.0',
                 'result' => $result,
