@@ -137,7 +137,7 @@ final class Modules {
         $discount_router = [];
         $output_modules = [];
         foreach ($active_modules as $module) {
-            if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/js_handler/admin/contextmenu/contextmenu.js')) {
+            if (file_exists(ROOT . '/modules/discount/' . $module['name'] . '/jstructure/admin/contextmenu/contextmenu.js')) {
                 $text .= ' Discount' . ucfirst($module['name']) . '.context(discounts_interface), ';
                 $output_text = substr($text, 0, -2);
                 array_push($output_modules, $module['name']);
@@ -178,7 +178,7 @@ final class Modules {
      */
     public static function addDiscountsToContextMenu(): string {
 
-        $context = file_get_contents(ROOT . '/js_handler/admin/pages/stock/context.js');
+        $context = file_get_contents(ROOT . '/jstructure/admin/pages/stock/context.js');
         $find = '// ---------- Discounts ----------';
         $replace = self::discountRouter('functions') . ', // ---------- Discounts ----------';
         $output = str_replace($find, $replace, $context);
