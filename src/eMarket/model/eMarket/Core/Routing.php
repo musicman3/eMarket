@@ -260,9 +260,9 @@ class Routing {
 
         if (Settings::path() == 'admin') {
             if (Valid::inGET('route')) {
-                $path = getenv('DOCUMENT_ROOT') . '/jstructure/' . Settings::path() . '/pages/' . Valid::inGET('route');
+                $path = getenv('DOCUMENT_ROOT') . '/javascript/structure/' . Settings::path() . '/pages/' . Valid::inGET('route');
             } else {
-                $path = getenv('DOCUMENT_ROOT') . '/jstructure/' . Settings::path() . '/pages/' . Settings::defaultPage();
+                $path = getenv('DOCUMENT_ROOT') . '/javascript/structure/' . Settings::path() . '/pages/' . Settings::defaultPage();
             }
             if (file_exists($path . '/js.php')) {
                 self::$jstructure = $path;
@@ -270,14 +270,14 @@ class Routing {
         }
 
         if (Settings::path() == 'catalog') {
-            $path = getenv('DOCUMENT_ROOT') . '/jstructure/' . Settings::path() . '/pages/' . Valid::inGET('route');
+            $path = getenv('DOCUMENT_ROOT') . '/javascript/structure/' . Settings::path() . '/pages/' . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
                 self::$jstructure = $path;
             }
         }
 
         if (Settings::path() == 'install') {
-            $path = getenv('DOCUMENT_ROOT') . '/jstructure/' . Settings::path() . Valid::inGET('route');
+            $path = getenv('DOCUMENT_ROOT') . '/javascript/structure/' . Settings::path() . Valid::inGET('route');
             if (file_exists($path . '/js.php')) {
                 self::$jstructure = $path;
             }
@@ -292,21 +292,21 @@ class Routing {
     public static function jsModulesHandler(?string $js_path = null): void {
 
         if (Settings::path() == 'admin') {
-            $path = self::modules('jstructure');
+            $path = self::modules('javascript/structure');
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }
         }
 
         if (Settings::path() == 'catalog' && $js_path == null) {
-            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/jstructure/catalog';
+            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/javascript/structure/catalog';
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }
         }
 
         if (Settings::path() == 'catalog' && $js_path != null) {
-            $path = ROOT . '/modules/' . $js_path . '/jstructure/catalog';
+            $path = ROOT . '/modules/' . $js_path . '/javascript/structure/catalog';
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }

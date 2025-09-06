@@ -28,7 +28,7 @@ use eMarket\Core\{
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" href="/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
+        <link rel="stylesheet" href="/javascript/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
 
         <?php
@@ -37,8 +37,8 @@ use eMarket\Core\{
             <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
 
-        <script type="text/javascript" src="/ext/fastmd5/md5.min.js"></script>
-        <script type="text/javascript" src="/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/javascript/ext/fastmd5/md5.min.js"></script>
+        <script type="text/javascript" src="/javascript/ext/randomizer/randomizer.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/ajax/ajax.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/chatgpt/chatgpt.js"></script>
         <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
