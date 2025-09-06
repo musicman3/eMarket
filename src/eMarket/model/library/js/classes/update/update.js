@@ -44,7 +44,7 @@ class Update {
                     Update.Response).then((data) => {
             });
         } else {
-            Update.Response(sessionStorage.getItem('update_response'));
+            Update.Response(sessionStorage.getItem('Update.response'));
         }
     }
 
@@ -84,14 +84,14 @@ class Update {
         var time = new Date();
         var time_second = Math.round(time.getTime() / 1000);
 
-        if (sessionStorage.getItem('update_time') === null) {
-            sessionStorage.setItem('update_time', time_second);
+        if (sessionStorage.getItem('Update.time') === null) {
+            sessionStorage.setItem('Update.time', time_second);
             return true;
         }
-        if (sessionStorage.getItem('update_time') > (time_second - 3600)) {
+        if (sessionStorage.getItem('Update.time') > (time_second - 3600)) {
             return false;
         } else {
-            sessionStorage.setItem('update_time', time_second);
+            sessionStorage.setItem('Update.time', time_second);
             return true;
         }
 
@@ -120,7 +120,7 @@ class Update {
             input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('Update.request.id'));
 
             if (input.result !== null && input.result !== undefined) {
-                sessionStorage.setItem('update_response', data);
+                sessionStorage.setItem('Update.response', data);
                 const tooltip = bootstrap.Tooltip.getOrCreateInstance('#update_box');
 
                 document.querySelector('#update_box').setAttribute('data-bs-original-title', input.result.message);
