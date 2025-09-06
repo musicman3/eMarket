@@ -12,7 +12,7 @@
 <?php } ?>
 <script src="/javascript/ext/pikaday/pikaday.js"></script>
 <link rel="stylesheet" type="text/css" href="/javascript/ext/pikaday/pikaday.css">
-<script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/smartdatepicker.js"></script>
 
 <script type="text/javascript">
     document.querySelector('#index').addEventListener('show.bs.modal', function (event) {

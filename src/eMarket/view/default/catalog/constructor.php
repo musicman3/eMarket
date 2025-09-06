@@ -38,8 +38,8 @@ use eMarket\Catalog\{
         <link rel="stylesheet" type="text/css" href="/javascript/ext/bootstrap-icons/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
 
-        <script type="text/javascript" src="/model/library/js/classes/helpers/helpers.js"></script>
-        <script type="text/javascript" src="/model/library/js/classes/confirm/confirm.js"></script>
+        <script type="text/javascript" src="/model/library/javascript/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/model/library/javascript/classes/confirm/confirm.js"></script>
         <script type="text/javascript" src="/javascript/ext/kyleschaeffer/menu.js"></script>
 
         <script type="text/javascript">

@@ -11,22 +11,22 @@ use eMarket\Core\{
 
 <!-- FileUpload -->
 <script type="text/javascript" src="/javascript/ext/lpology/SimpleAjaxUploader.min.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/images/fileupload_product.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/images/fileupload.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/images/fileupload_product.js"></script>
 <!-- Sortable -->
 <script type="text/javascript" src="/javascript/ext/sortablejs/sortable.min.js"></script>
 <!-- Table select -->
 <script type="text/javascript" src="/javascript/ext/table-select/table-select.js"></script>
 <!-- Attributes -->
-<script type="text/javascript" src="/model/library/js/classes/attributes/group_attributes.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/attributes/attributes.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/attributes/values_attribute.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/attributes/attributes_processing.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/jsdata/jsdata.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/attributes/group_attributes.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/attributes/attributes.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/attributes/values_attribute.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/attributes/attributes_processing.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/jsdata/jsdata.js"></script>
 <!-- TinyMCE -->
 <script type="text/javascript" src="/javascript/ext/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- Mouse -->
-<script type="text/javascript" src="/model/library/js/classes/mouse/mouse.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/mouse/mouse.js"></script>
 <!-- Datepicker -->
 <script src="/javascript/ext/moment/moment.min.js"></script>
 <script src="/javascript/ext/pikaday/pikaday.js"></script>

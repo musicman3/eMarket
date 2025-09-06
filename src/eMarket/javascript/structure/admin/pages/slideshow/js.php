@@ -13,11 +13,11 @@ $resize_max = json_encode(\eMarket\Core\Images::imgResizeMax(\eMarket\Admin\Slid
 <?php } ?>
 <script src="/javascript/ext/pikaday/pikaday.js"></script>
 <link rel="stylesheet" type="text/css" href="/javascript/ext/pikaday/pikaday.css">
-<script type="text/javascript" src="/model/library/js/classes/smartdatepicker.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/smartdatepicker.js"></script>
 
 <!--File Upload -->
 <script type="text/javascript" src="/javascript/ext/lpology/SimpleAjaxUploader.min.js"></script>
-<script type="text/javascript" src="/model/library/js/classes/images/fileupload.js"></script>
+<script type="text/javascript" src="/model/library/javascript/classes/images/fileupload.js"></script>
 <script type="text/javascript" src="/javascript/structure/admin/pages/slideshow/main.js"></script>
 
 <script type="text/javascript">
