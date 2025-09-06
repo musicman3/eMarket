@@ -25,7 +25,7 @@ use eMarket\Core\{
 class Update extends JsonRpc {
 
     public static $routing_parameter = 'Update';
-    private $jsonrpc = FALSE;
+    public static $jsonrpc;
 
     /**
      * Constructor
@@ -33,7 +33,6 @@ class Update extends JsonRpc {
      */
     public function __construct() {
         header('Content-Type: application/json');
-        $this->jsonrpc = $this->jsonRpcData('eMarket\\JsonRpc\\Update');
         $this->jsonRpcVerification(['?route=basic_settings']);
         $this->init();
     }
@@ -43,10 +42,10 @@ class Update extends JsonRpc {
      * 
      */
     public function init(): void {
-        if (isset($this->jsonrpc['param']['message']) && $this->jsonrpc['param']['message'] == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {
-            $this->responseBuilder(['status' => 'update'], $this->jsonrpc['id']);
+        if (isset(self::$jsonrpc['param']['message']) && self::$jsonrpc['param']['message'] == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {
+            $this->responseBuilder(['status' => 'update'], self::$jsonrpc['id']);
         } else {
-            $this->responseBuilder($this->responseVersion(), $this->jsonrpc['id']);
+            $this->responseBuilder($this->responseVersion(), self::$jsonrpc['id']);
         }
     }
 

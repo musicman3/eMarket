@@ -22,7 +22,7 @@ use eMarket\Core\{
  * @license GNU GPL v.3.0
  * 
  */
-class JsonRpcController {
+class JsonRpcController extends JsonRpc {
 
     public static $routing_parameter = 'JsonRpcController';
 
@@ -39,11 +39,12 @@ class JsonRpcController {
      * 
      */
     public function controller(): void {
-        
+
         $jsonRpc = new JsonRpc();
         $methods_available = $jsonRpc->routing();
 
         foreach ($methods_available as $method) {
+            $method['method']::$jsonrpc = $this->jsonRpcData($method['method']);
             new $method['method']();
         }
 
