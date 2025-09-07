@@ -28,7 +28,7 @@ use eMarket\Core\{
         <title><?php echo Settings::titlePageGenerator() ?></title>
 
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" href="/javascript/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
+        <link rel="stylesheet" href="/js/ext/bootstrap-icons/bootstrap-icons.css" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/style.css" media="screen" />
 
         <?php
@@ -37,13 +37,13 @@ use eMarket\Core\{
             <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/admin/nav.css" media="screen" />
         <?php } ?>
 
-        <script type="text/javascript" src="/javascript/ext/fastmd5/md5.min.js"></script>
-        <script type="text/javascript" src="/javascript/ext/randomizer/randomizer.js"></script>
-        <script type="text/javascript" src="/javascript/library/classes/ajax/ajax.js"></script>
-        <script type="text/javascript" src="/javascript/library/classes/chatgpt/chatgpt.js"></script>
-        <script type="text/javascript" src="/javascript/library/classes/helpers/helpers.js"></script>
-        <script type="text/javascript" src="/javascript/library/classes/confirm/confirm.js"></script>
-        <script type="text/javascript" src="/javascript/library/classes/jsonrpc/jsonrpc.js"></script>
+        <script type="text/javascript" src="/js/ext/fastmd5/md5.min.js"></script>
+        <script type="text/javascript" src="/js/ext/randomizer/randomizer.js"></script>
+        <script type="text/javascript" src="/js/library/classes/ajax/ajax.js"></script>
+        <script type="text/javascript" src="/js/library/classes/chatgpt/chatgpt.js"></script>
+        <script type="text/javascript" src="/js/library/classes/helpers/helpers.js"></script>
+        <script type="text/javascript" src="/js/library/classes/confirm/confirm.js"></script>
+        <script type="text/javascript" src="/js/library/classes/jsonrpc/jsonrpc.js"></script>
 
         <script type="text/javascript">
             var Confirmation = new Confirm();
