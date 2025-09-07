@@ -14,7 +14,7 @@ use eMarket\Core\{
 };
 
 /**
- * JsonRpcController class
+ * JsonRpcController
  *
  * @package JsonRpc
  * @author eMarket Team
