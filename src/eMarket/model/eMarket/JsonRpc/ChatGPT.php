@@ -67,12 +67,12 @@ class ChatGPT extends JsonRpc {
         if (isset(self::$jsonrpc['param']['message'])) {
             $this->getToken();
 
-            $request = (object) ['model' => 'gpt-3.5-turbo',
+            $request = (object) ['model' => 'gpt-5',
                         'messages' => [(object) [
                                 'role' => 'user',
                                 'content' => self::$jsonrpc['param']['message']
                             ]],
-                        'temperature' => 0.7
+                        'temperature' => 1
             ];
 
             $output = json_decode($this->curl($request,
