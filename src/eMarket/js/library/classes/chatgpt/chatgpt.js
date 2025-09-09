@@ -99,34 +99,36 @@ class ChatGPT {
      *
      */
     static init() {
-        if (document.querySelector('#api_key') !== null) {
-            document.querySelector('#chatgptsend').onclick = function () {
-                ChatGPT.request(document.querySelector('#chat_user').value);
-            };
 
+        if (document.querySelector('#api_key') !== null) {
             document.querySelector('#api_key').onclick = function () {
                 ChatGPT.apiKey(document.querySelector('#chatgpt_key').value);
             };
-
-            document.querySelector('#chat_user')
-                    .addEventListener('keyup', function (event) {
-                        event.preventDefault();
-                        if (event.keyCode === 13) {
-                            document.querySelector('#chat_user').blur();
-                            document.querySelector('#chat_user').disabled = true;
-                            ChatGPT.request(document.querySelector('#chat_user').value);
-                        }
-                    });
-
-            document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
-                ChatGPT.removeClass();
-                document.querySelector('#chat_user').value = '';
-            });
-
-            document.querySelector('#offcanvasRight').addEventListener('shown.bs.offcanvas', function (event) {
-                document.querySelector('#chat_user').focus();
-            });
         }
+        
+        document.querySelector('#chatgptsend').onclick = function () {
+            ChatGPT.request(document.querySelector('#chat_user').value);
+        };
+
+        document.querySelector('#chat_user')
+                .addEventListener('keyup', function (event) {
+                    event.preventDefault();
+                    if (event.keyCode === 13) {
+                        document.querySelector('#chat_user').blur();
+                        document.querySelector('#chat_user').disabled = true;
+                        ChatGPT.request(document.querySelector('#chat_user').value);
+                    }
+                });
+
+        document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
+            ChatGPT.removeClass();
+            document.querySelector('#chat_user').value = '';
+        });
+
+        document.querySelector('#offcanvasRight').addEventListener('shown.bs.offcanvas', function (event) {
+            document.querySelector('#chat_user').focus();
+        });
+
     }
 
     /**
