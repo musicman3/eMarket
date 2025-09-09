@@ -16,9 +16,8 @@ $repo_init = [
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
 $removing_list = [
-    '/js/ext/',
     '/controller/',
-    '/js/structure/',
+    '/js/',
     '/language/english/',
     '/language/russian/',
     '/model/',
