@@ -55,7 +55,10 @@ class ChatGPT extends JsonRpc {
                 ->save();
 
         if ($token != 'null') {
-            $this->token = json_decode($token, true)['chatgpt_token'];
+            $data = json_decode($token, true);
+            if (isset($data['chatgpt_token'])) {
+                $this->token = $data['chatgpt_token'];
+            }
         }
     }
 

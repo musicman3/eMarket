@@ -152,7 +152,7 @@ class ChatGPT {
             var input = JSON.parse(data);
             input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.request.id'));
 
-            if (input !== undefined && input.result[0].choices[0] !== undefined) {
+            if (input !== undefined && input.result[0].choices !== undefined && input.result[0].choices[0] !== undefined) {
                 document.querySelector('#chat_bot').value = input.result[0].choices[0].message.content;
                 document.querySelector('#chat_user').disabled = false;
                 document.querySelector('#chat_user').value = '';
