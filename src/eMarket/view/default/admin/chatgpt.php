@@ -33,10 +33,12 @@ use eMarket\Core\{
             </div>
         </div>
     </div>
-    <div class="mb-3">
-        <textarea class="form-control" id="chat_user" rows="2" placeholder="<?php echo lang('chatgpt_user_placeholder') ?>"></textarea>
-    </div>
-    <div class="mb-3">
-        <button id="chatgptsend" class="btn btn-sm btn-success" type="button"><span id="chatgptsendspan" class="text-light"></span> <?php echo lang('chatgpt_send_button') ?></button>
+    <div class="offcanvas-body mb-3">
+        <div class="mb-3">
+            <textarea class="form-control" id="chat_user" rows="2" placeholder="<?php echo lang('chatgpt_user_placeholder') ?>"></textarea>
+        </div>
+        <div class="mb-3">
+            <button id="chatgptsend" class="btn btn-sm btn-success" type="button"><span id="chatgptsendspan" class="text-light"></span> <?php echo lang('chatgpt_send_button') ?></button>
+        </div>
     </div>
 </div>
