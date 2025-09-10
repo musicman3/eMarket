@@ -422,6 +422,7 @@ chatgpt_open_button = ChatGPT
 chatgpt_send_button = Отправить
 chatgpt_user_placeholder = Спросить у ChatGPT...
 chatgpt_response = Чат:
+chatgpt_not_started = Чат еще не начат. Спросите что-то.
 chatgpt_api_key_saved = API ключ сохранен!
 chatgpt_api_key = ChatGPT API key
 

@@ -424,6 +424,7 @@ chatgpt_open_button = ChatGPT
 chatgpt_send_button = Send
 chatgpt_user_placeholder = Ask ChatGPT...
 chatgpt_response = Chat:
+chatgpt_not_started = Chat has not started yet. Ask something.
 chatgpt_api_key_saved = API key saved!
 chatgpt_api_key = ChatGPT API key
 

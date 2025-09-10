@@ -105,10 +105,13 @@ class ChatGPT {
                 ChatGPT.apiKey(document.querySelector('#chatgpt_key').value);
             };
         }
-        
+
         document.querySelector('#chatgptsend').onclick = function () {
-            document.querySelector('#chat_bot').innerHTML  += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '<div>';
+            document.querySelector('#chat_bot').innerHTML += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '<div>';
             ChatGPT.request(document.querySelector('#chat_user').value);
+            if (document.querySelector('#chat_empty')) {
+                document.querySelector('#chat_empty').remove();
+            }
         };
 
         document.querySelector('#chat_user')
@@ -117,8 +120,11 @@ class ChatGPT {
                     if (event.keyCode === 13) {
                         document.querySelector('#chat_user').blur();
                         document.querySelector('#chat_user').disabled = true;
-                        document.querySelector('#chat_bot').innerHTML  += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '</div>';
+                        document.querySelector('#chat_bot').innerHTML += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '</div>';
                         ChatGPT.request(document.querySelector('#chat_user').value);
+                        if (document.querySelector('#chat_empty')) {
+                            document.querySelector('#chat_empty').remove();
+                        }
                     }
                 });
 

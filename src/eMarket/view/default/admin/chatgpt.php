@@ -27,6 +27,7 @@ use eMarket\Core\{
                     <?php echo lang('chatgpt_response') ?>
                 </div>
                 <div class="card-body">
+                    <div id="chat_empty" class="overflow-auto"><?php echo lang('chatgpt_not_started') ?></div>
                     <div id="chat_bot" class="overflow-auto"></div>
                 </div>
             </div>
