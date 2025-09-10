@@ -107,6 +107,7 @@ class ChatGPT {
         }
         
         document.querySelector('#chatgptsend').onclick = function () {
+            document.querySelector('#chat_bot').innerHTML  += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '<div>';
             ChatGPT.request(document.querySelector('#chat_user').value);
         };
 
@@ -116,6 +117,7 @@ class ChatGPT {
                     if (event.keyCode === 13) {
                         document.querySelector('#chat_user').blur();
                         document.querySelector('#chat_user').disabled = true;
+                        document.querySelector('#chat_bot').innerHTML  += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '</div>';
                         ChatGPT.request(document.querySelector('#chat_user').value);
                     }
                 });
@@ -153,7 +155,7 @@ class ChatGPT {
             input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.request.id'));
 
             if (input !== undefined && input.result[0].choices !== undefined && input.result[0].choices[0] !== undefined) {
-                document.querySelector('#chat_bot').value = input.result[0].choices[0].message.content;
+                document.querySelector('#chat_bot').innerHTML += '<div class="text-success bi-chat-left-text">: ' + input.result[0].choices[0].message.content + '</div>';
                 document.querySelector('#chat_user').disabled = false;
                 document.querySelector('#chat_user').value = '';
                 document.querySelector('#chat_user').focus();

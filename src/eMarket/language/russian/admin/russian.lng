@@ -421,7 +421,7 @@ chatgpt_name = ChatGPT
 chatgpt_open_button = ChatGPT
 chatgpt_send_button = Отправить
 chatgpt_user_placeholder = Спросить у ChatGPT...
-chatgpt_response = Ответ:
+chatgpt_response = Чат:
 chatgpt_api_key_saved = API ключ сохранен!
 chatgpt_api_key = ChatGPT API key
 
