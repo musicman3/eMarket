@@ -29,7 +29,7 @@ class AiChat extends JsonRpc {
     public static $routing_parameter = 'AiChat';
     public static $jsonrpc;
     private $token = 'My_token';
-    public static $chat_name = 'DeepSeek';
+    public static $chat_name = 'ChatGPT';
 
     /**
      * Constructor
