@@ -17,7 +17,7 @@ use eMarket\JsonRpc\{
         <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo lang('aichat_name') ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body h-50">
         <div class="mb-3">
             <input type="radio" class="btn-check" name="options-outlined" id="chatgpt-outlined" autocomplete="off" <?php echo AiChat::checked('ChatGPT') ?> >
             <label class="btn btn-outline-success" for="chatgpt-outlined"><?php echo lang('aichat_chatgpt_name') ?></label>
