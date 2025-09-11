@@ -202,7 +202,11 @@ class AiChat {
                 document.querySelector('#chat_user').value = '';
                 document.querySelector('#chat_user').focus();
             } else {
-                document.querySelector('#chat_bot').innerHTML = '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0].error.message + '</div>';
+                if (input.result[0].error !== undefined && input.result[0].error.message !== undefined) {
+                    document.querySelector('#chat_bot').innerHTML += '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0].error.message + '</div>';
+                } else {
+                    document.querySelector('#chat_bot').innerHTML += '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0] + '</div>';
+                }
             }
             AiChat.removeClass();
         }

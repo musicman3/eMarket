@@ -417,8 +417,8 @@ dashboard_fri = Пт
 dashboard_sat = Сб
 
 ;AICHAT
-aichat_name = Ai Ассистент
-aichat_open_button = Ai Ассистент
+aichat_name = AI Ассистент
+aichat_open_button = AI Ассистент
 aichat_send_button = Отправить
 aichat_user_placeholder = Спросить у AiChat...
 aichat_response = Чат:
@@ -427,6 +427,7 @@ aichat_api_key_saved = API ключ сохранен!
 aichat_api_key = AiChat API key
 aichat_chatgpt_name = ChatGPT
 aichat_deepseek_name = DeepSeek
+aichat_checked = Движок AI-ассистента успешно изменен!
 
 ;PAGE NOT FOUND
 page_not_found_header = Внимание!

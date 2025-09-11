@@ -21,9 +21,9 @@ use eMarket\JsonRpc\{
         <?php if (Authorize::$permission == 'admin') { ?>
             <div class="mb-3">
                 <input type="radio" class="btn-check" name="options-outlined" id="chatgpt-outlined" autocomplete="off" <?php echo AiChat::checked('ChatGPT') ?> >
-                <label class="btn btn-outline-success" for="chatgpt-outlined"><?php echo lang('aichat_chatgpt_name') ?></label>
+                <label class="btn btn-outline-danger" for="chatgpt-outlined"><?php echo lang('aichat_chatgpt_name') ?></label>
                 <input type="radio" class="btn-check" name="options-outlined" id="deepseek-outlined" autocomplete="off" <?php echo AiChat::checked('DeepSeek') ?> >
-                <label class="btn btn-outline-success" for="deepseek-outlined"><?php echo lang('aichat_deepseek_name') ?></label>
+                <label class="btn btn-outline-danger" for="deepseek-outlined"><?php echo lang('aichat_deepseek_name') ?></label>
             </div>
             <div class="input-group mb-3">
                 <input type="password" id="aichat_key" class="form-control" placeholder="<?php echo lang('aichat_api_key') ?>" aria-describedby="api_key">

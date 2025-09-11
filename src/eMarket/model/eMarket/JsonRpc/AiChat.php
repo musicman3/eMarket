@@ -78,7 +78,7 @@ class AiChat extends JsonRpc {
                     ->set('other', json_encode($other))
                     ->save();
 
-            $this->responseBuilder([lang('aichat_api_key_saved')], self::$jsonrpc['id']);
+            $this->responseBuilder([lang('aichat_checked')], self::$jsonrpc['id']);
         }
     }
 

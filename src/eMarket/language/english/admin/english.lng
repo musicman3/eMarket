@@ -419,8 +419,8 @@ dashboard_fri = Fri
 dashboard_sat = Sat
 
 ;AICHAT
-aichat_name = Ai Assistant
-aichat_open_button = Ai Assistant
+aichat_name = AI Assistant
+aichat_open_button = AI Assistant
 aichat_send_button = Send
 aichat_user_placeholder = Ask AiChat...
 aichat_response = Chat:
@@ -429,6 +429,7 @@ aichat_api_key_saved = API key saved!
 aichat_api_key = AiChat API key
 aichat_chatgpt_name = ChatGPT
 aichat_deepseek_name = DeepSeek
+aichat_checked = AI assistant engine successfully modified!
 
 ;PAGE NOT FOUND
 page_not_found_header = Attention!
