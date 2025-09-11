@@ -104,8 +104,8 @@ class AiChat {
             document.querySelector('#api_key').onclick = function () {
                 AiChat.apiKey(document.querySelector('#aichat_key').value);
                 if (document.querySelector('#chat_empty')) {
-                document.querySelector('#chat_empty').remove();
-            }
+                    document.querySelector('#chat_empty').remove();
+                }
             };
         }
 
@@ -117,13 +117,15 @@ class AiChat {
             }
         };
 
-        document.querySelector('#chatgpt-outlined').onclick = function () {
-            AiChat.AiChatName('ChatGPT');
-        };
+        if (document.querySelector('#chatgpt-outlined') !== null && document.querySelector('#deepseek-outlined') !== null) {
+            document.querySelector('#chatgpt-outlined').onclick = function () {
+                AiChat.AiChatName('ChatGPT');
+            };
 
-        document.querySelector('#deepseek-outlined').onclick = function () {
-            AiChat.AiChatName('DeepSeek');
-        };
+            document.querySelector('#deepseek-outlined').onclick = function () {
+                AiChat.AiChatName('DeepSeek');
+            };
+        }
 
         document.querySelector('#chat_user')
                 .addEventListener('keyup', function (event) {
