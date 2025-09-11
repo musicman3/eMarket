@@ -68,9 +68,9 @@ class Staff {
     private function add(): void {
         if (Valid::inPOST('add')) {
 
-            $chatgpt_token = json_encode([]);
-            if (Valid::inPOST('chatgpt_token')) {
-                $chatgpt_token = json_encode(['chatgpt_token' => Valid::inPOST('chatgpt_token')]);
+            $aichat_token = json_encode([]);
+            if (Valid::inPOST('aichat_token')) {
+                $aichat_token = json_encode(['aichat_token' => Valid::inPOST('aichat_token')]);
             }
 
             $user_detected = Db::connect()
@@ -88,7 +88,7 @@ class Staff {
                         ->set('permission', self::$staff_manager_id)
                         ->set('language', Settings::primaryLanguage())
                         ->set('note', Valid::inPOST('note'))
-                        ->set('my_data', $chatgpt_token)
+                        ->set('my_data', $aichat_token)
                         ->save();
 
                 Messages::alert('add', 'success', lang('action_completed_successfully'));

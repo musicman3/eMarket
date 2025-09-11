@@ -19,7 +19,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['pass'])) {
             </button>
             <span class="navbar-brand"><?php echo Settings::titlePageGenerator() ?></span>
             <div class="text-center">
-                <button class="btn btn-sm btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span class="bi-chat-text"></span> <?php echo lang('chatgpt_open_button') ?></button>&nbsp;&nbsp;
+                <button class="btn btn-sm btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span class="bi-chat-text"></span> <?php echo lang('aichat_open_button') ?></button>&nbsp;&nbsp;
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">

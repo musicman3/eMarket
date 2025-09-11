@@ -40,7 +40,7 @@ use eMarket\Core\{
         <script type="text/javascript" src="/js/ext/fastmd5/md5.min.js"></script>
         <script type="text/javascript" src="/js/ext/randomizer/randomizer.js"></script>
         <script type="text/javascript" src="/js/library/classes/ajax/ajax.js"></script>
-        <script type="text/javascript" src="/js/library/classes/chatgpt/chatgpt.js"></script>
+        <script type="text/javascript" src="/js/library/classes/aichat/aichat.js"></script>
         <script type="text/javascript" src="/js/library/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/js/library/classes/confirm/confirm.js"></script>
         <script type="text/javascript" src="/js/library/classes/jsonrpc/jsonrpc.js"></script>
@@ -61,7 +61,7 @@ use eMarket\Core\{
         <div id="user_login" class='hidden' data-login='<?php echo Authorize::encryptedLogin() ?>'></div>
 
         <?php
-        require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/chatgpt.php');
+        require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/aichat.php');
         foreach (Routing::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
@@ -98,7 +98,7 @@ use eMarket\Core\{
 
         <script type="text/javascript">
             new Ajax();
-            new ChatGPT();
+            new AiChat();
         </script>
     </body>
 </html>

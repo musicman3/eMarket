@@ -163,7 +163,7 @@ class Success {
                     ->set('password', $password_admin_hash)
                     ->set('permission', 'admin')
                     ->set('language', self::$lng)
-                    ->set('my_data', json_encode(['chatgpt_token' => '']))
+                    ->set('my_data', json_encode(['aichat_token' => '']))
                     ->save();
 
             Db::connect()

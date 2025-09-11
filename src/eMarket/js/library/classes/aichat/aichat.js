@@ -5,50 +5,50 @@
 /* global Ajax, Randomizer, JsonRpc */
 
 /**
- * ChatGPT
+ * AiChat
  *
- * @package ChatGPT
+ * @package AiChat
  * @author eMarket
  * 
  */
-class ChatGPT {
+class AiChat {
 
     /**
      * Constructor
      *
      */
     constructor() {
-        ChatGPT.init();
+        AiChat.init();
     }
 
     /**
      * Request
      *
-     * @param content {String} (question for ChatGPT assistant)
+     * @param content {String} (question for AiChat assistant)
      */
     static request(content = 'Say this is a test!') {
 
         var randomizer = new Randomizer();
-        sessionStorage.setItem('ChatGPT.request.id', randomizer.uid(32));
+        sessionStorage.setItem('AiChat.request.id', randomizer.uid(32));
 
         var jsonRpcRequest = [
             {
                 'jsonrpc': '2.0',
-                'method': 'eMarket\\JsonRpc\\ChatGPT',
+                'method': 'eMarket\\JsonRpc\\AiChat',
                 'param': {
                     'message': content,
                     'login': document.querySelector('#user_login').dataset.login
                 },
-                'id': sessionStorage.getItem('ChatGPT.request.id')
+                'id': sessionStorage.getItem('AiChat.request.id')
             }
         ];
 
         Ajax.jsonRpcSend(jsonRpcRequest,
-                ChatGPT.Response).then((data) => {
+                AiChat.Response).then((data) => {
         });
-        document.querySelector('#chatgptsendspan').classList.add('spinner-grow');
-        document.querySelector('#chatgptsendspan').classList.add('spinner-grow-sm');
-        document.querySelector('#chatgptsend').disabled = true;
+        document.querySelector('#aichatsendspan').classList.add('spinner-grow');
+        document.querySelector('#aichatsendspan').classList.add('spinner-grow-sm');
+        document.querySelector('#aichatsend').disabled = true;
     }
 
     /**
@@ -59,22 +59,22 @@ class ChatGPT {
     static apiKey(content = '') {
 
         var randomizer = new Randomizer();
-        sessionStorage.setItem('ChatGPT.apiKey.id', randomizer.uid(32));
+        sessionStorage.setItem('AiChat.apiKey.id', randomizer.uid(32));
 
         var jsonRpcRequest = [
             {
                 'jsonrpc': '2.0',
-                'method': 'eMarket\\JsonRpc\\ChatGPT',
+                'method': 'eMarket\\JsonRpc\\AiChat',
                 'param': {
                     'api_key': content,
                     'login': document.querySelector('#user_login').dataset.login
                 },
-                'id': sessionStorage.getItem('ChatGPT.apiKey.id')
+                'id': sessionStorage.getItem('AiChat.apiKey.id')
             }
         ];
 
         Ajax.jsonRpcSend(jsonRpcRequest,
-                ChatGPT.save).then((data) => {
+                AiChat.save).then((data) => {
         });
     }
 
@@ -87,10 +87,10 @@ class ChatGPT {
         if (data !== null && data !== undefined) {
 
             var input = JSON.parse(data);
-            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.apiKey.id'));
+            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('AiChat.apiKey.id'));
 
             document.querySelector('#chat_bot').value = input.result[0];
-            document.querySelector('#chatgpt_key').value = '';
+            document.querySelector('#aichat_key').value = '';
         }
     }
 
@@ -102,16 +102,24 @@ class ChatGPT {
 
         if (document.querySelector('#api_key') !== null) {
             document.querySelector('#api_key').onclick = function () {
-                ChatGPT.apiKey(document.querySelector('#chatgpt_key').value);
+                AiChat.apiKey(document.querySelector('#aichat_key').value);
             };
         }
 
-        document.querySelector('#chatgptsend').onclick = function () {
+        document.querySelector('#aichatsend').onclick = function () {
             document.querySelector('#chat_bot').innerHTML += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '<div>';
-            ChatGPT.request(document.querySelector('#chat_user').value);
+            AiChat.request(document.querySelector('#chat_user').value);
             if (document.querySelector('#chat_empty')) {
                 document.querySelector('#chat_empty').remove();
             }
+        };
+
+        document.querySelector('#chatgpt-outlined').onclick = function () {
+            AiChat.AiChatName('ChatGPT');
+        };
+
+        document.querySelector('#deepseek-outlined').onclick = function () {
+            AiChat.AiChatName('DeepSeek');
         };
 
         document.querySelector('#chat_user')
@@ -121,7 +129,7 @@ class ChatGPT {
                         document.querySelector('#chat_user').blur();
                         document.querySelector('#chat_user').disabled = true;
                         document.querySelector('#chat_bot').innerHTML += '<div class="text-secondary bi-person-fill">: ' + document.querySelector('#chat_user').value + '</div>';
-                        ChatGPT.request(document.querySelector('#chat_user').value);
+                        AiChat.request(document.querySelector('#chat_user').value);
                         if (document.querySelector('#chat_empty')) {
                             document.querySelector('#chat_empty').remove();
                         }
@@ -129,7 +137,7 @@ class ChatGPT {
                 });
 
         document.querySelector('#offcanvasRight').addEventListener('show.bs.offcanvas', function (event) {
-            ChatGPT.removeClass();
+            AiChat.removeClass();
             document.querySelector('#chat_user').value = '';
         });
 
@@ -140,25 +148,48 @@ class ChatGPT {
     }
 
     /**
+     * AiChat name send
+     *
+     * @param name {String} (AiChat name)
+     */
+    static AiChatName(name) {
+        var jsonRpcRequest = [
+            {
+                'jsonrpc': '2.0',
+                'method': 'eMarket\\JsonRpc\\AiChat',
+                'param': {
+                    'aichat_name': name,
+                    'login': document.querySelector('#user_login').dataset.login
+                },
+                'id': sessionStorage.getItem('AiChat.request.id')
+            }
+        ];
+
+        Ajax.jsonRpcSend(jsonRpcRequest,
+                AiChat.Response).then((data) => {
+        });
+    }
+
+    /**
      * Remove Class for send button
      *
      */
     static removeClass() {
-        document.querySelector('#chatgptsendspan').classList.remove('spinner-grow');
-        document.querySelector('#chatgptsendspan').classList.remove('spinner-grow-sm');
-        document.querySelector('#chatgptsend').disabled = false;
+        document.querySelector('#aichatsendspan').classList.remove('spinner-grow');
+        document.querySelector('#aichatsendspan').classList.remove('spinner-grow-sm');
+        document.querySelector('#aichatsend').disabled = false;
     }
 
     /**
      * Response
      *
-     * @param data {Object} (ChatGPT response)
+     * @param data {Object} (AiChat response)
      */
     static Response(data) {
         if (data !== null && data !== undefined) {
 
             var input = JSON.parse(data);
-            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('ChatGPT.request.id'));
+            input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('AiChat.request.id'));
 
             if (input !== undefined && input.result[0].choices !== undefined && input.result[0].choices[0] !== undefined) {
                 document.querySelector('#chat_bot').innerHTML += '<div class="text-success bi-chat-left-text">: ' + input.result[0].choices[0].message.content + '</div>';
@@ -168,7 +199,7 @@ class ChatGPT {
             } else {
                 document.querySelector('#chat_bot').innerHTML = '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0].error.message + '</div>';
             }
-            ChatGPT.removeClass();
+            AiChat.removeClass();
         }
     }
 }

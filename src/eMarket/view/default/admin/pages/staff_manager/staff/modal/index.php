@@ -46,10 +46,10 @@ use eMarket\Core\{
                             </div>
                         </div>
                         <div class="mb-2">
-                            <small class="form-text text-muted" for="chatgpt_token"><?php echo lang('staff_chatgpt_token') ?></small>
+                            <small class="form-text text-muted" for="aichat_token"><?php echo lang('staff_aichat_token') ?></small>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text bi-file-text"></span>
-                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="chatgpt_token" id="chatgpt_token" />
+                                <input class="form-control" placeholder="<?php echo lang('enter_value') ?>" type="text" name="aichat_token" id="aichat_token" />
                             </div>
                         </div>
                     </div>

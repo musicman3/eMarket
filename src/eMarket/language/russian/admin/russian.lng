@@ -378,7 +378,7 @@ staff_password = Пароль
 staff_generate_password = Сгенерировать
 staff_note = Примечание
 staff_tooltip = После того как пароль будет сгенерирован, скопируйте его и сообщите новому сотруднику
-staff_chatgpt_token = ChatGPT токен
+staff_aichat_token = AiChat токен
 staff_user_error = Внимание! Пользователь с таким Email уже есть. Пожалуйста, используйте другие данные для регистрации.
 
 ;MESSAGES
@@ -416,15 +416,17 @@ dashboard_thu = Чт
 dashboard_fri = Пт
 dashboard_sat = Сб
 
-;CHATGPT
-chatgpt_name = ChatGPT
-chatgpt_open_button = ChatGPT
-chatgpt_send_button = Отправить
-chatgpt_user_placeholder = Спросить у ChatGPT...
-chatgpt_response = Чат:
-chatgpt_not_started = Чат еще не начат. Спросите что-то.
-chatgpt_api_key_saved = API ключ сохранен!
-chatgpt_api_key = ChatGPT API key
+;AICHAT
+aichat_name = Ai Ассистент
+aichat_open_button = Ai Ассистент
+aichat_send_button = Отправить
+aichat_user_placeholder = Спросить у AiChat...
+aichat_response = Чат:
+aichat_not_started = Чат еще не начат. Спросите что-то.
+aichat_api_key_saved = API ключ сохранен!
+aichat_api_key = AiChat API key
+aichat_chatgpt_name = ChatGPT
+aichat_deepseek_name = DeepSeek
 
 ;PAGE NOT FOUND
 page_not_found_header = Внимание!

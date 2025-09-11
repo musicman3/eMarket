@@ -380,7 +380,7 @@ staff_password = Password
 staff_generate_password = Generate
 staff_note = Note
 staff_tooltip = After the password has been generated, copy it and inform the new employee
-staff_chatgpt_token = ChatGPT token
+staff_aichat_token = AiChat token
 staff_user_error = Attention! There is already a user with this Email. Please use other data for registration.
 
 ;MESSAGES
@@ -418,15 +418,17 @@ dashboard_thu = Thu
 dashboard_fri = Fri
 dashboard_sat = Sat
 
-;CHATGPT
-chatgpt_name = ChatGPT
-chatgpt_open_button = ChatGPT
-chatgpt_send_button = Send
-chatgpt_user_placeholder = Ask ChatGPT...
-chatgpt_response = Chat:
-chatgpt_not_started = Chat has not started yet. Ask something.
-chatgpt_api_key_saved = API key saved!
-chatgpt_api_key = ChatGPT API key
+;AICHAT
+aichat_name = Ai Assistant
+aichat_open_button = Ai Assistant
+aichat_send_button = Send
+aichat_user_placeholder = Ask AiChat...
+aichat_response = Chat:
+aichat_not_started = Chat has not started yet. Ask something.
+aichat_api_key_saved = API key saved!
+aichat_api_key = AiChat API key
+aichat_chatgpt_name = ChatGPT
+aichat_deepseek_name = DeepSeek
 
 ;PAGE NOT FOUND
 page_not_found_header = Attention!
