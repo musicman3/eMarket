@@ -166,7 +166,7 @@ class ChatGPT {
                 document.querySelector('#chat_user').value = '';
                 document.querySelector('#chat_user').focus();
             } else {
-                document.querySelector('#chat_bot').value = input.result[0].error.message;
+                document.querySelector('#chat_bot').innerHTML = '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0].error.message + '</div>';
             }
             ChatGPT.removeClass();
         }
