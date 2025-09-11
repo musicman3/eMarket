@@ -89,7 +89,7 @@ class AiChat {
             var input = JSON.parse(data);
             input = JsonRpc.jsonRpcSelect(input, sessionStorage.getItem('AiChat.apiKey.id'));
 
-            document.querySelector('#chat_bot').value = input.result[0];
+            document.querySelector('#chat_bot').innerHTML = '<div class="text-danger bi-exclamation-triangle-fill">: ' + input.result[0] + '</div>';
             document.querySelector('#aichat_key').value = '';
         }
     }
@@ -103,6 +103,9 @@ class AiChat {
         if (document.querySelector('#api_key') !== null) {
             document.querySelector('#api_key').onclick = function () {
                 AiChat.apiKey(document.querySelector('#aichat_key').value);
+                if (document.querySelector('#chat_empty')) {
+                document.querySelector('#chat_empty').remove();
+            }
             };
         }
 
