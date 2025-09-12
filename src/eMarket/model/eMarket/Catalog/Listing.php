@@ -159,8 +159,6 @@ class Listing {
                     ->and('language=', lang('#lang_all')[0])
                     ->and('status=', 1)
                     ->and('quantity>', 0);
-
-            self::$sql_data = $this->sorting($sql_data)->save();
         } elseif (Valid::inGET('change') == 'off') {
             $sql_data = Db::connect()
                     ->read(TABLE_PRODUCTS)
