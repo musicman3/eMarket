@@ -161,8 +161,7 @@ class Listing {
                     ->and('quantity>', 0);
 
             self::$sql_data = $this->sorting($sql_data)->save();
-        } else {
-
+        } elseif (Valid::inGET('change') == 'off') {
             $sql_data = Db::connect()
                     ->read(TABLE_PRODUCTS)
                     ->selectAssoc('*')
@@ -170,9 +169,16 @@ class Listing {
                     ->and('parent_id=', Valid::inGET('category_id'))
                     ->and('status=', 1)
                     ->and('quantity>', 0);
-
-            self::$sql_data = $this->sorting($sql_data)->save();
+        } else {
+            $sql_data = Db::connect()
+                    ->read(TABLE_PRODUCTS)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->and('parent_id=', Valid::inGET('category_id'))
+                    ->and('status=', 1);
         }
+
+        self::$sql_data = $this->sorting($sql_data)->save();
 
         Pages::data(self::$sql_data);
 
