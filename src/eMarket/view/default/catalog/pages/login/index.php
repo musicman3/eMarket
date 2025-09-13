@@ -37,7 +37,7 @@ require_once('modal/recovery_password.php')
                             <button class="btn btn-primary w-100" type="submit"><?php echo lang('login_sign_in') ?></button>
                         </div>
                     </form>
-                    <a class="btn btn-outline-secondary" href="#forgot_password" data-bs-toggle="modal"><?php echo lang('login_forgot_your_password') ?></a>
+                    <a class="btn btn-outline-secondary w-100" href="#forgot_password" data-bs-toggle="modal"><?php echo lang('login_forgot_your_password') ?></a>
                 </div>
             </div>
         </div>
