@@ -26,7 +26,7 @@ Categories::listingData();
                             <h5 class="text-center"><a href="/?route=listing&category_id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
                         </div>
                     </div>
-                <?php
+                    <?php
                 }
             }
             ?>  
