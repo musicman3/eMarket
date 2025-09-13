@@ -419,7 +419,7 @@ dashboard_fri = Fri
 dashboard_sat = Sat
 
 ;AICHAT
-aichat_name = AI-Assistant
+aichat_name = AI Assistant
 aichat_open_button = AI Chat
 aichat_send_button = Send
 aichat_user_placeholder = Ask AI Assistant...
