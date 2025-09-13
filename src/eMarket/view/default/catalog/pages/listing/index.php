@@ -28,7 +28,7 @@ require_once('modal/cart_message.php')
         <div class="row">
             <div id="listing-block" class="mb-3 p-3 border rounded">
                 <?php if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/images/categories/resize_2/' . Listing::$categories_logo)) { ?>
-                    <img src="/uploads/images/categories/resize_2/<?php echo Listing::$categories_logo ?>" class="img-fluid float-md-end mb-3 ms-md-3" alt="<?php echo Listing::$categories_name ?>">
+                    <img src="/uploads/images/categories/resize_2/<?php echo Listing::$categories_logo ?>" class="thumbnail img-fluid float-md-end mb-3 ms-md-3" alt="<?php echo Listing::$categories_name ?>">
                     <?php
                 }
                 echo Listing::$categories_description
@@ -44,8 +44,8 @@ foreach (Routing::tlpc('content') as $path) {
 if (Pages::$count > 0) {
     ?>
 
-    <div id="listing-block" class="bg-light mb-3 p-2 border rounded">
-        <div class="btn-group button-sort">
+    <div class="bg-light mb-3 p-2 border rounded">
+        <div class="p-1 btn-group button-sort">
             <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
             <ul class="dropdown-menu">
                 <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
@@ -55,14 +55,14 @@ if (Pages::$count > 0) {
             </ul>
         </div>
 
-        <div class="btn-group switch">
+        <div class="p-1 btn-group switch">
             <input type="radio" class="btn-check" name="show_in_stock" id="primary-outlined" autocomplete="off" <?php echo Listing::$checked_stock ?>>
             <label class="btn btn-outline-primary" for="primary-outlined"><?php echo lang('button-all-switch') ?></label>
             <input type="radio" class="btn-check" name="show_in_stock" id="success-outlined" autocomplete="off">
             <label class="btn btn-outline-success" for="success-outlined"><?php echo lang('button-instock-switch') ?></label>
         </div>
 
-        <div class="btn-group float-end hidden-grid-list">
+        <div class="p-1 btn-group float-end hidden-grid-list">
             <a id="list" class="btn btn-outline-secondary item-list bi-list active"></a>
             <a id="grid" class="btn btn-outline-secondary item-grid bi-grid-3x3-gap"></a>
         </div>
@@ -91,7 +91,7 @@ if (Pages::$count > 0) {
                         </div>
                         <h5 class="item-heading"><a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
                         <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
-                        <div class="item-text">
+                        <div class="item-text mb-2">
                             <ul>
                                 <?php foreach (Listing::getCharData() as $val) { ?>
                                     <li>
@@ -107,8 +107,8 @@ if (Pages::$count > 0) {
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-12 item-button">
-                            <div class="block-button">
+                        <div class="col-12 mb-2 item-button">
+                            <div>
                                 <button class="btn btn-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                 <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
                                 <button class="btn btn-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
@@ -120,15 +120,15 @@ if (Pages::$count > 0) {
             <?php } ?>  
         </div>
 
-        <div class="bg-light mb-3 p-2 border rounded">
+        <div class="d-flex mb-3 bg-light mb-3 p-2 border rounded">
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo Pages::$table['navigate'][1] ?>'
                  data-sortflag='<?php echo Listing::$sort_flag ?>'
                  ></div>
-            <div class="mt-2 mb-2 btn-group"><?php echo Pages::counterPage() ?></div>
+            <div class="mt-2 mb-2 p-1 btn-group"><?php echo Pages::counterPage() ?></div>
 
-            <div class="btn-group float-end navigate-normal">
+            <div class="align-self-start btn-group ms-auto p-1 navigate-normal">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr; <?php echo lang('button_previous') ?></button>
                 <?php } else { ?> 
@@ -142,7 +142,7 @@ if (Pages::$count > 0) {
                     <a id="next" class="btn btn-outline-secondary disabled"><?php echo lang('button_next') ?> &rarr;</a>
                 <?php } ?>
             </div>
-            <div class="btn-group float-end navigate-mini">
+            <div class="align-self-start btn-group ms-auto p-1 navigate-mini">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
                     <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr;</button>
                 <?php } else { ?> 

@@ -62,17 +62,14 @@ h6 {font-size: .875rem;}
 
 #listing .list-group-item {border: none;padding: 0 .75rem;}
 #listing .list-group-item .image {float: left;padding-right: 6.25rem;}
-#listing .list-group-item .item-price {font-weight: 700;}
 #listing .list-group-item .caption {float: left;}
-#listing .list-group-item .block-button {float: right;}
-#listing .list-group-item .item-button {display: flex;justify-content: flex-end;}
+#listing .list-group-item .item-button {display: flex;justify-content: flex-start;}
 #listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
-#listing .grid-group-item .block-button {margin-left: -.45rem;margin-right: -.45rem;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
-@media (max-width:534px) {#listing-block .hidden-grid-list {display: none !important;}}
-@media (max-width:449px) {#listing-block .switch {display: none !important;}}
+@media (max-width:534px) {.listing-block .hidden-grid-list {display: none !important;}}
+@media (max-width:449px) {.listing-block .switch {display: none !important;}}
 @media (max-width:469px) {#listing .navigate-normal {display: none !important;}}
 @media (min-width:470px) {#listing .navigate-mini {display: none !important;}}
 #listing .item-text ul {list-style: none;padding: 0;margin: 0;}
