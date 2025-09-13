@@ -130,30 +130,30 @@ if (Pages::$count > 0) {
 
             <div class="align-self-start btn-group ms-auto p-1 navigate-normal">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
-                    <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr; <?php echo lang('button_previous') ?></button>
+                    <button id="prev" type="button" class="btn btn-outline-secondary navigation"><span class="bi bi-arrow-left"></span><?php echo lang('button_previous') ?></button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-outline-secondary disabled">&larr; <?php echo lang('button_previous') ?></a>
+                    <a id="prev" class="btn btn-outline-secondary disabled"><span class="bi bi-arrow-left"></span><?php echo lang('button_previous') ?></a>
                     <?php
                 }
                 if (Pages::$table['navigate'][1] != Pages::$count) {
                     ?> 
-                    <button id="next" type="button" class="btn btn-outline-secondary navigation"><?php echo lang('button_next') ?> &rarr;</button>
+                    <button id="next" type="button" class="btn btn-outline-secondary navigation"><?php echo lang('button_next') ?> <span class="bi bi-arrow-right"></span></button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-outline-secondary disabled"><?php echo lang('button_next') ?> &rarr;</a>
+                    <a id="next" class="btn btn-outline-secondary disabled"><?php echo lang('button_next') ?> <span class="bi bi-arrow-right"></span></a>
                 <?php } ?>
             </div>
             <div class="align-self-start btn-group ms-auto p-1 navigate-mini">
                 <?php if (Pages::$table['navigate'][0] > 0) { ?> 
-                    <button id="prev" type="button" class="btn btn-outline-secondary navigation">&larr;</button>
+                    <button id="prev" type="button" class="btn btn-outline-secondary navigation"><span class="bi bi-arrow-left"></span></button>
                 <?php } else { ?> 
-                    <a id="prev" class="btn btn-outline-secondary disabled">&larr;</a>
+                    <a id="prev" class="btn btn-outline-secondary disabled"><span class="bi bi-arrow-left"></span></a>
                     <?php
                 }
                 if (Pages::$table['navigate'][1] != Pages::$count) {
                     ?> 
-                    <button id="next" type="button" class="btn btn-outline-secondary navigation">&rarr;</button>
+                    <button id="next" type="button" class="btn btn-outline-secondary navigation"><span class="bi bi-arrow-right"></span></button>
                 <?php } else { ?> 
-                    <a id="next" class="btn btn-outline-secondary disabled">&rarr;</a>
+                    <a id="next" class="btn btn-outline-secondary disabled"><span class="bi bi-arrow-right"></span></a>
                 <?php } ?>
             </div>
         </div>
