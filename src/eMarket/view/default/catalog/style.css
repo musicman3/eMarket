@@ -61,9 +61,7 @@ h6 {font-size: .875rem;}
 #products .labelsblock div {display: table;padding: .125rem .4375rem;color: #ffffff;font-size: .875rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
 
 #listing .list-group-item {border: none;padding: 0 .75rem;}
-#listing .list-group-item .image {float: left;padding-right: 6.25rem;}
 #listing .list-group-item .caption {float: left;}
-#listing .list-group-item .item-button {display: flex;justify-content: flex-start;}
 #listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
 #listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
