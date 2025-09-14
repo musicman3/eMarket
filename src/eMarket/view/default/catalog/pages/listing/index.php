@@ -85,7 +85,7 @@ if (Pages::$count > 0) {
                                     <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
                                 <?php } ?>
                             </div>
-                            <div class="image text-center w-100">
+                            <div class="image text-center w-100 mb-2">
                                 <a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>">
                                     <img src="/uploads/images/products/resize_2/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="img-fluid rounded mx-auto d-block mb-2">
                                 </a>
@@ -111,7 +111,7 @@ if (Pages::$count > 0) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mb-2 d-flex align-items-center h-25">
+                        <div class="col-12 d-flex align-items-center h-25">
                             <div class="text-end w-100">
                                 <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                 <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
