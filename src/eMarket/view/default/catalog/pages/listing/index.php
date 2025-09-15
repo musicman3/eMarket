@@ -77,7 +77,7 @@ if (Pages::$count > 0) {
                     Pages::$start++, Pages::lineUpdate()) {
                 ?>
                 <div class="item mb-3 col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
-                    <div id="card" class="card border rounded p-2 h-100">
+                    <div class="cards card border rounded p-2 h-100">
 
                         <div class="d-flex h-75">
                             <div class="labelsblock">
@@ -111,8 +111,8 @@ if (Pages::$count > 0) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 d-flex align-items-center h-25">
-                            <div class="text-end w-100">
+                        <div class="h-25">
+                            <div class="buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
                                 <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                 <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
                                 <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>

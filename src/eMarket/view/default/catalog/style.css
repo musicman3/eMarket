@@ -63,7 +63,6 @@ h6 {font-size: .875rem;}
 #listing .list-group-item {border: none;padding: 0 .75rem;}
 #listing .list-group-item .caption {float: left;}
 #listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
-#listing .grid-group-item .buy-now {float: right;}
 #listing .grid-group-item .item-heading {text-align: center;}
 #listing .grid-group-item .item-text {display: none;}
 @media (max-width:534px) {.listing-block .hidden-grid-list {display: none !important;}}
