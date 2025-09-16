@@ -66,8 +66,9 @@ if (Pages::$count > 0) {
         </div>
 
         <div class="p-1 btn-group hidden-grid-list">
-            <a id="list" class="btn btn-outline-secondary item-list bi-list active"></a>
-            <a id="grid" class="btn btn-outline-secondary item-grid bi-grid-3x3-gap"></a>
+            <a id="grid" class="btn btn-outline-secondary item-grid bi-grid-3x3-gap active"></a>
+            <a id="list" class="btn btn-outline-secondary item-list bi-list"></a>
+            
         </div>
 
     </div>
