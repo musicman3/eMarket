@@ -100,13 +100,13 @@ if (Pages::$count > 0) {
                                 <div class="item-text mb-2">
                                     <ul>
                                         <?php foreach (Listing::getCharData() as $val) { ?>
-                                            <li>
+                                            <li class="item-text-view">
                                                 <label><?php echo $val['label'] ?> </label> 
                                                 <?php echo $val['text'] ?>
                                             </li>
                                         <?php } ?>
-                                        <li>
-                                            <label><?php echo lang('product_availability') ?></label>
+                                        <li class="item-availability-view">
+                                            <label class="item-availability-text"><?php echo lang('product_availability') ?></label>
                                             <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
                                                 <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
                                             <?php } ?>

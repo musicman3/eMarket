@@ -64,7 +64,8 @@ h6 {font-size: .875rem;}
 #listing .list-group-item .caption {float: left;}
 #listing .grid-group-item .item-price {font-weight: 700;text-align: center;}
 #listing .grid-group-item .item-heading {text-align: center;}
-#listing .grid-group-item .item-text {display: none;}
+#listing .grid-group-item {.item-text-view {display: none;} .item-availability-text {display: none;}}
+#listing .grid-group-item .item-text {text-align: center;;}
 @media (max-width:534px) {.listing-block .hidden-grid-list {display: none !important;}}
 @media (max-width:449px) {.listing-block .switch {display: none !important;}}
 @media (max-width:469px) {#listing .navigate-normal {display: none !important;}}
