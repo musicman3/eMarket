@@ -44,28 +44,32 @@ foreach (Routing::tlpc('content') as $path) {
 if (Pages::$count > 0) {
     ?>
 
-    <div class="bg-light mb-3 p-2 border rounded">
-        <div class="p-1 btn-group button-sort">
-            <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
-            <ul class="dropdown-menu">
-                <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
-                <li><a id="name" class="sorting dropdown-item"><?php echo lang('listing_sort_by_name') ?></a></li>
-                <li><a id="down" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
-                <li><a id="up" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
-            </ul>
+    <div class="d-flex justify-content-between align-items-start bg-light mb-3 border rounded">
+
+        <div>
+            <div class="p-1 btn-group button-sort">
+                <button type="button" class="btn btn-primary dropdown-toggle bi-arrow-down-up" data-bs-toggle="dropdown"> <?php echo Listing::$sort_name ?> </button>
+                <ul class="dropdown-menu">
+                    <li><a id="default" class="sorting dropdown-item"><?php echo lang('listing_sort_by_default') ?></a></li>
+                    <li><a id="name" class="sorting dropdown-item"><?php echo lang('listing_sort_by_name') ?></a></li>
+                    <li><a id="down" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_desc') ?></a></li>
+                    <li><a id="up" class="sorting dropdown-item"><?php echo lang('listing_sort_by_price_asc') ?></a></li>
+                </ul>
+            </div>
+
+            <div class="p-1 btn-group switch">
+                <input type="radio" class="btn-check" name="show_in_stock" id="primary-outlined" autocomplete="off" <?php echo Listing::$checked_stock ?>>
+                <label class="btn btn-outline-primary" for="primary-outlined"><?php echo lang('button-all-switch') ?></label>
+                <input type="radio" class="btn-check" name="show_in_stock" id="success-outlined" autocomplete="off">
+                <label class="btn btn-outline-success" for="success-outlined"><?php echo lang('button-instock-switch') ?></label>
+            </div>
         </div>
 
-        <div class="p-1 btn-group switch">
-            <input type="radio" class="btn-check" name="show_in_stock" id="primary-outlined" autocomplete="off" <?php echo Listing::$checked_stock ?>>
-            <label class="btn btn-outline-primary" for="primary-outlined"><?php echo lang('button-all-switch') ?></label>
-            <input type="radio" class="btn-check" name="show_in_stock" id="success-outlined" autocomplete="off">
-            <label class="btn btn-outline-success" for="success-outlined"><?php echo lang('button-instock-switch') ?></label>
-        </div>
-
-        <div class="p-1 btn-group float-end hidden-grid-list">
+        <div class="p-1 btn-group hidden-grid-list">
             <a id="list" class="btn btn-outline-secondary item-list bi-list active"></a>
             <a id="grid" class="btn btn-outline-secondary item-grid bi-grid-3x3-gap"></a>
         </div>
+
     </div>
 
     <div id="listing" class="contentText">
