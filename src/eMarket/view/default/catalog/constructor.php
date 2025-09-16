@@ -16,7 +16,7 @@ use eMarket\Catalog\{
 ?>
 
 <!DOCTYPE html>
-<html data-bs-theme="default" dir="ltr" lang="<?php echo lang('meta-language') ?>">
+<html data-bs-theme="<?php echo Settings::template() ?>" dir="ltr" lang="<?php echo lang('meta-language') ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
