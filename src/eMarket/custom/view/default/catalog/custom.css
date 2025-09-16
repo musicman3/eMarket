@@ -4,3 +4,15 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* This file is not replaced after the update. */
+
+/*
+@import "../../../../vendor/twbs/bootstrap/scss/functions";
+@import "../../../../vendor/twbs/bootstrap/scss/variables";
+@import "../../../../vendor/twbs/bootstrap/scss/variables-dark";
+@import "../../../../vendor/twbs/bootstrap/scss/maps";
+@import "../../../../vendor/twbs/bootstrap/scss/mixins";
+@import "../../../../vendor/twbs/bootstrap/scss/utilities";
+
+[data-bs-theme="default"] {}
+
+*/
