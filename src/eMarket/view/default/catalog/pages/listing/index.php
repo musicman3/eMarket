@@ -90,7 +90,7 @@ if (Pages::$count > 0) {
                                     <img src="/uploads/images/products/resize_2/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="w-100 img-fluid rounded mx-auto d-block mb-2">
                                 </a>
                             </div>
-                            <div class="ms-auto text-end w-100">
+                            <div class="ms-auto text-end w-100 align-self-center">
                                 <h5 class="item-heading"><a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
                                 <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
                                 <div class="item-text mb-2">
