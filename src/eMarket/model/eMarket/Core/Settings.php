@@ -398,4 +398,14 @@ class Settings {
         }
         return $ipaddress;
     }
+
+    /**
+     * Custom CSS
+     *
+     */
+    public static function customCss(): void {
+        if (is_file(getenv('DOCUMENT_ROOT') . '/custom/view/' . self::template() . '/' .self::path() . '/custom.css')) {
+            echo '<link rel="stylesheet" type="text/css" href="/custom/view/' . self::template() . '/' .self::path() . '/custom.css" media="screen" />';
+        }
+    }
 }
