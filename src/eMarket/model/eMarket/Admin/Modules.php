@@ -134,6 +134,9 @@ class Modules {
 
                 Messages::alert('download_module', 'success', lang('action_completed_successfully'));
             } else {
+                if (file_exists($uploadfile)) {
+                    unlink($uploadfile);
+                }
                 Messages::alert('download_module', 'danger', lang('action_failed'));
             }
         }
