@@ -122,7 +122,7 @@ class Modules {
     private function download(): void {
         if (isset($_FILES['filename'])) {
 
-            $uploadfile = ROOT . '/custom/modules/' . basename($_FILES['filename']['name']);
+            $uploadfile = ROOT . '/uploads/temp/' . basename($_FILES['filename']['name']);
 
             $zip = new \ZipArchive;
             if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile) && $zip->open($uploadfile) === TRUE) {
