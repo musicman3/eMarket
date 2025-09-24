@@ -112,7 +112,7 @@ final class Lang {
                 }
             }
 
-            if (is_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng')) {
+            if (file_exists(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng')) {
                 $custom_ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng', TRUE, INI_SCANNER_RAW);
                 $lang = array_merge($lang, $custom_ini);
             }
