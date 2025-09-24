@@ -19,6 +19,7 @@
   - gd
   - json
   - SPL
+  - zip
   - max_input_vars >=5000
   - pdo_mysql (for MySQL or MariaDB)
   - pdo_pgsql (for PostgreSQL)

@@ -12,7 +12,8 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Func,
     Messages,
-    Valid
+    Valid,
+    Tree
 };
 use eMarket\Admin\Modules;
 use Cruder\Db;
@@ -123,20 +124,17 @@ class Modules {
 
             $uploadfile = ROOT . '/custom/modules/' . basename($_FILES['filename']['name']);
 
-            if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile)) {
+            $zip = new \ZipArchive;
+            if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile) && $zip->open($uploadfile) === TRUE) {
 
-                $zip = new \ZipArchive;
-                if ($zip->open($uploadfile) === TRUE) {
+                $zip->extractTo(ROOT . '/modules/');
+                $zip->close();
 
-                    $zip->extractTo(ROOT . '/custom/modules/extract/');
-                    $zip->close();
+                unlink($uploadfile);
 
-                    Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_completed_successfully'));
-                } else {
-                    Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_failed'));
-                }
+                Messages::alert('download_module', 'success', lang('action_completed_successfully'));
             } else {
-                Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_failed'));
+                Messages::alert('download_module', 'danger', lang('action_failed'));
             }
         }
     }

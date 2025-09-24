@@ -181,6 +181,10 @@
                                         <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('json') ?>"></span></div>
                                     </div>
                                     <div class="row">
+                                        <div class="col">zip:</div>
+                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('zip') ?>"></span></div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col">pdo_mysql:</div>
                                         <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_mysql') ?>"></span></div>
                                     </div>
