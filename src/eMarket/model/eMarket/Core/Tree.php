@@ -81,7 +81,14 @@ class Tree {
      */
     public static function allDirForPath(string $path, ?string $marker = null): array {
 
-        $level_1 = array_values(array_diff(scandir($path), ['..', '.']));
+        $scandir = scandir($path);
+        foreach ($scandir as $key => $val) {
+            if (is_file($path . $val)) {
+                unset($scandir[$key]);
+            }
+        }
+
+        $level_1 = array_values(array_diff($scandir, ['..', '.']));
         if ($marker == 'true') {
             $level_2 = [];
             foreach ($level_1 as $value) {
@@ -151,7 +158,9 @@ class Tree {
                 if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/')) {
                     $list_val = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/');
                     foreach ($list_val as $val_files) {
-                        array_push($output, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files);
+                        if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files)) {
+                            array_push($output, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files);
+                        }
                     }
                 }
             }
@@ -159,5 +168,4 @@ class Tree {
 
         return $output;
     }
-
 }
