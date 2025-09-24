@@ -156,7 +156,8 @@ class Tree {
         foreach ($list_cat as $key => $val) {
             foreach ($val as $val_2) {
                 if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/')) {
-                    $list_val = self::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/');
+                    $scandir = scandir(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/');
+                    $list_val = array_values(array_diff($scandir, ['..', '.']));
                     foreach ($list_val as $val_files) {
                         if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files)) {
                             array_push($output, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files);
