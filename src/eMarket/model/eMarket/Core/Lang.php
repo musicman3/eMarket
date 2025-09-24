@@ -80,6 +80,8 @@ final class Lang {
     public static function lang(?string $default_language, ?string $marker = null): array {
 
         $lang = [];
+        $lang_trans = [];
+        $ini_lang = [];
 
         if ($default_language == null OR $default_language == '') {
             $default_language = Settings::basicSettings('primary_language');
@@ -121,13 +123,17 @@ final class Lang {
             $lang_all = [];
             array_push($lang_all, $default_language);
 
-            $lang_trans = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
+            if (file_exists(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/admin/lang.lng')) {
+                $lang_trans = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
+            }
             $lang_dir = scandir(getenv('DOCUMENT_ROOT') . '/language/');
 
             foreach ($lang_dir as $lang_name) {
                 if (!in_array($lang_name, ['.', '..', $default_language])) {
                     array_push($lang_all, $lang_name);
-                    $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
+                    if (file_exists(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng')) {
+                        $ini_lang = parse_ini_file(getenv('DOCUMENT_ROOT') . '/language/' . $lang_name . '/admin/lang.lng', TRUE, INI_SCANNER_RAW);
+                    }
                     $lang_trans = array_merge($lang_trans, $ini_lang);
                 }
             }
