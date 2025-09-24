@@ -161,6 +161,7 @@ uninstalled_modules = Modules available for installation
 modules_name = Modules name:
 modules_author = Author:
 modules_version = Version:
+modules_download = Download
 
 ;BASIC SETTINGS
 lines_on_page = Lines on page

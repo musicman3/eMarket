@@ -45,6 +45,7 @@ class Modules {
         $this->edit();
         $this->delete();
         $this->data();
+        $this->download();
     }
 
     /**
@@ -114,6 +115,33 @@ class Modules {
     }
 
     /**
+     * Module download
+     *
+     */
+    private function download(): void {
+        if (isset($_FILES['filename'])) {
+
+            $uploadfile = ROOT . '/custom/modules/' . basename($_FILES['filename']['name']);
+
+            if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile)) {
+
+                $zip = new \ZipArchive;
+                if ($zip->open($uploadfile) === TRUE) {
+
+                    $zip->extractTo(ROOT . '/custom/modules/extract/');
+                    $zip->close();
+
+                    Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_completed_successfully'));
+                } else {
+                    Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_failed'));
+                }
+            } else {
+                Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_failed'));
+            }
+        }
+    }
+
+    /**
      * Data
      *
      */
@@ -172,5 +200,4 @@ class Modules {
         }
         return $active;
     }
-
 }

@@ -17,6 +17,16 @@ use eMarket\Admin\Modules;
             <div id="alert_block"><?php Messages::alert(); ?></div>
         </div>
         <div class="card-body">
+
+            <form id="download">
+                <div class="d-flex justify-content-end">
+                    <div class="input-group mb-3 w-50">
+                        <input type="file" name="filename" class="form-control form-control-sm" aria-describedby="module-download" accept=".zip">
+                        <button class="btn btn-dark" type="button" id="module-download"><?php echo lang('modules_download') ?></button>
+                    </div>
+                </div>
+            </form>
+
             <ul class="nav nav-tabs">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
