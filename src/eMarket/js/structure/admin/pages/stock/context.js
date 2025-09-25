@@ -300,7 +300,7 @@ class ContextMenu {
                     {
                         // ---------- Sticker ----------
                         text: '<span class="bi-bookmark"> ' + lang['button_sticker'] + '</span>',
-                        disabled: sticker === '0' || json_data_product.name === undefined,
+                        disabled: sticker === '0' || json_data_product.name === undefined && json_data_category.name === undefined,
                         subMenu: [
                             {
                                 // ---------- Sticker select ----------
