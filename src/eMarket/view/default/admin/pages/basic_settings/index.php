@@ -58,8 +58,8 @@ use eMarket\Admin\BasicSettings;
                             <label class="col-form-label col-md-3"><?php echo lang('basic_settings_available_languages') ?></label>
                             <div class="col-md-9">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" name="<?php echo lang('#lang_all')[0] ?>" id="<?php echo lang('#lang_all')[0] ?>" checked>
-                                    <label class="form-check-label" for="<?php echo lang('#lang_all')[0] ?>"><?php echo lang('language_name', lang('#lang_all')[0]) ?></label>
+                                    <input class="form-check-input" type="checkbox" role="switch" name="<?php echo BasicSettings::$languages_list[0] ?>" id="<?php echo BasicSettings::$languages_list[0] ?>" checked>
+                                    <label class="form-check-label" for="<?php echo BasicSettings::$languages_list[0] ?>"><?php echo lang('language_name', BasicSettings::$languages_list[0]) ?></label>
                                 </div>
                                 <?php foreach (BasicSettings::$checked_lang as $langs => $checked) { ?>
                                     <div class="form-check form-switch">
