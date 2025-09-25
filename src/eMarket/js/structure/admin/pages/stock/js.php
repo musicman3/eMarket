@@ -28,8 +28,8 @@ use eMarket\Core\{
 <!-- Mouse -->
 <script type="text/javascript" src="/js/library/classes/mouse/mouse.js"></script>
 <!-- Datepicker -->
-<script src="/js/ext/moment/moment.min.js"></script>
-<script src="/js/ext/pikaday/pikaday.js"></script>
+<script type="text/javascript" src="/js/ext/moment/moment.min.js"></script>
+<script type="text/javascript" src="/js/ext/pikaday/pikaday.js"></script>
 <link rel="stylesheet" type="text/css" href="/js/ext/pikaday/pikaday.css">
 
 <?php if (lang('meta-language') != 'en') { ?>
@@ -40,7 +40,7 @@ use eMarket\Core\{
 <script type="text/javascript" src="/js/structure/admin/pages/stock/main.js"></script>
 <!-- Context Menu -->
 <link rel="stylesheet" type="text/css" href="/js/ext/ctxmenu/ctxmenu.css" media="screen" />
-<script src="/js/ext/ctxmenu/ctxmenu.min.js"></script>
+<script type="text/javascript" src="/js/ext/ctxmenu/ctxmenu.min.js"></script>
 
 <!-- Discount load classes -->
 <?php
