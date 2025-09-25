@@ -291,7 +291,7 @@ class Routing {
     public static function jsModulesHandler(?string $js_path = null): void {
 
         if (Settings::path() == 'admin') {
-            $path = self::modules('javascript/structure');
+            $path = self::modules('js/structure');
             if (file_exists($path . '/js.php')) {
                 self::$js_modules_handler = $path;
             }
