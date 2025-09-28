@@ -68,7 +68,7 @@ Password: 1234567
 ---
 ### Admin Panel Demo
 
-URL: http://demo.emarkets.su/controller/admin/  
+URL: http://demo.emarkets.su/admin/  
 Login: demo@mail.loc  
 Password: 1234567
 
