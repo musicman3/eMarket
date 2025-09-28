@@ -37,7 +37,7 @@ use eMarket\Catalog\{
         <link rel="stylesheet" type="text/css" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/js/ext/bootstrap-icons/bootstrap-icons.css"/>
         <link rel="stylesheet" type="text/css" href="/view/<?php echo Settings::template() ?>/catalog/style.css" media="screen" />
-        <?php echo Settings::customCss() ?>
+        <?php Settings::customCss() ?>
 
         <script type="text/javascript" src="/js/library/classes/helpers/helpers.js"></script>
         <script type="text/javascript" src="/js/library/classes/confirm/confirm.js"></script>
