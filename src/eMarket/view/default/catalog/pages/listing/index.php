@@ -133,7 +133,7 @@ if (Pages::$count > 0) {
             <?php } ?>  
         </div>
 
-        <div class="d-flex mb-3 bg-light mb-3 p-2 border rounded">
+        <div class="d-flex mb-3 bg-light p-2 border rounded">
             <div id="nav_data" class='hidden' 
                  data-prev='<?php echo Pages::$table['navigate'][0] ?>'
                  data-next='<?php echo Pages::$table['navigate'][1] ?>'

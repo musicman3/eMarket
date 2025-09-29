@@ -64,38 +64,14 @@ if (Products::$products != FALSE) {
 
                     <?php } ?>
                     <ul>
-                        <?php if (Products::$vendor_code_value != NULL && Products::$vendor_code_value != '') { ?>
+
+                        <?php foreach (Products::$info_block as $info) { ?>
                             <li>
-                                <label><?php echo Products::$vendor_code ?>:</label>
-                                <span> <?php echo Products::$vendor_code_value ?></span>
-                            </li>
-                        <?php } if (Products::$manufacturer != NULL && Products::$manufacturer != FALSE) { ?>
-                            <li>
-                                <label><?php echo lang('product_manufacturer') ?></label>
-                                <span> <?php echo Products::$manufacturer ?></span>
-                            </li>
-                        <?php } if (Products::$products['model'] != NULL && Products::$products['model'] != FALSE) { ?>
-                            <li>
-                                <label><?php echo lang('product_model') ?></label>
-                                <span> <?php echo Products::$products['model'] ?></span>
-                            </li>
-                        <?php } if (Products::$weight_value != NULL && Products::$weight_value != '') { ?>
-                            <li>
-                                <label><?php echo lang('product_weight') ?></label>
-                                <span> <?php echo Products::$weight_value . ' ' . Products::$weight ?> </span>
-                            </li>
-                        <?php } if (Products::$dimensions != '') { ?>
-                            <li>
-                                <label><?php echo sprintf(lang('product_dimension'), Products::$dimension_name) ?></label>
-                                <span> <?php echo Products::$dimensions ?></span>
+                                <label><?php echo $info['label'] ?>:</label>
+                                <span> <?php echo $info['data'] ?></span>
                             </li>
                         <?php } ?>
-                        <li>
-                            <label><?php echo lang('product_availability') ?></label>
-                            <?php foreach (ProductsCore::inStock(Products::$products['date_available'], Products::$products['quantity']) as $in_stock) { ?>
-                                <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
-                            <?php } ?>
-                        </li>
+
                     </ul>
                 </div>
                 <?php if (Products::$products['price'] > 0) { ?>

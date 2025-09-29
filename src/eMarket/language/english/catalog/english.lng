@@ -111,14 +111,14 @@ breadcrumb_home = Home
 breadcrumb_search = Search
 
 ;PRODUCT
-product_manufacturer = Manufacturer:
-product_model = Model:
-product_weight = Weight:
-product_availability = Availability:
+product_manufacturer = Manufacturer
+product_model = Model
+product_weight = Weight
+product_availability = Availability
 product_in_stock_from = expected
 product_in_stock = in stock
 product_out_of_stock = out of stock
-product_dimension = Dimension (%s):
+product_dimension = Dimension (%s)
 product_dimension_length = L
 product_dimension_width = W
 product_dimension_height = H

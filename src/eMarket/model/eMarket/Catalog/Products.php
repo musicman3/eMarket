@@ -17,6 +17,7 @@ use eMarket\Core\{
     Tabs
 };
 use Cruder\Db;
+
 /**
  * Products
  *
@@ -44,6 +45,7 @@ class Products {
     public static $attributes_data = FALSE;
     public static $attributes_status = FALSE;
     public static $tabs_data = [];
+    public static $info_block = [];
 
     /**
      * Constructor
@@ -62,6 +64,7 @@ class Products {
             $this->attributes();
             $this->attributesStatus();
             $this->tabs();
+            $this->info();
         } else {
             $this->title = lang('title_products_index') . ': ' . lang('product_not_found');
         }
@@ -87,6 +90,54 @@ class Products {
      */
     private function data(): void {
         self::$products = ProductsCore::productData(Valid::inGET('id'));
+    }
+
+    /**
+     * Data
+     *
+     */
+    private function info(): void {
+
+        if (self::$vendor_code_value != NULL && self::$vendor_code_value != '') {
+            self::$info_block['vendor_code'] = [
+                'label' => self::$vendor_code,
+                'data' => self::$vendor_code_value
+            ];
+        }
+
+        if (self::$manufacturer != NULL && self::$manufacturer != FALSE) {
+            self::$info_block['manufacturer'] = [
+                'label' => lang('product_manufacturer'),
+                'data' => self::$manufacturer
+            ];
+        }
+
+        if (self::$products['model'] != NULL && self::$products['model'] != FALSE) {
+            self::$info_block['model'] = [
+                'label' => lang('product_model'),
+                'data' => self::$products['model']
+            ];
+        }
+
+        if (self::$weight_value != NULL && self::$weight_value != '') {
+            self::$info_block['weight'] = [
+                'label' => lang('product_weight'),
+                'data' => self::$weight_value . ' ' . self::$weight
+            ];
+        }
+
+        if (self::$dimensions != '') {
+            self::$info_block['dimensions'] = [
+                'label' => sprintf(lang('product_dimension'), self::$dimension_name),
+                'data' => self::$dimensions
+            ];
+        }
+
+        $in_stock = ProductsCore::inStock(self::$products['date_available'], self::$products['quantity'])[0];
+        self::$info_block['availability'] = [
+            'label' => lang('product_availability'),
+            'data' => '<span class="' . $in_stock[0] . '">' . $in_stock[1] . '</span>'
+        ];
     }
 
     /**

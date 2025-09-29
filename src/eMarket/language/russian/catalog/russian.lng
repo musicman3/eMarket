@@ -111,14 +111,14 @@ breadcrumb_home = Главная
 breadcrumb_search = Поиск
 
 ;PRODUCT
-product_manufacturer = Производитель:
-product_model = Модель:
-product_weight = Вес:
-product_availability = Наличие:
+product_manufacturer = Производитель
+product_model = Модель
+product_weight = Вес
+product_availability = Наличие
 product_in_stock_from = ожидается
 product_in_stock = на складе
 product_out_of_stock = нет на складе
-product_dimension = Габаритные размеры (%s):
+product_dimension = Габаритные размеры (%s)
 product_dimension_length = Д
 product_dimension_width = Ш
 product_dimension_height = В
