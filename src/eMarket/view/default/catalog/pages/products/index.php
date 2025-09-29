@@ -48,12 +48,14 @@ if (Products::$products != FALSE) {
                 </div>
             </div>
             <div class="col-md-6 col-12 mb-3 productpage">
-                <ul>
-                    <li>
-                        <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>
-                    </li>
-                </ul>
-                <hr>
+                <?php if (Products::$products['price'] > 0) { ?>
+                    <ul>
+                        <li>
+                            <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>
+                        </li>
+                    </ul>
+                    <hr>
+                <?php } ?>
                 <div class="mb-3 p-1">
                     <?php if (Products::$manufacturer_logo != '' && Products::$manufacturer_logo != null) { ?>
                         <a href="<?php echo Products::$manufacturer_site ?>" target="_blank">
@@ -96,11 +98,13 @@ if (Products::$products != FALSE) {
                         </li>
                     </ul>
                 </div>
-                <hr>
-                <button class="btn btn-outline-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
-                <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
-                <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
-                <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>, document.querySelector('#number_<?php echo Products::$products['id'] ?>').value)"><?php echo lang('add_to_cart') ?></button>
+                <?php if (Products::$products['price'] > 0) { ?>
+                    <hr>
+                    <button class="btn btn-outline-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
+                    <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
+                    <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
+                    <button class="btn btn-primary plus<?php echo Cart::maxQuantityToOrder(Products::$products, 'class') ?>" onclick="Products.addToCart(<?php echo Products::$products['id'] ?>, document.querySelector('#number_<?php echo Products::$products['id'] ?>').value)"><?php echo lang('add_to_cart') ?></button>
+                <?php } ?>
             </div>
         </div>
         <div class="row">

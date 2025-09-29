@@ -64,7 +64,7 @@ use eMarket\Catalog\{
                 <?php } ?>
 
                 <?php if (Cart::totalQuantity() == 0) { ?>
-                    <li id="cart_bar" class="nav-item dropdown"><a href="#" class="nav-link disabled bi-basket"> <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a></li>
+                    <li id="cart_bar" class="nav-item dropdown"></li>
                 <?php } else { ?>
                     <li id="cart_bar" class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle bi-basket" data-bs-toggle="dropdown" > <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a>

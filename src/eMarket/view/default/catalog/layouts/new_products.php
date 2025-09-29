@@ -28,7 +28,9 @@ if (count(Products::newProducts(8)) > 0) {
                         </div>
                         <div class="align-bottom">
                             <h5 class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
-                            <div class="text-center item-price"><?php echo Ecb::priceInterface($value, 2) ?></div>
+                            <?php if ($value['price'] > 0) { ?>
+                                <div class="text-center item-price"><?php echo Ecb::priceInterface($value, 2) ?></div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

@@ -96,33 +96,38 @@ if (Pages::$count > 0) {
                             </div>
                             <div class="ms-auto text-end w-100 align-self-center">
                                 <h5 class="item-heading"><a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
-                                <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
-                                <div class="item-text mb-2">
-                                    <ul>
-                                        <?php foreach (Listing::getCharData() as $val) { ?>
-                                            <li class="item-text-view">
-                                                <label><?php echo $val['label'] ?> </label> 
-                                                <?php echo $val['text'] ?>
-                                            </li>
-                                        <?php } ?>
-                                        <li class="item-availability-view">
-                                            <label class="item-availability-text"><?php echo lang('product_availability') ?></label>
-                                            <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
-                                                <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+
+                                <?php if (Pages::$table['line']['price'] > 0) { ?>
+                                    <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
+                                    <div class="item-text mb-2">
+                                        <ul>
+                                            <?php foreach (Listing::getCharData() as $val) { ?>
+                                                <li class="item-text-view">
+                                                    <label><?php echo $val['label'] ?> </label> 
+                                                    <?php echo $val['text'] ?>
+                                                </li>
                                             <?php } ?>
-                                        </li>
-                                    </ul>
+                                            <li class="item-availability-view">
+                                                <label class="item-availability-text"><?php echo lang('product_availability') ?></label>
+                                                <?php foreach (Products::inStock(Pages::$table['line']['date_available'], Pages::$table['line']['quantity']) as $in_stock) { ?>
+                                                    <span class="<?php echo $in_stock[0] ?>"><?php echo $in_stock[1] ?></span>
+                                                <?php } ?>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php if (Pages::$table['line']['price'] > 0) { ?>
+                            <div class="h-25 mb-3">
+                                <div class="buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
+                                    <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
+                                    <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
+                                    <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
+                                    <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, document.querySelector('#number_<?php echo Pages::$table['line']['id'] ?>').value)"><?php echo lang('buy_now') ?></button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="h-25 mb-3">
-                            <div class="buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
-                                <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
-                                <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
-                                <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
-                                <button class="btn btn-primary buy-now<?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'class') ?>" onclick="ProductsListing.addToCart(<?php echo Pages::$table['line']['id'] ?>, document.querySelector('#number_<?php echo Pages::$table['line']['id'] ?>').value)"><?php echo lang('buy_now') ?></button>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             <?php } ?>  
