@@ -14,19 +14,21 @@ use eMarket\Catalog\{
 };
 ?>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline">  <?php echo lang('sale') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
+            <ul id="left_bar" class="navbar-nav">
+                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
             </ul>
-            <ul class="navbar-nav">
+            <ul id="center_bar" class="navbar-nav">
+                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('sale') ?></span></a></li>
+                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>-->
+            </ul>
+            <ul id="right_bar" class="navbar-nav">
                 <?php if (count(lang('#lang_all')) > 1) { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-translate" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
