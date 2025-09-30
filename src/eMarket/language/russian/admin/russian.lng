@@ -266,6 +266,7 @@ templates_delete = Удалить
 templates_save = Сохранить
 templates_name = Имя
 templates_set_config_name = Укажите имя конфигурации
+templates_catalog_button = Отобразить кнопку Каталог
 
 ;ORDERS
 orders_total = Итого

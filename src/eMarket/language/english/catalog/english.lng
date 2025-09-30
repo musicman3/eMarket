@@ -204,6 +204,7 @@ navbar_languages = Languages
 navbar_currencies = Currencies
 navbar_logout = Logout
 navbar_view_cart = View Cart
+navbar_catalog_button = Catalog
 
 ;REGISTER
 register_password_check = Confirmation password error

@@ -204,6 +204,7 @@ navbar_languages = Языки
 navbar_currencies = Валюты
 navbar_logout = Выйти
 navbar_view_cart = Перейти в корзину
+navbar_catalog_button = Каталог
 
 ;REGISTER
 register_password_check = Пароль и подтверждение пароля не совпадают

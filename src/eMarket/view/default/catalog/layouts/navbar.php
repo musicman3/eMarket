@@ -22,11 +22,9 @@ use eMarket\Catalog\{
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav">
-                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('articles') ?></span></a></li>-->
-            </ul>
-            <ul id="center_bar" class="navbar-nav">
-                <!--<li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('sale') ?></span></a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('recommended') ?></span></a></li>-->
+                <?php if (Settings::catalogButton() == 'on') { ?>
+                    <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-primary" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-justify"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
+                <?php } ?>
             </ul>
             <ul id="right_bar" class="navbar-nav">
                 <?php if (count(lang('#lang_all')) > 1) { ?>

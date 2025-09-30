@@ -44,6 +44,7 @@ class Templates {
     public static $layout_content_basket;
     public static $layout_boxes_basket;
     public static $layout_footer_basket;
+    public static $catalog_button_selected = '';
 
     /**
      * Constructor
@@ -58,6 +59,7 @@ class Templates {
         $this->saveConfig();
         $this->deleteConfig();
         $this->setConfig();
+        $this->catalogButton();
     }
 
     /**
@@ -287,6 +289,36 @@ class Templates {
             } else {
                 file_put_contents(ROOT . '/storage/tpl_cfg/' . SystemClock::nowFormatDate('Y-m-d_H-i-s') . '.tcg', json_encode($data));
             }
+        }
+    }
+
+    /**
+     * Show Catalog button
+     *
+     */
+    private function catalogButton(): void {
+
+
+        $other = json_decode(Db::connect()
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectValue('other')
+                        ->save(), true);
+
+        if (isset($other['catalog_button']) && $other['catalog_button'] == 'on') {
+            self::$catalog_button_selected = 'checked';
+        }
+
+        if (Valid::inPostJson('catalog_button') == 'ok') {
+            if (!isset($other['catalog_button']) || $other['catalog_button'] == 'off') {
+                $other['catalog_button'] = 'on';
+            } else {
+                $other['catalog_button'] = 'off';
+            }
+
+            Db::connect()
+                    ->update(TABLE_BASIC_SETTINGS)
+                    ->set('other', json_encode($other))
+                    ->save();
         }
     }
 

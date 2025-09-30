@@ -72,14 +72,19 @@ class Categories {
      */
     public static function listingData(): void {
 
+        $parent_id = 0;
+
+        if (Valid::inGET('category_id')) {
+            $parent_id = Valid::inGET('category_id');
+        }
+
         self::$listing_data = Db::connect()
                 ->read(TABLE_CATEGORIES)
                 ->selectIndex('id, name, logo_general, status')
                 ->where('language=', lang('#lang_all')[0])
-                ->and('parent_id=', Valid::inGET('category_id'))
+                ->and('parent_id=', $parent_id)
                 ->and('status=', 1)
                 ->orderByDesc('sort_category')
                 ->save();
     }
-
 }

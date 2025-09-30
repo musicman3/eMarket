@@ -404,8 +404,26 @@ class Settings {
      *
      */
     public static function customCss(): void {
-        if (is_file(getenv('DOCUMENT_ROOT') . '/custom/view/' . self::template() . '/' .self::path() . '/custom.css')) {
-            echo '<link rel="stylesheet" type="text/css" href="/custom/view/' . self::template() . '/' .self::path() . '/custom.css" media="screen" />';
+        if (is_file(getenv('DOCUMENT_ROOT') . '/custom/view/' . self::template() . '/' . self::path() . '/custom.css')) {
+            echo '<link rel="stylesheet" type="text/css" href="/custom/view/' . self::template() . '/' . self::path() . '/custom.css" media="screen" />';
         }
+    }
+
+    /**
+     * Show Catalog button
+     *
+     * @return string checked
+     */
+    public static function catalogButton(): string {
+
+        $other = json_decode(Db::connect()
+                        ->read(TABLE_BASIC_SETTINGS)
+                        ->selectValue('other')
+                        ->save(), true);
+
+        if (isset($other['catalog_button']) && $other['catalog_button'] == 'on') {
+            return 'on';
+        }
+        return 'off';
     }
 }

@@ -91,7 +91,12 @@ require_once('modal/name.php')
                     </form>
                 </div>
 
-                <div class="col mb-3"></div>
+                <div class="col mb-3 d-flex justify-content-end">
+                    <div class="form-check form-check-reverse form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switch_catalog" <?php echo Templates::$catalog_button_selected ?>>
+                        <label class="form-check-label" for="switch_catalog"><?php echo lang('templates_catalog_button') ?></label>
+                    </div>
+                </div>
 
             </div>
 
@@ -155,7 +160,7 @@ require_once('modal/name.php')
                     <li class="sortno rounded-top bg-primary text-center text-white py-1 mb-1 bi-arrow-left-right"> <span class="bi-trash"></span></li>
                     <?php foreach (Templates::$layout_footer_basket as $path) { ?>
                         <li id="<?php echo basename($path, '.php') ?>" class="sortyes text-center pb-1"><?php echo basename($path, '.php') ?></li>
-                        <?php } ?>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

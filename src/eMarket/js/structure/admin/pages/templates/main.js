@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax, bootstrap, config_confirm, confirmation, config_input */
+/* global Ajax, bootstrap, config_confirm, confirmation, config_input, switch_catalog */
 
 /**
  * Templates
@@ -28,6 +28,7 @@ class Templates {
         Templates.sortablePref('#sortable8', 'footer');
         Templates.sortablePref('#sortable9', 'footer');
         this.init();
+        this.catalogButton();
     }
 
     /**
@@ -50,6 +51,18 @@ class Templates {
         document.querySelector('#set_config').addEventListener('click', (e) => {
             this.setConfig();
         });
+    }
+
+    /**
+     * Catalog button
+     * 
+     */
+    catalogButton() {
+        switch_catalog.onclick = function () {
+            Ajax.postData(window.location.href, {
+                catalog_button: 'ok'
+            });
+        };
     }
 
     /**
