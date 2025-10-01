@@ -28,13 +28,13 @@ if (Products::$products != FALSE) {
             <div class="gallery col-md-5 col-12 mb-2">
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
-                <div class="labelsblock">
-                    <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
-                        <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
-                    <?php } ?>
-                </div>
                 <div class="row d-flex justify-content-center">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-center">
+                        <div class="labelsblock d-flex">
+                            <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
+                                <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
+                            <?php } ?>
+                        </div>
                         <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>">
                             <img src="/uploads/images/products/resize_3/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded d-block mb-3">
                         </a>
