@@ -89,14 +89,13 @@ if (Valid::inGET('category_id')) {
                     ?>
                     <div class="item mb-3 col-xl-4 col-lg-4 col-md-6 col-12 grid-group-item">
                         <div class="cards card border rounded p-2 h-100">
-                            <div class="labelsblock">
-                                <?php foreach (Products::stickers(Pages::$table['line'], 'bg-danger', 'bg-success') as $sticker) { ?>
-                                    <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
-                                <?php } ?>
-                            </div>
-                            <div class="d-flex align-items-center">
-
-                                <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center h-100">
+                                <div class="labelsblock">
+                                    <?php foreach (Products::stickers(Pages::$table['line'], 'bg-danger', 'bg-success') as $sticker) { ?>
+                                        <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
+                                    <?php } ?>
+                                </div>
+                                <div class="h-100 d-flex align-items-center">
                                     <a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>">
                                         <img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="w-100 img-fluid rounded mx-auto d-block mb-2">
                                     </a>
@@ -126,7 +125,7 @@ if (Valid::inGET('category_id')) {
                                 </div>
                             </div>
                             <?php if (Pages::$table['line']['price'] > 0) { ?>
-                                <div class="mb-3">
+                                <div class="h-25 mb-3">
                                     <div class="buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
                                         <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                         <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
@@ -193,7 +192,7 @@ if (Valid::inGET('category_id')) {
             <?php
             foreach (Categories::$listing_data as $value) {
                 ?>
-                <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
+                <div class="mb-3 col-xl-4 col-lg-4 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
                         <?php if ($value[2] == true) { ?>
                             <div id="image" class="h-100">
