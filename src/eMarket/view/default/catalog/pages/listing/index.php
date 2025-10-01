@@ -98,10 +98,10 @@ if (Valid::inGET('category_id')) {
                                 </div>
                                 <div class="h-100">
                                     <a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>">
-                                        <img src="/uploads/images/products/resize_2/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="w-100 img-fluid rounded mx-auto d-block mb-2">
+                                        <img src="/uploads/images/products/resize_1/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="w-100 img-fluid rounded mx-auto d-block mb-2">
                                     </a>
                                 </div>
-                                <div class="ms-auto text-end w-100 align-self-center">
+                                <div class="ms-auto text-end align-bottom align-self-center">
                                     <h5 class="item-heading"><a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>"><?php echo Pages::$table['line']['name'] ?></a></h5>
 
                                     <?php if (Pages::$table['line']['price'] > 0) { ?>
