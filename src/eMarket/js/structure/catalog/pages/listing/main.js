@@ -144,7 +144,6 @@ class ProductsListing {
      */
     static setList() {
         document.querySelectorAll('.item').forEach(e => e.classList.remove('col-xl-4', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
-        document.querySelectorAll('.cards').forEach(e => e.classList.remove('card'));
         document.querySelectorAll('.buttons-block').forEach(e => e.classList.remove('justify-content-center'));
         document.querySelectorAll('.buttons-block').forEach(e => e.classList.add('justify-content-end'));
         document.querySelectorAll('.image').forEach(e => e.classList.remove('w-100'));
@@ -162,7 +161,6 @@ class ProductsListing {
         document.querySelectorAll('.item').forEach(e => e.classList.add('col-xl-4', 'col-lg-4', 'col-md-6', 'col-12', 'grid-group-item'));
         document.querySelectorAll('.buttons-block').forEach(e => e.classList.remove('justify-content-end'));
         document.querySelectorAll('.buttons-block').forEach(e => e.classList.add('justify-content-center'));
-        document.querySelectorAll('.cards').forEach(e => e.classList.add('card'));
         document.querySelectorAll('.image').forEach(e => e.classList.add('w-100'));
         document.querySelector('.item-list').classList.remove('active');
         document.querySelector('.item-grid').classList.add('active');
