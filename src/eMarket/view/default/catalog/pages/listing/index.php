@@ -96,7 +96,7 @@ if (Valid::inGET('category_id')) {
                                         <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
                                     <?php } ?>
                                 </div>
-                                <div class="image text-center mb-2 p-3">
+                                <div class="h-100">
                                     <a href="/?route=products&id=<?php echo Pages::$table['line']['id'] ?>">
                                         <img src="/uploads/images/products/resize_2/<?php echo Pages::$table['line']['logo_general'] ?>" alt="<?php echo Pages::$table['line']['name'] ?>" class="w-100 img-fluid rounded mx-auto d-block mb-2">
                                     </a>
