@@ -12,7 +12,7 @@ use eMarket\Core\{
 if (count(Products::newProducts(8)) > 0) {
     ?>
     <div id="new_products" class="contentText">
-        <h3><?php echo lang('new_products_name') ?></h3>
+        <h3 class="text-center"><?php echo lang('new_products_name') ?></h3>
         <div class="row">
             <?php foreach (Products::newProducts(8) as $value) {
                 ?>

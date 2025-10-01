@@ -6,7 +6,7 @@
 
 ?>
 
-<h1><?php echo lang('index_text') ?></h1>
+<h1 class="text-center"><?php echo lang('index_text') ?></h1>
 
 <?php
 foreach (\eMarket\Core\Routing::tlpc('content') as $path) {
