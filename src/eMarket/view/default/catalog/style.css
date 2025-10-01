@@ -57,7 +57,7 @@ h6 {font-size: .875rem;}
 #products .product-attribute-table td {padding-left: 1.25rem;border-left: .0625rem solid #dfdfdf;border-top: .0625rem solid #dfdfdf;border-bottom: .0625rem solid #dfdfdf;}
 #products .product-attribute-table td:first-child {border-left: 0;}
 #products .product-attribute-specification {display: table-cell;}
-#products .labelsblock {position: absolute;}
+#products .labelsblock {position: absolute;margin: -.3125rem 0 0 -.3125rem;}
 #products .labelsblock div {display: table;padding: .125rem .4375rem;color: #ffffff;font-size: .875rem;margin: 0 0 .25rem 0;border-radius: .25rem;text-transform: uppercase;font-weight: 700;}
 
 #listing .list-group-item {border: none;padding: 0 .75rem;}
