@@ -14,7 +14,7 @@ if (count(Products::newProducts(8)) > 0) {
     <div id="new_products" class="contentText">
         <h3 class="text-center"><?php echo lang('new_products_name') ?></h3>
         <div class="row">
-            <?php foreach (Products::newProducts(8) as $value) {
+            <?php foreach (Products::newProducts(12) as $value) {
                 ?>
                 <div class="mb-3 col-xl-2 col-lg-3 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
