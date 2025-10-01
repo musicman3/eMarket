@@ -87,7 +87,7 @@ if (Valid::inGET('category_id')) {
                         Pages::$start < Pages::$finish;
                         Pages::$start++, Pages::lineUpdate()) {
                     ?>
-                    <div class="item mb-3 col-xl-3 col-lg-4 col-md-6 col-12 grid-group-item">
+                    <div class="item mb-3 col-xl-4 col-lg-4 col-md-6 col-12 grid-group-item">
                         <div class="cards card border rounded p-2 h-100">
 
                             <div class="d-flex h-75">
