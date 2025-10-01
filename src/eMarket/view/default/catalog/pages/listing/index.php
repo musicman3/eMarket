@@ -106,7 +106,7 @@ if (Valid::inGET('category_id')) {
 
                                     <?php if (Pages::$table['line']['price'] > 0) { ?>
                                         <div class="item-price mb-2"><?php echo Ecb::priceInterface(Pages::$table['line'], 2) ?></div>
-                                        <div class="item-text mb-2">
+                                        <div class="item-text mb-2 text-end">
                                             <ul>
                                                 <?php foreach (Listing::getCharData() as $val) { ?>
                                                     <li class="item-text-view">
