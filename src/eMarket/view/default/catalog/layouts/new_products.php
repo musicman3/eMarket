@@ -18,13 +18,15 @@ if (count(Products::newProducts(8)) > 0) {
                 ?>
                 <div class="mb-3 col-xl-2 col-lg-3 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
-                        <div class="labelsblock">
-                            <?php foreach (Products::stickers($value, 'bg-danger', 'bg-success') as $sticker) { ?>
-                                <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
-                            <?php } ?>
-                        </div>
-                        <div id="image" class="h-100">
-                            <a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-fluid rounded mx-auto d-block mb-2"></a>
+                        <div class="d-flex align-items-center h-100">
+                            <div class="labelsblock">
+                                <?php foreach (Products::stickers($value, 'bg-danger', 'bg-success') as $sticker) { ?>
+                                    <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
+                                <?php } ?>
+                            </div>
+                            <div id="image" class="w-100">
+                                <a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-fluid rounded mx-auto d-block"></a>
+                            </div>
                         </div>
                         <div class="align-bottom">
                             <h5 class="text-center"><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h5>
