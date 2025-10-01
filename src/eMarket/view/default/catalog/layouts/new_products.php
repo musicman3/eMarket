@@ -16,7 +16,7 @@ if (count(Products::newProducts(8)) > 0) {
         <div class="row">
             <?php foreach (Products::newProducts(8) as $value) {
                 ?>
-                <div class="mb-3 col-xl-3 col-lg-4 col-md-6 col-12">
+                <div class="mb-3 col-xl-2 col-lg-3 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
                         <div class="labelsblock">
                             <?php foreach (Products::stickers($value, 'bg-danger', 'bg-success') as $sticker) { ?>
