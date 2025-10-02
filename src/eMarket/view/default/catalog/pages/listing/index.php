@@ -192,7 +192,7 @@ if (Valid::inGET('category_id')) {
             <?php
             foreach (Categories::$listing_data as $value) {
                 ?>
-                <div class="mb-3 col-xl-4 col-lg-4 col-md-6 col-12">
+                <div class="mb-3 col-xl-3 col-lg-3 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
                         <div class="d-flex justify-content-center h-100">
                             <div class="d-flex align-items-center">
