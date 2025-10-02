@@ -27,7 +27,7 @@ require_once('modal/index.php')
             <?php foreach (Cart::$cart_info as $value) { ?>
                 <form id="quantity_product" name="quantity_product" action="javascript:void(null);">
                     <div class="d-flex align-items-center border-bottom p-1">
-                        <div class="text-center w-50">
+                        <div class="text-center">
                             <div class="p-1">
                                 <div><a href="/?route=products&id=<?php echo $value['id'] ?>"><img src="/uploads/images/products/resize_0/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name'] ?>" class="img-thumbnail"></a></div>
                                 <div><a href="/?route=products&id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></div>
