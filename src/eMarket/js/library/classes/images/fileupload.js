@@ -70,10 +70,11 @@ class Fileupload {
                 Ajax.postData(window.location.href, {
                     image_data: filename
                 }, false, false).then((data) => {
-                    var this_width = data[0];
-                    var this_height = data[1];
+                    var this_width = data[0][0];
+                    var this_height = data[0][1];
                     var quality_width = resize_max[0];
                     var quality_height = resize_max[1];
+                    filename = data[1];
 
                     if (this_height < quality_height && this_width < quality_width) {
                         if (document.querySelector('#add').value === 'ok') {

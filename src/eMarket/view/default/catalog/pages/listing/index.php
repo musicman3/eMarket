@@ -194,12 +194,18 @@ if (Valid::inGET('category_id')) {
                 ?>
                 <div class="mb-3 col-xl-4 col-lg-4 col-md-6 col-12">
                     <div class="card border rounded p-2 h-100">
-                        <?php if ($value[2] == true) { ?>
-                            <div id="image" class="h-100">
-                                <a href="/?route=listing&category_id=<?php echo $value[0] ?>"><img src="/uploads/images/categories/resize_0/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-fluid rounded mx-auto d-block"></a>
+                        <div class="d-flex justify-content-center h-100">
+                            <div class="d-flex align-items-center">
+                                <?php if ($value[2] == true) { ?>
+                                    <div class="w-100">
+                                        <a href="/?route=listing&category_id=<?php echo $value[0] ?>"><img src="/uploads/images/categories/resize_0/<?php echo $value[2] ?>" alt="<?php echo $value[1] ?>" class="img-fluid rounded d-block mb-3"></a>
+                                    </div>
+                                <?php } ?>
                             </div>
-                        <?php } ?>
-                        <h5 class="text-center"><a href="/?route=listing&category_id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
+                        </div>
+                        <div class="align-bottom">
+                            <h5 class="text-center"><a href="/?route=listing&category_id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
+                        </div>
                     </div>
                 </div>
                 <?php
