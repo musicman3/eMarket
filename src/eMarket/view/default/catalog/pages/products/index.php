@@ -25,7 +25,7 @@ if (Products::$products != FALSE) {
 
     <div id="products" class="contentText">
         <div class="row">
-            <div class="gallery col-md-6 col-12 mb-2>
+            <div class="gallery col-md-6 col-12 mb-2">
                  <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
             <div class="row d-flex justify-content-center">
