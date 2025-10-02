@@ -25,7 +25,7 @@ if (Products::$products != FALSE) {
 
     <div id="products" class="contentText">
         <div class="row">
-            <div class="gallery col-md-3 col-12 mb-2">
+            <div class="gallery col-md-4 col-12 mb-2">
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                 <div class="row d-flex justify-content-center">
@@ -36,7 +36,7 @@ if (Products::$products != FALSE) {
                             <?php } ?>
                         </div>
                         <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>">
-                            <img src="/uploads/images/products/resize_3/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded d-block mb-3">
+                            <img src="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded d-block mb-3">
                         </a>
                     </div>
 
@@ -49,8 +49,8 @@ if (Products::$products != FALSE) {
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-4 col-12"></div>
-            <div class="col-md-5 col-12 mb-3 productpage">
+            <div class="col-md-2 col-12"></div>
+            <div class="col-md-6 col-12 mb-3 productpage">
                 <?php if (Products::$products['price'] > 0) { ?>
                     <ul>
                         <li>
