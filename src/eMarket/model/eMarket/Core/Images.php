@@ -339,7 +339,7 @@ class Images {
         foreach ($files as $file) {
             if (is_file($file) && file_exists($file) && $file != '.gitkeep' && $file != '.htaccess' && $file != '.gitignore') {
 
-                $new_name = $prefix . Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
+                $new_name = $prefix . basename($file);
 
                 if (!file_exists(ROOT . '/uploads/temp/originals/' . $prefix . basename($file))) {
                     copy(ROOT . '/uploads/temp/files/' . basename($file), ROOT . '/uploads/temp/originals/' . $new_name);
@@ -394,7 +394,11 @@ class Images {
         if (Valid::inPostJson('image_data')) {
             $file = Valid::inPostJson('image_data');
 
-            $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $file);
+            $new_name = Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
+
+            rename(ROOT . '/uploads/temp/files/' . $file, ROOT . '/uploads/temp/files/' . $new_name);
+
+            $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $new_name);
             $width = $image_data[0];
             $height = $image_data[1];
 
@@ -402,7 +406,7 @@ class Images {
             $quality_height = $resize_max[1];
 
             if ($width >= $quality_width OR $height >= $quality_height) {
-                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file)
+                $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $new_name)
                         ->autoOrient()
                         ->bestFit((int) $resize_param[0][0], (int) $resize_param[0][1]);
                 if (Valid::inPostJson('effect_edit') == 'effect-sepia') {
@@ -417,10 +421,10 @@ class Images {
                 if (Valid::inPostJson('effect_edit') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
-                $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+                $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $new_name);
             }
             // Ajax request
-            echo json_encode($image_data);
+            echo json_encode([$image_data, $new_name]);
             exit();
         }
     }
