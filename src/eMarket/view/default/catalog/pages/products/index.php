@@ -27,9 +27,9 @@ if (Products::$products != FALSE) {
         <div class="row">
             <div class="gallery col-md-3 col-12 mb-2">
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
-                
+
                 <div class="row d-flex justify-content-center">
-                    <div class="d-flex justify-content-center h-100">
+                    <div class="d-flex align-items-center h-100">
                         <div class="labelsblock">
                             <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
                                 <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
@@ -41,23 +41,24 @@ if (Products::$products != FALSE) {
                     </div>
 
                     <?php foreach (Products::$images as $val) { ?>
-                        <div class="col-xl-3 col-md-4 col-12 p-1">
+                        <div class="col-xl-2 col-md-4 col-12 p-1">
                             <a href="/uploads/images/products/resize_4/<?php echo $val ?>">
-                                <img src="/uploads/images/products/resize_1/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
+                                <img src="/uploads/images/products/resize_0/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
                             </a>
                         </div>
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-6 col-12 mb-3 productpage">
+            <div class="col-md-4 col-12"></div>
+            <div class="col-md-5 col-12 mb-3 productpage">
                 <?php if (Products::$products['price'] > 0) { ?>
                     <ul>
                         <li>
                             <span class="productpage-price"><?php echo Ecb::priceInterface(Products::$products, 2) ?></span>
                         </li>
                     </ul>
-                    <hr>
                 <?php } ?>
+                <hr>
                 <div class="mb-3 p-1">
                     <?php if (Products::$manufacturer_logo != '' && Products::$manufacturer_logo != null) { ?>
                         <a href="<?php echo Products::$manufacturer_site ?>" target="_blank">
@@ -76,8 +77,8 @@ if (Products::$products != FALSE) {
 
                     </ul>
                 </div>
+                <hr>
                 <?php if (Products::$products['price'] > 0) { ?>
-                    <hr>
                     <button class="btn btn-outline-primary bi-dash" type="button" onclick="Products.pcsProduct('minus', <?php echo Products::$products['id'] ?>, <?php echo Products::$products['quantity'] ?>)"></button>
                     <input id="number_<?php echo Products::$products['id'] ?>" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Products::$products) ?>" class="quantity" disabled>
                     <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="Products.pcsProduct('plus', <?php echo Products::$products['id'] ?>, <?php echo Cart::maxQuantityToOrder(Products::$products, 'true') ?>)"></button>
