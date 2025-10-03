@@ -57,7 +57,7 @@ class LanguageVariables {
     public static function adminLanguage(): string {
         $output = '';
         foreach (lang('#admin') as $key => $value) {
-            $output .= "<br>" . $key . ' = ' . $value . "<br>";
+            $output .= "\r\n" . $key . ' = ' . $value . "\r\n";
         }
         return $output;
     }
@@ -70,7 +70,7 @@ class LanguageVariables {
     public static function catalogLanguage(): string {
         $output = '';
         foreach (lang('#catalog') as $key => $value) {
-            $output .= "<br>" . $key . ' = ' . $value . "<br>";
+            $output .= "\r\n" . $key . ' = ' . $value . "\r\n";
         }
         return $output;
     }
