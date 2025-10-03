@@ -181,11 +181,11 @@ class Orders {
      */
     private function modal(): void {
         self::$json_data = json_encode([]);
+        $orders = [];
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 
                 $modal_id = Pages::$table['lines'][$i]['id'];
-                $orders = [];
                 foreach (self::$sql_data as $sql_modal) {
                     if ($sql_modal['id'] == $modal_id) {
                         $sql_modal['date_purchased'] = SystemClock::getDateTime($sql_modal['date_purchased']);
