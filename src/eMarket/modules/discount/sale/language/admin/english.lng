@@ -24,6 +24,3 @@ modules_discount_sale_admin_confirm_delete_sales = Are you sure you want to remo
 modules_discount_sale_admin_attention = ATTENTION!
 modules_discount_sale_admin_enter_value = Enter value
 modules_discount_sale_admin_enter_date = Enter date
-
-;CATALOG
-modules_discount_sale_catalog_test = Test

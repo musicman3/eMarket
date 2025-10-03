@@ -5,16 +5,9 @@
 
 [modules]
 
-;ADMIN
-modules_payment_cash_name = Cash
-modules_payment_cash_author = eMarket
-modules_payment_cash_version = 1.0
-
-modules_payment_cash_admin_shipping_method_select = Select shipping method
-modules_payment_cash_admin_shipping_module_select = Select shipping module
-modules_payment_cash_admin_order_status_select = Select order status
-
 ;CATALOG
+modules_payment_cash_name = Cash
+modules_payment_cash_catalog_name = Cash
 modules_payment_cash_catalog_complete_button = Complete
 modules_payment_cash_catalog_text = Your order has been prepared. You can pay in cash upon receipt of your order. Complete your purchase for the order to be accepted. 
 modules_payment_cash_catalog_amount_to_pay = Amount to pay:

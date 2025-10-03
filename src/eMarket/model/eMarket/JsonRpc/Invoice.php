@@ -134,6 +134,6 @@ class Invoice extends JsonRpc {
             $this->error('-32000', 'Incorrect ID', $this->uid);
         }
         $this->mpdf()->WriteHTML($this->html());
-        $this->mpdf()->OutputFile(getenv('DOCUMENT_ROOT') . '/uploads/temp/file/invoice.pdf');
+        $this->mpdf()->OutputFile(getenv('DOCUMENT_ROOT') . '/uploads/temp/files/invoice.pdf');
     }
 }

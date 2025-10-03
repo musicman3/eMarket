@@ -13,6 +13,3 @@ modules_providers_smsc_version = 1.0
 modules_providers_smsc_admin_sender = Имя отправителя
 modules_providers_smsc_admin_login = Логин
 modules_providers_smsc_admin_password = Пароль
-
-;CATALOG
-modules_providers_smsc_catalog_test = Тест

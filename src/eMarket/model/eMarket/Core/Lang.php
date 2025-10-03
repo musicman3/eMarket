@@ -112,7 +112,9 @@ final class Lang {
 
                 foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
                     foreach ($modules_names_array as $modules_names) {
-                        $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
+                        if (file_exists($modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng')) {
+                            $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng']);
+                        }
                     }
                 }
             }

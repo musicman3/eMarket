@@ -13,6 +13,3 @@ modules_providers_bulksms_version = 1.0
 modules_providers_bulksms_admin_sender = Sender name
 modules_providers_bulksms_admin_login = Login
 modules_providers_bulksms_admin_password = Password
-
-;CATALOG
-modules_providers_bulksms_catalog_test = Test
