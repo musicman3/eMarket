@@ -100,21 +100,19 @@ final class Lang {
         $modules_path_array = [];
         $engine_path_array = [];
 
-        if ($marker == null OR $marker == 'admin' OR $marker == 'catalog' OR $marker == 'modules') {
+        if ($marker == null OR $marker == 'admin' OR $marker == 'catalog') {
 
             if ($marker == null OR $marker == 'admin' OR $marker == 'catalog') {
                 $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $lang_path);
             }
 
-            if ($marker == null OR $marker == 'modules') {
-                $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-                $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
+            $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
+            $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
 
-                foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
-                    foreach ($modules_names_array as $modules_names) {
-                        if (file_exists($modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng')) {
-                            $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng']);
-                        }
+            foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
+                foreach ($modules_names_array as $modules_names) {
+                    if (file_exists($modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng')) {
+                        $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $lang_path . '/' . $default_language . '.lng']);
                     }
                 }
             }
