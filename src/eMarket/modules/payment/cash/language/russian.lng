@@ -3,21 +3,18 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-[all]
+[modules]
+
+;ADMIN
 modules_payment_cash_name = Оплата наличными
 modules_payment_cash_author = eMarket
 modules_payment_cash_version = 1.0
 
-[admin]
-
-;TITLE
 modules_payment_cash_admin_shipping_method_select = Выберите метод доставки
 modules_payment_cash_admin_shipping_module_select = Выберите модуль доставки
 modules_payment_cash_admin_order_status_select = Выберите статус заказа
 
-[catalog]
-
-;TITLE
+;CATALOG
 modules_payment_cash_catalog_complete_button = Завершить
 modules_payment_cash_catalog_text = Ваш заказ подготовлен. Вы можете оплатить наличными при получении заказа. Завершите покупку, чтобы заказ был принят.
 modules_payment_cash_catalog_amount_to_pay = Сумма к оплате:

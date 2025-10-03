@@ -3,14 +3,13 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-[all]
+[modules]
+
+;ADMIN
 modules_tabs_reviews_name = Reviews
 modules_tabs_reviews_author = eMarket
 modules_tabs_reviews_version = 1.0
 
-[admin]
-
-;TITLE
 modules_tabs_reviews_admin_tabs_zone = Shipping zone
 modules_tabs_reviews_admin_minimum_order_price = Minimum order price
 modules_tabs_reviews_admin_minimum_order_price_for_reviews_tabs = Minimum order price for reviews tabs
@@ -21,9 +20,7 @@ modules_tabs_reviews_admin_date_added = Date added
 modules_tabs_reviews_admin_author = Author
 modules_tabs_reviews_admin_rating = Rating
 
-[catalog]
-
-;TITLE
+;CATALOG
 modules_tabs_reviews_catalog_name = Reviews
 modules_tabs_reviews_catalog_your_rating = Your rating:
 modules_tabs_reviews_catalog_write_review = Write review...

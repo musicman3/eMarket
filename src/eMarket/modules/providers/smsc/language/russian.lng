@@ -3,19 +3,16 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-[all]
+[modules]
+
+;ADMIN
 modules_providers_smsc_name = Smsc.ru
 modules_providers_smsc_author = eMarket
 modules_providers_smsc_version = 1.0
 
-[admin]
-
-;TITLE
 modules_providers_smsc_admin_sender = Имя отправителя
 modules_providers_smsc_admin_login = Логин
 modules_providers_smsc_admin_password = Пароль
 
-[catalog]
-
-;TITLE
+;CATALOG
 modules_providers_smsc_catalog_test = Тест

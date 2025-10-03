@@ -3,19 +3,16 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-[all]
+[modules]
+
+;ADMIN
 modules_shipping_free_name = Free shipping
 modules_shipping_free_author = eMarket
 modules_shipping_free_version = 1.0
 
-[admin]
-
-;TITLE
 modules_shipping_free_admin_shipping_zone = Shipping zone
 modules_shipping_free_admin_minimum_order_price = Minimum order price
 modules_shipping_free_admin_minimum_order_price_for_free_shipping = Minimum order price for free shipping
 
-[catalog]
-
-;TITLE
+;CATALOG
 modules_shipping_free_catalog_test = Test

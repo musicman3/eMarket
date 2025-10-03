@@ -119,9 +119,6 @@ final class Lang {
 
             $files_path = array_reverse(array_merge($engine_path_array, $modules_path_array));
 
-            if (file_exists($files_path[0])) {
-                $lang = parse_ini_file($files_path[0], FALSE, INI_SCANNER_RAW);
-            }
             foreach ($files_path as $files) {
                 if (file_exists($files)) {
                     $ini = parse_ini_file($files, FALSE, INI_SCANNER_RAW);

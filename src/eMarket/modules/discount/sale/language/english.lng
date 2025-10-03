@@ -3,20 +3,18 @@
 ;   https://github.com/musicman3/eMarket   ;
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-;
 
-[all]
+[modules]
+
+;ADMIN
 modules_discount_sale_name = Sale
 modules_discount_sale_author = eMarket
 modules_discount_sale_version = 1.0
 
-[admin]
-
-;TITLE
 modules_discount_sale_admin_name = Sale name
 modules_discount_sale_admin_sale_start_date = Sale start date
 modules_discount_sale_admin_sale_end_date = Sale end date
 modules_discount_sale_admin_value = Percent value (%)
 modules_discount_sale_admin_tooltip_warning = There are several discounts for this product at the same time:<br>
-
 modules_discount_sale_admin_button_sale_on = Add to Sale
 modules_discount_sale_admin_button_sale_off = Remove from Sale
 modules_discount_sale_admin_button_sale_off_all = Remove all sales
@@ -27,7 +25,5 @@ modules_discount_sale_admin_attention = ATTENTION!
 modules_discount_sale_admin_enter_value = Enter value
 modules_discount_sale_admin_enter_date = Enter date
 
-[catalog]
-
-;TITLE
+;CATALOG
 modules_discount_sale_catalog_test = Test
