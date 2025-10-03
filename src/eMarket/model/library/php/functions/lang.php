@@ -6,7 +6,16 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /**
- * Lang function (example: lang('name'), lang('name', 'english') or lang('#lang_all'))
+ * Lang function 
+ * 
+ * Example: 
+ * 
+ * lang('name') - language variable in the current language
+ * lang('name', 'english') - language variable in the english language
+ * lang('#lang_all') - all language variables for the current path in the current language (ex. admin + modules, catalog + modules)
+ * lang('#admin') - language variables for admin path only in the current language
+ * lang('#catalog') - language variables for catalog path only in the current language
+ * lang('#modules') - language variables for modules path only in the current language
  *
  * @param string $a
  * @param string $b
@@ -14,7 +23,7 @@
  * @return string|array
  */
 function lang(?string $a = null, ?string $b = null, ?string $c = null): string|array {
-    static $lang_var = null, $lang_trans = null, $lang_all = null, $lang_default = null, $lang_all_trans = null;
+    static $lang_var = null, $lang_trans = null, $lang_all = null, $admin = null, $catalog = null, $modules = null, $lang_default = null, $lang_all_trans = null;
 
     if ($lang_default == null) {
         \eMarket\Core\Lang::defaultLang();
@@ -28,7 +37,19 @@ function lang(?string $a = null, ?string $b = null, ?string $c = null): string|a
     if ($lang_all == null) {
         $lang_all = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'all');
     }
+    
+    if ($admin == null) {
+        $admin = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'admin');
+    }
 
+    if ($catalog == null) {
+        $catalog = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'catalog');
+    }
+    
+    if ($modules == null) {
+        $modules = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'modules');
+    }
+    
     if ($lang_trans == null) {
         $lang_trans = \eMarket\Core\Lang::lang($_SESSION['DEFAULT_LANGUAGE'], 'translate');
     }
@@ -39,6 +60,18 @@ function lang(?string $a = null, ?string $b = null, ?string $c = null): string|a
 
     if ($a == '#lang_all') {
         return $lang_all;
+    }
+    
+    if ($a == '#admin') {
+        return $admin;
+    }
+    
+    if ($a == '#catalog') {
+        return $catalog;
+    }
+    
+    if ($a == '#modules') {
+        return $modules;
     }
 
     if ($a == null) {

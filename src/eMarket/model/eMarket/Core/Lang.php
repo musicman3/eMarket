@@ -87,16 +87,33 @@ final class Lang {
             $default_language = Settings::basicSettings('primary_language');
         }
 
-        if ($marker == null) {
-            $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . self::path());
+        $lang_path = self::path();
 
-            $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
-            $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
+        if ($marker == 'admin') {
+            $lang_path = 'admin';
+        }
 
-            $modules_path_array = [];
-            foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
-                foreach ($modules_names_array as $modules_names) {
-                    $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
+        if ($marker == 'catalog') {
+            $lang_path = 'catalog';
+        }
+
+        $modules_path_array = [];
+        $engine_path_array = [];
+
+        if ($marker == null OR $marker == 'admin' OR $marker == 'catalog' OR $marker == 'modules') {
+
+            if ($marker == null OR $marker == 'admin' OR $marker == 'catalog') {
+                $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $lang_path);
+            }
+
+            if ($marker == null OR $marker == 'modules') {
+                $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
+                $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
+
+                foreach ($_SESSION['MODULES_INFO'] as $modules_type => $modules_names_array) {
+                    foreach ($modules_names_array as $modules_names) {
+                        $modules_path_array = array_merge($modules_path_array, [$modules_path . $modules_type . '/' . $modules_names . '/language/' . $default_language . '.lng']);
+                    }
                 }
             }
 
