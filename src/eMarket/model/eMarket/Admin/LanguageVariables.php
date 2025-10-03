@@ -36,8 +36,8 @@ class LanguageVariables {
      */
     function __construct() {
         $this->edit();
-        $this->adminLanguageData();
-        $this->catalogLanguageData();
+        $this->adminLanguageCustom();
+        $this->catalogLanguageCustom();
     }
 
     /**
@@ -54,11 +54,12 @@ class LanguageVariables {
      *
      * @return string
      */
-    private function adminLanguageData(): string {
-        if (is_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/admin/custom.lng')) {
-            self::$admin_lang_data = file_get_contents(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/admin/custom.lng');
+    public static function adminLanguage(): string {
+        $output = '';
+        foreach (lang('#admin') as $key => $value) {
+            $output .= "<br>" . $key . ' = ' . $value . "<br>";
         }
-        return self::$admin_lang_data;
+        return $output;
     }
 
     /**
@@ -66,7 +67,32 @@ class LanguageVariables {
      *
      * @return string
      */
-    private function catalogLanguageData(): string {
+    public static function catalogLanguage(): string {
+        $output = '';
+        foreach (lang('#catalog') as $key => $value) {
+            $output .= "<br>" . $key . ' = ' . $value . "<br>";
+        }
+        return $output;
+    }
+
+    /**
+     * Admin language custom data
+     *
+     * @return string
+     */
+    private function adminLanguageCustom(): string {
+        if (is_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/admin/custom.lng')) {
+            self::$admin_lang_data = file_get_contents(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/admin/custom.lng');
+        }
+        return self::$admin_lang_data;
+    }
+
+    /**
+     * Catalog language custom data
+     *
+     * @return string
+     */
+    private function catalogLanguageCustom(): string {
         if (is_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/catalog/custom.lng')) {
             self::$catalog_lang_data = file_get_contents(getenv('DOCUMENT_ROOT') . '/custom/language/' . $_SESSION['DEFAULT_LANGUAGE'] . '/catalog/custom.lng');
         }

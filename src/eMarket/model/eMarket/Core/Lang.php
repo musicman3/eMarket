@@ -102,9 +102,7 @@ final class Lang {
 
         if ($marker == null OR $marker == 'admin' OR $marker == 'catalog') {
 
-            if ($marker == null OR $marker == 'admin' OR $marker == 'catalog') {
-                $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $lang_path);
-            }
+            $engine_path_array = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/language/' . $default_language . '/' . $lang_path);
 
             $modules_path = getenv('DOCUMENT_ROOT') . '/modules/';
             $_SESSION['MODULES_INFO'] = Tree::allDirForPath($modules_path, 'true');
@@ -126,8 +124,8 @@ final class Lang {
                 }
             }
 
-            if (file_exists(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng')) {
-                $custom_ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . self::path() . '/custom.lng', TRUE, INI_SCANNER_RAW);
+            if (file_exists(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . $lang_path . '/custom.lng')) {
+                $custom_ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/custom/language/' . $default_language . '/' . $lang_path . '/custom.lng', TRUE, INI_SCANNER_RAW);
                 $lang = array_merge($lang, $custom_ini);
             }
         }

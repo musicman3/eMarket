@@ -30,10 +30,10 @@ use eMarket\Admin\LanguageVariables;
                         <tbody>
                             <tr class="align-middle">
                                 <td class="text-center">
-                                    <textarea class="form-control" name="admin_lang" id="admin_lang" rows="15"><?php echo LanguageVariables::$admin_lang_data ?></textarea>
+                                    <textarea class="form-control" name="admin_lang" id="admin_lang" rows="15"><?php echo LanguageVariables::adminLanguage() ?></textarea>
                                 </td>
                                 <td class="text-center">
-                                    <textarea class="form-control" name="catalog_lang" id="catalog_lang" rows="15"><?php echo LanguageVariables::$catalog_lang_data ?></textarea>
+                                    <textarea class="form-control" name="catalog_lang" id="catalog_lang" rows="15"><?php echo LanguageVariables::catalogLanguage() ?></textarea>
                                 </td>
                             </tr>
                         </tbody>
