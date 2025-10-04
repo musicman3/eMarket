@@ -470,7 +470,7 @@ function gitHubData(string $repo_name): mixed {
     <body>
         <div id="redirect" class='hidden' data-redirect='<?php echo $repo_init['redirect'] ?>'></div>
         <div class="bd-highlight d-flex align-items-center min-vh-100">
-            <div class="card w-25 text-center mx-auto p-2 bd-highlight">
+            <div class="card text-center mx-auto p-2 bd-highlight">
                 <div class="btn-group p-1" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="install_type" id="release" autocomplete="off" checked>
                     <label class="btn btn-outline-dark" for="release">GitHub Latest Release</label>
@@ -481,7 +481,7 @@ function gitHubData(string $repo_name): mixed {
                 <div class="btn-group p-1"><button type="button" id="install_button" class="btn btn-success">Update</button></div>
 
                 <div class="card-body p-1">
-                    <div id="attention" class="text-bg-warning p-1">Attention! The Update is being prepared. Please do not refresh the page.
+                    <div id="attention" class="text-bg-warning p-1">Attention! The Update is being prepared. <br>Please do not refresh the page.
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                         </div>
