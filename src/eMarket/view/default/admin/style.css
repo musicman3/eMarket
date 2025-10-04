@@ -20,12 +20,7 @@ body {background: #e4e4da;font-family: 'Open Sans';background-image: url('images
 #dashboard .welcome_description {font-size: 1.5rem;padding-bottom: 3.125rem;color: #aaaaaa;}
 
 #login [class*=lbox-] {background: rgba(0,0,0,.4);position: absolute}
-#login .lbox-horz {height: 9.625rem;width: 100%;padding-left: 3.125rem;margin-top: -3.9375rem;top: 50%}
-#login .lbox-vert {height: 100%;width: 12.5rem;left: 70%;}
-#login .login_logo {position: absolute;top: 1.25rem;padding: .9375rem;text-align: left;font-size: 6.875rem;color: #707070;text-shadow: 0 .0625rem .0625rem #575757;}
-#login .login-box {width: 12.5rem;height: 8.5rem;position: absolute;margin-top: -4.25rem;top: 50%;left: 70%;padding: .9375rem;text-align: center}
-#login .login-box .btn, .login-box .btn a:active {border: .0625rem solid #000;color: #fff;background: none; font-size: .9375rem;}
-#login .alert-danger {position: absolute;top: 10%;margin: 0 .625rem 0 -.125rem;padding: .3125rem;}
+#login .login_logo {position: absolute;font-size: 4.2rem;color: #707070;text-shadow: 0 .0625rem .0625rem #575757;}
 
 #index_product .accordion-button, #index_product .accordion-body {padding: .4375rem .75rem;}
 #index_product .product-attribute-table td {padding-left: .625rem;background: none;}

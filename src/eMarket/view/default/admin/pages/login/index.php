@@ -8,25 +8,32 @@ use eMarket\Core\Messages;
 ?>
 
 <div id="login" class="row">
-    <div class="lbox-horz"></div>
-    <div class="lbox-vert"></div>
+
+
     <div id="alert_block"><?php Messages::alert(); ?></div>
-    <div class="login_logo"><?php echo lang('shop_name') ?></div>
 
 
-    <div class="login-box side-form">
-        <form action='?route=login' method='post' class="was-validated">
+    <div class="position-absolute top-50 start-50 translate-middle d-flex h-25 lbox-horz"></div>
+    <div class="login_logo p-5"><?php echo lang('shop_name') ?></div>
 
-            <input hidden name="authorize" value="ok">
+    <div class="d-flex justify-content-end col-11">
+        <div class="d-flex h-100 align-items-center lbox-vert p-3">
+            <div class="p-2">
+                <div class="row h-50"></div>
+                <form action='?route=login' method='post' class="was-validated">
 
-            <div class="mb-3">
-                <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>" required />
+                    <input hidden name="authorize" value="ok">
+
+                    <div class="mb-3">
+                        <input type="text" name="login" class="input-sm form-control" placeholder="<?php echo lang('email') ?>" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>" required />
+                    </div>
+
+                    <input type="submit" class="btn w-100 btn-sm btn-light" value="<?php echo lang('entrance') ?>" />
+                </form>
             </div>
-            <div class="mb-3">
-                <input type="password" name="pass" class="input-sm form-control" placeholder="<?php echo lang('password') ?>" required />
-            </div>
-
-            <input type="submit" class="btn w-100 btn-sm" value="<?php echo lang('entrance') ?>" />
-        </form>
+        </div>
     </div>
 </div>
