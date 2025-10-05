@@ -9,9 +9,7 @@ use eMarket\Core\Messages;
 
 <div id="login" class="row">
 
-
     <div id="alert_block"><?php Messages::alert(); ?></div>
-
 
     <div class="position-absolute top-50 start-50 translate-middle d-flex h-25 lbox-horz"></div>
     <div class="login_logo p-5"><?php echo lang('shop_name') ?></div>
@@ -19,7 +17,6 @@ use eMarket\Core\Messages;
     <div class="d-flex justify-content-end col-11">
         <div class="d-flex h-100 align-items-center lbox-vert p-3">
             <div class="p-2">
-                <div class="row h-50"></div>
                 <form action='?route=login' method='post' class="was-validated">
 
                     <input hidden name="authorize" value="ok">
