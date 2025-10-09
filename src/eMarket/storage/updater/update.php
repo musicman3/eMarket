@@ -436,8 +436,8 @@ function gitHubData(string $repo_name): mixed {
                     }
 
                     if (parse[0] === 'Done') {
-                        sessionStorage.removeItem('update_response');
-                        sessionStorage.removeItem('update_time');
+                        sessionStorage.removeItem('Update.response');
+                        sessionStorage.removeItem('Update.time');
                         progress_bar.forEach(e => e.style.width = '100%');
                         progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
                         setTimeout(() => {
@@ -448,8 +448,8 @@ function gitHubData(string $repo_name): mixed {
                     if (data.indexOf('1060 Duplicate column') > 0) {
                         document.querySelector('#step_data').innerHTML = 'Skip duplicate columns and done';
 
-                        sessionStorage.removeItem('update_response');
-                        sessionStorage.removeItem('update_time');
+                        sessionStorage.removeItem('Update.response');
+                        sessionStorage.removeItem('Update.time');
                         progress_bar.forEach(e => e.style.width = '100%');
                         progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
 
