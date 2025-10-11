@@ -33,10 +33,18 @@ function init(array $repo_init): void {
 
     $php_version = $repo_init['release_php_version'];
     $mode = 'release';
+    $version = '';
 
     if (inGET('install_type') == 'master') {
         $php_version = $repo_init['master_php_version'];
         $mode = 'master';
+        $download = gitHubData($repo_name . '/commits/master');
+        if ($download['sha'] !== FALSE) {
+            $version = 'Master-' . $download['commit']['author']['date'] . '-' . $download['sha'];
+        } else {
+            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the install procedure.']);
+            exit;
+        }
     }
 
     // Repo name
@@ -49,11 +57,14 @@ function init(array $repo_init): void {
             exit;
         }
 
-        $download = gitHubData($repo_name);
-        if ($download !== FALSE) {
-            downloadArchive($repo_name, $download, $mode);
+        $download = gitHubData($repo_name . '/releases/latest');
+        if ($download['tag_name'] !== FALSE) {
+            if ($version == '') {
+                $version = $download['tag_name'];
+            }
+            downloadArchive($repo_name, $download['tag_name'], $mode, $version);
         } else {
-            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the installation procedure.']);
+            echo json_encode(['Error', 'No data received from GitHub. Please refresh the page to repeat the install procedure.']);
             exit;
         }
     }
@@ -64,6 +75,7 @@ function init(array $repo_init): void {
         copyingFiles($repo, $target_folder);
     }
     if (inGET('step') == '4') {
+        versionWrite(inGET('version'));
         downloadComposer();
     }
     if (inGET('step') == '5') {
@@ -92,8 +104,9 @@ function inGET(string $input): mixed {
  * @param string $repo_name GitHub repo name
  * @param string $download file name
  * @param string $mode Mode
+ * @param string $version Version
  */
-function downloadArchive(string $repo_name, string $download, string $mode): void {
+function downloadArchive(string $repo_name, string $download, string $mode, string $version): void {
     $download_path = 'heads/master';
     if ($mode == 'release') {
         $download_path = 'tags/' . $download;
@@ -102,7 +115,7 @@ function downloadArchive(string $repo_name, string $download, string $mode): voi
     $file_name = basename($file);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name, file_get_contents($file));
 
-    echo json_encode(['Install', 'Unzipping archive', '2', $file_name]);
+    echo json_encode(['Install', 'Unzipping archive', '2', $file_name, $version]);
     exit;
 }
 
@@ -130,7 +143,7 @@ function unzipArchive(string $file_name, string $repo): void {
     filesRemoving($file_name);
     filesRemoving($tarname);
 
-    echo json_encode(['Install', 'Copying ' . $repo . ' files', '3', '0']);
+    echo json_encode(['Install', 'Copying ' . $repo . ' files', '3', '0', inGET('version')]);
     exit;
 }
 
@@ -156,7 +169,7 @@ function copyingFiles(string $repo, string $target_folder): void {
 
     filesRemoving($source_dir);
 
-    echo json_encode(['Install', 'Downloading composer.phar', '4', '0']);
+    echo json_encode(['Install', 'Downloading composer.phar', '4', '0', inGET('version')]);
     exit;
 }
 
@@ -228,6 +241,23 @@ function filesRemoving($path): mixed {
 }
 
 /**
+ * Version write
+ * 
+ * @param string $version Version name
+ */
+function versionWrite(string $version): void {
+
+    file_put_contents(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', $version);
+
+    if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg')) {
+        chmod(getenv('DOCUMENT_ROOT') . '/storage/updater/version.cfg', 0644);
+    } else {
+        echo json_encode(['Error', 'Version file (version.cfg) not available!']);
+        exit;
+    }
+}
+
+/**
  * GitHub Data
  * 
  * @param string $repo_name GitHub repo name
@@ -236,15 +266,13 @@ function filesRemoving($path): mixed {
 function gitHubData(string $repo_name): mixed {
     $connect = curl_init();
     curl_setopt($connect, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Installer']);
-    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name . '/releases/latest');
+    curl_setopt($connect, CURLOPT_HTTPHEADER, ['User-Agent: Updater']);
+    curl_setopt($connect, CURLOPT_URL, 'https://api.github.com/repos/' . $repo_name);
     $response_string = curl_exec($connect);
     curl_close($connect);
     if (!empty($response_string)) {
         $response = json_decode($response_string, 1);
-        if (isset($response['tag_name'])) {
-            return $response['tag_name'];
-        }
+        return $response;
     } else {
         return FALSE;
     }
@@ -311,7 +339,7 @@ function gitHubData(string $repo_name): mixed {
                     progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
 
                     setTimeout(() => {
-                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3]);
+                        getUpdate(window.location.href + '?step=' + parse[2] + '&param=' + parse[3] + '&version=' + parse[4]);
                     }, 1250);
                 }
 
