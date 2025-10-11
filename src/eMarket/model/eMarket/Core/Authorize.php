@@ -62,7 +62,7 @@ class Authorize {
             new Cart();
         }
 
-        if (Settings::path() == 'install' && !$this->installVerify()) {
+        if (Settings::path() == 'install' && !$this->installVerify() && Valid::inGET('route') != 'error') {
             echo 'Error! Installation already completed!';
             exit;
         }
