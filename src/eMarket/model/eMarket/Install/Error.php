@@ -43,10 +43,6 @@ class Error {
      */
     private function data(): void {
 
-        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
-            unlink(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php');
-        }
-
         if (Valid::inGET('file_configure_not_found')) {
             self::$message = 'file_configure_not_found';
         }

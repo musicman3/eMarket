@@ -110,6 +110,37 @@ class Success {
      *
      */
     private function save(): void {
+
+        $file_stucture = self::$root . '/storage/databases/' . Valid::inPOST('database_type') . '.sql';
+        $file_example = self::$root . '/storage/databases/' . Valid::inPOST('database_type') . '_example.sql';
+
+        if (!file_exists($file_stucture) || !file_exists($file_example)) {
+            header('Location: /controller/install/?route=error&file_not_found=true');
+            exit;
+        }
+
+        Db::set([
+            'db_type' => Valid::inPOST('database_type'),
+            'db_server' => Valid::inPOST('server_db'),
+            'db_name' => Valid::inPOST('database_name'),
+            'db_username' => Valid::inPOST('login_db'),
+            'db_password' => Valid::inPOST('password_db'),
+            'db_prefix' => Valid::inPOST('database_prefix'),
+            'db_port' => Valid::inPOST('database_port'),
+            'db_family' => Valid::inPOST('database_family'),
+            'db_charset' => 'utf8mb4',
+            'db_collate' => 'utf8mb4_unicode_ci',
+            'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
+            'db_path' => self::$root . '/storage/databases/sqlite.db3'
+        ]);
+
+        if (Valid::inPOST('database_type') == 'mysql') {
+            Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . Valid::inPOST('database_name') . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+        }
+
+        Db::connect()->dbInstall($file_stucture);
+        Db::connect()->dbInstall($file_example);
+
         $fpd = fopen(self::$root . '/storage/configure/configure.php', 'w+');
         fputs($fpd, self::$config);
         fclose($fpd);
@@ -122,36 +153,6 @@ class Success {
         }
 
         require_once(self::$root . '/storage/configure/configure.php');
-
-        $file_stucture = ROOT . '/storage/databases/' . DB_TYPE . '.sql';
-        $file_example = ROOT . '/storage/databases/' . DB_TYPE . '_example.sql';
-
-        if (!file_exists($file_stucture) || !file_exists($file_example)) {
-            header('Location: /controller/install/?route=error&file_not_found=true');
-            exit;
-        }
-
-        Db::set([
-            'db_type' => DB_TYPE,
-            'db_server' => DB_SERVER,
-            'db_name' => DB_NAME,
-            'db_username' => DB_USERNAME,
-            'db_password' => DB_PASSWORD,
-            'db_prefix' => DB_PREFIX,
-            'db_port' => DB_PORT,
-            'db_family' => DB_FAMILY,
-            'db_charset' => 'utf8mb4',
-            'db_collate' => 'utf8mb4_unicode_ci',
-            'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
-            'db_path' => ROOT . '/storage/databases/sqlite.db3'
-        ]);
-
-        if (DB_TYPE == 'mysql') {
-            Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-        }
-
-        Db::connect()->dbInstall($file_stucture);
-        Db::connect()->dbInstall($file_example);
 
         $password_admin_hash = Cryptography::passwordHash(self::$password_admin);
 

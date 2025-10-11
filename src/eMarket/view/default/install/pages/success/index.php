@@ -11,7 +11,7 @@
             <h5 class="card-title"><?php echo lang('install_panel') ?></h5>
         </div>
         <div class="card-body">
-            <form action='/controller/admin/?route=login' method='post' accept-charset='utf-8'>
+            <form action='/admin/?route=login' method='post' accept-charset='utf-8'>
                 <input type="hidden" name="install" value="ok" />
                 <div class="alert alert-success"><?php echo lang('success') ?></div>
                 <input type="hidden" name="language" value="<?php echo \eMarket\Install\Success::$lng ?>" />
