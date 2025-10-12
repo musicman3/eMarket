@@ -34,7 +34,7 @@ if (Valid::inGET('category_id')) {
         <div class="container-fluid">
             <div class="row">
                 <div id="listing-block" class="mb-3 p-3 border rounded">
-                    <?php if (is_file(getenv('DOCUMENT_ROOT') . '/uploads/images/categories/resize_2/' . Listing::$categories_logo)) { ?>
+                    <?php if (is_file(ROOT . '/uploads/images/categories/resize_2/' . Listing::$categories_logo)) { ?>
                         <img src="/uploads/images/categories/resize_2/<?php echo Listing::$categories_logo ?>" class="thumbnail img-fluid float-md-end mb-3 ms-md-3" alt="<?php echo Listing::$categories_name ?>">
                         <?php
                     }
