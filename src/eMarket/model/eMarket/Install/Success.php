@@ -121,6 +121,7 @@ class Success {
 
         Db::set([
             'db_type' => Valid::inPOST('database_type'),
+            'db_transactions' => 'false',
             'db_server' => Valid::inPOST('server_db'),
             'db_name' => Valid::inPOST('database_name'),
             'db_username' => Valid::inPOST('login_db'),
