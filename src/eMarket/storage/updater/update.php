@@ -205,7 +205,6 @@ function copyingFiles(string $repo, string $target_folder): void {
 
     filesRemoving($source_dir);
     if (file_exists(getenv('DOCUMENT_ROOT') . '/update.php') && file_exists(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php')) {
-        unlink(getenv('DOCUMENT_ROOT') . '/update.php');
         copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php');
     }
 
