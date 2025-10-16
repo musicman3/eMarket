@@ -8,8 +8,8 @@
 $repo_init = [
     'name' => 'musicman3/eMarket', // GitHub name & repo
     'target_folder' => '/src', // Target folder from which files are copied
-    'release_php_version' => '8.0', // Release php version
-    'master_php_version' => '8.2', // Master php version
+    'release_php_version' => '8.3', // Release php version
+    'master_php_version' => '8.3', // Master php version
     'redirect' => 'controller/install/' // Redirect after installation completed
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */

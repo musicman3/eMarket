@@ -8,7 +8,7 @@
 ### System requirements: 
   - OS Unix, Linux or Windows
   - Apache Web Server >= 2.4 or Nginx >= 1.17
-  - PHP >= 8.2
+  - PHP >= 8.3
   - MySQL >= 5.7.8 || MariaDB >= 10.2.3 || PostgreSQL >= 15.0 || SQLite >= 3.0
   - Javascript >= ES7
   - HTML 5
