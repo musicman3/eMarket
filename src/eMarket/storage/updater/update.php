@@ -275,6 +275,7 @@ function sqlUpdate(): void {
 
     Cruder\Db::set([
         'db_type' => DB_TYPE,
+        'db_transactions' => 'false',
         'db_server' => DB_SERVER,
         'db_name' => DB_NAME,
         'db_username' => DB_USERNAME,
