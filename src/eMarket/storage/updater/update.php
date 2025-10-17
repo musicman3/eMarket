@@ -275,7 +275,6 @@ function sqlUpdate(): void {
 
     Cruder\Db::set([
         'db_type' => DB_TYPE,
-        'db_transactions' => 'false',
         'db_server' => DB_SERVER,
         'db_name' => DB_NAME,
         'db_username' => DB_USERNAME,
@@ -287,6 +286,7 @@ function sqlUpdate(): void {
         'db_collate' => 'utf8mb4_unicode_ci',
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
+    Db::transactions('on');
 
     $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     $sql_array = explode("\n", $sql_file);

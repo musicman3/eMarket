@@ -121,7 +121,6 @@ class Success {
 
         Db::set([
             'db_type' => Valid::inPOST('database_type'),
-            'db_transactions' => 'false',
             'db_server' => Valid::inPOST('server_db'),
             'db_name' => Valid::inPOST('database_name'),
             'db_username' => Valid::inPOST('login_db'),
@@ -134,6 +133,7 @@ class Success {
             'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
             'db_path' => self::$root . '/storage/databases/sqlite.db3'
         ]);
+        Db::transactions('on');
 
         if (Valid::inPOST('database_type') == 'mysql') {
             Db::connect()->exec("CREATE DATABASE IF NOT EXISTS " . Valid::inPOST('database_name') . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");

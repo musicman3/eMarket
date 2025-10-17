@@ -54,7 +54,6 @@ if (Settings::path() != 'install') {
 
     Db::set([
         'db_type' => DB_TYPE,
-        'db_transactions' => 'true',
         'db_server' => DB_SERVER,
         'db_name' => DB_NAME,
         'db_username' => DB_USERNAME,
@@ -66,6 +65,8 @@ if (Settings::path() != 'install') {
         'db_collate' => 'utf8mb4_unicode_ci',
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
+    Db::transactions('on');
+
     // Load BasicSettings
     new BasicSettings();
 }
