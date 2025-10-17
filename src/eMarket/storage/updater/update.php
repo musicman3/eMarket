@@ -286,7 +286,7 @@ function sqlUpdate(): void {
         'db_collate' => 'utf8mb4_unicode_ci',
         'db_path' => ROOT . '/storage/databases/sqlite.db3'
     ]);
-    Db::transactions('on');
+    Cruder\Db::transactions('on');
 
     $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     $sql_array = explode("\n", $sql_file);
