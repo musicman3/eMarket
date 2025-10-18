@@ -119,20 +119,26 @@ class Success {
             exit;
         }
 
-        Db::set([
-            'db_type' => Valid::inPOST('database_type'),
-            'db_server' => Valid::inPOST('server_db'),
-            'db_name' => Valid::inPOST('database_name'),
-            'db_username' => Valid::inPOST('login_db'),
-            'db_password' => Valid::inPOST('password_db'),
-            'db_prefix' => Valid::inPOST('database_prefix'),
-            'db_port' => Valid::inPOST('database_port'),
-            'db_family' => Valid::inPOST('database_family'),
-            'db_charset' => 'utf8mb4',
-            'db_collate' => 'utf8mb4_unicode_ci',
-            'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
-            'db_path' => self::$root . '/storage/databases/sqlite.db3'
-        ]);
+        Db::config(
+                [
+                    Valid::inPOST('database_type') =>
+                    [
+                        'db_type' => Valid::inPOST('database_type'),
+                        'db_server' => Valid::inPOST('server_db'),
+                        'db_name' => Valid::inPOST('database_name'),
+                        'db_username' => Valid::inPOST('login_db'),
+                        'db_password' => Valid::inPOST('password_db'),
+                        'db_prefix' => Valid::inPOST('database_prefix'),
+                        'db_port' => Valid::inPOST('database_port'),
+                        'db_family' => Valid::inPOST('database_family'),
+                        'db_charset' => 'utf8mb4',
+                        'db_collate' => 'utf8mb4_unicode_ci',
+                        'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
+                        'db_path' => self::$root . '/storage/databases/sqlite.db3'
+                    ]
+                ]
+        );
+        Db::use(Valid::inPOST('database_type'));
         Db::transactions('on');
 
         if (Valid::inPOST('database_type') == 'mysql') {

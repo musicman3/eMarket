@@ -273,20 +273,26 @@ function sqlUpdate(): void {
     // PSR-4 Autoload
     require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
-    Cruder\Db::set([
-        'db_type' => DB_TYPE,
-        'db_server' => DB_SERVER,
-        'db_name' => DB_NAME,
-        'db_username' => DB_USERNAME,
-        'db_password' => DB_PASSWORD,
-        'db_prefix' => DB_PREFIX,
-        'db_port' => DB_PORT,
-        'db_family' => DB_FAMILY,
-        'db_charset' => 'utf8mb4',
-        'db_collate' => 'utf8mb4_unicode_ci',
-        'db_path' => ROOT . '/storage/databases/sqlite.db3'
-    ]);
-    Cruder\Db::transactions('on');
+    Db::config(
+            [
+                DB_TYPE =>
+                [
+                    'db_type' => DB_TYPE,
+                    'db_server' => DB_SERVER,
+                    'db_name' => DB_NAME,
+                    'db_username' => DB_USERNAME,
+                    'db_password' => DB_PASSWORD,
+                    'db_prefix' => DB_PREFIX,
+                    'db_port' => DB_PORT,
+                    'db_family' => DB_FAMILY,
+                    'db_charset' => 'utf8mb4',
+                    'db_collate' => 'utf8mb4_unicode_ci',
+                    'db_path' => ROOT . '/storage/databases/sqlite.db3'
+                ]
+            ]
+    );
+    Db::use(DB_TYPE);
+    Db::transactions('on');
 
     $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     $sql_array = explode("\n", $sql_file);
