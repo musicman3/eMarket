@@ -277,7 +277,7 @@ function sqlUpdate(): void {
             [
                 DB_TYPE =>
                 [
-                    'db_type' => DB_TYPE,
+                    'db_driver' => DB_TYPE,
                     'db_server' => DB_SERVER,
                     'db_name' => DB_NAME,
                     'db_username' => DB_USERNAME,
@@ -291,8 +291,7 @@ function sqlUpdate(): void {
                 ]
             ]
     );
-    Cruder\Db::use(DB_TYPE);
-    Cruder\Db::transactions('on');
+    Cruder\Db::use(DB_TYPE)->transactions('on');
 
     $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     $sql_array = explode("\n", $sql_file);

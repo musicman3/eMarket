@@ -56,7 +56,7 @@ if (Settings::path() != 'install') {
             [
                 DB_TYPE =>
                 [
-                    'db_type' => DB_TYPE,
+                    'db_driver' => DB_TYPE,
                     'db_server' => DB_SERVER,
                     'db_name' => DB_NAME,
                     'db_username' => DB_USERNAME,
@@ -71,8 +71,7 @@ if (Settings::path() != 'install') {
                 ]
             ]
     );
-    Db::use(DB_TYPE);
-    Db::transactions('on');
+    Db::use(DB_TYPE)->transactions('on');
 
     // Load BasicSettings
     new BasicSettings();
