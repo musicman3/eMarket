@@ -273,7 +273,7 @@ function sqlUpdate(): void {
     // PSR-4 Autoload
     require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
-    Db::config(
+    Cruder\Db::config(
             [
                 DB_TYPE =>
                 [
@@ -291,8 +291,8 @@ function sqlUpdate(): void {
                 ]
             ]
     );
-    Db::use(DB_TYPE);
-    Db::transactions('on');
+    Cruder\Db::use(DB_TYPE);
+    Cruder\Db::transactions('on');
 
     $sql_file = file_get_contents(ROOT . '/storage/updater/sql/' . DB_TYPE . '.sql', true);
     $sql_array = explode("\n", $sql_file);
