@@ -66,8 +66,7 @@ if (Settings::path() != 'install') {
                     'db_family' => DB_FAMILY,
                     'db_charset' => 'utf8mb4',
                     'db_collate' => 'utf8mb4_unicode_ci',
-                    'db_path' => ROOT . '/storage/databases/sqlite.db3',
-                    'db_error_url' => '/admin/?route=error_log'
+                    'db_path' => ROOT . '/storage/databases/sqlite.db3'
                 ]
             ]
     );
