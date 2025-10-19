@@ -30,6 +30,7 @@ class UploadsBlank implements ConstructorInterface {
      * Init
      *
      */
+    #[\Override]
     public static function init(): string|bool {
 
         if (Settings::path() == 'uploads' && Valid::inGET('blank')) {
@@ -37,5 +38,4 @@ class UploadsBlank implements ConstructorInterface {
         }
         return false;
     }
-
 }

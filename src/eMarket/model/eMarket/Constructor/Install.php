@@ -29,6 +29,7 @@ class Install implements ConstructorInterface {
      * Init
      *
      */
+    #[\Override]
     public static function init(): string|bool {
 
         if (Settings::path() == 'install') {
@@ -36,5 +37,4 @@ class Install implements ConstructorInterface {
         }
         return false;
     }
-
 }

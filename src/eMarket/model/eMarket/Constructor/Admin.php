@@ -29,6 +29,7 @@ class Admin implements ConstructorInterface {
      * Init
      *
      */
+    #[\Override]
     public static function init(): string|bool {
 
         if (Settings::path() == 'admin') {
@@ -36,5 +37,4 @@ class Admin implements ConstructorInterface {
         }
         return false;
     }
-
 }
