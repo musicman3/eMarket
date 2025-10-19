@@ -87,7 +87,7 @@ if (Products::$products != FALSE) {
             </div>
         </div>
         <div class="row">
-            <div class="tab-content">
+            <div class="contentText">
                 <div class="list-group-item border-0">
                     <ul class="nav nav-tabs">
                         <li class="nav-item bg-light"><a class="nav-link active" data-bs-toggle="tab" href="#panel_description"><?php echo lang('product_description') ?></a></li>
@@ -101,20 +101,21 @@ if (Products::$products != FALSE) {
                         <?php }
                         ?>
                     </ul>
-
-                    <div id="panel_description" class="tab-pane fade show active">
-                        <div class="item-text border border-top-0 rounded-bottom p-2"><?php echo Products::$products['description'] ?></div>
-                    </div>
-                    <?php if (Products::$attributes_status) { ?>
-                        <div id="panel_attribute" class="tab-pane fade show">
-                            <div class="item-text border border-top-0 rounded-bottom p-2 product-attribute"></div>
+                    <div class="tab-content">
+                        <div id="panel_description" class="tab-pane fade show active">
+                            <div class="item-text border border-top-0 rounded-bottom p-2"><?php echo Products::$products['description'] ?></div>
                         </div>
-                        <?php
-                    }
-                    foreach (Products::$tabs_data as $tabs) {
-                        require_once(ROOT . '/modules/tabs/' . $tabs['chanel_module_name'] . '/view/catalog/index.php');
-                    }
-                    ?>
+                        <?php if (Products::$attributes_status) { ?>
+                            <div id="panel_attribute" class="tab-pane fade show">
+                                <div class="item-text border border-top-0 rounded-bottom p-2 product-attribute"></div>
+                            </div>
+                            <?php
+                        }
+                        foreach (Products::$tabs_data as $tabs) {
+                            require_once(ROOT . '/modules/tabs/' . $tabs['chanel_module_name'] . '/view/catalog/index.php');
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
