@@ -49,6 +49,14 @@ class Routing {
      */
     function __construct() {
         $this->jsHandler();
+        $this->route();
+    }
+
+    /**
+     * Route
+     *
+     */
+    private function route(): void {
         $eMarketPage = $this->page();
         $eMarket = new $eMarketPage();
         $this->savePage($eMarket);
