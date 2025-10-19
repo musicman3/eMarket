@@ -84,9 +84,6 @@ new Lang();
 
 // Routing
 $eMarketRouting = new Routing();
-$eMarketPage = $eMarketRouting->page();
-$eMarket = new $eMarketPage();
-$eMarketRouting->savePage($eMarket);
 
 if ($eMarketRouting->constructor()) {
     require_once($eMarketRouting->constructor());

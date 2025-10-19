@@ -49,6 +49,9 @@ class Routing {
      */
     function __construct() {
         $this->jsHandler();
+        $eMarketPage = $this->page();
+        $eMarket = new $eMarketPage();
+        $this->savePage($eMarket);
     }
 
     /**
