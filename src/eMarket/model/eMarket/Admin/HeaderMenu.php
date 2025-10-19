@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Authorize,
     Settings,
     Valid
 };
@@ -175,11 +176,7 @@ class HeaderMenu {
     private function staffInit(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = Db::connect()
-                    ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('permission')
-                    ->where('login=', $_SESSION['login'])
-                    ->save();
+            $staff_permission = Authorize::$permission;
 
             if ($staff_permission != 'admin') {
 
@@ -249,5 +246,4 @@ class HeaderMenu {
             exit;
         }
     }
-
 }

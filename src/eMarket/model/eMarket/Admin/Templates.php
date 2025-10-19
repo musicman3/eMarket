@@ -299,10 +299,7 @@ class Templates {
     private function catalogButton(): void {
 
 
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = json_decode(Settings::basicSettings('other'), true);
 
         if (isset($other['catalog_button']) && $other['catalog_button'] == 'on') {
             self::$catalog_button_selected = 'checked';

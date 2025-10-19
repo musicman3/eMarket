@@ -54,6 +54,7 @@ class Authorize {
         }
 
         if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
+            $this->permission();
             $this->admin();
         }
 
@@ -161,24 +162,33 @@ class Authorize {
     }
 
     /**
+     * Permission 
+     *
+     */
+    private function permission(): void {
+        if (isset($_SESSION['login'])) {
+
+            self::$permission = Db::connect()
+                    ->read(TABLE_ADMINISTRATORS)
+                    ->selectValue('permission')
+                    ->where('login=', $_SESSION['login'])
+                    ->save();
+        }
+    }
+
+    /**
      * Demo mode init
      *
      */
     private function demoModeInit(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = Db::connect()
-                    ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('permission')
-                    ->where('login=', $_SESSION['login'])
-                    ->save();
-
-            if ($staff_permission != 'admin') {
+            if (self::$permission != 'admin') {
 
                 $mode = Db::connect()
                         ->read(TABLE_STAFF_MANAGER)
                         ->selectValue('mode')
-                        ->where('id=', $staff_permission)
+                        ->where('id=', self::$permission)
                         ->save();
 
                 if ($mode == 1) {
@@ -194,12 +204,6 @@ class Authorize {
      */
     private function dashboardCheck(): void {
         if (isset($_SESSION['login'])) {
-
-            self::$permission = Db::connect()
-                    ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('permission')
-                    ->where('login=', $_SESSION['login'])
-                    ->save();
 
             if (self::$permission != 'admin') {
 

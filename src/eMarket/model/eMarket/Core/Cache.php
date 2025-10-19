@@ -11,7 +11,8 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Messages,
-    Valid
+    Valid,
+    Settings
 };
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Cruder\Db;
@@ -93,10 +94,7 @@ class Cache {
      */
     private function cacheStatus(): void {
 
-        $this->cache_status = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('cache_status')
-                ->save();
+        $this->cache_status = Settings::basicSettings('cache_status');
 
         if (Valid::inPOST('cache_status')) {
             $cache_status = 0;
@@ -123,10 +121,7 @@ class Cache {
      */
     private function cachingTime(): void {
 
-        $this->caching_time = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('caching_time')
-                ->save();
+        $this->caching_time = Settings::basicSettings('caching_time');
 
         if (Valid::inPOST('caching_time')) {
 
@@ -165,5 +160,4 @@ class Cache {
         $Cache = new FilesystemAdapter();
         $Cache->deleteItem($item);
     }
-
 }

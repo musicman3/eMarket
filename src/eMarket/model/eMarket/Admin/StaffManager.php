@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
+    Authorize,
     Func,
     Lang,
     Messages,
@@ -154,11 +155,7 @@ class StaffManager {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $user_check = Db::connect()
-                    ->read(TABLE_ADMINISTRATORS)
-                    ->selectValue('permission')
-                    ->where('login=', $_SESSION['login'])
-                    ->save();
+            $user_check = Authorize::$permission;
 
             Db::connect()
                     ->delete(TABLE_STAFF_MANAGER)
@@ -246,5 +243,4 @@ class StaffManager {
         }
         return '';
     }
-
 }

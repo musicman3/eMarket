@@ -11,7 +11,8 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Cryptography,
-    JsonRpc
+    JsonRpc,
+    Settings
 };
 use Cruder\Db;
 
@@ -66,10 +67,7 @@ class AiChat extends JsonRpc {
     private function setChatName(): void {
         if (isset(self::$jsonrpc['param']['aichat_name'])) {
 
-            $other = json_decode(Db::connect()
-                            ->read(TABLE_BASIC_SETTINGS)
-                            ->selectValue('other')
-                            ->save(), true);
+            $other = json_decode(Settings::basicSettings('other'), true);
 
             $other['aichat_name'] = self::$jsonrpc['param']['aichat_name'];
 
@@ -87,10 +85,7 @@ class AiChat extends JsonRpc {
      *
      */
     public static function getChatName(): void {
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = json_decode(Settings::basicSettings('other'), true);
 
         if (isset($other['aichat_name'])) {
             self::$chat_name = $other['aichat_name'];

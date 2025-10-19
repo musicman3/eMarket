@@ -49,10 +49,7 @@ class Debug {
      */
     public static function info(): void {
 
-        $val = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('debug')
-                ->save();
+        $val = Settings::basicSettings('debug');
 
         if ($val == 1) {
             $tend = microtime(true);
@@ -66,5 +63,4 @@ class Debug {
             echo self::trace(self::$debug_helper);
         }
     }
-
 }

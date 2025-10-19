@@ -55,12 +55,14 @@ class BasicSettings {
     public static $checked_lang = [];
     public static $primary_lang_selected = [];
     public static $button_update_status = '';
+    public static $other;
 
     /**
      * Constructor
      *
      */
     function __construct() {
+        $this->basicSettingsAllData();
         if (Valid::inGET('route') == 'basic_settings') {
             $this->linesOnPage();
             $this->sessionExprTime();
@@ -91,6 +93,29 @@ class BasicSettings {
         $this->checkedLang();
         $this->primaryLangSelected();
         $this->languagesSave();
+    }
+
+    /**
+     * Other
+     * 
+     */
+    private function basicSettingsAllData(): void {
+
+        $basic_settings = Settings::basicSettings();
+
+        self::$other = json_decode($basic_settings['other'], true);
+        self::$debug = $basic_settings['debug'];
+        self::$primary_language = Settings::primaryLanguage();
+        self::$template = $basic_settings['template'];
+        self::$email = $basic_settings['email'];
+        self::$email_name = $basic_settings['email_name'];
+        self::$smtp_status = $basic_settings['smtp_status'];
+        self::$smtp_auth = $basic_settings['smtp_auth'];
+        self::$host_email = $basic_settings['host_email'];
+        self::$username_email = $basic_settings['username_email'];
+        self::$password_email = $basic_settings['password_email'];
+        self::$smtp_secure = $basic_settings['smtp_secure'];
+        self::$smtp_port = $basic_settings['smtp_port'];
     }
 
     /**
@@ -129,10 +154,7 @@ class BasicSettings {
      */
     private function availableLanguages(): array {
 
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = self::$other;
 
         self::$available_languages = self::$languages_list;
 
@@ -170,10 +192,7 @@ class BasicSettings {
 
         if (Valid::inPOST('add') == 'ok') {
 
-            $other = json_decode(Db::connect()
-                            ->read(TABLE_BASIC_SETTINGS)
-                            ->selectValue('other')
-                            ->save(), true);
+            $other = self::$other;
 
             if (isset($other['hidden_languages'])) {
                 unset($other['hidden_languages']);
@@ -234,11 +253,6 @@ class BasicSettings {
      */
     private function debug(): void {
 
-        self::$debug = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('debug')
-                ->save();
-
         if (Valid::inPOST('debug')) {
             $debug_set = 0;
 
@@ -263,7 +277,6 @@ class BasicSettings {
      *
      */
     private function primaryLanguage(): void {
-        self::$primary_language = Settings::primaryLanguage();
 
         if (Valid::inPOST('primary_language')) {
 
@@ -309,10 +322,6 @@ class BasicSettings {
      *
      */
     private function template(): void {
-        self::$template = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('template')
-                ->save();
 
         if (Valid::inPOST('default_template')) {
 
@@ -333,11 +342,6 @@ class BasicSettings {
      *
      */
     private function email(): void {
-
-        self::$email = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('email')
-                ->save();
 
         if (Valid::inPOST('email')) {
 
@@ -361,11 +365,6 @@ class BasicSettings {
      */
     private function emailName(): void {
 
-        self::$email_name = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('email_name')
-                ->save();
-
         if (Valid::inPOST('email_name')) {
 
             Db::connect()
@@ -385,11 +384,6 @@ class BasicSettings {
      *
      */
     private function smtpStatus(): void {
-
-        self::$smtp_status = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('smtp_status')
-                ->save();
 
         if (Valid::inPOST('smtp_status')) {
             $smtp_status_set = 0;
@@ -416,11 +410,6 @@ class BasicSettings {
      */
     private function smtpAuth(): void {
 
-        self::$smtp_auth = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('smtp_auth')
-                ->save();
-
         if (Valid::inPOST('smtp_auth')) {
             $smtp_auth_set = 0;
 
@@ -446,11 +435,6 @@ class BasicSettings {
      */
     private function hostEmail(): void {
 
-        self::$host_email = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('host_email')
-                ->save();
-
         if (Valid::inPOST('host_email')) {
 
             Db::connect()
@@ -470,11 +454,6 @@ class BasicSettings {
      *
      */
     private function usernameEmail(): void {
-
-        self::$username_email = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('username_email')
-                ->save();
 
         if (Valid::inPOST('username_email')) {
 
@@ -496,11 +475,6 @@ class BasicSettings {
      */
     private function passwordEmail(): void {
 
-        self::$password_email = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('password_email')
-                ->save();
-
         if (Valid::inPOST('password_email')) {
 
             Db::connect()
@@ -521,11 +495,6 @@ class BasicSettings {
      */
     private function smtpSecure(): void {
 
-        self::$smtp_secure = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('smtp_secure')
-                ->save();
-
         if (Valid::inPOST('smtp_secure')) {
 
             Db::connect()
@@ -545,11 +514,6 @@ class BasicSettings {
      *
      */
     private function smtpPort(): void {
-
-        self::$smtp_port = Db::connect()
-                ->read(TABLE_BASIC_SETTINGS)
-                ->selectValue('smtp_port')
-                ->save();
 
         if (Valid::inPOST('smtp_port')) {
 
@@ -601,10 +565,7 @@ class BasicSettings {
      */
     private function storeName(): void {
 
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = self::$other;
 
         if (isset($other['store_name'])) {
             self::$store_name = $other['store_name'];
@@ -630,10 +591,7 @@ class BasicSettings {
      */
     private function yearOfFoundation(): void {
 
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = self::$other;
 
         if (isset($other['year_of_foundation'])) {
             self::$year_of_foundation = $other['year_of_foundation'];

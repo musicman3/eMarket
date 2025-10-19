@@ -416,10 +416,7 @@ class Settings {
      */
     public static function catalogButton(): string {
 
-        $other = json_decode(Db::connect()
-                        ->read(TABLE_BASIC_SETTINGS)
-                        ->selectValue('other')
-                        ->save(), true);
+        $other = json_decode(self::basicSettings('other'), true);
 
         if (isset($other['catalog_button']) && $other['catalog_button'] == 'on') {
             return 'on';

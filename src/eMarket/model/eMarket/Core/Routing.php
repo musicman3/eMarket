@@ -36,6 +36,7 @@ class Routing {
     public static $jstructure = FALSE;
     public static $js_modules_handler = FALSE;
     public static $page_not_found = FALSE;
+    public static $array_pos_value = 'false';
 
     /**
      * Constructor
@@ -207,18 +208,20 @@ class Routing {
 
         $page = self::routingPath();
 
-        $array_pos_value = Db::connect()
-                ->read(TABLE_TEMPLATE_CONSTRUCTOR)
-                ->selectIndex('url, value')
-                ->where('group_id=', Settings::path())
-                ->and('page=', $page)
-                ->and('template_name=', Settings::template())
-                ->orderByAsc('sort')
-                ->save();
+        if (self::$array_pos_value == 'false') {
+            self::$array_pos_value = Db::connect()
+                    ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->selectIndex('url, value')
+                    ->where('group_id=', Settings::path())
+                    ->and('page=', $page)
+                    ->and('template_name=', Settings::template())
+                    ->orderByAsc('sort')
+                    ->save();
+        }
 
-        if (count($array_pos_value) > 0) {
+        if (count(self::$array_pos_value) > 0) {
             $array_out = [];
-            foreach ($array_pos_value as $val) {
+            foreach (self::$array_pos_value as $val) {
                 if ($val[1] == $position) {
                     $array_out[] = str_replace('controller', 'view/' . Settings::template(), $val[0]);
                 }
