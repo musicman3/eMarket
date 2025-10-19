@@ -39,6 +39,11 @@ class Routing {
     public static $array_pos_value = 'false';
 
     /**
+     * @var object|bool $emarket (The current object of the loaded page)
+     */
+    public static $emarket = FALSE;
+
+    /**
      * Constructor
      *
      */
@@ -313,6 +318,14 @@ class Routing {
                 self::$js_modules_handler = $path;
             }
         }
+    }
+
+    /**
+     * Save page object
+     *
+     */
+    public function savePage(object $eMarket): void {
+        self::$emarket = $eMarket;
     }
 
     /**

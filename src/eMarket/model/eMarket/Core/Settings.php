@@ -11,7 +11,8 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Func,
-    Valid
+    Valid,
+    Routing
 };
 use Cruder\Db;
 
@@ -26,7 +27,6 @@ use Cruder\Db;
  */
 class Settings {
 
-    private static $emarket = FALSE;
     public static $path;
     public static $lang;
     public static $default_page;
@@ -56,14 +56,6 @@ class Settings {
      */
     public static function defaultPage(): string {
         return self::$default_page[self::path()];
-    }
-
-    /**
-     * Load page object
-     *
-     */
-    public static function loadPage(object $eMarket): void {
-        self::$emarket = $eMarket;
     }
 
     /**
@@ -270,8 +262,11 @@ class Settings {
      * @return string
      */
     public static function titlePageGenerator(): string {
-        if (isset(self::$emarket->title)) {
-            return lang(self::$emarket->title);
+
+        $eMarket = Routing::$emarket;
+
+        if (isset($eMarket->title)) {
+            return lang($eMarket->title);
         }
         return '';
     }
