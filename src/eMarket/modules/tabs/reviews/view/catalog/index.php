@@ -165,3 +165,4 @@ Routing::jsModulesHandler('tabs/reviews');
         <?php } ?>
 
     </div>
+</div>
