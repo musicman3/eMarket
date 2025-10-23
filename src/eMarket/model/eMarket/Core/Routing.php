@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -29,7 +29,7 @@ use eMarket\Admin\{
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Routing {
 
@@ -118,14 +118,25 @@ class Routing {
      * @return array (Routing Map array)
      */
     public static function routingMap(): array {
-        $routing_parameters = [];
-        $path = ucfirst(Settings::path());
-        $files = glob(getenv('DOCUMENT_ROOT') . '/model/eMarket/' . $path . '/*');
 
-        foreach ($files as $filename) {
-            $namespace = '\eMarket\\' . $path . '\\' . pathinfo($filename, PATHINFO_FILENAME);
-            if (isset($namespace::$routing_parameter)) {
-                $routing_parameters[$namespace::$routing_parameter] = pathinfo($filename, PATHINFO_FILENAME);
+        $path = ucfirst(Settings::path());
+        $namespace = '\eMarket\\' . $path;
+        $model = '/model/eMarket/' . $path;
+
+        $routing_parameters = [];
+        $files = Tree::filesTree(getenv('DOCUMENT_ROOT') . $model);
+
+        $namespaces = [];
+        foreach ($files as $file) {
+            $namespace_right_part_prepare = explode($model . '/', $file)[1];
+            $namespace_right_part = explode('.php', $namespace_right_part_prepare)[0];
+            $namespaces_right = str_replace('/', '\\', $namespace_right_part);
+            $namespaces[] = $namespace . '\\' . $namespaces_right;
+        }
+
+        foreach ($namespaces as $value) {
+            if (isset($value::$routing_parameter)) {
+                $routing_parameters[$value::$routing_parameter] = $value;
             }
         }
 
@@ -141,23 +152,19 @@ class Routing {
 
         if (Settings::path() == 'catalog') {
             $default_routing_parameter = 'catalog';
-            $class_path = 'eMarket\Catalog';
         }
 
         if (Settings::path() == 'admin') {
             new HeaderMenu();
             $default_routing_parameter = Settings::defaultPage();
-            $class_path = 'eMarket\Admin';
         }
 
         if (Settings::path() == 'install') {
             $default_routing_parameter = 'index';
-            $class_path = 'eMarket\Install';
         }
 
         if (Settings::path() == 'uploads') {
             $default_routing_parameter = 'uploads';
-            $class_path = 'eMarket\Uploads';
         }
 
         if (Settings::path() == 'JsonRpc') {
@@ -166,10 +173,10 @@ class Routing {
 
         if (Valid::inGET('route') != '') {
             $page = self::pageProcessor(Valid::inGET('route'));
-            return Func::outputDataFiltering($class_path . '\\' . self::routingMap()[$page]);
+            return Func::outputDataFiltering(self::routingMap()[$page]);
         }
 
-        return Func::outputDataFiltering($class_path . '\\' . self::routingMap()[$default_routing_parameter]);
+        return Func::outputDataFiltering(self::routingMap()[$default_routing_parameter]);
     }
 
     /**
@@ -215,7 +222,7 @@ class Routing {
 
     /**
      * Template Layers Positioning Controller
-     * 
+     *
      * @param string $position (position)
      * @param string $count (counter marker)
      * @return int|array|string (positions for paths)
