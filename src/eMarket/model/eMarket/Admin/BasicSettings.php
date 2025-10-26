@@ -15,8 +15,8 @@ use eMarket\Core\{
     Settings,
     Valid
 };
-use eMarket\Admin\HeaderMenu;
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Basic Settings
@@ -64,6 +64,7 @@ class BasicSettings {
     function __construct() {
         $this->basicSettingsAllData();
         if (Valid::inGET('route') == 'basic_settings') {
+            new HeaderMenu();
             $this->linesOnPage();
             $this->sessionExprTime();
             $this->debug();
@@ -96,6 +97,15 @@ class BasicSettings {
     }
 
     /**
+     * Menu config
+     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
+     * 
+     */
+    public static function menu(): void {
+        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=basic_settings', 'bi-gear-fill', lang('title_basic_settings_index'), '', 'false'];
+    }
+
+    /**
      * Other
      * 
      */
@@ -116,15 +126,6 @@ class BasicSettings {
         self::$password_email = $basic_settings['password_email'];
         self::$smtp_secure = $basic_settings['smtp_secure'];
         self::$smtp_port = $basic_settings['smtp_port'];
-    }
-
-    /**
-     * Menu config
-     * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
-     */
-    public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=basic_settings', 'bi-gear-fill', lang('title_basic_settings_index'), '', 'false'];
     }
 
     /**

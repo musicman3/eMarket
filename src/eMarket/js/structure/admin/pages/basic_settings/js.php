@@ -14,7 +14,6 @@ use eMarket\Core\{
     <script type="text/javascript" src="/js/structure/admin/pages/basic_settings/update.js"></script>
 <?php } ?>
 <script type="text/javascript">
-    new BasicSettings();
 <?php if (Valid::$demo_mode == FALSE) { ?>
         new Update();
 <?php } ?>

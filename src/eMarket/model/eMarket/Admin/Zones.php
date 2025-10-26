@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Zones
@@ -39,6 +40,7 @@ class Zones {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->delete();
@@ -175,5 +177,4 @@ class Zones {
             }
         }
     }
-
 }

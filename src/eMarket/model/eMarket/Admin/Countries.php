@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Countries
@@ -39,6 +40,7 @@ class Countries {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->delete();
@@ -182,5 +184,4 @@ class Countries {
             }
         }
     }
-
 }

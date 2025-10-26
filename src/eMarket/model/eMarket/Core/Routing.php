@@ -12,15 +12,12 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Debug,
     Settings,
-    Func,
     Modules,
     Tree,
     Valid
 };
 use Cruder\Db;
-use eMarket\Admin\{
-    HeaderMenu
-};
+use R2D2\R2D2;
 
 /**
  * Routing class
@@ -48,8 +45,8 @@ class Routing {
      *
      */
     function __construct() {
-        $this->jsHandler();
         $this->route();
+        $this->jsHandler();
     }
 
     /**
@@ -57,43 +54,29 @@ class Routing {
      *
      */
     private function route(): void {
-        $eMarketPage = $this->page();
+        $eMarketPage = $this->init();
         $eMarket = new $eMarketPage();
         $this->savePage($eMarket);
     }
 
     /**
-     * Page processor (route logic for page)
+     * Init
      *
-     * @param string $path (route path)
-     * @return string (output path)
+     * @return string|null url
      */
-    public static function pageProcessor(string $path): string {
-
-        if (self::$page_not_found != false) {
-            return 'page_not_found';
-        }
-
-        $output = self::pageNotFound($path); // "Page not found" check
-        return $output;
+    private function init(): ?string {
+        $R2D2 = new R2D2();
+        return $R2D2->namespace();
     }
 
     /**
-     * Page Not Found
+     * Constructor routing
      *
-     * @param string $path (route path)
-     * @return string (output path)
+     * @return string (constructor routing string)
      */
-    public static function pageNotFound(string $path): string {
-
-        foreach (self::routingMap() as $key => $page) {
-            if ($path == $key) {
-                return $path;
-            }
-        }
-
-        $page = 'page_not_found';
-        return $page;
+    public function constructor(): string|bool {
+        $R2D2 = new R2D2();
+        return $R2D2->constructor();
     }
 
     /**
@@ -102,81 +85,8 @@ class Routing {
      * @return string $page (routing path)
      */
     public static function routingPath(): string {
-
-        $page = Settings::$default_page[Settings::path()];
-
-        if (Valid::inGET('route') != '') {
-            $page = self::pageProcessor(Valid::inGET('route'));
-        }
-
-        return $page;
-    }
-
-    /**
-     * Routing Map
-     *
-     * @return array (Routing Map array)
-     */
-    public static function routingMap(): array {
-
-        $path = ucfirst(Settings::path());
-        $namespace = '\eMarket\\' . $path;
-        $model = '/model/eMarket/' . $path;
-
-        $routing_parameters = [];
-        $files = Tree::filesTree(getenv('DOCUMENT_ROOT') . $model);
-
-        $namespaces = [];
-        foreach ($files as $file) {
-            $namespace_right_part_prepare = explode($model . '/', $file)[1];
-            $namespace_right_part = explode('.php', $namespace_right_part_prepare)[0];
-            $namespaces_right = str_replace('/', '\\', $namespace_right_part);
-            $namespaces[] = $namespace . '\\' . $namespaces_right;
-        }
-
-        foreach ($namespaces as $value) {
-            if (isset($value::$routing_parameter)) {
-                $routing_parameters[$value::$routing_parameter] = $value;
-            }
-        }
-
-        return $routing_parameters;
-    }
-
-    /**
-     * Pages routing
-     *
-     * @return string|null url
-     */
-    public function page(): ?string {
-
-        if (Settings::path() == 'catalog') {
-            $default_routing_parameter = 'catalog';
-        }
-
-        if (Settings::path() == 'admin') {
-            new HeaderMenu();
-            $default_routing_parameter = Settings::defaultPage();
-        }
-
-        if (Settings::path() == 'install') {
-            $default_routing_parameter = 'index';
-        }
-
-        if (Settings::path() == 'uploads') {
-            $default_routing_parameter = 'uploads';
-        }
-
-        if (Settings::path() == 'JsonRpc') {
-            return Func::outputDataFiltering('\\eMarket\\JsonRpc\\JsonRpcController');
-        }
-
-        if (Valid::inGET('route') != '') {
-            $page = self::pageProcessor(Valid::inGET('route'));
-            return Func::outputDataFiltering(self::routingMap()[$page]);
-        }
-
-        return Func::outputDataFiltering(self::routingMap()[$default_routing_parameter]);
+        $R2D2 = new R2D2();
+        return $R2D2->routingParameter();
     }
 
     /**
@@ -185,24 +95,17 @@ class Routing {
      * @return string|bool (view routing)
      */
     public static function template(): string|bool {
+        $R2D2 = new R2D2();
+        return $R2D2->page();
+    }
 
-        $page_dir = self::routingPath();
-
-        if (Valid::inGET('route_file') != '') {
-            $page = Valid::inGET('route_file') . '.php';
-        }
-
-        if (!Valid::inGET('route_file') OR Valid::inGET('route_file') == '') {
-            $page = 'index.php';
-        }
-
-        $str = str_replace('controller', 'view/' . Settings::template(), getenv('DOCUMENT_ROOT') . '/controller/' . Settings::path() . '/pages/' . $page_dir . '/' . $page);
-
-        if (file_exists($str)) {
-            return Func::outputDataFiltering($str);
-        }
-
-        return false;
+    /**
+     * JS Handler routing
+     *
+     */
+    private function jsHandler(): void {
+        $R2D2 = new R2D2();
+        self::$jstructure = $R2D2->js();
     }
 
     /**
@@ -278,38 +181,6 @@ class Routing {
     }
 
     /**
-     * JS Handler routing
-     *
-     */
-    private function jsHandler(): void {
-
-        if (Settings::path() == 'admin') {
-            if (Valid::inGET('route')) {
-                $path = getenv('DOCUMENT_ROOT') . '/js/structure/' . Settings::path() . '/pages/' . Valid::inGET('route');
-            } else {
-                $path = getenv('DOCUMENT_ROOT') . '/js/structure/' . Settings::path() . '/pages/' . Settings::defaultPage();
-            }
-            if (file_exists($path . '/js.php')) {
-                self::$jstructure = $path;
-            }
-        }
-
-        if (Settings::path() == 'catalog') {
-            $path = getenv('DOCUMENT_ROOT') . '/js/structure/' . Settings::path() . '/pages/' . Valid::inGET('route');
-            if (file_exists($path . '/js.php')) {
-                self::$jstructure = $path;
-            }
-        }
-
-        if (Settings::path() == 'install') {
-            $path = getenv('DOCUMENT_ROOT') . '/js/structure/' . Settings::path() . Valid::inGET('route');
-            if (file_exists($path . '/js.php')) {
-                self::$jstructure = $path;
-            }
-        }
-    }
-
-    /**
      * JS Modules Handler routing
      *
      * @param string $js_path Path to js.php
@@ -344,32 +215,5 @@ class Routing {
      */
     public function savePage(object $eMarket): void {
         self::$emarket = $eMarket;
-    }
-
-    /**
-     * Constructor routing
-     *
-     * @return string (constructor routing string)
-     */
-    public function constructor(): string|bool {
-
-        $constructor_list = Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/eMarket/Constructor');
-
-        $constructor_data = [];
-        foreach ($constructor_list as $val) {
-            $namespace = 'eMarket\Constructor\\' . pathinfo($val, PATHINFO_FILENAME);
-            if ($namespace::init()) {
-                $constructor_data[$namespace] = $namespace::init();
-            }
-        }
-
-        if (count($constructor_data) > 1) {
-            echo '<pre><b>Attention! Conflict inside the constructor. See data:</b></pre>';
-
-            Debug::trace($constructor_data);
-            return false;
-        } else {
-            return current($constructor_data);
-        }
     }
 }

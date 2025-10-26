@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Length
@@ -40,6 +41,7 @@ class Length {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();
@@ -261,5 +263,4 @@ class Length {
         }
         return $output;
     }
-
 }

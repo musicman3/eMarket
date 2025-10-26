@@ -40,7 +40,7 @@ use eMarket\Core\{
 
         <?php
         if (Routing::$jstructure) {
-            require_once(Routing::$jstructure . '/js.php');
+            require_once(Routing::$jstructure);
         }
         ?>
     </body>

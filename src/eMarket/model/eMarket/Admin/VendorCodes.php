@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Vendor Codes
@@ -40,6 +41,7 @@ class VendorCodes {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();
@@ -220,5 +222,4 @@ class VendorCodes {
         }
         return $output;
     }
-
 }

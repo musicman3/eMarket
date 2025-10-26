@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Units
@@ -40,6 +41,7 @@ class Units {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();

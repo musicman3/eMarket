@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid,
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Weight
@@ -40,6 +41,7 @@ class Weight {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();
@@ -261,5 +263,4 @@ class Weight {
         }
         return $output;
     }
-
 }

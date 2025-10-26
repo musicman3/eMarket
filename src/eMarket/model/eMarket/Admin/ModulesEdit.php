@@ -13,6 +13,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Modules/Edit
@@ -34,6 +35,7 @@ class ModulesEdit {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->title();
         $this->switchActive();
     }
@@ -63,5 +65,4 @@ class ModulesEdit {
             self::$switch_active = 'checked';
         }
     }
-
 }

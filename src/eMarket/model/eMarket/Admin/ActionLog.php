@@ -35,6 +35,7 @@ class ActionLog {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->delete();
         $this->data();
     }
@@ -92,5 +93,4 @@ class ActionLog {
             return 'table-danger';
         }
     }
-
 }

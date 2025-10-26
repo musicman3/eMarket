@@ -18,6 +18,7 @@ use eMarket\Core\{
     Messages
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Currencies
@@ -41,6 +42,7 @@ class Currencies {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();
@@ -286,5 +288,4 @@ class Currencies {
         }
         return $output;
     }
-
 }

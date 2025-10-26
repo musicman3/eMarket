@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Order Status
@@ -40,6 +41,7 @@ class OrderStatus {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();
@@ -260,5 +262,4 @@ class OrderStatus {
         }
         return $output;
     }
-
 }

@@ -17,6 +17,7 @@ use eMarket\Core\{
     Settings
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Staff
@@ -39,6 +40,7 @@ class Staff {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->staffManagerId();
         $this->add();
         $this->delete();
@@ -132,5 +134,4 @@ class Staff {
 
         Pages::data(self::$sql_data);
     }
-
 }

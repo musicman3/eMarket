@@ -38,6 +38,7 @@ class Customers {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->status();
         $this->delete();
         $this->data();
@@ -123,5 +124,4 @@ class Customers {
 
         Pages::data($lines);
     }
-
 }

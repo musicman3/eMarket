@@ -16,6 +16,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Templates
@@ -51,6 +52,7 @@ class Templates {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->data();
         $this->selectPage();
         $this->selectTemplate();

@@ -11,8 +11,7 @@ namespace eMarket\JsonRpc;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    JsonRpc,
-    Valid
+    JsonRpc
 };
 use \Mpdf\Mpdf;
 use Cruder\Db;

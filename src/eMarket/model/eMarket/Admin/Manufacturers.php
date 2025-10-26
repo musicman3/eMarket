@@ -42,6 +42,7 @@ class Manufacturers {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->imgUpload();
@@ -194,5 +195,4 @@ class Manufacturers {
             }
         }
     }
-
 }

@@ -35,6 +35,7 @@ class ErrorLog {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->delete();
         $this->data();
     }
@@ -100,5 +101,4 @@ class ErrorLog {
 
         return $output;
     }
-
 }

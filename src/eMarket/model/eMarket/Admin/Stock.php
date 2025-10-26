@@ -70,6 +70,7 @@ class Stock {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->imgUploadCategories();
         $this->imgUploadProducts();
         $this->initEac();
@@ -362,7 +363,7 @@ class Stock {
                 $modal_id_prod = self::$arr_merge['prod'][$i . 'a']['id'];
 
                 foreach (self::$sql_data_prod as $sql_modal_prod) {
-                    if ($sql_modal_prod['id'] == $modal_id_prod  && in_array($sql_modal_prod['language'], lang('#lang_all'))) {
+                    if ($sql_modal_prod['id'] == $modal_id_prod && in_array($sql_modal_prod['language'], lang('#lang_all'))) {
                         $name_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['name'];
                         $description_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['description'];
                         $keyword_product[array_search($sql_modal_prod['language'], lang('#lang_all'))][$modal_id_prod] = $sql_modal_prod['keyword'];

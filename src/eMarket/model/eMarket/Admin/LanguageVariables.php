@@ -13,6 +13,7 @@ use eMarket\Core\{
     Messages,
     Valid
 };
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Language Variables
@@ -35,6 +36,7 @@ class LanguageVariables {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->edit();
         $this->adminLanguageCustom();
         $this->catalogLanguageCustom();

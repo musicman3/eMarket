@@ -16,6 +16,7 @@ use eMarket\Core\{
 };
 use eMarket\Admin\Modules;
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Modules
@@ -41,6 +42,7 @@ class Modules {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->delete();

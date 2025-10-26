@@ -16,6 +16,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Zones/Listing
@@ -46,6 +47,7 @@ class ZonesListing {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->zones_id();
         $this->add();
         $this->data();
@@ -152,5 +154,4 @@ class ZonesListing {
             array_push(self::$text_arr, $text);
         }
     }
-
 }

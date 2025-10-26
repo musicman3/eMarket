@@ -41,6 +41,7 @@ class Orders {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->edit();
         $this->delete();
         $this->data();

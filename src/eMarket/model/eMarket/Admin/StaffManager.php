@@ -42,6 +42,7 @@ class StaffManager {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->delete();

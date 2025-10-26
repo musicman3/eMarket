@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace eMarket\Admin;
 
+use eMarket\Admin\HeaderMenu;
+
 /**
  * Page Not Found
  *
@@ -23,4 +25,11 @@ class PageNotFound {
     public static $routing_parameter = 'page_not_found';
     public $title = 'title_page_not_found_index';
 
+    /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        new HeaderMenu();
+    }
 }

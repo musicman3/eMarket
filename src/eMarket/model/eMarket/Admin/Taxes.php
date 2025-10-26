@@ -18,6 +18,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Taxes
@@ -44,6 +45,7 @@ class Taxes {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->add();
         $this->edit();
         $this->delete();
@@ -226,5 +228,4 @@ class Taxes {
             }
         }
     }
-
 }

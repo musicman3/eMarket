@@ -45,6 +45,7 @@ class Dashboard {
      *
      */
     function __construct() {
+        new HeaderMenu();
         Valid::$demo_mode = FALSE;
         $this->cardOrdersData();
         $this->jsonData();

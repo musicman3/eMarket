@@ -87,7 +87,7 @@ use eMarket\Core\{
 
         <?php
         if (Routing::$jstructure) {
-            require_once(Routing::$jstructure . '/js.php');
+            require_once(Routing::$jstructure);
         }
         if (Routing::$js_modules_handler) {
             require_once(Routing::$js_modules_handler . '/js.php');

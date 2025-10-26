@@ -49,6 +49,7 @@ class Stickers {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->default();
         $this->add();
         $this->edit();

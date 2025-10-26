@@ -10,8 +10,6 @@ use eMarket\Core\{
 use eMarket\Admin\{
     BasicSettings
 };
-
-new BasicSettings();
 ?>
 
 <div class="container-fluid footerwrap">

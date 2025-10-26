@@ -17,6 +17,7 @@ use eMarket\Core\{
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\HeaderMenu;
 
 /**
  * Regions
@@ -40,6 +41,7 @@ class Regions {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->countryId();
         $this->add();
         $this->edit();
@@ -183,5 +185,4 @@ class Regions {
             }
         }
     }
-
 }

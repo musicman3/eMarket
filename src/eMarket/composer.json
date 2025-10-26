@@ -18,7 +18,8 @@
         "symfony/cache": "7.2.5",
         "psr/clock": "1.0.0",
         "twbs/bootstrap": "5.3.8",
-        "musicman3/cruder": "^1.0"
+        "musicman3/cruder": "^1.0",
+        "musicman3/r2-d2": "^1.0"
     },
     "config": {
         "platform": {

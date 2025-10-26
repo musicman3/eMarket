@@ -45,12 +45,26 @@ class HeaderMenu {
      *
      */
     function __construct() {
+        $this->reset();
         $this->init();
         $this->initModules();
         $this->levelOne();
         $this->staffInit();
         $this->staticLevels();
         $this->exit();
+    }
+
+    /**
+     * Reset
+     *
+     */
+    private function reset(): void {
+        self::$level = [];
+        self::$menu = [];
+        self::$submenu = [];
+        self::$param_1 = [];
+        self::$param_2 = [];
+        self::$staff_data = false;
     }
 
     /**
@@ -156,7 +170,7 @@ class HeaderMenu {
 
         //HELP
         self::$level['help'] = ['#', lang('menu_extra'), 'true', 'bi-lightbulb-fill'];
-        self::$menu['help'][0] = ['http://emarketforum.com', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
+        self::$menu['help'][0] = ['https://emarkets.su', 'bi-chat-quote', lang('menu_support'), 'target="_blank"', 'false'];
         self::$menu['help'][1] = ['/', 'bi-bag', lang('menu_catalog'), 'target="_blank"', 'false'];
     }
 

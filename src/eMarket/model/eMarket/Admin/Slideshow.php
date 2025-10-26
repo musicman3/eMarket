@@ -54,6 +54,7 @@ class Slideshow {
      *
      */
     function __construct() {
+        new HeaderMenu();
         $this->settings();
         $this->slideshowPref();
         $this->add();
@@ -400,5 +401,4 @@ class Slideshow {
             }
         }
     }
-
 }
