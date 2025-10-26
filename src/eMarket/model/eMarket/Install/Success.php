@@ -159,6 +159,7 @@ class Success {
         }
 
         require_once(self::$root . '/storage/configure/configure.php');
+        require_once(self::$root . '/storage/configure/cruder_config.php');
 
         $password_admin_hash = Cryptography::passwordHash(self::$password_admin);
 
