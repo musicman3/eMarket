@@ -28,7 +28,6 @@ use R2D2\R2D2;
  */
 class Routing {
 
-    public static $jstructure = FALSE;
     public static $js_modules_handler = FALSE;
     public static $array_pos_value = 'false';
 
@@ -99,10 +98,11 @@ class Routing {
     /**
      * JS Handler routing
      *
+     * @return string|bool (js routing)
      */
-    private function jsHandler(): void {
+    public static function jsHandler(): string|bool {
         $R2D2 = new R2D2();
-        self::$jstructure = $R2D2->js();
+        return $R2D2->js();
     }
 
     /**

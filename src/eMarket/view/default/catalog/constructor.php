@@ -136,8 +136,8 @@ use eMarket\Catalog\{
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
 
-        if (Routing::$jstructure !== 'false') {
-            require_once(Routing::$jstructure);
+        if (Routing::jsHandler() !== 'false') {
+            require_once(Routing::jsHandler());
         }
         if (Routing::$js_modules_handler) {
             require_once(Routing::$js_modules_handler . '/js.php');
