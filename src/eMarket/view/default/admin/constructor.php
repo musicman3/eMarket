@@ -11,6 +11,7 @@ use eMarket\Core\{
     Routing,
     Modules
 };
+use eMarket\Admin\Templates;
 ?>
 
 <!doctype html>
@@ -62,7 +63,7 @@ use eMarket\Core\{
 
         <?php
         require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/aichat.php');
-        foreach (Routing::tlpc('header') as $path) {
+        foreach (Templates::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -79,7 +80,7 @@ use eMarket\Core\{
         </div>
 
         <?php
-        foreach (Routing::tlpc('footer') as $path) {
+        foreach (Templates::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

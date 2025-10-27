@@ -5,11 +5,11 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Messages,
-    Routing
+    Messages
 };
+use eMarket\Admin\Templates;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -19,7 +19,7 @@ foreach (Routing::tlpc('content') as $path) {
 
 <div id="success" class="contentText">
     <div class="bg-light border rounded mb-3 py-3 px-2">
-	<p class="card-text"><?php echo lang('success_message') ?></p>
+        <p class="card-text"><?php echo lang('success_message') ?></p>
     </div>
     <form>
         <input hidden name="route" value="orders">

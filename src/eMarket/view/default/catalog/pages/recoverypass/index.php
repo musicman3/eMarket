@@ -6,11 +6,11 @@
 
 use eMarket\Core\{
     Authorize,
-    Messages,
-    Routing
+    Messages
 };
+use eMarket\Admin\Templates;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
@@ -45,4 +45,5 @@ foreach (Routing::tlpc('content') as $path) {
 
     <h1><?php echo lang('this_page_is_not_available') ?></h1>
 
-<?php }
+<?php
+}

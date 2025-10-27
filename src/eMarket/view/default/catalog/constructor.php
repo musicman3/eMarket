@@ -14,6 +14,7 @@ use eMarket\Core\{
 use eMarket\Catalog\{
     Index
 };
+use eMarket\Admin\Templates;
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@ use eMarket\Catalog\{
 
         <?php
         require_once('confirm.php');
-        foreach (Routing::tlpc('header') as $path) {
+        foreach (Templates::tlpc('header') as $path) {
             require_once (ROOT . $path);
         }
         ?>
@@ -68,11 +69,11 @@ use eMarket\Catalog\{
             <div class="row">
 
                 <?php
-                if (Routing::tlpc('boxes-left', 'count') > 0) {
+                if (Templates::tlpc('boxes-left', 'count') > 0) {
                     ?>
                     <div id="columnLeft" class="col-xl-3 col-lg-3">
                         <?php
-                        foreach (Routing::tlpc('boxes-left') as $path) {
+                        foreach (Templates::tlpc('boxes-left') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -80,14 +81,14 @@ use eMarket\Catalog\{
                 <?php } ?>
 
                 <?php
-                if (Routing::tlpc('boxes-left', 'count') > 0) {
+                if (Templates::tlpc('boxes-left', 'count') > 0) {
                     ?>
                     <div id="bodyContent" class="col-xl-9 col-lg-9">
                         <?php
                         require_once(Routing::template());
                         ?>
                     </div>
-                <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
+                <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
                         require_once(Routing::template());
@@ -96,14 +97,14 @@ use eMarket\Catalog\{
                 <?php } ?>
 
                 <?php
-                if (Routing::tlpc('boxes-right', 'count') > 0) {
+                if (Templates::tlpc('boxes-right', 'count') > 0) {
                     ?>
                     <div id="bodyContent" class="col-xl-9 col-lg-9 order-2 order-lg-1">
                         <?php
                         require_once(Routing::template());
                         ?>
                     </div>
-                <?php } elseif (Routing::tlpc('boxes-left', 'count') == 0 && Routing::tlpc('boxes-right', 'count') == 0) { ?>
+                <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
                     <div id="bodyContent" class="col-12">
                         <?php
                         require_once(Routing::template());
@@ -112,11 +113,11 @@ use eMarket\Catalog\{
                 <?php } ?>
 
                 <?php
-                if (Routing::tlpc('boxes-right', 'count') > 0) {
+                if (Templates::tlpc('boxes-right', 'count') > 0) {
                     ?>
                     <div id="columnRight" class="col-xl-3 col-lg-3 order-1 order-lg-2">
                         <?php
-                        foreach (Routing::tlpc('boxes-right') as $path) {
+                        foreach (Templates::tlpc('boxes-right') as $path) {
                             require_once (ROOT . $path);
                         }
                         ?>
@@ -127,7 +128,7 @@ use eMarket\Catalog\{
         </div>
 
         <?php
-        foreach (Routing::tlpc('footer') as $path) {
+        foreach (Templates::tlpc('footer') as $path) {
             require_once (ROOT . $path);
         }
         ?>

@@ -6,14 +6,14 @@
 
 use eMarket\Core\{
     Authorize,
-    Messages,
-    Routing
+    Messages
 };
 use eMarket\Catalog\{
     WithoutRegistration
 };
+use eMarket\Admin\Templates;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/privacy_policy.php')

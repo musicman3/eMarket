@@ -7,13 +7,13 @@
 use eMarket\Core\{
     Ecb,
     Messages,
-    Products as ProductsCore,
-    Routing
+    Products as ProductsCore
 };
 use eMarket\Catalog\{
     Products,
     Cart
 };
+use eMarket\Admin\Templates;
 
 if (Products::$products != FALSE) {
     require_once('modal/cart_message.php')
@@ -134,6 +134,6 @@ if (Products::$products != FALSE) {
     <?php
 }
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }    

@@ -7,12 +7,12 @@
 use eMarket\Core\{
     Authorize,
     Messages,
-    Valid,
-    Routing
+    Valid
 };
 use eMarket\Catalog\Register;
+use eMarket\Admin\Templates;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/privacy_policy.php')
@@ -69,7 +69,7 @@ if (!Valid::inPOST('email')) {
                     </fieldset>
                 </div>
             </div>
-        
+
             <div class="text-end mb-3 form-switch">
                 <?php echo sprintf(lang('register_privacy_statement_agree'), '#privacy_policy') ?>&nbsp;
                 <input class="form-check-input" type="checkbox" name="agree_privacy_policy" id="agree_privacy_policy" required>&nbsp;
@@ -112,5 +112,5 @@ if (Valid::inPOST('email') && Register::$user_email == NULL) {
             </div>
         </form>
     </div>
-<?php
+    <?php
 }

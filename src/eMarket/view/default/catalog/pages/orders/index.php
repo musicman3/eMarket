@@ -8,12 +8,12 @@ use eMarket\Core\{
     Clock\SystemClock,
     Messages,
     Pages,
-    Valid,
-    Routing
+    Valid
 };
+use eMarket\Admin\Templates;
 use eMarket\Catalog\Orders;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 require_once('modal/index.php')

@@ -13,7 +13,8 @@ use eMarket\Core\{
     Clock\SystemClock,
     Func,
     Settings,
-    Valid
+    Valid,
+    Routing
 };
 use Cruder\Db;
 use eMarket\Admin\HeaderMenu;
@@ -46,6 +47,7 @@ class Templates {
     public static $layout_boxes_basket;
     public static $layout_footer_basket;
     public static $catalog_button_selected = '';
+    public static $array_pos_value = 'false';
 
     /**
      * Constructor
@@ -357,6 +359,63 @@ class Templates {
                         ->set('sort', $value['sort'])
                         ->save();
             }
+        }
+    }
+
+    /**
+     * Template Layers Positioning Controller
+     *
+     * @param string $position (position)
+     * @param string $count (counter marker)
+     * @return int|array|string (positions for paths)
+     */
+    public static function tlpc(string $position, ?string $count = null): int|string|array {
+
+        $page = Routing::routingPath();
+
+        if (self::$array_pos_value == 'false') {
+            self::$array_pos_value = Db::connect()
+                    ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->selectIndex('url, value')
+                    ->where('group_id=', Settings::path())
+                    ->and('page=', $page)
+                    ->and('template_name=', Settings::template())
+                    ->orderByAsc('sort')
+                    ->save();
+        }
+
+        if (count(self::$array_pos_value) > 0) {
+            $array_out = [];
+            foreach (self::$array_pos_value as $val) {
+                if ($val[1] == $position) {
+                    $array_out[] = str_replace('controller', 'view/' . Settings::template(), $val[0]);
+                }
+            }
+            if ($count == 'count') {
+                return count($array_out);
+            }
+            return $array_out;
+        } else {
+
+            $array_pos = Db::connect()
+                    ->read(TABLE_TEMPLATE_CONSTRUCTOR)
+                    ->selectIndex('url, page')
+                    ->where('group_id=', Settings::path())
+                    ->and('value=', $position)
+                    ->and('template_name=', Settings::template())
+                    ->orderByAsc('sort')
+                    ->save();
+
+            $array_out = [];
+            foreach ($array_pos as $val) {
+                if ($val[1] == 'all') {
+                    $array_out[] = str_replace('controller', 'view/' . Settings::template(), $val[0]);
+                }
+            }
+            if ($count == 'count') {
+                return count($array_out);
+            }
+            return $array_out;
         }
     }
 }

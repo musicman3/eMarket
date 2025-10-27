@@ -7,11 +7,11 @@
 use eMarket\Core\{
     Authorize,
     Messages,
-    Routing,
     Valid
 };
+use eMarket\Admin\Templates;
 
-foreach (Routing::tlpc('content') as $path) {
+foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);
 }
 ?>
