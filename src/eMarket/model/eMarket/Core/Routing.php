@@ -149,6 +149,7 @@ class Routing {
     /**
      * Save page object
      *
+     * @param object $eMarket Page Object
      */
     public function savePage(object $eMarket): void {
         self::$emarket = $eMarket;
