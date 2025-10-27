@@ -82,17 +82,26 @@ use eMarket\Admin\Templates;
                 }
                 if (Templates::tlpc('boxes-left', 'count') > 0) {
                     ?>
+
                     <div id="bodyContent" class="col-xl-9 col-lg-9"><?php require_once(Routing::page()); ?></div>
+
                 <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
+
                     <div id="bodyContent" class="col-12"><?php require_once(Routing::page()); ?></div>
+
                 <?php } if (Templates::tlpc('boxes-right', 'count') > 0) { ?>
+
                     <div id="bodyContent" class="col-xl-9 col-lg-9 order-2 order-lg-1"><?php require_once(Routing::page()); ?></div>
+
                 <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
+
                     <div id="bodyContent" class="col-12"><?php require_once(Routing::page()); ?></div>
+
                     <?php
                 }
                 if (Templates::tlpc('boxes-right', 'count') > 0) {
                     ?>
+
                     <div id="columnRight" class="col-xl-3 col-lg-3 order-1 order-lg-2">
                         <?php
                         foreach (Templates::tlpc('boxes-right') as $path) {
