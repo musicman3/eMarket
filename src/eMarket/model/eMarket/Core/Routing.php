@@ -10,9 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Settings,
-    Modules,
-    Valid
+    Settings
 };
 use Cruder\Db;
 use R2D2\R2D2;
@@ -28,7 +26,6 @@ use R2D2\R2D2;
  */
 class Routing {
 
-    public static $js_modules_handler = FALSE;
     public static $array_pos_value = 'false';
 
     /**
@@ -42,7 +39,7 @@ class Routing {
      */
     function __construct() {
         $this->route();
-        $this->jsHandler();
+        $this->js();
     }
 
     /**
@@ -100,24 +97,9 @@ class Routing {
      *
      * @return string|bool (js routing)
      */
-    public static function jsHandler(): string|bool {
+    public static function js(): string|bool {
         $R2D2 = new R2D2();
         return $R2D2->js();
-    }
-
-    /**
-     * Modules routing
-     *
-     * @param string $path (path marker controller/view)
-     * @return string (modules routing)
-     */
-    public static function modules(string $path): string {
-
-        if (Valid::inGET('module_path')) {
-            return Modules::modulesPath() . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
-        } else {
-            return Modules::modulesPath() . '/' . $path . '/' . Settings::path();
-        }
     }
 
     /**
@@ -174,35 +156,6 @@ class Routing {
                 return count($array_out);
             }
             return $array_out;
-        }
-    }
-
-    /**
-     * JS Modules Handler routing
-     *
-     * @param string $js_path Path to js.php
-     */
-    public static function jsModulesHandler(?string $js_path = null): void {
-
-        if (Settings::path() == 'admin') {
-            $path = self::modules('js/structure');
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
-        }
-
-        if (Settings::path() == 'catalog' && $js_path == null) {
-            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js/structure/catalog';
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
-        }
-
-        if (Settings::path() == 'catalog' && $js_path != null) {
-            $path = ROOT . '/modules/' . $js_path . '/js/structure/catalog';
-            if (file_exists($path . '/js.php')) {
-                self::$js_modules_handler = $path;
-            }
         }
     }
 

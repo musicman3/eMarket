@@ -14,7 +14,6 @@ use eMarket\Core\{
     Interfaces\PaymentModulesInterface,
     Messages,
     Modules,
-    Routing,
     Settings,
     Valid
 };
@@ -41,7 +40,7 @@ class Cash implements PaymentModulesInterface {
      *
      */
     function __construct() {
-        Routing::jsModulesHandler();
+        Modules::js();
         if (Settings::path() == 'admin') {
             $this->save();
             $this->data();
@@ -169,5 +168,4 @@ class Cash implements PaymentModulesInterface {
 
         self::$shipping_val = json_decode((string) $shipping_val_prepare, true);
     }
-
 }

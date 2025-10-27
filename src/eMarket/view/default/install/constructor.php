@@ -39,8 +39,8 @@ use eMarket\Core\{
         <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <?php
-        if (Routing::jsHandler() != 'false') {
-            require_once(Routing::jsHandler());
+        if (Routing::js() != 'false') {
+            require_once(Routing::js());
         }
         ?>
     </body>

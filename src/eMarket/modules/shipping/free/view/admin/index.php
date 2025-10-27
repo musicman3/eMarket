@@ -8,12 +8,12 @@ use eMarket\Core\{
     Ecb,
     Pages,
     Valid,
-    Routing
+    Modules
 };
 use eMarket\Core\Modules\Shipping\Free;
 
 $eMarketShippingFree = new Free();
-Routing::jsModulesHandler();
+Modules::js();
 
 require_once('modal/index.php')
 ?>

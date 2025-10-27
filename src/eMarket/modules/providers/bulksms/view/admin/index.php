@@ -7,7 +7,7 @@
 use eMarket\Core\Modules\Providers\Bulksms;
 
 $eMarketHandlerBulksms = new Bulksms();
-\eMarket\Core\Routing::jsModulesHandler();
+\eMarket\Core\Modules::js();
 ?>
 
 <form class="was-validated" id="form_add_mod" name="form_add_mod" action="javascript:void(null);" onsubmit="Ajax.callAdd('form_add_mod')">

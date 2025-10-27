@@ -8,7 +8,8 @@ use eMarket\Core\{
     Authorize,
     Debug,
     Settings,
-    Routing
+    Routing,
+    Modules
 };
 use eMarket\Catalog\{
     Index
@@ -136,11 +137,11 @@ use eMarket\Catalog\{
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
 
-        if (Routing::jsHandler() !== 'false') {
-            require_once(Routing::jsHandler());
+        if (Routing::js() !== 'false') {
+            require_once(Routing::js());
         }
-        if (Routing::$js_modules_handler) {
-            require_once(Routing::$js_modules_handler . '/js.php');
+        if (Modules::js()) {
+            require_once(Modules::js());
         }
 
         Debug::info();

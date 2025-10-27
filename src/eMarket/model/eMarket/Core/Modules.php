@@ -196,12 +196,50 @@ final class Modules {
     }
 
     /**
-     * Path to module folder
+     * Modules path
      *
-     * @return string
+     * @param string $path (branch view/js)
+     * @return string (modules path)
      */
-    public static function modulesPath(): string {
+    public static function modulesPath(string $path): string {
 
-        return ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
+        $modules_path = ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
+
+        if (Valid::inGET('module_path')) {
+            return $modules_path . '/' . $path . '/' . Settings::path() . '/' . Valid::inGET('module_path');
+        } else {
+            return $modules_path . '/' . $path . '/' . Settings::path();
+        }
+    }
+
+    /**
+     * JS Modules Handler routing
+     *
+     * @param string $js_path Path to js.php
+     * @return string (js path)
+     */
+    public static function js(?string $js_path = null): string {
+
+        if (Settings::path() == 'admin') {
+            $path = Modules::modulesPath('js/structure');
+            if (file_exists($path . '/js.php')) {
+                return $path . '/js.php';
+            }
+        }
+
+        if (Settings::path() == 'catalog' && $js_path == null) {
+            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js/structure/catalog';
+            if (file_exists($path . '/js.php')) {
+                return $path . '/js.php';
+            }
+        }
+
+        if (Settings::path() == 'catalog' && $js_path != null) {
+            $path = ROOT . '/modules/' . $js_path . '/js/structure/catalog';
+            if (file_exists($path . '/js.php')) {
+                return $path . '/js.php';
+            }
+        }
+        return '';
     }
 }
