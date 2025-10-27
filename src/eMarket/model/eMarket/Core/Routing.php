@@ -10,10 +10,8 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Debug,
     Settings,
     Modules,
-    Tree,
     Valid
 };
 use Cruder\Db;
