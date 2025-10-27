@@ -28,6 +28,60 @@ class Routing {
     public static $emarket = FALSE;
 
     /**
+     * @var array $config (Route config)
+     */
+    private $config = [
+        'engine' =>
+        [
+            'admin' => [
+                'branch' => '/admin',
+                'constructor' => '/view/default/admin/constructor.php',
+                'pagesPath' => '/view/default/admin/pages',
+                'jsPath' => '/js/structure/admin/pages',
+                'modelPath' => '/model/eMarket/Admin',
+                'namespace' => '\eMarket\Admin',
+                'index_route' => 'dashboard',
+            ],
+            'catalog' => [
+                'branch' => '/',
+                'constructor' => '/view/default/catalog/constructor.php',
+                'pagesPath' => '/view/default/catalog/pages',
+                'jsPath' => '/js/structure/catalog/pages',
+                'modelPath' => '/model/eMarket/Catalog',
+                'namespace' => '\eMarket\Catalog',
+                'index_route' => 'catalog',
+            ],
+            'install' => [
+                'branch' => '/install',
+                'constructor' => '/view/default/install/constructor.php',
+                'pagesPath' => '/view/default/install/pages',
+                'jsPath' => '/js/structure/install/pages',
+                'modelPath' => '/model/eMarket/Install',
+                'namespace' => '\eMarket\Install',
+                'index_route' => 'index',
+            ],
+            'uploads' => [
+                'branch' => '/uploads',
+                'constructor' => '',
+                'pagesPath' => '',
+                'jsPath' => '',
+                'modelPath' => '/model/eMarket/Uploads',
+                'namespace' => '\eMarket\Uploads',
+                'index_route' => '',
+            ],
+            'JsonRpc' => [
+                'branch' => '/services/jsonrpc/request',
+                'constructor' => '',
+                'pagesPath' => '',
+                'jsPath' => '',
+                'modelPath' => '/model/eMarket/JsonRpc',
+                'namespace' => '\eMarket\JsonRpc',
+                'index_route' => 'JsonRpcController',
+            ],
+        ]
+    ];
+
+    /**
      * Constructor
      *
      */
@@ -51,58 +105,8 @@ class Routing {
      * @return string|null url
      */
     private function init(): ?string {
-        $config = [
-            'engine' =>
-            [
-                'admin' => [
-                    'branch' => '/admin',
-                    'constructor' => '/view/default/admin/constructor.php',
-                    'pagesPath' => '/view/default/admin/pages',
-                    'jsPath' => '/js/structure/admin/pages',
-                    'modelPath' => '/model/eMarket/Admin',
-                    'namespace' => '\eMarket\Admin',
-                    'index_route' => 'dashboard',
-                ],
-                'catalog' => [
-                    'branch' => '/',
-                    'constructor' => '/view/default/catalog/constructor.php',
-                    'pagesPath' => '/view/default/catalog/pages',
-                    'jsPath' => '/js/structure/catalog/pages',
-                    'modelPath' => '/model/eMarket/Catalog',
-                    'namespace' => '\eMarket\Catalog',
-                    'index_route' => 'catalog',
-                ],
-                'install' => [
-                    'branch' => '/install',
-                    'constructor' => '/view/default/install/constructor.php',
-                    'pagesPath' => '/view/default/install/pages',
-                    'jsPath' => '/js/structure/install/pages',
-                    'modelPath' => '/model/eMarket/Install',
-                    'namespace' => '\eMarket\Install',
-                    'index_route' => 'index',
-                ],
-                'uploads' => [
-                    'branch' => '/uploads',
-                    'constructor' => '',
-                    'pagesPath' => '',
-                    'jsPath' => '',
-                    'modelPath' => '/model/eMarket/Uploads',
-                    'namespace' => '\eMarket\Uploads',
-                    'index_route' => '',
-                ],
-                'JsonRpc' => [
-                    'branch' => '/services/jsonrpc/request',
-                    'constructor' => '',
-                    'pagesPath' => '',
-                    'jsPath' => '',
-                    'modelPath' => '/model/eMarket/JsonRpc',
-                    'namespace' => '\eMarket\JsonRpc',
-                    'index_route' => 'JsonRpcController',
-                ],
-            ]
-        ];
         $R2D2 = new R2D2();
-        $R2D2->config($config);
+        $R2D2->config($this->config);
         return $R2D2->namespace();
     }
 
