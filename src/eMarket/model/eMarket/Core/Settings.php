@@ -263,7 +263,7 @@ class Settings {
      */
     public static function titlePageGenerator(): string {
 
-        $eMarket = Routing::$emarket;
+        $eMarket = Routing::$eMarket;
 
         if (isset($eMarket->title)) {
             return lang($eMarket->title);

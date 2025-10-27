@@ -33,7 +33,7 @@ use eMarket\Admin\Modules;
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo Routing::$emarket->class($type) ?>" data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a>
+                        <a class="nav-link <?php echo Routing::$eMarket->class($type) ?>" data-bs-toggle="tab" href="#<?php echo $type ?>_modules"><?php echo lang($type . '_modules') ?></a>
                     </li>
                 <?php } ?>
             </ul>
@@ -41,7 +41,7 @@ use eMarket\Admin\Modules;
             <div class="tab-content pt-2">
                 <?php
                 foreach ($_SESSION['MODULES_INFO'] as $type => $name) {
-                    Routing::$emarket->filter($type);
+                    Routing::$eMarket->filter($type);
                     ?>
                     <div id="<?php echo $type ?>_modules" class="<?php echo Modules::$class_tab ?>">
 
@@ -62,7 +62,7 @@ use eMarket\Admin\Modules;
                                         foreach ($_SESSION['MODULES_INFO'][$type] as $key) {
                                             if (in_array($key, Modules::$installed_filter)) {
                                                 ?>
-                                                <tr class="<?php echo Routing::$emarket->active($key) ?>">
+                                                <tr class="<?php echo Routing::$eMarket->active($key) ?>">
 
                                                     <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
@@ -102,7 +102,7 @@ use eMarket\Admin\Modules;
                                             if (!in_array($key, Modules::$installed_filter)) {
                                                 ?>
 
-                                                <tr class="<?php echo Routing::$emarket->active($key) ?> align-middle">
+                                                <tr class="<?php echo Routing::$eMarket->active($key) ?> align-middle">
                                                     <td><?php echo lang('modules_' . $type . '_' . $key . '_name') ?></td>
 
                                                     <?php ?>

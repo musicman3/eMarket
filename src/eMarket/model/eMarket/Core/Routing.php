@@ -25,7 +25,7 @@ class Routing {
     /**
      * @var object|bool $emarket (The current object of the loaded page)
      */
-    public static $emarket = FALSE;
+    public static $eMarket = FALSE;
 
     /**
      * @var array $config (Route config)
@@ -156,6 +156,6 @@ class Routing {
      * @param object $eMarket Page Object
      */
     public function savePage(object $eMarket): void {
-        self::$emarket = $eMarket;
+        self::$eMarket = $eMarket;
     }
 }
