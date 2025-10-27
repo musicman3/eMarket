@@ -72,7 +72,7 @@ use eMarket\Admin\Templates;
             <div id="ajax">
 
                 <?php
-                require_once(Routing::template());
+                require_once(Routing::page());
                 require_once('confirm.php');
                 ?>
 

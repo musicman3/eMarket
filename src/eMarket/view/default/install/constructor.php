@@ -32,7 +32,7 @@ use eMarket\Core\{
     </head>
     <body>
         <?php
-        require_once(Routing::template());
+        require_once(Routing::page());
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/install/footer.php');
         ?>
 

@@ -76,17 +76,17 @@ class Routing {
     }
 
     /**
-     * Template routing for catalog
+     * Page routing
      *
-     * @return string|bool (view routing)
+     * @return string|bool (page routing)
      */
-    public static function template(): string|bool {
+    public static function page(): string|bool {
         $R2D2 = new R2D2();
         return $R2D2->page();
     }
 
     /**
-     * JS Handler routing
+     * JS routing
      *
      * @return string|bool (js routing)
      */
