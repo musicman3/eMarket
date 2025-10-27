@@ -30,7 +30,6 @@ class Routing {
 
     public static $jstructure = FALSE;
     public static $js_modules_handler = FALSE;
-    public static $page_not_found = FALSE;
     public static $array_pos_value = 'false';
 
     /**

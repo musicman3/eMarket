@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -13,8 +13,7 @@ use eMarket\Core\{
     Ecb,
     Pages,
     Products,
-    Valid,
-    Routing
+    Valid
 };
 use Cruder\Db;
 
@@ -25,7 +24,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Listing {
 
@@ -186,10 +185,6 @@ class Listing {
             self::$categories_keyword = Products::categoryData(Valid::inGET('category_id'))['keyword'];
             self::$categories_tags = Products::categoryData(Valid::inGET('category_id'))['tags'];
             self::$categories_logo = Products::categoryData(Valid::inGET('category_id'))['logo_general'];
-
-            if (Products::categoryData(Valid::inGET('category_id')) == false) {
-                Routing::$page_not_found = true;
-            }
         }
     }
 

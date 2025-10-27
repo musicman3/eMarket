@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -136,7 +136,7 @@ use eMarket\Catalog\{
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
 
-        if (Routing::$jstructure) {
+        if (Routing::$jstructure !== 'false') {
             require_once(Routing::$jstructure);
         }
         if (Routing::$js_modules_handler) {
