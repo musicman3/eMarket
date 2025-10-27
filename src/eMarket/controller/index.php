@@ -64,11 +64,8 @@ new Authorize();
 new Lang();
 
 // Routing
-$eMarketRouting = new Routing();
-
-if ($eMarketRouting->constructor()) {
-    require_once($eMarketRouting->constructor());
-}
+$Routing = new Routing();
+require_once($Routing->constructor());
 
 // Close DB connect
 Db::close();
