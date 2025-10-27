@@ -78,41 +78,19 @@ use eMarket\Admin\Templates;
                         }
                         ?>
                     </div>
-                <?php } ?>
-
-                <?php
+                    <?php
+                }
                 if (Templates::tlpc('boxes-left', 'count') > 0) {
                     ?>
-                    <div id="bodyContent" class="col-xl-9 col-lg-9">
-                        <?php
-                        require_once(Routing::page());
-                        ?>
-                    </div>
+                    <div id="bodyContent" class="col-xl-9 col-lg-9"><?php require_once(Routing::page()); ?></div>
                 <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
-                    <div id="bodyContent" class="col-12">
-                        <?php
-                        require_once(Routing::page());
-                        ?>
-                    </div>
-                <?php } ?>
-
-                <?php
-                if (Templates::tlpc('boxes-right', 'count') > 0) {
-                    ?>
-                    <div id="bodyContent" class="col-xl-9 col-lg-9 order-2 order-lg-1">
-                        <?php
-                        require_once(Routing::page());
-                        ?>
-                    </div>
+                    <div id="bodyContent" class="col-12"><?php require_once(Routing::page()); ?></div>
+                <?php } if (Templates::tlpc('boxes-right', 'count') > 0) { ?>
+                    <div id="bodyContent" class="col-xl-9 col-lg-9 order-2 order-lg-1"><?php require_once(Routing::page()); ?></div>
                 <?php } elseif (Templates::tlpc('boxes-left', 'count') == 0 && Templates::tlpc('boxes-right', 'count') == 0) { ?>
-                    <div id="bodyContent" class="col-12">
-                        <?php
-                        require_once(Routing::page());
-                        ?>
-                    </div>
-                <?php } ?>
-
-                <?php
+                    <div id="bodyContent" class="col-12"><?php require_once(Routing::page()); ?></div>
+                    <?php
+                }
                 if (Templates::tlpc('boxes-right', 'count') > 0) {
                     ?>
                     <div id="columnRight" class="col-xl-3 col-lg-3 order-1 order-lg-2">
