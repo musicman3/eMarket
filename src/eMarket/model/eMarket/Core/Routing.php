@@ -33,7 +33,6 @@ class Routing {
      */
     function __construct() {
         $this->route();
-        $this->js();
     }
 
     /**
