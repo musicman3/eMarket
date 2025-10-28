@@ -113,7 +113,7 @@ class Routing {
     /**
      * Constructor routing
      *
-     * @return string (constructor routing string)
+     * @return string (path to constructor file)
      */
     public function constructor(): string|bool {
         $R2D2 = new R2D2();
@@ -133,7 +133,7 @@ class Routing {
     /**
      * Page routing
      *
-     * @return string|bool (page routing)
+     * @return string|bool (path to page file)
      */
     public static function page(): string|bool {
         $R2D2 = new R2D2();
@@ -143,7 +143,7 @@ class Routing {
     /**
      * JS routing
      *
-     * @return string|bool (js routing)
+     * @return string|bool (path to js file)
      */
     public static function js(): string|bool {
         $R2D2 = new R2D2();
