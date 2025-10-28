@@ -65,7 +65,8 @@ new Lang();
 
 // Routing
 $Routing = new Routing();
-require_once($Routing->constructor());
-
+if ($Routing->constructor()) {
+    require_once($Routing->constructor());
+}
 // Close DB connect
 Db::close();

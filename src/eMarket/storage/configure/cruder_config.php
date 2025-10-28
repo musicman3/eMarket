@@ -25,4 +25,4 @@ Db::config(
             ]
         ]
 );
-Db::use(DB_TYPE)->transactions('on');
+Db::use(DB_TYPE)->transactions('off');

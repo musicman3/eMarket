@@ -88,7 +88,7 @@ use eMarket\Admin\Templates;
         <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <?php
-        if (Routing::js() != 'false') {
+        if (Routing::js()) {
             require_once(Routing::js());
         }
         if (Modules::js()) {

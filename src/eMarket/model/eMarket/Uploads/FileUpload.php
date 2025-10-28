@@ -48,5 +48,4 @@ class FileUpload {
             echo json_encode(['success' => true, 'file' => $Upload->getFileName()]);
         }
     }
-
 }

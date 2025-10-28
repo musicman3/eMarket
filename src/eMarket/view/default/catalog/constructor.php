@@ -125,7 +125,7 @@ use eMarket\Admin\Templates;
         require_once ('js/breadcrumb.php');
         require_once ('js/categories.php');
 
-        if (Routing::js() !== 'false') {
+        if (Routing::js()) {
             require_once(Routing::js());
         }
         if (Modules::js()) {
