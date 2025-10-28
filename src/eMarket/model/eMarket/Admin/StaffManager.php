@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -15,8 +15,8 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Settings,
-    Valid
+    Valid,
+    Routing
 };
 use eMarket\Admin\HeaderMenu;
 use Cruder\Db;
@@ -28,7 +28,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class StaffManager {
 
@@ -53,7 +53,7 @@ class StaffManager {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_tools][] = ['?route=staff_manager', 'bi-person-plus', lang('title_staff_manager_index'), '', 'false'];
@@ -71,13 +71,13 @@ class StaffManager {
         }
         $dashboard_count = 0;
         foreach ($permission as $value) {
-            if ($value == '?route=' . Settings::defaultPage()) {
+            if ($value == '?route=' . Routing::indexRoute()) {
                 $dashboard_count++;
             }
         }
 
         if ($dashboard_count == 0) {
-            array_push($permission, '?route=' . Settings::defaultPage());
+            array_push($permission, '?route=' . Routing::indexRoute());
         }
         return $permission;
     }
@@ -239,7 +239,7 @@ class StaffManager {
      * @return string Bootstrap class
      */
     public static function permissionClass(?string $input): string {
-        if ($input == '?route=' . Settings::defaultPage()) {
+        if ($input == '?route=' . Routing::indexRoute()) {
             return ' selected disabled';
         }
         return '';

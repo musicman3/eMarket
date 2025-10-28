@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -8,6 +8,7 @@ use eMarket\Core\{
     Settings
 };
 use eMarket\Core\Modules\Shipping\Free;
+use eMarket\Admin\Currencies;
 ?>
 
 <div id="index" class="modal fade" tabindex="-1">
@@ -37,12 +38,12 @@ use eMarket\Core\Modules\Shipping\Free;
                                     ?>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <div class="mb-2">
                             <small class="form-text text-muted" for="zone"><?php echo lang('modules_shipping_free_admin_minimum_order_price') ?></small>
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text"><?php echo Settings::currencyDefault()[3] ?></span>
+                                <span class="input-group-text"><?php echo Currencies::currencyDefault()[3] ?></span>
                                 <input class="form-control" placeholder="<?php echo lang('modules_shipping_free_admin_minimum_order_price_for_free_shipping') ?>" type="text" name="minimum_price" id="minimum_price" autocomplete="off" required />
                             </div>
                         </div>

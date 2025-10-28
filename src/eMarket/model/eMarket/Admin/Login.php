@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -12,7 +12,8 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Messages,
     Settings,
-    Valid
+    Valid,
+    Routing
 };
 use Cruder\Db;
 
@@ -23,7 +24,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Login {
 
@@ -69,7 +70,7 @@ class Login {
                 header('Location: ' . $session_page);
                 exit;
             } else {
-                header('Location: ?route=' . Settings::defaultPage());
+                header('Location: ?route=' . Routing::indexRoute());
                 exit;
             }
         }
@@ -125,16 +126,15 @@ class Login {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
                     if ($session_page == '/controller/admin/') {
-                        $session_page = '?route=' . Settings::defaultPage();
+                        $session_page = '?route=' . Routing::indexRoute();
                     }
                     header('Location: ' . $session_page);
                     exit;
                 } else {
-                    header('Location: ?route=' . Settings::defaultPage());
+                    header('Location: ?route=' . Routing::indexRoute());
                     exit;
                 }
             }
         }
     }
-
 }

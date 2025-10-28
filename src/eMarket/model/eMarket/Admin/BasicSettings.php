@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -25,7 +25,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class BasicSettings {
 
@@ -99,7 +99,7 @@ class BasicSettings {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][2] = ['?route=basic_settings', 'bi-gear-fill', lang('title_basic_settings_index'), '', 'false'];
@@ -107,7 +107,7 @@ class BasicSettings {
 
     /**
      * Other
-     * 
+     *
      */
     private function basicSettingsAllData(): void {
 

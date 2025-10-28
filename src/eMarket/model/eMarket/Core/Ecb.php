@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -17,6 +17,9 @@ use eMarket\Catalog\{
     Cart
 };
 use Cruder\Db;
+use eMarket\Admin\Currencies
+
+;
 
 /**
  * eMarket Calculated Block
@@ -25,7 +28,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Ecb {
 
@@ -33,7 +36,7 @@ final class Ecb {
 
     /**
      * View price
-     * 
+     *
      * @param array $input Array with products data
      * @param int $marker Format currency marker
      * @param int|string $quantity Quantity
@@ -82,7 +85,7 @@ final class Ecb {
 
     /**
      * Total in cart
-     * 
+     *
      * @param int $marker Format currency marker
      * @param string $class Bootstrap class for sale
      * @return string Output data
@@ -103,7 +106,7 @@ final class Ecb {
 
     /**
      * Price terminal
-     * 
+     *
      * @param string $language Language
      */
     public static function priceTerminal(?string $language = null): void {
@@ -171,7 +174,7 @@ final class Ecb {
 
     /**
      * Total tax
-     * 
+     *
      * @param array $tax_data Array with tax data
      * @param float $discounted_price Price with sales
      * @return float Total tax
@@ -193,7 +196,7 @@ final class Ecb {
 
     /**
      * Discount handler
-     * 
+     *
      * @param array $input (Array with product data
      * @param string $language Language
      */
@@ -261,7 +264,7 @@ final class Ecb {
      */
     public static function currencyPrice(float|string $price, int|string $currency): float|bool {
 
-        $currencies = Settings::currenciesData();
+        $currencies = Currencies::currenciesData();
 
         foreach ($currencies as $value) {
             if ($value['id'] == $currency) {
@@ -282,9 +285,9 @@ final class Ecb {
     public static function formatPrice(float|string $price, ?int $format = null, ?string $language = null): string {
 
         if ($language == null) {
-            $CURRENCIES = Settings::currencyDefault();
+            $CURRENCIES = Currencies::currencyDefault();
         } else {
-            $CURRENCIES = Settings::currencyDefault($language);
+            $CURRENCIES = Currencies::currencyDefault($language);
         }
 
         if ($format == 0) {

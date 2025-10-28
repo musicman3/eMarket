@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -12,6 +12,7 @@ use eMarket\Core\{
 use eMarket\Catalog\{
     Cart
 };
+use eMarket\Admin\Currencies;
 ?>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -37,11 +38,11 @@ use eMarket\Catalog\{
                     </li>
                     <?php
                 }
-                if (count(Settings::currenciesData()) > 1) {
+                if (count(Currencies::currenciesData()) > 1) {
                     ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-currency-exchange" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_currencies') ?></span></a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                            <?php foreach (Settings::currenciesData() as $value) { ?>
+                            <?php foreach (Currencies::currenciesData() as $value) { ?>
                                 <li><a href="<?php echo Settings::langCurrencyPath() . '&currency_default=' . $value['id'] ?>" class="dropdown-item"><?php echo $value['name'] ?></a></li>
                             <?php } ?>
                         </ul>

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -13,6 +13,7 @@ use eMarket\Core\{
     Cryptography,
     Settings,
     Valid,
+    Routing,
     Clock\SystemClock
 };
 use \eMarket\Catalog\{
@@ -27,7 +28,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Authorize {
 
@@ -162,7 +163,7 @@ class Authorize {
     }
 
     /**
-     * Permission 
+     * Permission
      *
      */
     private function permission(): void {
@@ -217,7 +218,7 @@ class Authorize {
 
                 $count = 0;
                 foreach ($staff_data as $value) {
-                    if ($value == '?route=' . Settings::defaultPage()) {
+                    if ($value == '?route=' . Routing::indexRoute()) {
                         $count++;
                     }
                 }

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -15,7 +15,8 @@ use eMarket\Core\{
     Lang,
     Pages,
     Valid,
-    Messages
+    Messages,
+    Settings
 };
 use Cruder\Db;
 use eMarket\Admin\HeaderMenu;
@@ -27,7 +28,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Currencies {
 
@@ -36,6 +37,8 @@ class Currencies {
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
     public int $default = 0;
+    private static $default_currency = FALSE;
+    public static $currencies_data = FALSE;
 
     /**
      * Constructor
@@ -54,7 +57,7 @@ class Currencies {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=currencies', 'bi-cash', lang('title_currencies_index'), '', 'false'];
@@ -287,5 +290,94 @@ class Currencies {
             $output = lang('confirm-yes');
         }
         return $output;
+    }
+
+    /**
+     * Currency default
+     *
+     * @param string $language Language
+     * @return array
+     */
+    public static function currencyDefault(?string $language = null): mixed {
+
+        if ($language == null) {
+            $language = lang('#lang_all')[0];
+        } else {
+            self::$default_currency = FALSE;
+        }
+
+        if (self::$default_currency == FALSE) {
+
+            if (Settings::path() == 'catalog') {
+                if (!isset($_SESSION['currency_default_catalog'])) {
+
+                    $currency = Db::connect()
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('default_value=', 1)
+                                    ->save()[0];
+
+                    $_SESSION['currency_default_catalog'] = $currency[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && !Valid::inGET('currency_default')) {
+
+                    $currency = Db::connect()
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('id=', $_SESSION['currency_default_catalog'])
+                                    ->save()[0];
+                } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
+
+                    $currency = Db::connect()
+                                    ->read(TABLE_CURRENCIES)
+                                    ->selectIndex('*')
+                                    ->where('language=', $language)
+                                    ->and('id=', Valid::inGET('currency_default'))
+                                    ->save()[0];
+
+                    $_SESSION['currency_default_catalog'] = $currency[0];
+                }
+            }
+
+            if (Settings::path() == 'admin') {
+
+                $currency = Db::connect()
+                                ->read(TABLE_CURRENCIES)
+                                ->selectIndex('*')
+                                ->where('language=', $language)
+                                ->and('default_value=', 1)
+                                ->save()[0];
+            }
+
+            self::$default_currency = $currency;
+
+            if ($language != null) {
+                self::$default_currency = FALSE;
+            }
+
+            return $currency;
+        } else {
+            return self::$default_currency;
+        }
+    }
+
+    /**
+     * Currencies Data
+     *
+     * @return mixed
+     */
+    public static function currenciesData(): mixed {
+
+        if (self::$currencies_data == FALSE) {
+
+            self::$currencies_data = Db::connect()
+                    ->read(TABLE_CURRENCIES)
+                    ->selectAssoc('*')
+                    ->where('language=', lang('#lang_all')[0])
+                    ->save();
+        }
+
+        return self::$currencies_data;
     }
 }

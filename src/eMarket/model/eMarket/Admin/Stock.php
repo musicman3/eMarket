@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -21,7 +21,8 @@ use eMarket\Core\{
 use eMarket\Admin\{
     Eac,
     HeaderMenu,
-    Stickers
+    Stickers,
+    Currencies
 };
 use Cruder\Db;
 
@@ -32,7 +33,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Stock {
 
@@ -86,7 +87,7 @@ class Stock {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_market][0] = ['?route=stock', 'bi-shop-window', lang('title_stock_index'), '', 'false'];
@@ -371,7 +372,7 @@ class Stock {
                     }
                     if ($sql_modal_prod['language'] == lang('#lang_all')[0] && $sql_modal_prod['id'] == $modal_id_prod) {
                         $price_product[$modal_id_prod] = round(Ecb::currencyPrice($sql_modal_prod['price'], $sql_modal_prod['currency']), 2);
-                        $currency_product[$modal_id_prod] = Settings::currencyDefault()[0];
+                        $currency_product[$modal_id_prod] = Currencies::currencyDefault()[0];
                         $quantity_product[$modal_id_prod] = $sql_modal_prod['quantity'];
                         $units_product[$modal_id_prod] = $sql_modal_prod['unit'];
                         $model_product[$modal_id_prod] = $sql_modal_prod['model'];

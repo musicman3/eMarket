@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -16,11 +16,11 @@ use eMarket\Core\{
     Messages,
     Modules,
     Pages,
-    Settings,
     Shipping,
     Valid
 };
 use Cruder\Db;
+use eMarket\Admin\Currencies;
 
 /**
  * Module Shipping Free
@@ -29,7 +29,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Free implements ShippingModulesInterface {
 
@@ -126,7 +126,7 @@ class Free implements ShippingModulesInterface {
                     ->create($MODULE_DB)
                     ->set('minimum_price', Valid::inPOST('minimum_price'))
                     ->set('shipping_zone', Valid::inPOST('zone'))
-                    ->set('currency', Settings::currencyDefault()[0])
+                    ->set('currency', Currencies::currencyDefault()[0])
                     ->save();
 
             Messages::alert('add_shipping_free', 'success', lang('action_completed_successfully'));
@@ -146,7 +146,7 @@ class Free implements ShippingModulesInterface {
                     ->update($MODULE_DB)
                     ->set('minimum_price', Valid::inPOST('minimum_price'))
                     ->set('shipping_zone', Valid::inPOST('zone'))
-                    ->set('currency', Settings::currencyDefault()[0])
+                    ->set('currency', Currencies::currencyDefault()[0])
                     ->where('id=', Valid::inPOST('edit'))
                     ->save();
 
@@ -228,5 +228,4 @@ class Free implements ShippingModulesInterface {
             }
         }
     }
-
 }

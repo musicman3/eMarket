@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -14,11 +14,13 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Settings,
     Valid
 };
 use Cruder\Db;
-use eMarket\Admin\HeaderMenu;
+use eMarket\Admin\{
+    HeaderMenu,
+    Currencies
+};
 
 /**
  * Taxes
@@ -27,7 +29,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Taxes {
 
@@ -56,7 +58,7 @@ class Taxes {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=taxes', 'bi-percent', lang('title_taxes_index'), '', 'false'];
@@ -100,7 +102,7 @@ class Taxes {
                         ->set('tax_type', $tax_type)
                         ->set('zones_id', Valid::inPOST('zones_id'))
                         ->set('fixed', $fixed)
-                        ->set('currency', Settings::currencyDefault()[0])
+                        ->set('currency', Currencies::currencyDefault()[0])
                         ->save();
             }
 
@@ -135,7 +137,7 @@ class Taxes {
                         ->set('tax_type', $tax_type)
                         ->set('zones_id', Valid::inPOST('zones_id'))
                         ->set('fixed', $fixed)
-                        ->set('currency', Settings::currencyDefault()[0])
+                        ->set('currency', Currencies::currencyDefault()[0])
                         ->where('id=', Valid::inPOST('edit'))
                         ->and('language=', lang('#lang_all')[$x])
                         ->save();
@@ -178,7 +180,7 @@ class Taxes {
             self::$zones_names[$zones_val['id']] = $zones_val['name'];
         }
 
-        self::$value_6 = [0 => sprintf(lang('taxes_value'), Settings::currencyDefault()[2]), 1 => lang('taxes_percent')];
+        self::$value_6 = [0 => sprintf(lang('taxes_value'), Currencies::currencyDefault()[2]), 1 => lang('taxes_percent')];
         self::$value_4 = [0 => lang('taxes_separately'), 1 => lang('taxes_included')];
 
         self::$sql_data = Db::connect()
@@ -223,7 +225,7 @@ class Taxes {
                     'zones_id' => $zones_id,
                     'fixed' => $fixed_modal,
                     'zones' => self::$zones,
-                    'currency' => Settings::currencyDefault()[3]
+                    'currency' => Currencies::currencyDefault()[3]
                 ]);
             }
         }

@@ -141,6 +141,16 @@ class Routing {
     }
 
     /**
+     * Index route
+     *
+     * @return string|null|bool Index file name
+     */
+    public static function indexRoute(): string|bool {
+        $R2D2 = new R2D2();
+        return $R2D2->indexRoute();
+    }
+
+    /**
      * JS routing
      *
      * @return string|bool (path to js file)

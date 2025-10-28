@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -23,18 +23,15 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Settings {
 
     public static $path;
     public static $lang;
-    public static $default_page;
     public static $csrf;
-    private static $default_currency = FALSE;
     private static $lang_currency_path = FALSE;
     public static $basic_settings = FALSE;
-    public static $currencies_data = FALSE;
     public static $session_expr_time = FALSE;
 
     /**
@@ -45,17 +42,7 @@ class Settings {
         $ini = parse_ini_file(getenv('DOCUMENT_ROOT') . '/storage/configure/settings.cfg', TRUE, INI_SCANNER_RAW);
         self::$path = $ini['path'];
         self::$lang = $ini['lang'];
-        self::$default_page = $ini['default_page'];
         self::$csrf = $ini['csrf'];
-    }
-
-    /**
-     * Default page
-     *
-     * @return string (Default page)
-     */
-    public static function defaultPage(): string {
-        return self::$default_page[self::path()];
     }
 
     /**
@@ -117,25 +104,6 @@ class Settings {
     }
 
     /**
-     * Currencies Data
-     *
-     * @return mixed
-     */
-    public static function currenciesData(): mixed {
-
-        if (self::$currencies_data == FALSE) {
-
-            self::$currencies_data = Db::connect()
-                    ->read(TABLE_CURRENCIES)
-                    ->selectAssoc('*')
-                    ->where('language=', lang('#lang_all')[0])
-                    ->save();
-        }
-
-        return self::$currencies_data;
-    }
-
-    /**
      * Number of lines on page
      *
      * @return int
@@ -163,76 +131,6 @@ class Settings {
     public static function primaryLanguage(): string {
 
         return self::basicSettings('primary_language');
-    }
-
-    /**
-     * Currency default
-     *
-     * @param string $language Language
-     * @return array
-     */
-    public static function currencyDefault(?string $language = null): mixed {
-
-        if ($language == null) {
-            $language = lang('#lang_all')[0];
-        } else {
-            self::$default_currency = FALSE;
-        }
-
-        if (self::$default_currency == FALSE) {
-
-            if (self::path() == 'catalog') {
-                if (!isset($_SESSION['currency_default_catalog'])) {
-
-                    $currency = Db::connect()
-                                    ->read(TABLE_CURRENCIES)
-                                    ->selectIndex('*')
-                                    ->where('language=', $language)
-                                    ->and('default_value=', 1)
-                                    ->save()[0];
-
-                    $_SESSION['currency_default_catalog'] = $currency[0];
-                } elseif (isset($_SESSION['currency_default_catalog']) && !Valid::inGET('currency_default')) {
-
-                    $currency = Db::connect()
-                                    ->read(TABLE_CURRENCIES)
-                                    ->selectIndex('*')
-                                    ->where('language=', $language)
-                                    ->and('id=', $_SESSION['currency_default_catalog'])
-                                    ->save()[0];
-                } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
-
-                    $currency = Db::connect()
-                                    ->read(TABLE_CURRENCIES)
-                                    ->selectIndex('*')
-                                    ->where('language=', $language)
-                                    ->and('id=', Valid::inGET('currency_default'))
-                                    ->save()[0];
-
-                    $_SESSION['currency_default_catalog'] = $currency[0];
-                }
-            }
-
-            if (self::path() == 'admin') {
-
-                $currency = Db::connect()
-                                ->read(TABLE_CURRENCIES)
-                                ->selectIndex('*')
-                                ->where('language=', $language)
-                                ->and('default_value=', 1)
-                                ->save()[0];
-            }
-
-            self::$default_currency = $currency;
-
-            if ($language != null) {
-                self::$default_currency = FALSE;
-            }
-
-            return $currency;
-        } else {
-            return self::$default_currency;
-        }
     }
 
     /**
