@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -30,7 +30,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Reviews implements TabsModulesInterface {
 
@@ -63,7 +63,7 @@ class Reviews implements TabsModulesInterface {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=modules/edit&type=tabs&name=reviews&alias=true', 'bi-chat-left-text', lang('modules_tabs_reviews_name'), '', 'false'];
@@ -74,6 +74,7 @@ class Reviews implements TabsModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function install(array $module): void {
         Modules::install($module);
     }
@@ -83,6 +84,7 @@ class Reviews implements TabsModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
@@ -92,6 +94,7 @@ class Reviews implements TabsModulesInterface {
      *
      * @return array $interface (data)
      */
+    #[\Override]
     public static function load(): void {
 
         $DataBuffer = new DataBuffer();
@@ -128,6 +131,7 @@ class Reviews implements TabsModulesInterface {
      * Data
      *
      */
+    #[\Override]
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 
@@ -272,7 +276,7 @@ class Reviews implements TabsModulesInterface {
 
     /**
      * Review status
-     * 
+     *
      * @return mixed Author review status
      *
      */
@@ -395,5 +399,4 @@ class Reviews implements TabsModulesInterface {
             }
         }
     }
-
 }

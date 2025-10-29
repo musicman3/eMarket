@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -26,7 +26,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Cash implements PaymentModulesInterface {
 
@@ -52,6 +52,7 @@ class Cash implements PaymentModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function install(array $module): void {
         Modules::install($module);
     }
@@ -61,6 +62,7 @@ class Cash implements PaymentModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
@@ -70,6 +72,7 @@ class Cash implements PaymentModulesInterface {
      *
      * @return array $interface (data)
      */
+    #[\Override]
     public static function load(): void {
 
         $DataBuffer = new DataBuffer();
@@ -92,6 +95,7 @@ class Cash implements PaymentModulesInterface {
      * Save
      *
      */
+    #[\Override]
     public function save(): void {
         if (Valid::inPOST('save')) {
 
@@ -138,6 +142,7 @@ class Cash implements PaymentModulesInterface {
      * Data
      *
      */
+    #[\Override]
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 

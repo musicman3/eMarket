@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -25,7 +25,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Smsc implements ProvidersModulesInterface {
 
@@ -49,6 +49,7 @@ final class Smsc implements ProvidersModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function install(array $module): void {
         Modules::install($module);
     }
@@ -58,6 +59,7 @@ final class Smsc implements ProvidersModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
@@ -67,6 +69,7 @@ final class Smsc implements ProvidersModulesInterface {
      *
      * @return array $interface (data)
      */
+    #[\Override]
     public static function load(): void {
 
         $DataBuffer = new DataBuffer();
@@ -82,6 +85,7 @@ final class Smsc implements ProvidersModulesInterface {
      * Save
      *
      */
+    #[\Override]
     public function save(): void {
         if (Valid::inPOST('save')) {
 
@@ -119,6 +123,7 @@ final class Smsc implements ProvidersModulesInterface {
      * Data
      *
      */
+    #[\Override]
     public static function data(): void {
 
         $data = Db::connect()
@@ -159,7 +164,7 @@ final class Smsc implements ProvidersModulesInterface {
     }
 
     /**
-     * Curl 
+     * Curl
      *
      * @param array $post_body (json post body)
      * @param string $url (url)
@@ -183,5 +188,4 @@ final class Smsc implements ProvidersModulesInterface {
         $output['error'] = curl_error($ch);
         curl_close($ch);
     }
-
 }

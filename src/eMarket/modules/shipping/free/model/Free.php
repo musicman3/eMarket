@@ -55,6 +55,7 @@ class Free implements ShippingModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function install(array $module): void {
         Modules::install($module);
     }
@@ -64,6 +65,7 @@ class Free implements ShippingModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
     }
@@ -74,6 +76,7 @@ class Free implements ShippingModulesInterface {
      * @param array $zones_id (Zones id)
      * @return array|FALSE (Data)
      */
+    #[\Override]
     public static function load(array $zones_id): void {
 
         $interface_data_all = [];
@@ -177,6 +180,7 @@ class Free implements ShippingModulesInterface {
      * Data
      *
      */
+    #[\Override]
     public function data(): void {
         $MODULE_DB = Modules::moduleDatabase();
 

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -35,7 +35,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Sale implements DiscountModulesInterface {
 
@@ -64,7 +64,7 @@ class Sale implements DiscountModulesInterface {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=modules/edit&type=discount&name=sale&alias=true', 'bi-star', lang('modules_discount_sale_name'), '', 'false'];
@@ -75,6 +75,7 @@ class Sale implements DiscountModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function install(array $module): void {
         Modules::install($module);
     }
@@ -84,6 +85,7 @@ class Sale implements DiscountModulesInterface {
      *
      * @param array $module (input data)
      */
+    #[\Override]
     public static function uninstall(array $module): void {
         Modules::uninstall($module);
 
@@ -681,5 +683,4 @@ class Sale implements DiscountModulesInterface {
             }
         }
     }
-
 }
