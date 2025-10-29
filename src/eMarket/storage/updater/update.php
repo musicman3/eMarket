@@ -217,7 +217,7 @@ function copyingFiles(string $repo, string $target_folder): void {
  *
  */
 function downloadComposer(): void {
-    $file_composer = 'https://getcomposer.org/download/latest-stable/composer.phar';
+    $file_composer = 'https://getcomposer.org/download/latest-2.x/composer.phar';
     $file_name_composer = basename($file_composer);
     file_put_contents(getenv('DOCUMENT_ROOT') . '/' . $file_name_composer, file_get_contents($file_composer));
 
