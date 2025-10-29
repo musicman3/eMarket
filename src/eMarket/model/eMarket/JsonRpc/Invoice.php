@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -23,7 +23,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Invoice extends JsonRpc {
 
@@ -116,7 +116,7 @@ class Invoice extends JsonRpc {
                 'invoice_notice' => lang('blanks_invoice_notice'),
                 'invoice_notice_text' => lang('blanks_invoice_notice_text'),
             ];
-            $html = $this->curl($data, HTTP_SERVER . 'uploads/temp/?blank=invoice');
+            $html = $this->curl($data, HTTP_SERVER . 'uploads/temp/?route=invoice_blank');
             return $html;
         } else {
             return FALSE;

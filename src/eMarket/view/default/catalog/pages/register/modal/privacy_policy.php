@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -14,7 +14,7 @@
             </div>
 
             <div class="modal-body">
-                <p><?php echo lang('register_privacy_policy_text') ?></p> 
+                <p><?php echo lang('register_privacy_policy_text') ?></p>
             </div>
 
         </div>

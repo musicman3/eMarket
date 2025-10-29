@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -40,7 +40,7 @@ use eMarket\Core\{
                         <div class="mb-2">
                             <div><small class="form-text text-muted"><?php echo lang('name_description') ?></small></div>
                             <textarea class="input-sm form-control" placeholder="<?php echo lang('add_name_description') ?>" rows="5" name="note_zones" id="note_zones"></textarea>
-                        </div> 
+                        </div>
                     </div>
                 </div>
 

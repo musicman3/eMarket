@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -60,7 +60,7 @@ require_once('modal/index.php')
                     <tbody id="sort-list">
                         <?php for (Pages::$start; Pages::$start < Pages::$finish; Pages::$start++, Pages::lineUpdate()) { ?>
                             <tr class="sort-list align-middle" unitid="<?php echo Pages::$table['line']['id'] ?>">
-                                <td class="sortyes sortleft-m bi-arrows-move"></td> 
+                                <td class="sortyes sortleft-m bi-arrows-move"></td>
                                 <td><?php echo Pages::$table['line']['name'] ?></td>
                                 <td class="text-center"><?php echo OrderStatus::defaultText() ?></td>
                                 <td>

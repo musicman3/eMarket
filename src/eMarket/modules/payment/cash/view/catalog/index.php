@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -24,4 +24,3 @@ $eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
         <button id="complete" type="button" onclick="Checkout.callSuccess()" class="btn btn-primary btn-sm bi-check"> <?php echo lang('modules_payment_cash_catalog_complete_button') ?></button>
     </div>
 </div>
-

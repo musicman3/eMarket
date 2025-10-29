@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -244,7 +244,7 @@ use eMarket\Admin\BasicSettings;
                     <button class="btn btn-primary btn-sm bi-check-circle" id="update_button" type="button" <?php echo BasicSettings::$button_update_status ?>> <?php echo lang('basic_settings_update_button') ?></button>
                 </div>
 
-            </div>    
+            </div>
 
         </div>
     </div>

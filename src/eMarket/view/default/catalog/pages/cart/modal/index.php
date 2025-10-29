@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -81,7 +81,7 @@ use eMarket\Catalog\Cart;
                         <span id="total_price_to_pay_modal" class="badge bg-danger"></span>
                     </div>
 
-                </div> 
+                </div>
                 <div class="modal-footer">
                     <button id="complete" type="button" onclick="Cart.callSuccess()" class="btn btn-success bi-check"> <?php echo lang('cart_complete') ?></button>
                 </div>

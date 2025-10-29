@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -55,7 +55,7 @@ use eMarket\Core\{
                         <div class="mb-2">
                             <div><small class="form-text text-muted"><?php echo lang('address_format') ?></small></div>
                             <textarea class="input-sm form-control" placeholder="<?php echo lang('add_address_format') ?>" rows="5" name="address_format_countries" id="address_format_countries"></textarea>
-                        </div> 
+                        </div>
                     </div>
                 </div>
 

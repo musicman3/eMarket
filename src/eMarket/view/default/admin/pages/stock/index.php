@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -34,7 +34,7 @@ require_once('modal/add_values_attribute.php');
             <div id="alert_block"><?php Messages::alert(); ?></div>
         </div>
 
-        <div id="ajax_data" class='hidden' 
+        <div id="ajax_data" class='hidden'
              data-session='<?php echo json_encode(Stock::$ses_verify) ?>'
              data-parentid='<?php echo json_encode(Stock::$parent_id) ?>'
              data-idsxrealparentid='<?php echo json_encode(Stock::$idsx_real_parent_id) ?>'
@@ -129,9 +129,9 @@ require_once('modal/add_values_attribute.php');
                                         }
 
                                         if (Stock::statusCatButton('bi-folder2-open', 'bi-arrow-left-right') != false) {
-                                            ?>    
+                                            ?>
                                             <td class="sortleft"><div><a href="#" class="btn <?php echo Stock::statusCatClass('btn-primary', 'btn-secondary') ?> btn disabled"><span class="<?php echo Stock::statusCatButton('bi-folder2-open', 'bi-arrow-left-right') ?>"> </span></a></div></td>
-                                        <?php } else { ?>    
+                                        <?php } else { ?>
                                             <td class="sortleft">
 
                                                 <form>
@@ -142,7 +142,7 @@ require_once('modal/add_values_attribute.php');
                                                 </form>
 
                                             </td>
-                                        <?php } ?>    
+                                        <?php } ?>
 
                                         <td><?php echo Stock::categoriesText('transfer', 'context-one')[2] ?></td>
                                         <td></td>
@@ -156,7 +156,7 @@ require_once('modal/add_values_attribute.php');
                                 if (Stock::$start >= Stock::$count_lines_cat && Stock::$transfer < Settings::linesOnPage()) {
                                     ?>
                                     <tr id="products_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>" class="context-one align-middle">
-                                        <td class="sortleft-m"></td>    
+                                        <td class="sortleft-m"></td>
                                         <td class="sortleft text-center"><i class="<?php echo Stock::statusProdClass('text-success', 'text-danger', 'text-opacity-50') ?> bi-circle-fill"></i></td>
                                         <td><img class="rounded" src="/uploads/images/products/resize_0/<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['logo_general'] ?>" onError="this.style.display='none'"></td>
                                         <td id="contextproduct_<?php echo Stock::$arr_merge['prod'][Stock::$start . 'a']['id'] ?>">
