@@ -125,8 +125,8 @@ if (Valid::inGET('category_id')) {
                                 </div>
                             </div>
                             <?php if (Pages::$table['line']['price'] > 0) { ?>
-                                <div class="h-25 mb-3">
-                                    <div class="buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
+                                <div class="h-25">
+                                    <div class="mb-2 buttons-block text-end d-flex justify-content-center align-items-center h-100 w-100 d-grid gap-1">
                                         <button class="btn btn-outline-primary bi-dash" type="button" onclick="ProductsListing.pcsProduct('minus', <?php echo Pages::$table['line']['id'] ?>)"></button>
                                         <input id="number_<?php echo Pages::$table['line']['id'] ?>" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo lang('listing_no_more_in_stock') ?>" type="number" min="1" value="<?php echo Cart::maxQuantityToOrder(Pages::$table['line']) ?>" class="quantity" disabled>
                                         <button class="btn btn-outline-primary button-plus bi-plus" type="button" onclick="ProductsListing.pcsProduct('plus', <?php echo Pages::$table['line']['id'] ?>, <?php echo Cart::maxQuantityToOrder(Pages::$table['line'], 'true') ?>)"></button>
