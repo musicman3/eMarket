@@ -14,7 +14,7 @@ use eMarket\Core\{
 };
 
 /**
- * FileUpload class
+ * Invoice Blank
  *
  * @package Uploads
  * @author eMarket Team
