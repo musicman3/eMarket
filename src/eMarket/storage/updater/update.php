@@ -58,9 +58,6 @@ if (isset($_SESSION['login']) || isset($_SESSION['pass'])) {
  */
 function init(array $repo_init, array $removing_list): void {
 
-    filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
-    filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
-
     $repo_name = $repo_init['name'];
     $target_folder = $repo_init['target_folder'];
 
@@ -84,6 +81,9 @@ function init(array $repo_init, array $removing_list): void {
     $repo = explode('/', $repo_name)[1];
 
     if (inGET('step') == '1') {
+
+        filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
+        filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
 
         if (version_compare(PHP_VERSION, $php_version, '<')) {
             echo json_encode(['Error', 'Attention. Your PHP version < ' . $php_version . '.<br>Please use version >= ' . $php_version]);
