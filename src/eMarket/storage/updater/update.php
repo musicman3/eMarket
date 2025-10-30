@@ -58,6 +58,9 @@ if (isset($_SESSION['login']) || isset($_SESSION['pass'])) {
  */
 function init(array $repo_init, array $removing_list): void {
 
+    filesRemoving(getenv('DOCUMENT_ROOT') . '/composer.phar');
+    filesRemoving(getenv('DOCUMENT_ROOT') . '/temp');
+
     $repo_name = $repo_init['name'];
     $target_folder = $repo_init['target_folder'];
 
