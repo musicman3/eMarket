@@ -12,9 +12,9 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Func,
     DataBuffer,
-    Products as ProductsCore,
-    Tabs
+    Products as ProductsCore
 };
+use eMarket\Modules\Tabs;
 use R2D2\R2\Valid;
 use Cruder\Db;
 

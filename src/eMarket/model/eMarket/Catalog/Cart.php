@@ -13,10 +13,10 @@ use eMarket\Core\{
     Cryptography,
     Ecb,
     Func,
-    DataBuffer,
-    Payment,
-    Shipping
+    DataBuffer
 };
+use eMarket\Modules\Payment;
+use eMarket\Modules\Shipping;
 use R2D2\R2\Valid;
 use Cruder\Db;
 
