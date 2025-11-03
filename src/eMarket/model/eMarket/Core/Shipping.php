@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -18,7 +18,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Shipping {
 
@@ -113,7 +113,7 @@ final class Shipping {
 
     /**
      * Loading data from shipping modules
-     * 
+     *
      * @param string $region Data on available shipping zones for region
      */
     public function loadData(string $region): void {
@@ -129,7 +129,7 @@ final class Shipping {
 
     /**
      * Filtering and sorting data
-     * 
+     *
      * @param array $interface_data_all Input data
      * @return array|FALSE
      */
@@ -156,5 +156,4 @@ final class Shipping {
             return FALSE;
         }
     }
-
 }

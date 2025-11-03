@@ -9,10 +9,10 @@ use eMarket\Core\{
     Lang,
     Messages,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
 use eMarket\Admin\Slideshow;
+use R2D2\R2\Valid;
 
 require_once('modal/settings.php');
 require_once('modal/index.php')

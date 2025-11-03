@@ -7,9 +7,9 @@
 use eMarket\Core\{
     Messages,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
+use R2D2\R2\Valid;
 
 require_once('modal/index.php')
 ?>

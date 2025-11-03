@@ -7,11 +7,10 @@
 use eMarket\Core\{
     Clock\SystemClock,
     Messages,
-    JsonRpc,
-    Pages,
-    Valid
+    Pages
 };
 use eMarket\Admin\Orders;
+use R2D2\R2\Valid;
 
 require_once('modal/index.php')
 ?>

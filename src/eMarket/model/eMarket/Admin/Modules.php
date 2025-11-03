@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -11,12 +11,14 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Func,
-    Messages,
-    Valid
+    Messages
 };
-use eMarket\Admin\Modules;
+use eMarket\Admin\{
+    Modules,
+    HeaderMenu
+};
+use R2D2\R2\Valid;
 use Cruder\Db;
-use eMarket\Admin\HeaderMenu;
 
 /**
  * Modules
@@ -25,7 +27,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Modules {
 
@@ -53,7 +55,7 @@ class Modules {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=modules', 'bi-cpu-fill', lang('title_modules_index'), '', 'false'];

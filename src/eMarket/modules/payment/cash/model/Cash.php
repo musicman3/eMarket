@@ -14,9 +14,9 @@ use eMarket\Core\{
     Interfaces\PaymentModulesInterface,
     Messages,
     Modules,
-    Settings,
-    Valid
+    Settings
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

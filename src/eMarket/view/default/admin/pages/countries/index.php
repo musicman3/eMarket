@@ -7,10 +7,10 @@
 use eMarket\Core\{
     Messages,
     Pages,
-    Valid,
     Settings
 };
 use eMarket\Admin\Countries;
+use R2D2\R2\Valid;
 
 require_once('modal/index.php')
 ?>

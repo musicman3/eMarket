@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -16,15 +16,15 @@ namespace eMarket\Core;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Func {
 
     /**
      * Array filtering to key
-     * 
+     *
      * Example:
-     * 
+     *
      * $basic_array = [
      * ['id' => 1, 'country' => 'Germany', 'city' => 'Berlin'],
      * ['id' => 2, 'country' => 'Russia', 'city' => 'Moskow'],
@@ -46,12 +46,12 @@ class Func {
      * [2] => New York
      *
      * @param array $basic_array Input array
-     * @param string|int $search_key Search key 
+     * @param string|int $search_key Search key
      * @param mixed $search_value Value for $search_key
      * @param string|int $data_key Data key
      * @param mixed $sort Sorting (null/true)
      * @return array
-     * 
+     *
      */
     public static function filterArrayToKey(array $basic_array, string|int $search_key, mixed $search_value, string|int $data_key, mixed $sort = null): array {
         $output = [];
@@ -69,9 +69,9 @@ class Func {
 
     /**
      * Filtering an array while keeping keys
-     * 
+     *
      * Example:
-     * 
+     *
      * $basic_array = [
      * ['id' => 1, 'country' => 'Germany', 'city' => 'Berlin'],
      * ['id' => 2, 'country' => 'Russia', 'city' => 'Moskow'],
@@ -80,24 +80,24 @@ class Func {
      * ['id' => 5, 'country' => 'Russia', 'city' => 'Saint-Petersburg'],
      * ['id' => 6, 'country' => 'USA', 'city' => 'Chicago']
      * ];
-     * 
+     *
      * $search_key = 'country';
      * $search_value = 'USA';
      * $key_1 = 'city';
      * $key_2 = 'id';
-     * 
+     *
      * Output:
-     * 
+     *
      * [4] => Boston
      * [3] => New York
-     * 
+     *
      * @param array $basic_array Input array
      * @param string|int $search_key Search key
      * @param mixed $search_value Search value
      * @param string|int $key_1 Key 1
      * @param string|int $key_2 Key 2
-     * @return array 
-     * 
+     * @return array
+     *
      */
     public static function filterArrayToKeyAssoc(array $basic_array, string|int $search_key, mixed $search_value, string|int $key_1, string|int $key_2): array {
         foreach ($basic_array as $value) {
@@ -115,17 +115,17 @@ class Func {
      * Function for creating a multidimensional array from a one-dimensional one in which the values are separated by a marker
      *
      * EXAMPLE:
-     * 
+     *
      * $array = ['12-0', '12-1'];
      * $delimiter = '-';
-     * 
+     *
      * Ouptut:
-     * 
+     *
      * [
      *   [12, 0],
      *   [12, 1]
      * ]
-     * 
+     *
      * @param array $array Input array
      * @param string $delimiter Delimiter
      * @return array
@@ -152,16 +152,16 @@ class Func {
 
     /**
      * Function of merging arrays with continuation of key numbering
-     * 
+     *
      * Example:
-     * 
+     *
      * $arr_1 = ['3', '2', '1'];
      * $name_1 = 'cat'
      * $arr_2 = ['4', '6', '7'];
      * $name_2 = 'prod'
-     * 
+     *
      * Output:
-     * 
+     *
      * [
      * 'cat' => [
      *   '0' => '3',
@@ -187,14 +187,14 @@ class Func {
 
     /**
      * Function for removing a value from an array
-     * 
+     *
      * EXAMPLE:
-     * 
+     *
      * $array = ['apple', 'banana', 'green', 'mango'];
      * $val = ['banana', 'mango'];
-     * 
+     *
      * Output:
-     * 
+     *
      * ['apple', 'green']
      *
      * @param mixed $array Input array
@@ -212,16 +212,16 @@ class Func {
 
     /**
      * Reset function for named keys of an associated array
-     * 
+     *
      * EXAMPLE:
-     * 
+     *
      * $input = [
      *  ['id' => '1', 'price' => '1250'],
      *  ['id' => '2', 'price' => '1320']
      * ];
-     * 
+     *
      * Output:
-     * 
+     *
      * {
      *   [0 => '1', 1 => '1250'],
      *   [0 => '2', 1 => '1320']
@@ -241,13 +241,13 @@ class Func {
 
     /**
      * Function to remove empty value from array
-     * 
+     *
      * EXAMPLE:
-     * 
+     *
      * $array = ['banana', '', 'apple'];
-     * 
+     *
      * Output:
-     * 
+     *
      * ['banana', 'apple']
      *
      * @param array $array Input array
@@ -280,7 +280,7 @@ class Func {
 
     /**
      * Function for escaping special characters.
-     * Output data filtering 
+     * Output data filtering
      *
      * @param string|array $data Data to escape characters
      * @return mixed
@@ -357,5 +357,4 @@ class Func {
         }
         return $array;
     }
-
 }

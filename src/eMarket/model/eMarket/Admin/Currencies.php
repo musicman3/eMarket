@@ -14,12 +14,12 @@ use eMarket\Core\{
     Func,
     Lang,
     Pages,
-    Valid,
     Messages,
     Settings
 };
-use Cruder\Db;
 use eMarket\Admin\HeaderMenu;
+use R2D2\R2\Valid;
+use Cruder\Db;
 
 /**
  * Currencies

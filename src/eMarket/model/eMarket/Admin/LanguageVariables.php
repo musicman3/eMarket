@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Messages,
-    Valid
+    Messages
 };
+use R2D2\R2\Valid;
 use eMarket\Admin\HeaderMenu;
 
 /**
@@ -22,7 +22,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class LanguageVariables {
 
@@ -45,7 +45,7 @@ class LanguageVariables {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=language_variables', 'bi-body-text', lang('title_language_variables_index'), '', 'false'];

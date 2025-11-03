@@ -4,10 +4,8 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\{
-    Valid,
-    Settings
-};
+use eMarket\Core\Settings;
+use R2D2\R2\Valid;
 ?>
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">

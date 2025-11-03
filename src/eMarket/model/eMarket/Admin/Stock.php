@@ -15,8 +15,7 @@ use eMarket\Core\{
     Modules,
     Navigation,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
 use eMarket\Admin\{
     Eac,
@@ -24,6 +23,7 @@ use eMarket\Admin\{
     Stickers,
     Currencies
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

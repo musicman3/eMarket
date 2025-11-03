@@ -12,9 +12,9 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Ecb,
     Pages,
-    Products,
-    Valid
+    Products
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

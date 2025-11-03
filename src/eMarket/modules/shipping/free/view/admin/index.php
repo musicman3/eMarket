@@ -7,10 +7,10 @@
 use eMarket\Core\{
     Ecb,
     Pages,
-    Valid,
     Modules
 };
 use eMarket\Core\Modules\Shipping\Free;
+use R2D2\R2\Valid;
 
 $eMarketShippingFree = new Free();
 Modules::js();

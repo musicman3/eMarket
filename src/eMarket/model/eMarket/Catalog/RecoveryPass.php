@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -12,9 +12,9 @@ namespace eMarket\Catalog;
 use eMarket\Core\{
     Cryptography,
     Clock\SystemClock,
-    Messages,
-    Valid
+    Messages
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -24,7 +24,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class RecoveryPass {
 
@@ -89,5 +89,4 @@ class RecoveryPass {
             }
         }
     }
-
 }

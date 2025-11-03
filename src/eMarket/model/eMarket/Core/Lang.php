@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -11,11 +11,11 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Settings,
-    Tree,
-    Valid
+    Tree
 };
-use Cruder\Db;
 use eMarket\Admin\BasicSettings;
+use R2D2\R2\Valid;
+use Cruder\Db;
 
 /**
  * Languages
@@ -24,7 +24,7 @@ use eMarket\Admin\BasicSettings;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Lang {
 

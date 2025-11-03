@@ -19,13 +19,13 @@ use eMarket\Core\{
     Lang,
     Messages,
     Modules,
-    Pages,
-    Valid
+    Pages
 };
 use eMarket\Admin\{
     HeaderMenu,
     Eac
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

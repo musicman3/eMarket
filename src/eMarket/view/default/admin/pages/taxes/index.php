@@ -6,10 +6,10 @@
 
 use eMarket\Core\{
     Messages,
-    Pages,
-    Valid
+    Pages
 };
 use eMarket\Admin\Taxes;
+use R2D2\R2\Valid;
 
 require_once('modal/index.php')
 ?>

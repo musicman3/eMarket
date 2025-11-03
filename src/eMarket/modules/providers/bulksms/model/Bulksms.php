@@ -13,10 +13,10 @@ use eMarket\Core\{
     DataBuffer,
     Interfaces\ProvidersModulesInterface,
     Messages,
-    Modules,
-    Valid
+    Modules
 };
 use Cruder\Db;
+use R2D2\R2\Valid;
 
 /**
  * Module Bulksms

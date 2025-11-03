@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -15,12 +15,12 @@ Slideshow::view();
 if (Slideshow::$slideshow == true) {
     ?>
     <div class="container-fluid mt-3 mb-3">
-        <div id="Carousel" class="carousel slide carousel-fade d-none d-md-block" 
-             data-bs-interval="<?php echo Slideshow::$slide_interval ?>" 
-             data-bs-pause="<?php echo Slideshow::$slide_pause ?>" 
-             data-bs-ride="<?php echo Slideshow::$autostart ?>" 
-             data-bs-wrap="<?php echo Slideshow::$cicles ?>" 
-             data-bs-touch="true" 
+        <div id="Carousel" class="carousel slide carousel-fade d-none d-md-block"
+             data-bs-interval="<?php echo Slideshow::$slide_interval ?>"
+             data-bs-pause="<?php echo Slideshow::$slide_pause ?>"
+             data-bs-ride="<?php echo Slideshow::$autostart ?>"
+             data-bs-wrap="<?php echo Slideshow::$cicles ?>"
+             data-bs-touch="true"
              data-bs-keyboard="true">
                  <?php if (Slideshow::$indicators == 'true') { ?>
                 <div class="carousel-indicators">

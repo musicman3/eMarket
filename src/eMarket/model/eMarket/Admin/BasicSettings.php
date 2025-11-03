@@ -12,11 +12,11 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Cache,
     Messages,
-    Settings,
-    Valid
+    Settings
 };
-use Cruder\Db;
 use eMarket\Admin\HeaderMenu;
+use R2D2\R2\Valid;
+use Cruder\Db;
 
 /**
  * Basic Settings

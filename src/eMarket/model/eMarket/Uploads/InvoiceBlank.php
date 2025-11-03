@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Uploads;
 
-use eMarket\Core\{
-    Settings
-};
+use eMarket\Core\Settings;
 
 /**
  * Invoice Blank

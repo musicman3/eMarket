@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -20,7 +20,7 @@ use Psr\Clock\ClockInterface;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class SystemClock implements ClockInterface {
 
@@ -43,7 +43,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Now
-     * 
+     *
      * @return object DateTimeImmutable
      *
      */
@@ -53,7 +53,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Now SQL-formating datetime
-     * 
+     *
      * @return string now SQL-formating datetime
      *
      */
@@ -65,7 +65,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Now SQL-formating date
-     * 
+     *
      * @return string now SQL-formating datetime
      *
      */
@@ -77,7 +77,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Now UNIX-formating datetime
-     * 
+     *
      * @return string now UNIX-formating datetime
      *
      */
@@ -89,7 +89,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Now My Format date
-     * 
+     *
      * @param string $format format
      * @return string now My Format date
      *
@@ -102,7 +102,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get date
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @return object DateTimeImmutable
      *
@@ -114,7 +114,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get formating localized date
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @param string $language language
      * @return string formating localized date
@@ -131,7 +131,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get formating localized date
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @param string $language language
      * @return string formating localized date
@@ -148,7 +148,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get SQL-formating datetime
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @return string SQL-formating datetime
      *
@@ -164,7 +164,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get SQL-formating date
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @return string SQL-formating date
      *
@@ -180,7 +180,7 @@ final class SystemClock implements ClockInterface {
 
     /**
      * Get UNIX-formating datetime
-     * 
+     *
      * @param string $date Date with DateTimeImmutable format
      * @return string UNIX-formating datetime
      *

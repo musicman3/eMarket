@@ -17,10 +17,10 @@ use eMarket\Core\{
     Modules,
     Messages,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
 use eMarket\Admin\HeaderMenu;
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

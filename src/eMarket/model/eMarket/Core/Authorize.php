@@ -12,13 +12,13 @@ namespace eMarket\Core;
 use eMarket\Core\{
     Cryptography,
     Settings,
-    Valid,
     Routing,
     Clock\SystemClock
 };
 use \eMarket\Catalog\{
     Cart
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

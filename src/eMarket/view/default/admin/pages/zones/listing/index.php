@@ -8,10 +8,10 @@ use eMarket\Core\{
     Func,
     Messages,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
 use eMarket\Admin\ZonesListing;
+use R2D2\R2\Valid;
 
 require_once('modal/index.php')
 ?>

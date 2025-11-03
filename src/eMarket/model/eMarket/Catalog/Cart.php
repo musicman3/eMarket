@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -15,9 +15,9 @@ use eMarket\Core\{
     Func,
     DataBuffer,
     Payment,
-    Shipping,
-    Valid
+    Shipping
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -27,7 +27,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Cart {
 
@@ -98,7 +98,7 @@ class Cart {
 
     /**
      * Edit products quantity in cart
-     * 
+     *
      */
     private function editProduct(): void {
 
@@ -115,7 +115,7 @@ class Cart {
 
     /**
      * Product removing from cart
-     * 
+     *
      */
     private function deleteProduct(): void {
 
@@ -365,7 +365,7 @@ class Cart {
 
     /**
      * Max. quantity for order
-     * 
+     *
      * @param array $product_data Product data
      * @param string|null $flag Flag
      * @return mixed Max. quantity
@@ -395,5 +395,4 @@ class Cart {
             return false;
         }
     }
-
 }

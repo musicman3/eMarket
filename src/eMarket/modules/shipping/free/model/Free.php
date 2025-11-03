@@ -16,9 +16,9 @@ use eMarket\Core\{
     Messages,
     Modules,
     Pages,
-    Shipping,
-    Valid
+    Shipping
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 use eMarket\Admin\Currencies;
 

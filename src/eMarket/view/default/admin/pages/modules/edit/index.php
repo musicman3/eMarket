@@ -7,10 +7,10 @@
 use eMarket\Core\{
     Messages,
     Settings,
-    Valid,
     Modules
 };
 use eMarket\Admin\ModulesEdit;
+use R2D2\R2\Valid;
 ?>
 
 <div id="settings_modules_edit">

@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -22,7 +22,8 @@ Categories::indexData();
                         <h5 class="text-center"><a href="/?route=listing&category_id=<?php echo $value[0] ?>"><?php echo $value[1] ?></a></h5>
                     </div>
                 </div>
-            <?php } ?>  
+            <?php } ?>
         </div>
     </div>
-<?php }
+<?php
+}

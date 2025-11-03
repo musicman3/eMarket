@@ -7,9 +7,9 @@
 use eMarket\Core\{
     Lang,
     Pages,
-    Valid,
     Settings
 };
+use R2D2\R2\Valid;
 ?>
 <div id="index" class="modal fade" tabindex="-1">
     <div class="modal-dialog">

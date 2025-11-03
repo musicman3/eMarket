@@ -1,13 +1,11 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\{
-    Products,
-    Valid
-};
+use eMarket\Core\Products;
+use R2D2\R2\Valid;
 
 if (Valid::inGET('search')) {
     Products::$category_data['name'] = lang('breadcrumb_search');

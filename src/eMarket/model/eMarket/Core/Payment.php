@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -18,7 +18,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Payment {
 
@@ -54,7 +54,7 @@ final class Payment {
 
     /**
      * Loading data from payment modules
-     * 
+     *
      * @param string $input Data on available names of delivery modules
      */
     public function loadData(string $input): void {
@@ -66,5 +66,4 @@ final class Payment {
             $namespace::load();
         }
     }
-
 }

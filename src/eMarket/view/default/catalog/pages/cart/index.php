@@ -1,13 +1,10 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\{
-    Ecb,
-    Routing
-};
+use eMarket\Core\Ecb;
 use eMarket\Catalog\{
     Cart
 };
@@ -73,7 +70,7 @@ require_once('modal/index.php')
                 <?php } ?>
             </div>
         </div>
-    </div>  
+    </div>
 <?php } else { ?>
     <div id="cart" class="contentText">
         <div class="bg-light border rounded mb-3 py-3 px-2">

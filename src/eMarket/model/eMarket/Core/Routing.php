@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace eMarket\Core;
 
 use eMarket\Core\{
-    Valid,
     Settings
 };
 use R2D2\R2D2;

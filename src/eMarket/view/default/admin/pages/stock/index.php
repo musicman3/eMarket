@@ -10,13 +10,13 @@ use eMarket\Core\{
     Modules,
     Images,
     Pages,
-    Settings,
-    Valid
+    Settings
 };
 use eMarket\Admin\{
     Stock,
     Stickers
 };
+use R2D2\R2\Valid;
 
 require_once('modal/index.php');
 require_once('modal/index_product.php');

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\{
-    Valid
-};
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -21,7 +19,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class JsonRpc {
 
@@ -32,7 +30,7 @@ class JsonRpc {
 
     /**
      * Return jsonRpc data from method key name
-     * 
+     *
      * @param array $key Key name
      * @return array jsonRPC key-data
      */
@@ -128,7 +126,7 @@ class JsonRpc {
 
     /**
      * jsonRPC routing
-     * 
+     *
      * @param string $name Name
      * @return array|string jsonRPC data
      */
@@ -175,7 +173,7 @@ class JsonRpc {
 
     /**
      * Error message
-     * 
+     *
      * @param string $code Error code
      * @param string $message Error message
      * @param string $id ID
@@ -193,7 +191,7 @@ class JsonRpc {
 
     /**
      * Error message Handler
-     * 
+     *
      */
     public function errorHandler(): void {
 

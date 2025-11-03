@@ -13,9 +13,9 @@ use eMarket\Core\{
     DataBuffer,
     Interfaces\ProvidersModulesInterface,
     Messages,
-    Modules,
-    Valid
+    Modules
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

@@ -7,9 +7,9 @@
 use eMarket\Core\{
     Clock\SystemClock,
     Messages,
-    Pages,
-    Valid
+    Pages
 };
+use R2D2\R2\Valid;
 ?>
 
 <div id="customers">

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -15,10 +15,10 @@ use eMarket\Core\{
     Images,
     Func,
     Lang,
-    Messages,
-    Valid
+    Messages
 };
 use eMarket\Admin\Stickers;
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -28,7 +28,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class Eac {
 
@@ -67,7 +67,7 @@ final class Eac {
 
     /**
      * Init EAC
-     * 
+     *
      * @param array $resize_param Resize param for categories
      * @param array $resize_param_product Resize param for products
      * @return array [$idsx_real_parent_id, self::$parent_id]
@@ -571,7 +571,7 @@ final class Eac {
 
     /**
      * Parent_id for navigation
-     * 
+     *
      * @param string|int $idx Identifier
      */
     public static function dataParentId(string|int $idx): void {
@@ -601,7 +601,7 @@ final class Eac {
 
     /**
      * Categories key
-     * 
+     *
      * @param string|int $category Identifier $idx
      * @return array $keys
      */
@@ -628,7 +628,7 @@ final class Eac {
 
     /**
      * Product vars set
-     * 
+     *
      */
     private function productVarsSet(): void {
         // Format date after Datepicker

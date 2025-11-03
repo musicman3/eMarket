@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -13,11 +13,11 @@ use eMarket\Core\{
     Func,
     Lang,
     Messages,
-    Pages,
-    Valid
+    Pages
 };
-use Cruder\Db;
 use eMarket\Admin\HeaderMenu;
+use R2D2\R2\Valid;
+use Cruder\Db;
 
 /**
  * Order Status
@@ -26,7 +26,7 @@ use eMarket\Admin\HeaderMenu;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class OrderStatus {
 
@@ -54,7 +54,7 @@ class OrderStatus {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_settings][] = ['?route=order_status', 'bi-pin-angle-fill', lang('title_order_status_index'), '', 'false'];

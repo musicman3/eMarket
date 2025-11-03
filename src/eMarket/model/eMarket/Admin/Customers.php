@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -11,10 +11,10 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Messages,
-    Pages,
-    Valid
+    Pages
 };
 use eMarket\Admin\HeaderMenu;
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -24,7 +24,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Customers {
 
@@ -47,7 +47,7 @@ class Customers {
     /**
      * Menu config
      * [0] - url, [1] - icon, [2] - name, [3] - target="_blank", [4] - submenu (true/false)
-     * 
+     *
      */
     public static function menu(): void {
         HeaderMenu::$menu[HeaderMenu::$menu_marketing][] = ['?route=customers', 'bi-people-fill', lang('menu_customers'), '', 'false'];

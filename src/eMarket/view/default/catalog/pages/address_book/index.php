@@ -6,8 +6,7 @@
 
 use eMarket\Core\{
     Messages,
-    Settings,
-    Routing
+    Settings
 };
 use eMarket\Catalog\AddressBook;
 use eMarket\Admin\Templates;

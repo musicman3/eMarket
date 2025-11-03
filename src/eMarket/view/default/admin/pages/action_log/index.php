@@ -6,9 +6,9 @@
 
 use eMarket\Core\{
     Messages,
-    Pages,
-    Valid
+    Pages
 };
+use R2D2\R2\Valid;
 use eMarket\Admin\ActionLog;
 ?>
 

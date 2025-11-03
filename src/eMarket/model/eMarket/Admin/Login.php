@@ -12,9 +12,9 @@ namespace eMarket\Admin;
 use eMarket\Core\{
     Messages,
     Settings,
-    Valid,
     Routing
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

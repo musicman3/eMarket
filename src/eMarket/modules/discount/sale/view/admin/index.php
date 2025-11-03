@@ -7,10 +7,10 @@
 use eMarket\Core\{
     Clock\SystemClock,
     Pages,
-    Valid,
     Modules
 };
 use eMarket\Core\Modules\Discount\Sale;
+use R2D2\R2\Valid;
 
 $eMarketDiscountSale = new Sale();
 Modules::js();

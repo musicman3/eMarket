@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -19,7 +19,7 @@ use Psr\Clock\ClockInterface;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 final class FrozenClock implements ClockInterface {
 
@@ -37,7 +37,7 @@ final class FrozenClock implements ClockInterface {
 
     /**
      * Now
-     * 
+     *
      * @return object DateTimeImmutable
      *
      */
@@ -47,7 +47,7 @@ final class FrozenClock implements ClockInterface {
 
     /**
      * Set date
-     * 
+     *
      * @param string $date Date
      *
      */
@@ -55,5 +55,4 @@ final class FrozenClock implements ClockInterface {
 
         $this->now = new DateTimeImmutable($date);
     }
-
 }

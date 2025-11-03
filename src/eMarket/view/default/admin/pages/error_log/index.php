@@ -6,11 +6,10 @@
 
 use eMarket\Core\{
     Messages,
-    Pages,
-    Valid,
-    Settings
+    Pages
 };
 use eMarket\Admin\ErrorLog;
+use R2D2\R2\Valid;
 ?>
 
 <div id="error_log">

@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -11,10 +11,10 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Messages,
-    Valid,
     Settings
 };
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -24,7 +24,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Cache {
 
@@ -46,7 +46,7 @@ class Cache {
 
     /**
      * Cache init
-     * 
+     *
      * @return mixed Cache data
      *
      */
@@ -70,7 +70,7 @@ class Cache {
 
     /**
      * Cache save
-     * 
+     *
      * @param mixed $data Cache data
      * @return mixed Data
      *
@@ -152,7 +152,7 @@ class Cache {
 
     /**
      * Delete item
-     * 
+     *
      * @param string $item Cache item
      *
      */

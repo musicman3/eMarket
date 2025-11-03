@@ -1,15 +1,15 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
     Authorize,
-    Messages,
-    Valid
+    Messages
 };
 use eMarket\Admin\Templates;
+use R2D2\R2\Valid;
 
 foreach (Templates::tlpc('content') as $path) {
     require_once (ROOT . $path);

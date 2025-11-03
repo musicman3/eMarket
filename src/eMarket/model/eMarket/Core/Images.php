@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -13,9 +13,9 @@ use eMarket\Core\{
     Clock\SystemClock,
     Cryptography,
     Func,
-    Tree,
-    Valid
+    Tree
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -25,7 +25,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Images {
 
@@ -44,7 +44,7 @@ class Images {
      * @param string $dir Image directory name (Example: uploads/images/products, name is: products)
      * @param array $resize_param Resize parameters
      * @param string $marker Value after separator in POST if multiple incoming image requests (example: add_products, value is: _products)
-     * 
+     *
      */
     function __construct(string $table, string $dir, array $resize_param, string $marker = '') {
 
@@ -80,7 +80,7 @@ class Images {
 
     /**
      * Add images
-     * 
+     *
      */
     private function add(): void {
         if (Valid::inPOST('add' . $this->marker)) {
@@ -136,7 +136,7 @@ class Images {
 
     /**
      * Edit images
-     * 
+     *
      */
     private function edit(): void {
 
@@ -258,7 +258,7 @@ class Images {
 
     /**
      * Delete images
-     * 
+     *
      */
     private function delete(): void {
         if (Valid::inPOST('delete')) {
@@ -268,7 +268,7 @@ class Images {
 
     /**
      * Delete by ID
-     * 
+     *
      * @param string|int $id ID
      */
     public function deleteById(string|int $id): void {
@@ -294,7 +294,7 @@ class Images {
 
     /**
      * Deleting images by parent id
-     * 
+     *
      * @param string|int $parent_id parent id
      */
     public function deleteByParentId(string|int $parent_id): void {
@@ -312,7 +312,7 @@ class Images {
 
     /**
      * Delete new images
-     * 
+     *
      */
     private function deleteNewImages(): void {
         if (Valid::inPostJson('delete_new_image' . $this->marker) == 'ok' && Valid::inPostJson('delete_image' . $this->marker)) {

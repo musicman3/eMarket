@@ -7,8 +7,7 @@
 use eMarket\Core\{
     Ecb,
     Pages,
-    Products,
-    Valid
+    Products
 };
 use eMarket\Catalog\{
     Cart,
@@ -16,6 +15,7 @@ use eMarket\Catalog\{
     Categories
 };
 use eMarket\Admin\Templates;
+use R2D2\R2\Valid;
 
 Categories::listingData();
 

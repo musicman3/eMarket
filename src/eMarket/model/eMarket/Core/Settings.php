@@ -11,9 +11,9 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Func,
-    Valid,
     Routing
 };
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**

@@ -1,12 +1,10 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-= 
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\{
-    Valid
-};
+use R2D2\R2\Valid;
 ?>
 <script type="text/javascript" src="/js/ext/lpology/SimpleAjaxUploader.min.js"></script>
 <script type="text/javascript" src="/js/structure/admin/pages/basic_settings/main.js"></script>

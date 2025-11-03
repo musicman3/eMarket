@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -11,12 +11,12 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Settings,
-    Valid
+    Settings
 };
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\ErrorHandler;
+use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
@@ -26,7 +26,7 @@ use Cruder\Db;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Messages {
 
@@ -76,7 +76,7 @@ class Messages {
 
     /**
      * Error notifications, success, etc.
-     * 
+     *
      * param string $action|null (add/edit/delete/cut and etc)
      * @param string|null $class Bootstrap class
      * @param mixed $message Message
@@ -206,5 +206,4 @@ class Messages {
             }
         }
     }
-
 }

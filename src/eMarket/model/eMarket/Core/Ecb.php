@@ -16,10 +16,8 @@ use eMarket\Core\{
 use eMarket\Catalog\{
     Cart
 };
+use eMarket\Admin\Currencies;
 use Cruder\Db;
-use eMarket\Admin\Currencies
-
-;
 
 /**
  * eMarket Calculated Block
