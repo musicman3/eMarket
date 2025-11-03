@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\Modules\Providers\Smsc;
+use eMarket\Modules\Providers\Smsc;
 
 $eMarketHandlerSmsc = new Smsc();
 \eMarket\Core\Modules::js();

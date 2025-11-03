@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core\Modules\Shipping;
+namespace eMarket\Modules\Shipping;
 
 use eMarket\Core\{
     Ecb,

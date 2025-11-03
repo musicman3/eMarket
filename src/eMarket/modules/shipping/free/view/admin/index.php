@@ -9,7 +9,7 @@ use eMarket\Core\{
     Pages,
     Modules
 };
-use eMarket\Core\Modules\Shipping\Free;
+use eMarket\Modules\Shipping\Free;
 use R2D2\R2\Valid;
 
 $eMarketShippingFree = new Free();

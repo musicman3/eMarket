@@ -218,7 +218,7 @@ final class Ecb {
         $total_discount = 0;
 
         foreach (self::$active_modules as $module) {
-            $namespace = '\eMarket\Core\Modules\Discount\\' . ucfirst($module['name']);
+            $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
             $namespace::dataInterface($input, $language);
             array_push($discounts_data, $DataBuffer->load('discount', $module['name']));
         }

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core\Modules\Providers;
+namespace eMarket\Modules\Providers;
 
 use eMarket\Core\{
     DataBuffer,

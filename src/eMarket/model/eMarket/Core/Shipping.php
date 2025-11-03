@@ -122,7 +122,7 @@ final class Shipping {
         $modules_names = $this->shippingModulesAvailable($zones_id);
 
         foreach ($modules_names as $name) {
-            $namespace = '\eMarket\Core\Modules\Shipping\\' . ucfirst($name);
+            $namespace = '\eMarket\Modules\Shipping\\' . ucfirst($name);
             $namespace::load($zones_id);
         }
     }

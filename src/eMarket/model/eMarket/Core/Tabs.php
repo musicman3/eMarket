@@ -53,7 +53,7 @@ final class Tabs {
 
         $modules_data = [];
         foreach ($modules_names as $name) {
-            $namespace = '\eMarket\Core\Modules\Tabs\\' . ucfirst($name);
+            $namespace = '\eMarket\Modules\Tabs\\' . ucfirst($name);
             $load = $namespace::load();
             array_push($modules_data, $load);
         }

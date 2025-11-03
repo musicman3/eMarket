@@ -149,7 +149,7 @@ class Messages {
                     ->save();
 
             foreach ($active_modules as $module) {
-                $namespace = '\eMarket\Core\Modules\Providers\\' . ucfirst($module['name']);
+                $namespace = '\eMarket\Modules\Providers\\' . ucfirst($module['name']);
                 $namespace::data();
                 $namespace::send($to, $body);
             }

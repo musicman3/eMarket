@@ -7,7 +7,7 @@
 use eMarket\Core\Ecb;
 use R2D2\R2\Valid;
 
-$eMarketPaymentCash = new \eMarket\Core\Modules\Payment\Cash();
+$eMarketPaymentCash = new \eMarket\Modules\Payment\Cash();
 ?>
 
 <div id="checkout" class="contentText">

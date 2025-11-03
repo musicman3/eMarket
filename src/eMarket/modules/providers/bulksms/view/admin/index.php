@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\Modules\Providers\Bulksms;
+use eMarket\Modules\Providers\Bulksms;
 
 $eMarketHandlerBulksms = new Bulksms();
 \eMarket\Core\Modules::js();

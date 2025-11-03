@@ -7,7 +7,7 @@
 use eMarket\Core\{
     Settings
 };
-use eMarket\Core\Modules\Shipping\Free;
+use eMarket\Modules\Shipping\Free;
 use eMarket\Admin\Currencies;
 ?>
 

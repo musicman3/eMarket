@@ -9,7 +9,7 @@ use eMarket\Core\{
     Pages,
     Modules
 };
-use eMarket\Core\Modules\Discount\Sale;
+use eMarket\Modules\Discount\Sale;
 use R2D2\R2\Valid;
 
 $eMarketDiscountSale = new Sale();

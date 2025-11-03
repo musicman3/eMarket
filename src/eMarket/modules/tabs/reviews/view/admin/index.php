@@ -9,7 +9,7 @@ use eMarket\Core\{
     Pages,
     Modules
 };
-use eMarket\Core\Modules\Tabs\Reviews;
+use eMarket\Modules\Tabs\Reviews;
 use R2D2\R2\Valid;
 
 $eMarketTabsReviews = new Reviews();

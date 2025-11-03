@@ -107,7 +107,7 @@ final class Eac {
                 ->save();
 
         foreach ($active_modules as $module) {
-            $namespace = '\eMarket\Core\Modules\Discount\\' . ucfirst($module['name']);
+            $namespace = '\eMarket\Modules\Discount\\' . ucfirst($module['name']);
             $namespace::initEac();
         }
     }

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core\Modules\Discount;
+namespace eMarket\Modules\Discount;
 
 use eMarket\Core\{
     Cache,

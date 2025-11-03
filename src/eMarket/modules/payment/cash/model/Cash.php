@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core\Modules\Payment;
+namespace eMarket\Modules\Payment;
 
 use eMarket\Core\{
     DataBuffer,

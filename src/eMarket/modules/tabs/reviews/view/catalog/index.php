@@ -10,7 +10,7 @@ use eMarket\Core\{
     Settings,
     Modules
 };
-use eMarket\Core\Modules\Tabs\Reviews;
+use eMarket\Modules\Tabs\Reviews;
 
 $eMarketTabsReviews = new Reviews();
 Modules::js('tabs/reviews');

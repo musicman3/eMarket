@@ -4,7 +4,7 @@
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-use eMarket\Core\Modules\Payment\Cash;
+use eMarket\Modules\Payment\Cash;
 
 $eMarketPaymentCash = new Cash();
 ?>

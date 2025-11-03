@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core\Modules\Tabs;
+namespace eMarket\Modules\Tabs;
 
 use eMarket\Core\{
     Authorize,

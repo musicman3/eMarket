@@ -62,7 +62,7 @@ final class Payment {
         $modules_names = $this->paymentModulesAvailable($input);
 
         foreach ($modules_names as $name) {
-            $namespace = '\eMarket\Core\Modules\Payment\\' . ucfirst($name);
+            $namespace = '\eMarket\Modules\Payment\\' . ucfirst($name);
             $namespace::load();
         }
     }
