@@ -14,7 +14,7 @@ use eMarket\Core\{
     DataBuffer,
     Products as ProductsCore
 };
-use eMarket\Modules\Tabs;
+use eMarket\Core\Modules\Tabs;
 use R2D2\R2\Valid;
 use Cruder\Db;
 

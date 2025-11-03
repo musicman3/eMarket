@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Modules;
+namespace eMarket\Core\Modules;
 
 use Cruder\Db;
 

@@ -68,7 +68,7 @@ class Modules {
     private function add(): void {
         if (Valid::inPOST('add')) {
             $module = explode('_', Valid::inPOST('add'));
-            $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
+            $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::install($module);
 
             Messages::alert('add_' . Valid::inPOST('add'), 'success', lang('action_completed_successfully'));
@@ -111,7 +111,7 @@ class Modules {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
             $module = explode('_', Valid::inPOST('delete'));
-            $namespace = '\eMarket\Core\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
+            $namespace = '\eMarket\Modules\\' . ucfirst($module[0]) . '\\' . ucfirst($module[1]);
             $namespace::uninstall($module);
 
             Messages::alert('delete_' . Valid::inPOST('delete'), 'success', lang('action_completed_successfully'));
