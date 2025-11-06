@@ -30,7 +30,6 @@ class Dashboard {
 
     public static $routing_parameter = 'dashboard';
     public $title = 'title_dashboard_index';
-    public $db_functions;
     public $orders_quantity = FALSE;
     public $amount_of_orders = FALSE;
     public $day_of_week = FALSE;
