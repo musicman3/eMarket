@@ -28,7 +28,7 @@ use Cruder\Db;
 class AddressBook {
 
     public static $routing_parameter = 'address_book';
-    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
+    public static $middleware = 'CurrencyCheck, CatalogAuthorize';
     public $title = 'title_address_book_index';
     public static $regions_data;
     public static $address_data_json = FALSE;

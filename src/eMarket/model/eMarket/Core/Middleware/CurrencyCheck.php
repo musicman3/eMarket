@@ -34,9 +34,8 @@ class CurrencyCheck {
     /**
      * Checking the availability of currency
      *
-     * @return bool FALSE
      */
-    private function currencyCheck(): bool {
+    private function currencyCheck(): void {
 
         if (Valid::inGET('currency_default')) {
             $currency = Db::connect()
@@ -49,6 +48,5 @@ class CurrencyCheck {
                 exit;
             }
         }
-        return false;
     }
 }

@@ -29,7 +29,7 @@ use Cruder\Db;
 class Listing {
 
     public static $routing_parameter = 'listing';
-    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
+    public static $middleware = 'CurrencyCheck, CatalogAuthorize';
     public $title = 'title_listing_index';
     public static $checked_stock = '';
     public $sort_parameter = '';

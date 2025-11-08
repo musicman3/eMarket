@@ -29,7 +29,7 @@ use Cruder\Db;
 class RecoveryPass {
 
     public static $routing_parameter = 'recoverypass';
-    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
+    public static $middleware = 'CurrencyCheck, CatalogAuthorize';
     public $title = 'title_recoverypass_index';
     public static $customer_id;
 

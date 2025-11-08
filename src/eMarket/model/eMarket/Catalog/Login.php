@@ -29,7 +29,7 @@ use Cruder\Db;
 class Login {
 
     public static $routing_parameter = 'login';
-    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
+    public static $middleware = 'CurrencyCheck, CatalogAuthorize';
     public $title = 'title_login_index';
 
     /**

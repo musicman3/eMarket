@@ -21,6 +21,6 @@ namespace eMarket\Catalog;
 class PageNotFound {
 
     public static $routing_parameter = 'page_not_found';
-    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
+    public static $middleware = 'CurrencyCheck, CatalogAuthorize';
     public $title = 'title_page_not_found_index';
 }
