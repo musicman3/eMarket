@@ -32,6 +32,9 @@ class Tree {
      */
     public static function filesTree(string $dir): array {
 
+        if (!file_exists($dir)) {
+            return [];
+        }
         $handle = opendir($dir) or die("Error: Can't open directory $dir");
         $files = [];
         $subfiles = [];
