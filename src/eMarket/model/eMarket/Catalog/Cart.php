@@ -15,8 +15,8 @@ use eMarket\Core\{
     Func,
     DataBuffer
 };
-use eMarket\Modules\Core\Payment;
-use eMarket\Modules\Core\Shipping;
+use eMarket\Core\Modules\Payment;
+use eMarket\Core\Modules\Shipping;
 use R2D2\R2\Valid;
 use Cruder\Db;
 
