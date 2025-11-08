@@ -270,8 +270,9 @@ class Sale implements DiscountModulesInterface {
 
             for ($i = 0; $i < count($idx); $i++) {
                 if (strstr($idx[$i], '_', true) != 'products') {
-                    Eac::$parent_id = Eac::dataParentId($idx[$i]);
-                    $keys = Eac::dataKeys($idx[$i]);
+                    $id_cat = explode('category_', $idx[$i])[1];
+                    Eac::$parent_id = Eac::dataParentId($id_cat);
+                    $keys = Eac::dataKeys($id_cat);
                     $count_keys = count($keys);
 
                     for ($x = 0; $x < $count_keys; $x++) {
