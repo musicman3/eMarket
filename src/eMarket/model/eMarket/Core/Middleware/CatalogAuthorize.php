@@ -33,7 +33,6 @@ class CatalogAuthorize {
 
     public static $customer;
     public static $csrf_token = FALSE;
-    public static $permission = FALSE;
 
     /**
      * Constructor
