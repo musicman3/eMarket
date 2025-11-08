@@ -114,7 +114,7 @@ class Success {
         $file_example = self::$root . '/storage/databases/' . Valid::inPOST('database_type') . '_example.sql';
 
         if (!file_exists($file_stucture) || !file_exists($file_example)) {
-            header('Location: /controller/install/?route=error&file_not_found=true');
+            header('Location: /install/?route=error&file_not_found=true');
             exit;
         }
 
@@ -132,7 +132,7 @@ class Success {
                         'db_family' => Valid::inPOST('database_family'),
                         'db_charset' => 'utf8mb4',
                         'db_collate' => 'utf8mb4_unicode_ci',
-                        'db_error_url' => '/controller/install/?route=error&server_db_error=true&error_message=',
+                        'db_error_url' => '/install/?route=error&server_db_error=true&error_message=',
                         'db_path' => self::$root . '/storage/databases/sqlite.db3'
                     ]
                 ]
@@ -153,7 +153,7 @@ class Success {
         if (file_exists(self::$root . '/storage/configure/configure.php')) {
             chmod(self::$root . '/storage/configure/configure.php', 0644);
         } else {
-            header('Location: /controller/install/?route=error&file_configure_not_found=true');
+            header('Location: /install/?route=error&file_configure_not_found=true');
             exit;
         }
 

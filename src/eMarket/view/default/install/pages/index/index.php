@@ -12,7 +12,7 @@
             <div class="row">
                 <h5 class="col"><?php echo lang('install_panel') ?></h5>
                 <div class="col-xl-3 col-md-4 col-5 float-end">
-                    <form action="/controller/install/" method="post" accept-charset="utf-8">
+                    <form action="/install/" method="post" accept-charset="utf-8">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bi-globe"></span>
                             <select name="language" class="input-sm form-select" onchange="submit();">

@@ -247,8 +247,8 @@ class Settings {
 
         if (Valid::inSERVER('REQUEST_URI') == '/') {
             self::$lang_currency_path = HTTP_SERVER . '?route=catalog';
-        } elseif (Valid::inSERVER('REQUEST_URI') == '/controller/admin/') {
-            self::$lang_currency_path = HTTP_SERVER . 'controller/admin/?route=' . self::defaultPage();
+        } elseif (Valid::inSERVER('REQUEST_URI') == '/admin/') {
+            self::$lang_currency_path = HTTP_SERVER . 'admin/?route=' . self::defaultPage();
         } elseif (Valid::inSERVER('REQUEST_URI') == '/?route=checkout') {
             self::$lang_currency_path = HTTP_SERVER . '?route=cart';
         } else {

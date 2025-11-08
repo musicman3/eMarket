@@ -126,7 +126,7 @@ class Login {
                 if (isset($_SESSION['session_page'])) {
                     $session_page = $_SESSION['session_page'];
                     unset($_SESSION['session_page']);
-                    if ($session_page == '/controller/admin/') {
+                    if ($session_page == '/admin/') {
                         $session_page = '?route=' . Routing::indexRoute();
                     }
                     header('Location: ' . $session_page);
