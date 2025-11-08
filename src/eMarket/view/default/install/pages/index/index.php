@@ -166,43 +166,43 @@
                                 <div class="mb-2">
                                     <div class="row">
                                         <div class="col">PHP:</div>
-                                        <div class="col text-end"><?php echo PHP_VERSION ?> <span class="<?php echo $eMarket->phpVersionCompare() ?>"></span></div>
+                                        <div class="col text-end"><?php echo PHP_VERSION ?> <span class="<?php echo $Routing::$eMarket->phpVersionCompare() ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">curl:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('curl') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('curl') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">gd:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('gd') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('gd') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">json:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('json') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('json') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">zip:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('zip') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('zip') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">pdo_mysql:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_mysql') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('pdo_mysql') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">pdo_pgsql:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_pgsql') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('pdo_pgsql') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">pdo_sqlite:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('pdo_sqlite') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('pdo_sqlite') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">SPL:</div>
-                                        <div class="col text-end"><span class="<?php echo $eMarket->phpExtension('SPL') ?>"></span></div>
+                                        <div class="col text-end"><span class="<?php echo $Routing::$eMarket->phpExtension('SPL') ?>"></span></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">max_input_vars:</div>
-                                        <div class="col text-end"><?php echo ini_get('max_input_vars') ?> <span class="<?php echo $eMarket->phpIniGet('max_input_vars', 5000) ?>"></span></div>
+                                        <div class="col text-end"><?php echo ini_get('max_input_vars') ?> <span class="<?php echo $Routing::$eMarket->phpIniGet('max_input_vars', 5000) ?>"></span></div>
                                     </div>
                                 </div>
                             </div>
