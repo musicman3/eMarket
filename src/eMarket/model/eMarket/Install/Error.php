@@ -23,7 +23,7 @@ use R2D2\R2\Valid;
 class Error {
 
     public static $routing_parameter = 'error';
-    public static $middleware = 'GeneralCheck, InstallAuthorize';
+    public static $middleware = 'InstallAuthorize';
     public $title = 'title_error';
     public static $message;
     public static $error_message;

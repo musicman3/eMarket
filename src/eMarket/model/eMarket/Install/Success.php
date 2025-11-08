@@ -25,7 +25,7 @@ use Cruder\Db;
 class Success {
 
     public static $routing_parameter = 'success';
-    public static $middleware = 'GeneralCheck, InstallAuthorize';
+    public static $middleware = 'InstallAuthorize';
     public $title = 'title_success';
     public static $lng;
     public static $root;
