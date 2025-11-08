@@ -13,7 +13,10 @@ use eMarket\Core\{
 use eMarket\Modules\Tabs\Reviews;
 
 $eMarketTabsReviews = new Reviews();
-Modules::js('tabs/reviews');
+
+if (Modules::js('tabs/reviews')) {
+    require_once(Modules::js('tabs/reviews'));
+}
 ?>
 <div id="panel_reviews" class="tab-pane fade show">
     <div id="reviews_block" class="item-text border border-top-0 rounded-bottom p-2">

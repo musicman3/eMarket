@@ -6,14 +6,12 @@
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Pages,
-    Modules
+    Pages
 };
 use eMarket\Modules\Discount\Sale;
 use R2D2\R2\Valid;
 
 $eMarketDiscountSale = new Sale();
-Modules::js();
 
 require_once('modal/index.php')
 ?>

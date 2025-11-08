@@ -6,14 +6,12 @@
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Pages,
-    Modules
+    Pages
 };
 use eMarket\Modules\Tabs\Reviews;
 use R2D2\R2\Valid;
 
 $eMarketTabsReviews = new Reviews();
-Modules::js();
 
 require_once('modal/index.php')
 ?>

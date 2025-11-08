@@ -6,14 +6,12 @@
 
 use eMarket\Core\{
     Ecb,
-    Pages,
-    Modules
+    Pages
 };
 use eMarket\Modules\Shipping\Free;
 use R2D2\R2\Valid;
 
 $eMarketShippingFree = new Free();
-Modules::js();
 
 require_once('modal/index.php')
 ?>

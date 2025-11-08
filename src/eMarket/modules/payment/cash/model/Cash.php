@@ -40,7 +40,6 @@ class Cash implements PaymentModulesInterface {
      *
      */
     function __construct() {
-        Modules::js();
         if (Settings::path() == 'admin') {
             $this->save();
             $this->data();
