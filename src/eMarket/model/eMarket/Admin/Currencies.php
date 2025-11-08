@@ -331,11 +331,22 @@ class Currencies {
                 } elseif (isset($_SESSION['currency_default_catalog']) && Valid::inGET('currency_default')) {
 
                     $currency = Db::connect()
-                                    ->read(TABLE_CURRENCIES)
-                                    ->selectIndex('*')
-                                    ->where('language=', $language)
-                                    ->and('id=', Valid::inGET('currency_default'))
-                                    ->save()[0];
+                            ->read(TABLE_CURRENCIES)
+                            ->selectIndex('*')
+                            ->where('language=', $language)
+                            ->and('id=', Valid::inGET('currency_default'))
+                            ->save();
+
+                    if (!isset($currency[0])) {
+                        $currency = Db::connect()
+                                        ->read(TABLE_CURRENCIES)
+                                        ->selectIndex('*')
+                                        ->where('language=', $language)
+                                        ->and('default_value=', 1)
+                                        ->save()[0];
+                    } else {
+                        $currency = $currency[0];
+                    }
 
                     $_SESSION['currency_default_catalog'] = $currency[0];
                 }
