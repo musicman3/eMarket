@@ -15,7 +15,6 @@ $eMarketDebugStopwatch = microtime(true);
 require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
 use eMarket\Core\{
-    Authorize,
     Debug,
     Lang,
     Messages,
@@ -57,9 +56,6 @@ if (Settings::path() != 'install') {
     new BasicSettings();
 }
 
-// Load Autorize
-new Authorize();
-
 // Load Languages
 new Lang();
 
@@ -68,5 +64,6 @@ $Routing = new Routing();
 if ($Routing->constructor()) {
     require_once($Routing->constructor());
 }
+
 // Close DB connect
 Db::close();

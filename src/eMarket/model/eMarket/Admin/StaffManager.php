@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\AdminAuthorize,
     Func,
     Lang,
     Messages,
@@ -33,6 +33,7 @@ use Cruder\Db;
 class StaffManager {
 
     public static $routing_parameter = 'staff_manager';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title = 'title_staff_manager_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
@@ -156,7 +157,7 @@ class StaffManager {
     private function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $user_check = Authorize::$permission;
+            $user_check = AdminAuthorize::$permission;
 
             Db::connect()
                     ->delete(TABLE_STAFF_MANAGER)

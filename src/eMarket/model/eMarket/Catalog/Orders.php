@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Pages,
 };
 use Cruder\Db;
@@ -27,6 +27,7 @@ use Cruder\Db;
 class Orders {
 
     public static $routing_parameter = 'orders';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_orders_index';
     public static $lines;
     public static $orders_edit = FALSE;
@@ -46,7 +47,7 @@ class Orders {
      *
      */
     private function authorize(): void {
-        if (Authorize::$customer == FALSE) {
+        if (CatalogAuthorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }

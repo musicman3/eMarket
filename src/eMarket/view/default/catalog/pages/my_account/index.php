@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Messages
 };
 use eMarket\Admin\Templates;
@@ -29,25 +29,25 @@ foreach (Templates::tlpc('content') as $path) {
                     <small class="form-text text-muted"><?php echo lang('my_account_firstname') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo Authorize::$customer['firstname'] ?>" required />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_firstname') ?>" type="text" name="firstname" id="firstname" value="<?php echo CatalogAuthorize::$customer['firstname'] ?>" required />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_lastname') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo Authorize::$customer['lastname'] ?>" required />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_lastname') ?>" type="text" name="lastname" id="lastname" value="<?php echo CatalogAuthorize::$customer['lastname'] ?>" required />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_middlename') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo Authorize::$customer['middle_name'] ?>" />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_middlename') ?>" type="text" name="middle_name" id="middle_name" value="<?php echo CatalogAuthorize::$customer['middle_name'] ?>" />
                     </div>
 
                     <small class="form-text text-muted"><?php echo lang('my_account_telephone') ?></small>
                     <div class="input-group">
                         <span class="input-group-text bi-pencil"></span>
-                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="tel" pattern="(\+[0-9]{10,13})" name="telephone" id="lastname" value="<?php echo Authorize::$customer['telephone'] ?>" />
+                        <input class="form-control" placeholder="<?php echo lang('my_account_enter_your_phone') ?>" type="tel" pattern="(\+[0-9]{10,13})" name="telephone" id="lastname" value="<?php echo CatalogAuthorize::$customer['telephone'] ?>" />
                     </div>
 
                 </div>

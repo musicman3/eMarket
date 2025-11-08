@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\AdminAuthorize,
     Settings
 };
 use R2D2\R2\Valid;
@@ -190,7 +190,7 @@ class HeaderMenu {
     private function staffInit(): void {
         if (isset($_SESSION['login'])) {
 
-            $staff_permission = Authorize::$permission;
+            $staff_permission = AdminAuthorize::$permission;
 
             if ($staff_permission != 'admin') {
 

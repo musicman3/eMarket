@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Messages
 };
 use eMarket\Catalog\{
@@ -32,7 +32,7 @@ require_once('modal/privacy_policy.php')
 
 <div id="register" class="contentText">
     <form class="was-validated" enctype="multipart/form-data" method="post" action="">
-        <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
+        <input type="hidden" name="csrf_token" value="<?php echo CatalogAuthorize::csrfToken() ?>" />
         <div class="row">
             <div class="col-md-6">
                 <fieldset id="account">

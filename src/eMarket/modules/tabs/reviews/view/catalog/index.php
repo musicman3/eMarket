@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Clock\SystemClock,
     Settings,
     Modules
@@ -19,9 +19,9 @@ Modules::js('tabs/reviews');
     <div id="reviews_block" class="item-text border border-top-0 rounded-bottom p-2">
 
         <?php
-        if (Authorize::$customer != FALSE) {
+        if (CatalogAuthorize::$customer != FALSE) {
 
-            if (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'TRUE') {
+            if (Reviews::$author_check == FALSE && Reviews::purchaseCheck(CatalogAuthorize::$customer['email']) == 'TRUE') {
                 ?>
 
                 <form class="was-validated">
@@ -55,7 +55,7 @@ Modules::js('tabs/reviews');
                 </form>
 
                 <?php
-            } elseif (Reviews::$author_check == TRUE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'TRUE' && Reviews::reviewStatus() == 0) {
+            } elseif (Reviews::$author_check == TRUE && Reviews::purchaseCheck(CatalogAuthorize::$customer['email']) == 'TRUE' && Reviews::reviewStatus() == 0) {
                 ?>
                 <div class="card mt-2">
                     <div class="card-header container text-white bg-success">
@@ -64,7 +64,7 @@ Modules::js('tabs/reviews');
                         </div>
                     </div>
                 </div>
-            <?php } elseif (Reviews::$author_check == FALSE && Reviews::purchaseCheck(Authorize::$customer['email']) == 'FALSE') {
+            <?php } elseif (Reviews::$author_check == FALSE && Reviews::purchaseCheck(CatalogAuthorize::$customer['email']) == 'FALSE') {
                 ?>
                 <div class="card mt-2">
                     <div class="card-header container text-white bg-success">

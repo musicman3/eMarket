@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace eMarket\Core;
+namespace eMarket\Core\Middleware;
 
 use eMarket\Core\{
     Cryptography,
@@ -15,14 +15,11 @@ use eMarket\Core\{
     Routing,
     Clock\SystemClock
 };
-use \eMarket\Catalog\{
-    Cart
-};
 use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
- * Class for user authorization
+ * Class for admin authorization
  *
  * @package Core
  * @author eMarket Team
@@ -30,9 +27,8 @@ use Cruder\Db;
  * @license GNU GPL v.3.0
  *
  */
-class Authorize {
+class AdminAuthorize {
 
-    public static $customer;
     public static $csrf_token = FALSE;
     public static $permission = FALSE;
 
@@ -42,81 +38,15 @@ class Authorize {
      */
     public function __construct() {
 
-        $this->currencyCheck();
-        $this->langCheck();
-
-        if (Settings::path() == 'admin' && Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
+        if (Valid::inGET('route') == 'login' || Settings::path() == 'uploads') {
             return;
         }
 
         session_start();
-        if (Settings::path() != 'install') {
-            $this->csrfVerification();
-        }
+        $this->csrfVerification();
 
-        if (Settings::path() == 'admin' && Valid::inGET('route') != 'login') {
-            $this->permission();
-            $this->admin();
-        }
-
-        if (Settings::path() == 'catalog') {
-            $this->catalog();
-            new Cart();
-        }
-
-        if (Settings::path() == 'install' && !$this->installVerify()) {
-            echo 'Error! Installation already completed!';
-            exit;
-        }
-    }
-
-    /**
-     * Checking the availability of currency
-     *
-     * @return bool FALSE
-     */
-    private function currencyCheck(): bool {
-
-        if (Valid::inGET('currency_default')) {
-            $currency = Db::connect()
-                    ->read(TABLE_CURRENCIES)
-                    ->selectValue('name')
-                    ->where('id=', Valid::inGET('currency_default'))
-                    ->save();
-            if ($currency == false) {
-                header('Location: /');
-                exit;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checking the availability of language
-     *
-     * @return bool FALSE
-     */
-    private function langCheck(): bool {
-
-        if (Valid::inGET('language') && !file_exists(getenv('DOCUMENT_ROOT') . '/language/' . Valid::inGET('language'))) {
-            header('Location: /');
-            exit;
-        }
-
-        return false;
-    }
-
-    /**
-     * Checking for install
-     * Thanks to alexanderpas (https://github.com/alexanderpas)
-     *
-     * @return bool TRUE/FALSE
-     */
-    private function installVerify(): bool {
-        if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/configure/configure.php')) {
-            return FALSE;
-        }
-        return TRUE;
+        $this->permission();
+        $this->admin();
     }
 
     /**
@@ -269,43 +199,6 @@ class Authorize {
                     ->save();
         } else {
             $_SESSION['DEFAULT_LANGUAGE'] = Settings::basicSettings('primary_language');
-        }
-
-        return TRUE;
-    }
-
-    /**
-     * Session authorization for Catalog
-     *
-     * @return bool TRUE|FALSE
-     */
-    private function catalog(): bool {
-
-        $new_datestamp = SystemClock::nowUnixTime();
-
-        if (isset($_SESSION['customer_email'])) {
-
-            $customer_data = Db::connect()
-                            ->read(TABLE_CUSTOMERS)
-                            ->selectAssoc('*')
-                            ->where('email=', $_SESSION['customer_email'])
-                            ->save()[0];
-        } else {
-            $customer_data['status'] = 0;
-        }
-
-        if (isset($_SESSION['customer_session_start']) && ($new_datestamp - $_SESSION['customer_session_start']) / 60 > Settings::adminSessionTime() || $customer_data['status'] == 0) {
-            unset($_SESSION['customer_password']);
-            unset($_SESSION['customer_email']);
-            unset($_SESSION['customer_session_start']);
-            return FALSE;
-        }
-        $_SESSION['customer_session_start'] = $new_datestamp;
-
-        if (!isset($_SESSION['customer_email'])) {
-            self::$customer = FALSE;
-        } else {
-            self::$customer = $customer_data;
         }
 
         return TRUE;

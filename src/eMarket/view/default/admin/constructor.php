@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\AdminAuthorize,
     Debug,
     Settings,
     Routing,
@@ -58,8 +58,8 @@ use eMarket\Admin\Templates;
 
     </head>
     <body>
-        <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
-        <div id="user_login" class='hidden' data-login='<?php echo Authorize::encryptedLogin() ?>'></div>
+        <div id="csrf_token" class='hidden' data-csrf='<?php echo AdminAuthorize::csrfToken() ?>'></div>
+        <div id="user_login" class='hidden' data-login='<?php echo AdminAuthorize::encryptedLogin() ?>'></div>
 
         <?php
         require_once(ROOT . '/view/' . Settings::template() . '/' . Settings::path() . '/aichat.php');

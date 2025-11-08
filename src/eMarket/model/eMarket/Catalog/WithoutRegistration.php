@@ -24,6 +24,7 @@ use Cruder\Db;
 class WithoutRegistration {
 
     public static $routing_parameter = 'without_registration';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_without_registration_index';
     public static $regions_data;
     public static $address_data_json = FALSE;

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace eMarket\Catalog;
 
-use eMarket\Core\Authorize;
+use eMarket\Core\Middleware\CatalogAuthorize;
 use R2D2\R2\Valid;
 use Cruder\Db;
 
@@ -25,6 +25,7 @@ use Cruder\Db;
 class Checkout {
 
     public static $routing_parameter = 'checkout';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_checkout_index';
     public static $customer;
     public static $address_data;
@@ -44,7 +45,7 @@ class Checkout {
      *
      */
     private function authorize(): void {
-        if (Authorize::$customer == FALSE && !isset($_SESSION['without_registration_data'])) {
+        if (CatalogAuthorize::$customer == FALSE && !isset($_SESSION['without_registration_data'])) {
             header('Location: ?route=login');
             exit;
         }

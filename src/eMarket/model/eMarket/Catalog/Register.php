@@ -30,6 +30,7 @@ use Cruder\Db;
 class Register {
 
     public static $routing_parameter = 'register';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_register_index';
     public static $user_email = FALSE;
 

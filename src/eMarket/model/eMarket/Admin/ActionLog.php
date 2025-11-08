@@ -28,6 +28,7 @@ use R2D2\R2\Valid;
 class ActionLog {
 
     public static $routing_parameter = 'action_log';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title = 'title_action_log_index';
 
     /**

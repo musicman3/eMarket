@@ -29,6 +29,7 @@ use Cruder\Db;
 class Login {
 
     public static $routing_parameter = 'login';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_login_index';
 
     /**
@@ -36,6 +37,7 @@ class Login {
      *
      */
     function __construct() {
+        session_start();
         $this->activationCode();
         $this->passwordRecovery();
         $this->logout();

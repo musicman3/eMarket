@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Ecb,
     Settings
 };
@@ -49,7 +49,7 @@ use eMarket\Admin\Currencies;
                     </li>
                     <?php
                 }
-                if (Authorize::$customer == FALSE) {
+                if (CatalogAuthorize::$customer == FALSE) {
                     ?>
                     <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
                 <?php } else { ?>

@@ -31,6 +31,7 @@ use Cruder\Db;
 class Regions {
 
     public static $routing_parameter = 'countries/regions';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title = 'title_countries_regions_index';
     public static $sql_data = FALSE;
     public static $country_id = FALSE;

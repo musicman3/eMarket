@@ -35,25 +35,14 @@ class Routing {
      *
      */
     function __construct() {
-        $this->route();
-    }
-
-    /**
-     * Route
-     *
-     */
-    private function route(): void {
-        $eMarketPage = $this->init();
-        $eMarket = new $eMarketPage();
-        $this->savePage($eMarket);
+        $this->init();
     }
 
     /**
      * Init
      *
-     * @return string|null url
      */
-    private function init(): ?string {
+    private function init(): void {
 
         $config = [
             'engine' =>
@@ -108,7 +97,11 @@ class Routing {
 
         $R2D2 = new R2D2();
         $R2D2->config($config);
-        return $R2D2->namespace();
+        $this->getMiddleware();
+        if (!self::$eMarket) {
+            $eMarket = self::namespace();
+            self::$eMarket = new $eMarket();
+        }
     }
 
     /**
@@ -142,6 +135,16 @@ class Routing {
     }
 
     /**
+     * Page routing
+     *
+     * @return string|bool (path to page file)
+     */
+    public static function namespace(): string|bool {
+        $R2D2 = new R2D2();
+        return $R2D2->namespace();
+    }
+
+    /**
      * Index route
      *
      * @return string|null|bool Index file name
@@ -162,11 +165,20 @@ class Routing {
     }
 
     /**
-     * Save page object
+     * Get Middleware
      *
-     * @param object $eMarket Page Object
      */
-    public function savePage(object $eMarket): void {
-        self::$eMarket = $eMarket;
+    public function getMiddleware(): void {
+        $R2D2 = new R2D2();
+
+        if ($R2D2->getMiddleware()) {
+            $middlewares = str_replace(' ', '', explode(',', $R2D2->getMiddleware()));
+
+            foreach ($middlewares as $class) {
+                $middleware = 'eMarket\Core\Middleware\\' . $class;
+            }
+
+            new $middleware();
+        }
     }
 }

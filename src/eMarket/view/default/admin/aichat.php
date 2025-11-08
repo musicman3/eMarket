@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize
+    Middleware\AdminAuthorize
 };
 use eMarket\JsonRpc\{
     AiChat
@@ -18,7 +18,7 @@ use eMarket\JsonRpc\{
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body h-50">
-        <?php if (Authorize::$permission == 'admin') { ?>
+        <?php if (AdminAuthorize::$permission == 'admin') { ?>
             <div class="mb-3">
                 <input type="radio" class="btn-check" name="options-outlined" id="chatgpt-outlined" autocomplete="off" <?php echo AiChat::checked('ChatGPT') ?> >
                 <label class="btn btn-outline-danger" for="chatgpt-outlined"><?php echo lang('aichat_chatgpt_name') ?></label>

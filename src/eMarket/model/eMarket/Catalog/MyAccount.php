@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Cryptography,
     Messages
 };
@@ -29,6 +29,7 @@ use Cruder\Db;
 class MyAccount {
 
     public static $routing_parameter = 'my_account';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_my_account_index';
 
     /**
@@ -45,7 +46,7 @@ class MyAccount {
      *
      */
     private function authorize(): void {
-        if (Authorize::$customer == FALSE) {
+        if (CatalogAuthorize::$customer == FALSE) {
             header('Location: ?route=login');
             exit;
         }
@@ -67,7 +68,7 @@ class MyAccount {
                         ->set('middle_name', Valid::inPOST('middle_name'))
                         ->set('telephone', Valid::inPOST('telephone'))
                         ->set('password', $password_hash)
-                        ->where('email=', Authorize::$customer['email'])
+                        ->where('email=', CatalogAuthorize::$customer['email'])
                         ->save();
             } else {
 
@@ -77,7 +78,7 @@ class MyAccount {
                         ->set('lastname', Valid::inPOST('lastname'))
                         ->set('middle_name', Valid::inPOST('middle_name'))
                         ->set('telephone', Valid::inPOST('telephone'))
-                        ->where('email=', Authorize::$customer['email'])
+                        ->where('email=', CatalogAuthorize::$customer['email'])
                         ->save();
             }
 

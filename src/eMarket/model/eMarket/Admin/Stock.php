@@ -38,6 +38,7 @@ use Cruder\Db;
 class Stock {
 
     public static $routing_parameter = 'stock';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title = 'title_stock_index';
     public static $json_data_category = FALSE;
     public static $json_data_product = FALSE;

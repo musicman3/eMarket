@@ -31,6 +31,7 @@ use Cruder\Db;
 class Zones {
 
     public static $routing_parameter = 'zones';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title = 'title_zones_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

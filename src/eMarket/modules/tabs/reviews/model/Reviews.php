@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Modules\Tabs;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Clock\SystemClock,
     DataBuffer,
     Interfaces\TabsModulesInterface,
@@ -150,12 +150,12 @@ class Reviews implements TabsModulesInterface {
      *
      */
     public function authorCheck(): void {
-        if (Authorize::$customer != FALSE) {
+        if (CatalogAuthorize::$customer != FALSE) {
 
             self::$author_check = Db::connect()
                     ->read(DB_PREFIX . 'modules_tabs_reviews')
                     ->selectValue('id')
-                    ->where('author=', Authorize::$customer['email'])
+                    ->where('author=', CatalogAuthorize::$customer['email'])
                     ->and('product_id=', Valid::inGET('id'))
                     ->save();
         }
@@ -229,12 +229,12 @@ class Reviews implements TabsModulesInterface {
      *
      */
     public function addReview(): void {
-        if (Authorize::$customer != FALSE && Valid::inPostJson('review')) {
+        if (CatalogAuthorize::$customer != FALSE && Valid::inPostJson('review')) {
 
             Db::connect()
                     ->create(DB_PREFIX . 'modules_tabs_reviews')
                     ->set('product_id', Valid::inGET('id'))
-                    ->set('author', Authorize::$customer['email'])
+                    ->set('author', CatalogAuthorize::$customer['email'])
                     ->set('stars', Valid::inPostJson('stars'))
                     ->set('status', 0)
                     ->set('likes', 0)
@@ -286,7 +286,7 @@ class Reviews implements TabsModulesInterface {
                 ->read(DB_PREFIX . 'modules_tabs_reviews')
                 ->selectValue('status')
                 ->where('product_id=', Valid::inGET('id'))
-                ->and('author=', Authorize::$customer['email'])
+                ->and('author=', CatalogAuthorize::$customer['email'])
                 ->save();
 
         return $data_review;

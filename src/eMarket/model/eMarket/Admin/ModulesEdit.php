@@ -25,6 +25,7 @@ use Cruder\Db;
 class ModulesEdit {
 
     public static $routing_parameter = 'modules/edit';
+    public static $middleware = 'GeneralCheck, AdminAuthorize';
     public $title;
     public static string $switch_active = '';
 

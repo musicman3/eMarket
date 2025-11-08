@@ -34,6 +34,7 @@ use Cruder\Db;
 class Success {
 
     public static $routing_parameter = 'success';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_success_index';
     public static $customer_orders_status_history;
     public static $customer;

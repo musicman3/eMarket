@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Messages
 };
 use eMarket\Admin\Templates;
@@ -21,7 +21,7 @@ foreach (Templates::tlpc('content') as $path) {
     <h1><?php echo lang('register_password_recovery') ?></h1>
     <div id="forgotpass" class="contentText">
         <form class="was-validated" enctype="multipart/form-data" method="post" action="" oninput="validate()">
-            <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
+            <input type="hidden" name="csrf_token" value="<?php echo CatalogAuthorize::csrfToken() ?>" />
             <fieldset>
                 <legend><?php echo lang('enter_a_new_password') ?></legend>
                 <div class="input-group password">
@@ -45,5 +45,5 @@ foreach (Templates::tlpc('content') as $path) {
 
     <h1><?php echo lang('this_page_is_not_available') ?></h1>
 
-<?php
+    <?php
 }

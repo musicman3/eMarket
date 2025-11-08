@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Catalog;
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Messages
 };
 use R2D2\R2\Valid;
@@ -28,6 +28,7 @@ use Cruder\Db;
 class AddressBook {
 
     public static $routing_parameter = 'address_book';
+    public static $middleware = 'GeneralCheck, CatalogAuthorize';
     public $title = 'title_address_book_index';
     public static $regions_data;
     public static $address_data_json = FALSE;
@@ -55,7 +56,7 @@ class AddressBook {
      *
      */
     private function authorize(): void {
-        if (!Authorize::$customer) {
+        if (!CatalogAuthorize::$customer) {
             header('Location: ?route=login');
             exit;
         }

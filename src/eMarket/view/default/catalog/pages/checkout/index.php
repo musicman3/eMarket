@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Messages
 };
 use eMarket\Admin\Templates;
@@ -17,7 +17,7 @@ foreach (Templates::tlpc('content') as $path) {
 ?>
 
 <form id="form_cart" name="form_cart" action="javascript:void(null);">
-    <input type="hidden" name="csrf_token" value="<?php echo Authorize::csrfToken() ?>" />
+    <input type="hidden" name="csrf_token" value="<?php echo CatalogAuthorize::csrfToken() ?>" />
     <input type="hidden" name="add" value="ok" />
     <input type="hidden" id="products_order" name="products_order" value='<?php echo Valid::inPOST('products_order') ?>' />
     <input type="hidden" id="order_total_with_shipping" name="order_total_with_shipping" value="<?php echo Valid::inPOST('order_total_with_shipping') ?>" />

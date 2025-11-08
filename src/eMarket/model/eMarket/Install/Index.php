@@ -22,6 +22,7 @@ use R2D2\R2\Valid;
 class Index {
 
     public static $routing_parameter = 'index';
+    public static $middleware = 'GeneralCheck, InstallAuthorize';
     public $title = 'title_install';
     public static $default_language;
 

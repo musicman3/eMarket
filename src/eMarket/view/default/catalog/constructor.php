@@ -5,7 +5,7 @@
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\{
-    Authorize,
+    Middleware\CatalogAuthorize,
     Debug,
     Settings,
     Routing,
@@ -56,7 +56,7 @@ use eMarket\Admin\Templates;
         </script>
     </head>
     <body>
-        <div id="csrf_token" class='hidden' data-csrf='<?php echo Authorize::csrfToken() ?>'></div>
+        <div id="csrf_token" class='hidden' data-csrf='<?php echo CatalogAuthorize::csrfToken() ?>'></div>
 
         <?php
         require_once('confirm.php');
