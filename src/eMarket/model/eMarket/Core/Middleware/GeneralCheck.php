@@ -29,7 +29,6 @@ class GeneralCheck {
      */
     public function __construct() {
         $this->currencyCheck();
-        $this->langCheck();
     }
 
     /**
@@ -50,21 +49,6 @@ class GeneralCheck {
                 exit;
             }
         }
-        return false;
-    }
-
-    /**
-     * Checking the availability of language
-     *
-     * @return bool FALSE
-     */
-    private function langCheck(): bool {
-
-        if (Valid::inGET('language') && !file_exists(getenv('DOCUMENT_ROOT') . '/language/' . Valid::inGET('language'))) {
-            header('Location: /');
-            exit;
-        }
-
         return false;
     }
 }
