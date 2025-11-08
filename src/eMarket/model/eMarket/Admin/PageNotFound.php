@@ -23,7 +23,7 @@ use eMarket\Admin\HeaderMenu;
 class PageNotFound {
 
     public static $routing_parameter = 'page_not_found';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_page_not_found_index';
 
     /**

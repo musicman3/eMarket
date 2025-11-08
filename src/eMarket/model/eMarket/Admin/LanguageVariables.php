@@ -27,7 +27,7 @@ use eMarket\Admin\HeaderMenu;
 class LanguageVariables {
 
     public static $routing_parameter = 'language_variables';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_language_variables_index';
     public static $admin_lang_data = FALSE;
     public static $catalog_lang_data = FALSE;

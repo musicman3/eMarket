@@ -30,7 +30,7 @@ use Cruder\Db;
 class BasicSettings {
 
     public static $routing_parameter = 'basic_settings';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_basic_settings_index';
     public static $lines_on_page = FALSE;
     public static $session_expr_time = FALSE;

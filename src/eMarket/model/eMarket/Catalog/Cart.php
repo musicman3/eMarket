@@ -32,7 +32,7 @@ use Cruder\Db;
 class Cart {
 
     public static $routing_parameter = 'cart';
-    public static $middleware = 'GeneralCheck, CatalogAuthorize';
+    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
     public $title = 'title_cart_index';
     public static $cart_info = FALSE;
     public static $address_data = FALSE;

@@ -25,7 +25,7 @@ use Cruder\Db;
 class Checkout {
 
     public static $routing_parameter = 'checkout';
-    public static $middleware = 'GeneralCheck, CatalogAuthorize';
+    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
     public $title = 'title_checkout_index';
     public static $customer;
     public static $address_data;

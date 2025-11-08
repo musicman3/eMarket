@@ -35,7 +35,7 @@ use Cruder\Db;
 class Stickers {
 
     public static $routing_parameter = 'stickers';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_stickers_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

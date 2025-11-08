@@ -29,7 +29,7 @@ use Cruder\Db;
 class Login {
 
     public static $routing_parameter = 'login';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_login_index';
     public static $login_error = FALSE;
 

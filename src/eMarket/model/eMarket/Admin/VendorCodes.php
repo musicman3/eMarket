@@ -31,7 +31,7 @@ use Cruder\Db;
 class VendorCodes {
 
     public static $routing_parameter = 'vendor_codes';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_vendor_codes_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

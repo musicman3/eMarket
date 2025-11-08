@@ -32,7 +32,7 @@ use Cruder\Db;
 class Manufacturers {
 
     public static $routing_parameter = 'manufacturers';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_manufacturers_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

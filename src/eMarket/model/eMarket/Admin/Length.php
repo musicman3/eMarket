@@ -31,7 +31,7 @@ use Cruder\Db;
 class Length {
 
     public static $routing_parameter = 'length';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_length_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

@@ -29,7 +29,7 @@ use Cruder\Db;
 class Dashboard {
 
     public static $routing_parameter = 'dashboard';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_dashboard_index';
     public $orders_quantity = FALSE;
     public $amount_of_orders = FALSE;

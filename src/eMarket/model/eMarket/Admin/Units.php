@@ -31,7 +31,7 @@ use Cruder\Db;
 class Units {
 
     public static $routing_parameter = 'units';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_units_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

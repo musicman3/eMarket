@@ -30,7 +30,7 @@ use R2D2\R2\Valid;
 class Index {
 
     public static $routing_parameter = 'catalog';
-    public static $middleware = 'GeneralCheck, CatalogAuthorize';
+    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
     public $title = 'title_catalog_index';
 
     /**

@@ -32,7 +32,7 @@ use Cruder\Db;
 class Modules {
 
     public static $routing_parameter = 'modules';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_modules_index';
     public static $installed = FALSE;
     public static $installed_active = FALSE;

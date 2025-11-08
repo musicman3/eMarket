@@ -31,7 +31,7 @@ use Cruder\Db;
 class Weight {
 
     public static $routing_parameter = 'weight';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_weight_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

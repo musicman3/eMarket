@@ -34,7 +34,7 @@ use Cruder\Db;
 class Taxes {
 
     public static $routing_parameter = 'taxes';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_taxes_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

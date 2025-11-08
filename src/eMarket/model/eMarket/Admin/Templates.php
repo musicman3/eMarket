@@ -31,7 +31,7 @@ use Cruder\Db;
 class Templates {
 
     public static $routing_parameter = 'templates';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_templates_index';
     public static $layout_pages;
     public static $name_template;

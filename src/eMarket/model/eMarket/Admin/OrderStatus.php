@@ -31,7 +31,7 @@ use Cruder\Db;
 class OrderStatus {
 
     public static $routing_parameter = 'order_status';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_order_status_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

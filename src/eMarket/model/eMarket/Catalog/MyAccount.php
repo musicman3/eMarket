@@ -29,7 +29,7 @@ use Cruder\Db;
 class MyAccount {
 
     public static $routing_parameter = 'my_account';
-    public static $middleware = 'GeneralCheck, CatalogAuthorize';
+    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
     public $title = 'title_my_account_index';
 
     /**

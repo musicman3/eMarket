@@ -33,7 +33,7 @@ use Cruder\Db;
 class Currencies {
 
     public static $routing_parameter = 'currencies';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_currencies_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;

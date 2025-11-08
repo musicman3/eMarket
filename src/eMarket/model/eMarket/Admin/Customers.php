@@ -29,7 +29,7 @@ use Cruder\Db;
 class Customers {
 
     public static $routing_parameter = 'customers';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_customers_index';
     public static int $status = 0;
     public static $json_data = FALSE;

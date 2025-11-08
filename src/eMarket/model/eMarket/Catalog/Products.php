@@ -30,7 +30,7 @@ use Cruder\Db;
 class Products {
 
     public static $routing_parameter = 'products';
-    public static $middleware = 'GeneralCheck, CatalogAuthorize';
+    public static $middleware = ' CurrencyCheck, CatalogAuthorize';
     public $title;
     public static $dimension_name;
     public static $dimensions = FALSE;

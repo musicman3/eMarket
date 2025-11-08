@@ -13,7 +13,7 @@ use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
- * General Check class
+ * Currency Check class
  *
  * @package Middleware
  * @author eMarket Team
@@ -21,7 +21,7 @@ use Cruder\Db;
  * @license GNU GPL v.3.0
  *
  */
-class GeneralCheck {
+class CurrencyCheck {
 
     /**
      * Constructor

@@ -33,7 +33,7 @@ use Cruder\Db;
 class StaffManager {
 
     public static $routing_parameter = 'staff_manager';
-    public static $middleware = 'GeneralCheck, AdminAuthorize';
+    public static $middleware = 'AdminAuthorize';
     public $title = 'title_staff_manager_index';
     public static $sql_data = FALSE;
     public static $json_data = FALSE;
