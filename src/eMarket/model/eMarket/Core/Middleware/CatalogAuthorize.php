@@ -130,17 +130,4 @@ class CatalogAuthorize {
 
         return TRUE;
     }
-
-    /**
-     * Encrypted Login
-     *
-     * @return string encrypted login
-     */
-    public static function encryptedLogin(): string {
-
-        if (isset($_SESSION['login']) && $_SESSION['pass']) {
-            return Cryptography::encryption(DB_PASSWORD, $_SESSION['login'], CRYPT_METHOD);
-        }
-        return 'false';
-    }
 }
