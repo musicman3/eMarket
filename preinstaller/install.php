@@ -10,7 +10,7 @@ $repo_init = [
     'target_folder' => '/src', // Target folder from which files are copied
     'release_php_version' => '8.3', // Release php version
     'master_php_version' => '8.3', // Master php version
-    'redirect' => 'controller/install/' // Redirect after installation completed
+    'redirect' => 'install/' // Redirect after installation completed
 ];
 /* ++++++++++++++++++++++++++++++++++++++++ */
 
