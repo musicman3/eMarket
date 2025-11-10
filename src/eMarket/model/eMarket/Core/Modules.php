@@ -231,7 +231,7 @@ final class Modules {
      *
      * @return array (js path list)
      */
-    public static function getJs(): array {
+    public static function js(): array {
         return self::$js_list;
     }
 }
