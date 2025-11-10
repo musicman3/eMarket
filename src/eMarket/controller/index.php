@@ -62,7 +62,7 @@ $Routing = new Routing();
 // Load Languages
 new Lang();
 
-// Load Template
+// Load Template constructor
 if ($Routing->constructor()) {
     require_once($Routing->constructor());
 }
