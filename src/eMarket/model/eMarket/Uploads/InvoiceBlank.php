@@ -36,7 +36,7 @@ class InvoiceBlank {
      * Tracert blank
      *
      */
-    public function tracert(): string|bool {
+    public function tracert(): void {
         require_once (getenv('DOCUMENT_ROOT') . '/view/' . Settings::template() . '/blanks/invoice.php');
     }
 }
