@@ -218,10 +218,10 @@ final class Modules {
      */
     public static function setJs(?string $js_path = null): void {
 
-        if ($js_path != null && Settings::path() == 'admin') {
+        if ($js_path != null && Settings::path() == 'admin' && file_exists(ROOT . '/modules/' . $js_path . '/js/structure/admin/js.php')) {
             self::$js_list[] = ROOT . '/modules/' . $js_path . '/js/structure/admin/js.php';
         }
-        if ($js_path != null && Settings::path() == 'catalog') {
+        if ($js_path != null && Settings::path() == 'catalog' && file_exists(ROOT . '/modules/' . $js_path . '/js/structure/catalog/js.php')) {
             self::$js_list[] = ROOT . '/modules/' . $js_path . '/js/structure/catalog/js.php';
         }
     }
