@@ -14,5 +14,6 @@ use R2D2\R2\Valid;
 <script type="text/javascript">
 <?php if (Valid::$demo_mode == FALSE) { ?>
         new Update();
+        new BasicSettings();
 <?php } ?>
 </script>
