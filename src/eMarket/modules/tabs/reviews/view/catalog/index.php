@@ -56,7 +56,7 @@ $eMarketTabsReviews = new Reviews();
             } elseif (Reviews::$author_check == TRUE && Reviews::purchaseCheck(CatalogAuthorize::$customer['email']) == 'TRUE' && Reviews::reviewStatus() == 0) {
                 ?>
                 <div class="card mt-2">
-                    <div class="card-header container text-white bg-success">
+                    <div class="card-header text-white bg-success">
                         <div class="row">
                             <div class="col-auto me-auto"><?php echo lang('modules_tabs_reviews_catalog_moderation') ?></div>
                         </div>
@@ -65,7 +65,7 @@ $eMarketTabsReviews = new Reviews();
             <?php } elseif (Reviews::$author_check == FALSE && Reviews::purchaseCheck(CatalogAuthorize::$customer['email']) == 'FALSE') {
                 ?>
                 <div class="card mt-2">
-                    <div class="card-header container text-white bg-success">
+                    <div class="card-header text-white bg-success">
                         <div class="row">
                             <div class="col-auto me-auto"><?php echo lang('modules_tabs_reviews_catalog_cannot_post') ?></div>
                         </div>
@@ -74,7 +74,7 @@ $eMarketTabsReviews = new Reviews();
             <?php } else {
                 ?>
                 <div class="card mt-2">
-                    <div class="card-header container text-white bg-success">
+                    <div class="card-header text-white bg-success">
                         <div class="row">
                             <div class="col-auto me-auto"><?php echo lang('modules_tabs_reviews_catalog_thanks') ?></div>
                         </div>
@@ -87,7 +87,7 @@ $eMarketTabsReviews = new Reviews();
             ?>
 
             <div class="card mt-2">
-                <div class="card-header container text-white bg-primary">
+                <div class="card-header text-white bg-primary">
                     <div class="row">
                         <div class="col-auto me-auto"><?php echo lang('modules_tabs_reviews_catalog_average_rating') ?>
                             <?php
@@ -114,7 +114,7 @@ $eMarketTabsReviews = new Reviews();
                     ?>
 
                     <div class="card mt-2">
-                        <div class="card-header container">
+                        <div class="card-header">
                             <div class="row">
                                 <div class="col-auto me-auto"><?php echo SystemClock::getDate($review['date_add']) ?>
                                     <?php
