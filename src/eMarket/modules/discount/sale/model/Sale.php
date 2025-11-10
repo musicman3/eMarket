@@ -59,6 +59,7 @@ class Sale implements DiscountModulesInterface {
         $this->delete();
         $this->data();
         $this->modal();
+        Modules::setJs('discount/sale');
     }
 
     /**

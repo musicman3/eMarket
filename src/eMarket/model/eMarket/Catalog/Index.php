@@ -34,6 +34,14 @@ class Index {
     public $title = 'title_catalog_index';
 
     /**
+     * Constructor
+     *
+     */
+    function __construct() {
+        
+    }
+
+    /**
      * Keywords
      *
      * @return mixed

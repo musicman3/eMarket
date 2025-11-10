@@ -128,8 +128,9 @@ use eMarket\Admin\Templates;
         if (Routing::js()) {
             require_once(Routing::js());
         }
-        if (Modules::js()) {
-            require_once(Modules::js());
+
+        foreach (Modules::getJs() as $js) {
+            require_once($js);
         }
 
         Debug::info();

@@ -48,6 +48,7 @@ class Free implements ShippingModulesInterface {
         $this->delete();
         $this->data();
         $this->modal();
+        Modules::setJs('shipping/free');
     }
 
     /**

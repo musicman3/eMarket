@@ -27,6 +27,7 @@ final class Modules {
     private static $discount_router = [];
     public static $discounts = [];
     public static $discount_default = [];
+    private static $js_list = [];
 
     /**
      * Install module
@@ -211,33 +212,26 @@ final class Modules {
     }
 
     /**
-     * JS Modules Handler routing
+     * Set JS path for Modules
      *
      * @param string $js_path Path to js.php
-     * @return string (js path)
      */
-    public static function js(?string $js_path = null): string {
+    public static function setJs(?string $js_path = null): void {
 
-        if (Settings::path() == 'admin') {
-            $path = Modules::modulesPath('js/structure');
-            if (file_exists($path . '/js.php')) {
-                return $path . '/js.php';
-            }
+        if ($js_path != null && Settings::path() == 'admin') {
+            self::$js_list[] = ROOT . '/modules/' . $js_path . '/js/structure/admin/js.php';
         }
+        if ($js_path != null && Settings::path() == 'catalog') {
+            self::$js_list[] = ROOT . '/modules/' . $js_path . '/js/structure/catalog/js.php';
+        }
+    }
 
-        if (Settings::path() == 'catalog' && $js_path == null) {
-            $path = ROOT . '/modules/payment/' . Valid::inPOST('payment_method') . '/js/structure/catalog';
-            if (file_exists($path . '/js.php')) {
-                return $path . '/js.php';
-            }
-        }
-
-        if (Settings::path() == 'catalog' && $js_path != null) {
-            $path = ROOT . '/modules/' . $js_path . '/js/structure/catalog';
-            if (file_exists($path . '/js.php')) {
-                return $path . '/js.php';
-            }
-        }
-        return '';
+    /**
+     * Get JS path for Modules
+     *
+     * @return array (js path list)
+     */
+    public static function getJs(): array {
+        return self::$js_list;
     }
 }

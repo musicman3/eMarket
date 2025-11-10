@@ -58,6 +58,7 @@ class Reviews implements TabsModulesInterface {
             $this->addReview();
             $this->authorCheck();
         }
+        Modules::setJs('tabs/reviews');
     }
 
     /**

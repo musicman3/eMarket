@@ -42,6 +42,7 @@ final class Bulksms implements ProvidersModulesInterface {
         $this->load();
         $this->save();
         self::data();
+        Modules::setJs('providers/bulksms');
     }
 
     /**

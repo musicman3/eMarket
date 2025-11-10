@@ -44,6 +44,7 @@ class Cash implements PaymentModulesInterface {
             $this->save();
             $this->data();
         }
+        Modules::setJs('payment/cash');
     }
 
     /**

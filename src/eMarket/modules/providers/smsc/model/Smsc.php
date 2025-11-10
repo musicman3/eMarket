@@ -42,6 +42,7 @@ final class Smsc implements ProvidersModulesInterface {
         $this->load();
         $this->save();
         self::data();
+        Modules::setJs('providers/smsc');
     }
 
     /**
