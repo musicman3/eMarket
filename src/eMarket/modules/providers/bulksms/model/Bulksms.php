@@ -165,13 +165,13 @@ final class Bulksms implements ProvidersModulesInterface {
     /**
      * Curl
      *
-     * @param array $post_body (json post body)
+     * @param string $post_body (json post body)
      * @param string $url (url)
      * @param string $username (username)
      * @param string $password (password)
      * @return array Output data
      */
-    public static function curl(array $post_body, string $url, string $username, string $password): array {
+    public static function curl(string $post_body, string $url, string $username, string $password): array {
         $ch = curl_init();
         $headers = [
             'Content-Type:application/json',

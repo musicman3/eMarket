@@ -167,10 +167,10 @@ final class Smsc implements ProvidersModulesInterface {
     /**
      * Curl
      *
-     * @param array $post_body (json post body)
+     * @param string $post_body (json post body)
      * @param string $url (url)
      */
-    public static function curl(array $post_body, string $url): void {
+    public static function curl(string $post_body, string $url): void {
         $ch = curl_init();
         $headers = [
             'Content-Type:application/x-www-form-urlencoded'

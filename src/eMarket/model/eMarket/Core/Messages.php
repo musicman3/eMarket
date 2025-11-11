@@ -11,7 +11,8 @@ namespace eMarket\Core;
 
 use eMarket\Core\{
     Clock\SystemClock,
-    Settings
+    Settings,
+    Modules\Providers
 };
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -141,15 +142,27 @@ class Messages {
 
         if ($to !== null) {
 
-            $active_modules = Db::connect()
-                    ->read(TABLE_MODULES)
-                    ->selectAssoc('*')
-                    ->where('type=', 'providers')
-                    ->and('active=', '1')
-                    ->save();
+            $providers = new Providers();
+            $providers->loadData();
 
-            foreach ($active_modules as $module) {
-                $namespace = '\eMarket\Modules\Providers\\' . ucfirst($module['name']);
+            $DataBuffer = new DataBuffer();
+            $modules_data = $DataBuffer->load('providers');
+
+            $interface_data = [];
+            if (is_array($modules_data)) {
+                foreach ($modules_data as $data) {
+
+                    // INTERFACE
+                    $interface = [
+                        'chanel_module_name' => $data['chanel_module_name']
+                    ];
+
+                    array_push($interface_data, $interface);
+                }
+            }
+
+            foreach ($interface_data as $module) {
+                $namespace = '\eMarket\Modules\Providers\\' . ucfirst($module['chanel_module_name']);
                 $namespace::data();
                 $namespace::send($to, $body);
             }
