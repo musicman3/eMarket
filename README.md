@@ -42,7 +42,7 @@
   - PSR-20 (Clock)
 ---
 
-For eMarket, we created two key libraries: Cruder (DB Query Builder) and R2-D2 (Autorouter). These libraries are separated into separate projects and are accessible through Composer.
+For eMarket, we created two libraries: Cruder (DB Query Builder) and R2-D2 (Autorouter). These libraries are separated into separate projects and are accessible through Composer.
 
 Cruder: [https://github.com/musicman3/Cruder](https://github.com/musicman3/Cruder)
 
