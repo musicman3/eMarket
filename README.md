@@ -40,6 +40,7 @@
   - PSR-12 (Extended Coding Style Guide)
   - PSR-19 (PHPDoc tags)
   - PSR-20 (Clock)
+---
 
 For eMarket, we created two key libraries: Cruder (DB Query Builder) and R2-D2 (Autorouter). These libraries are separated into separate projects and are accessible through Composer.
 
