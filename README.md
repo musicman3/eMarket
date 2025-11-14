@@ -82,4 +82,4 @@ For eMarket, we created two key libraries: Cruder (DB Query Builder) and R2-D2 (
 
 Cruder: [https://github.com/musicman3/Cruder](https://github.com/musicman3/Cruder)
 
-R2-D2: [https://github.com/musicman3/Cruder](https://github.com/musicman3/r2-d2)
+R2-D2: [https://github.com/musicman3/r2-d2](https://github.com/musicman3/r2-d2)
