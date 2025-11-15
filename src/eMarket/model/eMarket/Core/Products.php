@@ -280,14 +280,8 @@ class Products {
      * @param string $class2 Bootstrap class
      * @return string
      */
-    public static function stickers(array $input, ?string $class = null, ?string $class2 = null): array {
+    public static function stickers(array $input, ?string $class = 'danger', ?string $class2 = 'success'): array {
 
-        if ($class == null) {
-            $class = 'danger';
-        }
-        if ($class2 == null) {
-            $class2 = 'success';
-        }
         if (self::$sticker_data == false) {
 
             self::$sticker_data = Db::connect()

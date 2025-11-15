@@ -124,7 +124,7 @@ class Free implements ShippingModulesInterface {
      */
     public function add(): void {
         if (Valid::inPOST('add')) {
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             Db::connect()
                     ->create($MODULE_DB)
@@ -144,7 +144,7 @@ class Free implements ShippingModulesInterface {
      */
     public function edit(): void {
         if (Valid::inPOST('edit')) {
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             Db::connect()
                     ->update($MODULE_DB)
@@ -165,7 +165,7 @@ class Free implements ShippingModulesInterface {
      */
     public function delete(): void {
         if (Valid::inPOST('delete')) {
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             Db::connect()
                     ->delete($MODULE_DB)
@@ -183,7 +183,7 @@ class Free implements ShippingModulesInterface {
      */
     #[\Override]
     public function data(): void {
-        $MODULE_DB = Modules::moduleDatabase();
+        $MODULE_DB = Modules::databaseName();
 
         self::$zones = Db::connect()
                 ->read(TABLE_ZONES)
@@ -211,7 +211,7 @@ class Free implements ShippingModulesInterface {
      */
     public function modal(): void {
         self::$json_data = json_encode([]);
-        $MODULE_DB = Modules::moduleDatabase();
+        $MODULE_DB = Modules::databaseName();
         for ($i = Pages::$start; $i < Pages::$finish; $i++) {
             if (isset(Pages::$table['lines'][$i]['id']) == TRUE) {
 

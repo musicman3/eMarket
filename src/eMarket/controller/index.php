@@ -20,6 +20,7 @@ use eMarket\Core\{
     Messages,
     Routing,
     Settings,
+    Modules,
     Tree
 };
 use eMarket\Admin\{
@@ -39,7 +40,7 @@ foreach (Tree::filesTree(getenv('DOCUMENT_ROOT') . '/model/library/php/functions
 }
 
 // Autoload for modules classes
-foreach (Tree::modulesClasses() as $path) {
+foreach (Modules::autoload() as $path) {
     require_once($path);
 }
 

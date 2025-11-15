@@ -80,7 +80,7 @@ class Register {
                         ->save();
 
                 $link = HTTP_SERVER . '?route=login&activation_code=' . $activation_code;
-                Messages::sendMail(Valid::inPOST('email'), lang('email_registration_subject'), sprintf(lang('email_registration_message'), $link, $link));
+                Messages::sendMail(to: Valid::inPOST('email'), subject: lang('email_registration_subject'), message: sprintf(lang('email_registration_message'), $link, $link));
 
                 Messages::alert('messages_registration_complete', 'success', lang('messages_registration_complete'), 7000, true);
             } else {

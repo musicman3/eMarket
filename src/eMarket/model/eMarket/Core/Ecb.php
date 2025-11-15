@@ -36,12 +36,12 @@ final class Ecb {
      * View price
      *
      * @param array $input Array with products data
-     * @param int $marker Format currency marker
+     * @param int $format Format currency (Example: 0 - Dollar USA, 1 - doll., 2 - $, 3 - USD)
      * @param int|string $quantity Quantity
-     * @param string $class Bootstrap class for sale
+     * @param string $bootstrap_class Bootstrap class for sale
      * @return string Output data
      */
-    public static function priceInterface(array $input, ?int $marker = null, int|string $quantity = 1, string $class = 'danger'): string {
+    public static function priceInterface(array $input, ?int $format = null, int|string $quantity = 1, string $bootstrap_class = 'danger'): string {
 
         $DataBuffer = new DataBuffer();
 
@@ -65,30 +65,30 @@ final class Ecb {
 
         if (Settings::path() == 'admin') {
             if ($discounts_data != [] && $input_price != $discounted_price && $count == 1) {
-                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . $discount_names . '" class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . $discount_names . '" class="badge bg-' . $bootstrap_class . '">' . self::formatPrice($discounted_price, $format) . '</span> <del>' . self::formatPrice($input_price, $format) . '</del>';
             }
             if ($discounts_data != [] && $input_price != $discounted_price && $count > 1) {
-                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="badge bg-warning">' . self::formatPrice($discounted_price, $marker) . '</span> <del>' . self::formatPrice($input_price, $marker) . '</del>';
+                return '<span data-bs-toggle="tooltip" data-bs-placement="left" data-bs-html="true" title="' . lang('modules_discount_sale_admin_tooltip_warning') . $discount_names . '" class="badge bg-warning">' . self::formatPrice($discounted_price, $format) . '</span> <del>' . self::formatPrice($input_price, $format) . '</del>';
             }
-            return self::formatPrice($input_price, $marker);
+            return self::formatPrice($input_price, $format);
         }
 
         if (Settings::path() == 'catalog') {
             if ($discounts_data != [] && $input_price != $discounted_price) {
-                return '<del>' . self::formatPrice($input_price * $quantity, $marker) . '</del> <br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price * $quantity, $marker) . '</span>';
+                return '<del>' . self::formatPrice($input_price * $quantity, $format) . '</del> <br><span class="badge bg-' . $bootstrap_class . '">' . self::formatPrice($discounted_price * $quantity, $format) . '</span>';
             }
-            return self::formatPrice($input_price * $quantity, $marker);
+            return self::formatPrice($input_price * $quantity, $format);
         }
     }
 
     /**
      * Total in cart
      *
-     * @param int $marker Format currency marker
-     * @param string $class Bootstrap class for sale
+     * @param int $format Format currency (Example: 0 - Dollar USA, 1 - doll., 2 - $, 3 - USD)
+     * @param string $bootstrap_class Bootstrap class for sale
      * @return string Output data
      */
-    public static function totalPriceCartInterface(?int $marker = null, string $class = 'danger'): string {
+    public static function totalPriceCartInterface(?int $format = null, string $bootstrap_class = 'danger'): string {
 
         $DataBuffer = new DataBuffer();
         self::priceTerminal();
@@ -97,9 +97,9 @@ final class Ecb {
         $total_price = Cart::totalPrice();
 
         if ($total_price != $discounted_price) {
-            return '<del>' . self::formatPrice($total_price, $marker) . '</del><br><span class="badge bg-' . $class . '">' . self::formatPrice($discounted_price, $marker) . '</span>';
+            return '<del>' . self::formatPrice($total_price, $format) . '</del><br><span class="badge bg-' . $bootstrap_class . '">' . self::formatPrice($discounted_price, $format) . '</span>';
         }
-        return self::formatPrice($total_price, $marker);
+        return self::formatPrice($total_price, $format);
     }
 
     /**

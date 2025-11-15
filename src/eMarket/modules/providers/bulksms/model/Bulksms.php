@@ -90,7 +90,7 @@ final class Bulksms implements ProvidersModulesInterface {
     public function save(): void {
         if (Valid::inPOST('save')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             $data = Db::connect()
                     ->read($MODULE_DB)

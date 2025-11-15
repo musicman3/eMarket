@@ -45,7 +45,7 @@ use R2D2\R2\Valid;
                 <div class="clearfix"></div>
                 <?php
             }
-            require_once (Modules::modulesPath('view') . '/index.php');
+            require_once (Modules::modulePath('view') . '/index.php');
             ?>
         </div>
     </div>

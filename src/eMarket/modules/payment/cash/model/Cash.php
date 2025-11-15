@@ -99,7 +99,7 @@ class Cash implements PaymentModulesInterface {
     public function save(): void {
         if (Valid::inPOST('save')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             $data = Db::connect()
                     ->read($MODULE_DB)
@@ -144,7 +144,7 @@ class Cash implements PaymentModulesInterface {
      */
     #[\Override]
     public function data(): void {
-        $MODULE_DB = Modules::moduleDatabase();
+        $MODULE_DB = Modules::databaseName();
 
         self::$shipping_method = Db::connect()
                 ->read(TABLE_MODULES)

@@ -134,7 +134,7 @@ class Reviews implements TabsModulesInterface {
      */
     #[\Override]
     public function data(): void {
-        $MODULE_DB = Modules::moduleDatabase();
+        $MODULE_DB = Modules::databaseName();
 
         self::$sql_data = Db::connect()
                 ->read($MODULE_DB)
@@ -316,7 +316,7 @@ class Reviews implements TabsModulesInterface {
     public function publish(): void {
         if (Valid::inPOST('publish')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             $data = Db::connect()
                     ->read($MODULE_DB)
@@ -344,7 +344,7 @@ class Reviews implements TabsModulesInterface {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             Db::connect()
                     ->update($MODULE_DB)
@@ -365,7 +365,7 @@ class Reviews implements TabsModulesInterface {
     public function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             Db::connect()
                     ->delete($MODULE_DB)

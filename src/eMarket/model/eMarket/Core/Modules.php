@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace eMarket\Core;
 
-use eMarket\Core\Clock\SystemClock;
+use eMarket\Core\{
+    Tree,
+    Clock\SystemClock
+};
 use R2D2\R2\Valid;
 use Cruder\Db;
 
@@ -185,22 +188,49 @@ final class Modules {
     }
 
     /**
+     * Autoloading class files for modules
+     *
+     * @return array $output
+     */
+    public static function autoload(): array {
+
+        $list_cat = Tree::allDirForPath(getenv('DOCUMENT_ROOT') . '/modules/', 'true');
+        $output = [];
+
+        foreach ($list_cat as $key => $val) {
+            foreach ($val as $val_2) {
+                if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/')) {
+                    $scandir = scandir(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/');
+                    $list_val = array_values(array_diff($scandir, ['..', '.']));
+                    foreach ($list_val as $val_files) {
+                        if (file_exists(getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files)) {
+                            array_push($output, getenv('DOCUMENT_ROOT') . '/modules/' . $key . '/' . $val_2 . '/model/' . $val_files);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $output;
+    }
+
+    /**
      * Module database name
      *
      * @return string
      */
-    public static function moduleDatabase(): string {
+    public static function databaseName(): string {
 
         return DB_PREFIX . 'modules_' . Valid::inGET('type') . '_' . Valid::inGET('name');
     }
 
     /**
-     * Modules path
+     * Module path
      *
      * @param string $path (branch view/js)
      * @return string (modules path)
      */
-    public static function modulesPath(string $path): string {
+    public static function modulePath(string $path): string {
 
         $modules_path = ROOT . '/modules/' . Valid::inGET('type') . '/' . Valid::inGET('name');
 

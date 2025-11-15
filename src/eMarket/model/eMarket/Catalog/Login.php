@@ -125,7 +125,7 @@ class Login {
                         ->save();
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
-                Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
+                Messages::sendMail(to: Valid::inPOST('email_for_recovery'), subject: lang('email_recovery_password_subject'), message: sprintf(lang('email_recovery_password_message'), $link, $link));
 
                 Messages::alert('register_password_recovery_message_success', 'success', lang('register_password_recovery_message_success'), 7000, true);
             } elseif ($customer_id != FALSE && $recovery_check != FALSE) {
@@ -139,7 +139,7 @@ class Login {
                         ->save();
 
                 $link = HTTP_SERVER . '?route=recoverypass&recovery_code=' . $recovery_code;
-                Messages::sendMail(Valid::inPOST('email_for_recovery'), lang('email_recovery_password_subject'), sprintf(lang('email_recovery_password_message'), $link, $link));
+                Messages::sendMail(to: Valid::inPOST('email_for_recovery'), subject: lang('email_recovery_password_subject'), message: sprintf(lang('email_recovery_password_message'), $link, $link));
 
                 Messages::alert('register_password_recovery_message_success', 'success', lang('register_password_recovery_message_success'), 7000, true);
             } else {

@@ -48,9 +48,9 @@ class Messages {
      *
      * @param string $type message type (warning/error/success)
      * @param string $page message page
-     * @param string $action (add/edit/delete/cut and etc)
+     * @param string $action_type (add/edit/delete/cut and etc)
      */
-    public static function logging(string $type, ?string $page = null, ?string $action = null): void {
+    public static function logging(string $type, ?string $page = null, ?string $action_type = null): void {
 
         if (Settings::path() == 'admin') {
             $log = new Logger('eMarket');
@@ -64,13 +64,13 @@ class Messages {
             }
 
             if ($type == 'warning') {
-                $log->warning(strtoupper($action), [$page, $staff]);
+                $log->warning(strtoupper($action_type), [$page, $staff]);
             }
             if ($type == 'danger') {
-                $log->error(strtoupper($action), [$page, $staff]);
+                $log->error(strtoupper($action_type), [$page, $staff]);
             }
             if ($type == 'success') {
-                $log->info(strtoupper($action), [$page, $staff]);
+                $log->info(strtoupper($action_type), [$page, $staff]);
             }
         }
     }
@@ -79,20 +79,20 @@ class Messages {
      * Error notifications, success, etc.
      *
      * param string $action|null (add/edit/delete/cut and etc)
-     * @param string|null $class Bootstrap class
+     * @param string|null $bootstrap_class Bootstrap class
      * @param mixed $message Message
      * @param int|null $time Show time (ms)
-     * @param bool $start Manual call
+     * @param bool $manual_call Manual call
      * @return bool
      *
      */
-    public static function alert(?string $action = null, ?string $class = null, mixed $message = null, ?int $time = 3000, bool $start = false): bool {
+    public static function alert(?string $action_type = null, ?string $bootstrap_class = null, mixed $message = null, ?int $time = 3000, bool $manual_call = false): bool {
 
-        if ($message != null && $class != null) {
+        if ($message != null && $bootstrap_class != null) {
             $_SESSION['message_step'] = '1';
 
-            $_SESSION['message'] = [$class, $message, $time, $start, SystemClock::nowFormatDate('H:i')];
-            self::logging($class, '?route=' . Valid::inGET('route'), $action);
+            $_SESSION['message'] = [$bootstrap_class, $message, $time, $manual_call, SystemClock::nowFormatDate('H:i')];
+            self::logging($bootstrap_class, '?route=' . Valid::inGET('route'), $action_type);
 
             if (Valid::inGET('route') == 'modules/edit') {
                 self::alert();
@@ -136,9 +136,9 @@ class Messages {
      * Providers notifications
      *
      * @param string $to ('To' contact)
-     * @param string $body (message)
+     * @param string $message (message)
      */
-    public static function sendProviders(?string $to, ?string $body): void {
+    public static function sendProviders(?string $to, ?string $message): void {
 
         if ($to !== null) {
 
@@ -164,7 +164,7 @@ class Messages {
             foreach ($interface_data as $module) {
                 $namespace = '\eMarket\Modules\Providers\\' . ucfirst($module['chanel_module_name']);
                 $namespace::data();
-                $namespace::send($to, $body);
+                $namespace::send($to, $message);
             }
         }
     }
@@ -172,13 +172,13 @@ class Messages {
     /**
      * Email notifications
      *
-     * @param string $email_to Recipient's e-mail. Delimiter ";"
+     * @param string $to Recipient's e-mail. Delimiter ";"
      * @param string $subject E-mail subject text
      * @param string $message Html message
      */
-    public static function sendMail(?string $email_to, ?string $subject, ?string $message): void {
+    public static function sendMail(?string $to, ?string $subject, ?string $message): void {
 
-        if ($email_to !== null) {
+        if ($to !== null) {
 
             $mail = new \PHPMailer\PHPMailer\PHPMailer();
             $mail->CharSet = 'UTF-8';
@@ -191,7 +191,7 @@ class Messages {
             if ($basic_settings['smtp_status'] == 0) {
                 $mail->isSendmail();
                 $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
-                $mail->addAddress($email_to);
+                $mail->addAddress($to);
                 $mail->Subject = $subject;
                 $mail->msgHTML($message);
                 $mail->send();
@@ -212,7 +212,7 @@ class Messages {
                 $mail->SMTPSecure = $basic_settings['smtp_secure'];
                 $mail->Port = $basic_settings['smtp_port'];
                 $mail->setFrom($basic_settings['email'], $basic_settings['email_name']);
-                $mail->addAddress($email_to);
+                $mail->addAddress($to);
                 $mail->Subject = $subject;
                 $mail->msgHTML($message);
                 $mail->send();

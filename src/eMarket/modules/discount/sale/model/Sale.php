@@ -516,7 +516,7 @@ class Sale implements DiscountModulesInterface {
     public function add(): void {
         if (Valid::inPOST('add')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             $id_max = Db::connect()
                     ->read($MODULE_DB)
@@ -560,7 +560,7 @@ class Sale implements DiscountModulesInterface {
     public function edit(): void {
         if (Valid::inPOST('edit')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             if ($this->default != 0) {
 
@@ -595,7 +595,7 @@ class Sale implements DiscountModulesInterface {
     public function delete(): void {
         if (Valid::inPOST('delete')) {
 
-            $MODULE_DB = Modules::moduleDatabase();
+            $MODULE_DB = Modules::databaseName();
 
             $discount_id_array = Db::connect()
                     ->read(TABLE_PRODUCTS)
@@ -635,7 +635,7 @@ class Sale implements DiscountModulesInterface {
      *
      */
     public function data(): void {
-        $MODULE_DB = Modules::moduleDatabase();
+        $MODULE_DB = Modules::databaseName();
 
         self::$sql_data = Db::connect()
                 ->read($MODULE_DB)
