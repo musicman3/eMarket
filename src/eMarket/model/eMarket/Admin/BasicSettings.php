@@ -174,7 +174,7 @@ class BasicSettings {
      */
     private function checkedLang(): array {
         self::$checked_lang = [];
-        foreach (BasicSettings::$languages_list as $langs) {
+        foreach (self::$languages_list as $langs) {
             if ($langs != self::$languages_list[0]) {
                 if (in_array($langs, self::$available_languages)) {
                     self::$checked_lang[$langs] = 'checked';
@@ -192,7 +192,7 @@ class BasicSettings {
      */
     private function languagesSave(): void {
 
-        if (Valid::inPOST('add') == 'ok') {
+        if (Valid::inPOST('primary_language')) {
 
             $other = self::$other;
 

@@ -13,6 +13,7 @@ use eMarket\Core\{
     Cryptography,
     Settings,
     Routing,
+    Lang,
     Clock\SystemClock
 };
 use R2D2\R2\Valid;
@@ -47,6 +48,8 @@ class AdminAuthorize {
 
         $this->permission();
         $this->admin();
+        // Load Languages
+        new Lang();
     }
 
     /**

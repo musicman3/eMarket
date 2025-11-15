@@ -10,7 +10,8 @@ declare(strict_types=1);
 namespace eMarket\Core\Middleware;
 
 use eMarket\Core\{
-    Settings
+    Settings,
+    Lang
 };
 
 /**
@@ -39,6 +40,8 @@ class InstallAuthorize {
             echo 'Error! Installation already completed!';
             exit;
         }
+        // Load Languages
+        new Lang();
     }
 
     /**

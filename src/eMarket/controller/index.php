@@ -16,7 +16,6 @@ require_once(getenv('DOCUMENT_ROOT') . '/vendor/autoload.php');
 
 use eMarket\Core\{
     Debug,
-    Lang,
     Messages,
     Routing,
     Settings,
@@ -59,9 +58,6 @@ if (Settings::path() != 'install') {
 
 // Routing
 $Routing = new Routing();
-
-// Load Languages
-new Lang();
 
 // Load Template constructor
 if ($Routing->constructor()) {

@@ -121,9 +121,9 @@ use eMarket\Admin\Templates;
         ?>
 
         <script type="text/javascript" src="/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/structure/catalog/categories.js"></script>
         <?php
         require_once ('js/breadcrumb.php');
-        require_once ('js/categories.php');
 
         if (Routing::js()) {
             require_once(Routing::js());

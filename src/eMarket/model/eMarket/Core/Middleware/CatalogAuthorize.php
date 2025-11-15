@@ -12,6 +12,7 @@ namespace eMarket\Core\Middleware;
 use eMarket\Core\{
     Cryptography,
     Settings,
+    Lang,
     Clock\SystemClock
 };
 use \eMarket\Catalog\{
@@ -48,6 +49,8 @@ class CatalogAuthorize {
         $this->csrfVerification();
 
         $this->catalog();
+        // Load Languages
+        new Lang();
         new Cart();
     }
 
