@@ -195,7 +195,7 @@ final class Ecb {
     /**
      * Discount handler
      *
-     * @param array $input (Array with product data
+     * @param array $input Array with product data
      * @param string $language Language
      */
     public static function discountHandler(array $input, ?string $language = null): void {
