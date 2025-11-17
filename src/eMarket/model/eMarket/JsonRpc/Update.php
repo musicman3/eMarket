@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -20,7 +20,7 @@ use eMarket\Core\{
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class Update extends JsonRpc {
 
@@ -32,14 +32,13 @@ class Update extends JsonRpc {
      *
      */
     public function __construct() {
-        header('Content-Type: application/json');
         $this->jsonRpcVerification(['?route=basic_settings']);
         $this->init();
     }
 
     /**
      * Init
-     * 
+     *
      */
     public function init(): void {
         if (isset(self::$jsonrpc['param']['message']) && self::$jsonrpc['param']['message'] == 'update' && copy(getenv('DOCUMENT_ROOT') . '/storage/updater/update.php', getenv('DOCUMENT_ROOT') . '/update.php')) {

@@ -119,6 +119,7 @@ class JsonRpc {
             }
         }
         if (count(self::$response) > 0) {
+            header('Content-Type: application/json');
             echo json_encode(self::$response);
             exit;
         }
