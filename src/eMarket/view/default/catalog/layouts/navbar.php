@@ -21,12 +21,12 @@ use eMarket\Admin\Currencies;
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <?php if (Settings::catalogButton() == 'on') { ?>
+            <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-primary" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-justify"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
+        <?php } ?>
+
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-            <ul id="left_bar" class="navbar-nav">
-                <?php if (Settings::catalogButton() == 'on') { ?>
-                    <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-primary" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-justify"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
-                <?php } ?>
-            </ul>
+            <ul id="left_bar" class="navbar-nav"></ul>
             <ul id="right_bar" class="navbar-nav">
                 <?php if (count(lang('#lang_all')) > 1) { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-translate" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('navbar_languages') ?></span></a>

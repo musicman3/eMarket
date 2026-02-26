@@ -7,10 +7,10 @@
 
 <div id="header" class="container-fluid mt-3 mb-3">
     <div class="row align-items-center">
-        <div class="col-10">
+        <div class="col-6">
             <a href="/"><img src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="logo img-fluid float-start"></a>
         </div>
-        <div class="col-2">
+        <div class="col-6">
             <form>
                 <input hidden name="route" value="listing">
                 <div class="input-group">
