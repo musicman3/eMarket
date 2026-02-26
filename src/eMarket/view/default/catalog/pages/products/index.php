@@ -29,16 +29,16 @@ if (Products::$products != FALSE) {
                 <input id="selected_attributes" type="hidden" name="selected_attributes" value="" />
 
                 <div class="row d-flex justify-content-center">
-                    <div class="d-flex align-items-center h-100">
-                        <div class="labelsblock">
-                            <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
-                                <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
-                            <?php } ?>
-                        </div>
-                        <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>">
+                    <a href="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="labelsblock">
+                                <?php foreach (ProductsCore::stickers(Products::$products, 'bg-danger', 'bg-success') as $sticker) { ?>
+                                    <div class="<?php echo $sticker[0] ?>"><?php echo $sticker[1] ?></div>
+                                <?php } ?>
+                            </div>
                             <img src="/uploads/images/products/resize_4/<?php echo Products::$products['logo_general'] ?>" alt="<?php echo Products::$products['name'] ?>" class="img-fluid rounded d-block mb-3">
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <?php foreach (Products::$images as $val) { ?>
                         <div class="col-xl-2 col-md-4 col-12 p-1">
