@@ -6,11 +6,11 @@
 ?>
 
 <div id="header" class="container-fluid mt-3 mb-3">
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="p-1">
+    <div class="row align-items-center">
+        <div class="w-auto">
             <a href="/"><img src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="logo img-fluid float-start"></a>
         </div>
-        <div class="p-1">
+        <div class="w-auto ms-auto mt-3">
             <form>
                 <input hidden name="route" value="listing">
                 <div class="input-group">
