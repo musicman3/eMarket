@@ -10,7 +10,7 @@
         <div class="w-auto">
             <a href="/"><img src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="logo img-fluid float-start"></a>
         </div>
-        <div class="w-auto ms-auto mt-3">
+        <div class="w-50 ms-auto mt-3">
             <form>
                 <input hidden name="route" value="listing">
                 <div class="input-group">
