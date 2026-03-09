@@ -582,6 +582,7 @@ class BasicSettings {
                     ->save();
 
             self::$store_name = Valid::inPOST('store_name');
+            self::$other = $other;
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
@@ -608,6 +609,7 @@ class BasicSettings {
                     ->save();
 
             self::$year_of_foundation = Valid::inPOST('year_of_foundation');
+            self::$other = $other;
 
             Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
