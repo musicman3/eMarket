@@ -171,7 +171,7 @@ class ContextMenu {
 
                                 document.querySelector('#edit').value = modal_id;
                                 document.querySelector('#add').value = '';
-                                Fileupload.getImageToEdit(json_data_category.logo_general, json_data_category.logo, modal_id, 'categories');
+                                Stock.getImageToEdit(json_data_category.logo_general, json_data_category.logo, modal_id, 'categories');
                                 sessionStorage.setItem('attributes', JSON.stringify(json_data_category.attributes[modal_id]));
                                 new bootstrap.Modal(document.querySelector('#index')).show();
                             }

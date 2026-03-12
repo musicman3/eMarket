@@ -177,4 +177,35 @@ class Stock {
             new Stock('update');
         }, 100);
     }
+
+    /**
+     * Loading images into "Edit" modal window
+     * @param logo_general_edit {String} (general logo)
+     * @param logo_edit {Array} (images array)
+     * @param modal_id {String} (modal id)
+     * @param dir {String} (dir)
+     */
+    static getImageToEdit(logo_general_edit, logo_edit, modal_id, dir) {
+        for (var x = 0; x < logo_edit[modal_id].length; x++) {
+            var image = logo_edit[modal_id][x];
+
+            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm clipboard bi-clipboard" type="button" id="image_clipboard_edit' + x + '" onclick="Stock.imageClipboard(\'' + image + '\', \'' + dir + '\', \'' + x + '\')"></button></div></div></div>');
+            if (logo_general_edit[modal_id] === image) {
+                document.querySelector('#general_' + x).classList.add('border-danger');
+            }
+        }
+    }
+
+    /** 
+     * Image Clipboard
+     * @param image {String} (image) 
+     * @param dir {String} (dir)
+     * @param id {String} (id)
+     * */
+    static imageClipboard(image, dir, id) {
+        document.querySelectorAll('.clipboard').forEach(e => e.classList.replace('bi-clipboard-check', 'bi-clipboard'));
+        document.querySelector('#image_clipboard_edit' + id).classList.replace('bi-clipboard', 'bi-clipboard-check');
+        var url = '/uploads/images/' + dir + '/resize_2/' + image;
+        navigator.clipboard.writeText(url);
+    }
 }
