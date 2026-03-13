@@ -78,12 +78,16 @@ class FileuploadProduct {
                     filename = data[1];
 
                     if (this_height < quality_height && this_width < quality_width) {
-                        if (document.querySelector('#add_product').value === 'ok') {
-                            document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
-                        }
-                        if (document.querySelector('#edit_product').value !== '') {
-                            document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
-                        }
+                        Ajax.postData(window.location.href, {
+                            image_size_error: filename
+                        }, false).then((data) => {
+                            if (document.querySelector('#add_product').value === 'ok') {
+                                document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                            if (document.querySelector('#edit_product').value !== '') {
+                                document.querySelector('#alert_messages_product').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                        });
                     } else {
                         if (document.querySelector('#add_product').value === 'ok') {
                             document.querySelector('#logo-product').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_add_new_product_' + hash_name + '"/><img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_product_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.deleteImageAddNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNewProduct_' + hash_name + '" onclick="FileuploadProduct.imageGeneralAddNewProduct(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div></div>');

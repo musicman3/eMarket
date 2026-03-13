@@ -77,12 +77,16 @@ class Fileupload {
                     filename = data[1];
 
                     if (this_height < quality_height && this_width < quality_width) {
-                        if (document.querySelector('#add').value === 'ok') {
-                            document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
-                        }
-                        if (document.querySelector('#edit').value !== '') {
-                            document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
-                        }
+                        Ajax.postData(window.location.href, {
+                            image_size_error: filename
+                        }, false).then((data) => {
+                            if (document.querySelector('#add').value === 'ok') {
+                                document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                            if (document.querySelector('#edit').value !== '') {
+                                document.querySelector('#alert_messages').innerHTML = '<div class="alert alert-danger">' + lang['image_resize_error'] + ' ' + quality_width + 'x' + quality_height + '</div>';
+                            }
+                        });
                     } else {
                         if (document.querySelector('#add').value === 'ok') {
                             document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_add_new_' + hash_name + '"/><img src="/uploads/temp/thumbnail/' + filename + '?' + Math.random() + '" class="img-thumbnail" id="general_' + hash_name + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="deleteImageAddNew_' + hash_name + '" onclick="Fileupload.deleteImageAddNew(\'' + filename + '\', \'' + hash_name + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="imageGeneralAddNew_' + hash_name + '" onclick="Fileupload.imageGeneralAddNew(\'' + filename + '\', \'' + hash_name + '\')"></button></div></div></div>');

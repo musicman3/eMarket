@@ -57,6 +57,7 @@ class Images {
         $this->add();
         $this->edit();
         $this->delete();
+        $this->imageSizeError();
         $this->deleteNewImages();
     }
 
@@ -378,6 +379,18 @@ class Images {
                 Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . basename($file));
                 Func::deleteFile(ROOT . '/uploads/temp/files/' . basename($file));
             }
+        }
+    }
+
+    /**
+     * Image Size Error (delete image)
+     *
+     */
+    private function imageSizeError(): void {
+        if (Valid::inPostJson('image_size_error')) {
+            $file = Valid::inPostJson('image_size_error');
+            Func::deleteFile(ROOT . '/uploads/temp/thumbnail/' . $file);
+            Func::deleteFile(ROOT . '/uploads/temp/files/' . $file);
         }
     }
 
