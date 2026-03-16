@@ -110,6 +110,13 @@ class Stock {
             toolbar: 'undo redo | bold italic underline strikethrough | blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
             quickbars_insert_toolbar: 'image quicktable',
             toolbar_sticky: true,
+            image_class_list: [
+                {title: 'Thumbnail', value: 'img-thumbnail img-fluid mb-3'},
+                {title: 'Rounded', value: 'rounded img-thumbnail img-fluid mb-3'}
+            ],
+            table_class_list: [
+                {title: 'Table', value: 'table'}
+            ],
             autosave_ask_before_unload: true,
             autosave_interval: '30s',
             autosave_prefix: '{path}{query}-{id}-',
