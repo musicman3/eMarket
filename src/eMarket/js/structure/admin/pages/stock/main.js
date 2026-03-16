@@ -112,10 +112,11 @@ class Stock {
             toolbar_sticky: true,
             image_class_list: [
                 {title: 'Thumbnail', value: 'img-thumbnail img-fluid mb-3'},
-                {title: 'Rounded', value: 'rounded img-thumbnail img-fluid mb-3'}
+                {title: 'Rounded', value: 'rounded img-fluid mb-3'}
             ],
             table_class_list: [
-                {title: 'Table', value: 'table'}
+                {title: 'Table', value: 'table'},
+                {title: 'None', value: ''}
             ],
             autosave_ask_before_unload: true,
             autosave_interval: '30s',
