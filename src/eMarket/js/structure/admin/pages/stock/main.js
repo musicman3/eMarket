@@ -115,7 +115,7 @@ class Stock {
                 {title: 'Rounded', value: 'rounded img-fluid mb-3'}
             ],
             table_class_list: [
-                {title: 'Table', value: 'table'},
+                {title: 'Table', value: 'table align-middle'},
                 {title: 'None', value: ''}
             ],
             autosave_ask_before_unload: true,
