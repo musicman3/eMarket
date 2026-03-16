@@ -15,7 +15,7 @@ class Mouse {
     /**
      * Constructor
      *
-     **@param lang {Array} (language)
+     * @param lang {Array} (language)
      */
     constructor(lang) {
         if (lang !== undefined) {

@@ -50,7 +50,7 @@ class Stock {
         }
 
         this.mousedown();
-        this.tinymceInit();
+        this.tinymceInit(lang);
         this.focusin();
         this.tableSelect();
     }
@@ -101,8 +101,9 @@ class Stock {
     /**
      * Tinymce init
      * 
+     * @param lang {Array} (language)
      */
-    tinymceInit() {
+    tinymceInit(lang) {
         tinymce.init({
             selector: '.wysiwyg',
             plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media table charmap advlist lists wordcount help charmap quickbars emoticons',
@@ -111,12 +112,12 @@ class Stock {
             quickbars_insert_toolbar: 'image quicktable',
             toolbar_sticky: true,
             image_class_list: [
-                {title: 'Thumbnail', value: 'img-thumbnail img-fluid mb-3'},
-                {title: 'Rounded', value: 'rounded img-fluid mb-3'}
+                {title: lang['tinymce_thumbnail'], value: 'img-thumbnail img-fluid mb-3'},
+                {title: lang['tinymce_rounded'], value: 'rounded img-fluid mb-3'}
             ],
             table_class_list: [
-                {title: 'Table', value: 'table align-middle'},
-                {title: 'None', value: ''}
+                {title: lang['tinymce_table'], value: 'table align-middle'},
+                {title: lang['tinymce_none'], value: ''}
             ],
             autosave_ask_before_unload: true,
             autosave_interval: '30s',

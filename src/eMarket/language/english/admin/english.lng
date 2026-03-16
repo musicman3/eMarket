@@ -437,3 +437,9 @@ aichat_checked = AI Assistant engine successfully modified!
 page_not_found_header = Attention!
 page_not_found_title = Page not found
 page_not_found_text = Please enter a valid url or contact the administrator.
+
+;TINYMCE
+tinymce_none = None
+tinymce_table = Table
+tinymce_thumbnail = Thumbnail
+tinymce_rounded = Rounded
