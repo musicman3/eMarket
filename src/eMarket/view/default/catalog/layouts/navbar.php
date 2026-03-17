@@ -52,6 +52,7 @@ use eMarket\Admin\Currencies;
                 if (CatalogAuthorize::$customer == FALSE) {
                     ?>
                     <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
+                    <li class="nav-item dropdown"><a href="/?route=contacts" class="nav-link"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('contacts_name') ?></span></a></li>
                 <?php } else { ?>
                     <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">

@@ -11,6 +11,7 @@ shop_name = eMarket
 ;TITLE
 title_categories_index = Categories
 title_dashboard_index = Dashboard
+title_contacts_index = Contacts
 title_error_log_index = Error log
 title_action_log_index = Action log
 title_login_index = Login page
@@ -42,6 +43,7 @@ title_language_variables_index = Language variables
 ;MENU_BUTTONS
 menu_name = Main menu
 menu_dashboard = Dashboard
+menu_contacts = Contacts
 menu_catalog = Catalog
 menu_market = Market
 menu_sales = Sales
@@ -443,3 +445,6 @@ tinymce_none = None
 tinymce_table = Table
 tinymce_thumbnail = Thumbnail
 tinymce_rounded = Rounded
+
+;CONTACTS
+contacts_description = Page description

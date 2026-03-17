@@ -8,6 +8,7 @@
 ;TITLE
 title_catalog_index =  Home page
 title_login_index = Authorization
+title_contacts_index = Contacts
 title_register_index = Registration
 title_cart_index = Cart
 title_products_index = Product
@@ -277,3 +278,6 @@ success_message = Dear customer. Thank you for purchasing from eMarket. Your ord
 page_not_found_header = Attention!
 page_not_found_title = Page not found
 page_not_found_text = Please enter a valid url or contact the administrator.
+
+;CONTACTS
+contacts_name = Contacts

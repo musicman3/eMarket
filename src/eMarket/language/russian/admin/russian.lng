@@ -11,6 +11,7 @@ shop_name = eMarket
 ;TITLE
 title_categories_index = Категории
 title_dashboard_index = Мониторинг
+title_contacts_index = Контакты
 title_error_log_index = Лог ошибок
 title_action_log_index = Лог действий
 title_login_index = Страница авторизации
@@ -42,6 +43,7 @@ title_language_variables_index = Языковые переменные
 ;КНОПКИ МЕНЮ
 menu_name = Главное меню
 menu_dashboard = Мониторинг
+menu_contacts = Контакты
 menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sales = Продажи
@@ -441,3 +443,6 @@ tinymce_none = Нет
 tinymce_table = Таблица
 tinymce_thumbnail = Миниатюра
 tinymce_rounded = Скругление
+
+;CONTACTS
+contacts_description = Описание страницы
