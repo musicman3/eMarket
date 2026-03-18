@@ -50,7 +50,7 @@ class Contacts {
      *
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][] = ['?route=contacts', 'bi-mailbox', lang('menu_contacts'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][] = ['?route=contacts', 'bi-envelope', lang('menu_contacts'), '', 'false'];
     }
 
     /**
