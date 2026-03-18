@@ -23,7 +23,7 @@ class Stock {
         if (action === 'update') {
             this.update();
         } else {
-            this.init();
+            this.init(action);
         }
     }
 
