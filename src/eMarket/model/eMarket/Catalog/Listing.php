@@ -42,6 +42,7 @@ class Listing {
     public static $categories_logo;
     public static $product_edit;
     public static $sql_data;
+    public $category_not_found = false;
 
     /**
      * Constructor
@@ -63,6 +64,7 @@ class Listing {
                 ->selectAssoc('*')
                 ->where('language=', lang('#lang_all')[0])
                 ->and('id=', Valid::inGET('category_id'))
+                ->and('status=', 1)
                 ->save();
         if (isset($title[0])) {
             if ($title[0]['tags'] != null && $title[0]['tags'] != '') {
@@ -72,6 +74,7 @@ class Listing {
             }
         } else {
             $this->title = lang('title_listing_index') . ': ' . lang('page_not_found_title');
+            $this->category_not_found = true;
         }
     }
 
@@ -180,7 +183,7 @@ class Listing {
 
         Pages::data(self::$sql_data);
 
-        if (Valid::inGET('category_id') && Products::categoryData(Valid::inGET('category_id')) != false) {
+        if (Valid::inGET('category_id') && Products::categoryData(Valid::inGET('category_id')) != false && !$this->category_not_found) {
             self::$categories_name = Products::categoryData(Valid::inGET('category_id'))['name'];
             self::$categories_description = Products::categoryData(Valid::inGET('category_id'))['description'];
             self::$categories_keyword = Products::categoryData(Valid::inGET('category_id'))['keyword'];
