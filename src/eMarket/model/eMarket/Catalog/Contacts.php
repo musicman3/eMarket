@@ -9,9 +9,6 @@ declare(strict_types=1);
 
 namespace eMarket\Catalog;
 
-use eMarket\Core\{
-    Lang
-};
 use Cruder\Db;
 
 /**

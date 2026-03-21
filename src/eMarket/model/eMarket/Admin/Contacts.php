@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Messages,
-    Lang
+    Messages
 };
 use eMarket\Admin\HeaderMenu;
 use R2D2\R2\Valid;
