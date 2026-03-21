@@ -445,9 +445,9 @@ function gitHubData(string $repo_name): mixed {
                 try {
                     var parse = JSON.parse(data);
 
-                    if (parse[0] === 'Install' && Number(parse[2]) < 7) {
+                    if (parse[0] === 'Install' && Number(parse[2]) < 8) {
                         document.querySelector('#step_data').innerHTML = parse[1];
-                        document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 6';
+                        document.querySelector('#step').innerHTML = 'Step ' + parse[2] + ' of 7';
 
                         progress_bar.forEach(e => e.style.width = (parse[2] - 1) * 17 + '%');
                         progress_bar.forEach(e => e.classList.add('bg-success', 'progress-bar-striped', 'progress-bar-animated'));
@@ -518,7 +518,7 @@ function gitHubData(string $repo_name): mixed {
                         <div><span id="step_data" class="badge bg-success">Preparing to update</span>&nbsp;</div>
                     </div>
                 </div>
-                <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 6</span>&nbsp;</div></div>
+                <div class="card-footer bg-transparent"><div><span id="step" class="badge bg-danger">Step 1 of 7</span>&nbsp;</div></div>
             </div>
         </div>
         <script>
