@@ -59,6 +59,16 @@ CREATE TABLE emkt_categories (
 PRIMARY KEY (id, language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+DROP TABLE IF EXISTS emkt_contacts;
+CREATE TABLE emkt_contacts (
+	language varchar(64),
+        logo json,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
 	id int NOT NULL,

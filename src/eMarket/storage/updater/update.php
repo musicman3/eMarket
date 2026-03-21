@@ -118,6 +118,9 @@ function init(array $repo_init, array $removing_list): void {
     if (inGET('step') == '6') {
         sqlUpdate();
     }
+    if (inGET('step') == '7') {
+        settingUp();
+    }
 }
 
 /**
@@ -305,6 +308,19 @@ function sqlUpdate(): void {
         }
     }
 
+    echo json_encode(['Install', 'Setting up', '7', '0', inGET('version')]);
+    exit;
+}
+
+/**
+ * Setting up
+ *
+ */
+function settingUp(): void {
+
+    if (file_exists(getenv('DOCUMENT_ROOT') . '/storage/updater/patch/index.php')) {
+        require_once getenv('DOCUMENT_ROOT') . '/storage/updater/patch/index.php';
+    }
     filesRemoving(getenv('DOCUMENT_ROOT') . '/update.php');
 
     echo json_encode(['Done']);

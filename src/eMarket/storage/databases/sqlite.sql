@@ -55,6 +55,15 @@ CREATE TABLE emkt_categories (
         tags text(256),
 PRIMARY KEY (id, language));
 
+DROP TABLE IF EXISTS emkt_contacts;
+CREATE TABLE emkt_contacts (
+	language text(64),
+        logo text,
+        logo_general text(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
+
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
 	id int NOT NULL,

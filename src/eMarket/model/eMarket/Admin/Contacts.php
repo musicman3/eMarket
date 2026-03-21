@@ -11,8 +11,7 @@ namespace eMarket\Admin;
 
 use eMarket\Core\{
     Messages,
-    Lang,
-    Settings
+    Lang
 };
 use eMarket\Admin\HeaderMenu;
 use R2D2\R2\Valid;
@@ -59,19 +58,32 @@ class Contacts {
      */
     private function add(): void {
 
-        $basic_settings = Settings::basicSettings();
-        $other = json_decode($basic_settings['other'], true);
-
         if (Valid::inPOST('add')) {
 
-            for ($x = 0; $x < Lang::$count; $x++) {
-                $other['store_contacts_' . lang('#lang_all')[$x]] = Valid::inPOST('description_contacts_' . $x);
-                Db::connect()
-                        ->update(TABLE_BASIC_SETTINGS)
-                        ->set('other', json_encode($other))
-                        ->save();
+            $contacts = Db::connect()
+                    ->read(TABLE_CONTACTS)
+                    ->selectAssoc('*')
+                    ->save();
+
+            if (count($contacts) > 0) {
+                for ($x = 0; $x < count(lang('#lang_all')); $x++) {
+                    Db::connect()
+                            ->update(TABLE_CONTACTS)
+                            ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->where('language=', lang('#lang_all')[$x])
+                            ->save();
+                }
+            } else {
+                for ($x = 0; $x < count(lang('#lang_all')); $x++) {
+                    Db::connect()
+                            ->create(TABLE_CONTACTS)
+                            ->set('language', lang('#lang_all')[$x])
+                            ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->save();
+                }
             }
-            Messages::alert('edit', 'success', lang('action_completed_successfully'));
+
+            Messages::alert('add', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -81,12 +93,14 @@ class Contacts {
      */
     private function data(): void {
 
-        $basic_settings = Settings::basicSettings();
-        $other = json_decode($basic_settings['other'], true);
+        $description = Db::connect()
+                ->read(TABLE_CONTACTS)
+                ->selectAssoc('*')
+                ->save();
 
-        for ($x = 0; $x < Lang::$count; $x++) {
-            if (isset($other['store_contacts_' . lang('#lang_all')[$x]])) {
-                self::$description[lang('#lang_all')[$x]] = $other['store_contacts_' . lang('#lang_all')[$x]];
+        for ($x = 0; $x < count(lang('#lang_all')); $x++) {
+            if (isset($description[$x]['description'])) {
+                self::$description[$description[$x]['language']] = $description[$x]['description'];
             } else {
                 self::$description[lang('#lang_all')[$x]] = '';
             }

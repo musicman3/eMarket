@@ -2,3 +2,12 @@ ALTER TABLE emkt_basic_settings ADD COLUMN logo jsonb;
 ALTER TABLE emkt_basic_settings ADD COLUMN logo_general varchar(128);
 ALTER TABLE emkt_basic_settings DROP COLUMN logo_general;
 ALTER TABLE emkt_basic_settings DROP COLUMN logo;
+
+DROP TABLE IF EXISTS emkt_contacts;
+CREATE TABLE emkt_contacts (
+	language varchar(64),
+        logo jsonb,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language));

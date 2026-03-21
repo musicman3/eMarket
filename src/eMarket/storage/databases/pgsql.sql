@@ -58,6 +58,15 @@ CREATE TABLE emkt_categories (
         tags varchar(256),
 PRIMARY KEY (id, language));
 
+DROP TABLE IF EXISTS emkt_contacts;
+CREATE TABLE emkt_contacts (
+	language varchar(64),
+        logo jsonb,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
+
 DROP TABLE IF EXISTS emkt_countries;
 CREATE TABLE emkt_countries (
 	id int NOT NULL,

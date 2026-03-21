@@ -77,6 +77,7 @@ class Success {
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $db_pref . 'administrators' . '\');' . "\n" .
                 '  define(\'TABLE_BASIC_SETTINGS\', \'' . $db_pref . 'basic_settings' . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $db_pref . 'categories' . '\');' . "\n" .
+                '  define(\'TABLE_CONTACTS\', \'' . $db_pref . 'contacts' . '\');' . "\n" .
                 '  define(\'TABLE_COUNTRIES\', \'' . $db_pref . 'countries' . '\');' . "\n" .
                 '  define(\'TABLE_CURRENCIES\', \'' . $db_pref . 'currencies' . '\');' . "\n" .
                 '  define(\'TABLE_CUSTOMERS\', \'' . $db_pref . 'customers' . '\');' . "\n" .
