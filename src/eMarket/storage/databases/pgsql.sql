@@ -60,6 +60,7 @@ PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_contacts;
 CREATE TABLE emkt_contacts (
+        id int NOT NULL,
 	language varchar(64),
         logo jsonb,
         logo_general varchar(128),

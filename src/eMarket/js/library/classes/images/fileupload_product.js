@@ -106,25 +106,27 @@ class FileuploadProduct {
      *
      */
     static init() {
-        document.querySelector('#index_product').addEventListener('show.bs.modal', function (event) {
-            Ajax.postData(window.location.href, {
-                file_upload: 'empty'
-            }, false).then((data) => {
+        if (document.querySelector('#index_product')) {
+            document.querySelector('#index_product').addEventListener('show.bs.modal', function (event) {
+                Ajax.postData(window.location.href, {
+                    file_upload: 'empty'
+                }, false).then((data) => {
+                });
             });
-        });
 
-        document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
-            document.getElementsByName('uploadfile-product')[0].parentElement.style.display = 'none'; // Fix display:none
-            document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
-            document.querySelectorAll('.file-upload').forEach(e => e.remove());
-            document.querySelector('#delete_image_product').value = '';
-            document.querySelector('#general_image_edit_product').value = '';
-            document.querySelector('#general_image_edit_new_product').value = '';
-            document.querySelector('#general_image_add_product').value = '';
-            document.querySelector('#alert_messages_product').innerHTML = '';
-            document.querySelector('#logo-product').innerHTML = '';
-            document.querySelectorAll('form').forEach(e => e.reset());
-        });
+            document.querySelector('#index_product').addEventListener('hidden.bs.modal', function (event) {
+                document.getElementsByName('uploadfile-product')[0].parentElement.style.display = 'none'; // Fix display:none
+                document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
+                document.querySelectorAll('.file-upload').forEach(e => e.remove());
+                document.querySelector('#delete_image_product').value = '';
+                document.querySelector('#general_image_edit_product').value = '';
+                document.querySelector('#general_image_edit_new_product').value = '';
+                document.querySelector('#general_image_add_product').value = '';
+                document.querySelector('#alert_messages_product').innerHTML = '';
+                document.querySelector('#logo-product').innerHTML = '';
+                document.querySelectorAll('form').forEach(e => e.reset());
+            });
+        }
     }
 
     /**

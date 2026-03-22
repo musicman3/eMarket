@@ -20,7 +20,7 @@ use eMarket\Admin\Contacts;
             <div id="alert_block"><?php Messages::alert(); ?></div>
         </div>
 
-        <div id="ajax_data" class='hidden' data-lang='<?php echo json_encode(lang()) ?>'></div>
+        <div id="ajax_data" class='hidden' data-jsondata='<?php echo Contacts::$json_data ?>' data-lang='<?php echo json_encode(lang()) ?>'></div>
 
         <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
             <div class="card-body">
@@ -29,7 +29,12 @@ use eMarket\Admin\Contacts;
 
                     <div id="panel_add_1" class="tab-pane fade show in active">
 
-                        <input type="hidden" id="add" name="add" value="ok" />
+                        <input type="hidden" id="add" name="add" value="" />
+                        <input type="hidden" id="edit" name="edit" value="" />
+                        <input id="general_image_add" type="hidden" name="general_image_add" value="">
+                        <input id="delete_image" type="hidden" name="delete_image" value="">
+                        <input id="general_image_edit" type="hidden" name="general_image_edit" value="">
+                        <input id="general_image_edit_new" type="hidden" name="general_image_edit_new" value="">
 
                         <?php require_once(ROOT . '/view/' . Settings::template() . '/layouts/lang_tabs_add.php') ?>
 
@@ -45,6 +50,21 @@ use eMarket\Admin\Contacts;
                                 </div>
 
                             <?php } ?>
+
+                            <div id="alert_messages"></div>
+
+                            <!-- File-Upload -->
+                            <div class="mb-3">
+                                <span class="btn btn-primary btn-sm bi-card-image fileinput-button mb-1">
+                                    <span><?php echo lang('button_add_image') ?></span>
+                                    <input class="form-control form-control-sm" id="fileupload">
+                                </span>
+                                <br>
+                                <div id="progress" class="progress mb-3" style="height: 1.5rem;">
+                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"></div>
+                                </div>
+                                <div id="logo" class="gap-2 d-flex justify-content-center flex-wrap"></div>
+                            </div>
 
                         </div>
                     </div>

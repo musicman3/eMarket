@@ -10,7 +10,8 @@ declare(strict_types=1);
 namespace eMarket\Admin;
 
 use eMarket\Core\{
-    Messages
+    Messages,
+    Images
 };
 use eMarket\Admin\HeaderMenu;
 use R2D2\R2\Valid;
@@ -31,6 +32,8 @@ class Contacts {
     public static $middleware = 'AdminAuthorize';
     public $title = 'title_contacts_index';
     public static $description = [];
+    public static $resize_param;
+    public static $json_data = FALSE;
 
     /**
      * Constructor
@@ -39,6 +42,8 @@ class Contacts {
     function __construct() {
         new HeaderMenu();
         $this->add();
+        $this->edit();
+        $this->imgUpload();
         $this->data();
     }
 
@@ -64,25 +69,46 @@ class Contacts {
                     ->selectAssoc('*')
                     ->save();
 
-            if (count($contacts) > 0) {
-                for ($x = 0; $x < count(lang('#lang_all')); $x++) {
-                    Db::connect()
-                            ->update(TABLE_CONTACTS)
-                            ->set('description', Valid::inPOST('description_contacts_' . $x))
-                            ->where('language=', lang('#lang_all')[$x])
-                            ->save();
-                }
-            } else {
+            if (count($contacts) == 0) {
                 for ($x = 0; $x < count(lang('#lang_all')); $x++) {
                     Db::connect()
                             ->create(TABLE_CONTACTS)
+                            ->set('id', 1)
                             ->set('language', lang('#lang_all')[$x])
                             ->set('description', Valid::inPOST('description_contacts_' . $x))
                             ->save();
                 }
             }
 
-            Messages::alert('add', 'success', lang('action_completed_successfully'));
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
+        }
+    }
+
+    /**
+     * Edit
+     *
+     */
+    private function edit(): void {
+
+        if (Valid::inPOST('edit')) {
+
+            $contacts = Db::connect()
+                    ->read(TABLE_CONTACTS)
+                    ->selectAssoc('*')
+                    ->save();
+
+            if (count($contacts) > 0) {
+                for ($x = 0; $x < count(lang('#lang_all')); $x++) {
+                    Db::connect()
+                            ->update(TABLE_CONTACTS)
+                            ->set('id', 1)
+                            ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->where('language=', lang('#lang_all')[$x])
+                            ->save();
+                }
+            }
+
+            Messages::alert('edit', 'success', lang('action_completed_successfully'));
         }
     }
 
@@ -97,6 +123,15 @@ class Contacts {
                 ->selectAssoc('*')
                 ->save();
 
+        if (isset($description[0]['logo_general'])) {
+            self::$json_data = json_encode([
+                'logo' => [$description[0]['logo']],
+                'logo_general' => $description[0]['logo_general']
+            ]);
+        } else {
+            self::$json_data = json_encode([]);
+        }
+
         for ($x = 0; $x < count(lang('#lang_all')); $x++) {
             if (isset($description[$x]['description'])) {
                 self::$description[$description[$x]['language']] = $description[$x]['description'];
@@ -104,5 +139,21 @@ class Contacts {
                 self::$description[lang('#lang_all')[$x]] = '';
             }
         }
+    }
+
+    /**
+     * Image Upload
+     *
+     */
+    private function imgUpload(): void {
+        // add before delete
+        self::$resize_param = [];
+        array_push(self::$resize_param, ['125', '94']); // width, height
+        array_push(self::$resize_param, ['200', '150']);
+        array_push(self::$resize_param, ['325', '244']);
+        array_push(self::$resize_param, ['525', '394']);
+        array_push(self::$resize_param, ['850', '638']);
+
+        new Images(TABLE_CONTACTS, 'contacts', self::$resize_param);
     }
 }

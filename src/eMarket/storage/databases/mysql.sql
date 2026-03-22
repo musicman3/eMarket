@@ -61,6 +61,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_contacts;
 CREATE TABLE emkt_contacts (
+        id int NOT NULL,
 	language varchar(64),
         logo json,
         logo_general varchar(128),

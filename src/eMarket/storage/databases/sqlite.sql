@@ -57,6 +57,7 @@ PRIMARY KEY (id, language));
 
 DROP TABLE IF EXISTS emkt_contacts;
 CREATE TABLE emkt_contacts (
+        id int NOT NULL,
 	language text(64),
         logo text,
         logo_general text(128),

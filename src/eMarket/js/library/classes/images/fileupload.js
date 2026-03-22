@@ -105,25 +105,27 @@ class Fileupload {
      *
      */
     static init() {
-        document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
-            Ajax.postData(window.location.href, {
-                file_upload: 'empty'
-            }, false).then((data) => {
+        if (document.querySelector('#index')) {
+            document.querySelector('#index').addEventListener('show.bs.modal', function (event) {
+                Ajax.postData(window.location.href, {
+                    file_upload: 'empty'
+                }, false).then((data) => {
+                });
             });
-        });
 
-        document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
-            document.getElementsByName('uploadfile')[0].parentElement.style.display = 'none'; // Fix display:none
-            document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
-            document.querySelectorAll('.file-upload').forEach(e => e.remove());
-            document.querySelector('#delete_image').value = '';
-            document.querySelector('#general_image_edit').value = '';
-            document.querySelector('#general_image_edit_new').value = '';
-            document.querySelector('#general_image_add').value = '';
-            document.querySelector('#alert_messages').innerHTML = '';
-            document.querySelector('#logo').innerHTML = '';
-            document.querySelectorAll('form').forEach(e => e.reset());
-        });
+            document.querySelector('#index').addEventListener('hidden.bs.modal', function (event) {
+                document.getElementsByName('uploadfile')[0].parentElement.style.display = 'none'; // Fix display:none
+                document.querySelectorAll('.progress-bar').forEach(e => e.style.width = 0 + '%');
+                document.querySelectorAll('.file-upload').forEach(e => e.remove());
+                document.querySelector('#delete_image').value = '';
+                document.querySelector('#general_image_edit').value = '';
+                document.querySelector('#general_image_edit_new').value = '';
+                document.querySelector('#general_image_add').value = '';
+                document.querySelector('#alert_messages').innerHTML = '';
+                document.querySelector('#logo').innerHTML = '';
+                document.querySelectorAll('form').forEach(e => e.reset());
+            });
+        }
     }
 
     /**

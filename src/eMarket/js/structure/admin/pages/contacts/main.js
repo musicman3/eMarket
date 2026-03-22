@@ -3,7 +3,7 @@
  |  https://github.com/musicman3/eMarket  |
  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
-/* global Ajax, tinymce, bootstrap */
+/* global Ajax, tinymce, bootstrap, Fileupload */
 
 /**
  * Contacts
@@ -19,7 +19,7 @@ class Contacts {
      *
      */
     constructor() {
-            this.init();
+        this.init();
     }
 
     /**
@@ -29,8 +29,17 @@ class Contacts {
      */
     init(action) {
         var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
+        var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
         this.tinymceInit(lang);
 
+        if (json_data.logo_general === null || json_data.length === 0) {
+            document.querySelector('#edit').value = '';
+            document.querySelector('#add').value = 'ok';
+        } else {
+            Contacts.getImageToEdit(json_data.logo_general, JSON.parse(json_data.logo), 'contacts');
+            document.querySelector('#edit').value = '1';
+            document.querySelector('#add').value = '';
+        }
     }
 
     /**
@@ -68,5 +77,22 @@ class Contacts {
             promotion: false,
             license_key: 'gpl'
         });
+    }
+
+    /**
+     * Loading images into "Edit" modal window
+     * @param logo_general_edit {String} (general logo)
+     * @param logo_edit {Array} (images array)
+     * @param dir {String} (dir)
+     */
+    static getImageToEdit(logo_general_edit, logo_edit, dir) {
+        for (var x = 0; x < logo_edit.length; x++) {
+            var image = logo_edit[x];
+
+            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button></div></div></div>');
+            if (logo_general_edit === image) {
+                document.querySelector('#general_' + x).classList.add('border-danger');
+            }
+        }
     }
 }
