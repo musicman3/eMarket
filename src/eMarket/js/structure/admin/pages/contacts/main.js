@@ -63,6 +63,10 @@ class Contacts {
                 {title: lang['tinymce_table'], value: 'table align-middle'},
                 {title: lang['tinymce_none'], value: ''}
             ],
+            link_class_list: [
+                {title: lang['tinymce_litebox'], value: 'gallery'},
+                {title: lang['tinymce_none'], value: ''}
+            ],
             autosave_ask_before_unload: true,
             autosave_interval: '30s',
             autosave_prefix: '{path}{query}-{id}-',

@@ -443,6 +443,7 @@ tinymce_none = Нет
 tinymce_table = Таблица
 tinymce_thumbnail = Миниатюра
 tinymce_rounded = Скругление
+tinymce_litebox = Litebox
 
 ;CONTACTS
 contacts_description = Описание страницы

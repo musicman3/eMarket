@@ -445,6 +445,7 @@ tinymce_none = None
 tinymce_table = Table
 tinymce_thumbnail = Thumbnail
 tinymce_rounded = Rounded
+tinymce_litebox = Litebox
 
 ;CONTACTS
 contacts_description = Page description
