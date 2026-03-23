@@ -103,6 +103,8 @@ class Stock {
         array_push(self::$resize_param, ['125', '94']); // width, height
         array_push(self::$resize_param, ['200', '150']);
         array_push(self::$resize_param, ['325', '244']);
+        array_push(self::$resize_param, ['525', '394']);
+        array_push(self::$resize_param, ['850', '638']);
     }
 
     /**
