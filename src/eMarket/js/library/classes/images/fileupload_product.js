@@ -143,6 +143,7 @@ class FileuploadProduct {
             document.querySelector('#logo-product').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_product_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_product_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_product_' + x + '" onclick="FileuploadProduct.deleteImageEditProduct(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit_product' + x + '" onclick="FileuploadProduct.imageGeneralEditProduct(\'' + image + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit[modal_id] === image) {
                 document.querySelector('#general_product_' + x).classList.add('border-danger');
+                FileuploadProduct.imageGeneralEditProduct(image, x);
             }
         }
     }
