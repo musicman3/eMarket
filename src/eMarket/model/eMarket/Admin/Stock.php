@@ -104,7 +104,7 @@ class Stock {
         array_push(self::$resize_param, ['200', '150']);
         array_push(self::$resize_param, ['325', '244']);
         array_push(self::$resize_param, ['525', '394']);
-        array_push(self::$resize_param, ['850', '638']);
+        array_push(self::$resize_param, ['1200', '900']);
     }
 
     /**
@@ -117,7 +117,7 @@ class Stock {
         array_push(self::$resize_param_product, ['200', '150']);
         array_push(self::$resize_param_product, ['325', '244']);
         array_push(self::$resize_param_product, ['525', '394']);
-        array_push(self::$resize_param_product, ['850', '638']);
+        array_push(self::$resize_param_product, ['1200', '900']);
     }
 
     /**
