@@ -1,6 +1,6 @@
 <?php
 
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -16,7 +16,7 @@ namespace eMarket\Uploads;
  * @author eMarket Team
  * @copyright © 2018 eMarket
  * @license GNU GPL v.3.0
- * 
+ *
  */
 class FileUpload {
 
@@ -37,7 +37,7 @@ class FileUpload {
     private function init(): void {
 
         $upload_dir = ROOT . '/uploads/temp/files/';
-        $valid_extensions = ['gif', 'png', 'jpeg', 'jpg'];
+        $valid_extensions = ['gif', 'png', 'jpeg', 'jpg', 'avif', 'webp'];
 
         $Upload = new \FileUpload('uploadfile');
         $result = $Upload->handleUpload($upload_dir, $valid_extensions);

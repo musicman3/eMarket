@@ -40,8 +40,8 @@ class Fileupload {
             name: 'uploadfile',
             multiple: true,
             multipleSelect: true,
-            allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-            accept: 'image/jpeg, image/jpeg, image/png, image/gif',
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'avif', 'webp'],
+            accept: 'image/jpeg, image/jpeg, image/png, image/gif, image/avif, image/webp',
             onSubmit: function (filename, extension) {
                 document.querySelector('#alert_messages').innerHTML = '';
             },

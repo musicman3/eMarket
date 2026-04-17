@@ -37,7 +37,7 @@ class FileUploadProduct {
     private function init(): void {
 
         $upload_dir = ROOT . '/uploads/temp/files/';
-        $valid_extensions = ['gif', 'png', 'jpeg', 'jpg'];
+        $valid_extensions = ['gif', 'png', 'jpeg', 'jpg', 'avif', 'webp'];
 
         $Upload = new \FileUpload('uploadfile-product');
         $result = $Upload->handleUpload($upload_dir, $valid_extensions);
