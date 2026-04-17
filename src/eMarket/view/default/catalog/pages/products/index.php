@@ -41,7 +41,7 @@ if (Products::$products != FALSE) {
                     </a>
 
                     <?php foreach (Products::$images as $val) { ?>
-                        <div class="col-xl-2 col-md-4 col-4 p-1">
+                        <div class="col-xl-2 col-md-4 col-3 p-1">
                             <a href="/uploads/images/products/resize_4/<?php echo $val ?>">
                                 <img src="/uploads/images/products/resize_0/<?php echo $val ?>" alt="<?php echo Products::$products['name'] ?>" class="img-thumbnail">
                             </a>
