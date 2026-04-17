@@ -25,5 +25,5 @@ Categories::indexData();
             <?php } ?>
         </div>
     </div>
-<?php
+    <?php
 }
