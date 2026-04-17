@@ -372,7 +372,11 @@ class Images {
                         if (Valid::inPOST('effect-product') == 'effect-blur-2') {
                             $IMAGE->blur('selective', 2);
                         }
-                        $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $new_name);
+
+                        $IMAGE->toFile(ROOT . '/uploads/images/' . $dir . '/resize_' . $key . '/' . $new_name, 'image/avif', [
+                            'quality' => 80,
+                            'speed' => 10,
+                        ]);
                     }
                 }
 
@@ -407,9 +411,16 @@ class Images {
         if (Valid::inPostJson('image_data')) {
             $file = Valid::inPostJson('image_data');
 
-            $new_name = Cryptography::getToken(48) . '.' . pathinfo($file)['extension'];
+            $new_name = Cryptography::getToken(48) . '.avif';
 
-            rename(ROOT . '/uploads/temp/files/' . $file, ROOT . '/uploads/temp/files/' . $new_name);
+            $IMAGE->fromFile(ROOT . '/uploads/temp/files/' . $file);
+
+            Func::deleteFile(ROOT . '/uploads/temp/files/' . $file);
+
+            $IMAGE->toFile(ROOT . '/uploads/temp/files/' . $new_name, 'image/avif', [
+                'quality' => 90,
+                'speed' => 10,
+            ]);
 
             $image_data = getimagesize(ROOT . '/uploads/temp/files/' . $new_name);
             $width = $image_data[0];
@@ -434,7 +445,11 @@ class Images {
                 if (Valid::inPostJson('effect_edit') == 'effect-blur-2') {
                     $IMAGE->blur('selective', 2);
                 }
-                $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $new_name);
+
+                $IMAGE->toFile(ROOT . '/uploads/temp/thumbnail/' . $new_name, 'image/avif', [
+                    'quality' => 80,
+                    'speed' => 10,
+                ]);
             }
             // Ajax request
             echo json_encode([$image_data, $new_name]);
