@@ -22,7 +22,7 @@ use eMarket\Admin\Currencies;
         </button>
 
         <?php if (Settings::catalogButton() == 'on') { ?>
-            <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-primary" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-justify"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
+            <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
         <?php } ?>
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
