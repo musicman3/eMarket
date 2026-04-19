@@ -25,9 +25,13 @@ class Contacts {
     /**
      * Init
      * 
-     * * @param action {String} (action)
      */
-    init(action) {
+    init() {
+        
+        document.querySelector('#fileupload').onmouseover = function (event) {
+            document.getElementsByName('uploadfile').forEach(e => e.parentElement.remove());
+        };
+        
         var lang = JSON.parse(document.querySelector('#ajax_data').dataset.lang);
         var json_data = JSON.parse(document.querySelector('#ajax_data').dataset.jsondata);
         this.tinymceInit(lang);
