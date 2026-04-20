@@ -84,6 +84,7 @@ class Shipping {
                             ->set('language', lang('#lang_all')[$x])
                             ->set('description', Valid::inPOST('description_shipping_' . $x))
                             ->set('status', $switch_active)
+                            ->set('logo', json_encode([]))
                             ->save();
                 }
             }
