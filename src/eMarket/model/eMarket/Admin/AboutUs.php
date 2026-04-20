@@ -18,7 +18,7 @@ use R2D2\R2\Valid;
 use Cruder\Db;
 
 /**
- * Contacts
+ * AboutUs
  *
  * @package Admin
  * @author eMarket Team
@@ -26,11 +26,11 @@ use Cruder\Db;
  * @license GNU GPL v.3.0
  *
  */
-class Contacts {
+class AboutUs {
 
-    public static $routing_parameter = 'contacts';
+    public static $routing_parameter = 'about_us';
     public static $middleware = 'AdminAuthorize';
-    public $title = 'title_contacts_index';
+    public $title = 'title_about_us_index';
     public static $description = [];
     public static $resize_param;
     public static $json_data = FALSE;
@@ -55,7 +55,7 @@ class Contacts {
      *
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][6] = ['?route=contacts', 'bi-envelope', lang('menu_contacts'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][5] = ['?route=about_us', 'bi-bookmark', lang('menu_about_us'), '', 'false'];
     }
 
     /**
@@ -66,8 +66,8 @@ class Contacts {
 
         if (Valid::inPOST('add')) {
 
-            $contacts = Db::connect()
-                    ->read(TABLE_CONTACTS)
+            $about_us = Db::connect()
+                    ->read(TABLE_ABOUT_US)
                     ->selectAssoc('*')
                     ->save();
 
@@ -76,13 +76,13 @@ class Contacts {
                 $switch_active = 1;
             }
 
-            if (count($contacts) == 0) {
+            if (count($about_us) == 0) {
                 for ($x = 0; $x < count(lang('#lang_all')); $x++) {
                     Db::connect()
-                            ->create(TABLE_CONTACTS)
+                            ->create(TABLE_ABOUT_US)
                             ->set('id', 1)
                             ->set('language', lang('#lang_all')[$x])
-                            ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->set('description', Valid::inPOST('description_about_us_' . $x))
                             ->set('status', $switch_active)
                             ->save();
                 }
@@ -100,8 +100,8 @@ class Contacts {
 
         if (Valid::inPOST('edit')) {
 
-            $contacts = Db::connect()
-                    ->read(TABLE_CONTACTS)
+            $about_us = Db::connect()
+                    ->read(TABLE_ABOUT_US)
                     ->selectAssoc('*')
                     ->save();
 
@@ -110,12 +110,12 @@ class Contacts {
                 $switch_active = 1;
             }
 
-            if (count($contacts) > 0) {
+            if (count($about_us) > 0) {
                 for ($x = 0; $x < count(lang('#lang_all')); $x++) {
                     Db::connect()
-                            ->update(TABLE_CONTACTS)
+                            ->update(TABLE_ABOUT_US)
                             ->set('id', 1)
-                            ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->set('description', Valid::inPOST('description_about_us_' . $x))
                             ->set('status', $switch_active)
                             ->where('language=', lang('#lang_all')[$x])
                             ->save();
@@ -133,7 +133,7 @@ class Contacts {
     private function data(): void {
 
         $description = Db::connect()
-                ->read(TABLE_CONTACTS)
+                ->read(TABLE_ABOUT_US)
                 ->selectAssoc('*')
                 ->save();
 
@@ -162,12 +162,12 @@ class Contacts {
      * @return string
      */
     public static function status(): string {
-        $contacts = Db::connect()
-                ->read(TABLE_CONTACTS)
+        $about_us = Db::connect()
+                ->read(TABLE_ABOUT_US)
                 ->selectAssoc('*')
                 ->save();
 
-        if (isset($contacts[0]['status']) && $contacts[0]['status'] == 1) {
+        if (isset($about_us[0]['status']) && $about_us[0]['status'] == 1) {
             return 'checked';
         }
         return '';
@@ -186,6 +186,6 @@ class Contacts {
         array_push(self::$resize_param, ['525', '394']);
         array_push(self::$resize_param, ['850', '638']);
 
-        new Images(TABLE_CONTACTS, 'contacts', self::$resize_param);
+        new Images(TABLE_ABOUT_US, 'about_us', self::$resize_param);
     }
 }

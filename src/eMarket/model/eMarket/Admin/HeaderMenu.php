@@ -79,6 +79,7 @@ class HeaderMenu {
                 $namespace::menu();
             }
         }
+        ksort(self::$menu[self::$menu_market]);
     }
 
     /**

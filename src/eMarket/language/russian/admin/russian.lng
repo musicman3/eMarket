@@ -12,6 +12,8 @@ shop_name = eMarket
 title_categories_index = Категории
 title_dashboard_index = Мониторинг
 title_contacts_index = Контакты
+title_about_us_index = О нас
+title_shipping_index = Доставка
 title_error_log_index = Лог ошибок
 title_action_log_index = Лог действий
 title_login_index = Страница авторизации
@@ -44,6 +46,8 @@ title_language_variables_index = Языковые переменные
 menu_name = Главное меню
 menu_dashboard = Мониторинг
 menu_contacts = Контакты
+menu_about_us = О нас
+menu_shipping = Доставка
 menu_catalog = Каталог товаров
 menu_market = Магазин
 menu_sales = Продажи
@@ -447,3 +451,9 @@ tinymce_litebox = Litebox
 
 ;CONTACTS
 contacts_description = Описание страницы
+
+;ABOUT US
+about_us_description = Описание страницы
+
+;SHIPPING
+shipping_description = Описание страницы

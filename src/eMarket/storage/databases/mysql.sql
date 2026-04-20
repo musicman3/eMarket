@@ -5,6 +5,17 @@
 
 /* Add tables */
 
+DROP TABLE IF EXISTS emkt_about_us;
+CREATE TABLE emkt_about_us (
+        id int NOT NULL,
+	language varchar(64),
+        logo json,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
 	login varchar(128) NOT NULL,
@@ -253,6 +264,17 @@ CREATE TABLE emkt_regions (
 	name varchar(256),
 	language varchar(64),
 PRIMARY KEY (id, language))
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS emkt_shipping;
+CREATE TABLE emkt_shipping (
+        id int NOT NULL,
+	language varchar(64),
+        logo json,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language))
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS emkt_stickers;

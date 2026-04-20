@@ -10,22 +10,22 @@ use eMarket\Core\{
     Lang,
     Settings
 };
-use eMarket\Admin\Contacts;
+use eMarket\Admin\AboutUs;
 ?>
 
-<div id="contacts">
+<div id="about_us">
     <div class="card">
 
         <div class="card-header">
             <div id="alert_block"><?php Messages::alert(); ?></div>
         </div>
 
-        <div id="ajax_data" class='hidden' data-jsondata='<?php echo Contacts::$json_data ?>' data-lang='<?php echo json_encode(lang()) ?>'></div>
+        <div id="ajax_data" class='hidden' data-jsondata='<?php echo AboutUs::$json_data ?>' data-lang='<?php echo json_encode(lang()) ?>'></div>
 
         <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
 
             <div class="float-end form-switch">
-                <input class="form-check-input" type="checkbox" name="switch_active" id="switch_active" <?php echo Contacts::status() ?>>
+                <input class="form-check-input" type="checkbox" name="switch_active" id="switch_active" <?php echo AboutUs::status() ?>>
             </div>
 
             <div class="card-body">
@@ -49,8 +49,8 @@ use eMarket\Admin\Contacts;
 
                                 <div id="<?php echo lang('#lang_all')[$x] ?>" class="tab-pane fade <?php echo Pages::activeTab($x) ?>">
                                     <div class="mb-3">
-                                        <div><small class="form-text text-muted"><?php echo lang('contacts_description') ?></small></div>
-                                        <textarea rows="3" class="input-sm form-control wysiwyg" name="description_contacts_<?php echo $x ?>" id="description_contacts_<?php echo $x ?>" /><?php echo Contacts::$description[lang('#lang_all')[$x]] ?></textarea>
+                                        <div><small class="form-text text-muted"><?php echo lang('about_us_description') ?></small></div>
+                                        <textarea rows="3" class="input-sm form-control wysiwyg" name="description_about_us_<?php echo $x ?>" id="description_about_us_<?php echo $x ?>" /><?php echo AboutUs::$description[lang('#lang_all')[$x]] ?></textarea>
                                     </div>
                                 </div>
 

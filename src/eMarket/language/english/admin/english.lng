@@ -12,6 +12,8 @@ shop_name = eMarket
 title_categories_index = Categories
 title_dashboard_index = Dashboard
 title_contacts_index = Contacts
+title_about_us_index = About Us
+title_shipping_index = Shiping
 title_error_log_index = Error log
 title_action_log_index = Action log
 title_login_index = Login page
@@ -44,6 +46,8 @@ title_language_variables_index = Language variables
 menu_name = Main menu
 menu_dashboard = Dashboard
 menu_contacts = Contacts
+menu_about_us = About Us
+menu_shipping = Shipping
 menu_catalog = Catalog
 menu_market = Market
 menu_sales = Sales
@@ -449,3 +453,9 @@ tinymce_litebox = Litebox
 
 ;CONTACTS
 contacts_description = Page description
+
+;ABOUT US
+about_us_description = Page description
+
+;SHIPPING
+shipping_description = Page description

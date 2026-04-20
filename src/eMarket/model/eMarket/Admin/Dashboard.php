@@ -59,7 +59,7 @@ class Dashboard {
      *
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][] = ['?route=dashboard', 'bi-pie-chart-fill', lang('menu_dashboard'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][3] = ['?route=dashboard', 'bi-pie-chart-fill', lang('menu_dashboard'), '', 'false'];
     }
 
     /**

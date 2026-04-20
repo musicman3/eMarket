@@ -9,3 +9,5 @@ require_once getenv('DOCUMENT_ROOT') . '/storage/updater/patch/model/index.php';
 
 // Add settings
 addTableToConfigure('contacts');
+addTableToConfigure('about_us');
+addTableToConfigure('shipping');

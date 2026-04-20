@@ -5,6 +5,16 @@
 
 /* Add tables */
 
+DROP TABLE IF EXISTS emkt_about_us;
+CREATE TABLE emkt_about_us (
+        id int NOT NULL,
+	language text(64),
+        logo text,
+        logo_general text(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
+
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
 	login text(128) NOT NULL,
@@ -233,6 +243,16 @@ CREATE TABLE emkt_regions (
 	name text(256),
 	language text(64),
 PRIMARY KEY (id, language));
+
+DROP TABLE IF EXISTS emkt_shipping;
+CREATE TABLE emkt_shipping (
+        id int NOT NULL,
+	language text(64),
+        logo text,
+        logo_general text(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
 
 DROP TABLE IF EXISTS emkt_stickers;
 CREATE TABLE emkt_stickers (

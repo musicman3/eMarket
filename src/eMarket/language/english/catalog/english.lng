@@ -9,6 +9,8 @@
 title_catalog_index =  Home page
 title_login_index = Authorization
 title_contacts_index = Contacts
+title_about_us_index = About Us
+title_shipping_index = Shipping
 title_register_index = Registration
 title_cart_index = Cart
 title_products_index = Product
@@ -281,3 +283,9 @@ page_not_found_text = Please enter a valid url or contact the administrator.
 
 ;CONTACTS
 contacts_name = Contacts
+
+;ABOUT US
+about_us_name = About Us
+
+;SHIPPING
+shipping_name = Shipping

@@ -14,7 +14,9 @@ use eMarket\Catalog\{
 };
 use eMarket\Admin\{
     Currencies,
-    Contacts
+    Contacts,
+    AboutUs,
+    Shipping
 };
 ?>
 
@@ -78,6 +80,16 @@ use eMarket\Admin\{
                             <li><a href="/?route=cart" class="dropdown-item"><?php echo lang('navbar_view_cart') ?></a></li>
                         </ul>
                     </li>
+                    <?php
+                }
+                if (Shipping::status() == 'checked') {
+                    ?>
+                    <li class="nav-item dropdown"><a href="/?route=shipping" class="nav-link bi-truck"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('shipping_name') ?></span></a></li>
+                    <?php
+                }
+                if (AboutUs::status() == 'checked') {
+                    ?>
+                    <li class="nav-item dropdown"><a href="/?route=about_us" class="nav-link bi-bookmark"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('about_us_name') ?></span></a></li>
                     <?php
                 }
                 if (Contacts::status() == 'checked') {

@@ -9,6 +9,8 @@
 title_catalog_index = Главная страница
 title_login_index = Авторизация
 title_contacts_index = Контакты
+title_about_us_index = О нас
+title_shipping_index = Доставка
 title_register_index = Регистрация
 title_cart_index = Корзина
 title_products_index = Товар
@@ -281,3 +283,9 @@ page_not_found_text = Пожалуйста, укажите верный url ил
 
 ;CONTACTS
 contacts_name = Контакты
+
+;ABOUT US
+about_us_name = О нас
+
+;SHIPPING
+shipping_name = Доставка

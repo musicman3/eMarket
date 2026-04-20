@@ -5,6 +5,16 @@
 
 /* Add tables */
 
+DROP TABLE IF EXISTS emkt_about_us;
+CREATE TABLE emkt_about_us (
+        id int NOT NULL,
+	language varchar(64),
+        logo jsonb,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
+
 DROP TABLE IF EXISTS emkt_administrators;
 CREATE TABLE emkt_administrators (
 	login varchar(128) NOT NULL,
@@ -248,6 +258,16 @@ CREATE TABLE emkt_regions (
 	name varchar(256),
 	language varchar(64),
 PRIMARY KEY (id, language));
+
+DROP TABLE IF EXISTS emkt_shipping;
+CREATE TABLE emkt_shipping (
+        id int NOT NULL,
+	language varchar(64),
+        logo jsonb,
+        logo_general varchar(128),
+	status int,
+        description text,
+PRIMARY KEY (language));
 
 DROP TABLE IF EXISTS emkt_stickers;
 CREATE TABLE emkt_stickers (

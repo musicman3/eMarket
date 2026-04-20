@@ -6,13 +6,13 @@
 /* global Ajax, tinymce, bootstrap, Fileupload */
 
 /**
- * Contacts
+ * Shipping
  *
  * @package Stock
  * @author eMarket
  * 
  */
-class Contacts {
+class Shipping {
 
     /**
      * Constructor
@@ -40,7 +40,7 @@ class Contacts {
             document.querySelector('#edit').value = '';
             document.querySelector('#add').value = 'ok';
         } else {
-            Contacts.getImageToEdit(json_data.logo_general, JSON.parse(json_data.logo), 'contacts');
+            Shipping.getImageToEdit(json_data.logo_general, JSON.parse(json_data.logo), 'shipping');
             document.querySelector('#edit').value = '1';
             document.querySelector('#add').value = '';
         }
@@ -97,7 +97,7 @@ class Contacts {
         for (var x = 0; x < logo_edit.length; x++) {
             var image = logo_edit[x];
 
-            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm clipboard bi-clipboard" type="button" id="image_clipboard_edit' + x + '" onclick="Contacts.imageClipboard(\'' + image + '\', \'' + dir + '\', \'' + x + '\')"></button></div></div></div>');
+            document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm clipboard bi-clipboard" type="button" id="image_clipboard_edit' + x + '" onclick="Shipping.imageClipboard(\'' + image + '\', \'' + dir + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit === image) {
                 document.querySelector('#general_' + x).classList.add('border-danger');
             }
