@@ -41,14 +41,18 @@ class Contacts {
      */
     public static function data(): void {
 
-        $description = Db::connect()
+        $data = Db::connect()
                 ->read(TABLE_CONTACTS)
                 ->selectAssoc('*')
                 ->save();
 
         for ($x = 0; $x < count(lang('#lang_all')); $x++) {
-            if (isset($description[$x]['language']) && $description[$x]['language'] == lang('#lang_all')[0]) {
-                self::$description = $description[$x]['description'];
+            if (isset($data[$x]['language']) && $data[$x]['language'] == lang('#lang_all')[0]) {
+                self::$description = $data[$x]['description'];
+            }
+            if (isset($data[$x]['status']) && $data[$x]['status'] == 0) {
+                header('Location: ?route=page_not_found');
+                exit;
             }
         }
     }

@@ -12,7 +12,10 @@ use eMarket\Core\{
 use eMarket\Catalog\{
     Cart
 };
-use eMarket\Admin\Currencies;
+use eMarket\Admin\{
+    Currencies,
+    Contacts
+};
 ?>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -75,8 +78,12 @@ use eMarket\Admin\Currencies;
                             <li><a href="/?route=cart" class="dropdown-item"><?php echo lang('navbar_view_cart') ?></a></li>
                         </ul>
                     </li>
+                    <?php
+                }
+                if (Contacts::status() == 'checked') {
+                    ?>
+                    <li class="nav-item dropdown"><a href="/?route=contacts" class="nav-link bi-envelope"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('contacts_name') ?></span></a></li>
                 <?php } ?>
-                <li class="nav-item dropdown"><a href="/?route=contacts" class="nav-link bi-envelope"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('contacts_name') ?></span></a></li>
             </ul>
         </div>
     </div>

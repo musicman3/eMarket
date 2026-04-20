@@ -34,6 +34,7 @@ class Contacts {
     public static $description = [];
     public static $resize_param;
     public static $json_data = FALSE;
+    public static $switch_active = '';
 
     /**
      * Constructor
@@ -41,6 +42,7 @@ class Contacts {
      */
     function __construct() {
         new HeaderMenu();
+        $this->status();
         $this->add();
         $this->edit();
         $this->imgUpload();
@@ -69,6 +71,11 @@ class Contacts {
                     ->selectAssoc('*')
                     ->save();
 
+            $switch_active = 0;
+            if (Valid::inPOST('switch_active')) {
+                $switch_active = 1;
+            }
+
             if (count($contacts) == 0) {
                 for ($x = 0; $x < count(lang('#lang_all')); $x++) {
                     Db::connect()
@@ -76,6 +83,7 @@ class Contacts {
                             ->set('id', 1)
                             ->set('language', lang('#lang_all')[$x])
                             ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->set('status', $switch_active)
                             ->save();
                 }
             }
@@ -97,12 +105,18 @@ class Contacts {
                     ->selectAssoc('*')
                     ->save();
 
+            $switch_active = 0;
+            if (Valid::inPOST('switch_active')) {
+                $switch_active = 1;
+            }
+
             if (count($contacts) > 0) {
                 for ($x = 0; $x < count(lang('#lang_all')); $x++) {
                     Db::connect()
                             ->update(TABLE_CONTACTS)
                             ->set('id', 1)
                             ->set('description', Valid::inPOST('description_contacts_' . $x))
+                            ->set('status', $switch_active)
                             ->where('language=', lang('#lang_all')[$x])
                             ->save();
                 }
@@ -139,6 +153,23 @@ class Contacts {
                 self::$description[lang('#lang_all')[$x]] = '';
             }
         }
+    }
+
+    /**
+     * Status
+     *
+     * @return string
+     */
+    public static function status(): string {
+        $contacts = Db::connect()
+                ->read(TABLE_CONTACTS)
+                ->selectAssoc('*')
+                ->save();
+
+        if ($contacts[0]['status'] == 1) {
+            return 'checked';
+        }
+        return '';
     }
 
     /**

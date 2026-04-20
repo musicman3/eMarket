@@ -23,6 +23,11 @@ use eMarket\Admin\Contacts;
         <div id="ajax_data" class='hidden' data-jsondata='<?php echo Contacts::$json_data ?>' data-lang='<?php echo json_encode(lang()) ?>'></div>
 
         <form id="form_add" class="was-validated" name="form_add" action="javascript:void(null);" onsubmit="Ajax.callAdd()">
+
+            <div class="float-end form-switch">
+                <input class="form-check-input" type="checkbox" name="switch_active" id="switch_active" <?php echo Contacts::status() ?>>
+            </div>
+
             <div class="card-body">
 
                 <div class="tab-content pt-2">
