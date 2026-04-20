@@ -58,7 +58,7 @@ class Manufacturers {
      *
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][1] = ['?route=manufacturers', 'bi-building', lang('title_manufacturers_index'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][1] = ['?route=manufacturers', 'bi-apple', lang('title_manufacturers_index'), '', 'false'];
     }
 
     /**

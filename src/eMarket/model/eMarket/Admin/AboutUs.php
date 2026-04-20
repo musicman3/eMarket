@@ -55,7 +55,7 @@ class AboutUs {
      *
      */
     public static function menu(): void {
-        HeaderMenu::$menu[HeaderMenu::$menu_market][5] = ['?route=about_us', 'bi-bookmark', lang('menu_about_us'), '', 'false'];
+        HeaderMenu::$menu[HeaderMenu::$menu_market][5] = ['?route=about_us', 'bi-building', lang('menu_about_us'), '', 'false'];
     }
 
     /**

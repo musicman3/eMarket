@@ -89,7 +89,7 @@ use eMarket\Admin\{
                 }
                 if (AboutUs::status() == 'checked') {
                     ?>
-                    <li class="nav-item dropdown"><a href="/?route=about_us" class="nav-link bi-bookmark"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('about_us_name') ?></span></a></li>
+                    <li class="nav-item dropdown"><a href="/?route=about_us" class="nav-link bi-building"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('about_us_name') ?></span></a></li>
                     <?php
                 }
                 if (Contacts::status() == 'checked') {
