@@ -92,9 +92,9 @@ final class Ecb {
 
         $DataBuffer = new DataBuffer();
         self::priceTerminal();
-        $discounted_price = $DataBuffer->load('priceTerminal', 'data', 'discounted_price');
+        $discounted_price = (string) $DataBuffer->load('priceTerminal', 'data', 'discounted_price');
 
-        $total_price = Cart::totalPrice();
+        $total_price = (string) Cart::totalPrice();
 
         if ($total_price != $discounted_price) {
             return '<del>' . self::formatPrice($total_price, $format) . '</del><br><span class="badge bg-' . $bootstrap_class . '">' . self::formatPrice($discounted_price, $format) . '</span>';
