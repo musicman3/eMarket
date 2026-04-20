@@ -27,10 +27,10 @@ use eMarket\Admin\{
         </button>
 
         <?php if (Settings::catalogButton() == 'on') { ?>
-            <li class="nav-item dropdown"><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></li>
+            <div><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></div>
         <?php } ?>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav"></ul>
             <ul id="right_bar" class="navbar-nav">
                 <?php if (count(lang('#lang_all')) > 1) { ?>
@@ -69,19 +69,7 @@ use eMarket\Admin\{
                     </li>
                 <?php } ?>
 
-                <?php if (Cart::totalQuantity() == 0) { ?>
-                    <li id="cart_bar" class="nav-item dropdown"></li>
-                <?php } else { ?>
-                    <li id="cart_bar" class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle bi-basket" data-bs-toggle="dropdown" > <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a>
-                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                            <li><a href="#" class="dropdown-item disabled"><?php echo Ecb::totalPriceCartInterface(1) ?></a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a href="/?route=cart" class="dropdown-item"><?php echo lang('navbar_view_cart') ?></a></li>
-                        </ul>
-                    </li>
-                    <?php
-                }
+                <?php
                 if (Shipping::status() == 'checked') {
                     ?>
                     <li class="nav-item dropdown"><a href="/?route=shipping" class="nav-link bi-truck"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('shipping_name') ?></span></a></li>
@@ -96,6 +84,24 @@ use eMarket\Admin\{
                     ?>
                     <li class="nav-item dropdown"><a href="/?route=contacts" class="nav-link bi-envelope"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('contacts_name') ?></span></a></li>
                 <?php } ?>
+            </ul>
+        </div>
+        <div class="navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <?php if (Cart::totalQuantity() == 0) { ?>
+                    <li id="cart_bar" class="nav-item dropdown"></li>
+                <?php } else { ?>
+                    <li id="cart_bar" class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle bi-basket" data-bs-toggle="dropdown" > <?php echo Cart::totalQuantity() . ' ' . lang('navbar_pcs') ?></a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                            <li><a href="#" class="dropdown-item disabled"><?php echo Ecb::totalPriceCartInterface(1) ?></a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="/?route=cart" class="dropdown-item"><?php echo lang('navbar_view_cart') ?></a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                ?>
             </ul>
         </div>
     </div>
