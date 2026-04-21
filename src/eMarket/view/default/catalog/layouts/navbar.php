@@ -23,13 +23,13 @@ use eMarket\Admin\{
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
 
-        <?php if (Settings::catalogButton() == 'on') { ?>
-            <div><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></div>
-        <?php } ?>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <?php if (Settings::catalogButton() == 'on') { ?>
+            <a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a>
+        <?php } ?>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav"></ul>
