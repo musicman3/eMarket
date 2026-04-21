@@ -22,13 +22,14 @@ use eMarket\Admin\{
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <?php if (Settings::catalogButton() == 'on') { ?>
             <div><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></div>
         <?php } ?>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav"></ul>
@@ -52,21 +53,6 @@ use eMarket\Admin\{
                             <?php } ?>
                         </ul>
                     </li>
-                    <?php
-                }
-                if (CatalogAuthorize::$customer == FALSE) {
-                    ?>
-                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
-                <?php } else { ?>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
-                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                            <li><a href="/?route=login&logout=ok" class="dropdown-item"><?php echo lang('navbar_logout') ?></a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a href="/?route=my_account" class="dropdown-item"><?php echo lang('title_my_account_index') ?></a></li>
-                            <li><a href="/?route=orders" class="dropdown-item"><?php echo lang('title_orders_index') ?></a></li>
-                            <li><a href="/?route=address_book" class="dropdown-item"><?php echo lang('my_address_book') ?></a></li>
-                        </ul>
-                    </li>
                 <?php } ?>
 
                 <?php
@@ -88,6 +74,20 @@ use eMarket\Admin\{
         </div>
         <div class="navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+                <?php if (CatalogAuthorize::$customer == FALSE) {
+                    ?>
+                    <li class="nav-item dropdown"><a href="/?route=login" class="nav-link bi-person"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('login_to_account') ?></span></a></li>
+                <?php } else { ?>
+                    <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle bi-person" data-bs-toggle="dropdown"><span class="d-inline d-md-none d-lg-inline"> <?php echo lang('my_account') ?></span></a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                            <li><a href="/?route=login&logout=ok" class="dropdown-item"><?php echo lang('navbar_logout') ?></a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="/?route=my_account" class="dropdown-item"><?php echo lang('title_my_account_index') ?></a></li>
+                            <li><a href="/?route=orders" class="dropdown-item"><?php echo lang('title_orders_index') ?></a></li>
+                            <li><a href="/?route=address_book" class="dropdown-item"><?php echo lang('my_address_book') ?></a></li>
+                        </ul>
+                    </li>
+                <?php } ?>
                 <?php if (Cart::totalQuantity() == 0) { ?>
                     <li id="cart_bar" class="nav-item dropdown"></li>
                 <?php } else { ?>
