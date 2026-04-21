@@ -10,14 +10,5 @@
         <div class="w-auto">
             <a href="/"><img src="/uploads/images/emarket_logo/catalog_logo.png" alt="" class="logo img-fluid float-start"></a>
         </div>
-        <div class="w-50 ms-auto mt-3">
-            <form>
-                <input hidden name="route" value="listing">
-                <div class="input-group">
-                    <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control" required>
-                    <button type="submit" class="btn btn-primary bi-search"></button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>

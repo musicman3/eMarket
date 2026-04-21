@@ -23,14 +23,20 @@ use eMarket\Admin\{
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <?php if (Settings::catalogButton() == 'on') { ?>
-            <a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a>
-        <?php } ?>
-
+        <div class="p-1">
+            <?php if (Settings::catalogButton() == 'on') { ?>
+                <a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a>
+            <?php } ?>
+        </div>
+        <div class="p-1">
+            <form>
+                <input hidden name="route" value="listing">
+                <div class="input-group">
+                    <input type="search" id="search" name="search" placeholder="<?php echo lang('search_name') ?>" class="form-control" required>
+                    <button type="submit" class="btn btn-outline-light bi-search"></button>
+                </div>
+            </form>
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav"></ul>
             <ul id="right_bar" class="navbar-nav">
@@ -103,6 +109,9 @@ use eMarket\Admin\{
                 }
                 ?>
             </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </div>
 </nav>
