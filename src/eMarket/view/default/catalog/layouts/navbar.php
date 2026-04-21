@@ -36,6 +36,9 @@ use eMarket\Admin\{
                 </div>
             </form>
         </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul id="left_bar" class="navbar-nav"></ul>
             <ul id="right_bar" class="navbar-nav">
@@ -108,9 +111,6 @@ use eMarket\Admin\{
                 }
                 ?>
             </ul>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </div>
 </nav>
