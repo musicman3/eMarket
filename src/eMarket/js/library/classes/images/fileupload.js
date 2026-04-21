@@ -142,7 +142,7 @@ class Fileupload {
             document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit[modal_id] === image) {
                 document.querySelector('#general_' + x).classList.add('border-danger');
-                Fileupload.imageGeneralEditProduct(image, x);
+                Fileupload.imageGeneralEdit(image, x);
             }
         }
     }

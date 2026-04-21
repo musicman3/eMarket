@@ -100,6 +100,7 @@ class Shipping {
             document.querySelector('#logo').insertAdjacentHTML('beforeend', '<div class="file-upload position-relative" id="image_edit_' + x + '"/><img src="/uploads/images/' + dir + '/resize_0/' + image + '" class="img-thumbnail" id="general_' + x + '" /><div class="block align-items-center justify-content-evenly"><button class="btn btn-primary btn-sm bi-trash" type="button" name="delete_image_' + x + '" onclick="Fileupload.deleteImageEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm bi-star" type="button" name="image_general_edit' + x + '" onclick="Fileupload.imageGeneralEdit(\'' + image + '\', \'' + x + '\')"></button> <button class="btn btn-primary btn-sm clipboard bi-clipboard" type="button" id="image_clipboard_edit' + x + '" onclick="Shipping.imageClipboard(\'' + image + '\', \'' + dir + '\', \'' + x + '\')"></button></div></div></div>');
             if (logo_general_edit === image) {
                 document.querySelector('#general_' + x).classList.add('border-danger');
+                Fileupload.imageGeneralEdit(image, x);
             }
         }
     }
