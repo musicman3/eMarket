@@ -29,7 +29,7 @@ if (count(Products::newProducts(8)) > 0) {
                                         <?php } ?>
                                     </div>
                                     <div class="w-100">
-                                        <img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt="<?php echo $value['name']; ?>" class="img-fluid rounded d-block mb-3">
+                                        <img src="/uploads/images/products/resize_1/<?php echo $value['logo_general'] ?>" alt='<?php echo $value['name'] ?>' class="img-fluid rounded d-block mb-3">
                                     </div>
                                 </div>
 
