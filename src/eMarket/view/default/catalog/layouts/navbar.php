@@ -23,11 +23,10 @@ use eMarket\Admin\{
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
 
-        <div class="p-1">
-            <?php if (Settings::catalogButton() == 'on') { ?>
-                <a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a>
-            <?php } ?>
-        </div>
+        <?php if (Settings::catalogButton() == 'on') { ?>
+            <div class="p-1"><a href="/?route=listing" class="btn btn-dark" role="button"><span class="d-inline d-md-none d-lg-inline bi bi-bag"> <?php echo lang('navbar_catalog_button') ?></span></a></div>
+        <?php } ?>
+
         <div class="p-1">
             <form>
                 <input hidden name="route" value="listing">
