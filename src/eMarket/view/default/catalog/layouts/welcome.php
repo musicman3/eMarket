@@ -8,11 +8,10 @@ use eMarket\Core\Middleware\CatalogAuthorize;
 ?>
 
 <div class="contentText mb-2 p-3 border rounded">
-<?php if (CatalogAuthorize::$customer == FALSE) { ?>
+    <?php if (CatalogAuthorize::$customer == FALSE) { ?>
         <h3 class="text-center"><?php echo sprintf(lang('welcome_name'), lang('welcome_guest')) ?></h3>
         <p class="text-center"><?php echo sprintf(lang('welcome_text')) ?></p>
-<?php } else { ?>
+    <?php } else { ?>
         <h3 class="text-center"><?php echo sprintf(lang('welcome_name'), CatalogAuthorize::$customer['firstname']) ?></h3>
-        <p class="text-center"> </p>
-<?php } ?>
+    <?php } ?>
 </div>
