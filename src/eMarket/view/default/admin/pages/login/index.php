@@ -1,10 +1,13 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 use eMarket\Core\Messages;
+use eMarket\Admin\{
+    BasicSettings
+};
 ?>
 
 <div id="login" class="row">
@@ -12,7 +15,7 @@ use eMarket\Core\Messages;
     <div id="alert_block"><?php Messages::alert(); ?></div>
 
     <div class="position-absolute top-50 start-50 translate-middle d-flex h-25 lbox-horz"></div>
-    <div class="login_logo p-5"><?php echo lang('shop_name') ?></div>
+    <div class="login_logo p-5 text-center d-flex justify-content-start"><?php echo BasicSettings::$store_name ?></div>
 
     <div class="d-flex justify-content-end col-11">
         <div class="d-flex h-100 align-items-center lbox-vert p-3">
