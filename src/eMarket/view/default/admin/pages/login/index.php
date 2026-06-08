@@ -15,7 +15,7 @@ use eMarket\Admin\{
     <div id="alert_block"><?php Messages::alert(); ?></div>
 
     <div class="position-absolute top-50 start-50 translate-middle d-flex h-25 lbox-horz"></div>
-    <div class="login_logo p-5 text-center d-flex justify-content-start"><?php echo BasicSettings::$store_name ?></div>
+    <div class="login_logo p-5 text-center d-flex justify-content-start"><h1 class="display-3"><?php echo BasicSettings::$store_name ?></h1></div>
 
     <div class="d-flex justify-content-end col-11">
         <div class="d-flex h-100 align-items-center lbox-vert p-3">
