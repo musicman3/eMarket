@@ -236,7 +236,7 @@ function downloadComposer(): void {
  *
  */
 function composerInstall(): void {
-    $root = realpath(getenv('DOCUMENT_ROOT'));
+    $root = getenv('DOCUMENT_ROOT');
     $vendor_dir = $root . '/temp/vendor';
     $composerPhar = new Phar($root . '/composer.phar');
     $composerPhar->extractTo($vendor_dir);

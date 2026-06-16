@@ -1,5 +1,5 @@
 <?php
-/* =-=-=-= Copyright © 2018 eMarket =-=-=-=  
+/* =-=-=-= Copyright © 2018 eMarket =-=-=-=
   |    GNU GENERAL PUBLIC LICENSE v.3.0    |
   |  https://github.com/musicman3/eMarket  |
   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -22,7 +22,7 @@ init($repo_init);
 
 /**
  * Init
- * 
+ *
  * @param array $repo_init Init data
 
  */
@@ -100,7 +100,7 @@ function inGET(string $input): mixed {
 
 /**
  * Download GitHub archive
- * 
+ *
  * @param string $repo_name GitHub repo name
  * @param string $download file name
  * @param string $mode Mode
@@ -191,7 +191,7 @@ function downloadComposer(): void {
  *
  */
 function composerInstall(): void {
-    $root = realpath(getenv('DOCUMENT_ROOT'));
+    $root = getenv('DOCUMENT_ROOT');
     $vendor_dir = $root . '/temp/vendor';
     $composerPhar = new Phar($root . '/composer.phar');
     $composerPhar->extractTo($vendor_dir);
@@ -242,7 +242,7 @@ function filesRemoving($path): mixed {
 
 /**
  * Version write
- * 
+ *
  * @param string $version Version name
  */
 function versionWrite(string $version): void {
@@ -259,7 +259,7 @@ function versionWrite(string $version): void {
 
 /**
  * GitHub Data
- * 
+ *
  * @param string $repo_name GitHub repo name
  * @return mixed GitHub latest release name
  */
