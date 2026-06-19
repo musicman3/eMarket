@@ -74,6 +74,7 @@ class Success {
                 '  define(\'DB_TYPE\', \'' . self::$db_type . '\');' . "\n" .
                 '  define(\'HASH_METHOD\', \'' . Valid::inPOST('hash_method') . '\');' . "\n" .
                 '  define(\'CRYPT_METHOD\', \'' . Valid::inPOST('crypt_method') . '\');' . "\n" .
+                '  define(\'TABLE_ABOUT_US\', \'' . $db_pref . 'about_us' . '\');' . "\n" .
                 '  define(\'TABLE_ADMINISTRATORS\', \'' . $db_pref . 'administrators' . '\');' . "\n" .
                 '  define(\'TABLE_BASIC_SETTINGS\', \'' . $db_pref . 'basic_settings' . '\');' . "\n" .
                 '  define(\'TABLE_CATEGORIES\', \'' . $db_pref . 'categories' . '\');' . "\n" .
@@ -91,6 +92,7 @@ class Success {
                 '  define(\'TABLE_PASSWORD_RECOVERY\', \'' . $db_pref . 'password_recovery' . '\');' . "\n" .
                 '  define(\'TABLE_REGIONS\', \'' . $db_pref . 'regions' . '\');' . "\n" .
                 '  define(\'TABLE_REVIEWS\', \'' . $db_pref . 'reviews' . '\');' . "\n" .
+                '  define(\'TABLE_SHIPPING\', \'' . $db_pref . 'shipping' . '\');' . "\n" .
                 '  define(\'TABLE_STICKERS\', \'' . $db_pref . 'stickers' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW\', \'' . $db_pref . 'slideshow' . '\');' . "\n" .
                 '  define(\'TABLE_SLIDESHOW_PREF\', \'' . $db_pref . 'slideshow_pref' . '\');' . "\n" .
